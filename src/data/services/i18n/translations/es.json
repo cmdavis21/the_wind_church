@@ -1,0 +1,389 @@
+{
+  "LanguageSelector": {
+    "label": "Cambiar idioma",
+    "locale": "{locale, select, en {Inglés} es {Español} other {Unknown}}"
+  },
+  "NotFound": {
+    "404": "404",
+    "title": "Página No Encontrada",
+    "description": "Parece que la página que buscas no existe. Te ayudamos a encontrar el camino correcto."
+  },
+  "Navbar": {
+    "logoAlt": "La Iglesia Wind",
+    "about": {
+      "label": "Acerca de",
+      "submenu": [
+        { "label": "Sobre Nosotros", "link": "/acerca-de" },
+        { "label": "Planifica Tu Visita", "link": "/planifica-tu-visita" },
+        { "label": "Líderes de Wind", "link": "/lideres-de-wind" }
+      ]
+    },
+    "media": {
+      "label": "Medios",
+      "submenu": [
+        { "label": "Sermones", "link": "/sermones" },
+        { "label": "RightNow Media", "link": "/rightnowmedia" },
+        { "label": "Galería", "link": "/galeria" }
+      ]
+    },
+    "ministries": {
+      "label": "Ministerios",
+      "submenu": [
+        { "label": "Todos los Ministerios", "link": "/ministerios" },
+        { "label": "Servicio Juvenil", "link": "/servicio-juvenil" },
+        { "label": "Evaluación de Dones", "link": "/evaluacion-de-dones" }
+      ]
+    },
+    "jesus": {
+      "label": "Jesús",
+      "submenu": [
+        { "label": "Salvación", "link": "/salvacion" },
+        { "label": "Peticiones de Oración", "link": "/peticiones-de-oracion" }
+      ]
+    },
+    "deepDive": {
+      "label": "Profundizar",
+      "link": "/profundizar"
+    },
+    "events": {
+      "label": "Eventos",
+      "link": "/eventos"
+    },
+    "bookstore": {
+      "label": "Librería",
+      "submenu": [
+        { "label": "Comprar Productos", "link": "/libreria" },
+        { "label": "Tu Carrito", "link": "/libreria/carrito" }
+      ]
+    },
+    "rental": {
+      "label": "Alquiler",
+      "link": "/alquiler-de-iglesia"
+    },
+    "give": {
+      "label": "Donar",
+      "link": "/donar"
+    }
+  },
+  "Footer": {
+    "name": "La Iglesia Wind",
+    "about": {
+      "label": "Acerca de",
+      "row": [
+        {
+          "label": "Pastor Singletary",
+          "link": "/acerca-de#pastor-singletary"
+        },
+        {
+          "label": "Misión y Visión",
+          "link": "/acerca-de#mision-y-vision"
+        },
+        {
+          "label": "Foursquare",
+          "link": "/acerca-de#foursquare"
+        },
+        {
+          "label": "Nuestra Historia",
+          "link": "/acerca-de#historia"
+        }
+      ]
+    },
+    "windFamily": {
+      "label": "Familia Wind",
+      "row": [
+        {
+          "label": "Donar",
+          "link": "/donar"
+        },
+        {
+          "label": "Profundización",
+          "link": "/profundizacion"
+        },
+        {
+          "label": "Eventos",
+          "link": "/eventos"
+        },
+        {
+          "label": "Sermones",
+          "link": "/sermones"
+        },
+        {
+          "label": "Ministerios",
+          "link": "/ministerios"
+        },
+        {
+          "label": "Salvación",
+          "link": "/salvacion"
+        },
+        {
+          "label": "Peticiones de Oración",
+          "link": "/peticiones-de-oracion"
+        }
+      ]
+    },
+    "moreWind": {
+      "label": "Más de Wind",
+      "row": [
+        {
+          "label": "Planifica Tu Visita",
+          "link": "/planifica-tu-visita"
+        },
+        {
+          "label": "Evaluación de Dones",
+          "link": "/evaluacion-de-dones"
+        },
+        {
+          "label": "Líderes Wind",
+          "link": "/lideres-wind"
+        },
+        {
+          "label": "Galería",
+          "link": "/galeria"
+        },
+        {
+          "label": "Librería",
+          "link": "/libreria"
+        },
+        {
+          "label": "Alquiler de Iglesia",
+          "link": "/alquiler-de-eventos"
+        }
+      ]
+    },
+    "address": {
+      "label": "Dirección",
+      "row": [
+        { "label": "6476 Streeter Avenue" },
+        { "label": "Riverside, CA 92504" }
+      ]
+    },
+    "hours": {
+      "label": "Horario de Oficina",
+      "row": [{ "label": "Lunes - Jueves" }, { "label": "9:00 am a 4:00 pm" }]
+    },
+    "contact": {
+      "label": "Contacto",
+      "row": [
+        { "label": "+1 (951) 359-0203" },
+        {
+          "label": "thewindchurch@outlook.com",
+          "link": "mailto:thewindchurch@outlook.com"
+        }
+      ]
+    },
+    "form": {
+      "label": "Únete a la Familia Wind",
+      "firstName": "Nombre*",
+      "lastName": "Apellido*",
+      "phone": "Teléfono*",
+      "email": "Correo electrónico*",
+      "join": "¡Únete ahora!",
+      "submitting": "Enviando...",
+      "success": "Gracias por unirte.",
+      "error": "Error. Por favor, intenta de nuevo más tarde."
+    }
+  },
+  "About": {
+    "metadata": {
+      "title": "Sobre Nosotros",
+      "description": "Obtenga más información sobre la misión, la visión, las creencias y el liderazgo de The Wind Church en Riverside, CA.",
+      "endpoint": "sobre"
+    },
+    "alt": "Una imagen de fondo decorativa",
+    "title": "The WIND",
+    "subtitle": "Conoce más sobre nuestra iglesia",
+    "mission": {
+      "id": "mission-and-vision",
+      "title": "Misión",
+      "subtitle": "Honrar al Señor, amar al pueblo de Dios y servir a nuestra generación.",
+      "description": "La misión de nuestra iglesia es honrar al Señor demostrando nuestro amor por Dios y Su pueblo a través de un servicio dedicado a nuestra generación."
+    },
+    "vision": {
+      "title": "Visión",
+      "subtitle": "Hacer crecer la familia de Dios a través del amor, el servicio y el discipulado.",
+      "description": "Nuestra visión es expandir la familia de Dios a través del amor, el servicio compasivo y el discipulado comprometido, creando un entorno acogedor donde las personas crezcan en su fe y estén preparadas para hacer un impacto positivo en el mundo.",
+      "verse1": "Efesios 4:12,16",
+      "verse2": "Mateo 22:37-39",
+      "verse3": "Hebreos 6:10",
+      "verse4": "Juan 13:35",
+      "verse5": "Mateo 28:19-20"
+    },
+    "aboutPastor": {
+      "id": "pastor-singletary",
+      "title": "Alaric Singletary",
+      "subtitle": "Pastor Principal de Wind Church",
+      "history": {
+        "title": "Mi Historia",
+        "description": "Desde joven, el Pastor Singletary sintió un profundo llamado a servir al Señor de una manera extraordinaria. Esta visión se hizo realidad cuando entregó nuevamente su vida a Jesucristo el 26 de junio de 1998, y poco después se casó con su esposa, Amber, en el año 2000. Juntos han servido fielmente en varios roles ministeriales, siendo bendecidos con tres maravillosos hijos. El Pastor Singletary sirvió bajo la dirección del Dr. Michael Edwards durante 18 años, desempeñando cargos como Ministro Asociado, Pastor de Jóvenes, Facilitador de Jóvenes Adultos, Miembro del Equipo de la Iglesia Infantil, Presidente del Consejo de la Iglesia, Anciano y Pastor Asistente. Su vasta experiencia y dedicación lo prepararon para su actual rol como Pastor Principal."
+      },
+      "why": {
+        "title": "Por Qué Soy Pastor",
+        "description": "El camino del Pastor Singletary para convertirse en pastor se basó en una profunda convicción temprana de servir a Dios y a Su pueblo. Su llamado se consolidó a través de años de servicio fiel y crecimiento espiritual bajo la mentoría del Dr. Michael Edwards. Ve su papel como un privilegio extraordinario y está comprometido a cumplir el propósito de Dios para The Wind."
+      },
+      "goals": {
+        "title": "Metas Futuras",
+        "description": "El Pastor Singletary está comprometido con el crecimiento tanto espiritual como educativo. Como pastor bi-vocacional, anima a otros a buscar el conocimiento y la comprensión. Posee una licenciatura, tres maestrías y actualmente está cursando un Doctorado en Ministerio. Su objetivo es inspirar a otros a servir a Dios con todo su corazón y avanzar en el Reino de Dios usando sus dones y talentos."
+      },
+      "fact": {
+        "title": "Dato Curioso",
+        "description": "El Pastor Singletary recuerda a menudo a su congregación que '¡Somos un BUQUE DE GUERRA, no un BARCO DE CRUCERO!' Este mantra refleja su creencia de que la misión de la iglesia es servir y avanzar el Reino de Dios, en lugar de esperar ser servidos. Sus mensajes son conocidos por ser prácticos, relevantes e inspiradores, resonando con personas de todos los orígenes."
+      }
+    },
+    "values": {
+      "id": "wind-center",
+      "title": "Es más que solo un servicio dominical",
+      "subtitle": "The Wind es un centro para cultivar los dones con los que Dios ha bendecido a cada individuo",
+      "jesus": {
+        "title": "Seguimos a Jesús",
+        "description": "Una iglesia centrada en Cristo es el núcleo de nuestras creencias"
+      },
+      "worship": {
+        "title": "Adoramos",
+        "description": "Cada momento es una oportunidad de adoración y comunión en la familia de The Wind"
+      },
+      "family": {
+        "title": "Somos Familia",
+        "description": "Nuestro enfoque es fomentar amistades y lazos que van más allá de las paredes de la iglesia. Una vez parte de la nación Wind, siempre parte de la nación Wind"
+      },
+      "serve": {
+        "title": "Servimos",
+        "description": "Nuestro objetivo de desarrollar la presencia de The Wind en nuestra comunidad local comienza con el servicio. Como individuos y como unidad, nos esforzamos por modelar los caminos de Cristo"
+      },
+      "love": {
+        "title": "Amamos",
+        "description": "Todas las personas, en todas las etapas de la vida y circunstancias, merecen el amor de Cristo, y te amaremos lo mejor que sabemos hacerlo"
+      },
+      "transform": {
+        "title": "Transformamos",
+        "description": "El cambio es un proceso constante para todos nosotros. El Señor nos permite crecer en cualquier situación, y cada día es una oportunidad para mejorar nosotros mismos y nuestra familia"
+      }
+    },
+    "foursquare": {
+      "id": "foursquare",
+      "title": "Somos una Iglesia Cuadrangular",
+      "subtitle": "Movimiento de Iglesia",
+      "description": "Estamos arraigados en las enseñanzas de Jesucristo y enfocados en cuatro aspectos clave de su ministerio: Jesús como Salvador, Bautizador con el Espíritu Santo, Sanador y Rey Venidero. En nuestra iglesia, abrazamos estos principios para guiar nuestra adoración.",
+      "accordionItem1": {
+        "title": "Jesucristo el Salvador",
+        "plan": {
+          "title": "El Plan de Salvación",
+          "verse": "Juan 3:16; Romanos 5:8",
+          "description": "Creemos que, aunque éramos pecadores, Cristo murió por nosotros, firmando el perdón de todos los que creen en Él. Salvación por Gracia"
+        },
+        "salvation": {
+          "title": "Salvación por Gracia",
+          "verse": "Efesios 2:8",
+          "description": "Creemos que no tenemos justicia propia y debemos acudir a Dios apelando a la justicia de Cristo"
+        },
+        "scriptures": {
+          "title": "Las Sagradas Escrituras",
+          "verse": "2 Timoteo 3:16, 17",
+          "description": "Creemos que la Biblia es inspirada por Dios"
+        },
+        "eternal": {
+          "title": "La Deidad Eterna",
+          "verse": "2 Corintios 13:14",
+          "description": "Creemos que Dios es Trino: Padre, Hijo y Espíritu Santo"
+        },
+        "fall": {
+          "title": "La Caída del Hombre",
+          "verse": "Romanos 5:12",
+          "description": "Creemos que el hombre fue creado a imagen de Dios, pero que por desobediencia voluntaria cayó de la perfección"
+        }
+      },
+      "accordionItem2": {
+        "title": "Jesucristo el Bautizador con el Espíritu Santo",
+        "relationship": {
+          "title": "Relación con la Iglesia",
+          "verse": "Hechos 16:5; Hebreos 10:25",
+          "description": "Creemos que es nuestro deber sagrado identificarnos con el Cuerpo visible de Cristo"
+        },
+        "civil": {
+          "title": "Gobierno Civil",
+          "verse": "Romanos 13:1-5",
+          "description": "Creemos que los gobernantes deben ser respetados en todo momento, excepto en aquello que se oponga a la voluntad de Dios"
+        },
+        "final": {
+          "title": "El Juicio Final",
+          "verse": "2 Corintios 5:10",
+          "description": "Creemos que todos comparecerán un día ante el tribunal de Dios, y allí recibirán vida eterna o muerte"
+        },
+        "heaven": {
+          "title": "Cielo",
+          "verse": "Juan 14:1-3; Apocalipsis 7:15-17",
+          "description": "Creemos que el Cielo es el glorioso hogar eterno de los creyentes nacidos de nuevo"
+        },
+        "hell": {
+          "title": "Infierno",
+          "verse": "Apocalipsis 20:10,15",
+          "description": "Creemos que el infierno es el lugar de tormento eterno para todos los que rechazan a Cristo como Salvador"
+        }
+      },
+      "accordionItem3": {
+        "title": "Jesucristo el Sanador",
+        "repent": {
+          "title": "Arrepentimiento y Aceptación",
+          "verse": "1 Juan 1:9",
+          "description": "Creemos que, con un arrepentimiento sincero y una aceptación total de Cristo, somos justificados ante Dios"
+        },
+        "new": {
+          "title": "El Nuevo Nacimiento",
+          "verse": "2 Corintios 5:17; Gálatas 2:20",
+          "description": "Creemos que el cambio que ocurre en el corazón y la vida en la conversión es real"
+        },
+        "daily": {
+          "title": "Vida Cristiana Diaria",
+          "verse": "Hebreos 6:1",
+          "description": "Creemos que es la voluntad de Dios que seamos santificados diariamente, creciendo constantemente en la fe"
+        },
+        "supper": {
+          "title": "Bautismo y la Cena del Señor",
+          "verse": "Mateo 28:19; 1 Corintios 11:24, 25",
+          "description": "Creemos que el bautismo por inmersión es una señal externa de una obra interna. Creemos en la conmemoración de la Cena del Señor mediante el uso simbólico del pan y el jugo de la vid"
+        },
+        "spirit": {
+          "title": "Bautismo con el Espíritu Santo",
+          "verse": "Hechos 2:4",
+          "description": "Creemos que el Bautismo con el Espíritu Santo capacita al creyente con poder; y que su manifestación ocurre de la misma manera que en los tiempos bíblicos"
+        }
+      },
+      "accordionItem4": {
+        "title": "Jesucristo el Rey que Viene Pronto",
+        "life": {
+          "title": "La Vida Llena del Espíritu",
+          "verse": "Efesios 4:30-32",
+          "description": "Creemos que es la voluntad de Dios que caminemos en el Espíritu diariamente"
+        },
+        "gifts": {
+          "title": "Los Dones y Frutos del Espíritu",
+          "verse": "1 Corintios 12:1-11; Gálatas 5:22",
+          "description": "Creemos que el Espíritu Santo tiene dones para otorgar al cristiano; y que debemos mostrar fruto espiritual como evidencia de una vida llena del Espíritu"
+        },
+        "moderation": {
+          "title": "Moderación",
+          "verse": "Filipenses 4:5",
+          "description": "Creemos que la experiencia y el caminar diario del creyente nunca deben llevarlo a extremos de fanatismo"
+        },
+        "divine": {
+          "title": "Sanidad Divina",
+          "verse": "Santiago 5:14-16",
+          "description": "Creemos que la sanidad divina es el poder de Cristo para sanar a los enfermos en respuesta a la oración de fe"
+        },
+        "coming": {
+          "title": "La Segunda Venida de Cristo",
+          "verse": "1 Tesalonicenses 4:16, 17",
+          "description": "Creemos que la segunda venida de Cristo es personal e inminente"
+        }
+      }
+    },
+    "history": {
+      "id": "historia",
+      "title": "Nuestra Historia",
+      "subtitle": "Centro de Adoración Viento del Espíritu",
+      "description": "Descubre cómo el Pastor Fundador Michael Edwards, ThD, y Lady Sherrie Edwards han formado una comunidad a lo largo de décadas de ministerio dedicado.",
+      "carouselItem1": "Desde 1976, los Edwards han impactado vidas a través de la enseñanza, el asesoramiento, el discipulado y la plantación de iglesias, lo que llevó a la fundación de A New and Living Way Foursquare Church en 1989.",
+      "carouselItem2": "Por el plan divino de Dios, su iglesia se fusionó con otra congregación para formar el Centro de Adoración Viento del Espíritu, convirtiéndose en un recurso vital para la comunidad y un aliado en el ministerio.",
+      "carouselItem3": "Conocida como “El Viento”, la iglesia es reconocida por su alcance comunitario, formación en liderazgo y adoración expresiva, encarnando el amor de Cristo y dejando un legado de mayordomía fiel que perdura hasta hoy."
+    }
+  }
+}

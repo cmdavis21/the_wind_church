@@ -1,0 +1,68 @@
+import PencilPaper from '../icons/pencilPaper';
+import Accordion, { AccordionType } from './Accordion';
+
+const AccordionStory = {
+  component: Accordion,
+  title: 'Accordion/Accordion',
+  tags: ['autodocs'],
+  decorators: (Story: React.FC) => <Story />,
+};
+
+export default AccordionStory;
+
+export const Default = {
+  args: {
+    content: [
+      {
+        image: '/images/misc/logo_placeholder.png',
+        title: 'Lorem ipsum dolor sit amet',
+        description:
+          'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      },
+      {
+        title: 'Lorem ipsum dolor sit amet',
+        description:
+          'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      },
+      {
+        icon: PencilPaper,
+        title: 'Lorem ipsum dolor sit amet',
+        description:
+          'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      },
+      {
+        title: 'Lorem ipsum dolor sit amet',
+        description:
+          'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      },
+    ],
+  },
+};
+
+export const ProductAccordion = {
+  args: {
+    accordionType: AccordionType.PRODUCT,
+    content: [
+      {
+        title: 'Lorem ipsum dolor sit amet',
+        description:
+          'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      },
+      {
+        title: 'Lorem ipsum dolor sit amet',
+        description:
+          'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      },
+      {
+        title: 'Lorem ipsum dolor sit amet',
+        description:
+          'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      },
+      {
+        title: 'Lorem ipsum dolor sit amet',
+        description:
+          'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      },
+    ],
+  },
+};

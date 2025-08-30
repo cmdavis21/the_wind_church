@@ -1,0 +1,392 @@
+{
+  "LanguageSelector": {
+    "label": "Change language",
+    "locale": "{locale, select, en {English} es {Spanish} other {Unknown}}"
+  },
+  "NotFound": {
+    "404": "404",
+    "title": "Page Not Found",
+    "description": "It seems the page your looking for does not exist. Let's get you back ontrack."
+  },
+  "Navbar": {
+    "logoAlt": "The Wind Church",
+    "about": {
+      "label": "About",
+      "submenu": [
+        { "label": "About Us", "link": "/about" },
+        { "label": "Plan Your Visit", "link": "/plan-your-visit" },
+        { "label": "Wind Leaders", "link": "/wind-leaders" }
+      ]
+    },
+    "media": {
+      "label": "Media",
+      "submenu": [
+        { "label": "sermons", "link": "/sermons" },
+        { "label": "Rightnow Media", "link": "/rightnowmedia" },
+        { "label": "Gallery", "link": "/gallery" }
+      ]
+    },
+    "ministries": {
+      "label": "Ministries",
+      "submenu": [
+        { "label": "All Ministries", "link": "/ministries" },
+        { "label": "Youth Service", "link": "/youth-service" },
+        { "label": "Gift Assessment", "link": "/gift-assessment" }
+      ]
+    },
+    "jesus": {
+      "label": "Jesus",
+      "submenu": [
+        { "label": "Salvation", "link": "/salvation" },
+        { "label": "Prayer Requests", "link": "/prayer-requests" }
+      ]
+    },
+    "deepDive": {
+      "label": "Deep Dive",
+      "link": "/deep-dive"
+    },
+    "events": {
+      "label": "Events",
+      "link": "/events"
+    },
+    "bookstore": {
+      "label": "Bookstore",
+      "submenu": [
+        { "label": "Shop Products", "link": "/bookstore" },
+        { "label": "Your Cart", "link": "/bookstore/cart" }
+      ]
+    },
+    "rental": {
+      "label": "Rental",
+      "link": "/church-rental"
+    },
+    "give": {
+      "label": "Give",
+      "link": "/give"
+    }
+  },
+  "Footer": {
+    "name": "The Wind Church",
+    "about": {
+      "label": "About",
+      "row": [
+        {
+          "label": "Pastor Singletary",
+          "link": "/about#pastor-singletary"
+        },
+        {
+          "label": "Mission and Vision",
+          "link": "/about#mission-and-vision"
+        },
+        {
+          "label": "Foursquare",
+          "link": "/about#foursquare"
+        },
+        {
+          "label": "Our History",
+          "link": "/about#history"
+        }
+      ]
+    },
+    "windFamily": {
+      "label": "Wind Family",
+      "row": [
+        {
+          "label": "Donate",
+          "link": "/give"
+        },
+        {
+          "label": "Deep Dive",
+          "link": "/deep-dive"
+        },
+        {
+          "label": "Events",
+          "link": "/events"
+        },
+        {
+          "label": "Sermons",
+          "link": "/sermons"
+        },
+        {
+          "label": "Ministries",
+          "link": "/ministries"
+        },
+        {
+          "label": "Salvation",
+          "link": "/salvation"
+        },
+        {
+          "label": "Prayer Requests",
+          "link": "/prayer-requests"
+        }
+      ]
+    },
+    "moreWind": {
+      "label": "More Wind",
+      "row": [
+        {
+          "label": "Plan Your Visit",
+          "link": "/plan-your-visit"
+        },
+        {
+          "label": "Gift Assessment",
+          "link": "/gift-assessment"
+        },
+        {
+          "label": "Wind Leaders",
+          "link": "/wind-leaders"
+        },
+        {
+          "label": "Gallery",
+          "link": "/gallery"
+        },
+        {
+          "label": "Bookstore",
+          "link": "/bookstore"
+        },
+        {
+          "label": "Church Rental",
+          "link": "/church-rental"
+        }
+      ]
+    },
+    "address": {
+      "label": "Address",
+      "row": [
+        { "label": "6476 Streeter Avenue" },
+        { "label": "Riverside, CA 92504" }
+      ]
+    },
+    "hours": {
+      "label": "Office Hours",
+      "row": [
+        { "label": "Monday - Thursday" },
+        { "label": "9:00 am to 4:00 pm" }
+      ]
+    },
+    "contact": {
+      "label": "Contact",
+      "row": [
+        { "label": "+1 (951) 359-0203" },
+        {
+          "label": "thewindchurch@outlook.com",
+          "link": "mailto:thewindchurch@outlook.com"
+        }
+      ]
+    },
+    "form": {
+      "label": "Join the Wind Family",
+      "firstName": "First Name*",
+      "lastName": "Last Name*",
+      "phone": "Phone*",
+      "email": "Email*",
+      "join": "Join Now!",
+      "submitting": "Submitting...",
+      "success": "Thank you for joining.",
+      "error": "Error. Please try again later."
+    }
+  },
+  "About": {
+    "metadata": {
+      "title": "About Us",
+      "description": "Learn more about the mission, vision, beliefs, and leadership behind The Wind Church in Riverside, CA.",
+      "endpoint": "about"
+    },
+    "alt": "A decorative background image",
+    "title": "The WIND",
+    "subtitle": "Learn more about our church",
+    "mission": {
+      "id": "mission-and-vision",
+      "title": "Mission",
+      "subtitle": "Honor the Lord, love God's people, and serve our generation.",
+      "description": "Our church mission is to honor the Lord by demonstrating our love for God and His people through dedicated service to our generation."
+    },
+    "vision": {
+      "title": "Vision",
+      "subtitle": "Growing God's family through love, service, and discipleship.",
+      "description": "Our vision is to expand God's family through love, compassionate service, and committed discipleship, creating a nurturing environment where individuals grow in their faith and are equipped to make a positive impact in the world.",
+      "verse1": "Ephesians 4:12,16",
+      "verse2": "Matthew 22:37-39",
+      "verse3": "Hebrews 6:10",
+      "verse4": "John 13:35",
+      "verse5": "Matthew 28:19-20"
+    },
+    "aboutPastor": {
+      "id": "pastor-singletary",
+      "title": "Alaric Singletary",
+      "subtitle": "Wind Church Senior Pastor",
+      "history": {
+        "title": "My History",
+        "description": "From a young age, Pastor Singletary felt a profound calling to serve the Lord in an extraordinary way. This vision became a reality when he recommitted his life to Jesus Christ on June 26, 1998, and shortly after married his wife, Amber, in 2000. Together, they have faithfully served in various ministry roles, blessed with three wonderful children. Pastor Singletary served under Dr. Michael Edwards for 18 years, holding positions such as Associate Minister, Youth Pastor, Young Adult Facilitator, Children's Church Team member, Church Council Chairperson, Elder, and Assistant Pastor. His extensive experience and dedication prepared him for his current role as Senior Pastor."
+      },
+      "why": {
+        "title": "Why I am a Pastor",
+        "description": "Pastor Singletary's journey to becoming a pastor was rooted in a deep, early conviction to serve God and His people. His calling was solidified through years of faithful service and spiritual growth under the mentorship of Dr. Michael Edwards. He views his role as an awesome privilege and is committed to fulfilling God's purpose for The Wind."
+      },
+      "goals": {
+        "title": "Future Goals",
+        "description": "Pastor Singletary is committed to both spiritual and educational growth. As a bi-vocational pastor, he encourages others to pursue knowledge and understanding. He holds a Bachelor's degree, three Master's degrees, and is currently pursuing a Doctorate of Ministry. His goal is to inspire others to serve God wholeheartedly and advance the Kingdom of God using their gifts and talents."
+      },
+      "fact": {
+        "title": "Fun Fact",
+        "description": "Pastor Singletary often reminds his congregation that “We are a BATTLESHIP, not a CRUISESHIP!” This borrowed mantra reflects his belief that the church's mission is to serve and advance God's Kingdom, rather than seeking to be served. His messages are known for being practical, relevant, and inspiring, resonating with people of all backgrounds."
+      }
+    },
+    "values": {
+      "id": "wind-center",
+      "title": "It is more than just a Sunday service",
+      "subtitle": "The Wind is a center for cultivating the gifts God has blessed each indivudal",
+      "jesus": {
+        "title": "We Follow Jesus",
+        "description": "A Christ-driven church is the core of our beliefs"
+      },
+      "worship": {
+        "title": "We Worship",
+        "description": "Every moment is a time of worship and fellowship in the Wind family"
+      },
+      "family": {
+        "title": "We're Family",
+        "description": "Our focus is nurturing friendships and bonds that go beyond the church walls. Once a Wind nation, always a wind nation"
+      },
+      "serve": {
+        "title": "We Serve",
+        "description": "Our goal of developing the Wind presence in our local community starts with service. As individuals and as a unit, we strive to model that ways of Christ"
+      },
+      "love": {
+        "title": "We Love",
+        "description": "All individuals in all walks of life, seasons, and variety deserve the love of Christ, and we will love you as perfectly as we know how"
+      },
+      "transform": {
+        "title": "We Transform",
+        "description": "Change is a forever process for all of us. The Lord welcomes growth through any situations, and every day is chance bettering ourselves and our family"
+      }
+    },
+    "foursquare": {
+      "id": "foursquare",
+      "title": "We're a Foursquare Church",
+      "subtitle": "Church Movement",
+      "description": "We are rooted in the teachings of Jesus Christ and focused on four key aspects of his ministry: Jesus as the Savior, Baptizer with the Holy Spirit, Healer, and Soon-Coming King. In our church, we embrace these principles to guide our worship.",
+      "accordionItem1": {
+        "title": "Jesus Christ the Savior",
+        "plan": {
+          "title": "The Plan of Salvation",
+          "verse": "John 3:16; Romans 5:8",
+          "description": "We believe that while we were yet sinners Christ died for us, signing the pardon of all who believe on Him Salvation Through Grace"
+        },
+        "salvation": {
+          "title": "Salvation Through Grace",
+          "verse": "Ephesians 2:8",
+          "description": "We believe that we have no righteousness and must come to God pleading the righteousness of Christ"
+        },
+        "scriptures": {
+          "title": "The Holy Scriptures",
+          "verse": "2 Timothy 3:16, 17",
+          "description": "We believe the Bible is God-inspired"
+        },
+        "eternal": {
+          "title": "The Eternal Godhead",
+          "verse": "2 Corinthians 13:14",
+          "description": "We believe God is Triun: Father, Son & Holy Spirit"
+        },
+        "fall": {
+          "title": "The Fall of Man",
+          "verse": "Romans 5:12",
+          "description": "We believe that man was created in the image of God, but that by voluntary disobedience he fell from perfection"
+        }
+      },
+      "accordionItem2": {
+        "title": "Jesus Christ the Baptizer with the Holy Spirit",
+        "relationship": {
+          "title": "Church Relationship",
+          "verse": "Acts 16:5; Hebrews 10:25",
+          "description": "We believe it is our sacred duty to identify ourselves with the visible Body of Christ"
+        },
+        "civil": {
+          "title": "Civil Government",
+          "verse": "Romans 13:1-5",
+          "description": "We believe that rulers should be upheld at all times, except in things opposed to the will of God"
+        },
+        "final": {
+          "title": "The Final Judgement",
+          "verse": "2 Corinthians 5:10",
+          "description": "We believe that all shall stand some day before the judgement seat of God, and there receive eternal life or death"
+        },
+        "heaven": {
+          "title": "Heaven",
+          "verse": "John 14:1-3; Revelation 7:15-17",
+          "description": "We believe that Heaven is the glorious eternal home of born-again believers"
+        },
+        "hell": {
+          "title": "Hell",
+          "verse": "Revelation 20:10,15",
+          "description": "We believe that hell is the place of eternal torment for all who reject Christ as the Savior"
+        }
+      },
+      "accordionItem3": {
+        "title": "Jesus Christ the Healer",
+        "repent": {
+          "title": "Repentance & Acceptance",
+          "verse": "1 John 1:9",
+          "description": "We believe that upon sincere repentance and a whole-hearted acceptance of Christ, we are justified before God"
+        },
+        "new": {
+          "title": "The New Birth",
+          "verse": "2 Corinthians 5:17; Galatians 2:20",
+          "description": "We believe that the change which takes place in the heart and life at conversion is a very real one"
+        },
+        "daily": {
+          "title": "Daily Christian Living",
+          "verse": "Hebrews 6:1",
+          "description": "We believe that it is the will of God that we be sanctified daily, growing constantly in the faith"
+        },
+        "supper": {
+          "title": "Baptism & The Lord's Supper",
+          "verse": "Matthew 28:19; 1 Corinthians 11:24, 25",
+          "description": "We believe that baptism by immersion is an outward sign of an inward work. We believe in the commemoration of the Lord's Supper by the symbolic use of the bread and juice of the vine"
+        },
+        "spirit": {
+          "title": "Baptism with the Holy Spirit",
+          "verse": "Acts 2:4",
+          "description": "We believe that the Baptism with the Holy Spirit is to endue the believer with power; and that His incoming is after the same manner as in Bible days"
+        }
+      },
+      "accordionItem4": {
+        "title": "Jesus Christ the Soon-Coming King",
+        "life": {
+          "title": "The Spirit-Filled Life",
+          "verse": "Ephesians 4:30-32",
+          "description": "We believe that it is the will of God that we walk in the Spirit daily"
+        },
+        "gifts": {
+          "title": "The Gifts & Fruits of the Spirit",
+          "verse": "1 Corinthians 12:1-11; Galatians 5:22",
+          "description": "We believe that the Holy Spirit has gifts to bestow upon the Christian; and that we should show spiritual fruit as evidence of a Spirit-filled life"
+        },
+        "moderation": {
+          "title": "Moderation",
+          "verse": "Philippians 4:5",
+          "description": "We believe that the experience and daily walk of the believer should never lead him into extremes of fanaticism"
+        },
+        "divine": {
+          "title": "Divine Healing",
+          "verse": "James 5:14-16",
+          "description": "We believe that divine healing is the power of Christ to heal the physically sick in answer to the prayer of faith"
+        },
+        "coming": {
+          "title": "The Second Coming of Christ",
+          "verse": "1 Thessalonians 4:16, 17",
+          "description": "We believe that the second coming of Christ is personal and imminent"
+        }
+      }
+    },
+    "history": {
+      "id": "history",
+      "title": "Our History",
+      "subtitle": "Wind of the Spirit Worship Center",
+      "description": "Learn how Founding Pastor Michael Edwards, ThD, and Lady Sherrie Edwards have shaped a community through decades of devoted ministry.",
+      "carouselItem1": "Since 1976, the Edwards have impacted lives through teaching, counseling, discipleship, and church planting, leading to the founding of A New and Living Way Foursquare Church in 1989.",
+      "carouselItem2": "By God's divine plan, their church merged with another congregation to form Wind of the Spirit Worship Center, becoming a vital community resource and ministry partner.",
+      "carouselItem3": "Known as “The Wind,” the church is celebrated for its outreach, leadership training, and expressive worship, embodying Christ's love and leaving a legacy of faithful stewardship that endures today."
+    }
+  }
+}
