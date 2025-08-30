@@ -11,9 +11,7 @@ export const formatDateMMMddyyyy = (d?: Date | string | null) => {
   let date = d;
   if (typeof d === 'string') date = new Date(d);
   if (typeof date !== 'string')
-    return date && date.getFullYear() !== 9999
-      ? format(date, 'MMM dd, yyyy')
-      : '';
+    return date && date.getFullYear() !== 9999 ? format(date, 'MMM dd, yyyy') : '';
   return '';
 };
 
@@ -21,9 +19,7 @@ export const formatDateMMMddyyyyHHmm = (d?: Date | string | null) => {
   let date = d;
   if (typeof d === 'string') date = new Date(d);
   if (typeof date !== 'string')
-    return date && date.getFullYear() !== 9999
-      ? format(date, 'yyyy-MM-dd HH:mm')
-      : '-';
+    return date && date.getFullYear() !== 9999 ? format(date, 'yyyy-MM-dd HH:mm') : '-';
   return '';
 };
 
@@ -31,10 +27,27 @@ export const formatDateMMMddyyyyHHmmss = (d?: Date | string | null) => {
   let date = d;
   if (typeof d === 'string') date = new Date(d);
   if (typeof date !== 'string')
-    return date && date.getFullYear() !== 9999
-      ? format(date, 'yyyy-MM-dd HH:mm:ss')
-      : '-';
+    return date && date.getFullYear() !== 9999 ? format(date, 'yyyy-MM-dd HH:mm:ss') : '-';
   return '';
+};
+
+export const getDatesOfNextFiveSundays = () => {
+  const now = new Date();
+  const sundaysArray = [];
+  const currentDay = now.getDay();
+  const daysUntilNextSunday = 7 - currentDay; // Calculate days until next Sunday
+
+  // Start from next Sunday
+  const nextSunday = new Date(now);
+  nextSunday.setDate(now.getDate() + daysUntilNextSunday);
+
+  // Collect the following 5 Sundays
+  for (let i = 0; i < 5; i++) {
+    sundaysArray.push(new Date(nextSunday));
+    nextSunday.setDate(nextSunday.getDate() + 7);
+  }
+
+  return sundaysArray;
 };
 
 export const getLastSunday = () => {

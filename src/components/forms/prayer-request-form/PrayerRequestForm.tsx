@@ -1,30 +1,25 @@
-"use client";
+'use client';
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Label, Radio } from "flowbite-react";
-import React from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Label, Radio } from 'flowbite-react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
-import PencilPaper from "@/components/icons/pencilPaper";
-import { PrayerRequest, YesNo } from "@/data/types";
-import { useCreatePrayerRequest } from "@/data/services/forms/prayer-requests";
+import PencilPaper from '@/components/icons/pencilPaper';
+import { PrayerRequest, YesNo } from '@/data/types';
 
-import FormSuccessErrorMessage from "../inputs/form-success-error-message/FormSuccessErrorMessage";
-import TextareaInput from "../inputs/textarea-input/TextareaInput";
-import TextInput from "../inputs/text-input/TextInput";
-
+import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
+import TextareaInput from '../inputs/textarea-input/TextareaInput';
+import TextInput from '../inputs/text-input/TextInput';
+import { useCreatePrayerRequest } from '@/data/services/sanity/mutations/prayer-request';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required("Please enter your first name"),
-  last_name: yup.string().required("Please enter your last name"),
-  request_email_back: yup
-    .string()
-    .oneOf([YesNo.YES, YesNo.NO])
-    .default(YesNo.YES)
-    .required(),
-  email: yup.string().email().required("Please enter your email"),
-  request: yup.string().required("Please enter your prayer"),
+  first_name: yup.string().required('Please enter your first name'),
+  last_name: yup.string().required('Please enter your last name'),
+  request_email_back: yup.string().oneOf([YesNo.YES, YesNo.NO]).default(YesNo.YES).required(),
+  email: yup.string().email().required('Please enter your email'),
+  request: yup.string().required('Please enter your prayer'),
 });
 
 const PrayerRequestForm = () => {
@@ -44,7 +39,7 @@ const PrayerRequestForm = () => {
     clearErrors,
     formState: { errors },
   } = useForm<PrayerRequest>({
-    mode: "onSubmit",
+    mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
 
@@ -90,7 +85,7 @@ const PrayerRequestForm = () => {
           error={errors.first_name?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your first name"
-          {...register("first_name")}
+          {...register('first_name')}
         />
         <TextInput
           label="Last Name*"
@@ -98,7 +93,7 @@ const PrayerRequestForm = () => {
           error={errors.last_name?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your last name"
-          {...register("last_name")}
+          {...register('last_name')}
         />
       </div>
 
@@ -109,15 +104,12 @@ const PrayerRequestForm = () => {
         error={errors.email?.message}
         disabled={isPending || isSuccess}
         placeholder="Enter your email"
-        {...register("email")}
+        {...register('email')}
       />
 
       {/* request email back */}
       <div className="flex flex-col md:flex-row md:items-center gap-md">
-        <Label
-          htmlFor="requestEmailBack"
-          value="Would you like us to respond to you by email?"
-        />
+        <Label htmlFor="requestEmailBack" value="Would you like us to respond to you by email?" />
         <div className="flex items-center gap-md">
           <div className="flex items-center gap-xs">
             <Radio
@@ -125,7 +117,7 @@ const PrayerRequestForm = () => {
               value={YesNo.YES}
               defaultChecked
               disabled={isPending || isSuccess}
-              onChange={() => setValue("request_email_back", YesNo.YES)}
+              onChange={() => setValue('request_email_back', YesNo.YES)}
             />
             <Label htmlFor="request_email_back" value="Yes" />
           </div>
@@ -134,7 +126,7 @@ const PrayerRequestForm = () => {
               name="request_email_back"
               value={YesNo.NO}
               disabled={isPending || isSuccess}
-              onChange={() => setValue("request_email_back", YesNo.NO)}
+              onChange={() => setValue('request_email_back', YesNo.NO)}
             />
             <Label htmlFor="request_email_back" value="No, just prayers" />
           </div>
@@ -148,8 +140,8 @@ const PrayerRequestForm = () => {
         disabled={isPending || isSuccess}
         placeholder="Enter your prayer here"
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-          setValue("request", e.target.value);
-          if (e.target.value !== "") clearErrors("request");
+          setValue('request', e.target.value);
+          if (e.target.value !== '') clearErrors('request');
         }}
       />
 
@@ -161,7 +153,7 @@ const PrayerRequestForm = () => {
         disabled={isPending || isSuccess}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? "Submitting..." : "Submit!"}
+        {isPending ? 'Submitting...' : 'Submit!'}
       </Button>
     </form>
   );

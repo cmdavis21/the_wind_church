@@ -1,71 +1,36 @@
-import { SANITY_MUTATION_API_ENDPOINT, SANITY_EDITOR_TOKEN } from '@/data/constants';
-import { EventRentalInquiry, sanityMutationReturnType } from '@/data/types';
+import { EventRentalInquiry } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { HttpClient } from '../../http-client';
-import { sanityMutationBodyStructure } from '../utils';
-import { getContactIdByEmailQuery } from '../queries/contacts';
+import { createContactClient } from './contact-signup';
+import { SanityClient } from '../client';
 
 export const createEventRentalInquiryClient = async (data: EventRentalInquiry) => {
-  let contactId;
-  const existingContact = await getContactIdByEmailQuery(data.email);
+  try {
+    const contactId = await createContactClient(data);
 
-  if (existingContact) {
-    contactId = existingContact._id;
-  } else {
-    contactId = `contact-${data.email.replace(/[^a-zA-Z0-9]/g, '')}`;
-    // Then use createIfNotExists with this ID
-  }
+    const { first_name, last_name, email, phone, ...formData } = data;
 
-  let body = null;
-  if (contactId) {
-    body = sanityMutationBodyStructure({
-      createReq: {
-        _type: 'eventRental',
-        data: {
-          ...data,
-          contact: {
-            _type: 'reference',
-            _ref: contactId._id,
-          },
-        },
+    await SanityClient.create({
+      _type: 'eventRental',
+      contact: {
+        _type: 'reference',
+        _ref: contactId,
       },
+      ...formData,
     });
-  } else {
-    const newC;
-    body = sanityMutationBodyStructure({
-      createReq: [
-        { _type: 'contact', data },
-        {
-          _type: 'eventRental',
-          data: {
-            ...data,
-            contact: {
-              _type: 'reference',
-              _ref: contactId.id,
-            },
-          },
-        },
-      ],
-    });
+  } catch (err: any) {
+    console.error('### FAILED TO CREATE EVENT RENTAL INQUIRY', err.message);
+    throw new Error('Event rental inquiry creation failed');
   }
-
-  console.log(body);
-  return await HttpClient.post<sanityMutationReturnType>(SANITY_MUTATION_API_ENDPOINT, body, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${SANITY_EDITOR_TOKEN}`,
-    },
-  });
 };
 
 export const useCreateEventRentalInquiry = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createEventRentalInquiryClient,
-    mutationKey: [SANITY_MUTATION_API_ENDPOINT, 'eventRental'],
+    mutationKey: ['SANITY MUTATION CREATE EVENT RENTAL INQUIRY'],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: [SANITY_MUTATION_API_ENDPOINT, 'eventRental'],
+        queryKey: ['SANITY MUTATION CREATE EVENT RENTAL INQUIRY'],
       });
     },
   });

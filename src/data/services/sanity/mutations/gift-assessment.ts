@@ -1,31 +1,36 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
-import { SANITY_MUTATION_API_ENDPOINT, SANITY_EDITOR_TOKEN } from '@/data/constants';
-import { sanityMutationBodyStructure } from '../utils';
 import { GiftAssessmentSubmission } from '@/data/types';
-import { HttpClient } from '../../http-client';
+import { SanityClient } from '../client';
+import { createContactClient } from './contact-signup';
 
 export const createGiftAssessmentClient = async (data: GiftAssessmentSubmission) => {
-  await HttpClient.post(
-    SANITY_MUTATION_API_ENDPOINT,
-    sanityMutationBodyStructure({ createReq: { _type: 'giftAssessment', data } }),
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${SANITY_EDITOR_TOKEN}`,
+  try {
+    const contactId = await createContactClient(data);
+
+    const { first_name, last_name, email, phone, ...formData } = data;
+
+    await SanityClient.create({
+      _type: 'giftAssessment',
+      contact: {
+        _type: 'reference',
+        _ref: contactId,
       },
-    }
-  );
+      ...formData,
+    });
+  } catch (err: any) {
+    console.error('### FAILED TO CREATE GIFT ASSESSMENT', err.message);
+    throw new Error('Gift Assessment creation failed');
+  }
 };
 
 export const useCreateGiftAssessment = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createGiftAssessmentClient,
-    mutationKey: [SANITY_MUTATION_API_ENDPOINT, 'giftAssessment'],
+    mutationKey: ['SANITY MUTATION CREATE GIFT ASSESSMENT'],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: [SANITY_MUTATION_API_ENDPOINT, 'giftAssessment'],
+        queryKey: ['SANITY MUTATION CREATE GIFT ASSESSMENT'],
       });
     },
   });

@@ -1,34 +1,31 @@
-"use client";
+'use client';
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "flowbite-react";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from 'flowbite-react';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
+import { PlanYourVisit } from '@/data/types';
+import { formatDateMMMddyyyy, getDatesOfNextFiveSundays } from '@/data/format-date';
+import Calendar from '@/components/icons/calendar';
 
-import { PlanYourVisit } from "@/data/types";
-import { formatDateMMMddyyyy } from "@/data/format-date";
-import Calendar from "@/components/icons/calendar";
-import { useCreateScheduleVisit } from "@/data/services/forms/schedule-visit";
-
-import TextInput from "../inputs/text-input/TextInput";
-import SelectInput from "../inputs/select-input/SelectInput";
-import FormSuccessErrorMessage from "../inputs/form-success-error-message/FormSuccessErrorMessage";
+import TextInput from '../inputs/text-input/TextInput';
+import SelectInput from '../inputs/select-input/SelectInput';
+import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
+import { useCreateScheduleVisit } from '@/data/services/sanity/mutations/schedule-visit';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required("Please enter your first name"),
-  last_name: yup.string().required("Please enter your last name"),
-  email: yup.string().email().required("Please enter your email"),
+  first_name: yup.string().required('Please enter your first name'),
+  last_name: yup.string().required('Please enter your last name'),
+  email: yup.string().email().required('Please enter your email'),
   phone: yup.string().optional(),
   attendance: yup
     .number()
     .min(1)
     .max(15)
-    .required("Please let us know how many will be coming with you."),
-  day_of_visit: yup
-    .string()
-    .required("Please select an ideal date we can expect you."),
+    .required('Please let us know how many will be coming with you.'),
+  day_of_visit: yup.string().required('Please select an ideal date we can expect you.'),
 });
 
 const PlanYourVisitForm = () => {
@@ -46,7 +43,7 @@ const PlanYourVisitForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<PlanYourVisit>({
-    mode: "onSubmit",
+    mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
 
@@ -54,30 +51,7 @@ const PlanYourVisitForm = () => {
 
   const [sundays, setSundays] = useState<Date[] | []>([]);
 
-  useEffect(() => {
-    // Function to calculate the following 5 Sundays
-    const getNextSundays = () => {
-      const now = new Date();
-      const sundaysArray = [];
-      const currentDay = now.getDay();
-      const daysUntilNextSunday = 7 - currentDay; // Calculate days until next Sunday
-
-      // Start from next Sunday
-      const nextSunday = new Date(now);
-      nextSunday.setDate(now.getDate() + daysUntilNextSunday);
-
-      // Collect the following 5 Sundays
-      for (let i = 0; i < 5; i++) {
-        sundaysArray.push(new Date(nextSunday));
-        nextSunday.setDate(nextSunday.getDate() + 7);
-      }
-
-      return sundaysArray;
-    };
-
-    // Update the state with the next 5 Sundays
-    setSundays(getNextSundays());
-  }, []);
+  useEffect(() => setSundays(getDatesOfNextFiveSundays()), []);
 
   return (
     <form
@@ -115,7 +89,7 @@ const PlanYourVisitForm = () => {
           error={errors.first_name?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your first name"
-          {...register("first_name")}
+          {...register('first_name')}
         />
         <TextInput
           label="Last Name*"
@@ -123,7 +97,7 @@ const PlanYourVisitForm = () => {
           error={errors.last_name?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your last name"
-          {...register("last_name")}
+          {...register('last_name')}
         />
       </div>
 
@@ -135,7 +109,7 @@ const PlanYourVisitForm = () => {
           error={errors.phone?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your phone number"
-          {...register("phone")}
+          {...register('phone')}
         />
         <TextInput
           label="Email*"
@@ -143,7 +117,7 @@ const PlanYourVisitForm = () => {
           error={errors.email?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your email"
-          {...register("email")}
+          {...register('email')}
         />
       </div>
 
@@ -157,13 +131,13 @@ const PlanYourVisitForm = () => {
           defaultValue={1}
           error={errors.attendance?.message}
           disabled={isPending || isSuccess}
-          {...register("attendance")}
+          {...register('attendance')}
         />
         <SelectInput
           label="Which Sunday will you visit?*"
           disabled={isPending || isSuccess}
           error={errors.day_of_visit?.message}
-          {...register("day_of_visit")}
+          {...register('day_of_visit')}
           options={[
             ...sundays.map((sunday) => ({
               label: `Sun ${formatDateMMMddyyyy(sunday)}`,
@@ -181,7 +155,7 @@ const PlanYourVisitForm = () => {
         disabled={isPending || isSuccess}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? "Submitting..." : "Submit!"}
+        {isPending ? 'Submitting...' : 'Submit!'}
       </Button>
     </form>
   );

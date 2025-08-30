@@ -7,7 +7,7 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { Gender, YouthRegistrationInquiry } from '@/data/types';
-import { useYouthServiceRegistration } from '@/data/services/forms/youth-service-registration';
+
 import PencilPaper from '@/components/icons/pencilPaper';
 import CirclePlus from '@/components/icons/circlePlus';
 import Trash from '@/components/icons/trash';
@@ -16,6 +16,7 @@ import YouthRegisterGuardiansForm from './youth-register-guardians-form/YouthReg
 import SelectInput from '../inputs/select-input/SelectInput';
 import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
 import TextInput from '../inputs/text-input/TextInput';
+import { useYouthServiceRegistration } from '@/data/services/sanity/mutations/youth-service-registration';
 
 const schema = yup.object().shape({
   children: yup

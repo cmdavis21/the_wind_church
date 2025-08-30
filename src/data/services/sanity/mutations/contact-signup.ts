@@ -1,42 +1,36 @@
-import { SANITY_EDITOR_TOKEN, SANITY_MUTATION_API_ENDPOINT } from '@/data/constants';
-import { FullContact, sanityMutationReturnType } from '@/data/types';
+import { FullContact, PartialContact } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { HttpClient } from '../../http-client';
-import { sanityMutationBodyStructure } from '../utils';
 import { getContactIdByEmailQuery } from '../queries/contacts';
+import { SanityClient } from '../client';
 
-export const createContactSignupClient = async (data: FullContact) =>
-  HttpClient.post<sanityMutationReturnType>(
-    SANITY_MUTATION_API_ENDPOINT,
-    sanityMutationBodyStructure({ createReq: { _type: 'contact', data } }),
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${SANITY_EDITOR_TOKEN}`,
-      },
+export const createContactClient = async (data: FullContact | PartialContact): Promise<string> => {
+  try {
+    const existingContact = await getContactIdByEmailQuery(data.email);
+
+    if (existingContact) {
+      const patchedContact = await SanityClient.patch(existingContact._id).set(data).commit();
+      return patchedContact._id;
+    } else {
+      const newContact = await SanityClient.create({
+        _type: 'contact',
+        ...data,
+      });
+      return newContact._id;
     }
-  );
-
-export const findOrCreateContact = async (data: FullContact): Promise<{ _id: string }> => {
-  let contactId;
-  const existingContact = await getContactIdByEmailQuery(data.email);
-
-  if (existingContact) {
-    return existingContact;
-  } else {
-    contactId = `contact-${data.email.replace(/[^a-zA-Z0-9]/g, '')}`;
-    // Then use createIfNotExists with this ID
+  } catch (err: any) {
+    console.error('### FAILED TO UPSERT CONTACT', err.message);
+    throw new Error('Contact creation or update failed');
   }
 };
 
 export const useCreateContactSignup = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createContactSignupClient,
-    mutationKey: [SANITY_MUTATION_API_ENDPOINT, 'contact'],
+    mutationFn: createContactClient,
+    mutationKey: ['SANITY MUTATION CREATE CONTACT'],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: [SANITY_MUTATION_API_ENDPOINT, 'contact'],
+        queryKey: ['SANITY MUTATION CREATE CONTACT'],
       });
     },
   });

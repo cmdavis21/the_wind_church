@@ -1,42 +1,34 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import { Button } from "flowbite-react";
+import React, { useState } from 'react';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { Button } from 'flowbite-react';
 
 import {
   GiftAssessmentDefinition,
   GiftAssessmentReflectionQuestions,
   GiftAssessmentSubmission,
   FullContact,
-} from "@/data/types";
-import {
-  GiftAssessmentQuestions,
-  GiftAssessmentDefinitions,
-} from "@/data/gift-assessment";
-import { useCreateGiftAssessment } from "@/data/services/forms/gift-assessment";
+} from '@/data/types';
+import { GiftAssessmentQuestions, GiftAssessmentDefinitions } from '@/data/gift-assessment';
 
-import GiftAssessmentResultsPdf from "../../pdfs/gift-assessment-results-pdf/GiftAssessmentResultsPdf";
-import GiftAssessmentContactForm from "./gift-assessment-contact-form/GiftAssessmentContactForm";
-import GiftAssessmentGiftsAccordionList from "./gift-assessment-gifts-accordion-list/GiftAssessmentGiftsAccordionList";
-import GiftAssessmentQuiz from "./gift-assessment-quiz/GiftAssessmentQuiz";
-import GiftAssessmentReflectionQuestionsForm from "./gift-assessment-reflection-questions-form/GiftAssessmentReflectionQuestionsForm";
+import GiftAssessmentResultsPdf from '../../pdfs/gift-assessment-results-pdf/GiftAssessmentResultsPdf';
+import GiftAssessmentContactForm from './gift-assessment-contact-form/GiftAssessmentContactForm';
+import GiftAssessmentGiftsAccordionList from './gift-assessment-gifts-accordion-list/GiftAssessmentGiftsAccordionList';
+import GiftAssessmentQuiz from './gift-assessment-quiz/GiftAssessmentQuiz';
+import GiftAssessmentReflectionQuestionsForm from './gift-assessment-reflection-questions-form/GiftAssessmentReflectionQuestionsForm';
+import { useCreateGiftAssessment } from '@/data/services/sanity/mutations/gift-assessment';
 
-
-const PDF_FILE_NAME = "The_Wind_Church_Spiritual_Gift_Assessment_Results.pdf";
+const PDF_FILE_NAME = 'The_Wind_Church_Spiritual_Gift_Assessment_Results.pdf';
 
 const GiftAssessment = () => {
   const [showResults, setShowResults] = useState(false);
 
-  const [dominateGifts, setDominateGifts] = useState<
-    GiftAssessmentDefinition[] | null
-  >(null);
-  const [subordinateGifts, setSubordinateGifts] = useState<
-    GiftAssessmentDefinition[] | null
-  >(null);
+  const [dominateGifts, setDominateGifts] = useState<GiftAssessmentDefinition[] | null>(null);
+  const [subordinateGifts, setSubordinateGifts] = useState<GiftAssessmentDefinition[] | null>(null);
 
-  const [domGiftsStr, setDomGiftsStr] = useState("");
-  const [subGiftsStr, setSubGiftsStr] = useState("");
+  const [domGiftsStr, setDomGiftsStr] = useState('');
+  const [subGiftsStr, setSubGiftsStr] = useState('');
 
   const [reflectionQuestions, setReflectionQuestions] =
     useState<GiftAssessmentReflectionQuestions | null>(null);
@@ -82,9 +74,8 @@ const GiftAssessment = () => {
           <div className="flex flex-col gap-md">
             <h3>Assessment Completed!</h3>
             <h5 className="pb-lg">
-              Thank you for taking the time to complete the assessment. You are
-              one-step closer to undertsanding the purpose God had outlined in
-              your life.
+              Thank you for taking the time to complete the assessment. You are one-step closer to
+              undertsanding the purpose God had outlined in your life.
             </h5>
             <GiftAssessmentGiftsAccordionList
               list={[
@@ -103,15 +94,11 @@ const GiftAssessment = () => {
           {/* Follow-up Questions */}
           <div className="flex flex-col gap-md">
             <h3>Reflection Questions</h3>
-            <h5>
-              Please answer the following relection questions of your
-              assessment.
-            </h5>
+            <h5>Please answer the following relection questions of your assessment.</h5>
             <h5 className="pb-lg">
-              Once completed you will have the option to download your
-              assessment results and/or submit your results to the Wind Church
-              where an administrator can work with you on better undertanding
-              your results and Godly purpose.
+              Once completed you will have the option to download your assessment results and/or
+              submit your results to the Wind Church where an administrator can work with you on
+              better undertanding your results and Godly purpose.
             </h5>
             <GiftAssessmentReflectionQuestionsForm
               responses={setReflectionQuestions}
@@ -127,20 +114,14 @@ const GiftAssessment = () => {
                   <GiftAssessmentResultsPdf
                     dominateGifts={dominateGifts}
                     subordinateGifts={subordinateGifts}
-                    ministriesInvolvedIn={
-                      reflectionQuestions.ministries_involved_in
-                    }
+                    ministriesInvolvedIn={reflectionQuestions.ministries_involved_in}
                     changeInMinistry={reflectionQuestions.change_in_ministry}
                     layOrClergy={reflectionQuestions.lay_or_clergy}
                   />
                 }
                 fileName={PDF_FILE_NAME}
               >
-                <Button
-                  pill
-                  color="clear_black"
-                  className="mx-auto max-md:!min-w-full md:w-fit"
-                >
+                <Button pill color="clear_black" className="mx-auto max-md:!min-w-full md:w-fit">
                   Download Results as PDF
                 </Button>
               </PDFDownloadLink>
@@ -148,9 +129,8 @@ const GiftAssessment = () => {
               <div className="flex flex-col gap-md">
                 <h3>Optional: Submit your results to the Wind!</h3>
                 <h5 className="pb-lg">
-                  Please complete by adding your information. An administrator
-                  will connect with you to discuss your results and help you
-                  undertand your Godly purpose!
+                  Please complete by adding your information. An administrator will connect with you
+                  to discuss your results and help you undertand your Godly purpose!
                 </h5>
                 <GiftAssessmentContactForm
                   contact={submitQuizResultsToTheWind}

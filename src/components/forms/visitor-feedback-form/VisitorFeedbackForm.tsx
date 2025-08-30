@@ -1,26 +1,23 @@
-"use client";
+'use client';
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "flowbite-react";
-import React from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-
-import PencilPaper from "@/components/icons/pencilPaper";
-import { useCreateVisitorFeedback } from "@/data/services/forms/visitor-feedback";
-import { VisitorFeedback } from "@/data/types";
-
-import FormSuccessErrorMessage from "../inputs/form-success-error-message/FormSuccessErrorMessage";
-import TextareaInput from "../inputs/textarea-input/TextareaInput";
-import TextInput from "../inputs/text-input/TextInput";
-
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from 'flowbite-react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import PencilPaper from '@/components/icons/pencilPaper';
+import { VisitorFeedback } from '@/data/types';
+import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
+import TextareaInput from '../inputs/textarea-input/TextareaInput';
+import TextInput from '../inputs/text-input/TextInput';
+import { useCreateVisitorFeedback } from '@/data/services/sanity/mutations/visitor-feedback';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required("Please enter your first name"),
-  last_name: yup.string().required("Please enter your last name"),
+  first_name: yup.string().required('Please enter your first name'),
+  last_name: yup.string().required('Please enter your last name'),
   phone: yup.string().optional(),
-  email: yup.string().email().required("Please enter your email"),
-  feedback: yup.string().required("Please enter your feedback"),
+  email: yup.string().email().required('Please enter your email'),
+  feedback: yup.string().required('Please enter your feedback'),
 });
 
 const VisitorFeedbackForm = () => {
@@ -38,7 +35,7 @@ const VisitorFeedbackForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<VisitorFeedback>({
-    mode: "onSubmit",
+    mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
 
@@ -80,7 +77,7 @@ const VisitorFeedbackForm = () => {
           error={errors.first_name?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your first name"
-          {...register("first_name")}
+          {...register('first_name')}
         />
         <TextInput
           label="Last Name*"
@@ -88,7 +85,7 @@ const VisitorFeedbackForm = () => {
           error={errors.last_name?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your last name"
-          {...register("last_name")}
+          {...register('last_name')}
         />
       </div>
 
@@ -100,7 +97,7 @@ const VisitorFeedbackForm = () => {
           error={errors.phone?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your phone number"
-          {...register("phone")}
+          {...register('phone')}
         />
         <TextInput
           label="Email*"
@@ -108,7 +105,7 @@ const VisitorFeedbackForm = () => {
           error={errors.email?.message}
           disabled={isPending || isSuccess}
           placeholder="Enter your email"
-          {...register("email")}
+          {...register('email')}
         />
       </div>
 
@@ -118,7 +115,7 @@ const VisitorFeedbackForm = () => {
         error={errors.feedback?.message}
         disabled={isPending || isSuccess}
         placeholder="Enter your comments here"
-        {...register("feedback")}
+        {...register('feedback')}
       />
 
       <Button
@@ -129,7 +126,7 @@ const VisitorFeedbackForm = () => {
         disabled={isPending || isSuccess}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? "Submitting..." : "Submit!"}
+        {isPending ? 'Submitting...' : 'Submit!'}
       </Button>
     </form>
   );
