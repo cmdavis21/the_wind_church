@@ -212,6 +212,43 @@ input[type='number'] {
   background-attachment: local, local, scroll, scroll;
 }
 
+.x-scrollbox {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background:
+/* Shadow covers */
+    linear-gradient(90deg, white 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0), white 70%) 100% 0,
+    /* Shadows */ radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 100% 0;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size:
+    40px 100%,
+    40px 100%,
+    14px 100%,
+    14px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.x-scrollbox-dark {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background:
+/* Shadow covers */
+    linear-gradient(90deg, #1c1c1e 30%, rgba(255, 255, 255, 0.5)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5), #1c1c1e 70%) 100% 0,
+    /* Shadows */ radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 100% 0;
+  background-repeat: no-repeat;
+  background-color: #1c1c1e;
+  background-size:
+    40px 100%,
+    40px 100%,
+    14px 100%,
+    14px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
 .scrollbar-hide {
   /* Hide scrollbar for IE, Edge, and Firefox */
   -ms-overflow-style: none; /* IE and Edge */

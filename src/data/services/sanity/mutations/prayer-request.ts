@@ -2,6 +2,7 @@ import { PrayerRequest } from '@/data/types';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
+import { PRAYER_REQUEST_KEY } from '@/data/constants';
 
 export const createPrayerRequestClient = async (data: PrayerRequest) => {
   try {
@@ -27,10 +28,10 @@ export const useCreatePrayerRequest = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createPrayerRequestClient,
-    mutationKey: ['SANITY MUTATION CREATE PRAYER REQUEST'],
+    mutationKey: [PRAYER_REQUEST_KEY],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['SANITY MUTATION CREATE PRAYER REQUEST'],
+        queryKey: [PRAYER_REQUEST_KEY],
       });
     },
   });

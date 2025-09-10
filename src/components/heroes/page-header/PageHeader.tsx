@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { permanentMarker } from "@/app/[locale]/layout";
+import { permanentMarker } from '@/app/(website)/layout';
 
 interface PageHeaderProps {
   title: string;

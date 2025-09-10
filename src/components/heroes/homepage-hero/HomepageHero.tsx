@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Button } from 'flowbite-react';
 
 import { findMediaType, MediaType, styleSelectedWords } from '@/data/utils';
-import { Link } from '@/data/services/i18n/navigation';
+import Link from 'next/link';
 import ScrollToButton from '@/components/buttons/scroll-to-button/ScrollToButton';
 import UpArrow from '@/components/icons/upArrow';
 

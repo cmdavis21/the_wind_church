@@ -12,10 +12,11 @@ import { RightnowMediaSchema } from './rightnow-media';
 import { ScheduledVisitSchema } from './scheduled-visit';
 import { TimeSchema } from './types/time';
 import { VisitorFeedbackSchema } from './visitor-feedback';
-import { YouthServiceSchema } from './youth-service';
-import { YouthServiceRegistrationSchema } from './youth-service-registration';
-import { YouthServiceRegistrationGuardianSchema } from './types/youth-service-registration-guardian';
+import { NextGenRosterSignupGuardianSchema } from './types/next-gen-roster-signup-guardian';
 import { ScriptureSchema } from './types/scripture';
+import { ProductSchema } from './product';
+import { NextGenRosterSignupSchema } from './next-gen-roster-signup';
+import { NextGenPageSchema } from './next-gen-page';
 
 export const SanitySchema = [
   // Forms
@@ -26,17 +27,19 @@ export const SanitySchema = [
   VisitorFeedbackSchema,
   ScheduledVisitSchema,
   MinistryConnectionSchema,
-  YouthServiceRegistrationSchema,
+  NextGenRosterSignupSchema,
   // Website
   ContactSchema,
   EventSchema,
   LeaderSchema,
   DeepDiveSchema,
   MinistrySchema,
-  YouthServiceSchema,
+  NextGenPageSchema,
+  // Shopify
+  ProductSchema,
   // Misc Schemas
   TimeSchema,
   ScriptureSchema,
   MeetingDetailsSchema,
-  YouthServiceRegistrationGuardianSchema,
+  NextGenRosterSignupGuardianSchema,
 ];

@@ -26,7 +26,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ poster, title, date, link }) => (
         />
       </div>
       <div className="p-md space-y-sm text-left">
-        <h4 className="leading-none">{title}</h4>
+        <h5 className="leading-none">{title}</h5>
         <p className="font-bold">{formatDateMMMddyyyy(date)}</p>
       </div>
     </button>

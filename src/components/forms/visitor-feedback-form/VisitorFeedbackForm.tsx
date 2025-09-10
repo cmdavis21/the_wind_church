@@ -15,7 +15,7 @@ import { useCreateVisitorFeedback } from '@/data/services/sanity/mutations/visit
 const schema = yup.object().shape({
   first_name: yup.string().required('Please enter your first name'),
   last_name: yup.string().required('Please enter your last name'),
-  phone: yup.string().optional(),
+  // phone: yup.string().optional(),
   email: yup.string().email().required('Please enter your email'),
   feedback: yup.string().required('Please enter your feedback'),
 });

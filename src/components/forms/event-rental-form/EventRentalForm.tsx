@@ -19,15 +19,18 @@ const schema = yup.object().shape({
   last_name: yup.string().required('Please enter your last name'),
   email: yup.string().email().required('Please enter an email address'),
   phone: yup.string().required('Please enter a phone number'),
-  company_name: yup.string().optional().default(undefined),
-  company_phone: yup.string().optional(),
+  // company_name: yup.string().optional(),
+  // company_phone: yup.string().optional(),
   purpose_for_rental: yup.string().required('Please select an option'),
   describe_your_event: yup.string().required('Please supply more details of your event'),
   referred: yup.mixed<YesNo>().oneOf([YesNo.YES, YesNo.NO]).default(YesNo.NO).required(),
-  referred_by: yup.string().optional(),
+  // referred_by: yup.string().optional(),
 });
 
+type SchemaType = yup.InferType<typeof schema>;
+
 const EventRentalForm = () => {
+  type SchemaType = yup.InferType<typeof schema>;
   const [showReference, setShowReference] = useState(false);
 
   const {

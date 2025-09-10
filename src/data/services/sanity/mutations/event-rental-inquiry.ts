@@ -2,6 +2,7 @@ import { EventRentalInquiry } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createContactClient } from './contact-signup';
 import { SanityClient } from '../client';
+import { EVENT_RENTAL_KEY } from '@/data/constants';
 
 export const createEventRentalInquiryClient = async (data: EventRentalInquiry) => {
   try {
@@ -27,10 +28,10 @@ export const useCreateEventRentalInquiry = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createEventRentalInquiryClient,
-    mutationKey: ['SANITY MUTATION CREATE EVENT RENTAL INQUIRY'],
+    mutationKey: [EVENT_RENTAL_KEY],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['SANITY MUTATION CREATE EVENT RENTAL INQUIRY'],
+        queryKey: [EVENT_RENTAL_KEY],
       });
     },
   });

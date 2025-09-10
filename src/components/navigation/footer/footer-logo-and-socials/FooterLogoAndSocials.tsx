@@ -1,16 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import FacebookIcon from "@/components/icons/facebook";
-import InstagramIcon from "@/components/icons/instagram";
-import YouTubeIcon from "@/components/icons/youtube";
-import ThemeModeLogo from "@/components/theme-mode/theme-mode-logo/ThemeModeLogo";
-import {
-  YOUTUBE_CHANNEL,
-  FACEBOOK_PROFILE,
-  INSTAGRAM_PROFILE,
-} from "@/data/constants";
-import { PageRoutes } from "@/data/page-routes";
-import { Link } from "@/data/services/i18n/navigation";
+import FacebookIcon from '@/components/icons/facebook';
+import InstagramIcon from '@/components/icons/instagram';
+import YouTubeIcon from '@/components/icons/youtube';
+import ThemeModeLogo from '@/components/theme-mode/theme-mode-logo/ThemeModeLogo';
+import { YOUTUBE_CHANNEL, FACEBOOK_PROFILE, INSTAGRAM_PROFILE } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
+import Link from 'next/link';
 
 const FooterLogoAndSocials = () => (
   <div className="flex lg:flex-col max-lg:justify-between gap-3">

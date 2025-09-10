@@ -12,6 +12,13 @@ const nextConfig = {
         pathname: '/**',
       },
       {
+        // SHOPIFY
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
         // AWS
         protocol: 'https',
         hostname: 'thewindchurch.s3.us-east-2.amazonaws.com',

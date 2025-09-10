@@ -1,16 +1,15 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
+import Link from 'next/link';
+import { NavbarColumnItem } from '@/data/types';
 
-import { Link } from "@/data/services/i18n/navigation";
-import { NavbarColumnItem } from "@/data/types";
-
-import MobileNavItem from "../mobile-nav-item/MobileNavItem";
+import MobileNavItem from '../mobile-nav-item/MobileNavItem';
 
 interface MobileNavItemWithDropdownProps {
   label: string;
-  submenu: NavbarColumnItem["submenu"];
+  submenu: NavbarColumnItem['submenu'];
   changeColor: boolean;
   pathname: string;
   navState: boolean;
@@ -28,10 +27,7 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
   const [open, setOpen] = useState(false);
   const subMenuDropdown = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    if (
-      Array.isArray(submenu) &&
-      submenu.some((i) => pathname.includes(i.link))
-    ) {
+    if (Array.isArray(submenu) && submenu.some((i) => pathname.includes(i.link))) {
       setOpen(true);
     } else {
       if (!navState) setOpen(false);
@@ -40,26 +36,22 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
   return (
     <div
       className={`${
-        changeColor ? "text-black" : "text-white"
-      } ${open ? `${changeColor ? "bg-lightGray/40 dark:bg-softGray" : "bg-charcoal/80 dark:bg-softGray"}` : `${changeColor ? "hover:bg-lightGray/50 hover:dark:bg-softGray" : "hover:bg-charcoal/80 hover:dark:bg-softGray"}`} rounded-lg p-sm transition-all duration-300 flex flex-col gap-sm`}
+        changeColor ? 'text-black' : 'text-white'
+      } ${open ? `${changeColor ? 'bg-lightGray/40 dark:bg-softGray' : 'bg-charcoal/80 dark:bg-softGray'}` : `${changeColor ? 'hover:bg-lightGray/50 hover:dark:bg-softGray' : 'hover:bg-charcoal/80 hover:dark:bg-softGray'}`} rounded-lg p-sm transition-all duration-300 flex flex-col gap-sm`}
     >
       <MobileNavItem
         label={label}
-        active={
-          (Array.isArray(submenu) &&
-            submenu.some((i) => pathname.includes(i.link))) ||
-          open
-        }
+        active={(Array.isArray(submenu) && submenu.some((i) => pathname.includes(i.link))) || open}
         changeColor={changeColor}
         onClick={() => setOpen(!open)}
       />
 
       <div
         style={{
-          height: open ? `${subMenuDropdown.current?.offsetHeight}px` : "0px",
+          height: open ? `${subMenuDropdown.current?.offsetHeight}px` : '0px',
         }}
         className={`${
-          !open ? "pointer-events-none overflow-hidden opacity-0 -mb-sm" : ""
+          !open ? 'pointer-events-none overflow-hidden opacity-0 -mb-sm' : ''
         } transition-[height, opacity] duration-300 mx-xs`}
       >
         <div ref={subMenuDropdown} className="flex flex-col gap-sm w-full">
@@ -76,11 +68,11 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
                 <div
                   className={`w-full p-sm body-large rounded-lg capitalize ${
                     pathname === item.link
-                      ? `${changeColor ? "text-softYellow" : "text-yellow dark:text-softYellow"}`
+                      ? `${changeColor ? 'text-softYellow' : 'text-yellow dark:text-softYellow'}`
                       : `${
                           changeColor
-                            ? "text-black dark:text-softWhite hover:bg-lightGray/80"
-                            : "text-white dark:text-softWhite hover:bg-charcoal"
+                            ? 'text-black dark:text-softWhite dark:hover:text-charcoal hover:bg-lightGray/80'
+                            : 'text-white dark:text-softWhite hover:bg-charcoal'
                         }`
                   }`}
                 >

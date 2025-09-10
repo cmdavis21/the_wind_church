@@ -1,3 +1,5 @@
+import { Price } from './format-price';
+
 type Time = {
   hour: string;
   minute: string;
@@ -99,7 +101,7 @@ export type Ministry = {
   image: Image;
 };
 
-export interface YouthServicePage {
+export interface NextGenPage {
   educators: {
     first_name: Leader['first_name'];
     last_name: Leader['last_name'];
@@ -193,7 +195,7 @@ export interface EventRentalInquiry extends FullContact {
   referred_by?: string;
 }
 
-export interface YouthRegistrationInquiry {
+export interface NextGenRosterSignup {
   children: {
     first_name: string;
     last_name: string;
@@ -253,7 +255,69 @@ export type MutationPayload = {
   debug?: boolean;
 };
 
-export type sanityMutationReturnType = {
-  transactionId: string;
-  results: [{ operation: string }];
-};
+export interface ProductPreview {
+  title: string;
+  handle: string;
+  minPrice: Price;
+  maxPrice: Price;
+  image: Image;
+  totalInventory: number;
+  options?: {
+    name: string;
+    values: {
+      name: string;
+      color?: string;
+    }[];
+  }[];
+}
+
+export interface Product {
+  title: string;
+  descriptionHtml: string;
+  images: Image[];
+  firstVariant?: {
+    name: string;
+    value: string;
+  }[];
+  options?: {
+    name: string;
+    values: {
+      name: string;
+      color?: string;
+    }[];
+  }[];
+  variants: {
+    id: string;
+    image?: Image;
+    price: Price;
+    compareAtPrice?: Price;
+    quantityAvailable: number;
+    selectedOptions?: {
+      name: string;
+      value: string;
+    }[];
+  }[];
+}
+
+export interface Cart {
+  id: string;
+  checkoutUrl: string;
+  totalQuantity: number;
+  subtotalAmount: Price;
+  lines: {
+    id: string;
+    title: string;
+    image: Image;
+    subtotalAmount: Price;
+    variant: {
+      id: string;
+      price: Price;
+      compareAtPrice?: Price;
+      selectedOptions: {
+        name: string;
+        value: string;
+      }[];
+    };
+    quantity: number;
+  }[];
+}

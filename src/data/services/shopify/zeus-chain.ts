@@ -7,7 +7,7 @@ const editorToken = SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 const chain = Chain(endpoint, {
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `X-Shopify-Storefront-Access-Token ${editorToken}`,
+    'X-Shopify-Storefront-Access-Token': `${editorToken}`,
   },
 });
 

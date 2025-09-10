@@ -1,9 +1,7 @@
 import { Modal, ModalBody } from 'flowbite-react';
 import Image from 'next/image';
 import React from 'react';
-
 import { formatDateMMMddyyyy } from '@/data/format-date';
-import CircleX from '@/components/icons/circleX';
 import Location from '@/components/icons/location';
 import { Event } from '@/data/types';
 import Calendar from '@/components/icons/calendar';
@@ -40,7 +38,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             className="object-cover rounded-lg"
           />
         </div>
-        <div className="md:col-span-2 flex flex-col gap-md h-full overflow-y-scroll y-scrollbox hide-scrollbar">
+        <div className="md:col-span-2 flex flex-col gap-md h-full overflow-y-scroll y-scrollbox overflow-hidden scrollbar-hide">
           <h2>{event.name}</h2>
 
           {event.categories && (

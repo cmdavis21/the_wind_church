@@ -1,7 +1,7 @@
-import Link from "next/link";
-import React, { forwardRef } from "react";
+import Link from 'next/link';
+import React, { forwardRef } from 'react';
 
-import Plus from "@/components/icons/plus";
+import Plus from '@/components/icons/plus';
 
 interface NavItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
@@ -17,24 +17,24 @@ const MobileNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
         ref={ref}
         type="button"
         {...rest}
-        className={`rounded-lg transition-all duration-300 ${link ? `p-sm w-full ${changeColor ? "hover:bg-lightGray/50 hover:dark:bg-softGray" : "hover:bg-charcoal/80 hover:dark:bg-softGray"}` : ""}`}
+        className={`rounded-lg transition-all duration-300 ${link ? `p-sm w-full ${changeColor ? 'hover:bg-lightGray/50 hover:dark:bg-softGray' : 'hover:bg-charcoal/80 hover:dark:bg-softGray'}` : ''}`}
       >
         <div className="w-full flex items-center justify-between gap-md">
           <h5
             className={`${
               changeColor
-                ? `${active ? "text-softYellow" : "text-black dark:text-softWhite"}`
-                : `${active ? "text-yellow dark:text-softYellow" : "text-white dark:text-softWhite"}`
+                ? `${active ? 'text-softYellow' : 'text-black dark:text-softWhite'}`
+                : `${active ? 'text-yellow dark:text-softYellow' : 'text-white dark:text-softWhite'}`
             } whitespace-nowrap tracking-wider capitalize`}
           >
             {label}
           </h5>
           {!link && (
             <Plus
-              className={`size-[15px] ${active ? "rotate-45" : ""} transition-rotate duration-300 ${
+              className={`size-[15px] ${active ? 'rotate-45' : ''} transition-all duration-300 ${
                 changeColor
-                  ? `${active ? "fill-softYellow" : "fill-black dark:fill-softWhite"}`
-                  : `${active ? "fill-yellow dark:fill-softYellow" : "fill-softWhite"}`
+                  ? `${active ? 'fill-softYellow' : 'fill-black dark:fill-softWhite'}`
+                  : `${active ? 'fill-yellow dark:fill-softYellow' : 'fill-softWhite'}`
               }`}
             />
           )}
@@ -52,6 +52,6 @@ const MobileNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
   }
 );
 
-MobileNavItem.displayName = "MobileNavItem";
+MobileNavItem.displayName = 'MobileNavItem';
 
 export default MobileNavItem;

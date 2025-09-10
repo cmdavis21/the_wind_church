@@ -1,4 +1,4 @@
-import { permanentMarker } from "@/app/[locale]/layout";
+import { permanentMarker } from '@/app/(website)/layout';
 
 export enum MediaType {
   IMAGE,
@@ -22,7 +22,7 @@ export const scrollToElem = (id: string) => {
     window.scrollTo({
       top: location.offsetTop - 100,
       left: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   }
 };
@@ -35,35 +35,35 @@ export const styleSelectedWords = ({
 }: {
   text: string;
   array: number[][];
-  htmlTag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+  htmlTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
   className?: string;
 }): string => {
-  const splitText = text.split(" ");
-  let finalText = `<${htmlTag} ${className ? `class="${className}"` : ""}>`;
+  const splitText = text.split(' ');
+  let finalText = `<${htmlTag} ${className ? `class="${className}"` : ''}>`;
 
   for (let i = 0; i < array.length; i++) {
     const startIndex = i === 0 ? 0 : array[i - 1][1] + 1;
     const endIndex = array[i][0];
 
-    finalText += splitText.slice(startIndex, endIndex).join(" ");
+    finalText += splitText.slice(startIndex, endIndex).join(' ');
 
     if (i === 0 && array[0][0] === 0) {
       finalText += `<span class="${
         permanentMarker.className
       } text-yellow dark:text-softYellow">${splitText
         .slice(array[i][0], array[i][1] + 1)
-        .join(" ")}</span>&nbsp;`;
+        .join(' ')}</span>&nbsp;`;
     } else {
       finalText += `&nbsp;<span class="${
         permanentMarker.className
       } text-yellow dark:text-softYellow">${splitText
         .slice(array[i][0], array[i][1] + 1)
-        .join(" ")}</span>&nbsp;`;
+        .join(' ')}</span>&nbsp;`;
     }
   }
 
   const startIndex = array[array.length - 1][1] + 1;
-  finalText += splitText.slice(startIndex).join(" ");
+  finalText += splitText.slice(startIndex).join(' ');
   finalText += `</${htmlTag}>`;
 
   return finalText;

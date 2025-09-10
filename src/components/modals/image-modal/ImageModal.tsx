@@ -1,7 +1,6 @@
 import { Modal } from 'flowbite-react';
 import Image from 'next/image';
-
-import CircleX from '@/components/icons/circleX';
+import X from '@/components/icons/x';
 
 interface ImageModalProps {
   src: string;
@@ -11,21 +10,15 @@ interface ImageModalProps {
 }
 
 const ImageModal: React.FC<ImageModalProps> = ({ src, alt, open, setOpen }) => (
-  <Modal
-    size="6xl"
-    dismissible
-    show={open}
-    position="center"
-    onClose={() => setOpen(false)}
-  >
+  <Modal size="6xl" dismissible show={open} position="center" onClose={() => setOpen(false)}>
     <Modal.Body className="p-0">
       <div className="relative rounded-lg">
         <button
           type="button"
-          className="absolute z-10 top-2 right-2"
           onClick={() => setOpen(false)}
+          className="absolute z-10 right-0 top-0 p-xs hover:cursor-pointer bg-lightGray hover:bg-lightGray/80 rounded-bl-lg rounded-tr-lg"
         >
-          <CircleX className="fill-yellow size-[25px]" />
+          <X />
         </button>
         <div className="relative w-full aspect-video bg-black/80 rounded-lg">
           <Image

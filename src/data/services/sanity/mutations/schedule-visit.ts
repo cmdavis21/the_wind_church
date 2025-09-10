@@ -2,6 +2,7 @@ import { PlanYourVisit } from '@/data/types';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
+import { SCHEDULE_VISIT_KEY } from '@/data/constants';
 
 export const createScheduleVisitClient = async (data: PlanYourVisit) => {
   try {
@@ -27,10 +28,10 @@ export const useCreateScheduleVisit = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createScheduleVisitClient,
-    mutationKey: ['SANITY MUTATION CREATE SCHEDULE VISIT'],
+    mutationKey: [SCHEDULE_VISIT_KEY],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['SANITY MUTATION CREATE SCHEDULE VISIT'],
+        queryKey: [SCHEDULE_VISIT_KEY],
       });
     },
   });

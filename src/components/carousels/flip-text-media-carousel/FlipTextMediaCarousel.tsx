@@ -1,15 +1,14 @@
-"use client";
+'use client';
 
-import React from "react";
-import Carousel from "react-multi-carousel";
-import Image from "next/image";
-import { Button } from "flowbite-react";
+import React from 'react';
+import Carousel from 'react-multi-carousel';
+import Image from 'next/image';
+import { Button } from 'flowbite-react';
+import { findMediaType, MediaType } from '@/data/utils';
+import Link from 'next/link';
 
-import { findMediaType, MediaType } from "@/data/utils";
-import { Link } from "@/data/services/i18n/navigation";
-
-import CarouselArrows from "../carousel-arrows/CarouselArrows";
-import CarouselDot from "../carousel-dot/CarouselDot";
+import CarouselArrows from '../carousel-arrows/CarouselArrows';
+import CarouselDot from '../carousel-dot/CarouselDot';
 
 interface FlipTextMediaCarouselProps {
   slides: {
@@ -27,9 +26,7 @@ interface FlipTextMediaCarouselProps {
   }[];
 }
 
-const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({
-  slides,
-}) => {
+const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({ slides }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 4000, min: 1024 },
@@ -58,13 +55,13 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({
       className="absolute left-0 px-[50px] min-[1800px]:px-[150px] top-[50%] -translate-y-[50%] w-full"
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: "bg-black/40 p-sm",
-        iconClassName: "fill-white size-[25px]",
+        buttonClassName: 'bg-black/40 p-sm',
+        iconClassName: 'fill-white size-[25px]',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: "bg-black/40 p-sm",
-        iconClassName: "fill-white size-[25px]",
+        buttonClassName: 'bg-black/40 p-sm',
+        iconClassName: 'fill-white size-[25px]',
       }}
     />
   );
@@ -74,13 +71,13 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({
       className=""
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: "absolute bottom-5 left-5 z-10",
-        iconClassName: "fill-yellow",
+        buttonClassName: 'absolute bottom-5 left-5 z-10',
+        iconClassName: 'fill-yellow',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: "absolute bottom-5 right-5 z-10",
-        iconClassName: "fill-yellow",
+        buttonClassName: 'absolute bottom-5 right-5 z-10',
+        iconClassName: 'fill-yellow',
       }}
     />
   );
@@ -104,7 +101,7 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({
           {slides.map((slide, index) => (
             <div
               key={`flip-text-media-carousel-${slide.header}`}
-              className={`flex ${index % 2 === 0 ? "flex-row-reverse" : ""}`}
+              className={`flex ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}
             >
               <div className="flex flex-col justify-center gap-lg px-padding">
                 <h2>{slide.header}</h2>
@@ -123,8 +120,8 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({
                   <Image
                     fill
                     src={slide.media.src}
-                    alt={slide.media.alt ?? "decorative background"}
-                    className={`object-cover pointer-events-none ${index % 2 === 0 ? "rounded-r-xl" : "rounded-l-xl"}`}
+                    alt={slide.media.alt ?? 'decorative background'}
+                    className={`object-cover pointer-events-none ${index % 2 === 0 ? 'rounded-r-xl' : 'rounded-l-xl'}`}
                   />
                 </div>
               ) : (
@@ -136,7 +133,7 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({
                   src={slide.media.src}
                   poster={slide.media.poster}
                   className={
-                    "rounded-xl w-full min-w-1/2 max-w-1/2 object-cover pointer-events-none aspect-square"
+                    'rounded-xl w-full min-w-1/2 max-w-1/2 object-cover pointer-events-none aspect-square'
                   }
                 />
               )}
@@ -167,8 +164,8 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({
                   <Image
                     fill
                     src={slide.media.src}
-                    alt={slide.media.alt ?? "decorative background"}
-                    className={"object-cover pointer-events-none rounded-xl"}
+                    alt={slide.media.alt ?? 'decorative background'}
+                    className={'object-cover pointer-events-none rounded-xl'}
                   />
                 </div>
               ) : (
@@ -180,7 +177,7 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({
                   src={slide.media.src}
                   poster={slide.media.poster}
                   className={
-                    "rounded-xl w-full h-full object-cover pointer-events-none aspect-square"
+                    'rounded-xl w-full h-full object-cover pointer-events-none aspect-square'
                   }
                 />
               )}

@@ -1,8 +1,8 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import React from 'react';
 
-import { permanentMarker } from "@/app/[locale]/layout";
-import { findMediaType, MediaType } from "@/data/utils";
+import { permanentMarker } from '@/app/(website)/layout';
+import { findMediaType, MediaType } from '@/data/utils';
 
 interface PageHeaderWithBackgroundProps {
   media: {
@@ -23,7 +23,7 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
 }) => (
   <div
     className={`relative ${
-      short ? "h-[55dvh]" : "h-[65dvh]"
+      short ? 'h-[55dvh]' : 'h-[65dvh]'
     } rounded-xl overflow-hidden pointer-events-none`}
   >
     {findMediaType(media.src) === MediaType.IMAGE ? (
@@ -53,9 +53,7 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
 
     <div className="absolute bottom-[10%] w-full px-padding">
       <div className="w-full 2xl:max-w-[60%] text-white">
-        <div
-          className={`${permanentMarker.className} text-[36px] md:text-[75px] leading-snug`}
-        >
+        <div className={`${permanentMarker.className} text-[36px] md:text-[75px] leading-snug`}>
           {title}
         </div>
         {subtitle && <h3>{subtitle}</h3>}

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import { Link } from "@/data/services/i18n/navigation";
-import { FooterColumnItem } from "@/data/types";
+import Link from 'next/link';
+import { FooterColumnItem } from '@/data/types';
 
 type FooterColumnProps = FooterColumnItem;
 
@@ -16,14 +16,10 @@ const FooterColumn: React.FC<FooterColumnProps> = ({ label, row }) => (
         <React.Fragment key={`footer-column-${item.label}`}>
           {item.link ? (
             <Link href={item.link} className="hover:opacity-50">
-              <p className="whitespace-nowrap text-charcoal dark:text-softWhite">
-                {item.label}
-              </p>
+              <p className="whitespace-nowrap text-charcoal dark:text-softWhite">{item.label}</p>
             </Link>
           ) : (
-            <p className="whitespace-nowrap text-charcoal dark:text-softWhite">
-              {item.label}
-            </p>
+            <p className="whitespace-nowrap text-charcoal dark:text-softWhite">{item.label}</p>
           )}
         </React.Fragment>
       ))}

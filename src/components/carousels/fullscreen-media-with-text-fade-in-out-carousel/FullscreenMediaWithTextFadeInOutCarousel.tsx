@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
-import "react-multi-carousel/lib/styles.css";
-import Carousel from "react-multi-carousel";
-import { Button } from "flowbite-react";
-import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import 'react-multi-carousel/lib/styles.css';
+import Carousel from 'react-multi-carousel';
+import { Button } from 'flowbite-react';
+import Image from 'next/image';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { findMediaType, MediaType } from "@/data/utils";
-import { Link } from "@/data/services/i18n/navigation";
+import { findMediaType, MediaType } from '@/data/utils';
+import Link from 'next/link';
 
-import CarouselArrows from "../carousel-arrows/CarouselArrows";
-import CarouselDot from "../carousel-dot/CarouselDot";
-
+import CarouselArrows from '../carousel-arrows/CarouselArrows';
+import CarouselDot from '../carousel-dot/CarouselDot';
 
 interface FullscreenMediaWithTextFadeInOutCarouselProps {
   slides: {
@@ -78,8 +77,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             setMobileActiveSlide(slides.length - 1);
           } else setMobileActiveSlide(mobileActiveSlide - 1);
         },
-        buttonClassName: "bg-lightGray/40 p-xs",
-        iconClassName: "fill-black/70 size-[18px]",
+        buttonClassName: 'bg-lightGray/40 p-xs',
+        iconClassName: 'fill-black/70 size-[18px]',
       }}
       rightArrowProps={{
         onClick: () => {
@@ -88,8 +87,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             setMobileActiveSlide(0);
           } else setMobileActiveSlide(mobileActiveSlide + 1);
         },
-        buttonClassName: "bg-lightGray/40 p-xs",
-        iconClassName: "fill-black/70 size-[18px]",
+        buttonClassName: 'bg-lightGray/40 p-xs',
+        iconClassName: 'fill-black/70 size-[18px]',
       }}
     />
   );
@@ -116,7 +115,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
           <div
             key={`carousel-visual-${slide.media.src}-${index}`}
             className={`absolute top-0 left-0 w-full h-full ${
-              index === activeSlide ? "fade-in" : "fade-out opacity-0"
+              index === activeSlide ? 'fade-in' : 'fade-out opacity-0'
             }`}
           >
             {findMediaType(slide.media.src) === MediaType.IMAGE ? (
@@ -150,14 +149,12 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
           <div
             key={`carousel-content-${slide.title}`}
             className={`w-full lg:max-w-[45%] lg:pl-[150px] min-[1800px]:pl-[250px] h-full absolute top-0 left-0 ${
-              index === activeSlide ? "fade-in" : "opacity-0"
+              index === activeSlide ? 'fade-in' : 'opacity-0'
             } transition-opacity duration-300 flex items-center `}
           >
             <div className="flex flex-col gap-md text-white dark:text-softWhite">
               <h5>{slide.header}</h5>
-              {slide.subtitle && (
-                <h3 className="text-yellow line-clamp-1">{slide.subtitle}</h3>
-              )}
+              {slide.subtitle && <h3 className="text-yellow line-clamp-1">{slide.subtitle}</h3>}
               <h1 className="leading-none">{slide.title}</h1>
               <div className="min-h-[100px]">
                 {slide.description && (
@@ -196,8 +193,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               } else setActiveSlide(activeSlide - 1);
             },
             buttonClassName:
-              "bg-lightGray/40 p-sm absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]",
-            iconClassName: "fill-white size-[25px]",
+              'bg-lightGray/40 p-sm absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
+            iconClassName: 'fill-white size-[25px]',
           }}
           rightArrowProps={{
             onClick: () => {
@@ -206,8 +203,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               } else setActiveSlide(activeSlide + 1);
             },
             buttonClassName:
-              "bg-lightGray/40 p-sm absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]",
-            iconClassName: "fill-white size-[25px]",
+              'bg-lightGray/40 p-sm absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
+            iconClassName: 'fill-white size-[25px]',
           }}
         />
       </div>
@@ -219,9 +216,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
           <div
             key={`carousel-visual-mobile-${slide.media.src}-${mobileIndex}`}
             className={`absolute top-0 left-0 w-full h-full ${
-              mobileActiveSlide === mobileIndex
-                ? "fade-in"
-                : "fade-out opacity-0"
+              mobileActiveSlide === mobileIndex ? 'fade-in' : 'fade-out opacity-0'
             }`}
           >
             {findMediaType(slide.media.src) === MediaType.IMAGE ? (
@@ -234,13 +229,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
                 />
               </div>
             ) : (
-              <video
-                loop
-                autoPlay
-                muted
-                playsInline
-                poster={slide.media.poster}
-              >
+              <video loop autoPlay muted playsInline poster={slide.media.poster}>
                 <source src={slide.media.src} type="video/mp4" />
               </video>
             )}
@@ -267,13 +256,9 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             >
               <div className="relative flex flex-col h-full w-full items-center justify-center text-center text-white gap-sm">
                 <h5>{slide.header}</h5>
-                {slide.subtitle && (
-                  <h4 className="text-yellow">{slide.subtitle}</h4>
-                )}
+                {slide.subtitle && <h4 className="text-yellow">{slide.subtitle}</h4>}
                 <h1 className="leading-none">{slide.title}</h1>
-                {slide.description && (
-                  <p className="line-clamp-3">{slide.description}</p>
-                )}
+                {slide.description && <p className="line-clamp-3">{slide.description}</p>}
                 <Link href={slide.link}>
                   <Button pill color="yellow">
                     Learn more

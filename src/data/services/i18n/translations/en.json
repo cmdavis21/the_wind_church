@@ -152,17 +152,11 @@
     },
     "address": {
       "label": "Address",
-      "row": [
-        { "label": "6476 Streeter Avenue" },
-        { "label": "Riverside, CA 92504" }
-      ]
+      "row": [{ "label": "6476 Streeter Avenue" }, { "label": "Riverside, CA 92504" }]
     },
     "hours": {
       "label": "Office Hours",
-      "row": [
-        { "label": "Monday - Thursday" },
-        { "label": "9:00 am to 4:00 pm" }
-      ]
+      "row": [{ "label": "Monday - Thursday" }, { "label": "9:00 am to 4:00 pm" }]
     },
     "contact": {
       "label": "Contact",

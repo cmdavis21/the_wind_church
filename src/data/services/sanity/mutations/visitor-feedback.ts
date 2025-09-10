@@ -2,6 +2,7 @@ import { VisitorFeedback } from '@/data/types';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
+import { VISITOR_FEEDBACK_KEY } from '@/data/constants';
 
 export const createVisitorFeedbackClient = async (data: VisitorFeedback) => {
   try {
@@ -27,10 +28,10 @@ export const useCreateVisitorFeedback = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createVisitorFeedbackClient,
-    mutationKey: ['SANITY MUTATION CREATE VISITOR FEEDBACK'],
+    mutationKey: [VISITOR_FEEDBACK_KEY],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['SANITY MUTATION CREATE VISTOR FEEDBACK'],
+        queryKey: [VISITOR_FEEDBACK_KEY],
       });
     },
   });

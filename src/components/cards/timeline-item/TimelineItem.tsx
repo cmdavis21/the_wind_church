@@ -1,16 +1,15 @@
 'use client';
 
 import { differenceInDays, isToday } from 'date-fns';
-import { Badge, Button } from 'flowbite-react';
+import { Badge } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
-
-import { EventType } from '@/data/types';
+import { Event } from '@/data/types';
 import { formatDateMMMddyyyy } from '@/data/format-date';
-
 import EventDetailsModal from '../../modals/event-details-modal/EventDetailsModal';
+import Image from 'next/image';
 
 interface TimelineItemProps {
-  event: EventType;
+  event: Event;
   vertical?: boolean;
 }
 
@@ -32,11 +31,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
 
   return (
     <>
-      <EventDetailsModal
-        event={event}
-        openModal={open}
-        setOpenModal={setOpen}
-      />
+      <EventDetailsModal event={event} openModal={open} setOpenModal={setOpen} />
 
       <div
         className={`relative w-full min-w-[200px] max-w-[700px] flex ${
@@ -60,33 +55,35 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
 
         {/* content */}
         <div
-          className={`relative max-w-[90%] space-y-xs p-2 ${
+          className={`relative max-w-[90%] flex gap-xs p-2 ${
             vertical ? '-mt-3 pb-16' : 'max-md:-mt-2 md:-ml-2'
-          } rounded-lg`}
+          }`}
         >
-          {/* upcoming tag */}
-          {addTag && (
-            <Badge color="yellow" className="text-black mb-3">
-              {addTag}
-            </Badge>
-          )}
-          <h4 className="text-yellow  font-bold leading-none">
-            {formatDateMMMddyyyy(event.date)}
-          </h4>
-          <h3 className="font-bold leading-none">{event.name}</h3>
-          {event.description && (
-            <div className="body-large line-clamp-2 text-ellipsis">
-              {event.description}
-            </div>
-          )}
-          <Button
-            pill
-            color="info"
-            className="whitespace-nowrap"
-            onClick={() => setOpen(!open)}
-          >
-            View details
-          </Button>
+          <div className="relative size-[70px] rounded-md aspect-square">
+            <Image
+              fill
+              src={event.image.src}
+              alt={event.image.alt}
+              className="object-cover rounded-md"
+            />
+          </div>
+          <div className="flex flex-col gap-xs items-start text-left">
+            {addTag && (
+              <Badge color="yellow" className="text-black">
+                {addTag}
+              </Badge>
+            )}
+            <h5 className="text-softYellow font-bold leading-none">
+              {formatDateMMMddyyyy(event.date)}
+            </h5>
+            <h3 className="font-bold leading-none">{event.name}</h3>
+            {event.description && (
+              <div className="body-large line-clamp-2 text-ellipsis">{event.description}</div>
+            )}
+            <button type="button" onClick={() => setOpen(!open)} className="underline">
+              Click to View Details
+            </button>
+          </div>
         </div>
       </div>
     </>

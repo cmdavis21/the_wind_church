@@ -2,6 +2,7 @@ import { RightnowMediaSignup } from '@/data/types';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
+import { RIGHTNOW_MEDIA_KEY } from '@/data/constants';
 
 export const createRightnowMediaSignupClient = async (data: RightnowMediaSignup) => {
   try {
@@ -27,10 +28,10 @@ export const useCreateRightnowMediaSignup = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createRightnowMediaSignupClient,
-    mutationKey: ['SANITY MUTATION CREATE RIGHTNOW MEDIA SIGNUP'],
+    mutationKey: [RIGHTNOW_MEDIA_KEY],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['SANITY MUTATION CREATE RIGHTNOW MEDIA SIGNUP'],
+        queryKey: [RIGHTNOW_MEDIA_KEY],
       });
     },
   });

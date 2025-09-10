@@ -2,6 +2,7 @@ import { FullContact, PartialContact } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getContactIdByEmailQuery } from '../queries/contacts';
 import { SanityClient } from '../client';
+import { CONTACT_SIGNUP_KEY } from '@/data/constants';
 
 export const createContactClient = async (data: FullContact | PartialContact): Promise<string> => {
   try {
@@ -27,10 +28,10 @@ export const useCreateContactSignup = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createContactClient,
-    mutationKey: ['SANITY MUTATION CREATE CONTACT'],
+    mutationKey: [CONTACT_SIGNUP_KEY],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['SANITY MUTATION CREATE CONTACT'],
+        queryKey: [CONTACT_SIGNUP_KEY],
       });
     },
   });

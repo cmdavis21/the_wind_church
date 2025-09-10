@@ -12,12 +12,7 @@ interface GalleryMasonryGridProps {
   media?: number[];
 }
 
-const GalleryMasonryGrid: React.FC<GalleryMasonryGridProps> = ({
-  images,
-  columns,
-  gap,
-  media,
-}) => (
+const GalleryMasonryGrid: React.FC<GalleryMasonryGridProps> = ({ images, columns, gap, media }) => (
   <Masonry
     items={images}
     config={{

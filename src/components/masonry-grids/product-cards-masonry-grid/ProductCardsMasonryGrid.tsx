@@ -3,14 +3,21 @@
 import React from 'react';
 import { Masonry } from 'react-plock';
 
-import { AttributeType, ProductPreview } from '@/data/types';
-import ProductCardSkeleton from '@/components/cards/product-card/ProductCard.skeleton';
-
 import ProductCard from '../../cards/product-card/ProductCard';
+import { Price } from '@/data/format-price';
 
 interface ProductCardsMasonryGridProps {
-  products: ProductPreview[];
-  isLoading: boolean;
+  products: {
+    images: {
+      src: string;
+      alt?: string;
+    }[];
+    title: string;
+    price: Price;
+    compareAtPrice?: Price;
+    totalInventory: number;
+    handle: string;
+  }[];
   columns?: number[];
   gap?: number[];
   media?: number[];
@@ -18,7 +25,6 @@ interface ProductCardsMasonryGridProps {
 
 const ProductCardsMasonryGrid: React.FC<ProductCardsMasonryGridProps> = ({
   products,
-  isLoading,
   columns,
   gap,
   media,
@@ -31,29 +37,9 @@ const ProductCardsMasonryGrid: React.FC<ProductCardsMasonryGridProps> = ({
       media: media ?? [640, 768, 1024, 1800],
       useBalancedLayout: false,
     }}
-    render={(product, index) => {
-      const colorVariants =
-        product.attributes.find((attr) =>
-          attr.type?.includes(AttributeType.COLOR)
-        )?.options || [];
-      const sizeVariants =
-        product.attributes.find((attr) =>
-          attr.type?.includes(AttributeType.SIZE)
-        )?.options || [];
-      console.log('scale: ', index);
-      return !isLoading ? (
-        <ProductCard
-          key={product.name}
-          {...product}
-          colorVariants={colorVariants}
-          sizeVariants={sizeVariants}
-          id={product.attributes.length > 0 ? null : product.id}
-          scale={index % 3 === 0}
-        />
-      ) : (
-        <ProductCardSkeleton />
-      );
-    }}
+    render={(product, index) => (
+      <ProductCard key={product.title} {...product} scale={index % 3 === 0} />
+    )}
   />
 );
 

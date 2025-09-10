@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { GiftAssessmentSubmission } from '@/data/types';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
+import { GIFT_ASSESSMENT_KEY } from '@/data/constants';
 
 export const createGiftAssessmentClient = async (data: GiftAssessmentSubmission) => {
   try {
@@ -27,10 +28,10 @@ export const useCreateGiftAssessment = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createGiftAssessmentClient,
-    mutationKey: ['SANITY MUTATION CREATE GIFT ASSESSMENT'],
+    mutationKey: [GIFT_ASSESSMENT_KEY],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['SANITY MUTATION CREATE GIFT ASSESSMENT'],
+        queryKey: [GIFT_ASSESSMENT_KEY],
       });
     },
   });

@@ -1,8 +1,8 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import React from 'react';
 
-import UpArrow from "@/components/icons/upArrow";
-import { Link } from "@/data/services/i18n/navigation";
+import UpArrow from '@/components/icons/upArrow';
+import Link from 'next/link';
 
 interface ImageWithTitleDescriptionCardProps {
   src: string;
@@ -15,24 +15,21 @@ interface ImageWithTitleDescriptionCardProps {
   };
 }
 
-const ImageWithTitleDescriptionCard: React.FC<
-  ImageWithTitleDescriptionCardProps
-> = ({ src, alt, title, description, link }) => (
+const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps> = ({
+  src,
+  alt,
+  title,
+  description,
+  link,
+}) => (
   <div className="min-w-[200px] max-w-[325px] flex flex-col gap-lg">
     <div className="relative aspect-square">
-      <Image
-        fill
-        src={src}
-        alt={alt}
-        className="pointer-events-none object-cover rounded-lg"
-      />
+      <Image fill src={src} alt={alt} className="pointer-events-none object-cover rounded-lg" />
     </div>
     <div className="flex flex-col gap-md dark:text-softWhite h-full justify-between">
       <div className="flex flex-col gap-md">
         <h4 className="font-bold">{title}</h4>
-        <p className="body-large text-charcoal dark:text-softWhite">
-          {description}
-        </p>
+        <p className="body-large text-charcoal dark:text-softWhite">{description}</p>
       </div>
       {link && (
         <Link href={link.href}>
@@ -45,7 +42,7 @@ const ImageWithTitleDescriptionCard: React.FC<
               </div>
             </div>
             <div className="relative flex items-center gap-xxs py-xs px-md rounded-full">
-              {link.label}{" "}
+              {link.label}{' '}
               <UpArrow className="size-[15px] dark:fill-softWhite rotate-45 group-hover:rotate-90 transition-all duration-300" />
             </div>
           </button>

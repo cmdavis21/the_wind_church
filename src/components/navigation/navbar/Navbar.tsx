@@ -1,26 +1,25 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import React, { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
-import { usePathname } from "@/data/services/i18n/navigation";
-import { NavbarColumnItem, NavbarItem } from "@/data/types";
+import { NavbarColumnItem, NavbarItem } from '@/data/types';
 
-import DesktopNav from "./desktop-nav/DesktopNav";
-import MobileNav from "./mobile-nav/MobileNav";
-
+import DesktopNav from './desktop-nav/DesktopNav';
+import MobileNav from './mobile-nav/MobileNav';
+import { usePathname } from 'next/navigation';
 
 const Navbar: React.FC<{ solidNav?: boolean }> = ({ solidNav = false }) => {
-  const t = useTranslations("Navbar");
-  const about: NavbarColumnItem = t.raw("about");
-  const media: NavbarColumnItem = t.raw("media");
-  const ministries: NavbarColumnItem = t.raw("ministries");
-  const jesus: NavbarColumnItem = t.raw("jesus");
-  const deepDive: NavbarColumnItem["submenu"][0] = t.raw("deepDive");
-  const events: NavbarColumnItem["submenu"][0] = t.raw("events");
-  const bookstore: NavbarColumnItem = t.raw("bookstore");
-  const rental: NavbarColumnItem["submenu"][0] = t.raw("rental");
-  const give: NavbarColumnItem["submenu"][0] = t.raw("give");
+  const t = useTranslations('Navbar');
+  const about: NavbarColumnItem = t.raw('about');
+  const media: NavbarColumnItem = t.raw('media');
+  const ministries: NavbarColumnItem = t.raw('ministries');
+  const jesus: NavbarColumnItem = t.raw('jesus');
+  const deepDive: NavbarColumnItem['submenu'][0] = t.raw('deepDive');
+  const events: NavbarColumnItem['submenu'][0] = t.raw('events');
+  const bookstore: NavbarColumnItem = t.raw('bookstore');
+  const rental: NavbarColumnItem['submenu'][0] = t.raw('rental');
+  const give: NavbarColumnItem['submenu'][0] = t.raw('give');
   const NavbarMenu: NavbarItem[] = [
     about,
     media,
@@ -63,11 +62,11 @@ const Navbar: React.FC<{ solidNav?: boolean }> = ({ solidNav = false }) => {
 
     if (window !== undefined) {
       // window.addEventListener("load", handleScroll);
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener('scroll', handleScroll);
 
       return () => {
         // window.removeEventListener("load", handleScroll);
-        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener('scroll', handleScroll);
       };
     }
   }, [pathname, windowScroll]);
@@ -75,9 +74,9 @@ const Navbar: React.FC<{ solidNav?: boolean }> = ({ solidNav = false }) => {
   return (
     <nav
       className={`fixed !z-50 left-0 ${
-        showNavOnScroll ? "top-0 opacity-100" : "-top-[110px] opacity-0"
+        showNavOnScroll ? 'top-0 opacity-100' : '-top-[110px] opacity-0'
       } ${
-        !solidNav && !changeNavColor ? "bg-gradient-to-b from-black/20" : ""
+        !solidNav && !changeNavColor ? 'bg-gradient-to-b from-black/20' : ''
       } w-full transition-[colors, top, opacity] duration-500`}
     >
       <DesktopNav

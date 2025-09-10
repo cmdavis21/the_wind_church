@@ -1,9 +1,11 @@
-import { defineField } from "sanity";
+import Calendar from '@/components/icons/calendar';
+import { defineField } from 'sanity';
 
 export const EventSchema = {
   name: 'event',
   title: 'Events',
   type: 'document',
+  icon: Calendar,
   fields: [
     defineField({
       name: 'name',

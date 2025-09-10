@@ -2,6 +2,7 @@ import { MinistryConnection } from '@/data/types';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
+import { MINISTRY_CONNECT_KEY } from '@/data/constants';
 
 export const createMinistryConnectionClient = async (data: MinistryConnection) => {
   try {
@@ -27,10 +28,10 @@ export const useCreateMinistryConnection = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createMinistryConnectionClient,
-    mutationKey: ['SANITY MUTATION CREATE MINISTRY CONNECTION'],
+    mutationKey: [MINISTRY_CONNECT_KEY],
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['SANITY MUTATION CREATE MINISTRY CONNECTION'],
+        queryKey: [MINISTRY_CONNECT_KEY],
       });
     },
   });
