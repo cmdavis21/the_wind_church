@@ -101,7 +101,7 @@ const HomepageHero: React.FC<HomepageHeroProps> = ({
                   <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
                     <div className="flex items-center h-[47px]">
                       <div className="w-0 h-full bg-white dark:bg-softWhite group-hover:w-full transition-all duration-300" />
-                      <div className="w-full h-full bg-yellow dark:bg-softYellow group-hover:w-0 transition-all duration-300 rounded-full" />
+                      <div className="w-full h-full bg-primary dark:bg-primaryDark group-hover:w-0 transition-all duration-300 rounded-full" />
                     </div>
                   </div>
                   <div className="relative flex items-center gap-xxs px-5 py-2.5 text-base rounded-full text-black">

@@ -68,11 +68,11 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
                 <div
                   className={`w-full p-sm body-large rounded-lg capitalize ${
                     pathname === item.link
-                      ? `${changeColor ? 'text-softYellow' : 'text-yellow dark:text-softYellow'}`
+                      ? `${changeColor ? 'text-softYellow' : 'text-primary dark:text-primaryDark'}`
                       : `${
                           changeColor
-                            ? 'text-black dark:text-softWhite dark:hover:text-charcoal hover:bg-lightGray/80'
-                            : 'text-white dark:text-softWhite hover:bg-charcoal'
+                            ? 'text-black dark:text-textInverse dark:hover:text-charcoal hover:bg-lightGray/80'
+                            : 'text-white dark:text-textInverse hover:bg-charcoal'
                         }`
                   }`}
                 >

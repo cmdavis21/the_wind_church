@@ -79,7 +79,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
           {/* COORDINATORS */}
           <SectionHeader noPadding title="Coordinators" />
 
-          <h4 className="dark:text-softWhite font-normal">
+          <h4 className="dark:text-textInverse font-normal">
             Meet the coordinators of {ministry.name}. They serve as the main point of contact,
             supporting volunteers and ensuring the ministry aligns with the church&apos;s mission.
             Their leadership helps each ministry grow and serve the community effectively.
@@ -103,7 +103,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
           {/* COACH */}
           <SectionHeader noPadding title="Coach" />
 
-          <h4 className="dark:text-softWhite font-normal">
+          <h4 className="dark:text-textInverse font-normal">
             A Ministry Coach provides guidance and support to Ministry Coordinators, helping them
             lead with clarity and confidence. As an overseer, the Coach ensures each ministry stays
             aligned with the church&apos;s vision and operates in unity

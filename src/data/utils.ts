@@ -50,13 +50,13 @@ export const styleSelectedWords = ({
     if (i === 0 && array[0][0] === 0) {
       finalText += `<span class="${
         permanentMarker.className
-      } text-yellow dark:text-softYellow">${splitText
+      } text-primary dark:text-primaryDark">${splitText
         .slice(array[i][0], array[i][1] + 1)
         .join(' ')}</span>&nbsp;`;
     } else {
       finalText += `&nbsp;<span class="${
         permanentMarker.className
-      } text-yellow dark:text-softYellow">${splitText
+      } text-primary dark:text-primaryDark">${splitText
         .slice(array[i][0], array[i][1] + 1)
         .join(' ')}</span>&nbsp;`;
     }

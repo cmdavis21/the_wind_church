@@ -152,9 +152,9 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               index === activeSlide ? 'fade-in' : 'opacity-0'
             } transition-opacity duration-300 flex items-center `}
           >
-            <div className="flex flex-col gap-md text-white dark:text-softWhite">
+            <div className="flex flex-col gap-md text-white dark:text-textInverse">
               <h5>{slide.header}</h5>
-              {slide.subtitle && <h3 className="text-yellow line-clamp-1">{slide.subtitle}</h3>}
+              {slide.subtitle && <h3 className="text-primary line-clamp-1">{slide.subtitle}</h3>}
               <h1 className="leading-none">{slide.title}</h1>
               <div className="min-h-[100px]">
                 {slide.description && (
@@ -256,7 +256,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             >
               <div className="relative flex flex-col h-full w-full items-center justify-center text-center text-white gap-sm">
                 <h5>{slide.header}</h5>
-                {slide.subtitle && <h4 className="text-yellow">{slide.subtitle}</h4>}
+                {slide.subtitle && <h4 className="text-primary">{slide.subtitle}</h4>}
                 <h1 className="leading-none">{slide.title}</h1>
                 {slide.description && <p className="line-clamp-3">{slide.description}</p>}
                 <Link href={slide.link}>

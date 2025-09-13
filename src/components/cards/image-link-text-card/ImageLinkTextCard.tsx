@@ -70,7 +70,7 @@ const ImageLinkTextCard: React.FC<ImageLinkTextCardProps> = ({
           <h3>{title}</h3>
           {subtitle && <p className="body-small italic">{subtitle}</p>}
         </div>
-        <div className="bg-white rounded-full min-w-[50px] min-h-[50px] size-[50px] flex justify-center items-center group-hover:bg-yellow">
+        <div className="bg-white rounded-full min-w-[50px] min-h-[50px] size-[50px] flex justify-center items-center group-hover:bg-primary">
           <UpArrow className="rotate-45 group-hover:rotate-90 transition-all duration-300" />
         </div>
       </div>

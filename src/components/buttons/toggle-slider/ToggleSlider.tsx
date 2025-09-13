@@ -1,10 +1,4 @@
-import React, {
-  ReactElement,
-  SVGAttributes,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { ReactElement, SVGAttributes, useEffect, useRef, useState } from 'react';
 
 interface ToggleSliderProps {
   defaultSelect?: number;
@@ -15,10 +9,7 @@ interface ToggleSliderProps {
   }[];
 }
 
-const ToggleSlider: React.FC<ToggleSliderProps> = ({
-  defaultSelect,
-  options,
-}) => {
+const ToggleSlider: React.FC<ToggleSliderProps> = ({ defaultSelect, options }) => {
   const [active, setActive] = useState(defaultSelect ?? 0);
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0, top: 0 });
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -46,7 +37,7 @@ const ToggleSlider: React.FC<ToggleSliderProps> = ({
       {/* Sliding background */}
       <div
         style={sliderStyle}
-        className="absolute h-[calc(100%-16px)] bg-yellow dark:bg-softYellow shadow-md rounded-full transition-all duration-300"
+        className="absolute h-[calc(100%-16px)] bg-primary dark:bg-primaryDark shadow-md rounded-full transition-all duration-300"
       />
 
       {/* Options */}
@@ -63,7 +54,7 @@ const ToggleSlider: React.FC<ToggleSliderProps> = ({
             opt.onSelect();
             setActive(index);
           }}
-          className={`min-w-[170px] 2xl:min-w-[180px] relative z-10 flex items-center justify-center gap-[10px] p-xs ${active === index ? 'text-black' : 'text-charcoal/80 dark:text-softWhite/50'} line-clamp-1 text-ellipsis rounded-full transition-all duration-300`}
+          className={`min-w-[170px] 2xl:min-w-[180px] relative z-10 flex items-center justify-center gap-[10px] p-xs ${active === index ? 'text-black' : 'text-charcoal/80 dark:text-textInverse/50'} line-clamp-1 text-ellipsis rounded-full transition-all duration-300`}
         >
           {opt.label}
         </button>

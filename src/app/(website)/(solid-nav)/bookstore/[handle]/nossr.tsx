@@ -1,15 +1,16 @@
 'use client';
 
+import MultiTextRadioContainer from '@/components/forms/inputs/multi-text-radio-container/MultiTextRadioContainer';
 import QuantityInput from '@/components/forms/inputs/quantity-input/QuantityInput';
 import Minus from '@/components/icons/minus';
 import Plus from '@/components/icons/plus';
-import X from '@/components/icons/x';
+import CartModal from '@/components/modals/cart-modal/CartModal';
 import { formatPrice } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
 import { useCartFunctions } from '@/data/services/shopify/cart-hook';
 import { GraphQLTypes } from '@/data/services/shopify/zeus';
 import { Product } from '@/data/types';
-import { Button, Modal, ModalBody, Spinner } from 'flowbite-react';
+import { Badge, Button, Modal, ModalBody, Spinner } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -34,12 +35,9 @@ const MISCELLANEOUS_DETAIL: { detail: string; description: string }[] = [
 ];
 
 const ProductPage = (product: Product) => {
-  const router = useRouter();
   const { getCart, addToCart } = useCartFunctions();
 
   const [activeImage, setActiveImage] = useState(0);
-  const [images, setImages] = useState(product.images);
-
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [showDescription, setShowDescription] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -86,9 +84,6 @@ const ProductPage = (product: Product) => {
 
     if (foundVariantIndex !== -1) {
       setSelectedVariant(foundVariantIndex);
-
-      const variantImage = product.variants[foundVariantIndex].image;
-      if (variantImage) setImages((prev) => [variantImage, ...prev]);
     } else {
       setSelectedVariant(0);
     }
@@ -96,109 +91,29 @@ const ProductPage = (product: Product) => {
 
   return (
     <>
-      <Modal
-        size="md"
-        dismissible
-        show={showModal}
-        position="center"
-        onClose={() => setShowModal(false)}
-      >
-        <ModalBody className="p-0">
-          <div className="relative rounded-lg overflow-hidden">
-            <button
-              type="button"
-              onClick={() => setShowModal(false)}
-              className="absolute z-10 right-0 top-0 p-xs hover:cursor-pointer bg-lightGray hover:bg-lightGray/80 rounded-bl-lg rounded-tr-lg"
-            >
-              <X />
-            </button>
-            <div className="relative w-full aspect-video bg-white dark:bg-inherit rounded-lg p-lg flex flex-col gap-md overflow-hidden min-h-[70dvh] max-h-[70dvh]">
-              <h5>
-                You have{' '}
-                <span className="font-bold">
-                  {getCart?.totalQuantity ?? quantity} item
-                  {(getCart?.totalQuantity ? getCart.totalQuantity > 1 : quantity > 1) ? 's' : ''}
-                </span>{' '}
-                in the cart
-              </h5>
-
-              <hr className="text-lightGray" />
-
-              {/* CART ITEMS */}
-              <div className="grow y-scrollbox divide-y divide-lightGray scrollbar-hide">
-                {getCart?.lines.map((line) => (
-                  <div
-                    key={`single-product-page-mobile-${line.title}`}
-                    className="flex gap-md p-sm"
-                  >
-                    <div className="relative size-[80px]">
-                      <Image
-                        fill
-                        src={line.image.src}
-                        alt={line.image.alt}
-                        className="object-cover rounded-lg"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-xs">
-                      <h6 className="font-normal">{line.title}</h6>
-                      <p className="capitalize body-small">
-                        <span className="font-bold">Price:</span> {formatPrice(line.variant.price)}{' '}
-                        {line.variant.price.currencyCode}
-                      </p>
-                      <p className="capitalize body-small">
-                        <span className="font-bold">Quantity:</span> {line.quantity}
-                      </p>
-                      <p className="capitalize body-small">
-                        <span className="font-bold">Total:</span> {formatPrice(line.subtotalAmount)}{' '}
-                        {line.subtotalAmount.currencyCode}
-                      </p>
-                      {line.variant.selectedOptions.map((opt) => (
-                        <p className="capitalize body-small">
-                          <span className="font-bold">{opt.name}:</span> {opt.value}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <hr className="text-lightGray" />
-
-              {/* ACTION BUTTONS */}
-              <div className="flex flex-col md:flex-row items-center gap-md">
-                <Link href={PageRoutes.cart} className="w-full">
-                  <Button
-                    color="yellow"
-                    fullSized
-                    onClick={() => setShowModal(false)}
-                    className="whitespace-nowrap"
-                  >
-                    Go to Cart
-                  </Button>
-                </Link>
-                <Link href={PageRoutes.bookstore} className="w-full">
-                  <Button
-                    color="info"
-                    fullSized
-                    onClick={() => setShowModal(false)}
-                    className="max-md:!order-last whitespace-nowrap"
-                  >
-                    Back to Bookstore
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </ModalBody>
-      </Modal>
+      <CartModal
+        open={showModal}
+        setOpen={setShowModal}
+        cartQuantity={getCart?.totalQuantity ?? quantity}
+        cartLines={
+          getCart?.lines.map((line) => ({
+            image: line.image,
+            title: line.title,
+            price: line.variant.price,
+            quantity: line.quantity,
+            subtotal: line.subtotalAmount,
+            selectedOptions: line.variant.selectedOptions.map((opt) => opt),
+          })) ?? []
+        }
+      />
 
       <div>
         {/* LEFT DECORATIVE BORDER */}
-        <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-yellow dark:bg-softYellow" />
+        <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-primary dark:bg-primaryDark" />
 
-        <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[50px]">
           {/* MEDIA */}
-          <div className="md:col-span-2 md:px-lg">
+          <div className="md:col-span-2">
             {/* DESKTOP */}
             <div className="hidden lg:grid grid-cols-2 gap-lg">
               {product.images.map((img, idx) => (
@@ -226,7 +141,7 @@ const ProductPage = (product: Product) => {
                   className="object-contain rounded-xl"
                 />
               </div>
-              <div className="flex items-center gap-sm x-scrollbox dark:!x-scrollbox-dark scrollbar-hide">
+              <div className="flex items-center gap-sm x-scrollbox scrollbar-hide">
                 {product.images.map((img, idx) => (
                   <button
                     type="button"
@@ -238,7 +153,7 @@ const ProductPage = (product: Product) => {
                       fill
                       src={img.src}
                       alt={img.alt ?? product.title}
-                      className="object-contain  rounded-lg"
+                      className="object-contain rounded-lg"
                     />
                   </button>
                 ))}
@@ -247,30 +162,24 @@ const ProductPage = (product: Product) => {
           </div>
 
           {/* CONTENT */}
-          <div className="flex flex-col gap-xl px-[25px]">
+          <div className="flex flex-col gap-xl">
             <h3>{product.title}</h3>
 
             {/* PRICING */}
             <div className="flex items-center gap-sm">
-              <h3>
-                {formatPrice(product.variants[selectedVariant].price)}{' '}
-                {product.variants[selectedVariant].price.currencyCode}
-              </h3>
+              <h3>{formatPrice(product.variants[selectedVariant].price)}</h3>
               {product.variants[selectedVariant].compareAtPrice && (
                 <h4 className="line-through text-charcoal">
-                  {formatPrice(product.variants[selectedVariant].compareAtPrice)}{' '}
-                  {product.variants[selectedVariant].compareAtPrice.currencyCode}
+                  {formatPrice(product.variants[selectedVariant].compareAtPrice)}
                 </h4>
               )}
+              {/* INVENTORY BADGE */}
+              {product.variants[selectedVariant].quantityAvailable <= 20 && (
+                <Badge color="red" size="md">
+                  Only {product.variants[selectedVariant].quantityAvailable} left!
+                </Badge>
+              )}
             </div>
-
-            {/* INVENTORY BADGE */}
-            {product.variants[selectedVariant].quantityAvailable <= 20 && (
-              <div className="flex items-center gap-xs bg-red/10 rounded-md p-xs text-red w-fit font-bold">
-                <div className="size-3 motion-safe:animate-pulse border rounded-full border-red bg-red/50" />{' '}
-                Only {product.variants[selectedVariant].quantityAvailable} left!
-              </div>
-            )}
 
             {/* DESCRIPTION */}
             <div className="flex flex-col gap-sm">
@@ -299,32 +208,20 @@ const ProductPage = (product: Product) => {
             <div className="pb-lg flex flex-col gap-[25px]">
               {product.options &&
                 product.options.map((opt) => (
-                  <div key={opt.name} className="flex flex-col gap-sm">
-                    <h5>{opt.name}</h5>
-                    <div className="flex flex-wrap gap-sm">
-                      {opt.values.map((subOpt) => {
-                        const found = variations.find(
-                          (obj) => obj.key === opt.name && obj.value === subOpt.name
-                        );
-                        return (
-                          <button
-                            type="button"
-                            key={subOpt.name}
-                            onClick={() => updateVariation(opt.name, subOpt.name)}
-                            className={`p-sm min-w-[45px] max-w-fit flex items-center justify-center capitalize gap-xs border rounded-md ${found ? 'border-yellow/80 bg-gradient-to-t from-yellow/30 text-black' : 'border-lightGray text-charcoal'}`}
-                          >
-                            {subOpt.color && (
-                              <div
-                                style={{ backgroundColor: subOpt.color }}
-                                className={`size-5 rounded-full border border-lightGray`}
-                              />
-                            )}
-                            <div>{subOpt.name}</div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
+                  <MultiTextRadioContainer
+                    label={opt.name}
+                    onSelect={(value) => updateVariation(opt.name, value)}
+                    options={opt.values.map((subOpt) => {
+                      const found = variations.find(
+                        (obj) => obj.key === opt.name && obj.value === subOpt.name
+                      );
+                      return {
+                        text: subOpt.name,
+                        color: subOpt.color,
+                        selected: found !== undefined,
+                      };
+                    })}
+                  />
                 ))}
             </div>
 
@@ -332,19 +229,10 @@ const ProductPage = (product: Product) => {
             <div className="flex flex-col gap-sm">
               <div className="flex items-center gap-md">
                 <QuantityInput
-                  minQuantity={1}
                   maxQuantity={10}
                   quantity={quantity}
-                  decrement={() => {
-                    if (quantity === 0) {
-                      setQuantity(0);
-                    } else setQuantity((prev) => prev - 1);
-                  }}
-                  increment={() => {
-                    if (quantity === 10) {
-                      setQuantity(10);
-                    } else setQuantity((prev) => prev + 1);
-                  }}
+                  decrement={setQuantity}
+                  increment={setQuantity}
                 />
                 <div className="text-charcoal body-small">
                   In the Bag (
@@ -377,13 +265,13 @@ const ProductPage = (product: Product) => {
                   }
                 }}
                 fullSized
-                color="yellow"
+                color="primary"
                 className="md:w-[calc(50%-8px)] whitespace-nowrap"
               >
                 {loading ? <Spinner /> : 'Add to cart'}
               </Button>
               <Link href={PageRoutes.bookstore} className="w-full md:w-[calc(50%-8px)]">
-                <Button fullSized color="info" className="whitespace-nowrap">
+                <Button fullSized color="ghost" className="whitespace-nowrap">
                   Contine Shopping
                 </Button>
               </Link>
@@ -392,9 +280,12 @@ const ProductPage = (product: Product) => {
             {/* MISCELLANEOUS INFO */}
             <div className="pt-xl flex flex-col gap-[25px]">
               {MISCELLANEOUS_DETAIL.map(({ detail, description }) => (
-                <div key={detail} className="flex flex-col gap-sm text-charcoal">
+                <div
+                  key={detail}
+                  className="flex flex-col gap-sm text-charcoal dark:text-textInverse"
+                >
                   <h5>{detail}</h5>
-                  <div className="w-full h-[1px] bg-lightGray" />
+                  <hr className="text-gray" />
                   <p>{description}</p>
                 </div>
               ))}
@@ -403,7 +294,7 @@ const ProductPage = (product: Product) => {
         </div>
 
         {/* RIGHT DECORATIVE BORDER */}
-        <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-yellow dark:bg-softYellow" />
+        <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-primary dark:bg-primaryDark" />
       </div>
     </>
   );

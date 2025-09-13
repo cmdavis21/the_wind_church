@@ -3,10 +3,10 @@ export const theme = {
     root: {
       base: 'flex w-fit h-fit items-center gap-1 font-semibold',
       color: {
-        gray: 'bg-lightGray text-charcoal dark:bg-softGray dark:text-softCharcoal',
-        red: 'bg-red text-white group-hover:bg-red-200 dark:bg-red-200 dark:text-red-900 dark:group-hover:bg-red-300',
+        gray: 'bg-gray text-textPrimary dark:bg-grayDark dark:text-textInverse',
+        red: 'bg-error text-white group-hover:bg-red-300 dark:bg-red-300 dark:text-red-900 dark:group-hover:bg-red-400',
         yellow:
-          'bg-yellow text-yellow-800 group-hover:bg-yellow-200 dark:bg-yellow-200 dark:text-yellow-900 dark:group-hover:bg-yellow-300',
+          'bg-primary text-navy group-hover:bg-primaryDark dark:bg-primaryDark dark:text-yellow-900 dark:group-hover:bg-primary-400',
       },
       href: 'group',
       size: {
@@ -23,39 +23,34 @@ export const theme = {
       },
     },
   },
-  breadcrumb: {
-    root: {
-      base: '',
-      list: 'flex items-center',
-    },
-    item: {
-      base: 'group flex items-center',
-      chevron: 'mx-1 h-4 w-4 text-gray-400 group-first:hidden md:mx-2',
-      href: {
-        off: 'flex items-center text-lg font-medium text-gray-500 dark:text-gray-400',
-        on: 'flex items-center text-lg font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white',
-      },
-      icon: 'mr-2 h-4 w-4',
-    },
-  },
   button: {
     base: 'group relative w-fit !h-fit !rounded-md flex items-center justify-center p-0.5 text-center font-normal transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none',
     fullSized: 'w-full',
     color: {
-      yellow: 'border border-yellow bg-yellow text-black hover:shadow-md',
-      blue: 'border border-blue bg-blue text-white',
-      black: 'border border-black bg-black text-white',
-      clear_white:
-        'border border-white bg-transparent text-white dark:border-softWhite dark:text-softWhite hover:bg-yellow hover:text-black hover:border-yellow dark:hover:bg-softYellow dark:hover:border-softYellow',
-      clear_gray:
-        'border border-gray-300 bg-transparent text-gray-300 hover:bg-gray-300 text-black',
-      clear_black:
-        '!border !border-black bg-transparent text-black hover:bg-blue hover:text-yellow',
-      red: 'border border-red bg-red text-white',
-      white:
-        'border border-black bg-white dark:bg-softWhite text-black hover:bg-yellow hover:border-yellow',
-      info: 'border-0 bg-transparent text-charcoal hover:bg-lightGray hover:underline hover:text-black hover:border-yellow',
+      primary:
+        'border border-primary bg-primary text-black hover:bg-primaryDark/80 hover:shadow-md dark:border-primaryDark dark:bg-primaryDark dark:text-black dark:hover:bg-primary',
+      secondary:
+        'border border-navy bg-navy text-white hover:bg-navyLight dark:border-navyLight dark:bg-navyLight dark:text-white dark:hover:bg-navy',
+      ghost:
+        'border border-gray bg-transparent text-textPrimary hover:bg-gray hover:text-black dark:border-grayDark dark:bg-transparent dark:text-textInverse dark:hover:bg-grayDark dark:hover:text-white',
+      danger:
+        'border border-error bg-error text-white hover:bg-red-600 dark:border-red-700 dark:bg-red-700 dark:text-white dark:hover:bg-error',
     },
+    // color: {
+    //   yellow: 'border border-primary bg-primary text-black hover:shadow-md hover:bg-primaryDark',
+    //   blue: 'border border-navy bg-navy text-white',
+    //   black: 'border border-black bg-black text-white',
+    //   clear_white:
+    //     'border border-white bg-transparent text-white dark:border-textInverse dark:text-textInverse hover:bg-primary hover:text-black hover:border-primary dark:hover:bg-primaryDark dark:hover:border-primaryDark',
+    //   clear_gray:
+    //     'border border-gray bg-transparent text-gray hover:bg-gray hover:text-textPrimary',
+    //   clear_black:
+    //     '!border !border-black bg-transparent text-black hover:bg-navy hover:text-primary',
+    //   red: 'border border-error bg-error text-white',
+    //   white:
+    //     'border border-black bg-white dark:bg-textInverse text-black hover:bg-primary hover:border-primary',
+    //   info: 'border-0 bg-transparent text-textPrimary hover:bg-backgroundLight hover:text-black hover:border-primary',
+    // },
     disabled: 'cursor-not-allowed opacity-50 pointer-events-none',
     pill: {
       off: 'rounded-lg',
@@ -70,44 +65,11 @@ export const theme = {
       sm_md: 'px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base',
     },
   },
-  dropdown: {
-    arrowIcon: 'ml-2 h-4 w-4',
-    content: 'py-1 focus:outline-none',
-    floating: {
-      animation: 'transition-opacity',
-      arrow: {
-        base: 'absolute z-10 h-2 w-2 rotate-45',
-        style: {
-          dark: 'bg-gray-900 dark:bg-gray-700',
-          light: 'bg-white',
-          auto: 'bg-white dark:bg-gray-700',
-        },
-        placement: '-4px',
-      },
-      base: 'z-10 w-fit divide-y divide-gray-100 rounded shadow focus:outline-none',
-      content: 'py-1 text-sm text-gray-700 dark:text-gray-200',
-      divider: 'my-1 h-px bg-gray-100 dark:bg-gray-600',
-      header: 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200',
-      hidden: 'invisible opacity-0',
-      item: {
-        container: '',
-        base: 'flex w-full cursor-pointer items-center justify-start px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:bg-gray-600 dark:focus:text-white',
-        icon: 'mr-2 h-4 w-4',
-      },
-      style: {
-        dark: 'bg-gray-900 text-white dark:bg-gray-700',
-        light: 'border border-gray-200 bg-white text-gray-900',
-        auto: 'border border-gray-200 bg-white text-gray-900 dark:border-none dark:bg-gray-700 dark:text-white',
-      },
-      target: 'w-fit',
-    },
-    inlineWrapper: 'flex items-center',
-  },
   label: {
     root: {
       base: 'text-[16px] xl:text-[18px]',
       colors: {
-        gray: 'text-charcoal dark:text-softWhite',
+        gray: 'text-textPrimary dark:text-textInverse',
         white: 'text-white',
       },
       disabled: 'opacity-50',
@@ -146,35 +108,36 @@ export const theme = {
     },
     content: {
       base: 'relative h-full w-full p-4 md:h-auto',
-      inner: 'relative flex flex-col max-h-[90dvh] rounded-lg bg-white shadow dark:bg-gray-700',
+      inner:
+        'relative flex flex-col max-h-[90dvh] rounded-lg bg-backgroundLight shadow dark:bg-backgroundDark',
     },
     body: {
-      base: 'flex-1 overflow-auto p-6',
+      base: 'flex-1 overflow-auto p-6 text-textPrimary dark:text-textInverse',
       popup: 'pt-0',
     },
     header: {
-      base: 'flex items-start justify-between rounded-t border-b p-5 dark:border-gray-600',
+      base: 'flex items-start justify-between rounded-t border-b p-5 dark:border-grayDark',
       popup: 'border-b-0 p-2',
-      title: 'text-xl font-medium text-gray-900 dark:text-white',
+      title: 'text-xl font-medium text-textPrimary dark:text-textInverse',
       close: {
-        base: 'ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white',
+        base: 'ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray hover:bg-gray hover:text-textPrimary dark:hover:bg-grayDark dark:hover:text-white',
         icon: 'h-5 w-5',
       },
     },
     footer: {
-      base: 'flex items-center space-x-2 rounded-b border-gray-200 p-6 dark:border-gray-600',
+      base: 'flex items-center space-x-2 rounded-b border-gray p-6 dark:border-grayDark',
       popup: 'border-t',
     },
   },
   radio: {
     root: {
-      base: 'h-6 w-6 rounded-full border border-lightGray dark:border-softGray !text-yellow dark:!text-softYellow focus:ring-0 hover:cursor-pointer',
+      base: 'h-6 w-6 rounded-full border border-gray dark:border-grayDark !text-primary dark:!text-primaryDark focus:ring-0 hover:cursor-pointer',
     },
   },
   textarea: {
     base: 'block w-full rounded-md border text-md disabled:cursor-default disabled:opacity-50 p-3',
     colors: {
-      gray: 'border-lightGray bg-white text-charcoal focus:border-yellow focus:ring-yellow dark:border-softCharcoal dark:bg-softCharcoal dark:text-softWhite dark:placeholder-softWhite dark:focus:border-yellow dark:focus:ring-yellow',
+      gray: 'border-gray bg-backgroundLight text-textPrimary placeholder-textSecondary focus:border-primary focus:ring-primary dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:border-primaryDark dark:focus:ring-primaryDark',
     },
     withShadow: {
       on: 'shadow-sm dark:shadow-sm-light',
@@ -184,16 +147,16 @@ export const theme = {
   textInput: {
     base: 'flex',
     addon:
-      'inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-md text-gray-900',
+      'inline-flex items-center rounded-l-md border border-r-0 border-gray bg-gray px-3 text-md text-textPrimary dark:border-grayDark dark:bg-grayDark dark:text-textInverse',
     field: {
       base: 'relative w-full',
       icon: {
         base: 'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3',
-        svg: 'h-5 w-5 text-gray-500',
+        svg: 'h-5 w-5 text-textSecondary dark:text-textInverse',
       },
       rightIcon: {
         base: 'pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3',
-        svg: 'h-5 w-5 text-gray-500',
+        svg: 'h-5 w-5 text-textSecondary dark:text-textInverse',
       },
       input: {
         base: 'block w-full border disabled:cursor-default disabled:opacity-50',
@@ -203,7 +166,7 @@ export const theme = {
           lg: 'p-4 sm:text-base',
         },
         colors: {
-          gray: 'border-lightGray bg-white text-charcoal focus:border-yellow focus:ring-yellow dark:border-softCharcoal dark:bg-softCharcoal dark:text-softWhite dark:placeholder-softWhite dark:focus:border-yellow dark:focus:ring-yellow',
+          gray: 'border-gray bg-backgroundLight text-textPrimary placeholder-textSecondary focus:border-primary focus:ring-primary dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:border-primaryDark dark:focus:ring-primaryDark',
         },
         withRightIcon: {
           on: 'pr-10',
@@ -231,18 +194,18 @@ export const theme = {
         on: 'cursor-pointer',
         off: 'cursor-not-allowed opacity-50',
       },
-      label: 'ms-3 mt-0.5 text-start text-sm font-medium text-gray-900 dark:text-gray-300',
+      label: 'ms-3 mt-0.5 text-start text-sm font-medium text-textPrimary dark:text-textInverse',
     },
     toggle: {
       base: 'relative rounded-full border after:absolute after:rounded-full after:bg-white after:transition-all group-focus:ring-0',
       checked: {
         on: 'after:translate-x-full after:border-white rtl:after:-translate-x-full',
-        off: 'border-lightGray bg-lightGray dark:border-softGray dark:bg-softGray',
+        off: 'border-gray bg-gray dark:border-grayDark dark:bg-grayDark',
         color: {
-          blue: 'border-cyan-700 bg-cyan-700',
-          dark: 'bg-dark-700 border-dark-900',
-          light: 'bg-light-700 border-light-900',
-          yellow: 'border-yellow bg-yellow',
+          yellow: 'border-primary bg-primary',
+          blue: 'border-navy bg-navy',
+          dark: 'bg-backgroundDark border-grayDark',
+          light: 'bg-backgroundLight border-gray',
         },
       },
       sizes: {
@@ -255,12 +218,12 @@ export const theme = {
   select: {
     base: 'flex',
     addon:
-      'inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400',
+      'inline-flex items-center rounded-l-md border border-r-0 border-gray bg-gray px-3 text-sm text-textPrimary dark:border-grayDark dark:bg-grayDark dark:text-textInverse',
     field: {
       base: 'relative w-full',
       icon: {
         base: 'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3',
-        svg: 'h-5 w-5 text-gray-500 dark:text-gray-400',
+        svg: 'h-5 w-5 text-textSecondary dark:text-textInverse',
       },
       select: {
         base: 'block w-full border disabled:cursor-default disabled:opacity-50',
@@ -283,7 +246,7 @@ export const theme = {
           lg: 'p-4 text-md',
         },
         colors: {
-          gray: 'border-lightGray bg-white text-charcoal focus:border-yellow focus:ring-yellow dark:border-softCharcoal dark:bg-softCharcoal dark:text-softWhite dark:placeholder-softWhite dark:focus:border-yellow dark:focus:ring-yellow',
+          gray: 'border-gray bg-backgroundLight text-textPrimary placeholder-textSecondary focus:border-primary focus:ring-primary dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:border-primaryDark dark:focus:ring-primaryDark',
         },
       },
     },

@@ -1,11 +1,11 @@
-"use client";
-import React from "react";
-import { useTranslations } from "next-intl";
+'use client';
+import React from 'react';
+import { useTranslations } from 'next-intl';
 
-import FooterContactForm from "@/components/forms/footer-contact-form/FooterContactForm";
+import FooterContactForm from '@/components/forms/footer-contact-form/FooterContactForm';
 
 const FooterContactSignup = () => {
-  const t = useTranslations("Footer");
+  const t = useTranslations('Footer');
   return (
     <div
       style={{
@@ -31,10 +31,8 @@ const FooterContactSignup = () => {
 
       {/* Form */}
       <div className="relative flex flex-col gap-sm max-w-[235px] min-h-[342px] ml-[25px] lg:ml-[50px] my-5 pb-xs">
-        <h6 className="uppercase tracking-wider font-light text-white">
-          {t("form.label")}
-        </h6>
-        <div className="w-[40px] h-[1.1px] rounded-sm bg-yellow mb-sm" />
+        <h6 className="uppercase tracking-wider font-light text-white">{t('form.label')}</h6>
+        <div className="w-[40px] h-[1.1px] rounded-sm bg-primary mb-sm" />
         <FooterContactForm />
       </div>
     </div>

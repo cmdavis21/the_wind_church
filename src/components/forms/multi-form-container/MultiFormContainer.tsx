@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { ReactElement, useState } from "react";
-import { Button } from "flowbite-react";
+import React, { ReactElement, useState } from 'react';
+import { Button } from 'flowbite-react';
 
-import ToggleSlider from "@/components/buttons/toggle-slider/ToggleSlider";
+import ToggleSlider from '@/components/buttons/toggle-slider/ToggleSlider';
 
 interface MultiFormContainerProps {
   forms: {
@@ -27,7 +27,7 @@ const MultiFormContainer: React.FC<MultiFormContainerProps> = ({ forms }) => {
             key={`multi-form-container-button-${item.buttonLabel}`}
             pill
             size="sm"
-            color={active === idx ? "yellow" : "info"}
+            color={active === idx ? 'yellow' : 'info'}
             onClick={() => setActive(idx)}
           >
             {item.buttonLabel}
@@ -48,11 +48,11 @@ const MultiFormContainer: React.FC<MultiFormContainerProps> = ({ forms }) => {
       {forms[active] && forms[active].header && (
         <div
           className={
-            "flex flex-col gap-[25px] max-w-[1000px] mx-auto text-center font-light dark:text-softWhite"
+            'flex flex-col gap-[25px] max-w-[1000px] mx-auto text-center font-light dark:text-textInverse'
           }
         >
           <h1>{forms[active].header.title}</h1>
-          <h4 className="text-charcoal dark:text-softWhite">
+          <h4 className="text-charcoal dark:text-textInverse">
             {forms[active].header.description}
           </h4>
         </div>

@@ -1,48 +1,44 @@
-import { getTranslations } from "next-intl/server";
-import React from "react";
+import { getTranslations } from 'next-intl/server';
+import React from 'react';
 
-import ImageWithTitleAndHiddenTextCard from "@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard";
-import SimpleCarousel from "@/components/carousels/simple-carousel/SimpleCarousel";
-import { WEBSITE_BASE_URL } from "@/data/constants";
-import CenterModeMediaWithTextCarousel from "@/components/carousels/center-mode-media-with-text-carousel/CenterModeMediaWithTextCarousel";
-import Accordion from "@/components/accordion/Accordion";
-import FullscreenMediaWithSideTextCarousel from "@/components/carousels/fullscreen-media-with-side-text-carousel/FullscreenMediaWithSideTextCarousel";
-import CenterTextSection from "@/components/sections/center-text-section/CenterTextSection";
-import SectionHeader from "@/components/sections/section-header/SectionHeader";
-import Bible from "@/components/icons/bible";
-import BulletList from "@/components/icons/bulletList";
-import CheckeredFlag from "@/components/icons/checkeredFlag";
-import Crown from "@/components/icons/crown";
-import HandGift from "@/components/icons/handGift";
-import HealCross from "@/components/icons/healCross";
-import LifeRing from "@/components/icons/lifeRing";
-import NewTag from "@/components/icons/newTag";
-import PaintBucket from "@/components/icons/paintBucket";
-import PersonFalling from "@/components/icons/personFalling";
-import PersonWalk from "@/components/icons/personWalk";
-import Senate from "@/components/icons/senate";
-import SunWithClouds from "@/components/icons/sunWithClouds";
-import ThreePersons from "@/components/icons/threePersons";
-import ThumbsDown from "@/components/icons/thumbsDown";
-import Waves from "@/components/icons/waves";
-import SupperTop from "@/components/icons/supperTop";
-import Temperature from "@/components/icons/temperature";
-import PrayerHands from "@/components/icons/prayerHands";
-import ScriptureWithIcon from "@/components/cards/scripture-with-icon/ScriptureWithIcon";
-import { styleSelectedWords } from "@/data/utils";
-import PeopleGroup from "@/components/icons/peopleGroup";
-import PageHero from "@/components/heroes/page-hero/PageHero";
+import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
+import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
+import { WEBSITE_BASE_URL } from '@/data/constants';
+import CenterModeMediaWithTextCarousel from '@/components/carousels/center-mode-media-with-text-carousel/CenterModeMediaWithTextCarousel';
+import Accordion from '@/components/accordion/Accordion';
+import FullscreenMediaWithSideTextCarousel from '@/components/carousels/fullscreen-media-with-side-text-carousel/FullscreenMediaWithSideTextCarousel';
+import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import Bible from '@/components/icons/bible';
+import BulletList from '@/components/icons/bulletList';
+import CheckeredFlag from '@/components/icons/checkeredFlag';
+import Crown from '@/components/icons/crown';
+import HandGift from '@/components/icons/handGift';
+import HealCross from '@/components/icons/healCross';
+import LifeRing from '@/components/icons/lifeRing';
+import NewTag from '@/components/icons/newTag';
+import PaintBucket from '@/components/icons/paintBucket';
+import PersonFalling from '@/components/icons/personFalling';
+import PersonWalk from '@/components/icons/personWalk';
+import Senate from '@/components/icons/senate';
+import SunWithClouds from '@/components/icons/sunWithClouds';
+import ThreePersons from '@/components/icons/threePersons';
+import ThumbsDown from '@/components/icons/thumbsDown';
+import Waves from '@/components/icons/waves';
+import SupperTop from '@/components/icons/supperTop';
+import Temperature from '@/components/icons/temperature';
+import PrayerHands from '@/components/icons/prayerHands';
+import ScriptureWithIcon from '@/components/cards/scripture-with-icon/ScriptureWithIcon';
+import { styleSelectedWords } from '@/data/utils';
+import PeopleGroup from '@/components/icons/peopleGroup';
+import PageHero from '@/components/heroes/page-hero/PageHero';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "About" });
+  const t = await getTranslations({ locale, namespace: 'About' });
   return {
-    title: t("metadata.title"),
-    description: t("metadata.description"),
+    title: t('metadata.title'),
+    description: t('metadata.description'),
     alternates: {
       canonical: `${WEBSITE_BASE_URL}/about`,
     },
@@ -50,132 +46,132 @@ export async function generateMetadata({
 }
 
 const About = async () => {
-  const t = await getTranslations("About");
+  const t = await getTranslations('About');
 
   const theWindCenterArr = [
     <ImageWithTitleAndHiddenTextCard
       key={1}
       image={{
-        src: "/placeholder-media/people_hug.jpg",
-        alt: t("alt"),
+        src: '/placeholder-media/people_hug.jpg',
+        alt: t('alt'),
       }}
       title={
         <div
           dangerouslySetInnerHTML={{
             __html: styleSelectedWords({
-              text: t("values.jesus.title"),
+              text: t('values.jesus.title'),
               array: [[2, 2]],
-              htmlTag: "h2",
+              htmlTag: 'h2',
             }),
           }}
         />
       }
-      description={t("values.jesus.description")}
+      description={t('values.jesus.description')}
     />,
     <ImageWithTitleAndHiddenTextCard
       key={2}
       image={{
-        src: "/placeholder-media/praise_hands.jpg",
-        alt: t("alt"),
+        src: '/placeholder-media/praise_hands.jpg',
+        alt: t('alt'),
       }}
       title={
         <div
           dangerouslySetInnerHTML={{
             __html: styleSelectedWords({
-              text: t("values.worship.title"),
+              text: t('values.worship.title'),
               array: [[1, 1]],
-              htmlTag: "h2",
+              htmlTag: 'h2',
             }),
           }}
         />
       }
-      description={t("values.worship.description")}
+      description={t('values.worship.description')}
     />,
     <ImageWithTitleAndHiddenTextCard
       key={3}
       image={{
-        src: "/placeholder-media/family.jpeg",
-        alt: t("alt"),
+        src: '/placeholder-media/family.jpeg',
+        alt: t('alt'),
       }}
       title={
         <div
           dangerouslySetInnerHTML={{
             __html: styleSelectedWords({
-              text: t("values.family.title"),
+              text: t('values.family.title'),
               array: [[1, 1]],
-              htmlTag: "h2",
+              htmlTag: 'h2',
             }),
           }}
         />
       }
-      description={t("values.family.description")}
+      description={t('values.family.description')}
     />,
     <ImageWithTitleAndHiddenTextCard
       key={4}
       image={{
-        src: "/placeholder-media/outreach.png",
-        alt: t("alt"),
+        src: '/placeholder-media/outreach.png',
+        alt: t('alt'),
       }}
       title={
         <div
           dangerouslySetInnerHTML={{
             __html: styleSelectedWords({
-              text: t("values.serve.title"),
+              text: t('values.serve.title'),
               array: [[1, 1]],
-              htmlTag: "h2",
+              htmlTag: 'h2',
             }),
           }}
         />
       }
-      description={t("values.serve.description")}
+      description={t('values.serve.description')}
     />,
     <ImageWithTitleAndHiddenTextCard
       key={5}
       image={{
-        src: "/placeholder-media/group_women.jpg",
-        alt: t("alt"),
+        src: '/placeholder-media/group_women.jpg',
+        alt: t('alt'),
       }}
       title={
         <div
           dangerouslySetInnerHTML={{
             __html: styleSelectedWords({
-              text: t("values.love.title"),
+              text: t('values.love.title'),
               array: [[1, 1]],
-              htmlTag: "h2",
+              htmlTag: 'h2',
             }),
           }}
         />
       }
-      description={t("values.love.description")}
+      description={t('values.love.description')}
     />,
     <ImageWithTitleAndHiddenTextCard
       key={6}
       image={{
-        src: "/placeholder-media/food_bank.jpg",
-        alt: t("alt"),
+        src: '/placeholder-media/food_bank.jpg',
+        alt: t('alt'),
       }}
       title={
         <div
           dangerouslySetInnerHTML={{
             __html: styleSelectedWords({
-              text: t("values.transform.title"),
+              text: t('values.transform.title'),
               array: [[1, 1]],
-              htmlTag: "h2",
+              htmlTag: 'h2',
             }),
           }}
         />
       }
-      description={t("values.transform.description")}
+      description={t('values.transform.description')}
     />,
   ];
 
   return (
     <div>
       <PageHero
-        title={t("title")}
-        subtitle={t("subtitle")}
+        title={t('title')}
+        subtitle={t('subtitle')}
         media={{
-          src: "/placeholder-media/group_people.jpg",
+          src: '/placeholder-media/group_people.jpg',
         }}
         highlightTitle={[[0, 1]]}
       />
@@ -183,51 +179,51 @@ const About = async () => {
       <div className="py-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
         {/* Mission and Vision */}
         <div
-          id={t("mission.id")}
+          id={t('mission.id')}
           className="flex flex-col gap-xxl py-[20px] md:py-[50px] 2xl:px-[100px]"
         >
           {/* Mission */}
-          <div className="flex flex-col gap-lg px-padding dark:text-softWhite">
-            <h1>{t("mission.title")}</h1>
+          <div className="flex flex-col gap-lg px-padding dark:text-textInverse">
+            <h1>{t('mission.title')}</h1>
             <div
               dangerouslySetInnerHTML={{
                 __html: styleSelectedWords({
-                  text: t("mission.subtitle"),
+                  text: t('mission.subtitle'),
                   array: [[0, 9]],
-                  htmlTag: "h2",
-                  className: "font-bold",
+                  htmlTag: 'h2',
+                  className: 'font-bold',
                 }),
               }}
             />
-            <h4>{t("mission.description")}</h4>
+            <h4>{t('mission.description')}</h4>
           </div>
 
           {/* Vision */}
-          <div className="flex flex-col gap-lg px-padding dark:text-softWhite">
-            <h1>{t("vision.title")}</h1>
+          <div className="flex flex-col gap-lg px-padding dark:text-textInverse">
+            <h1>{t('vision.title')}</h1>
             <div
               dangerouslySetInnerHTML={{
                 __html: styleSelectedWords({
-                  text: t("vision.subtitle"),
+                  text: t('vision.subtitle'),
                   array: [[0, 7]],
-                  htmlTag: "h2",
-                  className: "font-bold",
+                  htmlTag: 'h2',
+                  className: 'font-bold',
                 }),
               }}
             />
-            <h4>{t("vision.description")}</h4>
+            <h4>{t('vision.description')}</h4>
             <div className="body-large flex flex-wrap gap-sm items-center">
               {[
-                t("vision.verse1"),
-                t("vision.verse2"),
-                t("vision.verse3"),
-                t("vision.verse4"),
-                t("vision.verse5"),
+                t('vision.verse1'),
+                t('vision.verse2'),
+                t('vision.verse3'),
+                t('vision.verse4'),
+                t('vision.verse5'),
               ].map((verse, index) => (
                 <React.Fragment key={`about-page-vision-verses-${verse}`}>
                   {verse}
                   {index !== 4 && (
-                    <div className="rounded-full size-[5px] bg-charcoal dark:bg-softYellow" />
+                    <div className="rounded-full size-[5px] bg-charcoal dark:bg-primaryDark" />
                   )}
                 </React.Fragment>
               ))}
@@ -236,62 +232,59 @@ const About = async () => {
         </div>
 
         {/* About Pastor */}
-        <div id={t("aboutPastor.id")}>
+        <div id={t('aboutPastor.id')}>
           <FullscreenMediaWithSideTextCarousel
             slides={[
               {
                 media: {
-                  src: "/placeholder-media/pastor.webp",
-                  alt: t("alt"),
+                  src: '/placeholder-media/pastor.webp',
+                  alt: t('alt'),
                 },
-                title: t("aboutPastor.title"),
-                description: t("aboutPastor.subtitle"),
+                title: t('aboutPastor.title'),
+                description: t('aboutPastor.subtitle'),
               },
               {
                 media: {
-                  src: "/placeholder-media/contro.webp",
-                  alt: t("alt"),
+                  src: '/placeholder-media/contro.webp',
+                  alt: t('alt'),
                 },
-                title: t("aboutPastor.history.title"),
-                description: t("aboutPastor.history.description"),
+                title: t('aboutPastor.history.title'),
+                description: t('aboutPastor.history.description'),
               },
               {
                 media: {
-                  src: "/placeholder-media/members.webp",
-                  alt: t("alt"),
+                  src: '/placeholder-media/members.webp',
+                  alt: t('alt'),
                 },
-                title: t("aboutPastor.why.title"),
-                description: t("aboutPastor.why.description"),
+                title: t('aboutPastor.why.title'),
+                description: t('aboutPastor.why.description'),
               },
               {
                 media: {
-                  src: "/images/wind_church_building.webp",
-                  alt: t("alt"),
+                  src: '/images/wind_church_building.webp',
+                  alt: t('alt'),
                 },
-                title: t("aboutPastor.goals.title"),
-                description: t("aboutPastor.goals.description"),
+                title: t('aboutPastor.goals.title'),
+                description: t('aboutPastor.goals.description'),
               },
               {
                 media: {
-                  src: "/placeholder-media/lxg_meet.webp",
-                  alt: t("alt"),
+                  src: '/placeholder-media/lxg_meet.webp',
+                  alt: t('alt'),
                 },
-                title: t("aboutPastor.fact.title"),
-                description: t("aboutPastor.fact.description"),
+                title: t('aboutPastor.fact.title'),
+                description: t('aboutPastor.fact.description'),
               },
             ]}
           />
         </div>
 
         {/* The Wind Center */}
-        <div
-          id={t("values.id")}
-          className="px-padding flex flex-col gap-xl md:gap-xxl"
-        >
+        <div id={t('values.id')} className="px-padding flex flex-col gap-xl md:gap-xxl">
           <CenterTextSection
             noPadding
-            title={t("values.title")}
-            description={t("values.subtitle")}
+            title={t('values.title')}
+            description={t('values.subtitle')}
           />
 
           {/* Tablet/Desktop */}
@@ -300,202 +293,171 @@ const About = async () => {
           </div>
 
           {/* Mobile */}
-          <SimpleCarousel
-            blueDots
-            slides={theWindCenterArr}
-            className="md:hidden h-fit"
-          />
+          <SimpleCarousel blueDots slides={theWindCenterArr} className="md:hidden h-fit" />
         </div>
 
         {/* Foursquare */}
-        <div
-          id={t("foursquare.id")}
-          className="px-padding flex flex-col gap-xl md:gap-xxl"
-        >
+        <div id={t('foursquare.id')} className="px-padding flex flex-col gap-xl md:gap-xxl">
           <div className="flex flex-col gap-xl">
             <SectionHeader
               noPadding
-              title={t("foursquare.title")}
-              subtitle={t("foursquare.subtitle")}
+              title={t('foursquare.title')}
+              subtitle={t('foursquare.subtitle')}
             />
 
-            <h5 className="lg:max-w-[60%] dark:text-softWhite">
-              {t("foursquare.description")}
-            </h5>
+            <h5 className="lg:max-w-[60%] dark:text-textInverse">{t('foursquare.description')}</h5>
           </div>
 
           <Accordion
             content={[
               {
-                image: "/images/foursquare/cross.png",
-                title: t("foursquare.accordionItem1.title"),
+                image: '/images/foursquare/cross.png',
+                title: t('foursquare.accordionItem1.title'),
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
                     <ScriptureWithIcon
                       icon={BulletList}
-                      title={t("foursquare.accordionItem1.plan.title")}
-                      verse={t("foursquare.accordionItem1.plan.verse")}
-                      passage={t("foursquare.accordionItem1.plan.description")}
+                      title={t('foursquare.accordionItem1.plan.title')}
+                      verse={t('foursquare.accordionItem1.plan.verse')}
+                      passage={t('foursquare.accordionItem1.plan.description')}
                     />
                     <ScriptureWithIcon
                       icon={LifeRing}
-                      title={t("foursquare.accordionItem1.salvation.title")}
-                      verse={t("foursquare.accordionItem1.salvation.verse")}
-                      passage={t(
-                        "foursquare.accordionItem1.salvation.description"
-                      )}
+                      title={t('foursquare.accordionItem1.salvation.title')}
+                      verse={t('foursquare.accordionItem1.salvation.verse')}
+                      passage={t('foursquare.accordionItem1.salvation.description')}
                     />
                     <ScriptureWithIcon
                       icon={Bible}
-                      title={t("foursquare.accordionItem1.scriptures.title")}
-                      verse={t("foursquare.accordionItem1.scriptures.verse")}
-                      passage={t(
-                        "foursquare.accordionItem1.scriptures.description"
-                      )}
+                      title={t('foursquare.accordionItem1.scriptures.title')}
+                      verse={t('foursquare.accordionItem1.scriptures.verse')}
+                      passage={t('foursquare.accordionItem1.scriptures.description')}
                     />
                     <ScriptureWithIcon
                       icon={ThreePersons}
-                      title={t("foursquare.accordionItem1.eternal.title")}
-                      verse={t("foursquare.accordionItem1.eternal.verse")}
-                      passage={t(
-                        "foursquare.accordionItem1.eternal.description"
-                      )}
+                      title={t('foursquare.accordionItem1.eternal.title')}
+                      verse={t('foursquare.accordionItem1.eternal.verse')}
+                      passage={t('foursquare.accordionItem1.eternal.description')}
                     />
                     <ScriptureWithIcon
                       icon={PersonFalling}
-                      title={t("foursquare.accordionItem1.fall.title")}
-                      verse={t("foursquare.accordionItem1.fall.verse")}
-                      passage={t("foursquare.accordionItem1.fall.description")}
+                      title={t('foursquare.accordionItem1.fall.title')}
+                      verse={t('foursquare.accordionItem1.fall.verse')}
+                      passage={t('foursquare.accordionItem1.fall.description')}
                     />
                   </div>
                 ),
               },
               {
-                image: "/images/foursquare/dove.png",
-                title: t("foursquare.accordionItem2.title"),
+                image: '/images/foursquare/dove.png',
+                title: t('foursquare.accordionItem2.title'),
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
                     <ScriptureWithIcon
                       icon={PeopleGroup}
-                      title={t("foursquare.accordionItem2.relationship.title")}
-                      verse={t("foursquare.accordionItem2.relationship.verse")}
-                      passage={t(
-                        "foursquare.accordionItem2.relationship.description"
-                      )}
+                      title={t('foursquare.accordionItem2.relationship.title')}
+                      verse={t('foursquare.accordionItem2.relationship.verse')}
+                      passage={t('foursquare.accordionItem2.relationship.description')}
                     />
                     <ScriptureWithIcon
                       icon={Senate}
-                      title={t("foursquare.accordionItem2.civil.title")}
-                      verse={t("foursquare.accordionItem2.civil.verse")}
-                      passage={t("foursquare.accordionItem2.civil.description")}
+                      title={t('foursquare.accordionItem2.civil.title')}
+                      verse={t('foursquare.accordionItem2.civil.verse')}
+                      passage={t('foursquare.accordionItem2.civil.description')}
                     />
                     <ScriptureWithIcon
                       icon={CheckeredFlag}
-                      title={t("foursquare.accordionItem2.final.title")}
-                      verse={t("foursquare.accordionItem2.final.verse")}
-                      passage={t("foursquare.accordionItem2.final.description")}
+                      title={t('foursquare.accordionItem2.final.title')}
+                      verse={t('foursquare.accordionItem2.final.verse')}
+                      passage={t('foursquare.accordionItem2.final.description')}
                     />
                     <ScriptureWithIcon
                       icon={SunWithClouds}
-                      title={t("foursquare.accordionItem2.heaven.title")}
-                      verse={t("foursquare.accordionItem2.heaven.verse")}
-                      passage={t(
-                        "foursquare.accordionItem2.heaven.description"
-                      )}
+                      title={t('foursquare.accordionItem2.heaven.title')}
+                      verse={t('foursquare.accordionItem2.heaven.verse')}
+                      passage={t('foursquare.accordionItem2.heaven.description')}
                     />
                     <ScriptureWithIcon
                       icon={ThumbsDown}
-                      title={t("foursquare.accordionItem2.hell.title")}
-                      verse={t("foursquare.accordionItem2.hell.verse")}
-                      passage={t("foursquare.accordionItem2.hell.description")}
+                      title={t('foursquare.accordionItem2.hell.title')}
+                      verse={t('foursquare.accordionItem2.hell.verse')}
+                      passage={t('foursquare.accordionItem2.hell.description')}
                     />
                   </div>
                 ),
               },
               {
-                image: "/images/foursquare/cup.png",
-                title: t("foursquare.accordionItem3.title"),
+                image: '/images/foursquare/cup.png',
+                title: t('foursquare.accordionItem3.title'),
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
                     <ScriptureWithIcon
                       icon={PrayerHands}
-                      title={t("foursquare.accordionItem3.repent.title")}
-                      verse={t("foursquare.accordionItem3.repent.verse")}
-                      passage={t(
-                        "foursquare.accordionItem3.repent.description"
-                      )}
+                      title={t('foursquare.accordionItem3.repent.title')}
+                      verse={t('foursquare.accordionItem3.repent.verse')}
+                      passage={t('foursquare.accordionItem3.repent.description')}
                     />
                     <ScriptureWithIcon
                       icon={NewTag}
-                      title={t("foursquare.accordionItem3.new.title")}
-                      verse={t("foursquare.accordionItem3.new.verse")}
-                      passage={t("foursquare.accordionItem3.new.description")}
+                      title={t('foursquare.accordionItem3.new.title')}
+                      verse={t('foursquare.accordionItem3.new.verse')}
+                      passage={t('foursquare.accordionItem3.new.description')}
                     />
                     <ScriptureWithIcon
                       icon={PersonWalk}
-                      title={t("foursquare.accordionItem3.daily.title")}
-                      verse={t("foursquare.accordionItem3.daily.verse")}
-                      passage={t("foursquare.accordionItem3.daily.description")}
+                      title={t('foursquare.accordionItem3.daily.title')}
+                      verse={t('foursquare.accordionItem3.daily.verse')}
+                      passage={t('foursquare.accordionItem3.daily.description')}
                     />
                     <ScriptureWithIcon
                       icon={SupperTop}
-                      title={t("foursquare.accordionItem3.supper.title")}
-                      verse={t("foursquare.accordionItem3.supper.verse")}
-                      passage={t(
-                        "foursquare.accordionItem3.supper.description"
-                      )}
+                      title={t('foursquare.accordionItem3.supper.title')}
+                      verse={t('foursquare.accordionItem3.supper.verse')}
+                      passage={t('foursquare.accordionItem3.supper.description')}
                     />
                     <ScriptureWithIcon
                       icon={Waves}
-                      title={t("foursquare.accordionItem3.spirit.title")}
-                      verse={t("foursquare.accordionItem3.spirit.verse")}
-                      passage={t(
-                        "foursquare.accordionItem3.spirit.description"
-                      )}
+                      title={t('foursquare.accordionItem3.spirit.title')}
+                      verse={t('foursquare.accordionItem3.spirit.verse')}
+                      passage={t('foursquare.accordionItem3.spirit.description')}
                     />
                   </div>
                 ),
               },
               {
-                image: "/images/foursquare/crown.png",
-                title: t("foursquare.accordionItem4.title"),
+                image: '/images/foursquare/crown.png',
+                title: t('foursquare.accordionItem4.title'),
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
                     <ScriptureWithIcon
                       icon={PaintBucket}
-                      title={t("foursquare.accordionItem4.life.title")}
-                      verse={t("foursquare.accordionItem4.life.verse")}
-                      passage={t("foursquare.accordionItem4.life.description")}
+                      title={t('foursquare.accordionItem4.life.title')}
+                      verse={t('foursquare.accordionItem4.life.verse')}
+                      passage={t('foursquare.accordionItem4.life.description')}
                     />
                     <ScriptureWithIcon
                       icon={HandGift}
-                      title={t("foursquare.accordionItem4.gifts.title")}
-                      verse={t("foursquare.accordionItem4.gifts.verse")}
-                      passage={t("foursquare.accordionItem4.gifts.description")}
+                      title={t('foursquare.accordionItem4.gifts.title')}
+                      verse={t('foursquare.accordionItem4.gifts.verse')}
+                      passage={t('foursquare.accordionItem4.gifts.description')}
                     />
                     <ScriptureWithIcon
                       icon={Temperature}
-                      title={t("foursquare.accordionItem4.moderation.title")}
-                      verse={t("foursquare.accordionItem4.moderation.verse")}
-                      passage={t(
-                        "foursquare.accordionItem4.moderation.description"
-                      )}
+                      title={t('foursquare.accordionItem4.moderation.title')}
+                      verse={t('foursquare.accordionItem4.moderation.verse')}
+                      passage={t('foursquare.accordionItem4.moderation.description')}
                     />
                     <ScriptureWithIcon
                       icon={HealCross}
-                      title={t("foursquare.accordionItem4.divine.title")}
-                      verse={t("foursquare.accordionItem4.divine.verse")}
-                      passage={t(
-                        "foursquare.accordionItem4.divine.description"
-                      )}
+                      title={t('foursquare.accordionItem4.divine.title')}
+                      verse={t('foursquare.accordionItem4.divine.verse')}
+                      passage={t('foursquare.accordionItem4.divine.description')}
                     />
                     <ScriptureWithIcon
                       icon={Crown}
-                      title={t("foursquare.accordionItem4.coming.title")}
-                      verse={t("foursquare.accordionItem4.coming.verse")}
-                      passage={t(
-                        "foursquare.accordionItem4.coming.description"
-                      )}
+                      title={t('foursquare.accordionItem4.coming.title')}
+                      verse={t('foursquare.accordionItem4.coming.verse')}
+                      passage={t('foursquare.accordionItem4.coming.description')}
                     />
                   </div>
                 ),
@@ -505,41 +467,35 @@ const About = async () => {
         </div>
 
         {/* History */}
-        <div id={t("history.id")} className="flex flex-col gap-xl md:gap-xxl">
+        <div id={t('history.id')} className="flex flex-col gap-xl md:gap-xxl">
           <div className="px-padding flex flex-col gap-xl">
-            <SectionHeader
-              noPadding
-              title={t("history.title")}
-              subtitle={t("history.subtitle")}
-            />
+            <SectionHeader noPadding title={t('history.title')} subtitle={t('history.subtitle')} />
 
-            <h5 className="lg:max-w-[60%] dark:text-softWhite">
-              {t("history.description")}
-            </h5>
+            <h5 className="lg:max-w-[60%] dark:text-textInverse">{t('history.description')}</h5>
           </div>
 
           <CenterModeMediaWithTextCarousel
             slides={[
               {
                 media: {
-                  src: "/placeholder-media/old_church_photo_1.webp",
-                  alt: t("alt"),
+                  src: '/placeholder-media/old_church_photo_1.webp',
+                  alt: t('alt'),
                 },
-                description: t("history.carouselItem1"),
+                description: t('history.carouselItem1'),
               },
               {
                 media: {
-                  src: "/placeholder-media/members.webp",
-                  alt: t("alt"),
+                  src: '/placeholder-media/members.webp',
+                  alt: t('alt'),
                 },
-                description: t("history.carouselItem2"),
+                description: t('history.carouselItem2'),
               },
               {
                 media: {
-                  src: "/placeholder-media/lxg_meet.webp",
-                  alt: t("alt"),
+                  src: '/placeholder-media/lxg_meet.webp',
+                  alt: t('alt'),
                 },
-                description: t("history.carouselItem3"),
+                description: t('history.carouselItem3'),
               },
             ]}
           />

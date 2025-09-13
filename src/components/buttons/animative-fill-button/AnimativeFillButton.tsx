@@ -12,7 +12,7 @@ const AnimativeFillButton: React.FC<AnimativeFillButtonProps> = ({ label, onClic
       {/* decorative button fill */}
       <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
         <div className="flex items-center">
-          <div className="w-0 h-[40px] bg-yellow dark:bg-softYellow group-hover:w-full transition-all duration-300 rounded-full" />
+          <div className="w-0 h-[40px] bg-primary dark:bg-primaryDark group-hover:w-full transition-all duration-300 rounded-full" />
           <div className="w-full h-[40px] bg-lightGray/30 dark:bg-softGray/30 group-hover:w-0 transition-all duration-300 rounded-full" />
         </div>
       </div>

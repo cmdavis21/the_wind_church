@@ -122,7 +122,7 @@ const otherWaysToGiveArr = [
       <>
         If you have any other assets (vehicles, real estate, etc.) you would like to donate, please
         email{' '}
-        <Link href="mailto:thewindchurch@outlook.com" className="underline text-yellow">
+        <Link href="mailto:thewindchurch@outlook.com" className="underline text-primary">
           thewindchurch@outlook.com
         </Link>
         .
@@ -173,7 +173,7 @@ const Give = () => (
               <React.Fragment key={`about-page-vision-verses-${verse}`}>
                 {verse}
                 {index !== 1 && (
-                  <div className="rounded-full size-[5px] bg-charcoal dark:bg-softYellow" />
+                  <div className="rounded-full size-[5px] bg-charcoal dark:bg-primaryDark" />
                 )}
               </React.Fragment>
             ))}
@@ -197,7 +197,7 @@ const Give = () => (
                 <React.Fragment key={`about-page-vision-verses-${verse}`}>
                   {verse}
                   {index !== 3 && (
-                    <div className="rounded-full size-[5px] bg-charcoal dark:bg-softYellow" />
+                    <div className="rounded-full size-[5px] bg-charcoal dark:bg-primaryDark" />
                   )}
                 </React.Fragment>
               )
@@ -224,7 +224,7 @@ const Give = () => (
               <React.Fragment key={`about-page-vision-verses-${verse}`}>
                 {verse}
                 {index !== 2 && (
-                  <div className="rounded-full size-[5px] bg-charcoal dark:bg-softYellow" />
+                  <div className="rounded-full size-[5px] bg-charcoal dark:bg-primaryDark" />
                 )}
               </React.Fragment>
             ))}
@@ -333,8 +333,11 @@ const Give = () => (
           <div className="text-white text-center flex flex-col gap-xl">
             <h3>
               We{' '}
-              <span className={`${permanentMarker.className} text-yellow`}>Thank You for your</span>{' '}
-              financial <span className={`${permanentMarker.className} text-yellow`}>support!</span>
+              <span className={`${permanentMarker.className} text-primary`}>
+                Thank You for your
+              </span>{' '}
+              financial{' '}
+              <span className={`${permanentMarker.className} text-primary`}>support!</span>
             </h3>
             <h4 className="md:max-w-[80%] mx-auto">
               We are blessed to have supporters like you and we are honored
@@ -346,12 +349,12 @@ const Give = () => (
               email{' '}
               <Link
                 href="mailto:thewindchurch@outlook.com"
-                className="text-yellow hover:underline break-normal"
+                className="text-primary hover:underline break-normal"
               >
                 thewindchurch@outlook.com
               </Link>{' '}
               <br />
-              or call <span className="text-yellow">(951) 359-0203</span>.
+              or call <span className="text-primary">(951) 359-0203</span>.
             </h4>
             <div
               dangerouslySetInnerHTML={{

@@ -18,7 +18,7 @@ const DesktopNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
       >
         <h5
           className={`${
-            changeColor ? 'text-black dark:text-softWhite' : 'text-white dark:text-softWhite'
+            changeColor ? 'text-black dark:text-textInverse' : 'text-white dark:text-textInverse'
           } whitespace-nowrap tracking-wider uppercase`}
         >
           {label}
@@ -27,10 +27,10 @@ const DesktopNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
         {/* Decorative underline */}
         <div className="flex justify-center items-center h-fit w-full px-sm">
           <div
-            className={`h-[2px] bg-yellow dark:bg-softYellow w-1/2 transform origin-right scale-x-0 transition-[transform, scale] duration-500 group-hover:scale-x-100 group-focus:scale-x-100 ${active ? 'scale-x-100' : ''} rounded-l-full`}
+            className={`h-[2px] bg-primary dark:bg-primaryDark w-1/2 transform origin-right scale-x-0 transition-[transform, scale] duration-500 group-hover:scale-x-100 group-focus:scale-x-100 ${active ? 'scale-x-100' : ''} rounded-l-full`}
           ></div>
           <div
-            className={`h-[2px] bg-yellow dark:bg-softYellow w-1/2 transform origin-left scale-x-0 transition-[transform, scale] duration-500 group-hover:scale-x-100 group-focus:scale-x-100 ${active ? 'scale-x-100' : ''} rounded-r-full`}
+            className={`h-[2px] bg-primary dark:bg-primaryDark w-1/2 transform origin-left scale-x-0 transition-[transform, scale] duration-500 group-hover:scale-x-100 group-focus:scale-x-100 ${active ? 'scale-x-100' : ''} rounded-r-full`}
           ></div>
         </div>
       </button>

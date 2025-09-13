@@ -23,9 +23,9 @@ interface CenterModeMediaWithTextCarouselProps {
   }[];
 }
 
-const CenterModeMediaWithTextCarousel: React.FC<
-  CenterModeMediaWithTextCarouselProps
-> = ({ slides }) => {
+const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselProps> = ({
+  slides,
+}) => {
   const mobileCarouselRef = useRef<Carousel | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const mobileVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -182,7 +182,7 @@ const CenterModeMediaWithTextCarousel: React.FC<
                 </video>
               )}
 
-              <div className="space-y-md text-black dark:text-softWhite">
+              <div className="space-y-md text-black dark:text-textInverse">
                 {slide.title && <h2>{slide.title}</h2>}
                 {slide.description && <h5>{slide.description}</h5>}
               </div>
@@ -237,7 +237,7 @@ const CenterModeMediaWithTextCarousel: React.FC<
                 </video>
               )}
 
-              <div className="space-y-md dark:text-softWhite">
+              <div className="space-y-md dark:text-textInverse">
                 {slide.title && <h2>{slide.title}</h2>}
                 {slide.description && <h5>{slide.description}</h5>}
               </div>

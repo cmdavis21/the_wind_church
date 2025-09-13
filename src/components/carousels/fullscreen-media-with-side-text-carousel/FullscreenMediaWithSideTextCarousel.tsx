@@ -22,9 +22,9 @@ interface FullscreenMediaWithSideTextCarouselProps {
   }[];
 }
 
-const FullscreenMediaWithSideTextCarousel: React.FC<
-  FullscreenMediaWithSideTextCarouselProps
-> = ({ slides }) => {
+const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextCarouselProps> = ({
+  slides,
+}) => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [mobileActiveSlide, setMobileActiveSlide] = useState(0);
   const carouselRef = useRef<Carousel | null>(null);
@@ -116,13 +116,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<
                 />
               </div>
             ) : (
-              <video
-                loop
-                autoPlay
-                muted
-                playsInline
-                poster={slide.media.poster}
-              >
+              <video loop autoPlay muted playsInline poster={slide.media.poster}>
                 <source src={slide.media.src} type="video/mp4" />
               </video>
             )}
@@ -150,10 +144,10 @@ const FullscreenMediaWithSideTextCarousel: React.FC<
           {slides.map((slide) => (
             <div
               key={`media-with-side-text-${slide.title}`}
-              className="w-full 2xl:max-w-[70%] h-[100dvh] px-[150px] pb-[150px] flex flex-col gap-md justify-end text-white dark:text-softWhite"
+              className="w-full 2xl:max-w-[70%] h-[100dvh] px-[150px] pb-[150px] flex flex-col gap-md justify-end text-white dark:text-textInverse"
             >
               <h4>{slide.description}</h4>
-              <div className="w-[100px] h-[1px] bg-yellow rounded-sm" />
+              <div className="w-[100px] h-[1px] bg-primary rounded-sm" />
               <h1>{slide.title}</h1>
             </div>
           ))}
@@ -167,9 +161,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<
           <div
             key={`carousel-mobile-visual-${slide.media.src}`}
             className={`absolute top-0 left-0 w-full h-full ${
-              mobileActiveSlide === mobileIndex
-                ? 'fade-in'
-                : 'fade-out opacity-0'
+              mobileActiveSlide === mobileIndex ? 'fade-in' : 'fade-out opacity-0'
             }`}
           >
             {findMediaType(slide.media.src) === MediaType.IMAGE ? (
@@ -182,13 +174,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<
                 />
               </div>
             ) : (
-              <video
-                loop
-                autoPlay
-                muted
-                playsInline
-                poster={slide.media.poster}
-              >
+              <video loop autoPlay muted playsInline poster={slide.media.poster}>
                 <source src={slide.media.src} type="video/mp4" />
               </video>
             )}
@@ -213,10 +199,10 @@ const FullscreenMediaWithSideTextCarousel: React.FC<
           {slides.map((slide) => (
             <div
               key={`mobile-media-with-side-text-${slide.title}`}
-              className="relative h-[100dvh] w-full px-[20px] pb-[70px] flex flex-col items-center justify-end text-justify text-white dark:text-softWhite gap-sm"
+              className="relative h-[100dvh] w-full px-[20px] pb-[70px] flex flex-col items-center justify-end text-justify text-white dark:text-textInverse gap-sm"
             >
               <p className="body-large">{slide.description}</p>
-              <div className="w-[75px] h-[1px] bg-yellow rounded-sm" />
+              <div className="w-[75px] h-[1px] bg-primary rounded-sm" />
               <h3>{slide.title}</h3>
             </div>
           ))}

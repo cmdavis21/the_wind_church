@@ -44,7 +44,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
       <button className="flex flex-col items-center justify-center gap-[2px] hover:cursor-pointer">
         <h5
           className={`${
-            changeColor ? 'text-black dark:text-softWhite' : 'text-white dark:text-softWhite'
+            changeColor ? 'text-black dark:text-textInverse' : 'text-white dark:text-textInverse'
           } whitespace-nowrap tracking-wider uppercase`}
         >
           {label}
@@ -53,10 +53,10 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
         {/* Decorative underline */}
         <div className="flex justify-center items-center h-fit w-full px-sm">
           <div
-            className={`h-[2px] bg-yellow dark:bg-softYellow w-1/2 transform origin-right scale-x-0 transition-[transform, scale] duration-500 group-hover:scale-x-100 ${open ? 'scale-x-100' : ''} rounded-l-full`}
+            className={`h-[2px] bg-primary dark:bg-primaryDark w-1/2 transform origin-right scale-x-0 transition-[transform, scale] duration-500 group-hover:scale-x-100 ${open ? 'scale-x-100' : ''} rounded-l-full`}
           ></div>
           <div
-            className={`h-[2px] bg-yellow dark:bg-softYellow w-1/2 transform origin-left scale-x-0 transition-[transform, scale] duration-500 group-hover:scale-x-100 ${open ? 'scale-x-100' : ''} rounded-r-full`}
+            className={`h-[2px] bg-primary dark:bg-primaryDark w-1/2 transform origin-left scale-x-0 transition-[transform, scale] duration-500 group-hover:scale-x-100 ${open ? 'scale-x-100' : ''} rounded-r-full`}
           ></div>
         </div>
       </button>
@@ -93,7 +93,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                         className={`w-full h-[42px] rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-softGray' : 'bg-white dark:bg-softGray'} ${pathname === item.link ? '!w-0' : 'group-hover:w-0'} transition-all duration-500`}
                       />
                       <div
-                        className={`w-0 h-[42px] rounded-full bg-yellow dark:bg-softYellow ${pathname === item.link ? 'w-full' : 'group-hover:w-full'} transition-all duration-500`}
+                        className={`w-0 h-[42px] rounded-full bg-primary dark:bg-primaryDark ${pathname === item.link ? 'w-full' : 'group-hover:w-full'} transition-all duration-500`}
                       />
                     </div>
                   </div>

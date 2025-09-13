@@ -23,22 +23,19 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   blueBar,
   largeHeader,
 }) => (
-  <div
-    id={id}
-    className={`relative ${className ?? ''} ${!noPadding ? 'py-[25px]' : ''}`}
-  >
+  <div id={id} className={`relative ${className ?? ''} ${!noPadding ? 'py-[25px]' : ''}`}>
     {/* Desktop */}
     <div className="hidden md:block">
       <div className=" flex gap-3">
         <div
-          className={`w-[3px] min-h-full ${blueBar ? 'bg-blue' : 'bg-yellow dark:bg-softYellow'} rounded-md ${right ? 'order-last' : ''}`}
+          className={`w-[3px] min-h-full ${blueBar ? 'bg-blue' : 'bg-primary dark:bg-primaryDark'} rounded-md ${right ? 'order-last' : ''}`}
         />
         <div className="flex flex-col gap-2 w-full">
           {largeHeader ? (
             <>
               {subtitle && (
                 <h4
-                  className={`font-light ${light ? 'text-yellow dark:text-softYellow' : 'text-blue dark:text-softYellow'} ${
+                  className={`font-light ${light ? 'text-primary dark:text-primaryDark' : 'text-blue dark:text-primaryDark'} ${
                     right ? 'text-right' : 'text-left'
                   } tracking-wider uppercase`}
                 >
@@ -46,7 +43,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                 </h4>
               )}
               <h1
-                className={`${light ? 'text-white' : 'text-black dark:text-softWhite'} ${
+                className={`${light ? 'text-white' : 'text-black dark:text-textInverse'} ${
                   right ? 'text-right' : 'text-left'
                 } capitalize`}
               >
@@ -57,7 +54,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
             <>
               {subtitle && (
                 <h5
-                  className={`font-light ${light ? 'text-yellow dark:text-softYellow' : 'text-blue dark:text-softYellow'} ${
+                  className={`font-light ${light ? 'text-primary dark:text-primaryDark' : 'text-blue dark:text-primaryDark'} ${
                     right ? 'text-right' : 'text-left'
                   } tracking-wider uppercase`}
                 >
@@ -65,7 +62,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                 </h5>
               )}
               <h2
-                className={`${light ? 'text-white' : 'text-black dark:text-softWhite'} ${
+                className={`${light ? 'text-white' : 'text-black dark:text-textInverse'} ${
                   right ? 'text-right' : 'text-left'
                 } capitalize`}
               >
@@ -80,16 +77,16 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     {/* Mobile */}
     <div className="md:hidden flex flex-col items-center justify-center gap-3">
       <h2
-        className={`${light ? 'text-white' : 'text-black dark:text-softWhite'} text-center capitalize`}
+        className={`${light ? 'text-white' : 'text-black dark:text-textInverse'} text-center capitalize`}
       >
         {title}
       </h2>
       <div
-        className={`w-[40px] h-[2px] ${blueBar ? 'bg-blue' : 'bg-yellow dark:bg-softYellow'} rounded-md`}
+        className={`w-[40px] h-[2px] ${blueBar ? 'bg-blue' : 'bg-primary dark:bg-primaryDark'} rounded-md`}
       />
       {subtitle && (
         <h5
-          className={`font-light ${light ? 'text-yellow dark:text-softYellow' : 'text-blue dark:text-softYellow'} text-center tracking-wider uppercase`}
+          className={`font-light ${light ? 'text-primary dark:text-primaryDark' : 'text-blue dark:text-primaryDark'} text-center tracking-wider uppercase`}
         >
           {subtitle}
         </h5>

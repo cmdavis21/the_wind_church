@@ -27,7 +27,7 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
       id={id}
       className={`relative ${className ?? ''} ${
         rounded ? 'rounded-xl' : ''
-      } p-padding text-white dark:text-softWhite overflow-hidden`}
+      } p-padding text-white dark:text-textInverse overflow-hidden`}
     >
       {/* Background */}
       <div className="absolute top-0 left-0 w-full h-full">
@@ -37,9 +37,7 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
               fill
               src={background.src}
               alt={background.alt ?? 'decorative background'}
-              className={`object-cover pointer-events-none ${
-                rounded ? 'rounded-xl' : ''
-              }`}
+              className={`object-cover pointer-events-none ${rounded ? 'rounded-xl' : ''}`}
             />
           </div>
         ) : (

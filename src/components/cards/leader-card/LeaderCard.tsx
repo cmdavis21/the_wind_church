@@ -104,7 +104,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
               Other roles: {roles.map((r, idx) => (idx >= roles.length - 1 ? r : `${r}, `))}
             </div>
           )}
-          <div className="w-[45px] h-[2px] bg-yellow rounded-xs" />
+          <div className="w-[45px] h-[2px] bg-primary rounded-xs" />
           <div className="max-h-full overflow-y-scroll scrollbar-hide overscroll-contain y-scrollbox">
             {description}
           </div>

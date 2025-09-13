@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const GiftAssessmentPage = () => (
   <div>
     {/* Decorative Border */}
-    <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-yellow dark:bg-softYellow" />
+    <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-primary dark:bg-primaryDark" />
 
     <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
       {/* Header */}
@@ -89,7 +89,7 @@ const GiftAssessmentPage = () => (
     </div>
 
     {/* Decorative Border */}
-    <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-yellow dark:bg-softYellow" />
+    <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-primary dark:bg-primaryDark" />
   </div>
 );
 

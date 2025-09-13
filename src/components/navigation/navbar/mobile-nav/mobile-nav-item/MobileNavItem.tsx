@@ -23,8 +23,8 @@ const MobileNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
           <h5
             className={`${
               changeColor
-                ? `${active ? 'text-softYellow' : 'text-black dark:text-softWhite'}`
-                : `${active ? 'text-yellow dark:text-softYellow' : 'text-white dark:text-softWhite'}`
+                ? `${active ? 'text-softYellow' : 'text-black dark:text-textInverse'}`
+                : `${active ? 'text-primary dark:text-primaryDark' : 'text-white dark:text-textInverse'}`
             } whitespace-nowrap tracking-wider capitalize`}
           >
             {label}

@@ -44,7 +44,7 @@ const VisitorFeedbackForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-lightGray dark:bg-softGray dark:border-softCharcoal dark:text-softWhite shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-lightGray dark:bg-softGray dark:border-softCharcoal dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
         <PencilPaper className="dark:fill-softWhite" />

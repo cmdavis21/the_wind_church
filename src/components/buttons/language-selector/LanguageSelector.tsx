@@ -37,8 +37,8 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ changeColor }) => {
           value={cur}
           className={`!bg-transparent ${
             changeColor
-              ? 'text-black dark:text-softWhite'
-              : 'text-white lg:text-black dark:text-softWhite'
+              ? 'text-black dark:text-textInverse'
+              : 'text-white lg:text-black dark:text-textInverse'
           }`}
         >
           {t('locale', { locale: cur })}

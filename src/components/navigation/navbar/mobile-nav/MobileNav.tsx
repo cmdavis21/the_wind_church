@@ -160,7 +160,9 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           <div className="flex justify-between gap-sm items-center">
             <h5
               className={`${
-                changeColor ? 'text-black dark:text-softWhite' : 'text-white dark:text-softWhite'
+                changeColor
+                  ? 'text-black dark:text-textInverse'
+                  : 'text-white dark:text-textInverse'
               } whitespace-nowrap tracking-wider capitalize`}
             >
               Light/Dark Mode:
@@ -170,7 +172,9 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           <div className="flex justify-between gap-sm items-center">
             <h5
               className={`${
-                changeColor ? 'text-black dark:text-softWhite' : 'text-white dark:text-softWhite'
+                changeColor
+                  ? 'text-black dark:text-textInverse'
+                  : 'text-white dark:text-textInverse'
               } whitespace-nowrap tracking-wider capitalize`}
             >
               Language:

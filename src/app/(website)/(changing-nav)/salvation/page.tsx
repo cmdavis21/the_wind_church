@@ -100,7 +100,7 @@ const Salvation = () => (
               }}
               title={
                 <span
-                  className={`${permanentMarker.className} text-yellow dark:text-softYellow text-[55px] lg:text-[65px]`}
+                  className={`${permanentMarker.className} text-primary dark:text-primaryDark text-[55px] lg:text-[65px]`}
                 >
                   {index + 1}
                 </span>
@@ -116,7 +116,7 @@ const Salvation = () => (
         </div>
         <h4>
           If you answered{' '}
-          <span className={`${permanentMarker.className} text-yellow dark:text-softYellow`}>
+          <span className={`${permanentMarker.className} text-primary dark:text-primaryDark`}>
             Yes
           </span>
           , you are ready to pray.

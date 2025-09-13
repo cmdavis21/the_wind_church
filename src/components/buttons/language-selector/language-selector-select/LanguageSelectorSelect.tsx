@@ -35,8 +35,8 @@ const LanguageSelectorSelect: React.FC<LanguageSelectorSelectProps> = ({
         onChange={onSelectChange}
         className={`w-full min-w-[115px] !p-0 !border-0 !ring-0 !outline-none ${
           changeColor
-            ? 'text-black dark:text-softWhite'
-            : 'text-white lg:text-black dark:text-softWhite'
+            ? 'text-black dark:text-textInverse'
+            : 'text-white lg:text-black dark:text-textInverse'
         }`}
       >
         {children}

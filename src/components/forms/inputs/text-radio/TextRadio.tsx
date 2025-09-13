@@ -2,24 +2,27 @@ import React from 'react';
 
 interface TextRadioProps {
   text: string;
-  active: boolean;
-  onSelect: (select: boolean) => void;
+  color?: string;
+  selected: boolean;
+  onSelect: (selected: string) => void;
 }
 
-const TextRadio: React.FC<TextRadioProps> = ({ text, active, onSelect }) => (
-  <div
-    className={`border-[3px] ${
-      active ? 'border-yellow' : 'border-white'
-    } p-[3px] rounded-full`}
+const TextRadio: React.FC<TextRadioProps> = ({ text, color, selected, onSelect }) => (
+  <button
+    type="button"
+    onClick={() => onSelect(text)}
+    className={`px-sm py-xs min-w-[45px] max-w-fit border-2 rounded-md ${selected ? 'border-primary' : 'border-skeletonGray'}`}
   >
-    <button
-      type="button"
-      onClick={() => onSelect(!active)}
-      className="px-md py-xs rounded-full border border-lightGray dark:border-softCharcoal body-large"
-    >
-      {text}
-    </button>
-  </div>
+    <div className="flex items-center justify-center capitalize gap-[6px]">
+      {color && (
+        <div
+          style={{ backgroundColor: color }}
+          className={`size-5 rounded-sm border border-charcoal`}
+        />
+      )}
+      <div>{text}</div>
+    </div>
+  </button>
 );
 
 export default TextRadio;

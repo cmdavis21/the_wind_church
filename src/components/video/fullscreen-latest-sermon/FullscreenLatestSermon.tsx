@@ -55,7 +55,7 @@ const FullscreenLatestSermon: React.FC<FullscreenLatestSermonProps> = ({
           </button>
         </div>
 
-        <h1 className="text-yellow text-left 2xl:text-[55px]">{title}</h1>
+        <h1 className="text-primary text-left 2xl:text-[55px]">{title}</h1>
 
         <div className="flex flex-row gap-md md:gap-lg items-center">
           <Button

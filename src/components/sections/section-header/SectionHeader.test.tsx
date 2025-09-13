@@ -32,15 +32,12 @@ describe('SectionHeader', () => {
   it('should apply the correct color classes when light is true', () => {
     render(<SectionHeader title={title} subtitle={subtitle} light />);
     expect(screen.getByText(title)).toHaveClass('text-white');
-    expect(screen.getByText(subtitle)).toHaveClass('text-yellow');
+    expect(screen.getByText(subtitle)).toHaveClass('text-primary');
   });
 
   it('should apply the correct background color when blueBar is true', () => {
     render(<SectionHeader title={title} blueBar />);
-    const barElement = screen
-      .getByText(title)
-      .closest('div')
-      ?.querySelector('div');
+    const barElement = screen.getByText(title).closest('div')?.querySelector('div');
     expect(barElement).toHaveClass('bg-blue');
   });
 

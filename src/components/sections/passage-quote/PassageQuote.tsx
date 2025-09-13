@@ -12,7 +12,7 @@ const PassageQuote: React.FC<PassageQuoteProps> = ({ passage, verse }) => (
       {passage}
     </h4>
     <div className="w-[25%] h-[0.5px] bg-charcoal dark:bg-softWhite rounded-sm" />
-    <h4 className="font-light text-charcoal dark:text-softWhite">{verse}</h4>
+    <h4 className="font-light text-charcoal dark:text-textInverse">{verse}</h4>
   </div>
 );
 

@@ -51,7 +51,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
         )}
 
         {/* dot */}
-        <div className="relative min-w-3 min-h-3 max-w-3 max-h-3 bg-yellow rounded-full" />
+        <div className="relative min-w-3 min-h-3 max-w-3 max-h-3 bg-primary rounded-full" />
 
         {/* content */}
         <div

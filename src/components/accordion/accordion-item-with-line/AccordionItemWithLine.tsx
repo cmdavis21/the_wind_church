@@ -27,11 +27,7 @@ const AccordionItemWithLine: React.FC<AccordionItemWithLineProps> = ({
         onClick={() => setOpen(!open)}
         className="w-full flex items-center gap-md pb-md border border-lightGray dark:border-softCharcoal border-x-0 border-t-0"
       >
-        <Plus
-          className={`fill-yellow ${
-            open ? 'rotate-45' : ''
-          } transition-all duration-300`}
-        />
+        <Plus className={`fill-yellow ${open ? 'rotate-45' : ''} transition-all duration-300`} />
         <h3
           className={`max-sm:text-[20px] text-blue dark:text-softBlue text-left font-thin tracking-wide ${
             open ? 'font-bold' : ''
@@ -48,10 +44,7 @@ const AccordionItemWithLine: React.FC<AccordionItemWithLineProps> = ({
           open ? 'pt-[10px] mt-[10px]' : 'opacity-0 pointer-events-none'
         } transition-[height, opacity] duration-300`}
       >
-        <div
-          ref={accordionDesc}
-          className="body-large text-charcoal dark:text-softWhite"
-        >
+        <div ref={accordionDesc} className="body-large text-charcoal dark:text-textInverse">
           {description}
         </div>
       </div>

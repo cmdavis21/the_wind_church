@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement } from 'react';
 
-import { styleSelectedWords } from "@/data/utils";
+import { styleSelectedWords } from '@/data/utils';
 
 interface CenterTextSectionProps {
   title: string | ReactElement;
@@ -17,25 +17,23 @@ const CenterTextSection: React.FC<CenterTextSectionProps> = ({
 }) => (
   <div
     className={`${
-      noPadding ? "" : "py-[50px]"
-    } flex flex-col gap-[25px] max-w-[1000px] mx-auto text-center font-light dark:text-softWhite`}
+      noPadding ? '' : 'py-[50px]'
+    } flex flex-col gap-[25px] max-w-[1000px] mx-auto text-center font-light dark:text-textInverse`}
   >
-    {highlight && typeof title === "string" ? (
+    {highlight && typeof title === 'string' ? (
       <div
         dangerouslySetInnerHTML={{
           __html: styleSelectedWords({
             text: title,
             array: highlight,
-            htmlTag: "h1",
+            htmlTag: 'h1',
           }),
         }}
       />
     ) : (
       <h1>{title}</h1>
     )}
-    {description && (
-      <h4 className="text-charcoal dark:text-softWhite">{description}</h4>
-    )}
+    {description && <h4 className="text-charcoal dark:text-textInverse">{description}</h4>}
   </div>
 );
 

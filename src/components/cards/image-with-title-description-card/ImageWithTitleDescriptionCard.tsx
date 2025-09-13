@@ -26,10 +26,10 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
     <div className="relative aspect-square">
       <Image fill src={src} alt={alt} className="pointer-events-none object-cover rounded-lg" />
     </div>
-    <div className="flex flex-col gap-md dark:text-softWhite h-full justify-between">
+    <div className="flex flex-col gap-md dark:text-textInverse h-full justify-between">
       <div className="flex flex-col gap-md">
         <h4 className="font-bold">{title}</h4>
-        <p className="body-large text-charcoal dark:text-softWhite">{description}</p>
+        <p className="body-large text-charcoal dark:text-textInverse">{description}</p>
       </div>
       {link && (
         <Link href={link.href}>
@@ -37,7 +37,7 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
             {/* decorative button fill */}
             <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
               <div className="flex items-center">
-                <div className="w-0 h-[40px] bg-yellow dark:bg-softYellow group-hover:w-full transition-all duration-300 rounded-full" />
+                <div className="w-0 h-[40px] bg-primary dark:bg-primaryDark group-hover:w-full transition-all duration-300 rounded-full" />
                 <div className="w-full h-[40px] bg-lightGray/30 dark:bg-softGray/30 group-hover:w-0 transition-all duration-300 rounded-full" />
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement } from 'react';
 
 export enum ColorBackground {
   BLUE,
@@ -20,31 +20,31 @@ const ColorBackgroundAndContent: React.FC<ColorBackgroundAndContentProps> = ({
   innerClassName,
   rounded,
 }) => (
-  <div data-testid="outer" className={`relative ${outerClassName ?? ""}`}>
+  <div data-testid="outer" className={`relative ${outerClassName ?? ''}`}>
     <div
       data-testid="inner"
       style={{
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
         backgroundImage: `url(${
           background === ColorBackground.BLUE
-            ? "/images/misc/navy_background.webp"
-            : "/images/misc/yellow_background.webp"
+            ? '/images/misc/navy_background.webp'
+            : '/images/misc/yellow_background.webp'
         })`,
       }}
-      className={`relative ${innerClassName ?? ""} ${
+      className={`relative ${innerClassName ?? ''} ${
         background === ColorBackground.BLUE
-          ? "text-white dark:text-softWhite"
-          : "text-black dark:text-black"
-      } ${rounded ? "rounded-xl" : ""} overflow-hidden`}
+          ? 'text-white dark:text-textInverse'
+          : 'text-black dark:text-black'
+      } ${rounded ? 'rounded-xl' : ''} overflow-hidden`}
     >
       {/* color overlay */}
       <div
         className={`absolute top-0 left-0 w-full h-full ${
           background === ColorBackground.BLUE
-            ? "bg-blue/80"
-            : "bg-yellow/80 dark:bg-softYellow/80"
-        } ${rounded ? "rounded-xl" : ""} backdrop-blur-sm`}
+            ? 'bg-blue/80'
+            : 'bg-primary/80 dark:bg-primaryDark/80'
+        } ${rounded ? 'rounded-xl' : ''} backdrop-blur-sm`}
       />
 
       <div className="relative">{content}</div>

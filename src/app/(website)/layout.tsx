@@ -44,7 +44,7 @@ export default async function RootLayout({
           <ThemeModeProvider>
             <Flowbite theme={{ theme }}>
               <NextIntlClientProvider>
-                <div className="bg-white dark:bg-[#1C1C1E] text-black dark:text-softWhite relative min-h-screen flex flex-col">
+                <div className="bg-white dark:bg-backgroundDark text-textPrimary dark:text-textInverse relative min-h-screen flex flex-col">
                   <main id="body" className="w-full relative mx-auto antialiased scroll-smooth">
                     {children}
                   </main>
