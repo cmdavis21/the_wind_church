@@ -1,18 +1,19 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Label, Radio } from 'flowbite-react';
-import React from 'react';
+import { Alert, Button, Label, Radio } from 'flowbite-react';
+import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import PencilPaper from '@/components/icons/pencilPaper';
 import { PrayerRequest, YesNo } from '@/data/types';
 
-import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
-import TextareaInput from '../inputs/textarea-input/TextareaInput';
-import TextInput from '../inputs/text-input/TextInput';
+import CircleCheck from '@/components/icons/circleCheck';
+import SolidCircleX from '@/components/icons/solidCircleX';
 import { useCreatePrayerRequest } from '@/data/services/sanity/mutations/prayer-request';
+import TextInput from '../inputs/text-input/TextInput';
+import TextareaInput from '../inputs/textarea-input/TextareaInput';
 
 const schema = yup.object().shape({
   first_name: yup.string().required('Please enter your first name'),
@@ -23,6 +24,8 @@ const schema = yup.object().shape({
 });
 
 const PrayerRequestForm = () => {
+  const formRef = useRef<HTMLFormElement | null>(null);
+
   const {
     mutate: submitRequest,
     isPending,
@@ -45,36 +48,47 @@ const PrayerRequestForm = () => {
 
   const onSubmit = (values: PrayerRequest) => submitRequest(values);
 
+  useEffect(() => {
+    if (formRef.current) {
+      if (isSuccess || isError) {
+        window.scrollTo({
+          left: 0,
+          top: formRef.current.offsetTop - 100,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [isSuccess, isError]);
+
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-lightGray dark:bg-softGray dark:border-softCharcoal dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-softWhite" />
+        <PencilPaper className="dark:fill-textInverse" />
         <h4>Prayer Requests</h4>
       </div>
 
       {isSuccess && (
-        <FormSuccessErrorMessage
-          error={false}
-          message="We will keep you in our prayers, and if you requested an email back, we will email you shortly. Thank you."
-          refreshForm={() => {
-            reset();
-            resetMutation();
-          }}
-        />
+        <Alert color="success" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <CircleCheck className="fill-success" />
+            <span className="font-bold">Success!</span> We will keep you in our prayers, and if you
+            requested an email back, we will email you shortly. Thank you.
+          </span>
+        </Alert>
       )}
 
       {isError && (
-        <FormSuccessErrorMessage
-          error={true}
-          message="There was an error submitting your request. Please refresh this form to try again."
-          refreshForm={() => {
-            reset();
-            resetMutation();
-          }}
-        />
+        <Alert color="failure" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <SolidCircleX className="fill-error" />
+            <span className="font-bold">Oh no!</span> There was an problem submitting your request.
+            Please try again later.
+          </span>
+        </Alert>
       )}
 
       {/* names */}
@@ -149,11 +163,11 @@ const PrayerRequestForm = () => {
         pill
         size="lg"
         type="submit"
-        color="info"
-        disabled={isPending || isSuccess}
+        color="primary"
+        disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : 'Submit!'}
+        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
       </Button>
     </form>
   );

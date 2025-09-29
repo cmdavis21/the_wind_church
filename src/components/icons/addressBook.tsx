@@ -1,10 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 const AddressBook: React.FC<React.SVGAttributes<unknown>> = (props) => (
   <svg
-    width={props.width ?? "20px"}
-    height={props.height ?? "20px"}
-    className={props.className ?? ""}
-    fill={props.fill ?? "#000000"}
+    width={props.width ?? '20px'}
+    height={props.height ?? '20px'}
+    className={props.className ?? ''}
+    fill={props.fill ?? '#000000'}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
     {...props}

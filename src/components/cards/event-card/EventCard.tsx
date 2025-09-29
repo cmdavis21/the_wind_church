@@ -5,9 +5,9 @@ import { Badge } from 'flowbite-react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-import { Event } from '@/data/types';
-import { formatDateMMMddyyyy } from '@/data/format-date';
 import EventDetailsModal from '@/components/modals/event-details-modal/EventDetailsModal';
+import { formatDateMMMddyyyy } from '@/data/format-date';
+import { Event } from '@/data/types';
 
 interface EventCardProps {
   event: Event;
@@ -41,11 +41,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
 
   return (
     <>
-      <EventDetailsModal
-        event={event}
-        openModal={open}
-        setOpenModal={setOpen}
-      />
+      <EventDetailsModal event={event} openModal={open} setOpenModal={setOpen} />
 
       <button
         type="button"
@@ -54,7 +50,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
       >
         <div
           className={`relative w-full aspect-video ${
-            scale && !pastEvent ? 'group-hover:aspect-[4/3]' : ''
+            scale ? 'group-hover:aspect-[4/3]' : ''
           } transition-all duration-500 border border-lightGray dark:border-softGray rounded-lg`}
         >
           {pastEvent && (
@@ -70,11 +66,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
           />
           {addTag && (
             <div className="absolute top-2 left-2 z-10">
-              <Badge
-                color={addTag.color ?? 'yellow'}
-                size="sm"
-                className="text-black"
-              >
+              <Badge color={addTag.color ?? 'yellow'} size="sm" className="text-black">
                 {addTag.label}
               </Badge>
             </div>
@@ -82,9 +74,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
         </div>
 
         <div className="text-left flex flex-col gap-xs">
-          <h6 className="font-bold text-softYellow">
-            {formatDateMMMddyyyy(event.date)}
-          </h6>
+          <h6 className="font-bold text-softYellow">{formatDateMMMddyyyy(event.date)}</h6>
           <h5 className="font-bold">{event.name}</h5>
         </div>
       </button>

@@ -7,15 +7,7 @@ import { formatPrice } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
 import { useCartFunctions } from '@/data/services/shopify/cart-hook';
 import { GraphQLTypes } from '@/data/services/shopify/zeus';
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeadCell,
-  TableRow,
-} from 'flowbite-react';
+import { Button, Table } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';

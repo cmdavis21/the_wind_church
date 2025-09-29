@@ -1,15 +1,12 @@
-"use client";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Alert, Button, Radio } from 'flowbite-react';
+import React, { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Radio, Button } from "flowbite-react";
-import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import * as yup from "yup";
+import { GiftAssessmentDefinition, GiftAssessmentQuestion } from '@/data/types';
 
-import { GiftAssessmentQuestion, GiftAssessmentDefinition } from "@/data/types";
-
-import ErrorMessageBanner from "../error-message-banner/ErrorMessageBanner";
-
+import CircleExlaimation from '@/components/icons/circleExclaimation';
 
 const schema = yup.object().shape({
   answers: yup
@@ -17,21 +14,17 @@ const schema = yup.object().shape({
     .of(
       yup.object().shape({
         questionId: yup.number().required(),
-        score: yup
-          .number()
-          .min(0)
-          .max(3)
-          .required("Please select an answer for the question."),
+        score: yup.number().min(0).max(3).required('Please select an answer for the question.'),
       })
     )
     .required(),
 });
 
 const scoreWithText: { score: number; text: string }[] = [
-  { score: 3, text: "Much" },
-  { score: 2, text: "Some" },
-  { score: 1, text: "Little" },
-  { score: 0, text: "Not at all" },
+  { score: 3, text: 'Much' },
+  { score: 2, text: 'Some' },
+  { score: 1, text: 'Little' },
+  { score: 0, text: 'Not at all' },
 ];
 
 interface GiftAssessmentQuizProps {
@@ -76,15 +69,12 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
     arr
       .map((g) => g.gift)
       .toString()
-      .replace("'", "")
-      .split(",")
-      .join(", ");
+      .replace("'", '')
+      .split(',')
+      .join(', ');
 
   const onSubmit = () => {
-    if (
-      Array.isArray(errors.answers) &&
-      errors.answers.some((error) => error.score)
-    ) {
+    if (Array.isArray(errors.answers) && errors.answers.some((error) => error.score)) {
       return;
     }
 
@@ -96,9 +86,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
       const gift = question.gift;
 
       // Find the answer for the current question
-      const answer = getValues().answers.find(
-        (a) => a.questionId === question.id
-      );
+      const answer = getValues().answers.find((a) => a.questionId === question.id);
 
       // Add the score to the relevant gift
       scores[gift] = (scores[gift] || 0) + (answer?.score || 0);
@@ -112,15 +100,11 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
     const subGifts = sortedGifts.slice(3, 6); // Bottom 3 gifts
 
     // Filter definitions for dominate gifts
-    const filterDomGifts = definitions.filter((g) =>
-      domGifts.some((d) => d.gift === g.gift)
-    );
+    const filterDomGifts = definitions.filter((g) => domGifts.some((d) => d.gift === g.gift));
     dominateGifts(filterDomGifts);
 
     // Filter definitions for subordinate gifts
-    const filterSubGifts = definitions.filter((g) =>
-      subGifts.some((d) => d.gift === g.gift)
-    );
+    const filterSubGifts = definitions.filter((g) => subGifts.some((d) => d.gift === g.gift));
     subordinateGifts(filterSubGifts);
 
     // Set string of gift names for submission
@@ -138,12 +122,9 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
     <>
       {/* Desktop */}
       <div className="hidden lg:block">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="w-full flex flex-col gap-xl -mt-lg"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-xl -mt-lg">
           {/* Header */}
-          <div className="sticky top-0 z-10 bg-white dark:bg-[#1C1C1E] pt-lg flex flex-col gap-lg">
+          <div className="sticky top-0 z-10 bg-backgroundLight dark:bg-backgroundDark pt-lg flex flex-col gap-lg">
             <div className="min-w-[820px] grid grid-cols-6 items-center">
               <h3 className="col-span-2 min-w-[300px] font-bold">Questions</h3>
               {scoreWithText.map((mark) => (
@@ -156,14 +137,12 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
                 </div>
               ))}
             </div>
-            <div className="h-[0.4px] w-full bg-charcoal" />
+            <div className="h-[0.4px] w-full bg-skeletonGray" />
           </div>
 
           {/* Questions */}
           {questions.map((q, index) => (
-            <React.Fragment
-              key={`spiritual-gift-assessment-desktop-question-${q.id}`}
-            >
+            <React.Fragment key={`spiritual-gift-assessment-desktop-question-${q.id}`}>
               <div className="min-w-[820px] grid grid-cols-6 gap-sm">
                 <div className="col-span-2 min-w-[300px] flex gap-sm">
                   <h5 className="font-bold">{q.id}.</h5>
@@ -191,14 +170,16 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
               </div>
 
               {errors.answers?.[index]?.score?.message && (
-                <ErrorMessageBanner
-                  className="col-span-6"
-                  content={errors.answers[index].score?.message}
-                />
+                <Alert color="failure" className="col-span-6" withBorderAccent>
+                  <span className="flex items-center gap-sm">
+                    <CircleExlaimation className="fill-error min-w-[20px] min-h-[20px]" />
+                    {errors.answers[index].score?.message}
+                  </span>
+                </Alert>
               )}
 
               {index !== questions.length - 1 && (
-                <div className="h-[0.4px] w-full bg-charcoal" />
+                <div className="h-[0.4px] w-full bg-skeletonGray" />
               )}
             </React.Fragment>
           ))}
@@ -206,30 +187,28 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
           {Array.isArray(errors.answers) &&
             errors.answers.length > 0 &&
             errors.answers.some((s) => s.score) && (
-              <ErrorMessageBanner
-                content={
-                  <p>
-                    Please answer question{errors.answers.length > 1 && "(s)"}:{" "}
-                    <span className="font-bold">
-                      {errors.answers
-                        .filter(
-                          (error) => error.score && error.questionId?.message
-                        ) // Filter errors with both score and questionId.message
-                        .map((error) => {
-                          // Extract number inside brackets using regex
-                          const match =
-                            error.questionId.message.match(/\[(\d+)\]/); // Match the number inside brackets
-                          if (match) {
-                            const questionNumber = parseInt(match[1], 10) + 1; // Add 1 to convert 0-based index
-                            return questionNumber;
-                          }
-                          return "Unknown"; // Fallback if no match is found
-                        })
-                        .join(", ")}
-                    </span>
-                  </p>
-                }
-              />
+              <Alert color="failure" withBorderAccent>
+                <span className="flex items-center gap-sm">
+                  <CircleExlaimation className="fill-error min-w-[20px] min-h-[20px]" />
+                  <span className="whitespace-nowrap">
+                    Please answer question{errors.answers.length > 1 && '(s)'}:
+                  </span>{' '}
+                  <span className="font-bold">
+                    {errors.answers
+                      .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
+                      .map((error) => {
+                        //Extract number inside brackets using regex
+                        const match = error.questionId.message.match(/\[(\d+)\]/); //Match the number inside brackets
+                        if (match) {
+                          const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
+                          return questionNumber;
+                        }
+                        return 'Unknown'; // Fallback if no match is found
+                      })
+                      .join(', ')}
+                  </span>
+                </span>
+              </Alert>
             )}
 
           <div className="pt-xl flex flex-col gap-lg">
@@ -237,23 +216,20 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
               pill
               size="lg"
               type="submit"
-              color="yellow"
+              color="primary"
               disabled={disable}
-              className="min-w-[200px] mx-auto"
+              className="w-full md:max-w-[35%] mx-auto mt-md"
             >
-              {isLoading ? "Analyzing your answers..." : "Submit Quiz"}
+              {isLoading ? 'Analyzing your answers...' : 'Submit Quiz'}
             </Button>
           </div>
         </form>
       </div>
 
       {/* Mobile */}
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="lg:hidden w-full flex flex-col gap-lg"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="lg:hidden w-full flex flex-col gap-lg">
         <h3 className="font-bold">Questions</h3>
-        <div className="h-[0.4px] w-full bg-charcoal" />
+        <div className="h-[0.4px] w-full bg-skeletonGray" />
         {questions.map((q, index) => (
           <div
             key={`spiritual-gift-assessment-mobile-question-${q.id}`}
@@ -273,7 +249,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
                   render={({ field }) => (
                     <div
                       key={`spiritual-gift-assessment-mobile-radio-${mark.score}`}
-                      className="flex flex-col justify-center items-center"
+                      className="flex flex-col justify-center items-center gap-sm"
                     >
                       <h5>{mark.text}</h5>
                       <Radio
@@ -292,45 +268,41 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
             </div>
 
             {errors.answers?.[index]?.score?.message && (
-              <ErrorMessageBanner
-                className="col-span-6"
-                content={errors.answers[index].score?.message}
-              />
+              <Alert color="failure" className="col-span-6" withBorderAccent>
+                <span className="flex items-center gap-sm">
+                  <CircleExlaimation className="fill-error min-w-[20px] min-h-[20px]" />
+                  {errors.answers[index].score?.message}
+                </span>
+              </Alert>
             )}
 
-            {index !== questions.length - 1 && (
-              <div className="h-[0.4px] w-full bg-charcoal" />
-            )}
+            {index !== questions.length - 1 && <div className="h-[0.4px] w-full bg-skeletonGray" />}
           </div>
         ))}
 
         {Array.isArray(errors.answers) &&
           errors.answers.length > 0 &&
           errors.answers.some((s) => s.score) && (
-            <ErrorMessageBanner
-              content={
-                <p>
-                  Please answer question{errors.answers.length > 1 && "(s)"}:{" "}
-                  <span className="font-bold">
-                    {errors.answers
-                      .filter(
-                        (error) => error.score && error.questionId?.message
-                      ) // Filter errors with both score and questionId.message
-                      .map((error) => {
-                        // Extract number inside brackets using regex
-                        const match =
-                          error.questionId.message.match(/\[(\d+)\]/); // Match the number inside brackets
-                        if (match) {
-                          const questionNumber = parseInt(match[1], 10) + 1; // Add 1 to convert 0-based index
-                          return questionNumber;
-                        }
-                        return "Unknown"; // Fallback if no match is found
-                      })
-                      .join(", ")}
-                  </span>
-                </p>
-              }
-            />
+            <Alert color="failure" withBorderAccent>
+              <span className="flex items-center gap-sm pb-sm">
+                <CircleExlaimation className="fill-error min-w-[20px] min-h-[20px]" />
+                Please answer question{errors.answers.length > 1 && '(s)'}:
+              </span>
+              <span className="font-bold">
+                {errors.answers
+                  .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
+                  .map((error) => {
+                    //Extract number inside brackets using regex
+                    const match = error.questionId.message.match(/\[(\d+)\]/); //Match the number inside brackets
+                    if (match) {
+                      const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
+                      return questionNumber;
+                    }
+                    return 'Unknown'; // Fallback if no match is found
+                  })
+                  .join(', ')}
+              </span>
+            </Alert>
           )}
 
         <div className="pt-xl flex flex-col gap-lg">
@@ -338,11 +310,11 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
             pill
             size="lg"
             type="submit"
-            color="yellow"
+            color="primary"
             disabled={disable}
-            className="min-w-[140px] w-full mx-auto"
+            className="w-full md:max-w-[35%] mx-auto mt-md"
           >
-            {isLoading ? "Analyzing your answers..." : "Submit Quiz"}
+            {isLoading ? 'Analyzing your answers...' : 'Submit Quiz'}
           </Button>
         </div>
       </form>

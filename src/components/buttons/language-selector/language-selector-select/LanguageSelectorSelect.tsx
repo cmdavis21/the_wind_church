@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useTransition } from 'react';
 import { Select } from 'flowbite-react';
+import React, { ChangeEvent, useTransition } from 'react';
 
 interface LanguageSelectorSelectProps {
   children: React.ReactNode;
@@ -33,10 +33,10 @@ const LanguageSelectorSelect: React.FC<LanguageSelectorSelectProps> = ({
         defaultValue={defaultValue}
         disabled={isPending}
         onChange={onSelectChange}
-        className={`w-full min-w-[115px] !p-0 !border-0 !ring-0 !outline-none ${
+        className={`${
           changeColor
-            ? 'text-black dark:text-textInverse'
-            : 'text-white lg:text-black dark:text-textInverse'
+            ? 'text-textSecondary dark:text-textInverse'
+            : 'text-white lg:text-textSecondary dark:text-textInverse'
         }`}
       >
         {children}

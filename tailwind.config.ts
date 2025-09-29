@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss';
 import flowbite from 'flowbite-react/tailwind';
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [flowbite.content(), './src/**/*.{js,jsx,ts,tsx}', './public/**/*.html'],
@@ -34,16 +34,16 @@ const config: Config = {
         charcoalLight: '#6B6B6B', // Section dividers, muted text, dark mode accents
 
         // 🧼 Backgrounds
-        backgroundLight: '#FAF5E9', // Light beige — warm, soft page background
+        backgroundLight: '#FFFFFF', // Light beige — warm, soft page background
         backgroundDark: '#2E2E2E', // Dark gray — dark mode background #1C1C1E '#2E2E2E'
 
         // 🖋️ Text
-        textPrimary: '#4A4A4A', // Charcoal — main body text
+        textPrimary: '#000000', // Charcoal — main body text
         textSecondary: '#6B6B6B', // Muted gray — subtext, captions
         textInverse: '#FFFFFFCC', // Soft white — text on dark backgrounds
 
         // 🎯 Actions & Feedback
-        success: '#28B463', // Green — success messages, confirmations
+        success: '#239E57', // Green — success messages, confirmations
         error: '#D63434', // Red — error messages, destructive actions
         warning: '#FCCE2F', // Yellow — alerts, cautions
 

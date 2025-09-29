@@ -22,10 +22,10 @@ const VideoCard: React.FC<VideoCardProps> = ({ poster, title, date, link }) => (
           fill
           alt={title}
           src={poster}
-          className="object-cover pointer-events-none rounded-lg"
+          className="object-cover pointer-events-none rounded-md"
         />
       </div>
-      <div className="p-md space-y-sm text-left">
+      <div className="py-md flex flex-col gap-xs text-left">
         <h5 className="leading-none">{title}</h5>
         <p className="font-bold">{formatDateMMMddyyyy(date)}</p>
       </div>

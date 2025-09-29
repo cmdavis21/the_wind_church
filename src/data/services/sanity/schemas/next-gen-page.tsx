@@ -10,17 +10,16 @@ export const NextGenPageSchema = {
     defineField({
       name: 'educators',
       title: 'Educators & Caretakers',
-      description: 'Select the educators and caretakers of our youth.',
+      description: 'Select educators/caretakers of our Next Gen youth.',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'leader' }] }],
-      validation: (rule) => rule.required().error('Select the Deep Dive instructors.'),
+      validation: (rule) => rule.required().error('Select at least one Leader.'),
     }),
-
     defineField({
       name: 'cirriculum_file',
       type: 'file',
       title: 'Cirriculum',
-      description: 'Upload a PDF of the youth service cirriculum to be download applicable.',
+      description: 'Upload a PDF of the Next Gen cirriculum to be download applicable.',
     }),
   ],
 };

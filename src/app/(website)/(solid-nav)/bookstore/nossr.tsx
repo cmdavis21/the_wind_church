@@ -24,7 +24,7 @@ const BookstoreClient = () => {
           <Button color="secondary">Sort</Button>
           <Button color="secondary">Filters</Button>
         </div>
-        <div className="pt-lg grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
+        <div className="pt-lg grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg">
           {products?.map((prod) => (
             <ProductCard
               image={prod.image}

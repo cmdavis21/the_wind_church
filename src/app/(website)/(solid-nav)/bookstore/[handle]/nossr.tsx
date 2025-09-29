@@ -10,10 +10,9 @@ import { PageRoutes } from '@/data/page-routes';
 import { useCartFunctions } from '@/data/services/shopify/cart-hook';
 import { GraphQLTypes } from '@/data/services/shopify/zeus';
 import { Product } from '@/data/types';
-import { Badge, Button, Modal, ModalBody, Spinner } from 'flowbite-react';
+import { Badge, Button, Spinner } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 const MISCELLANEOUS_DETAIL: { detail: string; description: string }[] = [
@@ -169,7 +168,7 @@ const ProductPage = (product: Product) => {
             <div className="flex items-center gap-sm">
               <h3>{formatPrice(product.variants[selectedVariant].price)}</h3>
               {product.variants[selectedVariant].compareAtPrice && (
-                <h4 className="line-through text-charcoal">
+                <h4 className="line-through text-charcoal dark:text-textInverse">
                   {formatPrice(product.variants[selectedVariant].compareAtPrice)}
                 </h4>
               )}

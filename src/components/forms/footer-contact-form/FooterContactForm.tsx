@@ -1,12 +1,12 @@
-import { Button, TextInput } from 'flowbite-react';
-import React from 'react';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { useTranslations } from 'next-intl';
-import { FullContact } from '@/data/types';
-import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
+import CircleCheck from '@/components/icons/circleCheck';
+import SolidCircleX from '@/components/icons/solidCircleX';
 import { useCreateContactSignup } from '@/data/services/sanity/mutations/contact-signup';
+import { FullContact } from '@/data/types';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Alert, Button, TextInput } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 const schema = yup.object().shape({
   first_name: yup.string().required('Please enter your first name'),
@@ -28,9 +28,23 @@ const FooterContactForm = () => {
   const onSubmit = (values: FullContact) => signupUser(values);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="relative flex flex-col gap-sm">
-      {isSuccess && <FormSuccessErrorMessage dark error={false} message={t('form.success')} />}
+      {isSuccess && (
+        <Alert color="success" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <CircleCheck className="fill-success" />
+            {t('form.success')}
+          </span>
+        </Alert>
+      )}
 
-      {isError && <FormSuccessErrorMessage dark error={true} message={t('form.error')} />}
+      {isError && (
+        <Alert color="failure" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <SolidCircleX className="fill-error" />
+            {t('form.error')}
+          </span>
+        </Alert>
+      )}
 
       {isIdle && (
         <>
@@ -66,11 +80,12 @@ const FooterContactForm = () => {
 
           <Button
             pill
-            size="md"
+            size="sm"
+            fullSized
             type="submit"
-            color="clear_white"
+            color="primary"
             disabled={isPending || isSuccess}
-            className="w-full md:w-fit whitespace-nowrap"
+            className="whitespace-nowrap"
           >
             {isPending ? t('form.submitting') : t('form.join')}
           </Button>

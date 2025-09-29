@@ -4,19 +4,19 @@ import { EventSchema } from './event';
 import { EventRentalSchema } from './event-rental';
 import { GiftAssessmentSchema } from './gift-assessment';
 import { LeaderSchema } from './leader';
-import { MeetingDetailsSchema } from './types/meeting-details';
 import { MinistrySchema } from './ministry';
 import { MinistryConnectionSchema } from './ministry-connection';
+import { NextGenPageSchema } from './next-gen-page';
+import { NextGenRosterSignupSchema } from './next-gen-roster-signup';
 import { PrayerRequestSchema } from './prayer-request';
+import { ProductSchema } from './product';
 import { RightnowMediaSchema } from './rightnow-media';
 import { ScheduledVisitSchema } from './scheduled-visit';
-import { TimeSchema } from './types/time';
-import { VisitorFeedbackSchema } from './visitor-feedback';
+import { MeetingDetailsSchema } from './types/meeting-details';
 import { NextGenRosterSignupGuardianSchema } from './types/next-gen-roster-signup-guardian';
 import { ScriptureSchema } from './types/scripture';
-import { ProductSchema } from './product';
-import { NextGenRosterSignupSchema } from './next-gen-roster-signup';
-import { NextGenPageSchema } from './next-gen-page';
+import { TimeSchema } from './types/time';
+import { VisitorFeedbackSchema } from './visitor-feedback';
 
 export const SanitySchema = [
   // Forms

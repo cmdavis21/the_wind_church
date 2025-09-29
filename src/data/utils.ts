@@ -20,8 +20,8 @@ export const scrollToElem = (id: string) => {
 
   if (location) {
     window.scrollTo({
-      top: location.offsetTop - 100,
       left: 0,
+      top: location.offsetTop - 100,
       behavior: 'smooth',
     });
   }

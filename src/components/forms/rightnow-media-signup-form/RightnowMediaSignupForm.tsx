@@ -1,14 +1,14 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Label, Radio, TextInput } from 'flowbite-react';
-import React from 'react';
+import { Alert, Button, Label, Radio, TextInput } from 'flowbite-react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { YesNo, RightnowMediaSignup } from '@/data/types';
+import { RightnowMediaSignup, YesNo } from '@/data/types';
 
-import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
+import CircleCheck from '@/components/icons/circleCheck';
+import SolidCircleX from '@/components/icons/solidCircleX';
 import { useCreateRightnowMediaSignup } from '@/data/services/sanity/mutations/rightnow-media-signup';
 
 const schema = yup.object().shape({
@@ -38,21 +38,23 @@ const RightnowMediaSignupForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-lg w-full lg:max-w-[80%]">
       {isSuccess && (
-        <FormSuccessErrorMessage
-          dark
-          error={false}
-          className="bg-white/80 rounded-md p-xs"
-          message="Thank you for your submission. Please allow 1-3 days for admin to review your request."
-        />
+        <Alert color="success" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <CircleCheck className="fill-success" />
+            <span className="font-bold">Success!</span> Please allow 1-3 days for admin to review
+            your request.
+          </span>
+        </Alert>
       )}
 
       {isError && (
-        <FormSuccessErrorMessage
-          dark
-          error={true}
-          className="bg-white/80 rounded-md p-xs"
-          message="There was an error submitting your information. Please try again later."
-        />
+        <Alert color="failure" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <SolidCircleX className="fill-error" />
+            <span className="font-bold">Oh no!</span> There was an problem submitting your inquiry.
+            Please try again later.
+          </span>
+        </Alert>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
@@ -133,11 +135,11 @@ const RightnowMediaSignupForm = () => {
         pill
         size="lg"
         type="submit"
-        color="clear_white"
-        disabled={isPending || isSuccess}
+        color="primary"
+        disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[40%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : 'Submit!'}
+        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
       </Button>
     </form>
   );

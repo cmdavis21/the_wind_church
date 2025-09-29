@@ -1,19 +1,19 @@
 import { StructureResolver } from 'sanity/structure';
 
 import AddressBook from '@/components/icons/addressBook';
-import GlobePointer from '@/components/icons/globePointer';
-import PencilPaper from '@/components/icons/pencilPaper';
-import ChildReaching from '@/components/icons/childReaching';
-import Tag from '@/components/icons/tag';
-import Calendar from '@/components/icons/calendar';
-import PeopleGroup from '@/components/icons/peopleGroup';
 import Books from '@/components/icons/books';
-import PersonWithSign from '@/components/icons/personWithSign';
-import PrayerHands from '@/components/icons/prayerHands';
-import Clock from '@/components/icons/clock';
 import Bullhorn from '@/components/icons/bullhorn';
+import Calendar from '@/components/icons/calendar';
+import ChildReaching from '@/components/icons/childReaching';
+import Clock from '@/components/icons/clock';
+import GlobePointer from '@/components/icons/globePointer';
 import HandHoldingBox from '@/components/icons/handHoldingBox';
 import LinkIcon from '@/components/icons/link';
+import PencilPaper from '@/components/icons/pencilPaper';
+import PeopleGroup from '@/components/icons/peopleGroup';
+import PersonWithSign from '@/components/icons/personWithSign';
+import PrayerHands from '@/components/icons/prayerHands';
+import Tag from '@/components/icons/tag';
 import TV from '@/components/icons/tv';
 
 type docAttributes = {
@@ -42,7 +42,7 @@ const formsDocsWithIcons: docAttributes[] = [
 
 export const sanityStudioStructure: StructureResolver = (S) =>
   S.list()
-    .title('Website')
+    .title('Sanity.io Content')
     .items([
       // CONTACTS
       S.listItem()
@@ -62,13 +62,10 @@ export const sanityStudioStructure: StructureResolver = (S) =>
                 S.listItem().title(title).icon(icon).child(S.documentTypeList(id).title(title))
               ),
               S.listItem()
-                .title('Next Gen Page')
+                .title('Next Gen')
                 .icon(ChildReaching)
                 .child(
-                  S.document()
-                    .title('Next Gen Page')
-                    .schemaType('nextGenPage')
-                    .documentId('nextGenPage')
+                  S.document().title('Next Gen').schemaType('nextGenPage').documentId('nextGenPage')
                 ),
             ])
         ),
@@ -87,13 +84,11 @@ export const sanityStudioStructure: StructureResolver = (S) =>
             )
         ),
 
-      S.divider().title('Shopify'),
-
       // SHOPIFY
       S.listItem()
-        .title('Products')
+        .title('Shopify Products')
         .icon(Tag)
-        .child(S.documentTypeList('product').title('Products')),
+        .child(S.documentTypeList('product').title('Shopify Products')),
 
       // fallback for uncategorized document types
       ...S.documentTypeListItems().filter(

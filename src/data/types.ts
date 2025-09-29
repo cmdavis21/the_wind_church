@@ -240,21 +240,6 @@ export interface YouTubeSnippet {
   videoUrl: string;
 }
 
-export type CreateMutation = { _type: string; data: any };
-export type CreateOrReplaceMutation = { _id?: string; _type: string; data: any };
-export type CreateIfNotExistsMutation = { _id?: string; _type: string; data: any };
-export type PatchMutation = { _id: string; data: any };
-export type DeleteMutation = { _id: string };
-
-export type MutationPayload = {
-  createReq?: CreateMutation | CreateMutation[];
-  createOrReplaceReq?: CreateOrReplaceMutation | CreateOrReplaceMutation[];
-  createIfNotExistsReq?: CreateIfNotExistsMutation | CreateIfNotExistsMutation[];
-  patchReq?: PatchMutation | PatchMutation[];
-  deleteReq?: DeleteMutation | DeleteMutation[];
-  debug?: boolean;
-};
-
 export interface ProductPreview {
   title: string;
   handle: string;
@@ -321,3 +306,66 @@ export interface Cart {
     quantity: number;
   }[];
 }
+
+export type VariantPriceRange = {
+  minVariantPrice?: number;
+  maxVariantPrice?: number;
+};
+
+export type ShopifyDocumentProductVariant = {
+  _id: `shopifyProductVariant-${string}`; // Shopify product ID
+  _type: 'productVariant';
+  store: {
+    id: number;
+    gid: `gid://shopify/ProductVariant/${string}`;
+    compareAtPrice: number;
+    createdAt: string;
+    isDeleted: boolean;
+    option1: string;
+    option2: string;
+    option3: string;
+    previewImageUrl?: string;
+    price: number;
+    productGid: `gid://shopify/Product/${string}`;
+    productId: number;
+    sku: string;
+    status: 'active' | 'archived' | 'draft' | 'unknown';
+    title: string;
+    updatedAt?: string;
+
+    inventory: {
+      policy: string;
+      quantity?: number;
+      management: string;
+      isAvailable?: boolean;
+    };
+  };
+};
+
+export type ShopifyDocumentProduct = {
+  _id: `shopifyProduct-${string}`; // Shopify product ID
+  _type: 'product';
+  store: {
+    id: number;
+    gid: `gid://shopify/Product/${string}`;
+    priceRange: VariantPriceRange;
+    productType: string;
+    slug: { _type: string; current: string };
+    status: 'active' | 'archived' | 'draft' | 'unknown';
+    tags: string[];
+    title: string;
+    updatedAt?: string;
+    previewImageUrl?: string;
+    createdAt: string;
+    isDeleted: boolean;
+    variants?: { _key: string; _type: string; _ref: string; _weak: boolean }[];
+    options: {
+      _type: string;
+      _key: string;
+      name: string;
+      values: string[];
+    }[];
+    vendor: string;
+    descriptionHtml: string;
+  };
+};

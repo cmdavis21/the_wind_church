@@ -1,48 +1,40 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Label, Radio } from 'flowbite-react';
-import React, { useState } from 'react';
+import { Alert, Button, Label, Radio } from 'flowbite-react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { YesNo, EventRentalInquiry } from '@/data/types';
+import { EventRentalInquiry, YesNo } from '@/data/types';
 
+import CircleCheck from '@/components/icons/circleCheck';
+import SolidCircleX from '@/components/icons/solidCircleX';
+import { useCreateEventRentalInquiry } from '@/data/services/sanity/mutations/event-rental-inquiry';
 import PencilPaper from '../../icons/pencilPaper';
-import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
-import { useCreateEventRentalInquiry } from '@/data/services/sanity/mutations/event-rental-inquiry';
 
-const schema = yup.object().shape({
+const schema: yup.ObjectSchema<EventRentalInquiry> = yup.object().shape({
   first_name: yup.string().required('Please enter your first name'),
   last_name: yup.string().required('Please enter your last name'),
   email: yup.string().email().required('Please enter an email address'),
   phone: yup.string().required('Please enter a phone number'),
-  // company_name: yup.string().optional(),
-  // company_phone: yup.string().optional(),
+  company_name: yup.string().optional(),
+  company_phone: yup.string().optional(),
   purpose_for_rental: yup.string().required('Please select an option'),
   describe_your_event: yup.string().required('Please supply more details of your event'),
   referred: yup.mixed<YesNo>().oneOf([YesNo.YES, YesNo.NO]).default(YesNo.NO).required(),
-  // referred_by: yup.string().optional(),
+  referred_by: yup.string().optional(),
 });
 
-type SchemaType = yup.InferType<typeof schema>;
-
 const EventRentalForm = () => {
-  type SchemaType = yup.InferType<typeof schema>;
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [showReference, setShowReference] = useState(false);
 
-  const {
-    mutate: submitInquiry,
-    isPending,
-    isSuccess,
-    isError,
-    reset: resetMutation,
-  } = useCreateEventRentalInquiry();
+  const { mutate: submitInquiry, isPending, isSuccess, isError } = useCreateEventRentalInquiry();
 
   const {
-    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -53,32 +45,46 @@ const EventRentalForm = () => {
 
   const onSubmit = (values: EventRentalInquiry) => submitInquiry(values);
 
+  useEffect(() => {
+    if (formRef.current) {
+      if (isSuccess || isError) {
+        window.scrollTo({
+          left: 0,
+          top: formRef.current.offsetTop - 100,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [isSuccess, isError]);
+
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-lightGray dark:bg-softGray dark:border-softCharcoal dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-softWhite" />
+        <PencilPaper className="dark:fill-textInverse" />
         <h4>Rental Inquiry</h4>
       </div>
 
       {isSuccess && (
-        <FormSuccessErrorMessage
-          error={false}
-          message="Success submitting your inquiry! We will contact you shortly. Thank you."
-        />
+        <Alert color="success" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <CircleCheck className="fill-success" />
+            <span className="font-bold">Success!</span> We will contact you shortly. Thank you.
+          </span>
+        </Alert>
       )}
 
       {isError && (
-        <FormSuccessErrorMessage
-          error={true}
-          message="There was an error submitting your inquiry. Please try again."
-          refreshForm={() => {
-            reset();
-            resetMutation();
-          }}
-        />
+        <Alert color="failure" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <SolidCircleX className="fill-error" />
+            <span className="font-bold">Oh no!</span> There was an problem submitting your inquiry.
+            Please try again later, or call our office at +1 (951) 359-0203.
+          </span>
+        </Alert>
       )}
 
       {/* names */}
@@ -167,7 +173,11 @@ const EventRentalForm = () => {
       {/* referral */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <div className="flex flex-col gap-sm">
-          <Label htmlFor="referred" value="Were you referred to The Wind?" />
+          <Label
+            htmlFor="referred"
+            value="Were you referred to The Wind?"
+            disabled={isPending || isSuccess}
+          />
           <div className="flex items-center gap-md">
             <div className="flex items-center gap-xs">
               <Radio
@@ -212,11 +222,11 @@ const EventRentalForm = () => {
         pill
         size="lg"
         type="submit"
-        color="info"
-        disabled={isPending || isSuccess}
+        color="primary"
+        disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : 'Submit!'}
+        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
       </Button>
     </form>
   );

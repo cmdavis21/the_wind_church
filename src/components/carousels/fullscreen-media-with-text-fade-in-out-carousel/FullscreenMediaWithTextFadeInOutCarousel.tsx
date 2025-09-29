@@ -1,10 +1,10 @@
 'use client';
 
-import 'react-multi-carousel/lib/styles.css';
-import Carousel from 'react-multi-carousel';
 import { Button } from 'flowbite-react';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 import { findMediaType, MediaType } from '@/data/utils';
 import Link from 'next/link';
@@ -31,12 +31,14 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
   FullscreenMediaWithTextFadeInOutCarouselProps
 > = ({ slides }) => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [mobileActiveSlide, setMobileActiveSlide] = useState(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Handle automatic slide transition
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {
       setActiveSlide((prevSlide) => (prevSlide + 1) % slides.length); // Loops to the first image
+      setMobileActiveSlide((prevSlide) => (prevSlide + 1) % slides.length); // Loops to the first image
     }, 8000);
     // Cleanup the timeout on unmount or when the slide changes
     return () => {
@@ -44,11 +46,9 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [activeSlide, slides.length]);
+  }, [activeSlide, mobileActiveSlide, slides.length]);
 
   // Mobile Configurations
-  const [mobileActiveSlide, setMobileActiveSlide] = useState(0);
-
   const responsive = {
     desktop: {
       breakpoint: { max: 4000, min: 1024 },
@@ -77,8 +77,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             setMobileActiveSlide(slides.length - 1);
           } else setMobileActiveSlide(mobileActiveSlide - 1);
         },
-        buttonClassName: 'bg-lightGray/40 p-xs',
-        iconClassName: 'fill-black/70 size-[18px]',
+        buttonClassName: 'bg-charcoal p-xs',
+        iconClassName: 'fill-white size-[18px]',
       }}
       rightArrowProps={{
         onClick: () => {
@@ -87,8 +87,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             setMobileActiveSlide(0);
           } else setMobileActiveSlide(mobileActiveSlide + 1);
         },
-        buttonClassName: 'bg-lightGray/40 p-xs',
-        iconClassName: 'fill-black/70 size-[18px]',
+        buttonClassName: 'bg-charcoal p-xs',
+        iconClassName: 'fill-white size-[18px]',
       }}
     />
   );
@@ -101,6 +101,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
         onClick={() => {
           onClick();
           setActiveSlide(index);
+          setMobileActiveSlide(index);
         }}
       />
     );
@@ -130,12 +131,14 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             ) : (
               <video
                 loop
-                autoPlay
                 muted
+                autoPlay
                 playsInline
-                src={slide.media.src}
                 poster={slide.media.poster}
-              />
+                className="object-cover object-center pointer-events-none"
+              >
+                <source src={slide.media.src} type="video/mp4" />
+              </video>
             )}
           </div>
         ))}
@@ -150,7 +153,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             key={`carousel-content-${slide.title}`}
             className={`w-full lg:max-w-[45%] lg:pl-[150px] min-[1800px]:pl-[250px] h-full absolute top-0 left-0 ${
               index === activeSlide ? 'fade-in' : 'opacity-0'
-            } transition-opacity duration-300 flex items-center `}
+            } transition-opacity duration-300 flex items-center`}
           >
             <div className="flex flex-col gap-md text-white dark:text-textInverse">
               <h5>{slide.header}</h5>
@@ -162,7 +165,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
                 )}
               </div>
               <Link href={slide.link}>
-                <Button pill color="yellow" className="w-[200px]">
+                <Button pill color="primary" className="w-[200px]">
                   Learn more
                 </Button>
               </Link>
@@ -193,7 +196,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               } else setActiveSlide(activeSlide - 1);
             },
             buttonClassName:
-              'bg-lightGray/40 p-sm absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
+              'bg-charcoal p-sm absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
             iconClassName: 'fill-white size-[25px]',
           }}
           rightArrowProps={{
@@ -203,7 +206,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               } else setActiveSlide(activeSlide + 1);
             },
             buttonClassName:
-              'bg-lightGray/40 p-sm absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
+              'bg-charcoal p-sm absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
             iconClassName: 'fill-white size-[25px]',
           }}
         />
@@ -229,7 +232,14 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
                 />
               </div>
             ) : (
-              <video loop autoPlay muted playsInline poster={slide.media.poster}>
+              <video
+                loop
+                muted
+                autoPlay
+                playsInline
+                poster={slide.media.poster}
+                className="object-cover object-center pointer-events-none"
+              >
                 <source src={slide.media.src} type="video/mp4" />
               </video>
             )}
@@ -237,7 +247,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
         ))}
 
         {/* color overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/0 via-black/80 to-black/0" />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/10 via-black/80 to-black/10" />
 
         <Carousel
           infinite
@@ -254,13 +264,13 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               key={`carousel-mobile-content-${slide.title}-${slide.description}`}
               className="relative h-screen w-full px-[50px]"
             >
-              <div className="relative flex flex-col h-full w-full items-center justify-center text-center text-white gap-sm">
-                <h5>{slide.header}</h5>
-                {slide.subtitle && <h4 className="text-primary">{slide.subtitle}</h4>}
-                <h1 className="leading-none">{slide.title}</h1>
+              <div className="relative flex flex-col h-full w-full items-center justify-center text-center text-white dark:text-textInverse gap-sm">
+                <h6 className="font-normal">{slide.header}</h6>
+                {slide.subtitle && <h5 className="text-primary">{slide.subtitle}</h5>}
+                <h3 className="leading-none">{slide.title}</h3>
                 {slide.description && <p className="line-clamp-3">{slide.description}</p>}
                 <Link href={slide.link}>
-                  <Button pill color="yellow">
+                  <Button pill color="primary" size="sm" fullSized>
                     Learn more
                   </Button>
                 </Link>

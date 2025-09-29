@@ -5,11 +5,11 @@ import ThemeModeLogo from '@/components/theme-mode/theme-mode-logo/ThemeModeLogo
 import { PageRoutes } from '@/data/page-routes';
 import { useTheme } from '@/data/providers/theme-mode-provider';
 import { NavbarItem } from '@/data/types';
-import Link from 'next/link';
 
-import UserSettings from './user-settings/UserSettings';
-import DesktopNavItem from './desktop-nav-item/DesktopNavItem';
+import Link from 'next/link';
 import DesktopNavItemWithDropdown from './desktop-nav-item-with-dropdown/DesktopNavItemWithDropdown';
+import DesktopNavItem from './desktop-nav-item/DesktopNavItem';
+import UserSettings from './user-settings/UserSettings';
 
 interface DesktopNavProps {
   menuOptions: NavbarItem[];
@@ -20,7 +20,6 @@ interface DesktopNavProps {
 const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeColor }) => {
   const { darkMode } = useTheme();
   const [openNav, setOpenNav] = useState(false);
-  const [hoveredDropdownIndex, setHoveredDropdownIndex] = useState<number | null>(null);
   return (
     <div
       className={`w-full hidden lg:block ${
@@ -34,28 +33,24 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeCo
           <ThemeModeLogo changeColor={changeColor} className="w-full min-w-[150px] max-w-[150px]" />
         </Link>
 
-        {menuOptions.slice(0, menuOptions.length - 1).map((item, index) => (
-          <React.Fragment key={`desktop-nav-item-${item.label}`}>
-            {item.submenu ? (
-              <div
-                onMouseEnter={() => setHoveredDropdownIndex(index)}
-                onMouseOut={() => setHoveredDropdownIndex(null)}
-              >
-                <DesktopNavItemWithDropdown
-                  label={item.label}
-                  submenu={item.submenu}
-                  pathname={pathname}
-                  changeColor={changeColor}
-                  open={hoveredDropdownIndex === index}
-                  handleChange={() => setOpenNav(!openNav)}
-                />
-              </div>
-            ) : (
+        {menuOptions.slice(0, menuOptions.length - 1).map((item) => (
+          <React.Fragment key={`mobile-nav-item-${item.label}`}>
+            {item.submenu && (
+              <DesktopNavItemWithDropdown
+                label={item.label}
+                submenu={item.submenu}
+                changeColor={changeColor}
+                pathname={pathname}
+                handleChange={() => setOpenNav(!openNav)}
+              />
+            )}
+
+            {item.link && (
               <DesktopNavItem
                 link={item.link}
                 label={item.label}
                 changeColor={changeColor}
-                active={pathname.includes(item.link!)}
+                active={pathname.includes(item.link)}
               />
             )}
           </React.Fragment>
@@ -64,11 +59,13 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeCo
         <div className="flex items-center justify-center gap-lg -mb-2">
           <Button
             pill
-            className="px-sm"
+            className="px-sm group"
             href={menuOptions[menuOptions.length - 1].link}
-            color={changeColor ? 'yellow' : 'clear_white'}
+            color={changeColor ? 'primary' : 'ghost'}
           >
-            <h5 className="uppercase">{menuOptions[menuOptions.length - 1].label}</h5>
+            <h5 className={`uppercase ${!changeColor ? 'text-white group-hover:text-black' : ''}`}>
+              {menuOptions[menuOptions.length - 1].label}
+            </h5>
           </Button>
 
           <UserSettings changeColor={changeColor} />

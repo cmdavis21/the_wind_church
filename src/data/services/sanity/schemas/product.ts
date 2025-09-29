@@ -1,94 +1,224 @@
-// schemas/product.js
+// schemas/product.ts
+import { defineField } from 'sanity';
+
 export const ProductSchema = {
   name: 'product',
   title: 'Product',
   type: 'document',
   fields: [
-    { name: 'title', title: 'Product Title', type: 'string' },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: { source: 'title', maxLength: 96 },
-    },
-    {
-      name: 'descriptionHtml',
-      title: 'Description (HTML)',
-      type: 'text',
-    },
-    {
-      name: 'previewImageUrl',
-      title: 'Preview Image URL',
-      type: 'url',
-    },
-    {
-      name: 'priceRange',
-      title: 'Price Range',
+      name: 'store',
+      title: 'Shopify Product Data',
       type: 'object',
       fields: [
-        { name: 'minVariantPrice', title: 'Min Price', type: 'number' },
-        { name: 'maxVariantPrice', title: 'Max Price', type: 'number' },
-      ],
-    },
-    {
-      name: 'options',
-      title: 'Options',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            { name: 'name', title: 'Option Name', type: 'string' },
+        defineField({
+          name: 'title',
+          type: 'string',
+          title: 'Title',
+        }),
+        defineField({
+          name: 'slug',
+          title: 'Handle',
+          type: 'slug',
+          options: {
+            source: 'current',
+          },
+        }),
+        defineField({
+          name: 'descriptionHtml',
+          title: 'HTML Description',
+          type: 'text',
+          rows: 5,
+        }),
+        defineField({
+          name: 'gid',
+          type: 'string',
+          title: 'Global ID',
+          readOnly: true,
+        }),
+        defineField({
+          name: 'id',
+          type: 'string',
+          title: 'Product ID',
+          readOnly: true,
+        }),
+        defineField({
+          name: 'variants',
+          type: 'array',
+          title: 'Variants',
+          of: [
             {
-              name: 'values',
-              title: 'Option Values',
-              type: 'array',
-              of: [{ type: 'string' }],
+              type: 'object',
+              fields: [
+                defineField({ name: 'title', type: 'string', title: 'Variant Title' }),
+                defineField({ name: 'id', type: 'string', title: 'Variant ID' }),
+                defineField({ name: 'price', type: 'number', title: 'Price' }),
+                defineField({ name: 'available', type: 'boolean', title: 'Available' }),
+              ],
             },
           ],
-        },
+        }),
+        defineField({
+          name: 'vendor',
+          type: 'string',
+          title: 'Vendor',
+          readOnly: true,
+        }),
       ],
     },
-    {
-      name: 'vendor',
-      title: 'Vendor',
-      type: 'string',
-    },
-    {
-      name: 'status',
-      title: 'Status',
-      type: 'string',
-    },
-    {
-      name: 'gid',
-      title: 'Shopify Global ID',
-      type: 'string',
-    },
-    {
-      name: 'id',
-      title: 'Shopify Product ID',
-      type: 'number',
-    },
-    {
-      name: 'variants',
-      title: 'Variants',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            { name: 'title', type: 'string' },
-            { name: 'sku', type: 'string' },
-            { name: 'price', type: 'number' },
-            { name: 'available', type: 'boolean' },
-            {
-              name: 'options',
-              type: 'array',
-              of: [{ type: 'string' }],
-            },
-          ],
-        },
-      ],
-    },
+    // Optional: add other custom fields here
   ],
+  preview: {
+    select: {
+      isDeleted: 'store.isDeleted',
+      options: 'store.options',
+      previewImageUrl: 'store.previewImageUrl',
+      priceRange: 'store.priceRange',
+      status: 'store.status',
+      title: 'store.title',
+      variants: 'store.variants',
+    },
+    // prepare(selection) {
+    //   const { isDeleted, options, previewImageUrl, priceRange, status, title, variants } =
+    //     selection;
+
+    //   const optionCount = options?.length;
+    //   const variantCount = variants?.length;
+
+    //   // let description = [
+    //   //   variantCount ? pluralize('variant', variantCount, true) : 'No variants',
+    //   //   optionCount ? pluralize('option', optionCount, true) : 'No options',
+    //   // ]
+
+    //   let subtitle = '';
+    //   if (status !== 'active') {
+    //     subtitle = '(Unavailable in Shopify)';
+    //   }
+    //   if (isDeleted) {
+    //     subtitle = '(Deleted from Shopify)';
+    //   }
+
+    //   return {
+    //     // description: description.join(' / '),
+    //     subtitle,
+    //     title,
+    //     // media: (
+    //     //   <ShopifyDocumentStatus
+    //     //     isActive={status === 'active'}
+    //     //     isDeleted={isDeleted}
+    //     //     type="product"
+    //     //     url={previewImageUrl}
+    //     //     title={title}
+    //     //   />
+    //     // ),
+    //   };
+    // },
+  },
 };
+
+// export const ProductSchema = {
+//   name: 'product',
+//   title: 'Product',
+//   type: 'document',
+//   fields: [
+//     defineField({
+//       name: 'title',
+//       type: 'string',
+//       title: 'Title',
+//     }),
+//     defineField({
+//       name: 'slug',
+//       title: 'Handle',
+//       type: 'slug',
+//       options: {
+//         source: 'current',
+//       },
+//     }),
+//     defineField({
+//       name: 'descriptionHtml',
+//       title: 'Description',
+//       type: 'array',
+//       of: [{ type: 'block' }],
+//     }),
+//     defineField({
+//       name: 'gid',
+//       type: 'string',
+//       title: 'Global ID',
+//       readOnly: true,
+//     }),
+//     defineField({
+//       name: 'id',
+//       type: 'string',
+//       title: 'Product ID',
+//       readOnly: true,
+//     }),
+//     defineField({
+//       name: 'vendor',
+//       type: 'string',
+//       title: 'Vendor',
+//       readOnly: true,
+//     }),
+//     defineField({
+//       name: 'variants',
+//       type: 'array',
+//       title: 'Variants',
+//       of: [
+//         {
+//           type: 'object',
+//           fields: [
+//             defineField({ name: 'title', type: 'string', title: 'Variant Title' }),
+//             defineField({ name: 'id', type: 'string', title: 'Variant ID' }),
+//             defineField({ name: 'price', type: 'number', title: 'Price' }),
+//             defineField({ name: 'available', type: 'boolean', title: 'Available' }),
+//           ],
+//         },
+//       ],
+//     }),
+//   ],
+//   preview: {
+//     select: {
+//       isDeleted: 'store.isDeleted',
+//       options: 'store.options',
+//       previewImageUrl: 'store.previewImageUrl',
+//       priceRange: 'store.priceRange',
+//       status: 'store.status',
+//       title: 'store.title',
+//       variants: 'store.variants',
+//     },
+//     prepare(selection) {
+//       const { isDeleted, options, previewImageUrl, priceRange, status, title, variants } =
+//         selection;
+
+//       const optionCount = options?.length;
+//       const variantCount = variants?.length;
+
+//       // let description = [
+//       //   variantCount ? pluralize('variant', variantCount, true) : 'No variants',
+//       //   optionCount ? pluralize('option', optionCount, true) : 'No options',
+//       // ]
+
+//       let subtitle = '';
+//       if (status !== 'active') {
+//         subtitle = '(Unavailable in Shopify)';
+//       }
+//       if (isDeleted) {
+//         subtitle = '(Deleted from Shopify)';
+//       }
+
+//       return {
+//         // description: description.join(' / '),
+//         subtitle,
+//         title,
+//         // media: (
+//         //   <ShopifyDocumentStatus
+//         //     isActive={status === 'active'}
+//         //     isDeleted={isDeleted}
+//         //     type="product"
+//         //     url={previewImageUrl}
+//         //     title={title}
+//         //   />
+//         // ),
+//       };
+//     },
+//   },
+// };

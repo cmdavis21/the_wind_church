@@ -1,10 +1,10 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
-import LanguageSelectorSelect from './language-selector-select/LanguageSelectorSelect';
-import { setCookie } from 'nookies';
 import { LOCALES } from '@/data/services/i18n/utils';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import { setCookie } from 'nookies';
+import LanguageSelectorSelect from './language-selector-select/LanguageSelectorSelect';
 
 interface LanguageSelectorProps {
   changeColor: boolean;
@@ -32,15 +32,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ changeColor }) => {
       onLocaleChange={handleLocaleChange}
     >
       {LOCALES.map((cur) => (
-        <option
-          key={cur}
-          value={cur}
-          className={`!bg-transparent ${
-            changeColor
-              ? 'text-black dark:text-textInverse'
-              : 'text-white lg:text-black dark:text-textInverse'
-          }`}
-        >
+        <option key={cur} value={cur}>
           {t('locale', { locale: cur })}
         </option>
       ))}

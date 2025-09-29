@@ -1,10 +1,9 @@
 import { Button } from 'flowbite-react';
 import { Metadata } from 'next';
-import React from 'react';
 
-import { WEBSITE_BASE_URL } from '@/data/constants';
-import GiftAssessment from '@/components/forms/gift-assessment/GiftAssessment';
 import { permanentMarker } from '@/app/(website)/layout';
+import GiftAssessment from '@/components/forms/gift-assessment/GiftAssessment';
+import { WEBSITE_BASE_URL } from '@/data/constants';
 
 export const metadata: Metadata = {
   title: 'Gift Assessement',

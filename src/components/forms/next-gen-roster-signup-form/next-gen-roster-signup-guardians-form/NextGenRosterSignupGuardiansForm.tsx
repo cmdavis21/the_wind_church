@@ -1,12 +1,12 @@
 'use client';
 
+import CirclePlus from '@/components/icons/circlePlus';
+import Trash from '@/components/icons/trash';
+import { NextGenRosterSignup } from '@/data/types';
 import React from 'react';
 import { Control, FieldErrors, useFieldArray, UseFormRegister } from 'react-hook-form';
-import Trash from '@/components/icons/trash';
-import CirclePlus from '@/components/icons/circlePlus';
 import SelectInput from '../../inputs/select-input/SelectInput';
 import TextInput from '../../inputs/text-input/TextInput';
-import { NextGenRosterSignup } from '@/data/types';
 
 const RELATIONSHIP_TO_CHILD = [
   'Mother',
@@ -51,7 +51,7 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
   });
 
   return (
-    <div className="flex flex-col gap-lg rounded-lg p-sm md:p-lg bg-lightGray/80 dark:bg-softGray dark:border dark:border-softCharcoal">
+    <div className="flex flex-col gap-lg rounded-lg p-sm md:p-lg bg-gray dark:bg-grayDark dark:border dark:border-gray">
       {guardianFields.map((guardian, guardianIndex) => (
         <React.Fragment key={guardian.id}>
           <div className="flex flex-wrap items-center justify-between gap-sm">
@@ -61,9 +61,9 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
               onClick={() => removeGuardian(guardianIndex)}
               className={`${
                 guardianIndex === 0 ? 'hidden' : ''
-              } w-fit flex items-center gap-[4px] body-small text-red dark:text-softRed hover:underline`}
+              } w-fit flex items-center gap-[4px] body-small text-error hover:underline`}
             >
-              <Trash className="size-[12px] fill-red dark:fill-softRed" /> Remove Guardian
+              <Trash className="size-[12px] fill-error" /> Remove Guardian
             </button>
           </div>
 
@@ -151,9 +151,9 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
               relationship_to_child: '',
             })
           }
-          className="w-fit flex items-center gap-[4px] body-large hover:underline text-blue dark:text-softBlue"
+          className="w-fit flex items-center gap-[4px] body-large hover:underline text-navyLight"
         >
-          <CirclePlus className="size-[16px] fill-blue dark:fill-softBlue" />
+          <CirclePlus className="size-[16px] fill-navyLight" />
           Add another guardian
         </button>
       )}

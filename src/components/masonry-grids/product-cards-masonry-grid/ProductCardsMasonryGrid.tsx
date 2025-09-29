@@ -3,7 +3,6 @@
 import React from 'react';
 import { Masonry } from 'react-plock';
 
-import ProductCard from '../../cards/product-card/ProductCard';
 import { Price } from '@/data/format-price';
 
 interface ProductCardsMasonryGridProps {
@@ -38,7 +37,8 @@ const ProductCardsMasonryGrid: React.FC<ProductCardsMasonryGridProps> = ({
       useBalancedLayout: false,
     }}
     render={(product, index) => (
-      <ProductCard key={product.title} {...product} scale={index % 3 === 0} />
+      <div />
+      // <ProductCard key={product.title} {...product} scale={index % 3 === 0} />
     )}
   />
 );

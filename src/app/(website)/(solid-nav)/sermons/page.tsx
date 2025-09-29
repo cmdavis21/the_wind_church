@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
-import React from 'react';
 
-import { WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import VideoCard from '@/components/cards/video-card/VideoCard';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { getPastLiveStreams, getPlaylistVideos } from '@/data/services/youtube/playlists';
 import { Button } from 'flowbite-react';
 
@@ -39,7 +38,7 @@ const Sermons = async () => {
           title="Past Live Streams"
           subtitle="Guide your studies with these learning lessons"
         />
-        <div className="grid gap-md grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+        <div className="grid gap-lg grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
           {liveStreams.map((video) => (
             <VideoCard
               key={video.videoUrl}
@@ -60,7 +59,7 @@ const Sermons = async () => {
           title="Other uploads"
           subtitle="Guide your studies with these learning lessons"
         />
-        <div className="grid gap-md grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+        <div className="grid gap-lg grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
           {otherVideos.map((video) => (
             <VideoCard
               key={video.videoUrl}

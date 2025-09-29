@@ -29,6 +29,14 @@ export const DeepDiveSchema = {
       validation: (rule) => rule.required().error('Write a description for the deep dive.'),
     }),
     defineField({
+      name: 'principles',
+      title: 'Principles',
+      type: 'array',
+      description: 'What are the core principles/goals of this deep dive?',
+      validation: (rule) => rule.min(1).error('At least one meeting is required.'),
+      of: [{ type: 'string' }],
+    }),
+    defineField({
       name: 'instructors',
       title: 'Instructors',
       description: 'List the instructors for this deep dive.',
@@ -79,6 +87,12 @@ export const DeepDiveSchema = {
       description: 'Include one or more meeting days, times, and locations.',
       validation: (rule) => rule.min(1).error('At least one meeting is required.'),
       of: [{ type: 'meetingDetailsType' }],
+    }),
+    defineField({
+      name: 'accepting_new_students',
+      title: 'Accepting New Students',
+      description: 'Is this deep dive actively accepting new Students?',
+      type: 'boolean',
     }),
   ],
 };

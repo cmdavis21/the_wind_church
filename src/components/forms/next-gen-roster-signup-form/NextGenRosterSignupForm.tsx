@@ -1,21 +1,22 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Label, Radio, Button } from 'flowbite-react';
-import React from 'react';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { Alert, Button, Label, Radio } from 'flowbite-react';
+import React, { useEffect, useRef } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { Gender, NextGenRosterSignup } from '@/data/types';
 
-import PencilPaper from '@/components/icons/pencilPaper';
 import CirclePlus from '@/components/icons/circlePlus';
+import PencilPaper from '@/components/icons/pencilPaper';
 import Trash from '@/components/icons/trash';
 
-import SelectInput from '../inputs/select-input/SelectInput';
-import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
-import TextInput from '../inputs/text-input/TextInput';
+import CircleCheck from '@/components/icons/circleCheck';
+import SolidCircleX from '@/components/icons/solidCircleX';
 import { useNextGenRosterSignup } from '@/data/services/sanity/mutations/next-gen-roster-signup';
+import SelectInput from '../inputs/select-input/SelectInput';
+import TextInput from '../inputs/text-input/TextInput';
 import NextGenRosterSignupGuardiansForm from './next-gen-roster-signup-guardians-form/NextGenRosterSignupGuardiansForm';
 
 const schema = yup.object().shape({
@@ -74,16 +75,11 @@ const SCHOOL_GRADES = [
 ];
 
 const NextGenRosterSignupForm = () => {
-  const {
-    mutate: submitInquiry,
-    isPending,
-    isSuccess,
-    isError,
-    reset: resetMutation,
-  } = useNextGenRosterSignup();
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  const { mutate: submitInquiry, isPending, isSuccess, isError } = useNextGenRosterSignup();
 
   const {
-    reset,
     register,
     handleSubmit,
     control,
@@ -125,29 +121,46 @@ const NextGenRosterSignupForm = () => {
 
   const onSubmit = (values: NextGenRosterSignup) => submitInquiry(values);
 
+  useEffect(() => {
+    if (formRef.current) {
+      if (isSuccess || isError) {
+        window.scrollTo({
+          left: 0,
+          top: formRef.current.offsetTop - 100,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [isSuccess, isError]);
+
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-lightGray dark:bg-softGray dark:border-softCharcoal dark:text-textInverse shadow-lg p-md md:p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-softWhite" />
+        <PencilPaper className="dark:fill-textInverse" />
         <h4>Next Gen Roster Signup</h4>
       </div>
 
       {isSuccess && (
-        <FormSuccessErrorMessage error={false} message="Success! We'll contact you soon." />
+        <Alert color="success" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <CircleCheck className="fill-success" />
+            <span className="font-bold">Success!</span> We will contact you shortly. Thank you.
+          </span>
+        </Alert>
       )}
 
       {isError && (
-        <FormSuccessErrorMessage
-          error={true}
-          message="Submission error. Try again."
-          refreshForm={() => {
-            reset();
-            resetMutation();
-          }}
-        />
+        <Alert color="failure" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <SolidCircleX className="fill-error" />
+            <span className="font-bold">Oh no!</span> There was an problem submitting your inquiry.
+            Please try again later.
+          </span>
+        </Alert>
       )}
 
       {childrenFields.map((child, childIndex) => {
@@ -160,9 +173,9 @@ const NextGenRosterSignupForm = () => {
                 onClick={() => removeChild(childIndex)}
                 className={`${
                   childIndex === 0 ? 'hidden' : ''
-                } w-fit flex items-center gap-[4px] body-small text-red dark:text-softRed hover:underline`}
+                } w-fit flex items-center gap-[4px] body-small text-error hover:underline`}
               >
-                <Trash className="size-[12px] fill-red dark:fill-softRed" /> Remove Child
+                <Trash className="size-[12px] fill-error" /> Remove Child
               </button>
             </div>
 
@@ -297,9 +310,9 @@ const NextGenRosterSignupForm = () => {
               ],
             })
           }
-          className="w-fit flex items-center gap-[4px] body-large hover:underline text-blue dark:text-softBlue"
+          className="w-fit flex items-center gap-[4px] body-large hover:underline text-navyLight"
         >
-          <CirclePlus className="size-[16px] fill-blue dark:fill-softBlue" />
+          <CirclePlus className="size-[16px] fill-navyLight" />
           Add another child
         </button>
       )}
@@ -308,11 +321,11 @@ const NextGenRosterSignupForm = () => {
         pill
         size="lg"
         type="submit"
-        color="info"
-        disabled={isPending || isSuccess}
+        color="primary"
+        disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : 'Submit!'}
+        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
       </Button>
     </form>
   );

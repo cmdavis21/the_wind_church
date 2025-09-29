@@ -1,17 +1,18 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Checkbox, Label } from 'flowbite-react';
-import React, { useState } from 'react';
+import { Alert, Button, Checkbox, Label } from 'flowbite-react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { MinistryConnection } from '@/data/types';
 
-import PencilPaper from '../../icons/pencilPaper';
-import FormSuccessErrorMessage from '../inputs/form-success-error-message/FormSuccessErrorMessage';
-import TextInput from '../inputs/text-input/TextInput';
+import CircleCheck from '@/components/icons/circleCheck';
+import SolidCircleX from '@/components/icons/solidCircleX';
 import { useCreateMinistryConnection } from '@/data/services/sanity/mutations/ministry-connection';
+import PencilPaper from '../../icons/pencilPaper';
+import TextInput from '../inputs/text-input/TextInput';
 
 const schema = yup.object().shape({
   first_name: yup.string().required('Please enter your first name'),
@@ -29,18 +30,12 @@ interface MinistryConnectionFormProps {
 }
 
 const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministryNames }) => {
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [selections, setSelections] = useState<string[]>([]);
 
-  const {
-    mutate: submitIquiry,
-    isPending,
-    isSuccess,
-    isError,
-    reset: resetMutation,
-  } = useCreateMinistryConnection();
+  const { mutate: submitIquiry, isPending, isSuccess, isError } = useCreateMinistryConnection();
 
   const {
-    reset,
     register,
     setError,
     handleSubmit,
@@ -60,32 +55,47 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
       });
     }
   };
+
+  useEffect(() => {
+    if (formRef.current) {
+      if (isSuccess || isError) {
+        window.scrollTo({
+          left: 0,
+          top: formRef.current.offsetTop - 100,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [isSuccess, isError]);
+
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-lightGray dark:bg-softGray dark:border-softCharcoal dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-softWhite" />
+        <PencilPaper className="dark:fill-textInverse" />
         <h4>Ministry Connection</h4>
       </div>
 
       {isSuccess && (
-        <FormSuccessErrorMessage
-          error={false}
-          message="Success submitting your inquiry! We will contact you shortly. Thank you."
-        />
+        <Alert color="success" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <CircleCheck className="fill-success" />
+            <span className="font-bold">Success!</span> We will contact you shortly. Thank you.
+          </span>
+        </Alert>
       )}
 
       {isError && (
-        <FormSuccessErrorMessage
-          error={true}
-          message="There was an error submitting your inquiry. Please try again."
-          refreshForm={() => {
-            reset();
-            resetMutation();
-          }}
-        />
+        <Alert color="failure" withBorderAccent>
+          <span className="flex items-center gap-xs">
+            <SolidCircleX className="fill-error" />
+            <span className="font-bold">Oh no!</span> There was an problem submitting your inquiry.
+            Please try again later.
+          </span>
+        </Alert>
       )}
 
       {/* names */}
@@ -165,11 +175,11 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
         pill
         size="lg"
         type="submit"
-        color="info"
-        disabled={isPending || isSuccess}
+        color="primary"
+        disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : 'Submit!'}
+        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
       </Button>
     </form>
   );

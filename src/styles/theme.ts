@@ -1,4 +1,27 @@
 export const theme = {
+  alert: {
+    base: 'flex flex-col gap-2 p-4 text-sm',
+    borderAccent: 'border-b-[2.5px] border-l-[2.5px] border-t-[1px] border-r-[1px]',
+    closeButton: {
+      base: '-m-1.5 ml-auto inline-flex h-8 w-8 rounded-lg p-1.5 focus:ring-2',
+      icon: 'h-5 w-5',
+      color: {
+        gray: 'bg-gray text-gray hover:bg-grayDark focus:ring-gray-400 dark:hover:bg-gray-800 dark:hover:text-white',
+        failure: 'bg-error/10 text-error hover:bg-error/10 focus:ring-error',
+        success: 'bg-success/10 text-success hover:bg-success/50 focus:ring-success',
+        warning: 'bg-primary/10 text-primary hover:bg-primaryDark focus:ring-primaryDark',
+      },
+    },
+    color: {
+      gray: 'border-gray bg-grayDark text-textPrimary',
+      failure: 'border-error bg-error/10 text-error',
+      success: 'border-success bg-success/10 text-success',
+      warning: 'border-primary bg-primary/10 text-primaryDark',
+    },
+    icon: 'mr-3 inline h-5 w-5 shrink-0',
+    rounded: 'rounded-lg',
+    wrapper: 'flex items-center',
+  },
   badge: {
     root: {
       base: 'flex w-fit h-fit items-center gap-1 font-semibold',
@@ -36,21 +59,6 @@ export const theme = {
       danger:
         'border border-error bg-error text-white hover:bg-red-600 dark:border-red-700 dark:bg-red-700 dark:text-white dark:hover:bg-error',
     },
-    // color: {
-    //   yellow: 'border border-primary bg-primary text-black hover:shadow-md hover:bg-primaryDark',
-    //   blue: 'border border-navy bg-navy text-white',
-    //   black: 'border border-black bg-black text-white',
-    //   clear_white:
-    //     'border border-white bg-transparent text-white dark:border-textInverse dark:text-textInverse hover:bg-primary hover:text-black hover:border-primary dark:hover:bg-primaryDark dark:hover:border-primaryDark',
-    //   clear_gray:
-    //     'border border-gray bg-transparent text-gray hover:bg-gray hover:text-textPrimary',
-    //   clear_black:
-    //     '!border !border-black bg-transparent text-black hover:bg-navy hover:text-primary',
-    //   red: 'border border-error bg-error text-white',
-    //   white:
-    //     'border border-black bg-white dark:bg-textInverse text-black hover:bg-primary hover:border-primary',
-    //   info: 'border-0 bg-transparent text-textPrimary hover:bg-backgroundLight hover:text-black hover:border-primary',
-    // },
     disabled: 'cursor-not-allowed opacity-50 pointer-events-none',
     pill: {
       off: 'rounded-lg',
@@ -73,6 +81,92 @@ export const theme = {
         white: 'text-white',
       },
       disabled: 'opacity-50',
+    },
+  },
+  megaMenu: {
+    root: {
+      base: 'bg-white pt-3 pb-5 px-[20px] 2xl:px-[75px] min-[1800px]:px-[200px] dark:border-grayDark dark:bg-backgroundDark',
+      rounded: {
+        on: 'rounded-b-lg',
+        off: '',
+      },
+      bordered: {
+        on: 'shadow-sm border border-x-0 border-t-0 border-gray',
+        off: '',
+      },
+      inner: {
+        base: 'flex items-end justify-between gap-lg',
+        fluid: {
+          on: '',
+          off: 'container',
+        },
+      },
+    },
+    brand: {
+      base: 'flex items-center',
+    },
+    collapse: {
+      base: 'w-full md:block',
+      list: 'mt-4 flex flex-col md:mt-0 md:flex-row justify-evenly md:space-x-8 md:text-sm md:font-medium',
+      hidden: {
+        on: 'hidden',
+        off: '',
+      },
+    },
+    link: {
+      base: 'block py-2 pl-3 pr-4 md:p-0',
+      active: {
+        on: 'bg-primaryDark text-white md:bg-transparent md:text-primary dark:text-white',
+        off: 'border-b border-gray text-textPrimary hover:bg-gray md:border-0 md:hover:bg-transparent md:hover:text-textSecondary dark:border-grayDark dark:text-textSecondary dark:hover:bg-grayDark dark:hover:text-textInverse md:dark:hover:bg-transparent md:dark:hover:text-textInverse',
+      },
+      disabled: {
+        on: 'text-grayDark hover:cursor-not-allowed dark:text-grayDark',
+        off: '',
+      },
+    },
+    toggle: {
+      base: 'inline-flex items-center rounded-lg p-2 text-sm text-textSecondary hover:bg-gray focus:outline-none focus:ring-2 focus:ring-gray md:hidden dark:text-textInverse dark:hover:bg-grayDark dark:focus:ring-grayDark',
+      icon: 'h-6 w-6 shrink-0',
+      title: 'sr-only',
+    },
+    dropdown: {
+      base: '',
+      toggle: {
+        arrowIcon: 'ml-1 h-4 w-4',
+        content: 'p-sm focus:outline-none',
+        floating: {
+          animation: 'transition-opacity duration-500',
+          arrow: {
+            base: 'absolute z-10 h-2 w-2 rotate-45',
+            style: {
+              dark: 'bg-backgroundDark',
+              light: 'bg-white',
+              auto: 'bg-white dark:bg-backgroundDark',
+            },
+            placement: '-4px',
+          },
+          base: 'z-10 w-fit border border-skeletonGray shadow-sm divide-y divide-gray rounded-lg shadow focus:outline-none mt-2 block',
+          content: 'py-1 text-sm text-textSecondary dark:text-textInverse',
+          divider: 'my-1 h-px bg-gray dark:bg-grayDark',
+          header: 'block px-4 py-2 text-sm text-textSecondary dark:text-textInverse',
+          hidden: 'invisible opacity-0',
+          item: {
+            container: '',
+            base: 'flex w-full cursor-pointer items-center justify-start px-4 py-2 text-sm text-textSecondary hover:bg-gray focus:bg-gray focus:outline-none dark:text-textInverse dark:hover:bg-grayDark dark:hover:text-white dark:focus:bg-grayDark dark:focus:text-white',
+            icon: 'mr-2 h-4 w-4',
+          },
+          style: {
+            dark: 'bg-backgroundDark text-textInverse',
+            light: 'bg-white text-textSecondary',
+            auto: 'bg-white dark:bg-backgroundDark',
+          },
+          target: 'w-fit',
+        },
+        inlineWrapper: 'flex w-full items-center justify-between',
+      },
+    },
+    dropdownToggle: {
+      base: 'py-2 pl-3 pr-4 md:p-0 border-b border-gray text-textPrimary hover:bg-gray md:border-0 md:hover:bg-transparent md:hover:text-primary dark:border-grayDark dark:text-textSecondary dark:hover:bg-grayDark dark:hover:text-textInverse md:dark:hover:bg-transparent md:dark:hover:text-textInverse flex w-full items-center justify-between',
     },
   },
   modal: {
@@ -131,7 +225,7 @@ export const theme = {
   },
   radio: {
     root: {
-      base: 'h-6 w-6 rounded-full border border-gray dark:border-grayDark !text-primary dark:!text-primaryDark focus:ring-0 hover:cursor-pointer',
+      base: 'h-6 w-6 rounded-full border-2 border-gray dark:border-grayDark !text-primary dark:!text-primaryDark focus:ring-primary hover:cursor-pointer disabled:opacity-50',
     },
   },
   textarea: {
@@ -246,7 +340,7 @@ export const theme = {
           lg: 'p-4 text-md',
         },
         colors: {
-          gray: 'border-gray bg-backgroundLight text-textPrimary placeholder-textSecondary focus:border-primary focus:ring-primary dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:border-primaryDark dark:focus:ring-primaryDark',
+          gray: 'border-gray bg-white text-textPrimary placeholder-textSecondary focus:ring-0 dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:ring-0',
         },
       },
     },
