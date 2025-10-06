@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import React from 'react';
 
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import TimelineItem from '@/components/cards/timeline-item/TimelineItem';
@@ -8,8 +7,9 @@ import PageHeader from '@/components/heroes/page-header/PageHeader';
 import EventCardsMasonryGrid from '@/components/masonry-grids/event-cards-masonry-grid/EventCardsMasonryGrid';
 import { WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
-import { Event } from '@/data/types';
 import { getAllEvents } from '@/data/services/sanity/queries/events';
+import { Event } from '@/data/types';
+import { isAfter } from 'date-fns';
 
 export const metadata: Metadata = {
   title: 'Events',
@@ -34,7 +34,10 @@ const Events = async () => {
           {/* Desktop */}
           <div className="hidden md:block 2xl:px-padding">
             <EventCardsMasonryGrid
-              events={events.map((event: Event) => ({ ...event, scale: true }))}
+              events={events.map((event: Event) => ({
+                ...event,
+                scale: isAfter(event.date, new Date()),
+              }))}
             />
           </div>
 

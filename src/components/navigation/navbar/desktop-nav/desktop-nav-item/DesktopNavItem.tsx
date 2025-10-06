@@ -16,13 +16,13 @@ const DesktopNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
         ref={ref}
         className="group flex flex-col items-center justify-center gap-[2px] hover:cursor-pointer"
       >
-        <h6
+        <h5
           className={`${
             changeColor ? 'text-black dark:text-textInverse' : 'text-white dark:text-textInverse'
           } whitespace-nowrap tracking-wider uppercase font-normal`}
         >
           {label}
-        </h6>
+        </h5>
 
         {/* Decorative underline */}
         <div className="flex justify-center items-center h-fit w-full px-sm">

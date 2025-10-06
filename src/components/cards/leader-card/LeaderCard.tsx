@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import React, { useEffect, useRef, useState } from 'react';
 
-import CircleX from '@/components/icons/circleX';
-import X from '@/components/icons/x';
+import CornerButton from '@/components/buttons/corner-button/CornerButton';
 
 interface LeaderCardProps {
   first_name: string;
@@ -50,7 +49,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
   return (
     <div
       ref={card}
-      className="relative overflow-hidden w-full aspect-[3/4] min-w-[200px] max-w-[400px] border border-lightGray dark:border-softGray rounded-lg"
+      className="relative overflow-hidden w-full aspect-[3/4] min-w-[200px] max-w-[400px] border border-gray dark:border-grayDark rounded-lg"
     >
       {/* video */}
       {video ? (
@@ -62,7 +61,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
             ref={videoCard}
             poster={image}
             data-testid="leader-video"
-            className="w-full h-full object-cover rounded-lg grayscale group-hover:grayscale-0 group-hover:bg-gradient-to-t from-yellow/80 transition-all duration-500"
+            className="w-full h-full object-cover rounded-lg grayscale group-hover:grayscale-0 group-hover:bg-gradient-to-t from-primary/80 transition-all duration-500"
           >
             <source src={video} type="video/mp4" />
           </video>
@@ -72,7 +71,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
           fill
           src={image}
           alt={`profile image of ${first_name} ${last_name}, ${position}`}
-          className="w-full h-full object-cover rounded-lg grayscale group-hover:grayscale-0 group-hover:bg-gradient-to-t from-yellow/80 transition-all duration-500"
+          className="w-full h-full object-cover rounded-lg grayscale group-hover:grayscale-0 group-hover:bg-gradient-to-t from-primary/80 transition-all duration-500"
         />
       )}
 
@@ -83,28 +82,22 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
         }}
         className={`${
           open
-            ? 'bg-white dark:bg-lightGray overflow-scroll'
+            ? 'bg-white dark:bg-grayDark overflow-scroll'
             : 'opacity-0 pointer-events-none overflow-hiden'
         } transition-[height, opacity] duration-500 absolute top-0 left-0 rounded-lg scrollbar-hide`}
       >
-        <div className="relative w-full h-full flex flex-col gap-xs p-md text-charcoal scrollbar-hide">
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="absolute right-0 top-0 p-xs hover:cursor-pointer bg-lightGray/40 hover:bg-lightGray/80 rounded-bl-lg"
-          >
-            <X />
-          </button>
-          <h4 className="text-black">
+        <div className="relative w-full h-full flex flex-col gap-xs p-md text-charcoal dark:text-textInverse scrollbar-hide">
+          <CornerButton onClick={setOpen} className="absolute z-10 right-0 top-0" />
+          <h4 className="text-black dark:text-primaryDark">
             {first_name} {last_name}
           </h4>
           <h5>{position}</h5>
           {roles && roles.length > 0 && (
-            <div className="italic text-charcoal dark:text-softCharcoal font-light">
+            <div className="italic font-light">
               Other roles: {roles.map((r, idx) => (idx >= roles.length - 1 ? r : `${r}, `))}
             </div>
           )}
-          <div className="w-[45px] h-[2px] bg-primary rounded-xs" />
+          <div className="w-[45px] h-[2px] bg-primary rounded-xs mb-2" />
           <div className="max-h-full overflow-y-scroll scrollbar-hide overscroll-contain y-scrollbox">
             {description}
           </div>

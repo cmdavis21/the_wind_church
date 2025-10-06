@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
-import SectionHeader from './SectionHeader';
 import '@testing-library/jest-dom';
+import SectionHeader from './SectionHeader';
 
 describe('SectionHeader', () => {
   const title = 'Main Section Title Here';
@@ -38,7 +38,7 @@ describe('SectionHeader', () => {
   it('should apply the correct background color when blueBar is true', () => {
     render(<SectionHeader title={title} blueBar />);
     const barElement = screen.getByText(title).closest('div')?.querySelector('div');
-    expect(barElement).toHaveClass('bg-blue');
+    expect(barElement).toHaveClass('bg-navy');
   });
 
   it('should apply padding when noPadding is false', () => {

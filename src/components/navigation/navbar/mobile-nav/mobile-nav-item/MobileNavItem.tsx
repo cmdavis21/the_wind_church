@@ -17,13 +17,13 @@ const MobileNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
         ref={ref}
         type="button"
         {...rest}
-        className={`rounded-lg transition-all duration-300 ${link ? `p-sm w-full ${changeColor ? 'hover:bg-lightGray/50 hover:dark:bg-softGray' : 'hover:bg-charcoal/80 hover:dark:bg-softGray'}` : ''}`}
+        className={`rounded-lg transition-all duration-300 ${link ? `p-sm w-full ${changeColor ? 'hover:bg-gray/50 hover:dark:bg-softGray' : 'hover:bg-charcoal/80 hover:dark:bg-softGray'}` : ''}`}
       >
         <div className="w-full flex items-center justify-between gap-md">
           <h5
             className={`${
               changeColor
-                ? `${active ? 'text-softYellow' : 'text-black dark:text-textInverse'}`
+                ? `${active ? 'text-primaryDark' : 'text-black dark:text-textInverse'}`
                 : `${active ? 'text-primary dark:text-primaryDark' : 'text-white dark:text-textInverse'}`
             } whitespace-nowrap tracking-wider capitalize`}
           >
@@ -33,8 +33,8 @@ const MobileNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
             <Plus
               className={`size-[15px] ${active ? 'rotate-45' : ''} transition-all duration-300 ${
                 changeColor
-                  ? `${active ? 'fill-softYellow' : 'fill-black dark:fill-softWhite'}`
-                  : `${active ? 'fill-yellow dark:fill-softYellow' : 'fill-softWhite'}`
+                  ? `${active ? 'fill-primaryDark' : 'fill-black dark:fill-textInverse'}`
+                  : `${active ? 'fill-primary dark:fill-primaryDark' : 'fill-textInverse'}`
               }`}
             />
           )}

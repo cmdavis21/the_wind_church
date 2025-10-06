@@ -24,7 +24,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeCo
     <div
       className={`w-full hidden lg:block ${
         changeColor
-          ? `${darkMode ? 'bg-[#1C1C1E]' : 'bg-[rgba(255,255,255,0.98)]'} shadow-sm`
+          ? `${darkMode ? 'bg-backgroundDark shadow-xl' : 'bg-[rgba(255,255,255,0.98)] shadow-sm'}`
           : 'bg-gradient-to-b from-black/40'
       } transition-[height, opacity] duration-500 rounded-b-lg`}
     >
@@ -63,7 +63,9 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeCo
             href={menuOptions[menuOptions.length - 1].link}
             color={changeColor ? 'primary' : 'ghost'}
           >
-            <h5 className={`uppercase ${!changeColor ? 'text-white group-hover:text-black' : ''}`}>
+            <h5
+              className={`uppercase ${openNav ? 'text-white dark:text-textInverse' : 'text-white dark:text-textInverse dark:group-hover:text-black'}`}
+            >
               {menuOptions[menuOptions.length - 1].label}
             </h5>
           </Button>

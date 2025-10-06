@@ -1,11 +1,9 @@
-import React from 'react';
 import Image from 'next/image';
-import { Button } from 'flowbite-react';
+import React from 'react';
 
+import UpArrow from '@/components/icons/upArrow';
 import { findMediaType, MediaType, styleSelectedWords } from '@/data/utils';
 import Link from 'next/link';
-import ScrollToButton from '@/components/buttons/scroll-to-button/ScrollToButton';
-import UpArrow from '@/components/icons/upArrow';
 
 interface HomepageHeroProps {
   title: string;
@@ -95,12 +93,12 @@ const HomepageHero: React.FC<HomepageHeroProps> = ({
               <Link href={primaryButton.id}>
                 <button
                   type="button"
-                  className="relative group rounded-full w-full lg:w-fit overflow-hidden bg-white dark:bg-softWhite"
+                  className="relative group rounded-full w-full lg:w-fit overflow-hidden bg-white dark:bg-textInverse"
                 >
                   {/* decorative button fill */}
                   <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
                     <div className="flex items-center h-[47px]">
-                      <div className="w-0 h-full bg-white dark:bg-softWhite group-hover:w-full transition-all duration-300" />
+                      <div className="w-0 h-full bg-white dark:bg-textInverse group-hover:w-full transition-all duration-300" />
                       <div className="w-full h-full bg-primary dark:bg-primaryDark group-hover:w-0 transition-all duration-300 rounded-full" />
                     </div>
                   </div>
@@ -118,7 +116,7 @@ const HomepageHero: React.FC<HomepageHeroProps> = ({
                   {/* decorative button fill */}
                   <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
                     <div className="flex items-center h-[47px]">
-                      <div className="w-0 h-full bg-white dark:bg-softWhite group-hover:w-full transition-all duration-300" />
+                      <div className="w-0 h-full bg-white dark:bg-textInverse group-hover:w-full transition-all duration-300" />
                       <div className="w-full h-full bg-transparent group-hover:w-0 transition-all duration-300 rounded-full" />
                     </div>
                   </div>
@@ -130,7 +128,7 @@ const HomepageHero: React.FC<HomepageHeroProps> = ({
               </Link>
               {/* <ScrollToButton
                 pill
-                color="yellow"
+                color="primary"
                 id={primaryButton.id}
                 label={primaryButton.label}
               />

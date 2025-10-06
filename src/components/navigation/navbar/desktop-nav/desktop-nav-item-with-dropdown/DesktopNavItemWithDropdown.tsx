@@ -70,11 +70,11 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                 <button type="button" className="relative group w-full max-w-[225px]">
                   {/* decorative button fill */}
                   <div
-                    className={`absolute w-full h-full top-0 left-0 overflow-hidden rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-gray' : 'bg-white dark:bg-gray'} drop-shadow-xl shadow-2xl`}
+                    className={`absolute w-full h-full top-0 left-0 overflow-hidden rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-gray'} drop-shadow-xl shadow-2xl`}
                   >
                     <div className="h-full flex items-center">
                       <div
-                        className={`w-full h-[42px] rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-gray' : 'bg-white dark:bg-gray'} ${pathname === item.link ? '!w-0' : 'group-hover:w-0'} transition-all duration-500`}
+                        className={`w-full h-[42px] rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-gray'} ${pathname === item.link ? '!w-0' : 'group-hover:w-0'} transition-all duration-500`}
                       />
                       <div
                         className={`w-0 h-[42px] rounded-full bg-primary dark:bg-primaryDark ${pathname === item.link ? 'w-full' : 'group-hover:w-full'} transition-all duration-500`}

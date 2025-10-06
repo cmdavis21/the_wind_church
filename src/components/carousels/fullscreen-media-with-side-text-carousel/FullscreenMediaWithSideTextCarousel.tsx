@@ -1,14 +1,14 @@
 'use client';
 
-import 'react-multi-carousel/lib/styles.css';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 import { findMediaType, MediaType } from '@/data/utils';
 
-import CarouselDot from '../carousel-dot/CarouselDot';
 import CarouselArrows from '../carousel-arrows/CarouselArrows';
+import CarouselDot from '../carousel-dot/CarouselDot';
 
 interface FullscreenMediaWithSideTextCarouselProps {
   slides: {
@@ -75,12 +75,12 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
       leftArrowProps={{
         onClick: () => previous(),
         buttonClassName: 'absolute bottom-5 left-5 z-10',
-        iconClassName: 'fill-yellow',
+        iconClassName: 'fill-primary',
       }}
       rightArrowProps={{
         onClick: () => next(),
         buttonClassName: 'absolute bottom-5 right-5 z-10',
-        iconClassName: 'fill-yellow',
+        iconClassName: 'fill-primary',
       }}
     />
   );

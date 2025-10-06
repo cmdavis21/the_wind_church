@@ -1,6 +1,6 @@
+import X from '@/components/icons/x';
 import { Modal } from 'flowbite-react';
 import Image from 'next/image';
-import X from '@/components/icons/x';
 
 interface ImageModalProps {
   src: string;
@@ -16,7 +16,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ src, alt, open, setOpen }) => (
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute z-10 right-0 top-0 p-xs hover:cursor-pointer bg-lightGray hover:bg-lightGray/80 rounded-bl-lg rounded-tr-lg"
+          className="absolute z-10 right-0 top-0 p-xs hover:cursor-pointer bg-gray hover:bg-gray/80 rounded-bl-lg rounded-tr-lg"
         >
           <X />
         </button>

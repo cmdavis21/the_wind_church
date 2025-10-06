@@ -25,11 +25,11 @@ const AccordionItemWithLine: React.FC<AccordionItemWithLineProps> = ({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center gap-md pb-md border border-lightGray dark:border-softCharcoal border-x-0 border-t-0"
+        className="w-full flex items-center gap-md pb-md border border-gray dark:border-grayDark border-x-0 border-t-0"
       >
-        <Plus className={`fill-yellow ${open ? 'rotate-45' : ''} transition-all duration-300`} />
+        <Plus className={`fill-primary ${open ? 'rotate-45' : ''} transition-all duration-300`} />
         <h3
-          className={`max-sm:text-[20px] text-blue dark:text-softBlue text-left font-thin tracking-wide ${
+          className={`max-sm:text-[20px] text-navy dark:text-navyLight text-left font-thin tracking-wide ${
             open ? 'font-bold' : ''
           }`}
         >

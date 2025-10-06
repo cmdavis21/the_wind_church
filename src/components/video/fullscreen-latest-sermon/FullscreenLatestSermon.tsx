@@ -1,6 +1,6 @@
 'use client';
 
-import { Tooltip, Button } from 'flowbite-react';
+import { Button, Tooltip } from 'flowbite-react';
 import React, { useState } from 'react';
 
 import VolumeHigh from '@/components/icons/volumeHigh';
@@ -61,7 +61,7 @@ const FullscreenLatestSermon: React.FC<FullscreenLatestSermonProps> = ({
           <Button
             pill
             size="sm_md"
-            color="info"
+            color="ghost"
             className="w-full md:w-fit group !border-0"
             href={link}
           >
@@ -70,7 +70,7 @@ const FullscreenLatestSermon: React.FC<FullscreenLatestSermonProps> = ({
           <Button
             pill
             size="sm_md"
-            color="info"
+            color="ghost"
             className="w-full md:w-fit group !border-0"
             href={PageRoutes.sermons}
           >

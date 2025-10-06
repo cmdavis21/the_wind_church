@@ -63,7 +63,7 @@ const RightnowMediaSignupForm = () => {
           <TextInput
             type="text"
             disabled={isPending || isSuccess}
-            placeholder="Enter your first name"
+            placeholder="Your first name"
             {...register('first_name')}
             className="w-full"
           />
@@ -74,7 +74,7 @@ const RightnowMediaSignupForm = () => {
           <TextInput
             type="text"
             disabled={isPending || isSuccess}
-            placeholder="Enter your last name"
+            placeholder="Your last name"
             {...register('last_name')}
             className="w-full"
           />
@@ -88,7 +88,7 @@ const RightnowMediaSignupForm = () => {
           <TextInput
             type="tel"
             disabled={isPending || isSuccess}
-            placeholder="Enter your phone number"
+            placeholder="Your phone number"
             {...register('phone')}
             className="w-full"
           />
@@ -99,7 +99,7 @@ const RightnowMediaSignupForm = () => {
           <TextInput
             type="email"
             disabled={isPending || isSuccess}
-            placeholder="Enter your email"
+            placeholder="Your email"
             {...register('email')}
             className="w-full"
           />

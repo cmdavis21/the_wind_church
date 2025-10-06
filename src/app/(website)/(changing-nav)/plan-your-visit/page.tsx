@@ -1,22 +1,21 @@
 import { Metadata } from 'next';
-import React from 'react';
 
-import Caret from '@/components/icons/caret';
-import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
-import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
-import { PageRoutes } from '@/data/page-routes';
 import Accordion from '@/components/accordion/Accordion';
+import OpenWindowWithQueryButton from '@/components/buttons/open-window-with-query-button/OpenWindowWithQueryButton';
+import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import MultiFormContainer from '@/components/forms/multi-form-container/MultiFormContainer';
 import PlanYourVisitForm from '@/components/forms/plan-your-visit-form/PlanYourVisitForm';
-import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
-import VideoWithTitle from '@/components/video/video-with-title/VideoWithTitle';
-import { styleSelectedWords } from '@/data/utils';
-import UpArrow from '@/components/icons/upArrow';
-import OpenWindowWithQueryButton from '@/components/buttons/open-window-with-query-button/OpenWindowWithQueryButton';
 import VisitorFeedbackForm from '@/components/forms/visitor-feedback-form/VisitorFeedbackForm';
-import Link from 'next/link';
 import PageHero from '@/components/heroes/page-hero/PageHero';
+import Caret from '@/components/icons/caret';
+import UpArrow from '@/components/icons/upArrow';
+import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import VideoWithTitle from '@/components/video/video-with-title/VideoWithTitle';
+import { WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
+import { styleSelectedWords } from '@/data/utils';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Plan Your Visit',
@@ -62,8 +61,8 @@ const PlanYourVisit = () => (
           <OpenWindowWithQueryButton label={'6476 Streeter Avenue Riverside, CA 92504'} />
           <Link target="_blank" href={YOUTUBE_CHANNEL} className="w-fit group">
             <div className="flex items-center gap-xs">
-              <UpArrow className="fill-blue dark:fill-softBlue rotate-45 group-hover:rotate-90 transition-all duration-300" />
-              <h5 className="text-blue dark:text-softBlue group-hover:underline font-bold">
+              <UpArrow className="fill-navy dark:fill-navyLight rotate-45 group-hover:rotate-90 transition-all duration-300" />
+              <h5 className="text-navy dark:text-navyLight group-hover:underline font-bold">
                 Watch Online
               </h5>
             </div>
@@ -153,7 +152,7 @@ const PlanYourVisit = () => (
                     <Caret fill="#FFD300" className="rotate-90" />
                     <Link
                       href={PageRoutes.nextGen}
-                      className="underline text-blue dark:text-softBlue"
+                      className="underline text-navy dark:text-navyLight"
                     >
                       <p className="body-large">Learn your kids cirriculum</p>
                     </Link>

@@ -153,7 +153,7 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
                   setSelections((prev) => [...prev, name]);
                 }
               }}
-              className="flex items-center gap-xs border border-lightGray rounded-md p-sm hover:bg-lightGray/20 hover:shadow-sm hover:cursor-pointer"
+              className="flex items-center gap-xs border border-gray rounded-md p-sm hover:bg-gray/20 hover:shadow-sm hover:cursor-pointer"
             >
               <Checkbox
                 {...register('ministry_interests')}

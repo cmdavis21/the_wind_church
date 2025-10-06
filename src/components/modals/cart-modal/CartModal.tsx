@@ -1,9 +1,9 @@
+import CornerButton from '@/components/buttons/corner-button/CornerButton';
+import { formatPrice, Price } from '@/data/format-price';
+import { PageRoutes } from '@/data/page-routes';
 import { Button, Modal } from 'flowbite-react';
 import Image from 'next/image';
-import { formatPrice, Price } from '@/data/format-price';
 import Link from 'next/link';
-import { PageRoutes } from '@/data/page-routes';
-import CornerButton from '@/components/buttons/corner-button/CornerButton';
 
 interface CartModalProps {
   open: boolean;
@@ -39,10 +39,10 @@ const CartModal: React.FC<CartModalProps> = ({ open, setOpen, cartQuantity, cart
             in the cart
           </h5>
 
-          <hr className="text-gray" />
+          <hr className="text-gray dark:text-grayDark" />
 
           {/* CART ITEMS */}
-          <div className="grow y-scrollbox divide-y divide-gray scrollbar-hide">
+          <div className="grow y-scrollbox divide-y divide-gray dark:divide-grayDark scrollbar-hide">
             {cartLines.map((line) => (
               <div key={`single-product-page-mobile-${line.title}`} className="flex gap-md p-sm">
                 <div className="relative size-[80px]">
@@ -74,7 +74,7 @@ const CartModal: React.FC<CartModalProps> = ({ open, setOpen, cartQuantity, cart
             ))}
           </div>
 
-          <hr className="text-gray" />
+          <hr className="text-gray dark:text-grayDark" />
 
           {/* ACTION BUTTONS */}
           <div className="flex flex-col md:flex-row items-center gap-md">

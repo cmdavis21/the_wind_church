@@ -23,7 +23,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   const height = useResizeHeightObserver(accordionDesc);
 
   return (
-    <div className="w-full border border-gray px-[20px] md:px-[25px] py-[20px] dark:border-grayDark rounded-lg overflow-hidden">
+    <div className="w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse px-[20px] md:px-[25px] py-[20px] rounded-lg overflow-hidden">
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -37,7 +37,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
           )}
           {Icon && (typeof Icon === 'function' ? <Icon width={30} height={30} /> : Icon)}
           <p
-            className={`leading-[24px] font-light text-[18px] md:text-[20px] xl:text-[24px] text-navy dark:text-navyLight text-left tracking-wide ${
+            className={`leading-[24px] font-light text-[18px] md:text-[20px] xl:text-[24px] text-navy dark:text-textInverse text-left tracking-wide ${
               open ? 'italic' : ''
             }`}
           >
@@ -45,7 +45,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
           </p>
         </div>
         <Plus
-          className={`size-[20px] ${open ? 'rotate-45' : ''} fill-navy dark:fill-navyLight transition-all duration-300`}
+          className={`size-[20px] ${open ? 'rotate-45' : ''} fill-navy dark:fill-textInverse transition-all duration-300`}
         />
       </button>
 
@@ -54,7 +54,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
         style={{ height: open ? `${height + 20}px` : '0px' }}
         className={`${
           open ? 'pt-[15px] md:pt-[20px] mt-[15px] md:mt-[20px]' : 'opacity-0 pointer-events-none'
-        } border border-gray dark:border-graydark border-x-0 border-b-0 transition-[height, opacity] duration-300`}
+        } border border-gray dark:border-grayDark border-x-0 border-b-0 transition-[height, opacity] duration-300`}
       >
         <div ref={accordionDesc} className="body-large text-charcoal dark:text-textInverse">
           {description}

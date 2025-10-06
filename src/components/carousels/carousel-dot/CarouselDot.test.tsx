@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 
 import CarouselDot from './CarouselDot';
 
@@ -25,20 +24,20 @@ describe('CarouselDot', () => {
     render(<CarouselDot onClick={mockOnClick} active={true} blueDot={false} />);
     const button = screen.getByRole('button');
 
-    expect(button).toHaveClass('bg-primary/20 border-yellow');
+    expect(button).toHaveClass('bg-primary/20 border-primary');
   });
 
   it('should have the correct classes when active and blueDot is true', () => {
     render(<CarouselDot onClick={mockOnClick} active={true} blueDot={true} />);
     const button = screen.getByRole('button');
 
-    expect(button).toHaveClass('bg-blue/20 border-blue');
+    expect(button).toHaveClass('bg-navy/20 border-navy');
   });
 
   it('should have the correct classes when inactive', () => {
     render(<CarouselDot onClick={mockOnClick} active={false} blueDot={false} />);
     const button = screen.getByRole('button');
 
-    expect(button).toHaveClass('bg-lightGray/20 border-lightGray');
+    expect(button).toHaveClass('bg-gray/20 border-gray');
   });
 });

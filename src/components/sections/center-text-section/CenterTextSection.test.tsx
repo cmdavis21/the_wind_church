@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 
 import { styleSelectedWords } from '@/data/utils';
 
@@ -32,7 +31,7 @@ describe('CenterTextSection', () => {
   });
 
   it('should render title as React element', () => {
-    const reactElementTitle = <span className="text-blue">This is a React element title</span>;
+    const reactElementTitle = <span className="text-navy">This is a React element title</span>;
     render(<CenterTextSection title={reactElementTitle} description={description} />);
 
     // Check if the React element title is rendered correctly

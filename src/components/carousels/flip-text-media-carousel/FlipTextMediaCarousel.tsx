@@ -1,11 +1,11 @@
 'use client';
 
+import { findMediaType, MediaType } from '@/data/utils';
+import { Button } from 'flowbite-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import Carousel from 'react-multi-carousel';
-import Image from 'next/image';
-import { Button } from 'flowbite-react';
-import { findMediaType, MediaType } from '@/data/utils';
-import Link from 'next/link';
 
 import CarouselArrows from '../carousel-arrows/CarouselArrows';
 import CarouselDot from '../carousel-dot/CarouselDot';
@@ -72,12 +72,12 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({ slides })
       leftArrowProps={{
         onClick: () => previous(),
         buttonClassName: 'absolute bottom-5 left-5 z-10',
-        iconClassName: 'fill-yellow',
+        iconClassName: 'fill-primary',
       }}
       rightArrowProps={{
         onClick: () => next(),
         buttonClassName: 'absolute bottom-5 right-5 z-10',
-        iconClassName: 'fill-yellow',
+        iconClassName: 'fill-primary',
       }}
     />
   );
@@ -108,7 +108,7 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({ slides })
                 <h4>{slide.description}</h4>
                 {slide.button && (
                   <Link href={slide.button.link}>
-                    <Button color="yellow" size="lg" pill>
+                    <Button color="primary" size="lg" pill>
                       {slide.button.label}
                     </Button>
                   </Link>
@@ -185,7 +185,7 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({ slides })
               <p className="body-large">{slide.description}</p>
               {slide.button && (
                 <Link href={slide.button.link}>
-                  <Button color="yellow" size="lg" pill>
+                  <Button color="primary" size="lg" pill>
                     {slide.button.label}
                   </Button>
                 </Link>

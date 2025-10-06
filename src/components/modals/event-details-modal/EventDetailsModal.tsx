@@ -1,13 +1,13 @@
-import { Modal, ModalBody } from 'flowbite-react';
-import Image from 'next/image';
-import React from 'react';
-import { formatDateMMMddyyyy } from '@/data/format-date';
-import Location from '@/components/icons/location';
-import { Event } from '@/data/types';
+import CornerButton from '@/components/buttons/corner-button/CornerButton';
 import Calendar from '@/components/icons/calendar';
 import Clock from '@/components/icons/clock';
 import DollarSign from '@/components/icons/dollarSign';
-import X from '@/components/icons/x';
+import Location from '@/components/icons/location';
+import { formatDateMMMddyyyy } from '@/data/format-date';
+import { Event } from '@/data/types';
+import { Modal, ModalBody } from 'flowbite-react';
+import Image from 'next/image';
+import React from 'react';
 
 interface EventDetailsModalProps {
   event: Event;
@@ -22,14 +22,8 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
 }) => (
   <Modal size="5xl" dismissible show={openModal} onClose={() => setOpenModal(!openModal)}>
     <ModalBody className="p-0">
-      <div className="relative rounded-lg text-black grid grid-cols-1 md:grid-cols-3 gap-xl p-md md:p-xl">
-        <button
-          type="button"
-          className="absolute z-10 top-0 right-0 hover:opacity-50 bg-lightGray md:bg-lightGray/40 hover:bg-lightGray/80 rounded-bl-lg rounded-tr-lg p-xs"
-          onClick={() => setOpenModal(!openModal)}
-        >
-          <X />
-        </button>
+      <div className="border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse relative rounded-lg grid grid-cols-1 md:grid-cols-3 gap-xl p-md md:p-xl">
+        <CornerButton onClick={setOpenModal} className="absolute z-10 right-0 top-0" />
         <div className="relative min-w-full h-full min-h-[300px] md:min-h-[400px] max-h-[700px] my-auto">
           <Image
             fill
@@ -38,7 +32,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             className="object-cover rounded-lg"
           />
         </div>
-        <div className="md:col-span-2 flex flex-col gap-md h-full overflow-y-scroll y-scrollbox overflow-hidden scrollbar-hide">
+        <div className="md:col-span-2 flex flex-col gap-md h-full overflow-y-scroll overflow-hidden scrollbar-hide">
           <h2>{event.name}</h2>
 
           {event.categories && (
@@ -57,21 +51,21 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
           <h5 className="line-clamp-6">{event.description}</h5>
 
           <h5 className="flex items-center gap-sm">
-            <Calendar /> {formatDateMMMddyyyy(event.date)}
+            <Calendar className="dark:fill-textInverse" /> {formatDateMMMddyyyy(event.date)}
           </h5>
 
           <h5 className="flex items-center gap-sm">
-            <Clock /> {event.time.hour}
+            <Clock className="dark:fill-textInverse" /> {event.time.hour}
             {event.time.minute && `:${event.time.minute}`} {event.time.time_of_day}
           </h5>
 
           <h5 className="flex items-center gap-sm">
-            <Location /> {event.location}
+            <Location className="dark:fill-textInverse" /> {event.location}
           </h5>
 
           {event.cost && (
             <h5 className="flex items-center gap-sm">
-              <DollarSign /> {event.cost}
+              <DollarSign className="dark:fill-textInverse" /> {event.cost}
             </h5>
           )}
 

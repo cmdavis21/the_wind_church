@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
-import TextRadio from './TextRadio';
 import '@testing-library/jest-dom';
+import TextRadio from './TextRadio';
 
 describe('TextRadio', () => {
   const mockOnSelect = jest.fn();
@@ -14,17 +14,13 @@ describe('TextRadio', () => {
   });
 
   it('applies active border when active is true', () => {
-    const { container } = render(
-      <TextRadio text={text} active={true} onSelect={mockOnSelect} />
-    );
+    const { container } = render(<TextRadio text={text} active={true} onSelect={mockOnSelect} />);
 
-    expect(container.firstChild).toHaveClass('border-yellow');
+    expect(container.firstChild).toHaveClass('border-primary');
   });
 
   it('applies default border when active is false', () => {
-    const { container } = render(
-      <TextRadio text={text} active={false} onSelect={mockOnSelect} />
-    );
+    const { container } = render(<TextRadio text={text} active={false} onSelect={mockOnSelect} />);
 
     expect(container.firstChild).toHaveClass('border-white');
   });

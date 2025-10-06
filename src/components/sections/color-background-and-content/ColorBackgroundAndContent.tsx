@@ -42,7 +42,7 @@ const ColorBackgroundAndContent: React.FC<ColorBackgroundAndContentProps> = ({
       <div
         className={`absolute top-0 left-0 w-full h-full ${
           background === ColorBackground.BLUE
-            ? 'bg-blue/80'
+            ? 'bg-navy/80'
             : 'bg-primary/80 dark:bg-primaryDark/80'
         } ${rounded ? 'rounded-xl' : ''} backdrop-blur-sm`}
       />

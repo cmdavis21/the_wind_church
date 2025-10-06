@@ -1,17 +1,17 @@
-import { Button } from 'flowbite-react';
-import React, { useEffect, useRef, useState } from 'react';
+import LanguageSelector from '@/components/buttons/language-selector/LanguageSelector';
+import Plus from '@/components/icons/plus';
+import VerticalEllipsis from '@/components/icons/verticalEllipsis';
+import DarkThemeToggler from '@/components/theme-mode/dark-theme-toggler/DarkThemeToggler';
 import ThemeModeLogo from '@/components/theme-mode/theme-mode-logo/ThemeModeLogo';
 import { useWindowDimensions } from '@/data/hooks';
 import { PageRoutes } from '@/data/page-routes';
 import { useTheme } from '@/data/providers/theme-mode-provider';
 import { NavbarItem } from '@/data/types';
-import LanguageSelector from '@/components/buttons/language-selector/LanguageSelector';
-import DarkThemeToggler from '@/components/theme-mode/dark-theme-toggler/DarkThemeToggler';
-import VerticalEllipsis from '@/components/icons/verticalEllipsis';
+import { Button } from 'flowbite-react';
 import Link from 'next/link';
-import MobileNavItem from './mobile-nav-item/MobileNavItem';
+import React, { useEffect, useRef, useState } from 'react';
 import MobileNavItemWithDropdown from './mobile-nav-item-with-dropdown/MobileNavItemWithDropdown';
-import Plus from '@/components/icons/plus';
+import MobileNavItem from './mobile-nav-item/MobileNavItem';
 
 interface MobileNavProps {
   menuOptions: NavbarItem[];
@@ -66,15 +66,19 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           <Button
             pill
             size="sm"
-            className="px-xs"
+            className="px-xs group"
             href={menuOptions[menuOptions.length - 1].link}
             onClick={() => {
               setOpenNav(false);
               setOpenNavSettings(false);
             }}
-            color={changeColor ? 'yellow' : 'clear_white'}
+            color={changeColor ? 'primary' : 'ghost'}
           >
-            <h5 className="uppercase">{menuOptions[menuOptions.length - 1].label}</h5>
+            <h5
+              className={`uppercase ${openNav || openNavSettings ? 'text-white dark:text-textInverse' : 'text-white dark:text-textInverse dark:group-hover:text-black'}`}
+            >
+              {menuOptions[menuOptions.length - 1].label}
+            </h5>
           </Button>
 
           <button
@@ -83,13 +87,13 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
               setOpenNavSettings(false);
               setOpenNav(!openNav);
             }}
-            className="p-xs hover:opacity-75 hover:bg-lightGray/30 rounded-md"
+            className="p-xs hover:opacity-75 hover:bg-gray/30 rounded-md"
           >
             <Plus
               className={`size-[25px] ${openNav ? 'rotate-45' : ''} transition-all duration-300 ${
                 changeColor
-                  ? `${openNav ? 'fill-softYellow' : 'fill-black dark:fill-softWhite'}`
-                  : `${openNav ? 'fill-yellow dark:fill-softYellow' : 'fill-softWhite'}`
+                  ? `${openNav ? 'fill-primaryDark' : 'fill-black dark:fill-textInverse'}`
+                  : `${openNav ? 'fill-primary dark:fill-primaryDark' : 'fill-textInverse'}`
               }`}
             />
           </button>
@@ -99,13 +103,13 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
               setOpenNav(false);
               setOpenNavSettings(!openNavSettings);
             }}
-            className="p-xs hover:opacity-75 hover:bg-lightGray/30 rounded-md"
+            className="p-xs hover:opacity-75 hover:bg-gray/30 rounded-md"
           >
             <VerticalEllipsis
               className={`size-[22px] transition-all duration-300 ${
                 changeColor
-                  ? `${openNavSettings ? 'fill-softYellow' : 'fill-black dark:fill-softWhite'}`
-                  : `${openNavSettings ? 'fill-yellow dark:fill-softYellow' : 'fill-softWhite'}`
+                  ? `${openNavSettings ? 'fill-primaryDark' : 'fill-black dark:fill-textInverse'}`
+                  : `${openNavSettings ? 'fill-primary dark:fill-primaryDark' : 'fill-textInverse'}`
               }`}
             />
           </button>

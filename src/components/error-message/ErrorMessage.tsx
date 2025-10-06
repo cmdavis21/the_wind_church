@@ -15,22 +15,12 @@ interface ErrorMessageProps {
   reloadPage?: boolean;
 }
 
-const ErrorMessage: React.FC<ErrorMessageProps> = ({
-  message,
-  routeToPage,
-  reloadPage,
-}) => (
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ message, routeToPage, reloadPage }) => (
   <div className="p-padding flex justify-center items-center">
     <div className="flex flex-col justify-center items-center text-center gap-[52px]">
       <h3>{message ?? 'An error has occured. Please try agin later.'}</h3>
       <div className="flex flex-wrap gap-sm w-full justify-center">
-        <Button
-          pill
-          size="lg"
-          color="info"
-          className="h-full"
-          href={PageRoutes.home}
-        >
+        <Button pill size="lg" color="ghost" className="h-full" href={PageRoutes.home}>
           <div className="flex items-center gap-sm">
             <Home /> Home
           </div>
@@ -39,7 +29,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
           <Button
             pill
             size="lg"
-            color="info"
+            color="ghost"
             className="h-full"
             onClick={() => {
               if (window) window.location.reload();
@@ -51,13 +41,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
           </Button>
         )}
         {routeToPage && (
-          <Button
-            pill
-            size="lg"
-            color="yellow"
-            className="h-full"
-            href={routeToPage.link}
-          >
+          <Button pill size="lg" color="primary" className="h-full" href={routeToPage.link}>
             {routeToPage.label}
           </Button>
         )}

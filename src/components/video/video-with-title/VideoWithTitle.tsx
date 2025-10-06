@@ -75,12 +75,7 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
             isPaused ? '' : 'opacity-0'
           } transition-opacity duration-500 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}
         >
-          <Button
-            pill
-            color="yellow"
-            size="md"
-            className="drop-shadow-lg hover:cursor-pointer"
-          >
+          <Button pill color="primary" size="md" className="drop-shadow-lg hover:cursor-pointer">
             <div className="flex items-center gap-xs px-lg">
               <Play className="size-[15px]" />
               <h5 className="font-bold">Watch</h5>
@@ -124,7 +119,7 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
               mobileIsPaused ? '' : 'opacity-0'
             } transition-opacity duration-500 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}
           >
-            <Button pill color="yellow" size="sm" className="drop-shadow-lg">
+            <Button pill color="primary" size="sm" className="drop-shadow-lg">
               <div className="flex items-center gap-xs">
                 <Play className="size-[12px]" />
                 <p className="font-bold">Watch</p>

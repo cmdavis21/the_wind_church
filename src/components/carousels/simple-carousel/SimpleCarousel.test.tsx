@@ -1,5 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import SimpleCarousel from './SimpleCarousel';
 
@@ -41,7 +40,7 @@ describe('SimpleCarousel', () => {
     const dots = screen.getAllByRole('button').slice(2); // Exclude arrows
     fireEvent.click(dots[1]); // Click second dot
 
-    expect(dots[1]).toHaveClass('bg-primary/20 border-yellow'); // Verifying active state change
+    expect(dots[1]).toHaveClass('bg-primary/20 border-primary'); // Verifying active state change
   });
 
   it('should apply blue dot styling when blueDots is true', () => {
@@ -50,6 +49,6 @@ describe('SimpleCarousel', () => {
     const dots = screen.getAllByRole('button').slice(2);
     fireEvent.click(dots[1]);
 
-    expect(dots[1]).toHaveClass('bg-blue/20 border-blue');
+    expect(dots[1]).toHaveClass('bg-navy/20 border-navy');
   });
 });

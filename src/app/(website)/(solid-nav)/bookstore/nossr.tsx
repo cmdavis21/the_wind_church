@@ -3,7 +3,6 @@
 import ProductCard from '@/components/cards/product-card/ProductCard';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import { useGetStorefrontProducts } from '@/data/services/shopify/queries/products';
-import { Button } from 'flowbite-react';
 
 const BookstoreClient = () => {
   const { products } = useGetStorefrontProducts();
@@ -20,10 +19,10 @@ const BookstoreClient = () => {
       />
 
       <div className="relative max-w-[1440px]">
-        <div className="sticky top-0 z-10 bg-white dark:bg-backgroundDark flex w-full justify-end gap-lg py-lg border border-gray border-t-0 border-x-0">
+        {/* <div className="sticky top-0 z-10 bg-white dark:bg-backgroundDark flex w-full justify-end gap-lg py-lg border border-gray border-t-0 border-x-0">
           <Button color="secondary">Sort</Button>
           <Button color="secondary">Filters</Button>
-        </div>
+        </div> */}
         <div className="pt-lg grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg">
           {products?.map((prod) => (
             <ProductCard

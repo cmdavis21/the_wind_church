@@ -29,7 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   handle,
 }) => {
   return (
-    <Link href={`${PageRoutes.bookstore}/${handle}`} className="group w-full h-full max-w-[300px]">
+    <Link href={`${PageRoutes.bookstore}/${handle}`} className="group w-full h-fit max-w-[300px]">
       <div className="h-full flex flex-col items-center rounded-xl overflow-hidden border border-gray dark:border-grayDark bg-white dark:bg-backgroundDark shadow-sm hover:shadow-md transition-shadow duration-200">
         {/* Cover Image */}
         <div className="relative w-full aspect-[3/4] bg-white dark:bg-backgroundDark overflow-hidden">

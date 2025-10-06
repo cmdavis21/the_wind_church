@@ -1,11 +1,11 @@
-import HomepageHero from "@/components/heroes/homepage-hero/HomepageHero";
-import { WEBSITE_BASE_URL } from "@/data/constants";
-import { PageRoutes } from "@/data/page-routes";
+import HomepageHero from '@/components/heroes/homepage-hero/HomepageHero';
+import { WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
 
 export async function generateMetadata() {
   return {
     description:
-      "Welcome to The Wind Church—where Jesus is the center and lives are transformed through His presence.",
+      'Welcome to The Wind Church—where Jesus is the center and lives are transformed through His presence.',
     alternates: {
       canonical: `${WEBSITE_BASE_URL}/`,
     },
@@ -18,24 +18,24 @@ const Home = async () => {
     <div>
       <HomepageHero
         media={{
-          src: "/placeholder-media/footer_video.mp4",
-          poster: "",
+          src: '/placeholder-media/footer_video.mp4',
+          poster: '',
         }}
         title="Find your place here..."
         subtitle="Lorem ipsum dolor sit amet consectetur, adipisicing elit."
         highlightTitle={[[0, 0]]}
         primaryButton={{
-          label: "Learn More",
-          id: "#overview",
+          label: 'Learn More',
+          id: '#overview',
         }}
         secondaryButton={{
-          label: "Plan Your Visit",
+          label: 'Plan Your Visit',
           link: PageRoutes.planYourVisit,
         }}
         facts={[
-          { label: "1985", subLabel: "Founded" },
-          { label: "250+", subLabel: "Sermons" },
-          { label: "24/7", subLabel: "Prayer Support" },
+          { label: '1985', subLabel: 'Founded' },
+          { label: '250+', subLabel: 'Sermons' },
+          { label: '24/7', subLabel: 'Prayer Support' },
         ]}
       />
 
@@ -146,7 +146,7 @@ const Home = async () => {
             <Button
               pill
               size="lg"
-              color="yellow"
+              color="primary"
               href={PageRoutes.events}
               className="mt-xl w-fit mx-auto"
             >

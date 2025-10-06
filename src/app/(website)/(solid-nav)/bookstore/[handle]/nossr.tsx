@@ -184,14 +184,14 @@ const ProductPage = (product: Product) => {
             <div className="flex flex-col gap-sm">
               <div
                 ref={descriptionRef}
-                className={`body-large text-charcoal ${!showDescription ? 'line-clamp-2' : ''} transition-all duration-200`}
+                className={`body-large text-charcoal dark:text-textInverse ${!showDescription ? 'line-clamp-2' : ''} transition-all duration-200`}
                 dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
               />
               {isClamped && (
                 <button
                   type="button"
                   onClick={() => setShowDescription(!showDescription)}
-                  className="p-sm pb-0 border border-lightGray border-x-0 border-b-0 flex items-center gap-md justify-between text-charcoal"
+                  className="p-sm pb-0 border border-gray border-x-0 border-b-0 flex items-center gap-md justify-between text-charcoal dark:text-textInverse"
                 >
                   Read {showDescription ? 'Less' : 'More'}{' '}
                   {showDescription ? (
@@ -233,7 +233,7 @@ const ProductPage = (product: Product) => {
                   decrement={setQuantity}
                   increment={setQuantity}
                 />
-                <div className="text-charcoal body-small">
+                <div className="text-charcoal dark:text-textInverse body-small">
                   In the Bag (
                   {getCart?.lines.find(
                     (item) => item.variant.id === product.variants[selectedVariant].id

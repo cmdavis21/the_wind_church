@@ -25,12 +25,12 @@ export const ButtonIconClasses = {
     className: '',
     leftArrowProps: {
       onClick: () => alert('Left Arrow Clicked!'),
-      buttonClassName: 'bg-lightGray/40 p-xs',
+      buttonClassName: 'bg-gray/40 p-xs',
       iconClassName: 'fill-black/70 size-[18px]',
     },
     rightArrowProps: {
       onClick: () => alert('Right Arrow Clicked!'),
-      buttonClassName: 'bg-lightGray/40 p-xs',
+      buttonClassName: 'bg-gray/40 p-xs',
       iconClassName: 'fill-black/70 size-[18px]',
     },
   },

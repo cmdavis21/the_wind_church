@@ -34,7 +34,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ changeColor }) => {
         className="group flex flex-col items-center justify-center gap-[2px] hover:cursor-pointer"
       >
         <VerticalEllipsis
-          className={`size-[25px] ${changeColor ? 'fill-black dark:fill-softWhite' : 'fill-white dark:fill-softWhite'}`}
+          className={`size-[25px] ${changeColor ? 'fill-black dark:fill-textInverse' : 'fill-white dark:fill-textInverse'}`}
         />
         <div
           className={`w-0 h-[2px] bg-primary dark:bg-primaryDark ${
@@ -63,18 +63,18 @@ const UserSettings: React.FC<UserSettingsProps> = ({ changeColor }) => {
             className="w-full flex flex-col gap-xs transition-colors duration-500"
           >
             <div
-              className={`flex justify-center border border-lightGray dark:border-softGray ${
+              className={`flex justify-center ${
                 changeColor
-                  ? 'bg-white dark:bg-softGray drop-shadow-xl shadow-2xl'
-                  : 'bg-[rgba(255,255,255,0.98)] dark:bg-softGray'
+                  ? 'bg-white dark:bg-backgroundDark drop-shadow-xl shadow-2xl'
+                  : 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark'
               } w-full max-w-[150px] rounded-full px-md py-xs`}
             >
               <DarkThemeToggler changeColor={changeColor} />
             </div>
             <div
-              className={`flex justify-center border border-lightGray dark:border-softGray ${
+              className={`flex justify-center ${
                 changeColor
-                  ? 'bg-white dark:bg-softGray drop-shadow-xl shadow-2xl'
+                  ? 'bg-white dark:bg-backgroundDark drop-shadow-xl shadow-2xl'
                   : 'bg-[rgba(255,255,255,0.98)] dark:bg-softGray'
               } w-full max-w-[150px] rounded-full px-md py-xs`}
             >

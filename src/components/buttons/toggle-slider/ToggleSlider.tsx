@@ -32,7 +32,7 @@ const ToggleSlider: React.FC<ToggleSliderProps> = ({ defaultSelect, options }) =
   return (
     <div
       ref={containerRef}
-      className="relative flex gap-md w-fit justify-center bg-lightGray/20 dark:bg-softGray rounded-full p-xs"
+      className="relative flex gap-md w-fit justify-center bg-gray/20 dark:bg-softGray rounded-full p-xs"
     >
       {/* Sliding background */}
       <div

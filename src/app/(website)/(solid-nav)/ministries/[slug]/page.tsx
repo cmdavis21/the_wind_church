@@ -1,22 +1,21 @@
 import { Button } from 'flowbite-react';
-import React from 'react';
 
+import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
+import ErrorMessage from '@/components/error-message/ErrorMessage';
+import PageHero from '@/components/heroes/page-hero/PageHero';
+import EventCardsMasonryGrid from '@/components/masonry-grids/event-cards-masonry-grid/EventCardsMasonryGrid';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
+import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
-import Accordion from '@/components/accordion/Accordion';
-import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
-import ErrorMessage from '@/components/error-message/ErrorMessage';
-import EventCardsMasonryGrid from '@/components/masonry-grids/event-cards-masonry-grid/EventCardsMasonryGrid';
-import { Event } from '@/data/types';
-import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
-import PageHero from '@/components/heroes/page-hero/PageHero';
 import { getAllEvents } from '@/data/services/sanity/queries/events';
 import { getAllMinistries, getMinistryBySlug } from '@/data/services/sanity/queries/ministries';
+import { Event } from '@/data/types';
 
 export async function generateStaticParams() {
   const ministries = await getAllMinistries();
@@ -67,7 +66,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
 
           <div className="flex flex-wrap gap-lg">
             {ministry.meeting_details.map((item) => (
-              <div key={item.day} className="bg-lightGray/20 dark:bg-softGray/50 rounded-xl p-md">
+              <div key={item.day} className="bg-gray/20 dark:bg-softGray/50 rounded-xl p-md">
                 <h4>
                   {item.day} @ {item.time.hour}:{item.time.minute} {item.time.time_of_day}
                 </h4>
@@ -135,7 +134,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             <Button
               pill
               size="lg"
-              color="yellow"
+              color="primary"
               href={PageRoutes.events}
               className="mt-xl w-fit mx-auto"
             >

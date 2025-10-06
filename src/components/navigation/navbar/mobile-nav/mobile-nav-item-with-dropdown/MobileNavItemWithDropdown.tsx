@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import Link from 'next/link';
 import { NavbarColumnItem } from '@/data/types';
+import Link from 'next/link';
 
 import MobileNavItem from '../mobile-nav-item/MobileNavItem';
 
@@ -37,7 +37,7 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
     <div
       className={`${
         changeColor ? 'text-black' : 'text-white'
-      } ${open ? `${changeColor ? 'bg-lightGray/40 dark:bg-softGray' : 'bg-charcoal/80 dark:bg-softGray'}` : `${changeColor ? 'hover:bg-lightGray/50 hover:dark:bg-softGray' : 'hover:bg-charcoal/80 hover:dark:bg-softGray'}`} rounded-lg p-sm transition-all duration-300 flex flex-col gap-sm`}
+      } ${open ? `${changeColor ? 'bg-gray/40 dark:bg-softGray' : 'bg-charcoal/80 dark:bg-softGray'}` : `${changeColor ? 'hover:bg-gray/50 hover:dark:bg-softGray' : 'hover:bg-charcoal/80 hover:dark:bg-softGray'}`} rounded-lg p-sm transition-all duration-300 flex flex-col gap-sm`}
     >
       <MobileNavItem
         label={label}
@@ -68,10 +68,10 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
                 <div
                   className={`w-full p-sm body-large rounded-lg capitalize ${
                     pathname === item.link
-                      ? `${changeColor ? 'text-softYellow' : 'text-primary dark:text-primaryDark'}`
+                      ? `${changeColor ? 'text-primaryDark' : 'text-primary dark:text-primaryDark'}`
                       : `${
                           changeColor
-                            ? 'text-black dark:text-textInverse dark:hover:text-charcoal hover:bg-lightGray/80'
+                            ? 'text-black dark:text-textInverse dark:hover:text-charcoal hover:bg-gray/80'
                             : 'text-white dark:text-textInverse hover:bg-charcoal'
                         }`
                   }`}

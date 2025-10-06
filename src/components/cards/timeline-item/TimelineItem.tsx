@@ -1,12 +1,12 @@
 'use client';
 
+import { formatDateMMMddyyyy } from '@/data/format-date';
+import { Event } from '@/data/types';
 import { differenceInDays, isToday } from 'date-fns';
 import { Badge } from 'flowbite-react';
-import React, { useEffect, useState } from 'react';
-import { Event } from '@/data/types';
-import { formatDateMMMddyyyy } from '@/data/format-date';
-import EventDetailsModal from '../../modals/event-details-modal/EventDetailsModal';
 import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import EventDetailsModal from '../../modals/event-details-modal/EventDetailsModal';
 
 interface TimelineItemProps {
   event: Event;
@@ -40,13 +40,13 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
       >
         {/* line */}
         {vertical ? (
-          <div className="absolute left-[6px] -top-2 w-[0.5px] h-full bg-lightGray" />
+          <div className="absolute left-[6px] -top-2 w-[0.5px] h-full bg-gray" />
         ) : (
           <>
             {/* desktop */}
-            <div className="hidden md:block absolute -left-2 top-[6px] h-[0.5px] w-full bg-lightGray" />
+            <div className="hidden md:block absolute -left-2 top-[6px] h-[0.5px] w-full bg-gray" />
             {/* mobile */}
-            <div className="md:hidden absolute left-[6px] -top-2 w-[0.5px] h-full bg-lightGray" />
+            <div className="md:hidden absolute left-[6px] -top-2 w-[0.5px] h-full bg-gray" />
           </>
         )}
 
@@ -69,11 +69,11 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
           </div>
           <div className="flex flex-col gap-xs items-start text-left">
             {addTag && (
-              <Badge color="yellow" className="text-black">
+              <Badge color="primary" className="text-black">
                 {addTag}
               </Badge>
             )}
-            <h5 className="text-softYellow font-bold leading-none">
+            <h5 className="text-primaryDark font-bold leading-none">
               {formatDateMMMddyyyy(event.date)}
             </h5>
             <h3 className="font-bold leading-none">{event.name}</h3>

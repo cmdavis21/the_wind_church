@@ -43,7 +43,7 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
             </div>
             <div className="relative flex items-center gap-xxs py-xs px-md rounded-full">
               {link.label}{' '}
-              <UpArrow className="size-[15px] dark:fill-softWhite rotate-45 group-hover:rotate-90 transition-all duration-300" />
+              <UpArrow className="size-[15px] dark:fill-textInverse rotate-45 group-hover:rotate-90 transition-all duration-300" />
             </div>
           </button>
         </Link>

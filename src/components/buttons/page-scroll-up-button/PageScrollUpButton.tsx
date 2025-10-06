@@ -9,9 +9,7 @@ interface PageScrollUpButtonProps {
   className?: string;
 }
 
-const PageScrollUpButton: React.FC<PageScrollUpButtonProps> = ({
-  className,
-}) => {
+const PageScrollUpButton: React.FC<PageScrollUpButtonProps> = ({ className }) => {
   const [windowScroll, setWindowScroll] = useState(0);
   const [showPageScrollButton, setShowPageScrollButton] = useState(false);
 
@@ -41,14 +39,12 @@ const PageScrollUpButton: React.FC<PageScrollUpButtonProps> = ({
   }, [windowScroll]);
   return (
     <div
-      className={`${
-        className ?? ''
-      } z-40 fixed bottom-2 md:bottom-5 right-2 md:right-5 ${
+      className={`${className ?? ''} z-40 fixed bottom-2 md:bottom-5 right-2 md:right-5 ${
         showPageScrollButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
       } transition-opacity duration-300`}
     >
       <Button
-        color="info"
+        color="ghost"
         pill
         onClick={() => {
           if (window !== undefined) {
@@ -61,7 +57,7 @@ const PageScrollUpButton: React.FC<PageScrollUpButtonProps> = ({
         }}
         className="group py-[10px] max-md:scale-75"
       >
-        <UpArrow className="fill-[#808080] group-hover:fill-black size-[22px]" />
+        <UpArrow className="fill-charcoal group-hover:fill-black size-[22px]" />
       </Button>
     </div>
   );

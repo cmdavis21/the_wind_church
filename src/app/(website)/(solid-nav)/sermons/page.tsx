@@ -85,7 +85,7 @@ const Sermons = async () => {
             <Button
               pill
               size="lg"
-              color="yellow"
+              color="primary"
               className="mt-lg w-fit font-bold whitespace-nowrap"
               href={YOUTUBE_CHANNEL}
             >

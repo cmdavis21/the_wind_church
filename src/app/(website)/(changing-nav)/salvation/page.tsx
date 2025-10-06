@@ -1,19 +1,18 @@
 import { Button } from 'flowbite-react';
 import { Metadata } from 'next';
-import React from 'react';
 
-import { WEBSITE_BASE_URL } from '@/data/constants';
-import { PageRoutes } from '@/data/page-routes';
 import { permanentMarker } from '@/app/(website)/layout';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
-import Caret from '@/components/icons/caret';
 import PrayerRequestForm from '@/components/forms/prayer-request-form/PrayerRequestForm';
+import PageHero from '@/components/heroes/page-hero/PageHero';
+import Caret from '@/components/icons/caret';
 import ColorBackgroundAndContent, {
   ColorBackground,
 } from '@/components/sections/color-background-and-content/ColorBackgroundAndContent';
+import { WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
 import Link from 'next/link';
-import PageHero from '@/components/heroes/page-hero/PageHero';
 
 export const metadata: Metadata = {
   title: 'Salvation',
@@ -177,19 +176,19 @@ const Salvation = () => (
         />
         <div className="flex flex-col gap-md py-sm">
           <div className="flex items-center gap-xs">
-            <Caret className="fill-yellow rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
+            <Caret className="fill-primary rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
             <h4>Your sins are forgiven - (1 John 1:9; John 3:16)</h4>
           </div>
           <div className="flex items-center gap-xs">
-            <Caret className="fill-yellow rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
+            <Caret className="fill-primary rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
             <h4>You are a member of God&apos;s family - (John 1:12; John 3:2)</h4>
           </div>
           <div className="flex items-center gap-xs">
-            <Caret className="fill-yellow rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
+            <Caret className="fill-primary rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
             <h4>You have peace with God and access to Him - (Romans 5:1-2, Ephesians 2:6-7)</h4>
           </div>
           <div className="flex items-center gap-xs">
-            <Caret className="fill-yellow rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
+            <Caret className="fill-primary rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
             <h4>The Holy Spirit dwells within you - (Romans 8:9-11; 1 John 4:4)</h4>
           </div>
         </div>
@@ -220,12 +219,12 @@ const Salvation = () => (
             </h5>
             <div className="flex flex-wrap items-center justify-center gap-lg">
               <Link href={PageRoutes.deepDive}>
-                <Button pill size="lg" color="info">
+                <Button pill size="lg" color="ghost">
                   View Deep Dives
                 </Button>
               </Link>
               <Link href={PageRoutes.ministries}>
-                <Button pill size="lg" color="info">
+                <Button pill size="lg" color="ghost">
                   View Ministries
                 </Button>
               </Link>

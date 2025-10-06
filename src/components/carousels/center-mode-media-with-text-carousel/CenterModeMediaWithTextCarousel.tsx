@@ -1,9 +1,9 @@
 'use client';
 
-import 'react-multi-carousel/lib/styles.css';
 import Image from 'next/image';
 import React, { useRef } from 'react';
 import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 import { findMediaType, MediaType } from '@/data/utils';
 
@@ -89,7 +89,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
               mobileCarouselRef.current?.goToSlide(currentSlide - 1);
             }
           },
-          buttonClassName: 'bg-lightGray/40 p-xs',
+          buttonClassName: 'bg-gray/40 p-xs',
           iconClassName: 'fill-black/70 size-[18px]',
         }}
         rightArrowProps={{
@@ -100,7 +100,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
               mobileCarouselRef.current?.goToSlide(currentSlide + 1);
             }
           },
-          buttonClassName: 'bg-lightGray/40 p-xs',
+          buttonClassName: 'bg-gray/40 p-xs',
           iconClassName: 'fill-black/70 size-[18px]',
         }}
       />

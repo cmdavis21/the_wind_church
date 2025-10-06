@@ -2,27 +2,27 @@ import { Button } from 'flowbite-react';
 import { Metadata } from 'next';
 import React from 'react';
 
-import ColorBackgroundAndContent, {
-  ColorBackground,
-} from '@/components/sections/color-background-and-content/ColorBackgroundAndContent';
-import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
-import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { WEBSITE_BASE_URL } from '@/data/constants';
-import { PageRoutes } from '@/data/page-routes';
+import { permanentMarker } from '@/app/(website)/layout';
+import Accordion from '@/components/accordion/Accordion';
+import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
+import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
+import PageHero from '@/components/heroes/page-hero/PageHero';
 import Bank from '@/components/icons/bank';
 import Car from '@/components/icons/car';
 import CreditCard from '@/components/icons/creditCard';
 import HandHoldingHeart from '@/components/icons/handHoldingHeart';
 import Handshake from '@/components/icons/handshake';
 import Mailbox from '@/components/icons/mailbox';
-import Accordion from '@/components/accordion/Accordion';
-import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
+import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import ColorBackgroundAndContent, {
+  ColorBackground,
+} from '@/components/sections/color-background-and-content/ColorBackgroundAndContent';
+import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
-import { permanentMarker } from '@/app/(website)/layout';
 import Link from 'next/link';
-import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
-import PageHero from '@/components/heroes/page-hero/PageHero';
 
 export const metadata: Metadata = {
   title: 'Give',
@@ -40,7 +40,7 @@ const otherWaysToGiveArr = [
       src: '/placeholder-media/building.jpg',
       alt: '',
     }}
-    icon={<Bank className="fill-yellow size-[30px]" />}
+    icon={<Bank className="fill-primary size-[30px]" />}
     title="Bank Account"
     description={
       <>
@@ -49,7 +49,7 @@ const otherWaysToGiveArr = [
         <Button
           pill
           size="lg"
-          color="yellow"
+          color="primary"
           target="_blank"
           href={PageRoutes.pushpay}
           className="mt-6 mx-auto px-4 w-[165px]"
@@ -65,7 +65,7 @@ const otherWaysToGiveArr = [
       src: '/placeholder-media/couple_credit_card.jpg',
       alt: '',
     }}
-    icon={<CreditCard className="fill-yellow size-[30px]" />}
+    icon={<CreditCard className="fill-primary size-[30px]" />}
     title="Credit/Debit"
     description={
       <>
@@ -74,7 +74,7 @@ const otherWaysToGiveArr = [
         <Button
           pill
           size="lg"
-          color="yellow"
+          color="primary"
           target="_blank"
           href={PageRoutes.pushpay}
           className="mt-6 mx-auto px-4 w-[165px]"
@@ -90,7 +90,7 @@ const otherWaysToGiveArr = [
       src: '/placeholder-media/offering.jpg',
       alt: '',
     }}
-    icon={<HandHoldingHeart className="fill-yellow size-[30px]" />}
+    icon={<HandHoldingHeart className="fill-primary size-[30px]" />}
     title="In-person"
     description="The Wind church accepts check and bill pay. Donation boxes are availble at both exits of the santuary.Make checks payable to the Wind of the Spirit Worship Center."
   />,
@@ -100,7 +100,7 @@ const otherWaysToGiveArr = [
       src: '/placeholder-media/mailbox.jpg',
       alt: '',
     }}
-    icon={<Mailbox className="fill-yellow size-[30px]" />}
+    icon={<Mailbox className="fill-primary size-[30px]" />}
     title="Mail"
     description={
       <>
@@ -116,7 +116,7 @@ const otherWaysToGiveArr = [
       src: '/placeholder-media/garage.jpg',
       alt: '',
     }}
-    icon={<Car className="fill-yellow size-[30px]" />}
+    icon={<Car className="fill-primary size-[30px]" />}
     title="Assets"
     description={
       <>
@@ -135,7 +135,7 @@ const otherWaysToGiveArr = [
       src: '/placeholder-media/support_hands.jpg',
       alt: '',
     }}
-    icon={<Handshake className="fill-yellow size-[30px]" />}
+    icon={<Handshake className="fill-primary size-[30px]" />}
     title="Your Time"
     description="Contributting within the church as volunteers or with your ministry excels God's community."
   />,
@@ -232,7 +232,7 @@ const Give = () => (
           <Button
             pill
             size="lg"
-            color="yellow"
+            color="primary"
             target="_blank"
             href={PageRoutes.pushpay}
             className="mt-6 md:px-6 w-full md:w-fit font-bold"

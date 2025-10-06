@@ -1,7 +1,9 @@
+import Accordion from '@/components/accordion/Accordion';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
+import NextGenRosterSignupForm from '@/components/forms/next-gen-roster-signup-form/NextGenRosterSignupForm';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import Baby from '@/components/icons/baby';
 import EventCardsMasonryGrid from '@/components/masonry-grids/event-cards-masonry-grid/EventCardsMasonryGrid';
@@ -12,11 +14,9 @@ import { WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { getAllEvents } from '@/data/services/sanity/queries/events';
 import { getNextGenPage } from '@/data/services/sanity/queries/next-gen-page';
+import { Event } from '@/data/types';
 import { Button } from 'flowbite-react';
 import { Metadata } from 'next';
-import { Event } from '@/data/types';
-import NextGenRosterSignupForm from '@/components/forms/next-gen-roster-signup-form/NextGenRosterSignupForm';
-import Accordion from '@/components/accordion/Accordion';
 
 export const metadata: Metadata = {
   title: 'Next Gen',
@@ -75,7 +75,7 @@ const NextGen = async () => {
             href={nextGenPageInfo.cirriculum_file}
             download="the_wind_church_youth_service_cirriculum.pdf"
           >
-            <Button color="yellow" size="lg" pill className="mx-auto">
+            <Button color="primary" size="lg" pill className="mx-auto">
               Download Cirriculum
             </Button>
           </a>
@@ -138,7 +138,7 @@ const NextGen = async () => {
           <Button
             pill
             size="lg"
-            color="yellow"
+            color="primary"
             href={PageRoutes.events}
             className="mt-xl w-fit mx-auto"
           >
