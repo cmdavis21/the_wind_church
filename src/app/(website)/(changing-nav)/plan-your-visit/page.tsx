@@ -12,7 +12,7 @@ import UpArrow from '@/components/icons/upArrow';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import VideoWithTitle from '@/components/video/video-with-title/VideoWithTitle';
-import { WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
 import Link from 'next/link';
@@ -33,7 +33,7 @@ const PlanYourVisit = () => (
       title="Plan Your Visit"
       subtitle="Come worship with us"
       media={{
-        src: '/placeholder-media/pastor_preaching.jpg',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/pastor_preaching.jpg`,
       }}
       highlightTitle={[[0, 3]]}
     />
@@ -72,8 +72,8 @@ const PlanYourVisit = () => (
 
       {/* Why the Wind */}
       <VideoWithTitle
-        src="/placeholder-media/plan-your-visit-video.mp4"
-        poster="/placeholder-media/plan-your-visit-poster.png"
+        src={`${AWS_ASSET_BASE_URL}/placeholder-media/plan-your-visit-video.mp4`}
+        poster={`${AWS_ASSET_BASE_URL}/placeholder-media/plan-your-visit-poster.png`}
         title="What Makes The Wind Special?"
       />
 
@@ -88,13 +88,13 @@ const PlanYourVisit = () => (
         <div className="flex flex-wrap gap-xxl justify-center">
           <ImageWithTitleDescriptionCard
             alt=""
-            src="/placeholder-media/group_women.jpg"
+            src={`${AWS_ASSET_BASE_URL}/placeholder-media/group_women.jpg`}
             title="Personal Bible Studies"
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src="/placeholder-media/food_bank.jpg"
+            src={`${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`}
             title="Serving Opportunites"
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
             link={{
@@ -104,7 +104,7 @@ const PlanYourVisit = () => (
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src="/placeholder-media/lxg_meet.webp"
+            src={`${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`}
             title="Deep Dive Studies"
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
             link={{

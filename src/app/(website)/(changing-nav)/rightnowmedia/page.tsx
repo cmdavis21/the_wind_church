@@ -1,9 +1,8 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import React from 'react';
 
-import { WEBSITE_BASE_URL } from '@/data/constants';
 import RightnowMediaSignupForm from '@/components/forms/rightnow-media-signup-form/RightnowMediaSignupForm';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 
 export const metadata: Metadata = {
   title: 'RightNow Media',
@@ -21,7 +20,7 @@ const Rightnowmedia = () => (
       <div className="relative w-full h-full pointer-events-none">
         <Image
           fill
-          src="/placeholder-media/rightnowmedia.png"
+          src={`${AWS_ASSET_BASE_URL}/placeholder-media/rightnowmedia.png`}
           alt="decorative background image"
           className="object-cover"
         />

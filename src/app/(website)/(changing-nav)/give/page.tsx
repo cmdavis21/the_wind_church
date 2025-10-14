@@ -19,7 +19,7 @@ import ColorBackgroundAndContent, {
   ColorBackground,
 } from '@/components/sections/color-background-and-content/ColorBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
 import Link from 'next/link';
@@ -37,7 +37,7 @@ const otherWaysToGiveArr = [
   <ImageWithTitleAndHiddenTextCard
     key={1}
     image={{
-      src: '/placeholder-media/building.jpg',
+      src: `${AWS_ASSET_BASE_URL}/placeholder-media/building.jpg`,
       alt: '',
     }}
     icon={<Bank className="fill-primary size-[30px]" />}
@@ -62,7 +62,7 @@ const otherWaysToGiveArr = [
   <ImageWithTitleAndHiddenTextCard
     key={2}
     image={{
-      src: '/placeholder-media/couple_credit_card.jpg',
+      src: `${AWS_ASSET_BASE_URL}/placeholder-media/couple_credit_card.jpg`,
       alt: '',
     }}
     icon={<CreditCard className="fill-primary size-[30px]" />}
@@ -87,7 +87,7 @@ const otherWaysToGiveArr = [
   <ImageWithTitleAndHiddenTextCard
     key={3}
     image={{
-      src: '/placeholder-media/offering.jpg',
+      src: `${AWS_ASSET_BASE_URL}/placeholder-media/offering.jpg`,
       alt: '',
     }}
     icon={<HandHoldingHeart className="fill-primary size-[30px]" />}
@@ -97,7 +97,7 @@ const otherWaysToGiveArr = [
   <ImageWithTitleAndHiddenTextCard
     key={4}
     image={{
-      src: '/placeholder-media/mailbox.jpg',
+      src: `${AWS_ASSET_BASE_URL}/placeholder-media/mailbox.jpg`,
       alt: '',
     }}
     icon={<Mailbox className="fill-primary size-[30px]" />}
@@ -113,7 +113,7 @@ const otherWaysToGiveArr = [
   <ImageWithTitleAndHiddenTextCard
     key={5}
     image={{
-      src: '/placeholder-media/garage.jpg',
+      src: `${AWS_ASSET_BASE_URL}/placeholder-media/garage.jpg`,
       alt: '',
     }}
     icon={<Car className="fill-primary size-[30px]" />}
@@ -132,7 +132,7 @@ const otherWaysToGiveArr = [
   <ImageWithTitleAndHiddenTextCard
     key={6}
     image={{
-      src: '/placeholder-media/support_hands.jpg',
+      src: `${AWS_ASSET_BASE_URL}/placeholder-media/support_hands.jpg`,
       alt: '',
     }}
     icon={<Handshake className="fill-primary size-[30px]" />}
@@ -148,7 +148,7 @@ const Give = () => (
       title="Giving"
       subtitle="Your contribution makes a difference."
       media={{
-        src: '/placeholder-media/praise_hands.jpg',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/praise_hands.jpg`,
       }}
       highlightTitle={[[0, 0]]}
     />

@@ -10,7 +10,7 @@ import EventCardsMasonryGrid from '@/components/masonry-grids/event-cards-masonr
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { getAllEvents } from '@/data/services/sanity/queries/events';
 import { getNextGenPage } from '@/data/services/sanity/queries/next-gen-page';
@@ -34,7 +34,7 @@ const NextGen = async () => {
     <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
       <PageHeaderWithBackground
         media={{
-          src: '/placeholder-media/kids_group.jpg',
+          src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_group.jpg`,
           alt: 'decorative background image',
           poster: '',
         }}
@@ -53,19 +53,19 @@ const NextGen = async () => {
         <div className="flex flex-wrap gap-xxl justify-center">
           <ImageWithTitleDescriptionCard
             alt=""
-            src="/placeholder-media/kids_classroom_2.jpg"
+            src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_2.jpg`}
             title="Christ-Centered Studies"
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src="/placeholder-media/kid_outside.jpg"
+            src={`${AWS_ASSET_BASE_URL}/placeholder-media/kid_outside.jpg`}
             title="Fun Indoor/Activities"
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src="/placeholder-media/kids_classroom_1.jpg"
+            src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_1.jpg`}
             title="Respect and Love for one another"
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
           />
@@ -151,7 +151,7 @@ const NextGen = async () => {
       <MediaBackgroundAndContent
         rounded
         background={{
-          src: '/placeholder-media/kids_classroom_1.jpg',
+          src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_1.jpg`,
         }}
         content={
           <div className="pt-padding flex flex-col">

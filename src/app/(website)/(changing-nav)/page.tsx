@@ -1,5 +1,5 @@
 import HomepageHero from '@/components/heroes/homepage-hero/HomepageHero';
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 
 export async function generateMetadata() {
@@ -18,7 +18,7 @@ const Home = async () => {
     <div>
       <HomepageHero
         media={{
-          src: '/placeholder-media/footer_video.mp4',
+          src: `${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4`,
           poster: '',
         }}
         title="Find your place here..."

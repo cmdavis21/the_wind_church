@@ -52,7 +52,7 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 rounded-xl" />
 
     <div className="absolute bottom-[10%] w-full px-padding">
-      <div className="w-full 2xl:max-w-[60%] text-white">
+      <div className="w-full 2xl:max-w-[70%] text-white">
         <div className={`${permanentMarker.className} text-[36px] md:text-[75px] leading-snug`}>
           {title}
         </div>

@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
-import React from 'react';
 
 import FullscreenMediaWithTextFadeInOutCarousel from '@/components/carousels/fullscreen-media-with-text-fade-in-out-carousel/FullscreenMediaWithTextFadeInOutCarousel';
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { getAllDeepDives } from '@/data/services/sanity/queries/deep-dives';
 
@@ -36,8 +35,8 @@ const DeepDive = async () => {
           : [
               {
                 media: {
-                  src: '/placeholder-media/footer_video.mp4',
-                  poster: '/placeholder-media/food_bank.jpg',
+                  src: `${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4`,
+                  poster: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`,
                   alt: '',
                 },
                 header: 'Deep Dive Studies',

@@ -9,7 +9,7 @@ import Caret from '@/components/icons/caret';
 import ColorBackgroundAndContent, {
   ColorBackground,
 } from '@/components/sections/color-background-and-content/ColorBackgroundAndContent';
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
 import Link from 'next/link';
@@ -51,7 +51,7 @@ const Salvation = () => (
       title="Salvation"
       subtitle="Jesus is here for you always"
       media={{
-        src: '/placeholder-media/crosses.png',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/crosses.png`,
       }}
     />
 
@@ -94,7 +94,7 @@ const Salvation = () => (
             <ImageWithTitleAndHiddenTextCard
               key={`salvation-question-${item.question}`}
               image={{
-                src: '/placeholder-media/cross_on_mount.jpg',
+                src: `${AWS_ASSET_BASE_URL}/placeholder-media/cross_on_mount.jpg`,
                 alt: 'decorative background image',
               }}
               title={

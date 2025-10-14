@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 import React from 'react';
 
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
-import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
-import { WEBSITE_BASE_URL } from '@/data/constants';
 import MinistryCard from '@/components/cards/ministry-card/MinistryCard';
 import ErrorMessage from '@/components/error-message/ErrorMessage';
-import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import MinistryConnectionForm from '@/components/forms/ministry-connection-form/MinistryConnectionForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
+import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { getAllMinistries } from '@/data/services/sanity/queries/ministries';
 
 export const metadata: Metadata = {
@@ -56,7 +56,7 @@ const Ministries = async () => {
         title="Ministries"
         subtitle="Grow in love and service by joining a ministry"
         media={{
-          src: '/placeholder-media/food_bank.jpg',
+          src: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`,
         }}
       />
 

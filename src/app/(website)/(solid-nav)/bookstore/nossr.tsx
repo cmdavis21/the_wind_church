@@ -2,6 +2,7 @@
 
 import ProductCard from '@/components/cards/product-card/ProductCard';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
+import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import { useGetStorefrontProducts } from '@/data/services/shopify/queries/products';
 
 const BookstoreClient = () => {
@@ -10,7 +11,7 @@ const BookstoreClient = () => {
     <div className="px-padding flex flex-col gap-xxl">
       <PageHeaderWithBackground
         media={{
-          src: '/placeholder-media/open_sign.webp',
+          src: `${AWS_ASSET_BASE_URL}/placeholder-media/open_sign.webp`,
           alt: 'Decorative Background Image',
           poster: '',
         }}

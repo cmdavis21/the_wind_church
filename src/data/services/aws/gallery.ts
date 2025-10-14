@@ -1,10 +1,10 @@
 import { ListObjectsCommand } from '@aws-sdk/client-s3';
 
-import { s3Config } from './config';
 import { AWS_BUCKET_NAME, AWS_REGION, GET_GALLERY_KEY } from '@/data/constants';
 import { useQuery } from '@tanstack/react-query';
+import { s3Config } from './config';
 
-const getGalleryImages = async (category?: string) => {
+export const getGalleryImages = async (category?: string) => {
   try {
     const client = s3Config();
 

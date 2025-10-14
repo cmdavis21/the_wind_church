@@ -1,5 +1,5 @@
 import ErrorMessage from '@/components/error-message/ErrorMessage';
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 
 import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
@@ -100,7 +100,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
       <MediaBackgroundAndContent
         rounded
         background={{
-          src: '/placeholder-media/church_prayer.jpg',
+          src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
         }}
         content={
           <div className="pt-[100px] flex flex-col gap-md">
@@ -164,7 +164,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         <div className="flex flex-wrap gap-xxl 2xl:gap-[100px] justify-center">
           <ImageWithTitleDescriptionCard
             alt="People gathering for church service"
-            src="/placeholder-media/contro.webp"
+            src={`${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`}
             title="Visit on Sunday or Wednesday"
             description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
             link={{
@@ -174,7 +174,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
           />
           <ImageWithTitleDescriptionCard
             alt="Group in Bible study session"
-            src="/placeholder-media/lxg_meet.webp"
+            src={`${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`}
             title="Try our Deep Dive Sessions"
             description="Explore the Word in a deeper way. Our Deep Dive Sessions are small-group Bible studies where you can ask questions and grow in your faith."
             link={{
@@ -184,7 +184,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
           />
           <ImageWithTitleDescriptionCard
             alt="Children in a classroom during youth service"
-            src="/placeholder-media/kids_classroom_2.jpg"
+            src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_2.jpg`}
             title="View our Youth Service"
             description="We offer engaging and age-appropriate services for kids and teens every week. It's a safe space for youth to learn, grow, and build friendships."
             link={{

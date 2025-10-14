@@ -2,6 +2,7 @@
 import { useTranslations } from 'next-intl';
 
 import FooterContactForm from '@/components/forms/footer-contact-form/FooterContactForm';
+import { AWS_ASSET_BASE_URL } from '@/data/constants';
 
 const FooterContactSignup = () => {
   const t = useTranslations('Footer');
@@ -21,7 +22,7 @@ const FooterContactSignup = () => {
         onLoadedMetadata={(e) => (e.currentTarget.playbackRate = 1.5)}
         className="absolute top-0 left-0 w-full h-full object-cover md:rounded-xl"
       >
-        <source src="/placeholder-media/footer_video.mp4" type="video/mp4" />
+        <source src={`${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4" type="video/mp4`} />
       </video>
 
       {/* color overlay */}

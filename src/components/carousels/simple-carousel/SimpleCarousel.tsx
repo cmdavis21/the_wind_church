@@ -1,11 +1,11 @@
 'use client';
 
-import 'react-multi-carousel/lib/styles.css';
 import React from 'react';
 import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
-import CarouselDot from '../carousel-dot/CarouselDot';
 import CarouselArrows from '../carousel-arrows/CarouselArrows';
+import CarouselDot from '../carousel-dot/CarouselDot';
 
 interface SimpleCarouselProps {
   slides: React.ReactElement[];
@@ -75,7 +75,9 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
         dotListClass="flex gap-xs !justify-start !mb-5 !ml-5"
       >
         {slides.map((slide, index) => (
-          <React.Fragment key={`simple-carousel-${index}`}>{slide}</React.Fragment>
+          <div key={`simple-carousel-${index}`} className="relative w-full h-full">
+            {slide}
+          </div>
         ))}
       </Carousel>
     </div>

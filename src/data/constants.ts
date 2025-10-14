@@ -20,6 +20,7 @@ export const SHOPIFY_STOREFRONT_ACCESS_TOKEN =
 export const AWS_REGION = process.env.NEXT_PUBLIC_AWS_REGION ?? '';
 export const AWS_BUCKET_NAME = process.env.NEXT_PUBLIC_AWS_BUCKET_NAME ?? '';
 export const AWS_IDENTITY_POOL_ID = process.env.NEXT_PUBLIC_AWS_IDENTITY_POOL_ID ?? '';
+export const AWS_ASSET_BASE_URL = process.env.NEXT_PUBLIC_AWS_ASSET_BASE_URL ?? '';
 
 // SOCIALS
 export const YOUTUBE_CHANNEL = process.env.NEXT_PUBLIC_YOUTUBE ?? '';

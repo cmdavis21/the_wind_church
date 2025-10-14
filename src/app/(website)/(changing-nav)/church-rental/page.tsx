@@ -1,16 +1,15 @@
-import { Metadata } from "next";
-import React from "react";
+import { Metadata } from 'next';
 
-import EventRentalForm from "@/components/forms/event-rental-form/EventRentalForm";
-import CenterTextSection from "@/components/sections/center-text-section/CenterTextSection";
-import { WEBSITE_BASE_URL } from "@/data/constants";
-import CenterModeMediaWithTextCarousel from "@/components/carousels/center-mode-media-with-text-carousel/CenterModeMediaWithTextCarousel";
-import PageHero from "@/components/heroes/page-hero/PageHero";
+import CenterModeMediaWithTextCarousel from '@/components/carousels/center-mode-media-with-text-carousel/CenterModeMediaWithTextCarousel';
+import EventRentalForm from '@/components/forms/event-rental-form/EventRentalForm';
+import PageHero from '@/components/heroes/page-hero/PageHero';
+import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 
 export const metadata: Metadata = {
-  title: "Church Rental",
+  title: 'Church Rental',
   description:
-    "Interested in renting our church facilities? Get details and request your date today.",
+    'Interested in renting our church facilities? Get details and request your date today.',
   alternates: {
     canonical: `${WEBSITE_BASE_URL}/church-rental`,
   },
@@ -22,8 +21,8 @@ const ChurchRental = () => (
       short
       title="Church Rental"
       media={{
-        src: "/images/wind_church_building.webp",
-        poster: "",
+        src: '/images/wind_church_building.webp',
+        poster: '',
       }}
     />
 
@@ -41,30 +40,30 @@ const ChurchRental = () => (
         slides={[
           {
             media: {
-              src: "/placeholder-media/fellowship_hall.jpeg",
-              alt: "decorative background image",
+              src: `${AWS_ASSET_BASE_URL}/placeholder-media/fellowship_hall.jpeg`,
+              alt: 'decorative background image',
             },
-            title: "Fellowship Hall",
+            title: 'Fellowship Hall',
             description:
-              "This hall is great for hosting a large quantity of guests. Featuring a kitchen for events involving cooking and a projector screen and speaking podium for lecturing sessions.",
+              'This hall is great for hosting a large quantity of guests. Featuring a kitchen for events involving cooking and a projector screen and speaking podium for lecturing sessions.',
           },
           {
             media: {
-              src: "/placeholder-media/kitchen.jpg",
-              alt: "decorative background image",
+              src: `${AWS_ASSET_BASE_URL}/placeholder-media/kitchen.jpg`,
+              alt: 'decorative background image',
             },
-            title: "Kitchen",
+            title: 'Kitchen',
             description:
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.",
+              'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.',
           },
           {
             media: {
-              src: "/placeholder-media/parking_lot.jpg",
-              alt: "decorative background image",
+              src: `${AWS_ASSET_BASE_URL}/placeholder-media/parking_lot.jpg`,
+              alt: 'decorative background image',
             },
-            title: "Parking Lot",
+            title: 'Parking Lot',
             description:
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.",
+              'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.',
           },
         ]}
       />

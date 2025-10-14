@@ -1,14 +1,13 @@
 import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
-import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
-import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
-import { WEBSITE_BASE_URL } from '@/data/constants';
-import CenterModeMediaWithTextCarousel from '@/components/carousels/center-mode-media-with-text-carousel/CenterModeMediaWithTextCarousel';
 import Accordion from '@/components/accordion/Accordion';
+import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
+import ScriptureWithIcon from '@/components/cards/scripture-with-icon/ScriptureWithIcon';
+import CenterModeMediaWithTextCarousel from '@/components/carousels/center-mode-media-with-text-carousel/CenterModeMediaWithTextCarousel';
 import FullscreenMediaWithSideTextCarousel from '@/components/carousels/fullscreen-media-with-side-text-carousel/FullscreenMediaWithSideTextCarousel';
-import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
-import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
+import PageHero from '@/components/heroes/page-hero/PageHero';
 import Bible from '@/components/icons/bible';
 import BulletList from '@/components/icons/bulletList';
 import CheckeredFlag from '@/components/icons/checkeredFlag';
@@ -18,20 +17,21 @@ import HealCross from '@/components/icons/healCross';
 import LifeRing from '@/components/icons/lifeRing';
 import NewTag from '@/components/icons/newTag';
 import PaintBucket from '@/components/icons/paintBucket';
+import PeopleGroup from '@/components/icons/peopleGroup';
 import PersonFalling from '@/components/icons/personFalling';
 import PersonWalk from '@/components/icons/personWalk';
+import PrayerHands from '@/components/icons/prayerHands';
 import Senate from '@/components/icons/senate';
 import SunWithClouds from '@/components/icons/sunWithClouds';
+import SupperTop from '@/components/icons/supperTop';
+import Temperature from '@/components/icons/temperature';
 import ThreePersons from '@/components/icons/threePersons';
 import ThumbsDown from '@/components/icons/thumbsDown';
 import Waves from '@/components/icons/waves';
-import SupperTop from '@/components/icons/supperTop';
-import Temperature from '@/components/icons/temperature';
-import PrayerHands from '@/components/icons/prayerHands';
-import ScriptureWithIcon from '@/components/cards/scripture-with-icon/ScriptureWithIcon';
+import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { styleSelectedWords } from '@/data/utils';
-import PeopleGroup from '@/components/icons/peopleGroup';
-import PageHero from '@/components/heroes/page-hero/PageHero';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -52,7 +52,7 @@ const About = async () => {
     <ImageWithTitleAndHiddenTextCard
       key={1}
       image={{
-        src: '/placeholder-media/people_hug.jpg',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
         alt: t('alt'),
       }}
       title={
@@ -71,7 +71,7 @@ const About = async () => {
     <ImageWithTitleAndHiddenTextCard
       key={2}
       image={{
-        src: '/placeholder-media/praise_hands.jpg',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/praise_hands.jpg`,
         alt: t('alt'),
       }}
       title={
@@ -90,7 +90,7 @@ const About = async () => {
     <ImageWithTitleAndHiddenTextCard
       key={3}
       image={{
-        src: '/placeholder-media/family.jpeg',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/family.jpeg`,
         alt: t('alt'),
       }}
       title={
@@ -109,7 +109,7 @@ const About = async () => {
     <ImageWithTitleAndHiddenTextCard
       key={4}
       image={{
-        src: '/placeholder-media/outreach.png',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/outreach.png`,
         alt: t('alt'),
       }}
       title={
@@ -128,7 +128,7 @@ const About = async () => {
     <ImageWithTitleAndHiddenTextCard
       key={5}
       image={{
-        src: '/placeholder-media/group_women.jpg',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/group_women.jpg`,
         alt: t('alt'),
       }}
       title={
@@ -147,7 +147,7 @@ const About = async () => {
     <ImageWithTitleAndHiddenTextCard
       key={6}
       image={{
-        src: '/placeholder-media/food_bank.jpg',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`,
         alt: t('alt'),
       }}
       title={
@@ -171,7 +171,7 @@ const About = async () => {
         title={t('title')}
         subtitle={t('subtitle')}
         media={{
-          src: '/placeholder-media/group_people.jpg',
+          src: `${AWS_ASSET_BASE_URL}/placeholder-media/group_people.jpg`,
         }}
         highlightTitle={[[0, 1]]}
       />
@@ -237,7 +237,7 @@ const About = async () => {
             slides={[
               {
                 media: {
-                  src: '/placeholder-media/pastor.webp',
+                  src: `${AWS_ASSET_BASE_URL}/placeholder-media/pastor.webp`,
                   alt: t('alt'),
                 },
                 title: t('aboutPastor.title'),
@@ -245,7 +245,7 @@ const About = async () => {
               },
               {
                 media: {
-                  src: '/placeholder-media/contro.webp',
+                  src: `${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`,
                   alt: t('alt'),
                 },
                 title: t('aboutPastor.history.title'),
@@ -253,7 +253,7 @@ const About = async () => {
               },
               {
                 media: {
-                  src: '/placeholder-media/members.webp',
+                  src: `${AWS_ASSET_BASE_URL}/placeholder-media/members.webp`,
                   alt: t('alt'),
                 },
                 title: t('aboutPastor.why.title'),
@@ -269,7 +269,7 @@ const About = async () => {
               },
               {
                 media: {
-                  src: '/placeholder-media/lxg_meet.webp',
+                  src: `${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`,
                   alt: t('alt'),
                 },
                 title: t('aboutPastor.fact.title'),
@@ -478,21 +478,21 @@ const About = async () => {
             slides={[
               {
                 media: {
-                  src: '/placeholder-media/old_church_photo_1.webp',
+                  src: `${AWS_ASSET_BASE_URL}/placeholder-media/old_church_photo_1.webp`,
                   alt: t('alt'),
                 },
                 description: t('history.carouselItem1'),
               },
               {
                 media: {
-                  src: '/placeholder-media/members.webp',
+                  src: `${AWS_ASSET_BASE_URL}/placeholder-media/members.webp`,
                   alt: t('alt'),
                 },
                 description: t('history.carouselItem2'),
               },
               {
                 media: {
-                  src: '/placeholder-media/lxg_meet.webp',
+                  src: `${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`,
                   alt: t('alt'),
                 },
                 description: t('history.carouselItem3'),
