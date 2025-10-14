@@ -261,7 +261,7 @@ const About = async () => {
               },
               {
                 media: {
-                  src: '/images/wind_church_building.webp',
+                  src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
                   alt: t('alt'),
                 },
                 title: t('aboutPastor.goals.title'),
@@ -311,7 +311,7 @@ const About = async () => {
           <Accordion
             content={[
               {
-                image: '/images/foursquare/cross.png',
+                image: `${AWS_ASSET_BASE_URL}/images/foursquare/cross.png`,
                 title: t('foursquare.accordionItem1.title'),
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
@@ -349,7 +349,7 @@ const About = async () => {
                 ),
               },
               {
-                image: '/images/foursquare/dove.png',
+                image: `${AWS_ASSET_BASE_URL}/images/foursquare/dove.png`,
                 title: t('foursquare.accordionItem2.title'),
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
@@ -387,7 +387,7 @@ const About = async () => {
                 ),
               },
               {
-                image: '/images/foursquare/cup.png',
+                image: `${AWS_ASSET_BASE_URL}/images/foursquare/cup.png`,
                 title: t('foursquare.accordionItem3.title'),
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
@@ -425,7 +425,7 @@ const About = async () => {
                 ),
               },
               {
-                image: '/images/foursquare/crown.png',
+                image: `${AWS_ASSET_BASE_URL}/images/foursquare/crown.png`,
                 title: t('foursquare.accordionItem4.title'),
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">

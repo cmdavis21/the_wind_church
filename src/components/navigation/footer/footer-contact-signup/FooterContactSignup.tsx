@@ -9,7 +9,7 @@ const FooterContactSignup = () => {
   return (
     <div
       style={{
-        background: 'url("/images/wind_church_building.webp")',
+        background: `url("${AWS_ASSET_BASE_URL}/images/wind_church_building.webp")`,
       }}
       // className="relative max-lg:min-w-full md:w-full -mr-[25px] lg:-mr-[50px] min-[1800px]:-mr-[100px] -ml-[25px] lg:-ml-[50px] min-[1800px]:-ml-[100px] -my-5 md:rounded-xl"
       className="relative max-lg:min-w-full lg:w-full -my-5 md:rounded-xl max-lg:-ml-[25px] -mr-[25px] 2xl:-mr-[50px] min-[1800px]:-mr-[200px]"

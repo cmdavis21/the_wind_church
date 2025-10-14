@@ -21,7 +21,7 @@ const ChurchRental = () => (
       short
       title="Church Rental"
       media={{
-        src: '/images/wind_church_building.webp',
+        src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
         poster: '',
       }}
     />

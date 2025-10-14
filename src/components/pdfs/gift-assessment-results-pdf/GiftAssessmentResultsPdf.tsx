@@ -1,35 +1,29 @@
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  Image,
-} from "@react-pdf/renderer";
-import React from "react";
+import { Document, Image, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
+import React from 'react';
 
-import { formatDateMMMddyyyy } from "@/data/format-date";
-import { GiftAssessmentDefinition } from "@/data/types";
+import { AWS_ASSET_BASE_URL } from '@/data/constants';
+import { formatDateMMMddyyyy } from '@/data/format-date';
+import { GiftAssessmentDefinition } from '@/data/types';
 
 const styles = StyleSheet.create({
   page: {
     padding: 50,
-    fontFamily: "Times-Roman",
+    fontFamily: 'Times-Roman',
   },
   logo: {
     width: 100,
     height: 50,
-    margin: "0 auto",
+    margin: '0 auto',
     marginBottom: 20,
   },
   header: {
     fontSize: 18,
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 10,
   },
   subHeader: {
     fontSize: 14,
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 30,
   },
   section: {
@@ -37,7 +31,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 15,
   },
   text: {
@@ -48,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 5,
     marginBottom: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   scriptureList: {
     marginLeft: 20,
@@ -88,18 +82,14 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
       {/* Header */}
       <View style={styles.section}>
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <Image src="/logos/logo.png" style={styles.logo} />
+        <Image src={`${AWS_ASSET_BASE_URL}/logos/logo.png`} style={styles.logo} />
         <Text style={styles.header}>Spiritual Gift Assessment Results</Text>
-        <Text style={styles.subHeader}>
-          Assessment Completed {formatDateMMMddyyyy(new Date())}
-        </Text>
+        <Text style={styles.subHeader}>Assessment Completed {formatDateMMMddyyyy(new Date())}</Text>
       </View>
 
       {/* Dominate Gifts */}
       <View style={styles.section}>
-        <Text style={styles.label}>
-          Your {dominateGifts.length} Dominate Gifts
-        </Text>
+        <Text style={styles.label}>Your {dominateGifts.length} Dominate Gifts</Text>
         <View>
           {dominateGifts.map((gift, index) => (
             <React.Fragment key={index}>
@@ -122,9 +112,7 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
 
       {/* Subordinate Gifts */}
       <View style={styles.section}>
-        <Text style={styles.label}>
-          Your {subordinateGifts.length} Subordinate Gifts
-        </Text>
+        <Text style={styles.label}>Your {subordinateGifts.length} Subordinate Gifts</Text>
         <View>
           {subordinateGifts.map((gift, index) => (
             <React.Fragment key={index}>
@@ -149,18 +137,15 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
       <View style={styles.section}>
         <Text style={styles.label}>Reflection Questions</Text>
         <Text style={styles.questionText}>
-          1. What ministries are you now performing (formally or informally) in
-          the Body?
+          1. What ministries are you now performing (formally or informally) in the Body?
         </Text>
         <Text style={styles.questionAnswer}>{ministriesInvolvedIn}</Text>
         <Text style={styles.questionText}>
-          2. Are there any of these ministries that you are not especially
-          gifted for? God may be calling you to consider changes.
+          2. Are there any of these ministries that you are not especially gifted for? God may be
+          calling you to consider changes.
         </Text>
         <Text style={styles.questionAnswer}>{changeInMinistry}</Text>
-        <Text style={styles.questionText}>
-          3. Is your vocational status lay or clergy?
-        </Text>
+        <Text style={styles.questionText}>3. Is your vocational status lay or clergy?</Text>
         <Text style={styles.questionAnswer}>{layOrClergy}</Text>
       </View>
     </Page>

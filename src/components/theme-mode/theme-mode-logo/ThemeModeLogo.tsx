@@ -1,9 +1,10 @@
-"use client";
-import Image from "next/image";
-import React from "react";
-import { useTranslations } from "next-intl";
+'use client';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import React from 'react';
 
-import { useTheme } from "@/data/providers/theme-mode-provider";
+import { AWS_ASSET_BASE_URL } from '@/data/constants';
+import { useTheme } from '@/data/providers/theme-mode-provider';
 
 interface ThemeModeLogoProps {
   changeColor?: boolean;
@@ -11,28 +12,24 @@ interface ThemeModeLogoProps {
   className: string;
 }
 
-const ThemeModeLogo: React.FC<ThemeModeLogoProps> = ({
-  changeColor,
-  noChangeColor,
-  className,
-}) => {
-  const t = useTranslations("Footer");
+const ThemeModeLogo: React.FC<ThemeModeLogoProps> = ({ changeColor, noChangeColor, className }) => {
+  const t = useTranslations('Footer');
   const { darkMode } = useTheme();
   const determineLogoToRender = () => {
     if (darkMode) {
       if (changeColor) {
-        return "/logos/logo_white.png";
+        return `${AWS_ASSET_BASE_URL}/logos/logo_white.png`;
       } else {
-        return "/logos/logo_white.png";
+        return `${AWS_ASSET_BASE_URL}/logos/logo_white.png`;
       }
     } else {
       if (changeColor) {
-        return "/logos/logo.png";
+        return `${AWS_ASSET_BASE_URL}/logos/logo.png`;
       } else {
         if (noChangeColor) {
-          return "/logos/logo.png";
+          return `${AWS_ASSET_BASE_URL}/logos/logo.png`;
         } else {
-          return "/logos/logo_white.png";
+          return `${AWS_ASSET_BASE_URL}/logos/logo_white.png`;
         }
       }
     }
@@ -41,7 +38,7 @@ const ThemeModeLogo: React.FC<ThemeModeLogoProps> = ({
     <Image
       priority
       src={determineLogoToRender()}
-      alt={t("name")}
+      alt={t('name')}
       width={100}
       height={100}
       className={`${className}`}
