@@ -21441,7 +21441,8 @@ export enum MenuItemType {
 /** Possible error codes that can be returned by `MetafieldDeleteUserError`. */
 export enum MetafieldDeleteErrorCode {
 	INVALID_OWNER = "INVALID_OWNER",
-	METAFIELD_DOES_NOT_EXIST = "METAFIELD_DOES_NOT_EXIST"
+	METAFIELD_DOES_NOT_EXIST = "METAFIELD_DOES_NOT_EXIST",
+	APP_NOT_AUTHORIZED = "APP_NOT_AUTHORIZED"
 }
 /** Possible error codes that can be returned by `MetafieldsSetUserError`. */
 export enum MetafieldsSetUserErrorCode {
@@ -21453,7 +21454,8 @@ export enum MetafieldsSetUserErrorCode {
 	TOO_LONG = "TOO_LONG",
 	INVALID_OWNER = "INVALID_OWNER",
 	INVALID_VALUE = "INVALID_VALUE",
-	INVALID_TYPE = "INVALID_TYPE"
+	INVALID_TYPE = "INVALID_TYPE",
+	APP_NOT_AUTHORIZED = "APP_NOT_AUTHORIZED"
 }
 /** Represents the reason for the order's cancellation. */
 export enum OrderCancelReason {

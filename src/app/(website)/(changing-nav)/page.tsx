@@ -21,9 +21,13 @@ const Home = async () => {
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4`,
           poster: '',
         }}
-        title="Find your place here..."
-        subtitle="Lorem ipsum dolor sit amet consectetur, adipisicing elit."
-        highlightTitle={[[0, 0]]}
+        title={{
+          text: 'Find your place here...',
+          hightlight: [[0, 0]],
+        }}
+        subtitle={{
+          text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+        }}
         primaryButton={{
           label: 'Learn More',
           id: '#overview',
@@ -32,11 +36,6 @@ const Home = async () => {
           label: 'Plan Your Visit',
           link: PageRoutes.planYourVisit,
         }}
-        facts={[
-          { label: '1985', subLabel: 'Founded' },
-          { label: '250+', subLabel: 'Sermons' },
-          { label: '24/7', subLabel: 'Prayer Support' },
-        ]}
       />
 
       <div className="py-padding flex gap-xxl lg:gap-[100px] 2xl:gap-[125px]">

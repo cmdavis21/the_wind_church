@@ -29,7 +29,7 @@ export const AllTypesProps: Record<string,any> = {
 		MinistryConnection:{
 
 		},
-		YouthServiceRegistration:{
+		NextGenRosterSignup:{
 
 		},
 		Contact:{
@@ -47,7 +47,10 @@ export const AllTypesProps: Record<string,any> = {
 		Ministry:{
 
 		},
-		YouthService:{
+		NextGenPage:{
+
+		},
+		Product:{
 
 		},
 		Document:{
@@ -89,9 +92,9 @@ export const AllTypesProps: Record<string,any> = {
 			where:"MinistryConnectionFilter",
 			sort:"MinistryConnectionSorting"
 		},
-		allYouthServiceRegistration:{
-			where:"YouthServiceRegistrationFilter",
-			sort:"YouthServiceRegistrationSorting"
+		allNextGenRosterSignup:{
+			where:"NextGenRosterSignupFilter",
+			sort:"NextGenRosterSignupSorting"
 		},
 		allContact:{
 			where:"ContactFilter",
@@ -113,9 +116,13 @@ export const AllTypesProps: Record<string,any> = {
 			where:"MinistryFilter",
 			sort:"MinistrySorting"
 		},
-		allYouthService:{
-			where:"YouthServiceFilter",
-			sort:"YouthServiceSorting"
+		allNextGenPage:{
+			where:"NextGenPageFilter",
+			sort:"NextGenPageSorting"
+		},
+		allProduct:{
+			where:"ProductFilter",
+			sort:"ProductSorting"
 		},
 		allDocument:{
 			where:"DocumentFilter",
@@ -522,7 +529,7 @@ export const AllTypesProps: Record<string,any> = {
 		_rev:"SortOrder",
 		_key:"SortOrder"
 	},
-	YouthServiceRegistrationFilter:{
+	NextGenRosterSignupFilter:{
 		_:"Sanity_DocumentFilter",
 		_id:"IDFilter",
 		_type:"StringFilter",
@@ -538,7 +545,7 @@ export const AllTypesProps: Record<string,any> = {
 		hobbies:"StringFilter",
 		allergies:"StringFilter"
 	},
-	YouthServiceRegistrationSorting:{
+	NextGenRosterSignupSorting:{
 		_id:"SortOrder",
 		_type:"SortOrder",
 		_createdAt:"SortOrder",
@@ -760,7 +767,8 @@ export const AllTypesProps: Record<string,any> = {
 		slug:"SlugFilter",
 		image:"ImageFilter",
 		start_date:"DateFilter",
-		end_date:"DateFilter"
+		end_date:"DateFilter",
+		accepting_new_students:"BooleanFilter"
 	},
 	DeepDiveSorting:{
 		_id:"SortOrder",
@@ -773,7 +781,8 @@ export const AllTypesProps: Record<string,any> = {
 		slug:"SlugSorting",
 		image:"ImageSorting",
 		start_date:"SortOrder",
-		end_date:"SortOrder"
+		end_date:"SortOrder",
+		accepting_new_students:"SortOrder"
 	},
 	SlugSorting:{
 		_key:"SortOrder",
@@ -799,7 +808,7 @@ export const AllTypesProps: Record<string,any> = {
 		passage:"SortOrder",
 		verse:"SortOrder"
 	},
-	YouthServiceFilter:{
+	NextGenPageFilter:{
 		_:"Sanity_DocumentFilter",
 		_id:"IDFilter",
 		_type:"StringFilter",
@@ -809,7 +818,7 @@ export const AllTypesProps: Record<string,any> = {
 		_key:"StringFilter",
 		cirriculum_file:"FileFilter"
 	},
-	YouthServiceSorting:{
+	NextGenPageSorting:{
 		_id:"SortOrder",
 		_type:"SortOrder",
 		_createdAt:"SortOrder",
@@ -817,6 +826,25 @@ export const AllTypesProps: Record<string,any> = {
 		_rev:"SortOrder",
 		_key:"SortOrder",
 		cirriculum_file:"FileSorting"
+	},
+	ProductFilter:{
+		_:"Sanity_DocumentFilter",
+		_id:"IDFilter",
+		_type:"StringFilter",
+		_createdAt:"DatetimeFilter",
+		_updatedAt:"DatetimeFilter",
+		_rev:"StringFilter",
+		_key:"StringFilter",
+		title:"StringFilter"
+	},
+	ProductSorting:{
+		_id:"SortOrder",
+		_type:"SortOrder",
+		_createdAt:"SortOrder",
+		_updatedAt:"SortOrder",
+		_rev:"SortOrder",
+		_key:"SortOrder",
+		title:"SortOrder"
 	},
 	DocumentFilter:{
 		_:"Sanity_DocumentFilter",
@@ -844,6 +872,32 @@ export const AllTypesProps: Record<string,any> = {
 		_dataset:"StringFilter",
 		_projectId:"StringFilter"
 	},
+	ShopifyAssetPreviewFilter:{
+		_key:"StringFilter",
+		_type:"StringFilter",
+		height:"FloatFilter",
+		width:"FloatFilter",
+		url:"StringFilter"
+	},
+	ShopifyAssetMetadataFilter:{
+		_key:"StringFilter",
+		_type:"StringFilter",
+		alt:"StringFilter",
+		duration:"FloatFilter",
+		fileSize:"FloatFilter",
+		height:"FloatFilter",
+		width:"FloatFilter"
+	},
+	ShopifyAssetFilter:{
+		_key:"StringFilter",
+		_type:"StringFilter",
+		filename:"StringFilter",
+		id:"StringFilter",
+		meta:"ShopifyAssetMetadataFilter",
+		preview:"ShopifyAssetPreviewFilter",
+		type:"StringFilter",
+		url:"StringFilter"
+	},
 	MeetingDetailsTypeFilter:{
 		_key:"StringFilter",
 		_type:"StringFilter",
@@ -851,7 +905,7 @@ export const AllTypesProps: Record<string,any> = {
 		time:"TimeTypeFilter",
 		location:"StringFilter"
 	},
-	YouthServiceRegistrationGuardianFilter:{
+	NextGenRosterSignupGuardianFilter:{
 		_key:"StringFilter",
 		_type:"StringFilter",
 		contact:"ContactFilter",
@@ -865,6 +919,32 @@ export const AllTypesProps: Record<string,any> = {
 		_dataset:"SortOrder",
 		_projectId:"SortOrder"
 	},
+	ShopifyAssetPreviewSorting:{
+		_key:"SortOrder",
+		_type:"SortOrder",
+		height:"SortOrder",
+		width:"SortOrder",
+		url:"SortOrder"
+	},
+	ShopifyAssetMetadataSorting:{
+		_key:"SortOrder",
+		_type:"SortOrder",
+		alt:"SortOrder",
+		duration:"SortOrder",
+		fileSize:"SortOrder",
+		height:"SortOrder",
+		width:"SortOrder"
+	},
+	ShopifyAssetSorting:{
+		_key:"SortOrder",
+		_type:"SortOrder",
+		filename:"SortOrder",
+		id:"SortOrder",
+		meta:"ShopifyAssetMetadataSorting",
+		preview:"ShopifyAssetPreviewSorting",
+		type:"SortOrder",
+		url:"SortOrder"
+	},
 	MeetingDetailsTypeSorting:{
 		_key:"SortOrder",
 		_type:"SortOrder",
@@ -872,7 +952,7 @@ export const AllTypesProps: Record<string,any> = {
 		time:"TimeTypeSorting",
 		location:"SortOrder"
 	},
-	YouthServiceRegistrationGuardianSorting:{
+	NextGenRosterSignupGuardianSorting:{
 		_key:"SortOrder",
 		_type:"SortOrder",
 		relationship_to_child:"SortOrder"
@@ -901,13 +981,14 @@ export const ReturnTypes: Record<string,any> = {
 		VisitorFeedback:"VisitorFeedback",
 		ScheduledVisit:"ScheduledVisit",
 		MinistryConnection:"MinistryConnection",
-		YouthServiceRegistration:"YouthServiceRegistration",
+		NextGenRosterSignup:"NextGenRosterSignup",
 		Contact:"Contact",
 		Event:"Event",
 		Leader:"Leader",
 		DeepDive:"DeepDive",
 		Ministry:"Ministry",
-		YouthService:"YouthService",
+		NextGenPage:"NextGenPage",
+		Product:"Product",
 		Document:"Document",
 		allSanityImageAsset:"SanityImageAsset",
 		allSanityFileAsset:"SanityFileAsset",
@@ -918,13 +999,14 @@ export const ReturnTypes: Record<string,any> = {
 		allVisitorFeedback:"VisitorFeedback",
 		allScheduledVisit:"ScheduledVisit",
 		allMinistryConnection:"MinistryConnection",
-		allYouthServiceRegistration:"YouthServiceRegistration",
+		allNextGenRosterSignup:"NextGenRosterSignup",
 		allContact:"Contact",
 		allEvent:"Event",
 		allLeader:"Leader",
 		allDeepDive:"DeepDive",
 		allMinistry:"Ministry",
-		allYouthService:"YouthService",
+		allNextGenPage:"NextGenPage",
+		allProduct:"Product",
 		allDocument:"Document"
 	},
 	SanityImageAsset:{
@@ -961,12 +1043,13 @@ export const ReturnTypes: Record<string,any> = {
 		"...on VisitorFeedback": "VisitorFeedback",
 		"...on ScheduledVisit": "ScheduledVisit",
 		"...on MinistryConnection": "MinistryConnection",
-		"...on YouthServiceRegistration": "YouthServiceRegistration",
+		"...on NextGenRosterSignup": "NextGenRosterSignup",
 		"...on Event": "Event",
 		"...on Leader": "Leader",
 		"...on Ministry": "Ministry",
 		"...on DeepDive": "DeepDive",
-		"...on YouthService": "YouthService",
+		"...on NextGenPage": "NextGenPage",
+		"...on Product": "Product",
 		_id:"ID",
 		_type:"String",
 		_createdAt:"DateTime",
@@ -1143,7 +1226,7 @@ export const ReturnTypes: Record<string,any> = {
 		contact:"Contact",
 		ministry_interests:"String"
 	},
-	YouthServiceRegistration:{
+	NextGenRosterSignup:{
 		_id:"ID",
 		_type:"String",
 		_createdAt:"DateTime",
@@ -1157,9 +1240,9 @@ export const ReturnTypes: Record<string,any> = {
 		gender:"String",
 		hobbies:"String",
 		allergies:"String",
-		guardians:"YouthServiceRegistrationGuardian"
+		guardians:"NextGenRosterSignupGuardian"
 	},
-	YouthServiceRegistrationGuardian:{
+	NextGenRosterSignupGuardian:{
 		_key:"String",
 		_type:"String",
 		contact:"Contact",
@@ -1296,9 +1379,10 @@ export const ReturnTypes: Record<string,any> = {
 		start_date:"Date",
 		end_date:"Date",
 		required_materials:"String",
-		meeting_details:"MeetingDetailsType"
+		meeting_details:"MeetingDetailsType",
+		accepting_new_students:"Boolean"
 	},
-	YouthService:{
+	NextGenPage:{
 		_id:"ID",
 		_type:"String",
 		_createdAt:"DateTime",
@@ -1307,6 +1391,15 @@ export const ReturnTypes: Record<string,any> = {
 		_key:"String",
 		educators:"Leader",
 		cirriculum_file:"File"
+	},
+	Product:{
+		_id:"ID",
+		_type:"String",
+		_createdAt:"DateTime",
+		_updatedAt:"DateTime",
+		_rev:"String",
+		_key:"String",
+		title:"String"
 	},
 	Block:{
 		_key:"String",
@@ -1329,6 +1422,32 @@ export const ReturnTypes: Record<string,any> = {
 		_weak:"Boolean",
 		_dataset:"String",
 		_projectId:"String"
+	},
+	ShopifyAssetPreview:{
+		_key:"String",
+		_type:"String",
+		height:"Float",
+		width:"Float",
+		url:"String"
+	},
+	ShopifyAssetMetadata:{
+		_key:"String",
+		_type:"String",
+		alt:"String",
+		duration:"Float",
+		fileSize:"Float",
+		height:"Float",
+		width:"Float"
+	},
+	ShopifyAsset:{
+		_key:"String",
+		_type:"String",
+		filename:"String",
+		id:"String",
+		meta:"ShopifyAssetMetadata",
+		preview:"ShopifyAssetPreview",
+		type:"String",
+		url:"String"
 	},
 	ID: `scalar.ID` as const
 }

@@ -791,15 +791,15 @@ export const ReturnTypes: Record<string,any> = {
 	accessRestricted:{
 		reason:"String"
 	},
+	defer:{
+		if:"Boolean",
+		label:"String"
+	},
 	inContext:{
 		country:"CountryCode",
 		language:"LanguageCode",
 		preferredLocationId:"ID",
 		buyer:"BuyerInput"
-	},
-	defer:{
-		if:"Boolean",
-		label:"String"
 	},
 	ApiVersion:{
 		displayName:"String",

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import LanguageSelector from '@/components/buttons/language-selector/LanguageSelector';
 import VerticalEllipsis from '@/components/icons/verticalEllipsis';
@@ -7,18 +7,20 @@ import { useWindowDimensions } from '@/data/hooks';
 
 interface UserSettingsProps {
   changeColor: boolean;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
-const UserSettings: React.FC<UserSettingsProps> = ({ changeColor }) => {
-  const [open, setOpen] = useState(false);
+const UserSettings: React.FC<UserSettingsProps> = ({ changeColor, open, setOpen }) => {
+  // const [open, setOpen] = useState(false);
   const { width } = useWindowDimensions();
   const navItem = useRef<HTMLButtonElement | null>(null);
   const subMenuDropdown = useRef<HTMLDivElement | null>(null);
 
   return (
     <div
-      onMouseOver={() => width >= 1024 && setOpen(true)}
-      onMouseOut={() => width >= 1024 && setOpen(false)}
+      onMouseEnter={() => width >= 1024 && setOpen(true)}
+      onMouseLeave={() => width >= 1024 && setOpen(false)}
       onClick={() => {
         if (width < 1024) {
           return setOpen(!open);
@@ -44,7 +46,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ changeColor }) => {
       </button>
 
       <div
-        onMouseOut={() => setOpen(false)}
+        onMouseLeave={() => setOpen(false)}
         style={{
           height: open ? `${subMenuDropdown.current?.offsetHeight}px` : '0px',
         }}
@@ -55,7 +57,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ changeColor }) => {
         } transition-[height, opacity] duration-500`}
       >
         {/* Transparent spacer */}
-        <div className="w-full h-[25px]" />
+        <div className="w-full h-[20px]" />
 
         <div className="px-xs">
           <div

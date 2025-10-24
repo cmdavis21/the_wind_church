@@ -1,6 +1,6 @@
 import { DeepDive } from '@/data/types';
-import { SanityQuery } from '../zeus-chain';
 import { portableTextToString } from '../utils';
+import { SanityQuery } from '../zeus-chain';
 
 const getAllDeepDivesQuery = async () => {
   return await SanityQuery({
@@ -50,6 +50,7 @@ const getAllDeepDivesQuery = async () => {
         start_date: true,
         end_date: true,
         required_materials: true,
+        accepting_new_students: true,
       },
     ],
   }).then((d) => d.allDeepDive);
@@ -103,6 +104,7 @@ const getDeepDiveBySlugQuery = async (slug: string) => {
         start_date: true,
         end_date: true,
         required_materials: true,
+        accepting_new_students: true,
       },
     ],
   }).then((d) => d.allDeepDive);
@@ -152,6 +154,7 @@ export const getAllDeepDives = async (): Promise<DeepDive[]> => {
         start_date: (deepDive.start_date as Date) ?? new Date(),
         end_date: (deepDive.end_date as Date) ?? new Date(),
         required_materials: (deepDive.required_materials as string[]) ?? undefined,
+        accepting_new_students: (deepDive.accepting_new_students as boolean) ?? false,
       }));
   }
 
@@ -196,6 +199,7 @@ export const getDeepDiveBySlug = async (slug: string): Promise<DeepDive | undefi
       start_date: (deepDive[0].start_date as Date) ?? new Date(),
       end_date: (deepDive[0].end_date as Date) ?? new Date(),
       required_materials: (deepDive[0].required_materials as string[]) ?? undefined,
+      accepting_new_students: (deepDive[0].accepting_new_students as boolean) ?? false,
     };
   }
 

@@ -926,8 +926,8 @@ ScheduledVisit?: [{	/** ScheduledVisit document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["ScheduledVisit"]],
 MinistryConnection?: [{	/** MinistryConnection document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["MinistryConnection"]],
-YouthServiceRegistration?: [{	/** YouthServiceRegistration document ID */
-	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["YouthServiceRegistration"]],
+NextGenRosterSignup?: [{	/** NextGenRosterSignup document ID */
+	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["NextGenRosterSignup"]],
 Contact?: [{	/** Contact document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["Contact"]],
 Event?: [{	/** Event document ID */
@@ -938,8 +938,10 @@ DeepDive?: [{	/** DeepDive document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["DeepDive"]],
 Ministry?: [{	/** Ministry document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["Ministry"]],
-YouthService?: [{	/** YouthService document ID */
-	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["YouthService"]],
+NextGenPage?: [{	/** NextGenPage document ID */
+	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["NextGenPage"]],
+Product?: [{	/** Product document ID */
+	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["Product"]],
 Document?: [{	/** Document document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["Document"]],
 allSanityImageAsset?: [{	where?: ValueTypes["SanityImageAssetFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["SanityImageAssetSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
@@ -969,9 +971,9 @@ allScheduledVisit?: [{	where?: ValueTypes["ScheduledVisitFilter"] | undefined | 
 allMinistryConnection?: [{	where?: ValueTypes["MinistryConnectionFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["MinistryConnectionSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["MinistryConnection"]],
-allYouthServiceRegistration?: [{	where?: ValueTypes["YouthServiceRegistrationFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["YouthServiceRegistrationSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
+allNextGenRosterSignup?: [{	where?: ValueTypes["NextGenRosterSignupFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["NextGenRosterSignupSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null | Variable<any, string>},ValueTypes["YouthServiceRegistration"]],
+	offset?: number | undefined | null | Variable<any, string>},ValueTypes["NextGenRosterSignup"]],
 allContact?: [{	where?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["ContactSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Contact"]],
@@ -987,9 +989,12 @@ allDeepDive?: [{	where?: ValueTypes["DeepDiveFilter"] | undefined | null | Varia
 allMinistry?: [{	where?: ValueTypes["MinistryFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["MinistrySorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Ministry"]],
-allYouthService?: [{	where?: ValueTypes["YouthServiceFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["YouthServiceSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
+allNextGenPage?: [{	where?: ValueTypes["NextGenPageFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["NextGenPageSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null | Variable<any, string>},ValueTypes["YouthService"]],
+	offset?: number | undefined | null | Variable<any, string>},ValueTypes["NextGenPage"]],
+allProduct?: [{	where?: ValueTypes["ProductFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["ProductSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
+	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
+	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Product"]],
 allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DocumentSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Document"]],
@@ -1046,12 +1051,13 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 		['...on VisitorFeedback']?: Omit<ValueTypes["VisitorFeedback"],keyof ValueTypes["Document"]>;
 		['...on ScheduledVisit']?: Omit<ValueTypes["ScheduledVisit"],keyof ValueTypes["Document"]>;
 		['...on MinistryConnection']?: Omit<ValueTypes["MinistryConnection"],keyof ValueTypes["Document"]>;
-		['...on YouthServiceRegistration']?: Omit<ValueTypes["YouthServiceRegistration"],keyof ValueTypes["Document"]>;
+		['...on NextGenRosterSignup']?: Omit<ValueTypes["NextGenRosterSignup"],keyof ValueTypes["Document"]>;
 		['...on Event']?: Omit<ValueTypes["Event"],keyof ValueTypes["Document"]>;
 		['...on Leader']?: Omit<ValueTypes["Leader"],keyof ValueTypes["Document"]>;
 		['...on Ministry']?: Omit<ValueTypes["Ministry"],keyof ValueTypes["Document"]>;
 		['...on DeepDive']?: Omit<ValueTypes["DeepDive"],keyof ValueTypes["Document"]>;
-		['...on YouthService']?: Omit<ValueTypes["YouthService"],keyof ValueTypes["Document"]>;
+		['...on NextGenPage']?: Omit<ValueTypes["NextGenPage"],keyof ValueTypes["Document"]>;
+		['...on Product']?: Omit<ValueTypes["Product"],keyof ValueTypes["Document"]>;
 		__typename?: boolean | `@${string}`
 }>;
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
@@ -1288,7 +1294,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	ministry_interests?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["YouthServiceRegistration"]: AliasType<{
+	["NextGenRosterSignup"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
 	/** Document type */
@@ -1307,10 +1313,10 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	gender?:boolean | `@${string}`,
 	hobbies?:boolean | `@${string}`,
 	allergies?:boolean | `@${string}`,
-	guardians?:ValueTypes["YouthServiceRegistrationGuardian"],
+	guardians?:ValueTypes["NextGenRosterSignupGuardian"],
 		__typename?: boolean | `@${string}`
 }>;
-	["YouthServiceRegistrationGuardian"]: AliasType<{
+	["NextGenRosterSignupGuardian"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	contact?:ValueTypes["Contact"],
@@ -1494,9 +1500,11 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	end_date?:boolean | `@${string}`,
 	required_materials?:boolean | `@${string}`,
 	meeting_details?:ValueTypes["MeetingDetailsType"],
+	/** Is this deep dive actively accepting new Students? */
+	accepting_new_students?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["YouthService"]: AliasType<{
+	["NextGenPage"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
 	/** Document type */
@@ -1510,6 +1518,21 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_key?:boolean | `@${string}`,
 	educators?:ValueTypes["Leader"],
 	cirriculum_file?:ValueTypes["File"],
+		__typename?: boolean | `@${string}`
+}>;
+	["Product"]: AliasType<{
+	/** Document ID */
+	_id?:boolean | `@${string}`,
+	/** Document type */
+	_type?:boolean | `@${string}`,
+	/** Date the document was created */
+	_createdAt?:boolean | `@${string}`,
+	/** Date the document was last modified */
+	_updatedAt?:boolean | `@${string}`,
+	/** Current document revision */
+	_rev?:boolean | `@${string}`,
+	_key?:boolean | `@${string}`,
+	title?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["SanityImageAssetFilter"]: {
@@ -1964,7 +1987,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
-	["YouthServiceRegistrationFilter"]: {
+	["NextGenRosterSignupFilter"]: {
 	/** Apply filters on document level */
 	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
 	_id?: ValueTypes["IDFilter"] | undefined | null | Variable<any, string>,
@@ -1981,7 +2004,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	hobbies?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	allergies?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
-	["YouthServiceRegistrationSorting"]: {
+	["NextGenRosterSignupSorting"]: {
 	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_createdAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2215,7 +2238,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	slug?: ValueTypes["SlugFilter"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
 	start_date?: ValueTypes["DateFilter"] | undefined | null | Variable<any, string>,
-	end_date?: ValueTypes["DateFilter"] | undefined | null | Variable<any, string>
+	end_date?: ValueTypes["DateFilter"] | undefined | null | Variable<any, string>,
+	accepting_new_students?: ValueTypes["BooleanFilter"] | undefined | null | Variable<any, string>
 };
 	["DeepDiveSorting"]: {
 	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2228,7 +2252,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	slug?: ValueTypes["SlugSorting"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>,
 	start_date?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	end_date?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+	end_date?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	accepting_new_students?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["SlugSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2254,7 +2279,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	passage?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	verse?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
-	["YouthServiceFilter"]: {
+	["NextGenPageFilter"]: {
 	/** Apply filters on document level */
 	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
 	_id?: ValueTypes["IDFilter"] | undefined | null | Variable<any, string>,
@@ -2265,7 +2290,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	cirriculum_file?: ValueTypes["FileFilter"] | undefined | null | Variable<any, string>
 };
-	["YouthServiceSorting"]: {
+	["NextGenPageSorting"]: {
 	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_createdAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2273,6 +2298,26 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	cirriculum_file?: ValueTypes["FileSorting"] | undefined | null | Variable<any, string>
+};
+	["ProductFilter"]: {
+	/** Apply filters on document level */
+	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
+	_id?: ValueTypes["IDFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_createdAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
+	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
+	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	title?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+};
+	["ProductSorting"]: {
+	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_createdAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	title?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["DocumentFilter"]: {
 	/** Apply filters on document level */
@@ -2315,6 +2360,35 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_projectId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
+	["ShopifyAssetPreview"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	height?:boolean | `@${string}`,
+	width?:boolean | `@${string}`,
+	url?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["ShopifyAssetMetadata"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	alt?:boolean | `@${string}`,
+	duration?:boolean | `@${string}`,
+	fileSize?:boolean | `@${string}`,
+	height?:boolean | `@${string}`,
+	width?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["ShopifyAsset"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	filename?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	meta?:ValueTypes["ShopifyAssetMetadata"],
+	preview?:ValueTypes["ShopifyAssetPreview"],
+	type?:boolean | `@${string}`,
+	url?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["IntFilter"]: {
 	/** Checks if the value is equal to the given input. */
 	eq?: number | undefined | null | Variable<any, string>,
@@ -2339,6 +2413,32 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_dataset?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_projectId?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
+	["ShopifyAssetPreviewFilter"]: {
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	height?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>,
+	width?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>,
+	url?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+};
+	["ShopifyAssetMetadataFilter"]: {
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	alt?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	duration?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>,
+	fileSize?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>,
+	height?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>,
+	width?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>
+};
+	["ShopifyAssetFilter"]: {
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	filename?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	meta?: ValueTypes["ShopifyAssetMetadataFilter"] | undefined | null | Variable<any, string>,
+	preview?: ValueTypes["ShopifyAssetPreviewFilter"] | undefined | null | Variable<any, string>,
+	type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	url?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+};
 	["MeetingDetailsTypeFilter"]: {
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
@@ -2346,7 +2446,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	time?: ValueTypes["TimeTypeFilter"] | undefined | null | Variable<any, string>,
 	location?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
-	["YouthServiceRegistrationGuardianFilter"]: {
+	["NextGenRosterSignupGuardianFilter"]: {
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	contact?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,
@@ -2360,6 +2460,32 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_dataset?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_projectId?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
+	["ShopifyAssetPreviewSorting"]: {
+	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	height?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	width?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	url?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+};
+	["ShopifyAssetMetadataSorting"]: {
+	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	alt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	duration?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	fileSize?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	height?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	width?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+};
+	["ShopifyAssetSorting"]: {
+	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	filename?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	meta?: ValueTypes["ShopifyAssetMetadataSorting"] | undefined | null | Variable<any, string>,
+	preview?: ValueTypes["ShopifyAssetPreviewSorting"] | undefined | null | Variable<any, string>,
+	type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	url?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+};
 	["MeetingDetailsTypeSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2367,7 +2493,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	time?: ValueTypes["TimeTypeSorting"] | undefined | null | Variable<any, string>,
 	location?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
-	["YouthServiceRegistrationGuardianSorting"]: {
+	["NextGenRosterSignupGuardianSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	relationship_to_child?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
@@ -2399,8 +2525,8 @@ ScheduledVisit?: [{	/** ScheduledVisit document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["ScheduledVisit"]],
 MinistryConnection?: [{	/** MinistryConnection document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["MinistryConnection"]],
-YouthServiceRegistration?: [{	/** YouthServiceRegistration document ID */
-	id: ResolverInputTypes["ID"]},ResolverInputTypes["YouthServiceRegistration"]],
+NextGenRosterSignup?: [{	/** NextGenRosterSignup document ID */
+	id: ResolverInputTypes["ID"]},ResolverInputTypes["NextGenRosterSignup"]],
 Contact?: [{	/** Contact document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["Contact"]],
 Event?: [{	/** Event document ID */
@@ -2411,8 +2537,10 @@ DeepDive?: [{	/** DeepDive document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["DeepDive"]],
 Ministry?: [{	/** Ministry document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["Ministry"]],
-YouthService?: [{	/** YouthService document ID */
-	id: ResolverInputTypes["ID"]},ResolverInputTypes["YouthService"]],
+NextGenPage?: [{	/** NextGenPage document ID */
+	id: ResolverInputTypes["ID"]},ResolverInputTypes["NextGenPage"]],
+Product?: [{	/** Product document ID */
+	id: ResolverInputTypes["ID"]},ResolverInputTypes["Product"]],
 Document?: [{	/** Document document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["Document"]],
 allSanityImageAsset?: [{	where?: ResolverInputTypes["SanityImageAssetFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["SanityImageAssetSorting"]> | undefined | null,	/** Max documents to return */
@@ -2442,9 +2570,9 @@ allScheduledVisit?: [{	where?: ResolverInputTypes["ScheduledVisitFilter"] | unde
 allMinistryConnection?: [{	where?: ResolverInputTypes["MinistryConnectionFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["MinistryConnectionSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["MinistryConnection"]],
-allYouthServiceRegistration?: [{	where?: ResolverInputTypes["YouthServiceRegistrationFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["YouthServiceRegistrationSorting"]> | undefined | null,	/** Max documents to return */
+allNextGenRosterSignup?: [{	where?: ResolverInputTypes["NextGenRosterSignupFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["NextGenRosterSignupSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null},ResolverInputTypes["YouthServiceRegistration"]],
+	offset?: number | undefined | null},ResolverInputTypes["NextGenRosterSignup"]],
 allContact?: [{	where?: ResolverInputTypes["ContactFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["ContactSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["Contact"]],
@@ -2460,9 +2588,12 @@ allDeepDive?: [{	where?: ResolverInputTypes["DeepDiveFilter"] | undefined | null
 allMinistry?: [{	where?: ResolverInputTypes["MinistryFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["MinistrySorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["Ministry"]],
-allYouthService?: [{	where?: ResolverInputTypes["YouthServiceFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["YouthServiceSorting"]> | undefined | null,	/** Max documents to return */
+allNextGenPage?: [{	where?: ResolverInputTypes["NextGenPageFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["NextGenPageSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null},ResolverInputTypes["YouthService"]],
+	offset?: number | undefined | null},ResolverInputTypes["NextGenPage"]],
+allProduct?: [{	where?: ResolverInputTypes["ProductFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["ProductSorting"]> | undefined | null,	/** Max documents to return */
+	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
+	offset?: number | undefined | null},ResolverInputTypes["Product"]],
 allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["DocumentSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["Document"]],
@@ -2519,12 +2650,13 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 		['...on VisitorFeedback']?: Omit<ResolverInputTypes["VisitorFeedback"],keyof ResolverInputTypes["Document"]>;
 		['...on ScheduledVisit']?: Omit<ResolverInputTypes["ScheduledVisit"],keyof ResolverInputTypes["Document"]>;
 		['...on MinistryConnection']?: Omit<ResolverInputTypes["MinistryConnection"],keyof ResolverInputTypes["Document"]>;
-		['...on YouthServiceRegistration']?: Omit<ResolverInputTypes["YouthServiceRegistration"],keyof ResolverInputTypes["Document"]>;
+		['...on NextGenRosterSignup']?: Omit<ResolverInputTypes["NextGenRosterSignup"],keyof ResolverInputTypes["Document"]>;
 		['...on Event']?: Omit<ResolverInputTypes["Event"],keyof ResolverInputTypes["Document"]>;
 		['...on Leader']?: Omit<ResolverInputTypes["Leader"],keyof ResolverInputTypes["Document"]>;
 		['...on Ministry']?: Omit<ResolverInputTypes["Ministry"],keyof ResolverInputTypes["Document"]>;
 		['...on DeepDive']?: Omit<ResolverInputTypes["DeepDive"],keyof ResolverInputTypes["Document"]>;
-		['...on YouthService']?: Omit<ResolverInputTypes["YouthService"],keyof ResolverInputTypes["Document"]>;
+		['...on NextGenPage']?: Omit<ResolverInputTypes["NextGenPage"],keyof ResolverInputTypes["Document"]>;
+		['...on Product']?: Omit<ResolverInputTypes["Product"],keyof ResolverInputTypes["Document"]>;
 		__typename?: boolean | `@${string}`
 }>;
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
@@ -2761,7 +2893,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	ministry_interests?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["YouthServiceRegistration"]: AliasType<{
+	["NextGenRosterSignup"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
 	/** Document type */
@@ -2780,10 +2912,10 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	gender?:boolean | `@${string}`,
 	hobbies?:boolean | `@${string}`,
 	allergies?:boolean | `@${string}`,
-	guardians?:ResolverInputTypes["YouthServiceRegistrationGuardian"],
+	guardians?:ResolverInputTypes["NextGenRosterSignupGuardian"],
 		__typename?: boolean | `@${string}`
 }>;
-	["YouthServiceRegistrationGuardian"]: AliasType<{
+	["NextGenRosterSignupGuardian"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	contact?:ResolverInputTypes["Contact"],
@@ -2967,9 +3099,11 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	end_date?:boolean | `@${string}`,
 	required_materials?:boolean | `@${string}`,
 	meeting_details?:ResolverInputTypes["MeetingDetailsType"],
+	/** Is this deep dive actively accepting new Students? */
+	accepting_new_students?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["YouthService"]: AliasType<{
+	["NextGenPage"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
 	/** Document type */
@@ -2983,6 +3117,21 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_key?:boolean | `@${string}`,
 	educators?:ResolverInputTypes["Leader"],
 	cirriculum_file?:ResolverInputTypes["File"],
+		__typename?: boolean | `@${string}`
+}>;
+	["Product"]: AliasType<{
+	/** Document ID */
+	_id?:boolean | `@${string}`,
+	/** Document type */
+	_type?:boolean | `@${string}`,
+	/** Date the document was created */
+	_createdAt?:boolean | `@${string}`,
+	/** Date the document was last modified */
+	_updatedAt?:boolean | `@${string}`,
+	/** Current document revision */
+	_rev?:boolean | `@${string}`,
+	_key?:boolean | `@${string}`,
+	title?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["SanityImageAssetFilter"]: {
@@ -3437,7 +3586,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null
 };
-	["YouthServiceRegistrationFilter"]: {
+	["NextGenRosterSignupFilter"]: {
 	/** Apply filters on document level */
 	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
 	_id?: ResolverInputTypes["IDFilter"] | undefined | null,
@@ -3454,7 +3603,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	hobbies?: ResolverInputTypes["StringFilter"] | undefined | null,
 	allergies?: ResolverInputTypes["StringFilter"] | undefined | null
 };
-	["YouthServiceRegistrationSorting"]: {
+	["NextGenRosterSignupSorting"]: {
 	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_createdAt?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3688,7 +3837,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	slug?: ResolverInputTypes["SlugFilter"] | undefined | null,
 	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
 	start_date?: ResolverInputTypes["DateFilter"] | undefined | null,
-	end_date?: ResolverInputTypes["DateFilter"] | undefined | null
+	end_date?: ResolverInputTypes["DateFilter"] | undefined | null,
+	accepting_new_students?: ResolverInputTypes["BooleanFilter"] | undefined | null
 };
 	["DeepDiveSorting"]: {
 	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3701,7 +3851,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	slug?: ResolverInputTypes["SlugSorting"] | undefined | null,
 	image?: ResolverInputTypes["ImageSorting"] | undefined | null,
 	start_date?: ResolverInputTypes["SortOrder"] | undefined | null,
-	end_date?: ResolverInputTypes["SortOrder"] | undefined | null
+	end_date?: ResolverInputTypes["SortOrder"] | undefined | null,
+	accepting_new_students?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["SlugSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3727,7 +3878,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	passage?: ResolverInputTypes["SortOrder"] | undefined | null,
 	verse?: ResolverInputTypes["SortOrder"] | undefined | null
 };
-	["YouthServiceFilter"]: {
+	["NextGenPageFilter"]: {
 	/** Apply filters on document level */
 	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
 	_id?: ResolverInputTypes["IDFilter"] | undefined | null,
@@ -3738,7 +3889,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	cirriculum_file?: ResolverInputTypes["FileFilter"] | undefined | null
 };
-	["YouthServiceSorting"]: {
+	["NextGenPageSorting"]: {
 	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_createdAt?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3746,6 +3897,26 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	cirriculum_file?: ResolverInputTypes["FileSorting"] | undefined | null
+};
+	["ProductFilter"]: {
+	/** Apply filters on document level */
+	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
+	_id?: ResolverInputTypes["IDFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_createdAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
+	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
+	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	title?: ResolverInputTypes["StringFilter"] | undefined | null
+};
+	["ProductSorting"]: {
+	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_createdAt?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
+	title?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["DocumentFilter"]: {
 	/** Apply filters on document level */
@@ -3788,6 +3959,35 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_projectId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
+	["ShopifyAssetPreview"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	height?:boolean | `@${string}`,
+	width?:boolean | `@${string}`,
+	url?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["ShopifyAssetMetadata"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	alt?:boolean | `@${string}`,
+	duration?:boolean | `@${string}`,
+	fileSize?:boolean | `@${string}`,
+	height?:boolean | `@${string}`,
+	width?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["ShopifyAsset"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	filename?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	meta?:ResolverInputTypes["ShopifyAssetMetadata"],
+	preview?:ResolverInputTypes["ShopifyAssetPreview"],
+	type?:boolean | `@${string}`,
+	url?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["IntFilter"]: {
 	/** Checks if the value is equal to the given input. */
 	eq?: number | undefined | null,
@@ -3812,6 +4012,32 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_dataset?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_projectId?: ResolverInputTypes["StringFilter"] | undefined | null
 };
+	["ShopifyAssetPreviewFilter"]: {
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	height?: ResolverInputTypes["FloatFilter"] | undefined | null,
+	width?: ResolverInputTypes["FloatFilter"] | undefined | null,
+	url?: ResolverInputTypes["StringFilter"] | undefined | null
+};
+	["ShopifyAssetMetadataFilter"]: {
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	alt?: ResolverInputTypes["StringFilter"] | undefined | null,
+	duration?: ResolverInputTypes["FloatFilter"] | undefined | null,
+	fileSize?: ResolverInputTypes["FloatFilter"] | undefined | null,
+	height?: ResolverInputTypes["FloatFilter"] | undefined | null,
+	width?: ResolverInputTypes["FloatFilter"] | undefined | null
+};
+	["ShopifyAssetFilter"]: {
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	filename?: ResolverInputTypes["StringFilter"] | undefined | null,
+	id?: ResolverInputTypes["StringFilter"] | undefined | null,
+	meta?: ResolverInputTypes["ShopifyAssetMetadataFilter"] | undefined | null,
+	preview?: ResolverInputTypes["ShopifyAssetPreviewFilter"] | undefined | null,
+	type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	url?: ResolverInputTypes["StringFilter"] | undefined | null
+};
 	["MeetingDetailsTypeFilter"]: {
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
@@ -3819,7 +4045,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	time?: ResolverInputTypes["TimeTypeFilter"] | undefined | null,
 	location?: ResolverInputTypes["StringFilter"] | undefined | null
 };
-	["YouthServiceRegistrationGuardianFilter"]: {
+	["NextGenRosterSignupGuardianFilter"]: {
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
 	contact?: ResolverInputTypes["ContactFilter"] | undefined | null,
@@ -3833,6 +4059,32 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_dataset?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_projectId?: ResolverInputTypes["SortOrder"] | undefined | null
 };
+	["ShopifyAssetPreviewSorting"]: {
+	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
+	height?: ResolverInputTypes["SortOrder"] | undefined | null,
+	width?: ResolverInputTypes["SortOrder"] | undefined | null,
+	url?: ResolverInputTypes["SortOrder"] | undefined | null
+};
+	["ShopifyAssetMetadataSorting"]: {
+	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
+	alt?: ResolverInputTypes["SortOrder"] | undefined | null,
+	duration?: ResolverInputTypes["SortOrder"] | undefined | null,
+	fileSize?: ResolverInputTypes["SortOrder"] | undefined | null,
+	height?: ResolverInputTypes["SortOrder"] | undefined | null,
+	width?: ResolverInputTypes["SortOrder"] | undefined | null
+};
+	["ShopifyAssetSorting"]: {
+	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
+	filename?: ResolverInputTypes["SortOrder"] | undefined | null,
+	id?: ResolverInputTypes["SortOrder"] | undefined | null,
+	meta?: ResolverInputTypes["ShopifyAssetMetadataSorting"] | undefined | null,
+	preview?: ResolverInputTypes["ShopifyAssetPreviewSorting"] | undefined | null,
+	type?: ResolverInputTypes["SortOrder"] | undefined | null,
+	url?: ResolverInputTypes["SortOrder"] | undefined | null
+};
 	["MeetingDetailsTypeSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3840,7 +4092,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	time?: ResolverInputTypes["TimeTypeSorting"] | undefined | null,
 	location?: ResolverInputTypes["SortOrder"] | undefined | null
 };
-	["YouthServiceRegistrationGuardianSorting"]: {
+	["NextGenRosterSignupGuardianSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
 	relationship_to_child?: ResolverInputTypes["SortOrder"] | undefined | null
@@ -3862,13 +4114,14 @@ export type ModelTypes = {
 	VisitorFeedback?: ModelTypes["VisitorFeedback"] | undefined | null,
 	ScheduledVisit?: ModelTypes["ScheduledVisit"] | undefined | null,
 	MinistryConnection?: ModelTypes["MinistryConnection"] | undefined | null,
-	YouthServiceRegistration?: ModelTypes["YouthServiceRegistration"] | undefined | null,
+	NextGenRosterSignup?: ModelTypes["NextGenRosterSignup"] | undefined | null,
 	Contact?: ModelTypes["Contact"] | undefined | null,
 	Event?: ModelTypes["Event"] | undefined | null,
 	Leader?: ModelTypes["Leader"] | undefined | null,
 	DeepDive?: ModelTypes["DeepDive"] | undefined | null,
 	Ministry?: ModelTypes["Ministry"] | undefined | null,
-	YouthService?: ModelTypes["YouthService"] | undefined | null,
+	NextGenPage?: ModelTypes["NextGenPage"] | undefined | null,
+	Product?: ModelTypes["Product"] | undefined | null,
 	Document?: ModelTypes["Document"] | undefined | null,
 	allSanityImageAsset: Array<ModelTypes["SanityImageAsset"]>,
 	allSanityFileAsset: Array<ModelTypes["SanityFileAsset"]>,
@@ -3879,13 +4132,14 @@ export type ModelTypes = {
 	allVisitorFeedback: Array<ModelTypes["VisitorFeedback"]>,
 	allScheduledVisit: Array<ModelTypes["ScheduledVisit"]>,
 	allMinistryConnection: Array<ModelTypes["MinistryConnection"]>,
-	allYouthServiceRegistration: Array<ModelTypes["YouthServiceRegistration"]>,
+	allNextGenRosterSignup: Array<ModelTypes["NextGenRosterSignup"]>,
 	allContact: Array<ModelTypes["Contact"]>,
 	allEvent: Array<ModelTypes["Event"]>,
 	allLeader: Array<ModelTypes["Leader"]>,
 	allDeepDive: Array<ModelTypes["DeepDive"]>,
 	allMinistry: Array<ModelTypes["Ministry"]>,
-	allYouthService: Array<ModelTypes["YouthService"]>,
+	allNextGenPage: Array<ModelTypes["NextGenPage"]>,
+	allProduct: Array<ModelTypes["Product"]>,
 	allDocument: Array<ModelTypes["Document"]>
 };
 	["SanityImageAsset"]: {
@@ -3917,7 +4171,7 @@ export type ModelTypes = {
 	source?: ModelTypes["SanityAssetSourceData"] | undefined | null
 };
 	/** A Sanity document */
-["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["RightnowMedia"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["ScheduledVisit"] | ModelTypes["MinistryConnection"] | ModelTypes["YouthServiceRegistration"] | ModelTypes["Event"] | ModelTypes["Leader"] | ModelTypes["Ministry"] | ModelTypes["DeepDive"] | ModelTypes["YouthService"];
+["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["RightnowMedia"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["ScheduledVisit"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenRosterSignup"] | ModelTypes["Event"] | ModelTypes["Leader"] | ModelTypes["Ministry"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["Product"];
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["DateTime"]:any;
 	["SanityImageMetadata"]: {
@@ -4137,7 +4391,7 @@ export type ModelTypes = {
 	contact?: ModelTypes["Contact"] | undefined | null,
 	ministry_interests?: Array<string | undefined | null> | undefined | null
 };
-	["YouthServiceRegistration"]: {
+	["NextGenRosterSignup"]: {
 		/** Document ID */
 	_id?: ModelTypes["ID"] | undefined | null,
 	/** Document type */
@@ -4156,9 +4410,9 @@ export type ModelTypes = {
 	gender?: string | undefined | null,
 	hobbies?: string | undefined | null,
 	allergies?: string | undefined | null,
-	guardians?: Array<ModelTypes["YouthServiceRegistrationGuardian"] | undefined | null> | undefined | null
+	guardians?: Array<ModelTypes["NextGenRosterSignupGuardian"] | undefined | null> | undefined | null
 };
-	["YouthServiceRegistrationGuardian"]: {
+	["NextGenRosterSignupGuardian"]: {
 		_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	contact?: ModelTypes["Contact"] | undefined | null,
@@ -4328,9 +4582,11 @@ export type ModelTypes = {
 	start_date?: ModelTypes["Date"] | undefined | null,
 	end_date?: ModelTypes["Date"] | undefined | null,
 	required_materials?: Array<string | undefined | null> | undefined | null,
-	meeting_details?: Array<ModelTypes["MeetingDetailsType"] | undefined | null> | undefined | null
+	meeting_details?: Array<ModelTypes["MeetingDetailsType"] | undefined | null> | undefined | null,
+	/** Is this deep dive actively accepting new Students? */
+	accepting_new_students?: boolean | undefined | null
 };
-	["YouthService"]: {
+	["NextGenPage"]: {
 		/** Document ID */
 	_id?: ModelTypes["ID"] | undefined | null,
 	/** Document type */
@@ -4344,6 +4600,20 @@ export type ModelTypes = {
 	_key?: string | undefined | null,
 	educators?: Array<ModelTypes["Leader"] | undefined | null> | undefined | null,
 	cirriculum_file?: ModelTypes["File"] | undefined | null
+};
+	["Product"]: {
+		/** Document ID */
+	_id?: ModelTypes["ID"] | undefined | null,
+	/** Document type */
+	_type?: string | undefined | null,
+	/** Date the document was created */
+	_createdAt?: ModelTypes["DateTime"] | undefined | null,
+	/** Date the document was last modified */
+	_updatedAt?: ModelTypes["DateTime"] | undefined | null,
+	/** Current document revision */
+	_rev?: string | undefined | null,
+	_key?: string | undefined | null,
+	title?: string | undefined | null
 };
 	["SanityImageAssetFilter"]: {
 	/** Apply filters on document level */
@@ -4797,7 +5067,7 @@ export type ModelTypes = {
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null
 };
-	["YouthServiceRegistrationFilter"]: {
+	["NextGenRosterSignupFilter"]: {
 	/** Apply filters on document level */
 	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
 	_id?: ModelTypes["IDFilter"] | undefined | null,
@@ -4814,7 +5084,7 @@ export type ModelTypes = {
 	hobbies?: ModelTypes["StringFilter"] | undefined | null,
 	allergies?: ModelTypes["StringFilter"] | undefined | null
 };
-	["YouthServiceRegistrationSorting"]: {
+	["NextGenRosterSignupSorting"]: {
 	_id?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
 	_createdAt?: ModelTypes["SortOrder"] | undefined | null,
@@ -5048,7 +5318,8 @@ export type ModelTypes = {
 	slug?: ModelTypes["SlugFilter"] | undefined | null,
 	image?: ModelTypes["ImageFilter"] | undefined | null,
 	start_date?: ModelTypes["DateFilter"] | undefined | null,
-	end_date?: ModelTypes["DateFilter"] | undefined | null
+	end_date?: ModelTypes["DateFilter"] | undefined | null,
+	accepting_new_students?: ModelTypes["BooleanFilter"] | undefined | null
 };
 	["DeepDiveSorting"]: {
 	_id?: ModelTypes["SortOrder"] | undefined | null,
@@ -5061,7 +5332,8 @@ export type ModelTypes = {
 	slug?: ModelTypes["SlugSorting"] | undefined | null,
 	image?: ModelTypes["ImageSorting"] | undefined | null,
 	start_date?: ModelTypes["SortOrder"] | undefined | null,
-	end_date?: ModelTypes["SortOrder"] | undefined | null
+	end_date?: ModelTypes["SortOrder"] | undefined | null,
+	accepting_new_students?: ModelTypes["SortOrder"] | undefined | null
 };
 	["SlugSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
@@ -5087,7 +5359,7 @@ export type ModelTypes = {
 	passage?: ModelTypes["SortOrder"] | undefined | null,
 	verse?: ModelTypes["SortOrder"] | undefined | null
 };
-	["YouthServiceFilter"]: {
+	["NextGenPageFilter"]: {
 	/** Apply filters on document level */
 	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
 	_id?: ModelTypes["IDFilter"] | undefined | null,
@@ -5098,7 +5370,7 @@ export type ModelTypes = {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	cirriculum_file?: ModelTypes["FileFilter"] | undefined | null
 };
-	["YouthServiceSorting"]: {
+	["NextGenPageSorting"]: {
 	_id?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
 	_createdAt?: ModelTypes["SortOrder"] | undefined | null,
@@ -5106,6 +5378,26 @@ export type ModelTypes = {
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	cirriculum_file?: ModelTypes["FileSorting"] | undefined | null
+};
+	["ProductFilter"]: {
+	/** Apply filters on document level */
+	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
+	_id?: ModelTypes["IDFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null,
+	_createdAt?: ModelTypes["DatetimeFilter"] | undefined | null,
+	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
+	_rev?: ModelTypes["StringFilter"] | undefined | null,
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	title?: ModelTypes["StringFilter"] | undefined | null
+};
+	["ProductSorting"]: {
+	_id?: ModelTypes["SortOrder"] | undefined | null,
+	_type?: ModelTypes["SortOrder"] | undefined | null,
+	_createdAt?: ModelTypes["SortOrder"] | undefined | null,
+	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
+	_rev?: ModelTypes["SortOrder"] | undefined | null,
+	_key?: ModelTypes["SortOrder"] | undefined | null,
+	title?: ModelTypes["SortOrder"] | undefined | null
 };
 	["DocumentFilter"]: {
 	/** Apply filters on document level */
@@ -5145,6 +5437,32 @@ export type ModelTypes = {
 	_dataset?: string | undefined | null,
 	_projectId?: string | undefined | null
 };
+	["ShopifyAssetPreview"]: {
+		_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	height?: number | undefined | null,
+	width?: number | undefined | null,
+	url?: string | undefined | null
+};
+	["ShopifyAssetMetadata"]: {
+		_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	alt?: string | undefined | null,
+	duration?: number | undefined | null,
+	fileSize?: number | undefined | null,
+	height?: number | undefined | null,
+	width?: number | undefined | null
+};
+	["ShopifyAsset"]: {
+		_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	filename?: string | undefined | null,
+	id?: string | undefined | null,
+	meta?: ModelTypes["ShopifyAssetMetadata"] | undefined | null,
+	preview?: ModelTypes["ShopifyAssetPreview"] | undefined | null,
+	type?: string | undefined | null,
+	url?: string | undefined | null
+};
 	["IntFilter"]: {
 	/** Checks if the value is equal to the given input. */
 	eq?: number | undefined | null,
@@ -5169,6 +5487,32 @@ export type ModelTypes = {
 	_dataset?: ModelTypes["StringFilter"] | undefined | null,
 	_projectId?: ModelTypes["StringFilter"] | undefined | null
 };
+	["ShopifyAssetPreviewFilter"]: {
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null,
+	height?: ModelTypes["FloatFilter"] | undefined | null,
+	width?: ModelTypes["FloatFilter"] | undefined | null,
+	url?: ModelTypes["StringFilter"] | undefined | null
+};
+	["ShopifyAssetMetadataFilter"]: {
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null,
+	alt?: ModelTypes["StringFilter"] | undefined | null,
+	duration?: ModelTypes["FloatFilter"] | undefined | null,
+	fileSize?: ModelTypes["FloatFilter"] | undefined | null,
+	height?: ModelTypes["FloatFilter"] | undefined | null,
+	width?: ModelTypes["FloatFilter"] | undefined | null
+};
+	["ShopifyAssetFilter"]: {
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null,
+	filename?: ModelTypes["StringFilter"] | undefined | null,
+	id?: ModelTypes["StringFilter"] | undefined | null,
+	meta?: ModelTypes["ShopifyAssetMetadataFilter"] | undefined | null,
+	preview?: ModelTypes["ShopifyAssetPreviewFilter"] | undefined | null,
+	type?: ModelTypes["StringFilter"] | undefined | null,
+	url?: ModelTypes["StringFilter"] | undefined | null
+};
 	["MeetingDetailsTypeFilter"]: {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	_type?: ModelTypes["StringFilter"] | undefined | null,
@@ -5176,7 +5520,7 @@ export type ModelTypes = {
 	time?: ModelTypes["TimeTypeFilter"] | undefined | null,
 	location?: ModelTypes["StringFilter"] | undefined | null
 };
-	["YouthServiceRegistrationGuardianFilter"]: {
+	["NextGenRosterSignupGuardianFilter"]: {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	_type?: ModelTypes["StringFilter"] | undefined | null,
 	contact?: ModelTypes["ContactFilter"] | undefined | null,
@@ -5190,6 +5534,32 @@ export type ModelTypes = {
 	_dataset?: ModelTypes["SortOrder"] | undefined | null,
 	_projectId?: ModelTypes["SortOrder"] | undefined | null
 };
+	["ShopifyAssetPreviewSorting"]: {
+	_key?: ModelTypes["SortOrder"] | undefined | null,
+	_type?: ModelTypes["SortOrder"] | undefined | null,
+	height?: ModelTypes["SortOrder"] | undefined | null,
+	width?: ModelTypes["SortOrder"] | undefined | null,
+	url?: ModelTypes["SortOrder"] | undefined | null
+};
+	["ShopifyAssetMetadataSorting"]: {
+	_key?: ModelTypes["SortOrder"] | undefined | null,
+	_type?: ModelTypes["SortOrder"] | undefined | null,
+	alt?: ModelTypes["SortOrder"] | undefined | null,
+	duration?: ModelTypes["SortOrder"] | undefined | null,
+	fileSize?: ModelTypes["SortOrder"] | undefined | null,
+	height?: ModelTypes["SortOrder"] | undefined | null,
+	width?: ModelTypes["SortOrder"] | undefined | null
+};
+	["ShopifyAssetSorting"]: {
+	_key?: ModelTypes["SortOrder"] | undefined | null,
+	_type?: ModelTypes["SortOrder"] | undefined | null,
+	filename?: ModelTypes["SortOrder"] | undefined | null,
+	id?: ModelTypes["SortOrder"] | undefined | null,
+	meta?: ModelTypes["ShopifyAssetMetadataSorting"] | undefined | null,
+	preview?: ModelTypes["ShopifyAssetPreviewSorting"] | undefined | null,
+	type?: ModelTypes["SortOrder"] | undefined | null,
+	url?: ModelTypes["SortOrder"] | undefined | null
+};
 	["MeetingDetailsTypeSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
@@ -5197,7 +5567,7 @@ export type ModelTypes = {
 	time?: ModelTypes["TimeTypeSorting"] | undefined | null,
 	location?: ModelTypes["SortOrder"] | undefined | null
 };
-	["YouthServiceRegistrationGuardianSorting"]: {
+	["NextGenRosterSignupGuardianSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
 	relationship_to_child?: ModelTypes["SortOrder"] | undefined | null
@@ -5217,13 +5587,14 @@ export type GraphQLTypes = {
 	VisitorFeedback?: GraphQLTypes["VisitorFeedback"] | undefined | null,
 	ScheduledVisit?: GraphQLTypes["ScheduledVisit"] | undefined | null,
 	MinistryConnection?: GraphQLTypes["MinistryConnection"] | undefined | null,
-	YouthServiceRegistration?: GraphQLTypes["YouthServiceRegistration"] | undefined | null,
+	NextGenRosterSignup?: GraphQLTypes["NextGenRosterSignup"] | undefined | null,
 	Contact?: GraphQLTypes["Contact"] | undefined | null,
 	Event?: GraphQLTypes["Event"] | undefined | null,
 	Leader?: GraphQLTypes["Leader"] | undefined | null,
 	DeepDive?: GraphQLTypes["DeepDive"] | undefined | null,
 	Ministry?: GraphQLTypes["Ministry"] | undefined | null,
-	YouthService?: GraphQLTypes["YouthService"] | undefined | null,
+	NextGenPage?: GraphQLTypes["NextGenPage"] | undefined | null,
+	Product?: GraphQLTypes["Product"] | undefined | null,
 	Document?: GraphQLTypes["Document"] | undefined | null,
 	allSanityImageAsset: Array<GraphQLTypes["SanityImageAsset"]>,
 	allSanityFileAsset: Array<GraphQLTypes["SanityFileAsset"]>,
@@ -5234,13 +5605,14 @@ export type GraphQLTypes = {
 	allVisitorFeedback: Array<GraphQLTypes["VisitorFeedback"]>,
 	allScheduledVisit: Array<GraphQLTypes["ScheduledVisit"]>,
 	allMinistryConnection: Array<GraphQLTypes["MinistryConnection"]>,
-	allYouthServiceRegistration: Array<GraphQLTypes["YouthServiceRegistration"]>,
+	allNextGenRosterSignup: Array<GraphQLTypes["NextGenRosterSignup"]>,
 	allContact: Array<GraphQLTypes["Contact"]>,
 	allEvent: Array<GraphQLTypes["Event"]>,
 	allLeader: Array<GraphQLTypes["Leader"]>,
 	allDeepDive: Array<GraphQLTypes["DeepDive"]>,
 	allMinistry: Array<GraphQLTypes["Ministry"]>,
-	allYouthService: Array<GraphQLTypes["YouthService"]>,
+	allNextGenPage: Array<GraphQLTypes["NextGenPage"]>,
+	allProduct: Array<GraphQLTypes["Product"]>,
 	allDocument: Array<GraphQLTypes["Document"]>
 };
 	["SanityImageAsset"]: {
@@ -5274,7 +5646,7 @@ export type GraphQLTypes = {
 };
 	/** A Sanity document */
 ["Document"]: {
-	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "RightnowMedia" | "GiftAssessment" | "VisitorFeedback" | "ScheduledVisit" | "MinistryConnection" | "YouthServiceRegistration" | "Event" | "Leader" | "Ministry" | "DeepDive" | "YouthService",
+	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "RightnowMedia" | "GiftAssessment" | "VisitorFeedback" | "ScheduledVisit" | "MinistryConnection" | "NextGenRosterSignup" | "Event" | "Leader" | "Ministry" | "DeepDive" | "NextGenPage" | "Product",
 	/** Document ID */
 	_id?: GraphQLTypes["ID"] | undefined | null,
 	/** Document type */
@@ -5295,12 +5667,13 @@ export type GraphQLTypes = {
 	['...on VisitorFeedback']: '__union' & GraphQLTypes["VisitorFeedback"];
 	['...on ScheduledVisit']: '__union' & GraphQLTypes["ScheduledVisit"];
 	['...on MinistryConnection']: '__union' & GraphQLTypes["MinistryConnection"];
-	['...on YouthServiceRegistration']: '__union' & GraphQLTypes["YouthServiceRegistration"];
+	['...on NextGenRosterSignup']: '__union' & GraphQLTypes["NextGenRosterSignup"];
 	['...on Event']: '__union' & GraphQLTypes["Event"];
 	['...on Leader']: '__union' & GraphQLTypes["Leader"];
 	['...on Ministry']: '__union' & GraphQLTypes["Ministry"];
 	['...on DeepDive']: '__union' & GraphQLTypes["DeepDive"];
-	['...on YouthService']: '__union' & GraphQLTypes["YouthService"];
+	['...on NextGenPage']: '__union' & GraphQLTypes["NextGenPage"];
+	['...on Product']: '__union' & GraphQLTypes["Product"];
 };
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["DateTime"]: "scalar" & { name: "DateTime" };
@@ -5536,8 +5909,8 @@ export type GraphQLTypes = {
 	contact?: GraphQLTypes["Contact"] | undefined | null,
 	ministry_interests?: Array<string | undefined | null> | undefined | null
 };
-	["YouthServiceRegistration"]: {
-	__typename: "YouthServiceRegistration",
+	["NextGenRosterSignup"]: {
+	__typename: "NextGenRosterSignup",
 	/** Document ID */
 	_id?: GraphQLTypes["ID"] | undefined | null,
 	/** Document type */
@@ -5556,10 +5929,10 @@ export type GraphQLTypes = {
 	gender?: string | undefined | null,
 	hobbies?: string | undefined | null,
 	allergies?: string | undefined | null,
-	guardians?: Array<GraphQLTypes["YouthServiceRegistrationGuardian"] | undefined | null> | undefined | null
+	guardians?: Array<GraphQLTypes["NextGenRosterSignupGuardian"] | undefined | null> | undefined | null
 };
-	["YouthServiceRegistrationGuardian"]: {
-	__typename: "YouthServiceRegistrationGuardian",
+	["NextGenRosterSignupGuardian"]: {
+	__typename: "NextGenRosterSignupGuardian",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	contact?: GraphQLTypes["Contact"] | undefined | null,
@@ -5742,10 +6115,12 @@ export type GraphQLTypes = {
 	start_date?: GraphQLTypes["Date"] | undefined | null,
 	end_date?: GraphQLTypes["Date"] | undefined | null,
 	required_materials?: Array<string | undefined | null> | undefined | null,
-	meeting_details?: Array<GraphQLTypes["MeetingDetailsType"] | undefined | null> | undefined | null
+	meeting_details?: Array<GraphQLTypes["MeetingDetailsType"] | undefined | null> | undefined | null,
+	/** Is this deep dive actively accepting new Students? */
+	accepting_new_students?: boolean | undefined | null
 };
-	["YouthService"]: {
-	__typename: "YouthService",
+	["NextGenPage"]: {
+	__typename: "NextGenPage",
 	/** Document ID */
 	_id?: GraphQLTypes["ID"] | undefined | null,
 	/** Document type */
@@ -5759,6 +6134,21 @@ export type GraphQLTypes = {
 	_key?: string | undefined | null,
 	educators?: Array<GraphQLTypes["Leader"] | undefined | null> | undefined | null,
 	cirriculum_file?: GraphQLTypes["File"] | undefined | null
+};
+	["Product"]: {
+	__typename: "Product",
+	/** Document ID */
+	_id?: GraphQLTypes["ID"] | undefined | null,
+	/** Document type */
+	_type?: string | undefined | null,
+	/** Date the document was created */
+	_createdAt?: GraphQLTypes["DateTime"] | undefined | null,
+	/** Date the document was last modified */
+	_updatedAt?: GraphQLTypes["DateTime"] | undefined | null,
+	/** Current document revision */
+	_rev?: string | undefined | null,
+	_key?: string | undefined | null,
+	title?: string | undefined | null
 };
 	["SanityImageAssetFilter"]: {
 		/** Apply filters on document level */
@@ -6212,7 +6602,7 @@ export type GraphQLTypes = {
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null
 };
-	["YouthServiceRegistrationFilter"]: {
+	["NextGenRosterSignupFilter"]: {
 		/** Apply filters on document level */
 	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
 	_id?: GraphQLTypes["IDFilter"] | undefined | null,
@@ -6229,7 +6619,7 @@ export type GraphQLTypes = {
 	hobbies?: GraphQLTypes["StringFilter"] | undefined | null,
 	allergies?: GraphQLTypes["StringFilter"] | undefined | null
 };
-	["YouthServiceRegistrationSorting"]: {
+	["NextGenRosterSignupSorting"]: {
 		_id?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
 	_createdAt?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6463,7 +6853,8 @@ export type GraphQLTypes = {
 	slug?: GraphQLTypes["SlugFilter"] | undefined | null,
 	image?: GraphQLTypes["ImageFilter"] | undefined | null,
 	start_date?: GraphQLTypes["DateFilter"] | undefined | null,
-	end_date?: GraphQLTypes["DateFilter"] | undefined | null
+	end_date?: GraphQLTypes["DateFilter"] | undefined | null,
+	accepting_new_students?: GraphQLTypes["BooleanFilter"] | undefined | null
 };
 	["DeepDiveSorting"]: {
 		_id?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6476,7 +6867,8 @@ export type GraphQLTypes = {
 	slug?: GraphQLTypes["SlugSorting"] | undefined | null,
 	image?: GraphQLTypes["ImageSorting"] | undefined | null,
 	start_date?: GraphQLTypes["SortOrder"] | undefined | null,
-	end_date?: GraphQLTypes["SortOrder"] | undefined | null
+	end_date?: GraphQLTypes["SortOrder"] | undefined | null,
+	accepting_new_students?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["SlugSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6502,7 +6894,7 @@ export type GraphQLTypes = {
 	passage?: GraphQLTypes["SortOrder"] | undefined | null,
 	verse?: GraphQLTypes["SortOrder"] | undefined | null
 };
-	["YouthServiceFilter"]: {
+	["NextGenPageFilter"]: {
 		/** Apply filters on document level */
 	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
 	_id?: GraphQLTypes["IDFilter"] | undefined | null,
@@ -6513,7 +6905,7 @@ export type GraphQLTypes = {
 	_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	cirriculum_file?: GraphQLTypes["FileFilter"] | undefined | null
 };
-	["YouthServiceSorting"]: {
+	["NextGenPageSorting"]: {
 		_id?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
 	_createdAt?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6521,6 +6913,26 @@ export type GraphQLTypes = {
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	cirriculum_file?: GraphQLTypes["FileSorting"] | undefined | null
+};
+	["ProductFilter"]: {
+		/** Apply filters on document level */
+	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
+	_id?: GraphQLTypes["IDFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null,
+	_createdAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
+	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
+	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
+	_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	title?: GraphQLTypes["StringFilter"] | undefined | null
+};
+	["ProductSorting"]: {
+		_id?: GraphQLTypes["SortOrder"] | undefined | null,
+	_type?: GraphQLTypes["SortOrder"] | undefined | null,
+	_createdAt?: GraphQLTypes["SortOrder"] | undefined | null,
+	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
+	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
+	_key?: GraphQLTypes["SortOrder"] | undefined | null,
+	title?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["DocumentFilter"]: {
 		/** Apply filters on document level */
@@ -6563,6 +6975,35 @@ export type GraphQLTypes = {
 	_dataset?: string | undefined | null,
 	_projectId?: string | undefined | null
 };
+	["ShopifyAssetPreview"]: {
+	__typename: "ShopifyAssetPreview",
+	_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	height?: number | undefined | null,
+	width?: number | undefined | null,
+	url?: string | undefined | null
+};
+	["ShopifyAssetMetadata"]: {
+	__typename: "ShopifyAssetMetadata",
+	_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	alt?: string | undefined | null,
+	duration?: number | undefined | null,
+	fileSize?: number | undefined | null,
+	height?: number | undefined | null,
+	width?: number | undefined | null
+};
+	["ShopifyAsset"]: {
+	__typename: "ShopifyAsset",
+	_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	filename?: string | undefined | null,
+	id?: string | undefined | null,
+	meta?: GraphQLTypes["ShopifyAssetMetadata"] | undefined | null,
+	preview?: GraphQLTypes["ShopifyAssetPreview"] | undefined | null,
+	type?: string | undefined | null,
+	url?: string | undefined | null
+};
 	["IntFilter"]: {
 		/** Checks if the value is equal to the given input. */
 	eq?: number | undefined | null,
@@ -6587,6 +7028,32 @@ export type GraphQLTypes = {
 	_dataset?: GraphQLTypes["StringFilter"] | undefined | null,
 	_projectId?: GraphQLTypes["StringFilter"] | undefined | null
 };
+	["ShopifyAssetPreviewFilter"]: {
+		_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null,
+	height?: GraphQLTypes["FloatFilter"] | undefined | null,
+	width?: GraphQLTypes["FloatFilter"] | undefined | null,
+	url?: GraphQLTypes["StringFilter"] | undefined | null
+};
+	["ShopifyAssetMetadataFilter"]: {
+		_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null,
+	alt?: GraphQLTypes["StringFilter"] | undefined | null,
+	duration?: GraphQLTypes["FloatFilter"] | undefined | null,
+	fileSize?: GraphQLTypes["FloatFilter"] | undefined | null,
+	height?: GraphQLTypes["FloatFilter"] | undefined | null,
+	width?: GraphQLTypes["FloatFilter"] | undefined | null
+};
+	["ShopifyAssetFilter"]: {
+		_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null,
+	filename?: GraphQLTypes["StringFilter"] | undefined | null,
+	id?: GraphQLTypes["StringFilter"] | undefined | null,
+	meta?: GraphQLTypes["ShopifyAssetMetadataFilter"] | undefined | null,
+	preview?: GraphQLTypes["ShopifyAssetPreviewFilter"] | undefined | null,
+	type?: GraphQLTypes["StringFilter"] | undefined | null,
+	url?: GraphQLTypes["StringFilter"] | undefined | null
+};
 	["MeetingDetailsTypeFilter"]: {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	_type?: GraphQLTypes["StringFilter"] | undefined | null,
@@ -6594,7 +7061,7 @@ export type GraphQLTypes = {
 	time?: GraphQLTypes["TimeTypeFilter"] | undefined | null,
 	location?: GraphQLTypes["StringFilter"] | undefined | null
 };
-	["YouthServiceRegistrationGuardianFilter"]: {
+	["NextGenRosterSignupGuardianFilter"]: {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	_type?: GraphQLTypes["StringFilter"] | undefined | null,
 	contact?: GraphQLTypes["ContactFilter"] | undefined | null,
@@ -6608,6 +7075,32 @@ export type GraphQLTypes = {
 	_dataset?: GraphQLTypes["SortOrder"] | undefined | null,
 	_projectId?: GraphQLTypes["SortOrder"] | undefined | null
 };
+	["ShopifyAssetPreviewSorting"]: {
+		_key?: GraphQLTypes["SortOrder"] | undefined | null,
+	_type?: GraphQLTypes["SortOrder"] | undefined | null,
+	height?: GraphQLTypes["SortOrder"] | undefined | null,
+	width?: GraphQLTypes["SortOrder"] | undefined | null,
+	url?: GraphQLTypes["SortOrder"] | undefined | null
+};
+	["ShopifyAssetMetadataSorting"]: {
+		_key?: GraphQLTypes["SortOrder"] | undefined | null,
+	_type?: GraphQLTypes["SortOrder"] | undefined | null,
+	alt?: GraphQLTypes["SortOrder"] | undefined | null,
+	duration?: GraphQLTypes["SortOrder"] | undefined | null,
+	fileSize?: GraphQLTypes["SortOrder"] | undefined | null,
+	height?: GraphQLTypes["SortOrder"] | undefined | null,
+	width?: GraphQLTypes["SortOrder"] | undefined | null
+};
+	["ShopifyAssetSorting"]: {
+		_key?: GraphQLTypes["SortOrder"] | undefined | null,
+	_type?: GraphQLTypes["SortOrder"] | undefined | null,
+	filename?: GraphQLTypes["SortOrder"] | undefined | null,
+	id?: GraphQLTypes["SortOrder"] | undefined | null,
+	meta?: GraphQLTypes["ShopifyAssetMetadataSorting"] | undefined | null,
+	preview?: GraphQLTypes["ShopifyAssetPreviewSorting"] | undefined | null,
+	type?: GraphQLTypes["SortOrder"] | undefined | null,
+	url?: GraphQLTypes["SortOrder"] | undefined | null
+};
 	["MeetingDetailsTypeSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6615,7 +7108,7 @@ export type GraphQLTypes = {
 	time?: GraphQLTypes["TimeTypeSorting"] | undefined | null,
 	location?: GraphQLTypes["SortOrder"] | undefined | null
 };
-	["YouthServiceRegistrationGuardianSorting"]: {
+	["NextGenRosterSignupGuardianSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
 	relationship_to_child?: GraphQLTypes["SortOrder"] | undefined | null
@@ -6669,8 +7162,8 @@ type ZEUS_VARIABLES = {
 	["ScheduledVisitSorting"]: ValueTypes["ScheduledVisitSorting"];
 	["MinistryConnectionFilter"]: ValueTypes["MinistryConnectionFilter"];
 	["MinistryConnectionSorting"]: ValueTypes["MinistryConnectionSorting"];
-	["YouthServiceRegistrationFilter"]: ValueTypes["YouthServiceRegistrationFilter"];
-	["YouthServiceRegistrationSorting"]: ValueTypes["YouthServiceRegistrationSorting"];
+	["NextGenRosterSignupFilter"]: ValueTypes["NextGenRosterSignupFilter"];
+	["NextGenRosterSignupSorting"]: ValueTypes["NextGenRosterSignupSorting"];
 	["ContactSorting"]: ValueTypes["ContactSorting"];
 	["EventFilter"]: ValueTypes["EventFilter"];
 	["DateFilter"]: ValueTypes["DateFilter"];
@@ -6697,16 +7190,24 @@ type ZEUS_VARIABLES = {
 	["SlugSorting"]: ValueTypes["SlugSorting"];
 	["MinistrySorting"]: ValueTypes["MinistrySorting"];
 	["ScriptureSorting"]: ValueTypes["ScriptureSorting"];
-	["YouthServiceFilter"]: ValueTypes["YouthServiceFilter"];
-	["YouthServiceSorting"]: ValueTypes["YouthServiceSorting"];
+	["NextGenPageFilter"]: ValueTypes["NextGenPageFilter"];
+	["NextGenPageSorting"]: ValueTypes["NextGenPageSorting"];
+	["ProductFilter"]: ValueTypes["ProductFilter"];
+	["ProductSorting"]: ValueTypes["ProductSorting"];
 	["DocumentFilter"]: ValueTypes["DocumentFilter"];
 	["DocumentSorting"]: ValueTypes["DocumentSorting"];
 	["IntFilter"]: ValueTypes["IntFilter"];
 	["CrossDatasetReferenceFilter"]: ValueTypes["CrossDatasetReferenceFilter"];
+	["ShopifyAssetPreviewFilter"]: ValueTypes["ShopifyAssetPreviewFilter"];
+	["ShopifyAssetMetadataFilter"]: ValueTypes["ShopifyAssetMetadataFilter"];
+	["ShopifyAssetFilter"]: ValueTypes["ShopifyAssetFilter"];
 	["MeetingDetailsTypeFilter"]: ValueTypes["MeetingDetailsTypeFilter"];
-	["YouthServiceRegistrationGuardianFilter"]: ValueTypes["YouthServiceRegistrationGuardianFilter"];
+	["NextGenRosterSignupGuardianFilter"]: ValueTypes["NextGenRosterSignupGuardianFilter"];
 	["CrossDatasetReferenceSorting"]: ValueTypes["CrossDatasetReferenceSorting"];
+	["ShopifyAssetPreviewSorting"]: ValueTypes["ShopifyAssetPreviewSorting"];
+	["ShopifyAssetMetadataSorting"]: ValueTypes["ShopifyAssetMetadataSorting"];
+	["ShopifyAssetSorting"]: ValueTypes["ShopifyAssetSorting"];
 	["MeetingDetailsTypeSorting"]: ValueTypes["MeetingDetailsTypeSorting"];
-	["YouthServiceRegistrationGuardianSorting"]: ValueTypes["YouthServiceRegistrationGuardianSorting"];
+	["NextGenRosterSignupGuardianSorting"]: ValueTypes["NextGenRosterSignupGuardianSorting"];
 	["ID"]: ValueTypes["ID"];
 }

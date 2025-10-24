@@ -22,7 +22,7 @@ const FooterContactSignup = () => {
         onLoadedMetadata={(e) => (e.currentTarget.playbackRate = 1.5)}
         className="absolute top-0 left-0 w-full h-full object-cover md:rounded-xl"
       >
-        <source src={`${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4" type="video/mp4`} />
+        <source src={`${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4`} type="video/mp4" />
       </video>
 
       {/* color overlay */}

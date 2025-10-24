@@ -61,7 +61,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
             ref={videoCard}
             poster={image}
             data-testid="leader-video"
-            className="w-full h-full object-cover rounded-lg grayscale group-hover:grayscale-0 group-hover:bg-gradient-to-t from-primary/80 transition-all duration-500"
+            className="w-full h-full object-cover rounded-lg grayscale group-hover:grayscale-0 group-hover:bg-gradient-to-t from-primary/80 transition-all duration-500 delay-75"
           >
             <source src={video} type="video/mp4" />
           </video>
@@ -71,7 +71,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
           fill
           src={image}
           alt={`profile image of ${first_name} ${last_name}, ${position}`}
-          className="w-full h-full object-cover rounded-lg grayscale group-hover:grayscale-0 group-hover:bg-gradient-to-t from-primary/80 transition-all duration-500"
+          className="w-full h-full object-cover rounded-lg grayscale group-hover:grayscale-0 group-hover:bg-gradient-to-t from-primary/80 transition-all duration-500 delay-75"
         />
       )}
 

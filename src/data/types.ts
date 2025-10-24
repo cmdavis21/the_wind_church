@@ -46,6 +46,7 @@ export type DeepDive = {
   start_date: Date;
   end_date: Date;
   required_materials?: string[];
+  accepting_new_students: boolean;
 };
 
 export type Event = {
@@ -53,7 +54,6 @@ export type Event = {
   name: string;
   date: Date;
   time: Time;
-  categories?: string[];
   description?: string;
   location: string;
   ministry_event?: string;

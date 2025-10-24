@@ -1,4 +1,5 @@
 import LanguageSelector from '@/components/buttons/language-selector/LanguageSelector';
+import NavbarButton from '@/components/buttons/navbar-button/NavbarButton';
 import Plus from '@/components/icons/plus';
 import VerticalEllipsis from '@/components/icons/verticalEllipsis';
 import DarkThemeToggler from '@/components/theme-mode/dark-theme-toggler/DarkThemeToggler';
@@ -7,7 +8,6 @@ import { useWindowDimensions } from '@/data/hooks';
 import { PageRoutes } from '@/data/page-routes';
 import { useTheme } from '@/data/providers/theme-mode-provider';
 import { NavbarItem } from '@/data/types';
-import { Button } from 'flowbite-react';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import MobileNavItemWithDropdown from './mobile-nav-item-with-dropdown/MobileNavItemWithDropdown';
@@ -63,23 +63,14 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
         </Link>
 
         <div className="flex items-center gap-sm">
-          <Button
-            pill
-            size="sm"
-            className="px-xs group"
-            href={menuOptions[menuOptions.length - 1].link}
-            onClick={() => {
-              setOpenNav(false);
-              setOpenNavSettings(false);
-            }}
-            color={changeColor ? 'primary' : 'ghost'}
-          >
-            <h5
-              className={`uppercase ${openNav || openNavSettings ? 'text-white dark:text-textInverse' : 'text-white dark:text-textInverse dark:group-hover:text-black'}`}
-            >
-              {menuOptions[menuOptions.length - 1].label}
-            </h5>
-          </Button>
+          <NavbarButton
+            forMobile
+            label={menuOptions[menuOptions.length - 1].label}
+            link={menuOptions[menuOptions.length - 1].link ?? '#'}
+            activeNav={openNav}
+            changeColor={changeColor}
+            onClick={() => setOpenNav(false)}
+          />
 
           <button
             type="button"

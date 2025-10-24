@@ -6,9 +6,14 @@ import { findMediaType, MediaType, styleSelectedWords } from '@/data/utils';
 import Link from 'next/link';
 
 interface HomepageHeroProps {
-  title: string;
-  highlightTitle?: number[][];
-  subtitle: string;
+  title: {
+    text: string;
+    hightlight?: number[][];
+  };
+  subtitle: {
+    text: string;
+    hightlight?: number[][];
+  };
   primaryButton: {
     label: string;
     id: string;
@@ -17,10 +22,6 @@ interface HomepageHeroProps {
     label: string;
     link: string;
   };
-  facts: {
-    label: string;
-    subLabel: string;
-  }[];
   media: {
     src: string;
     poster?: string;
@@ -29,11 +30,9 @@ interface HomepageHeroProps {
 
 const HomepageHero: React.FC<HomepageHeroProps> = ({
   title,
-  highlightTitle,
   subtitle,
   primaryButton,
   secondaryButton,
-  facts,
   media,
 }) => {
   return (
@@ -70,63 +69,61 @@ const HomepageHero: React.FC<HomepageHeroProps> = ({
       ))}
 
       {/* CONTENT */}
-      <div className="absolute w-full h-full p-[20px] md:p-[50px] 2xl:p-[100px] z-30">
-        <div className="relative w-full h-full flex flex-col lg:flex-row gap-xl justify-end lg:justify-between items-end text-white">
-          {/* MAIN CONTENT */}
-          <div className="space-y-md w-full max-w-1/2">
-            {highlightTitle ? (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: styleSelectedWords({
-                    text: title,
-                    array: highlightTitle,
-                    htmlTag: 'h1',
-                    className: 'leading-none 2xl:text-[55px]',
-                  }),
-                }}
-              />
-            ) : (
-              <h1 className="leading-none 2xl:text-[55px]">{title}</h1>
-            )}
-            <h4 className="font-thin">{subtitle}</h4>
-            <div className="flex gap-md">
-              <Link href={primaryButton.id}>
-                <button
-                  type="button"
-                  className="relative group rounded-full w-full lg:w-fit overflow-hidden bg-white dark:bg-textInverse"
-                >
-                  {/* decorative button fill */}
-                  <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
-                    <div className="flex items-center h-[47px]">
-                      <div className="w-0 h-full bg-white dark:bg-textInverse group-hover:w-full transition-all duration-300" />
-                      <div className="w-full h-full bg-primary dark:bg-primaryDark group-hover:w-0 transition-all duration-300 rounded-full" />
-                    </div>
+      <div className="absolute w-full bottom-0 flex justify-center items-center p-[20px] md:p-[50px] 2xl:p-[100px] z-30">
+        {/* MAIN CONTENT */}
+        <div className="relative text-white flex flex-col items-center justify-center gap-md">
+          {title.hightlight ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: styleSelectedWords({
+                  text: title.text,
+                  array: title.hightlight,
+                  htmlTag: 'h1',
+                  className: 'leading-none 2xl:text-[55px]',
+                }),
+              }}
+            />
+          ) : (
+            <h1 className="leading-none 2xl:text-[55px]">{title.text}</h1>
+          )}
+          <h4 className="font-thin">{subtitle.text}</h4>
+          <div className="flex gap-md">
+            <Link href={primaryButton.id}>
+              <button
+                type="button"
+                className="relative group rounded-full w-full lg:w-fit overflow-hidden bg-transparent border border-transparent"
+              >
+                {/* decorative button fill */}
+                <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
+                  <div className="flex items-center h-[47px]">
+                    <div className="w-0 h-full bg-white dark:bg-textInverse group-hover:w-full transition-all duration-300" />
+                    <div className="w-full h-full bg-transparent group-hover:w-0 transition-all duration-300 rounded-full" />
                   </div>
-                  <div className="relative flex items-center gap-xxs px-5 py-2.5 text-base rounded-full text-black">
-                    {primaryButton.label}{' '}
-                    <UpArrow className="size-[15px] rotate-90 group-hover:rotate-180 transition-all duration-300" />
+                </div>
+                <div className="relative px-5 py-2.5 text-base rounded-full text-white group-hover:text-black">
+                  {primaryButton.label}
+                </div>
+              </button>
+            </Link>
+            <Link href={secondaryButton.link}>
+              <button
+                type="button"
+                className="relative group rounded-full w-full lg:w-fit overflow-hidden bg-white dark:bg-textInverse"
+              >
+                {/* decorative button fill */}
+                <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
+                  <div className="flex items-center h-[47px]">
+                    <div className="w-0 h-full bg-white dark:bg-textInverse group-hover:w-full transition-all duration-300" />
+                    <div className="w-full h-full bg-primary dark:bg-primaryDark group-hover:w-0 transition-all duration-300 rounded-full" />
                   </div>
-                </button>
-              </Link>
-              <Link href={secondaryButton.link}>
-                <button
-                  type="button"
-                  className="relative group rounded-full w-full lg:w-fit overflow-hidden bg-transparent border border-white"
-                >
-                  {/* decorative button fill */}
-                  <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
-                    <div className="flex items-center h-[47px]">
-                      <div className="w-0 h-full bg-white dark:bg-textInverse group-hover:w-full transition-all duration-300" />
-                      <div className="w-full h-full bg-transparent group-hover:w-0 transition-all duration-300 rounded-full" />
-                    </div>
-                  </div>
-                  <div className="relative flex items-center gap-xxs px-5 py-2.5 text-base rounded-full text-black">
-                    {secondaryButton.label}{' '}
-                    <UpArrow className="size-[15px] rotate-90 group-hover:rotate-180 transition-all duration-300" />
-                  </div>
-                </button>
-              </Link>
-              {/* <ScrollToButton
+                </div>
+                <div className="relative flex items-center gap-xxs px-5 py-2.5 text-base rounded-full text-black">
+                  {secondaryButton.label}{' '}
+                  <UpArrow className="size-[15px] rotate-45 group-hover:rotate-90 transition-all duration-300" />
+                </div>
+              </button>
+            </Link>
+            {/* <ScrollToButton
                 pill
                 color="primary"
                 id={primaryButton.id}
@@ -137,19 +134,6 @@ const HomepageHero: React.FC<HomepageHeroProps> = ({
                   {secondaryButton.label}
                 </Button>
               </Link> */}
-            </div>
-          </div>
-
-          {/* FACTS & ICONS */}
-          <div className="hidden lg:block">
-            <div className="flex items-center gap-xl">
-              {facts.slice(0, 3).map((fact) => (
-                <div key={fact.label} className="flex flex-col gap-sm items-center justify-center">
-                  <h2 className="italic text-center">{fact.label}</h2>
-                  <h6 className="whitespace-nowrap">{fact.subLabel}</h6>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

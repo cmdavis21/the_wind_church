@@ -35,19 +35,6 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
         <div className="md:col-span-2 flex flex-col gap-md h-full overflow-y-scroll overflow-hidden scrollbar-hide">
           <h2>{event.name}</h2>
 
-          {event.categories && (
-            <div className="flex flex-wrap gap-sm">
-              {event.categories.map((cat) => (
-                <div
-                  key={cat}
-                  className="px-md py-[2px] body-small bg-beige dark:bg-softBeige border-[0.5px] border-charcoal text-xs rounded-full"
-                >
-                  {cat}
-                </div>
-              ))}
-            </div>
-          )}
-
           <h5 className="line-clamp-6">{event.description}</h5>
 
           <h5 className="flex items-center gap-sm">

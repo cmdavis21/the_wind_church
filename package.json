@@ -23,6 +23,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "axios": "^1.10.0",
+    "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "flowbite-react": "0.10.2",
     "graphql-zeus": "^7.0.7",
