@@ -1,18 +1,17 @@
-import CircleCheck from '@/components/icons/circleCheck';
-import SolidCircleX from '@/components/icons/solidCircleX';
 import { useCreateContactSignup } from '@/data/services/sanity/mutations/contact-signup';
 import { FullContact } from '@/data/types';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Alert, Button, TextInput } from 'flowbite-react';
+import { Button, TextInput } from 'flowbite-react';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import AlertMessage from '../inputs/alert-message/AlertMessage';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required('Please enter your first name'),
-  last_name: yup.string().required('Please enter your last name'),
-  phone: yup.string().required('Please enter your email'),
-  email: yup.string().required('Please enter your email'),
+  first_name: yup.string().required('Enter your first name'),
+  last_name: yup.string().required('Enter your last name'),
+  phone: yup.string().required('Enter your email'),
+  email: yup.string().required('Enter your email'),
 });
 
 const FooterContactForm = () => {
@@ -28,23 +27,9 @@ const FooterContactForm = () => {
   const onSubmit = (values: FullContact) => signupUser(values);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="relative flex flex-col gap-sm">
-      {isSuccess && (
-        <Alert color="success" withBorderAccent>
-          <span className="flex items-center gap-xs">
-            <CircleCheck className="fill-success" />
-            {t('form.success')}
-          </span>
-        </Alert>
-      )}
+      {isSuccess && <AlertMessage type="success" title={t('form.success')} />}
 
-      {isError && (
-        <Alert color="failure" withBorderAccent>
-          <span className="flex items-center gap-xs">
-            <SolidCircleX className="fill-error" />
-            {t('form.error')}
-          </span>
-        </Alert>
-      )}
+      {isError && <AlertMessage type="failure" title={t('form.error')} />}
 
       {isIdle && (
         <>

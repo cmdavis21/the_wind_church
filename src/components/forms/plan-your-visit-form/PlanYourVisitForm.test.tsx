@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import PlanYourVisitForm from './PlanYourVisitForm';
 
@@ -30,12 +30,8 @@ describe('PlanYourVisitForm', () => {
     expect(screen.getByLabelText(/Last Name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Phone/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Email/i)).toBeInTheDocument();
-    expect(
-      screen.getByLabelText(/How many people will be coming with you/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText(/Which Sunday will you visit/i)
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText(/How many people will be coming with you/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Which Sunday will you visit/i)).toBeInTheDocument();
   });
 
   it('shows validation errors when submitting an empty form', async () => {
@@ -44,16 +40,10 @@ describe('PlanYourVisitForm', () => {
     fireEvent.click(screen.getByRole('button', { name: /Submit!/i }));
 
     await waitFor(() => {
-      expect(
-        screen.getByText('Please enter your first name')
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('Please enter your last name')
-      ).toBeInTheDocument();
-      expect(screen.getByText('Please enter your email')).toBeInTheDocument();
-      expect(
-        screen.getByText('Please enter a phone number')
-      ).toBeInTheDocument();
+      expect(screen.getByText('Enter your first name')).toBeInTheDocument();
+      expect(screen.getByText('Enter your last name')).toBeInTheDocument();
+      expect(screen.getByText('Enter your email')).toBeInTheDocument();
+      expect(screen.getByText('Enter your phone number')).toBeInTheDocument();
       expect(
         screen.getByText('Please let us know how many will be coming with you.')
       ).toBeInTheDocument();
@@ -78,10 +68,9 @@ describe('PlanYourVisitForm', () => {
     fireEvent.input(screen.getByLabelText(/Email/i), {
       target: { value: 'test@example.com' },
     });
-    fireEvent.input(
-      screen.getByLabelText(/How many people will be coming with you/i),
-      { target: { value: '2' } }
-    );
+    fireEvent.input(screen.getByLabelText(/How many people will be coming with you/i), {
+      target: { value: '2' },
+    });
 
     // Select a Sunday date
     const select = screen.getByLabelText(/Which Sunday will you visit/i);

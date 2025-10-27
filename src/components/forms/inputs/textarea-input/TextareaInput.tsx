@@ -1,8 +1,7 @@
 import { Label, Textarea } from 'flowbite-react';
 import React, { useImperativeHandle, useRef } from 'react';
 
-interface TextareaInputProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextareaInputProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   error?: string;
 }
@@ -18,7 +17,7 @@ const TextareaInput = React.forwardRef<HTMLTextAreaElement, TextareaInputProps>(
       <div className="w-full flex flex-col gap-xs">
         <Label htmlFor="textarea" value={label} disabled={rest.disabled} />
         <Textarea rows={6} ref={inputRef} name="textarea" {...rest} />
-        {error && <div className="text-red">{error}</div>}
+        {error && <div className="text-error">{error}</div>}
       </div>
     );
   }

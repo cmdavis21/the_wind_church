@@ -1,24 +1,23 @@
 'use client';
 
-import CircleCheck from '@/components/icons/circleCheck';
 import PencilPaper from '@/components/icons/pencilPaper';
-import SolidCircleX from '@/components/icons/solidCircleX';
 import { useCreateVisitorFeedback } from '@/data/services/sanity/mutations/visitor-feedback';
 import { VisitorFeedback } from '@/data/types';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Alert, Button } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import AlertMessage from '../inputs/alert-message/AlertMessage';
 import TextInput from '../inputs/text-input/TextInput';
 import TextareaInput from '../inputs/textarea-input/TextareaInput';
 
 const schema: yup.ObjectSchema<VisitorFeedback> = yup.object().shape({
-  first_name: yup.string().required('Please enter your first name'),
-  last_name: yup.string().required('Please enter your last name'),
+  first_name: yup.string().required('Enter your first name'),
+  last_name: yup.string().required('Enter your last name'),
   phone: yup.string().optional(),
-  email: yup.string().email().required('Please enter your email'),
-  feedback: yup.string().required('Please enter your feedback'),
+  email: yup.string().email().required('Enter your email'),
+  feedback: yup.string().required('Share your feedback'),
 });
 
 const VisitorFeedbackForm = () => {
@@ -61,71 +60,64 @@ const VisitorFeedbackForm = () => {
       </div>
 
       {isSuccess && (
-        <Alert color="success" withBorderAccent>
-          <span className="flex items-center gap-xs">
-            <CircleCheck className="fill-success" />
-            <span className="font-bold">Success!</span> We appreciate your feedback. Thank you.
-          </span>
-        </Alert>
+        <AlertMessage
+          type="success"
+          title="Success!"
+          description="We appreciate your feedback. Thank you."
+        />
       )}
 
       {isError && (
-        <Alert color="failure" withBorderAccent>
-          <span className="flex items-center gap-xs">
-            <SolidCircleX className="fill-error" />
-            <span className="font-bold">Oh no!</span> There was an problem submitting your feedback.
-            Please try again later.
-          </span>
-        </Alert>
+        <AlertMessage
+          type="failure"
+          title="Oh no!"
+          description="There was an problem submitting your feedback. Please try again later."
+        />
       )}
 
       {/* names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="First Name*"
           type="text"
+          label="First Name*"
+          {...register('first_name')}
           error={errors.first_name?.message}
           disabled={isPending || isSuccess}
-          placeholder="Enter your first name"
-          {...register('first_name')}
         />
         <TextInput
-          label="Last Name*"
           type="text"
+          label="Last Name*"
+          {...register('last_name')}
           error={errors.last_name?.message}
           disabled={isPending || isSuccess}
-          placeholder="Enter your last name"
-          {...register('last_name')}
         />
       </div>
 
       {/* contact */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="Phone"
           type="tel"
+          label="Phone"
+          {...register('phone')}
           error={errors.phone?.message}
           disabled={isPending || isSuccess}
-          placeholder="Enter your phone number"
-          {...register('phone')}
         />
         <TextInput
-          label="Email*"
           type="email"
+          label="Email*"
+          {...register('email')}
           error={errors.email?.message}
           disabled={isPending || isSuccess}
-          placeholder="Enter your email"
-          {...register('email')}
         />
       </div>
 
       {/* feedback */}
       <TextareaInput
         label="Your Feedback*"
+        {...register('feedback')}
         error={errors.feedback?.message}
         disabled={isPending || isSuccess}
-        placeholder="Enter your comments here"
-        {...register('feedback')}
+        placeholder="Enter your comments here..."
       />
 
       <Button

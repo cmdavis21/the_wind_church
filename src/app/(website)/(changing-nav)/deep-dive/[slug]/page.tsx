@@ -5,15 +5,13 @@ import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
+import AlertMessage from '@/components/forms/inputs/alert-message/AlertMessage';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import CircleCheck from '@/components/icons/circleCheck';
-import SolidCircleX from '@/components/icons/solidCircleX';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
 import { getAllDeepDives, getDeepDiveBySlug } from '@/data/services/sanity/queries/deep-dives';
-import { Alert } from 'flowbite-react';
 
 export async function generateStaticParams() {
   const deepDives = await getAllDeepDives();
@@ -57,27 +55,23 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         <div className="flex flex-col gap-xxl">
           {/* ACCEPTING NEW STUDENTS */}
           {deepDive.accepting_new_students ? (
-            <Alert color="success" withBorderAccent>
-              <span className="flex items-center gap-xs">
-                <CircleCheck className="fill-success" />
-                <span className="font-bold">Accepting New Students!</span> Don't wait, join and grow
-                your connection to Jesus and we strive to be spirit-filled and spirit-led!
-              </span>
-            </Alert>
+            <AlertMessage
+              type="success"
+              title="Accepting New Students!"
+              description="Don't wait, join and grow your connection to Jesus and we strive to be spirit-filled and spirit-led!"
+            />
           ) : (
-            <Alert color="failure" withBorderAccent>
-              <span className="flex items-center gap-xs">
-                <SolidCircleX className="fill-error" />
-                <span className="font-bold">Not accepting new student.</span> Due to time-sensitive
-                structure and flow of the deep dive and in respect to student learning, this deep
-                dive cannot accept new students.
-              </span>
-            </Alert>
+            <AlertMessage
+              type="failure"
+              title="Not accepting new student."
+              description="Due to time-sensitive structure and flow of the deep dive and in respect to student learning, this deep
+                dive cannot accept new students."
+            />
           )}
 
           {/* ABOUT */}
           <div className="flex flex-col gap-xl">
-            <SectionHeader noPadding title={'Description & Goals'} />
+            <SectionHeader noPadding title={'Description'} />
             <h4 className="dark:text-textInverse">{deepDive.description}</h4>
           </div>
         </div>

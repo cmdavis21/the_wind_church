@@ -110,21 +110,21 @@ const ProductPage = (product: Product) => {
         {/* LEFT DECORATIVE BORDER */}
         <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-primary dark:bg-primaryDark" />
 
-        <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[50px]">
+        <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 gap-[50px]">
           {/* MEDIA */}
-          <div className="md:col-span-2">
+          <div>
             {/* DESKTOP */}
-            <div className="hidden lg:grid grid-cols-2 gap-lg">
+            <div className="hidden lg:grid grid-cols-1 gap-md">
               {product.images.map((img, idx) => (
                 <div
                   key={`product-single-desktop-${product.variants[selectedVariant].id}-${idx}`}
-                  className={`relative w-full ${idx === 0 ? 'col-span-2 aspect-video' : 'col-span-1 aspect-square'}`}
+                  className="relative w-full aspect-square"
                 >
                   <Image
                     fill
                     src={img.src}
                     alt={img.alt ?? product.title}
-                    className={`${idx === 0 ? 'object-contain' : 'object-cover'} rounded-lg`}
+                    className="object-cover rounded-lg"
                   />
                 </div>
               ))}
@@ -242,7 +242,7 @@ const ProductPage = (product: Product) => {
                 </div>
               </div>
               {quantity === 10 && (
-                <p className="text-red body-small">*Can only add up to 10 items max</p>
+                <p className="text-error body-small">*Can only add up to 10 items max</p>
               )}
             </div>
 

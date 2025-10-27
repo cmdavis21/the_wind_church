@@ -1,4 +1,4 @@
-import { Label, TextInput as FlowbiteTextInput } from 'flowbite-react';
+import { TextInput as FlowbiteTextInput, Label } from 'flowbite-react';
 import React, { useImperativeHandle, useRef } from 'react';
 
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -17,7 +17,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       <div className="w-full flex flex-col gap-xs">
         <Label htmlFor="input" value={label} disabled={rest.disabled} />
         <FlowbiteTextInput ref={inputRef} name="input" {...rest} />
-        {error && <div className="text-red">{error}</div>}
+        {error && <div className="text-error">{error}</div>}
       </div>
     );
   }

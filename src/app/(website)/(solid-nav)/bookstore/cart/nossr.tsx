@@ -7,7 +7,7 @@ import { formatPrice } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
 import { useCartFunctions } from '@/data/services/shopify/cart-hook';
 import { GraphQLTypes } from '@/data/services/shopify/zeus';
-import { Button, Table } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -33,37 +33,45 @@ const CartPage = () => {
 
           {/* DESKTOP */}
           <div className="hidden md:block w-full">
-            <Table>
-              <Table.Head>
-                <Table.Row>
-                  <Table.HeadCell>Product</Table.HeadCell>
-                  <Table.HeadCell>Price</Table.HeadCell>
-                  <Table.HeadCell>Quantity</Table.HeadCell>
-                  <Table.HeadCell>Total</Table.HeadCell>
-                  <Table.HeadCell></Table.HeadCell>
-                </Table.Row>
-              </Table.Head>
+            <table className="w-full">
+              <thead>
+                <tr>
+                  <th className="w-[50%] pb-sm text-left body-large font-bold text-charcoalLight">
+                    Product
+                  </th>
+                  <th className="w-[12.5%] pb-sm text-left body-large font-bold text-charcoalLight">
+                    Price
+                  </th>
+                  <th className="w-[12.5%] pb-sm text-left body-large font-bold text-charcoalLight">
+                    Quantity
+                  </th>
+                  <th className="w-[12.5%] pb-sm text-left body-large font-bold text-charcoalLight">
+                    Total
+                  </th>
+                  <th className="w-[12.5%] pb-sm text-left body-large font-bold text-charcoalLight"></th>
+                </tr>
+              </thead>
 
-              <Table.Body className="divide-y divide-gray">
+              <tbody className="divide-y divide-gray">
                 {getCart?.lines.map((line, index) => (
-                  <Table.Row
+                  <tr
                     key={`cart-page-desktop-${line.title}`}
-                    className={` ${
+                    className={`${
                       loadingItem === index ? 'opacity-50 pointer-events-none animate-pulse' : ''
                     }`}
                   >
-                    <Table.Cell>
+                    <td className="py-md">
                       <div className="flex gap-md items-center">
                         <div className="relative w-[100px] h-[100px] shrink-0">
                           <Image
                             fill
                             src={line.image.src}
                             alt={line.image.alt}
-                            className="object-contain rounded-lg"
+                            className="object-cover rounded-lg"
                           />
                         </div>
                         <div className="flex flex-col gap-xs">
-                          <span className="font-medium">{line.title}</span>
+                          <h5>{line.title}</h5>
                           {line.variant.selectedOptions.map((opt) => (
                             <p key={opt.name} className="capitalize body-small">
                               <span className="font-bold">{opt.name}:</span> {opt.value}
@@ -71,11 +79,11 @@ const CartPage = () => {
                           ))}
                         </div>
                       </div>
-                    </Table.Cell>
+                    </td>
 
-                    <Table.Cell>{formatPrice(line.variant.price)}</Table.Cell>
+                    <td className="py-md body-large">{formatPrice(line.variant.price)}</td>
 
-                    <Table.Cell>
+                    <td className="py-md">
                       <QuantityInput
                         maxQuantity={10}
                         quantity={line.quantity}
@@ -92,13 +100,15 @@ const CartPage = () => {
                           ]).then(() => setLoadingItem(null));
                         }}
                       />
-                    </Table.Cell>
+                    </td>
 
-                    <Table.Cell>{formatPrice(line.subtotalAmount)}</Table.Cell>
+                    <td className="py-md body-large font-bold">
+                      {formatPrice(line.subtotalAmount)}
+                    </td>
 
-                    <Table.Cell>
+                    <td className="py-md">
                       <Button
-                        size="xs"
+                        size="sm"
                         color="danger"
                         onClick={() => {
                           setLoadingItem(index);
@@ -107,15 +117,15 @@ const CartPage = () => {
                           );
                         }}
                       >
-                        <div className="flex items-center gap-xs text-xs">
-                          <Trash fill="white" className="size-[10px]" /> Remove
+                        <div className="flex items-center gap-xs text-sm">
+                          <Trash fill="white" className="size-[12px]" /> Remove
                         </div>
                       </Button>
-                    </Table.Cell>
-                  </Table.Row>
+                    </td>
+                  </tr>
                 ))}
-              </Table.Body>
-            </Table>
+              </tbody>
+            </table>
           </div>
 
           {/* MOBILE */}
@@ -135,6 +145,11 @@ const CartPage = () => {
                 </div>
                 <div className="flex flex-col gap-xs">
                   <h6 className="font-normal">{line.title}</h6>
+                  {line.variant.selectedOptions.map((opt) => (
+                    <p className="capitalize">
+                      <span className="font-bold">{opt.name}:</span> {opt.value}
+                    </p>
+                  ))}
                   <p className="capitalize">
                     <span className="font-bold">Price:</span> {formatPrice(line.variant.price)}{' '}
                     {line.variant.price.currencyCode}
@@ -160,11 +175,6 @@ const CartPage = () => {
                     <span className="font-bold">Total:</span> {formatPrice(line.subtotalAmount)}{' '}
                     {line.subtotalAmount.currencyCode}
                   </p>
-                  {line.variant.selectedOptions.map((opt) => (
-                    <p className="capitalize">
-                      <span className="font-bold">{opt.name}:</span> {opt.value}
-                    </p>
-                  ))}
                   <Button
                     size="xs"
                     color="danger"
@@ -187,7 +197,7 @@ const CartPage = () => {
           <hr className="text-gray" />
 
           {/* TOTAL + CHECKOUT */}
-          <div className="flex flex-col gap-sm md:items-end text-left md:text-right">
+          <div className="flex flex-col gap-md md:items-end text-left md:text-right">
             <h3>Subtotal: {formatPrice(getCart?.subtotalAmount)}</h3>
             <h6>Taxes and Delivery charges calculated at checkout</h6>
             <div className="max-md:w-full flex flex-col md:flex-row gap-md">

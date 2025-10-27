@@ -191,6 +191,8 @@ input[type='number'] {
 /* scroll box shadowing */
 .y-scrollbox {
   overflow-y: scroll;
+  padding-top: 15px;
+  padding-bottom: 15px;
   background:
     /* Shadow covers */
     linear-gradient(transparent 30%, transparent),

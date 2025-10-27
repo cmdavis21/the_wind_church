@@ -1,10 +1,8 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import React from 'react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import PrayerRequestForm from './PrayerRequestForm';
 
 import { useCreatePrayerRequest } from '@/data/services/forms/prayer-request-submission';
-
 
 // Mock the useCreatePrayerRequest hook
 jest.mock('@/data/services/forms/prayer-request-submission', () => ({
@@ -30,19 +28,11 @@ describe('PrayerRequestForm', () => {
     render(<PrayerRequestForm />);
 
     // Check that the form fields are rendered
-    expect(
-      screen.getByPlaceholderText('Enter your first name')
-    ).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText('Enter your last name')
-    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Enter your first name')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Enter your last name')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Enter your email')).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText('Enter your prayer here')
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('Would you like us to respond to you by email?')
-    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Enter your prayer here')).toBeInTheDocument();
+    expect(screen.getByText('Would you like us to respond to you by email?')).toBeInTheDocument();
     expect(screen.getByLabelText('Yes')).toBeInTheDocument();
     expect(screen.getByLabelText('No, just prayers')).toBeInTheDocument();
   });
@@ -54,13 +44,9 @@ describe('PrayerRequestForm', () => {
     fireEvent.click(screen.getByText('Submit!'));
 
     await waitFor(() => {
-      expect(
-        screen.getByText('Please enter your first name')
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('Please enter your last name')
-      ).toBeInTheDocument();
-      expect(screen.getByText('Please enter your email')).toBeInTheDocument();
+      expect(screen.getByText('Enter your first name')).toBeInTheDocument();
+      expect(screen.getByText('Enter your last name')).toBeInTheDocument();
+      expect(screen.getByText('Enter your email')).toBeInTheDocument();
       expect(screen.getByText('Please enter your prayer')).toBeInTheDocument();
     });
   });
@@ -96,9 +82,7 @@ describe('PrayerRequestForm', () => {
 
     await waitFor(() => {
       // Check that success message is displayed
-      expect(
-        screen.getByText(/We will keep you in our prayers/)
-      ).toBeInTheDocument();
+      expect(screen.getByText(/We will keep you in our prayers/)).toBeInTheDocument();
     });
   });
 
@@ -133,9 +117,7 @@ describe('PrayerRequestForm', () => {
 
     await waitFor(() => {
       // Check that error message is displayed
-      expect(
-        screen.getByText(/There was an error submitting your request/)
-      ).toBeInTheDocument();
+      expect(screen.getByText(/There was an error submitting your request/)).toBeInTheDocument();
     });
   });
 

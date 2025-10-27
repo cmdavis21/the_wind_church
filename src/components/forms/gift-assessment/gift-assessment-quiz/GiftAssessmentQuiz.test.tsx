@@ -1,6 +1,6 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
-import { GiftAssessmentQuestion, GiftAssessmentDefinition } from '@/data/types';
+import { GiftAssessmentDefinition, GiftAssessmentQuestion } from '@/data/types';
 
 import GiftAssessmentQuiz from './GiftAssessmentQuiz';
 
@@ -39,9 +39,7 @@ describe('GiftAssessmentQuiz Component', () => {
       />
     );
 
-    expect(
-      screen.getByText('Do you enjoy helping others?')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Do you enjoy helping others?')).toBeInTheDocument();
     expect(screen.getByText('Are you a natural leader?'));
   });
 
@@ -82,9 +80,7 @@ describe('GiftAssessmentQuiz Component', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(
-        screen.getByText('Please select an answer for the question.')
-      ).toBeInTheDocument();
+      expect(screen.getByText('Select an answer for the question')).toBeInTheDocument();
     });
   });
 

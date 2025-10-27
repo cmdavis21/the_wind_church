@@ -2,7 +2,6 @@ import Accordion from '@/components/accordion/Accordion';
 import ImageCardWithModal from '@/components/cards/image-card-with-modal/ImageCardWithModal';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
-import TimelineItem from '@/components/cards/timeline-item/TimelineItem';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import ErrorMessage from '@/components/error-message/ErrorMessage';
 import PageHero from '@/components/heroes/page-hero/PageHero';
@@ -74,7 +73,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
           <SectionHeader
             noPadding
             title={'Meet the Team'}
-            subtitle="Select Leaders to learn more"
+            subtitle="Select members to learn more"
           />
           {/* DESKTOP */}
           <div className="hidden md:block">
@@ -139,26 +138,16 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
           />
           <div>
             {events && events.length > 0 ? (
-              <>
-                {/* Desktop */}
-                <div className="hidden md:block 2xl:px-padding">
-                  <EventCardsMasonryGrid
-                    events={events.map((event) => ({
-                      ...event,
-                      scale: false,
-                    }))}
-                  />
-                </div>
-
-                {/* Mobile */}
-                <div className="md:hidden">
-                  {events.map((event) => (
-                    <TimelineItem key={event.name} event={event} vertical />
-                  ))}
-                </div>
-              </>
+              <div className="2xl:px-padding">
+                <EventCardsMasonryGrid
+                  events={events.map((event) => ({
+                    ...event,
+                    scale: false,
+                  }))}
+                />
+              </div>
             ) : (
-              <h4 className="text-center">No events at this time</h4>
+              <h4 className="text-center">No related events at this time</h4>
             )}
             <Button
               pill

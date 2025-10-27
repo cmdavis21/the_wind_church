@@ -1,7 +1,6 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import FooterContactForm from './FooterContactForm';
 import { useCreateContactSignup } from '@/data/services/sanity/mutations/contact-signup';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import FooterContactForm from './FooterContactForm';
 
 // Mock the mutation hook
 jest.mock('@/data/services/forms/member-contact-signup', () => ({
@@ -35,9 +34,9 @@ describe('FooterContactForm', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Join Now!' }));
 
     await waitFor(() => {
-      expect(screen.getByText('Please enter your first name')).toBeInTheDocument();
-      expect(screen.getByText('Please enter your last name')).toBeInTheDocument();
-      expect(screen.getByText('Please enter your email')).toBeInTheDocument();
+      expect(screen.getByText('Enter your first name')).toBeInTheDocument();
+      expect(screen.getByText('Enter your last name')).toBeInTheDocument();
+      expect(screen.getByText('Enter your email')).toBeInTheDocument();
     });
   });
 

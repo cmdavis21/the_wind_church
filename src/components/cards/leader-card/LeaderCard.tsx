@@ -98,9 +98,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
             </div>
           )}
           <div className="w-[45px] h-[2px] bg-primary rounded-xs mb-2" />
-          <div className="max-h-full overflow-y-scroll scrollbar-hide overscroll-contain y-scrollbox">
-            {description}
-          </div>
+          <div className="flex-1 scrollbar-hide y-scrollbox">{description}</div>
         </div>
       </div>
     </div>

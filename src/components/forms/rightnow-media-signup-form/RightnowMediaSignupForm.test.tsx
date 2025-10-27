@@ -1,8 +1,8 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { YesNo } from '@/data/types';
 import { useCreateRightnowMediaSignup } from '@/data/services/forms/rightnow-media-signup';
-import RightnowMediaSignupForm from './RightnowMediaSignupForm';
 import { useCreateContactSignup } from '@/data/services/sanity/mutations/contact-signup';
+import { YesNo } from '@/data/types';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import RightnowMediaSignupForm from './RightnowMediaSignupForm';
 
 jest.mock('@/data/services/forms/member-contact-signup', () => ({
   useCreateContactSignup: jest.fn(),
@@ -44,10 +44,10 @@ describe('RightnowMediaSignupForm', () => {
     fireEvent.click(screen.getByText(/Submit!/i));
 
     await waitFor(() => {
-      expect(screen.getByText(/Please enter your first name/i)).toBeInTheDocument();
-      expect(screen.getByText(/Please enter your last name/i)).toBeInTheDocument();
-      expect(screen.getByText(/Please enter your phone number/i)).toBeInTheDocument();
-      expect(screen.getByText(/Please enter your email/i)).toBeInTheDocument();
+      expect(screen.getByText(/Enter your first name/i)).toBeInTheDocument();
+      expect(screen.getByText(/Enter your last name/i)).toBeInTheDocument();
+      expect(screen.getByText(/Enter your phone number/i)).toBeInTheDocument();
+      expect(screen.getByText(/Enter your email/i)).toBeInTheDocument();
     });
   });
 

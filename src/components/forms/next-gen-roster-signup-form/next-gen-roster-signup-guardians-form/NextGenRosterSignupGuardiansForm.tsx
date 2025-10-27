@@ -25,7 +25,6 @@ const RELATIONSHIP_TO_CHILD = [
 
 interface NextGenRosterSignupGuardiansFormProps {
   index: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<NextGenRosterSignup, any>;
   register: UseFormRegister<NextGenRosterSignup>;
   errors: FieldErrors<NextGenRosterSignup>;
@@ -70,27 +69,25 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
           {/* Guardian Name */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
             <TextInput
-              label="Guardian's First Name*"
               type="text"
-              error={
-                errors.children &&
-                errors.children[index]?.guardians &&
-                errors.children[index]?.guardians[guardianIndex]?.first_name?.message
-              }
+              label="Guardian's First Name*"
               disabled={isPending || isSuccess}
-              placeholder="Enter the guardian's first name"
+              error={
+                errors.children && errors.children[index]?.guardians
+                  ? errors.children[index]?.guardians[guardianIndex]?.first_name?.message
+                  : undefined
+              }
               {...register(`children.${index}.guardians.${guardianIndex}.first_name`)}
             />
             <TextInput
-              label="Guardian's Last Name*"
               type="text"
-              error={
-                errors.children &&
-                errors.children[index]?.guardians &&
-                errors.children[index]?.guardians[guardianIndex]?.last_name?.message
-              }
+              label="Guardian's Last Name*"
               disabled={isPending || isSuccess}
-              placeholder="Enter the guardian's last name"
+              error={
+                errors.children && errors.children[index]?.guardians
+                  ? errors.children[index]?.guardians[guardianIndex]?.last_name?.message
+                  : undefined
+              }
               {...register(`children.${index}.guardians.${guardianIndex}.last_name`)}
             />
           </div>
@@ -98,36 +95,34 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
           {/* Guardian Info */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-xl">
             <TextInput
-              label="Guardian's Phone*"
               type="tel"
-              error={
-                errors.children &&
-                errors.children[index]?.guardians &&
-                errors.children[index]?.guardians[guardianIndex]?.phone?.message
-              }
+              label="Guardian's Phone*"
               disabled={isPending || isSuccess}
-              placeholder="Enter the guardian's phone"
+              error={
+                errors.children && errors.children[index]?.guardians
+                  ? errors.children[index]?.guardians[guardianIndex]?.phone?.message
+                  : undefined
+              }
               {...register(`children.${index}.guardians.${guardianIndex}.phone`)}
             />
             <TextInput
               label="Guardian's Email*"
               type="email"
               error={
-                errors.children &&
-                errors.children[index]?.guardians &&
-                errors.children[index]?.guardians[guardianIndex]?.email?.message
+                errors.children && errors.children[index]?.guardians
+                  ? errors.children[index]?.guardians[guardianIndex]?.email?.message
+                  : undefined
               }
               disabled={isPending || isSuccess}
-              placeholder="Enter the guardian's email"
               {...register(`children.${index}.guardians.${guardianIndex}.email`)}
             />
             <SelectInput
               label="Relationship to child*"
               disabled={isPending || isSuccess}
               error={
-                errors.children &&
-                errors.children[index]?.guardians &&
-                errors.children[index]?.guardians[guardianIndex]?.relationship_to_child?.message
+                errors.children && errors.children[index]?.guardians
+                  ? errors.children[index]?.guardians[guardianIndex]?.relationship_to_child?.message
+                  : undefined
               }
               {...register(`children.${index}.guardians.${guardianIndex}.relationship_to_child`)}
               options={RELATIONSHIP_TO_CHILD.map((relation) => ({

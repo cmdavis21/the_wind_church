@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 
 import UpArrow from '@/components/icons/upArrow';
 
+import { PageRoutes } from '@/data/page-routes';
+import { useCartFunctions } from '@/data/services/shopify/cart-hook';
 import { NavbarColumnItem } from '@/data/types';
 import Link from 'next/link';
 
@@ -24,6 +26,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
   open,
   setOpen,
 }) => {
+  const { getCart } = useCartFunctions();
   const [isActive, setIsActive] = useState(false);
   useEffect(() => {
     if (submenu.find((s) => pathname.includes(s.link))) {
@@ -68,11 +71,11 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                 <button type="button" className="relative group/sub w-full max-w-[225px]">
                   {/* decorative button fill */}
                   <div
-                    className={`absolute w-full h-full top-0 left-0 overflow-hidden rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-gray'} drop-shadow-xl shadow-2xl`}
+                    className={`absolute w-full h-full top-0 left-0 overflow-hidden rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-gray'}`}
                   >
                     <div className="h-full flex items-center">
                       <div
-                        className={`w-full h-[42px] rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-gray'} ${pathname === item.link ? '!w-0' : 'group-hover/sub:w-0'} transition-all duration-500`}
+                        className={`w-full h-[42px] rounded-full shadow-2xl  ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-gray'} ${pathname === item.link ? '!w-0' : 'group-hover/sub:w-0'} transition-all duration-500`}
                       />
                       <div
                         className={`w-0 h-[42px] rounded-full bg-primary dark:bg-primaryDark ${pathname === item.link ? 'w-full' : 'group-hover/sub:w-full'} transition-all duration-500`}
@@ -81,7 +84,14 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                   </div>
 
                   <div className="relative flex items-center gap-xxs py-xs px-md rounded-full">
-                    <div className="body-large capitalize whitespace-nowrap">{item.label}</div>
+                    <div className="body-large capitalize whitespace-nowrap flex items-center">
+                      {item.label}
+                      {item.link === PageRoutes.cart && (
+                        <span className="ml-1.5 body-small font-bold">
+                          ({getCart?.totalQuantity} items)
+                        </span>
+                      )}
+                    </div>
 
                     <div className="overflow-hidden relative min-w-[20px] min-h-[20px]">
                       <UpArrow

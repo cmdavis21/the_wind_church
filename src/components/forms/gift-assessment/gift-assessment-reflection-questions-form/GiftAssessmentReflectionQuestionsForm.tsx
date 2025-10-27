@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Label, Radio } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { GiftAssessmentReflectionQuestions } from '@/data/types';
 
+import RadioGroup from '../../inputs/radio-group/RadioGroup';
 import TextareaInput from '../../inputs/textarea-input/TextareaInput';
 
 const schema = yup.object().shape({
@@ -31,8 +32,9 @@ const GiftAssessmentReflectionQuestionsForm: React.FC<
 > = ({ responses, disable }) => {
   const {
     register,
-    formState: { errors },
+    setValue,
     handleSubmit,
+    formState: { errors },
   } = useForm<GiftAssessmentReflectionQuestions>({
     mode: 'onSubmit',
     resolver: yupResolver(schema),
@@ -45,39 +47,30 @@ const GiftAssessmentReflectionQuestionsForm: React.FC<
       <TextareaInput
         label="1. What ministries are you now performing (formally or informally) in the Body?"
         disabled={disable}
-        error={errors.ministries_involved_in?.message}
         placeholder="Enter your answer here"
         {...register('ministries_involved_in')}
+        error={errors.ministries_involved_in?.message}
       />
 
       <TextareaInput
         label="2. Are there any of these ministries that you are not especially gifted for? God may be calling you to consider changes."
         disabled={disable}
-        error={errors.change_in_ministry?.message}
         placeholder="Enter your answer here"
         {...register('change_in_ministry')}
+        error={errors.change_in_ministry?.message}
       />
 
-      <div className="space-y-sm">
-        <Label
-          htmlFor="lay_or_clergy"
-          className="text-lg"
-          value="3. Is your vocational status lay or clergy?"
-        />
-        <div className="flex flex-wrap gap-md">
-          <div className="flex gap-sm items-center text-lg">
-            <Radio value="Lay" {...register('lay_or_clergy')} disabled={disable} />
-            Lay
-          </div>
-          <div className="flex gap-sm items-center text-lg">
-            <Radio value="Clergy" {...register('lay_or_clergy')} disabled={disable} />
-            Clergy
-          </div>
-        </div>
-        {errors.lay_or_clergy && (
-          <p className="ml-2 text-sm text-red">{errors.lay_or_clergy.message}</p>
-        )}
-      </div>
+      <RadioGroup
+        name="lay_or_clergy"
+        disabled={disable}
+        label="3. Is your vocational status lay or clergy?"
+        options={[
+          { value: 'Clergy', label: 'Clergy' },
+          { value: 'Lay', label: 'Lay' },
+        ]}
+        onChange={(val) => setValue('lay_or_clergy', val as 'Lay' | 'Clergy')}
+        error={errors.lay_or_clergy?.message}
+      />
 
       <Button
         pill

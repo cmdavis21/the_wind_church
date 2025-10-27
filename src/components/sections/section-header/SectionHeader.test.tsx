@@ -13,16 +13,6 @@ describe('SectionHeader', () => {
     expect(screen.getByText(subtitle)).toBeInTheDocument();
   });
 
-  it('should render the title as an h1 when largeHeader is true', () => {
-    render(<SectionHeader title={title} largeHeader />);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(title);
-  });
-
-  it('should render the title as an h2 when largeHeader is false', () => {
-    render(<SectionHeader title={title} largeHeader={false} />);
-    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(title);
-  });
-
   it('should align text to the right when right is true', () => {
     render(<SectionHeader title={title} subtitle={subtitle} right />);
     const titleElement = screen.getByText(title);

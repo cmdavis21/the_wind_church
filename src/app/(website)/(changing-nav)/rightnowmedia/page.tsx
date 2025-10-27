@@ -32,7 +32,7 @@ const Rightnowmedia = () => (
     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/90" />
 
     <div className="relative w-full min-h-screen flex items-center text-white">
-      <div className="w-full p-padding nav-padding lg:max-w-[50%] space-y-xl">
+      <div className="w-full p-padding nav-padding lg:max-w-[55%] space-y-xl">
         <h1>
           <span className="text-primary">Maximize your impact</span> and save time with the
           world&apos;s largest video-streaming library of biblical resources.

@@ -9,7 +9,6 @@ interface SectionHeaderProps {
   noPadding?: boolean;
   className?: string;
   blueBar?: boolean;
-  largeHeader?: boolean;
 }
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({
@@ -21,7 +20,6 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   noPadding,
   className,
   blueBar,
-  largeHeader,
 }) => (
   <div id={id} className={`relative ${className ?? ''} ${!noPadding ? 'py-[25px]' : ''}`}>
     {/* Desktop */}
@@ -31,45 +29,22 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           className={`w-[3px] min-h-full ${blueBar ? 'bg-navy' : 'bg-primary dark:bg-primaryDark'} rounded-md ${right ? 'order-last' : ''}`}
         />
         <div className="flex flex-col gap-2 w-full">
-          {largeHeader ? (
-            <>
-              {subtitle && (
-                <h4
-                  className={`font-light ${light ? 'text-primary dark:text-primaryDark' : 'text-navy dark:text-primaryDark'} ${
-                    right ? 'text-right' : 'text-left'
-                  } tracking-wider uppercase`}
-                >
-                  {subtitle}
-                </h4>
-              )}
-              <h1
-                className={`${light ? 'text-white' : 'text-black dark:text-textInverse'} ${
-                  right ? 'text-right' : 'text-left'
-                } capitalize`}
-              >
-                {title}
-              </h1>
-            </>
-          ) : (
-            <>
-              {subtitle && (
-                <h5
-                  className={`font-light ${light ? 'text-primary dark:text-primaryDark' : 'text-navy dark:text-primaryDark'} ${
-                    right ? 'text-right' : 'text-left'
-                  } tracking-wider uppercase`}
-                >
-                  {subtitle}
-                </h5>
-              )}
-              <h2
-                className={`${light ? 'text-white' : 'text-black dark:text-textInverse'} ${
-                  right ? 'text-right' : 'text-left'
-                } capitalize`}
-              >
-                {title}
-              </h2>
-            </>
+          {subtitle && (
+            <h5
+              className={`font-light ${light ? 'text-primary dark:text-primaryDark' : 'text-navy dark:text-primaryDark'} ${
+                right ? 'text-right' : 'text-left'
+              } tracking-wider uppercase`}
+            >
+              {subtitle}
+            </h5>
           )}
+          <h2
+            className={`${light ? 'text-white' : 'text-black dark:text-textInverse'} ${
+              right ? 'text-right' : 'text-left'
+            } capitalize`}
+          >
+            {title}
+          </h2>
         </div>
       </div>
     </div>

@@ -1,20 +1,19 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Alert, Button } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { FullContact } from '@/data/types';
 
-import CircleCheck from '@/components/icons/circleCheck';
-import SolidCircleX from '@/components/icons/solidCircleX';
+import AlertMessage from '../../inputs/alert-message/AlertMessage';
 import TextInput from '../../inputs/text-input/TextInput';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required('Please enter your first name'),
-  last_name: yup.string().required('Please enter your last name'),
-  phone: yup.string().required('Please enter your phone'),
-  email: yup.string().email().required('Please enter your email'),
+  first_name: yup.string().required('Enter your first name'),
+  last_name: yup.string().required('Enter your last name'),
+  phone: yup.string().required('Enter your phone number'),
+  email: yup.string().email().required('Enter your email'),
 });
 
 interface GiftAssessmentContactFormProps {
@@ -44,61 +43,55 @@ const GiftAssessmentContactForm: React.FC<GiftAssessmentContactFormProps> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="relative flex flex-col gap-lg">
       {isSuccess && (
-        <Alert color="success" withBorderAccent>
-          <span className="flex items-center gap-xs">
-            <CircleCheck className="fill-success" />
-            Thank you for sharing your results with us. We'll talk soon!
-          </span>
-        </Alert>
+        <AlertMessage
+          type="success"
+          title="Success!"
+          description="Thank you for sharing your results with us. We'll talk soon!"
+        />
       )}
 
       {isError && (
-        <Alert color="failure" withBorderAccent>
-          <span className="flex items-center gap-xs">
-            <SolidCircleX className="fill-error" />
-            There was an error submitting your results. Please try again again later or download
-            your results.
-          </span>
-        </Alert>
+        <AlertMessage
+          type="failure"
+          title="Oh no!"
+          description="There was an error submitting your results. Please try again again later or download
+            your results."
+        />
       )}
 
       {/* names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="First Name*"
           type="text"
-          error={errors.first_name?.message}
-          disabled={isPending || isSuccess}
-          placeholder="Enter your first name"
+          label="First Name*"
           {...register('first_name')}
+          disabled={isPending || isSuccess}
+          error={errors.first_name?.message}
         />
         <TextInput
-          label="Last Name*"
           type="text"
-          error={errors.last_name?.message}
-          disabled={isPending || isSuccess}
-          placeholder="Enter your last name"
+          label="Last Name*"
           {...register('last_name')}
+          disabled={isPending || isSuccess}
+          error={errors.last_name?.message}
         />
       </div>
 
       {/* contact */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="Phone*"
           type="tel"
+          label="Phone*"
+          {...register('phone')}
           error={errors.phone?.message}
           disabled={isPending || isSuccess}
-          placeholder="Enter your phone number"
-          {...register('phone')}
         />
         <TextInput
-          label="Email*"
           type="email"
+          label="Email*"
+          {...register('email')}
           error={errors.email?.message}
           disabled={isPending || isSuccess}
-          placeholder="Enter your email"
-          {...register('email')}
         />
       </div>
 

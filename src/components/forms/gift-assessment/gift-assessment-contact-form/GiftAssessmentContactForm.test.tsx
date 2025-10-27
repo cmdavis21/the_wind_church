@@ -1,5 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import GiftAssessmentContactForm from './GiftAssessmentContactForm';
 
@@ -13,30 +12,18 @@ describe('GiftAssessmentContactForm', () => {
     expect(screen.getByLabelText('Last Name*')).toBeInTheDocument();
     expect(screen.getByLabelText('Phone*')).toBeInTheDocument();
     expect(screen.getByLabelText('Email*')).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: 'Submit your results' })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Submit your results' })).toBeInTheDocument();
   });
 
   it('validates required fields', async () => {
     render(<GiftAssessmentContactForm contact={mockContact} />);
 
-    fireEvent.click(
-      screen.getByRole('button', { name: 'Submit your results' })
-    );
+    fireEvent.click(screen.getByRole('button', { name: 'Submit your results' }));
 
-    expect(
-      await screen.findByText('Please enter your first name')
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByText('Please enter your last name')
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByText('Please enter your phone')
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByText('Please enter your email')
-    ).toBeInTheDocument();
+    expect(await screen.findByText('Enter your first name')).toBeInTheDocument();
+    expect(await screen.findByText('Enter your last name')).toBeInTheDocument();
+    expect(await screen.findByText('Enter your phone number')).toBeInTheDocument();
+    expect(await screen.findByText('Enter your email')).toBeInTheDocument();
   });
 
   it('submits the form when all fields are filled', async () => {
@@ -55,9 +42,7 @@ describe('GiftAssessmentContactForm', () => {
       target: { value: 'john@example.com' },
     });
 
-    fireEvent.click(
-      screen.getByRole('button', { name: 'Submit your results' })
-    );
+    fireEvent.click(screen.getByRole('button', { name: 'Submit your results' }));
 
     expect(mockContact).toHaveBeenCalledWith({
       firstName: 'John',
@@ -70,18 +55,14 @@ describe('GiftAssessmentContactForm', () => {
   it('disables the button when isPending is true', () => {
     render(<GiftAssessmentContactForm contact={mockContact} isPending />);
 
-    expect(
-      screen.getByRole('button', { name: 'Submitting your results now...' })
-    ).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Submitting your results now...' })).toBeDisabled();
   });
 
   it('shows success message when isSuccess is true', () => {
     render(<GiftAssessmentContactForm contact={mockContact} isSuccess />);
 
     expect(
-      screen.getByText(
-        "Thank you for sharing your results with us. We'll talk soon!"
-      )
+      screen.getByText("Thank you for sharing your results with us. We'll talk soon!")
     ).toBeInTheDocument();
   });
 

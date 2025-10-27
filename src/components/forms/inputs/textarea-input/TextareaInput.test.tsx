@@ -1,5 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import TextareaInput from './TextareaInput';
 
@@ -20,7 +19,7 @@ describe('TextareaInput', () => {
     render(<TextareaInput label="Test Label" error="This is an error" />);
 
     expect(screen.getByText('This is an error')).toBeInTheDocument();
-    expect(screen.getByText('This is an error')).toHaveClass('text-red');
+    expect(screen.getByText('This is an error')).toHaveClass('text-error');
   });
 
   it('accepts input value', () => {

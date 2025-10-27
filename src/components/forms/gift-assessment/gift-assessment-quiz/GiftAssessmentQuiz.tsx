@@ -14,7 +14,7 @@ const schema = yup.object().shape({
     .of(
       yup.object().shape({
         questionId: yup.number().required(),
-        score: yup.number().min(0).max(3).required('Please select an answer for the question.'),
+        score: yup.number().min(0).max(3).required('Select an answer for the question'),
       })
     )
     .required(),

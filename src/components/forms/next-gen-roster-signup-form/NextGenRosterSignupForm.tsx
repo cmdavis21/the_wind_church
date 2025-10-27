@@ -1,7 +1,7 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Alert, Button, Label, Radio } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import React, { useEffect, useRef } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -12,9 +12,9 @@ import CirclePlus from '@/components/icons/circlePlus';
 import PencilPaper from '@/components/icons/pencilPaper';
 import Trash from '@/components/icons/trash';
 
-import CircleCheck from '@/components/icons/circleCheck';
-import SolidCircleX from '@/components/icons/solidCircleX';
 import { useNextGenRosterSignup } from '@/data/services/sanity/mutations/next-gen-roster-signup';
+import AlertMessage from '../inputs/alert-message/AlertMessage';
+import RadioGroup from '../inputs/radio-group/RadioGroup';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
 import NextGenRosterSignupGuardiansForm from './next-gen-roster-signup-guardians-form/NextGenRosterSignupGuardiansForm';
@@ -26,26 +26,26 @@ const schema = yup.object().shape({
       yup
         .object()
         .shape({
-          first_name: yup.string().required("Please enter your child's first name"),
-          last_name: yup.string().required("Please enter your child's last name"),
-          age: yup.string().required("Please enter your child's age"),
-          grade: yup.string().required("Please enter your child's grade level"),
+          first_name: yup.string().required("Enter your child's first name"),
+          last_name: yup.string().required("Enter your child's last name"),
+          age: yup.string().required("Enter your child's age"),
+          grade: yup.string().required("Enter your child's grade level"),
           gender: yup
             .string()
             .oneOf([Gender.MALE, Gender.FEMALE])
             .default(Gender.MALE)
-            .required("Please select your child's gender"),
-          hobbies: yup.string().required('Please list some favorite activities'),
+            .required("Select your child's gender"),
+          hobbies: yup.string().required("List three of your child's favorite activities"),
           allergies: yup.string().optional(),
           guardians: yup
             .array()
             .of(
               yup.object().shape({
-                first_name: yup.string().required("Please enter the guardian's first name"),
-                last_name: yup.string().required("Please enter the guardian's last name"),
-                email: yup.string().email().required("Please enter the guardian's email"),
-                phone: yup.string().required("Please enter the guardian's phone number"),
-                relationship_to_child: yup.string().required('Please enter the relationship'),
+                first_name: yup.string().required("Enter the guardian's first name"),
+                last_name: yup.string().required("Enter the guardian's last name"),
+                email: yup.string().email().required("Enter the guardian's email"),
+                phone: yup.string().required("Enter the guardian's phone number"),
+                relationship_to_child: yup.string().required('Enter the relationship'),
               })
             )
             .required()
@@ -80,9 +80,10 @@ const NextGenRosterSignupForm = () => {
   const { mutate: submitInquiry, isPending, isSuccess, isError } = useNextGenRosterSignup();
 
   const {
-    register,
-    handleSubmit,
     control,
+    register,
+    setValue,
+    handleSubmit,
     formState: { errors },
   } = useForm<NextGenRosterSignup>({
     mode: 'onSubmit',
@@ -145,22 +146,19 @@ const NextGenRosterSignupForm = () => {
       </div>
 
       {isSuccess && (
-        <Alert color="success" withBorderAccent>
-          <span className="flex items-center gap-xs">
-            <CircleCheck className="fill-success" />
-            <span className="font-bold">Success!</span> We will contact you shortly. Thank you.
-          </span>
-        </Alert>
+        <AlertMessage
+          type="success"
+          title="Success!"
+          description="We will contact you shortly. Thank you."
+        />
       )}
 
       {isError && (
-        <Alert color="failure" withBorderAccent>
-          <span className="flex items-center gap-xs">
-            <SolidCircleX className="fill-error" />
-            <span className="font-bold">Oh no!</span> There was an problem submitting your inquiry.
-            Please try again later.
-          </span>
-        </Alert>
+        <AlertMessage
+          type="failure"
+          title="Oh no!"
+          description="There was an problem submitting your inquiry. Please try again later."
+        />
       )}
 
       {childrenFields.map((child, childIndex) => {
@@ -182,20 +180,22 @@ const NextGenRosterSignupForm = () => {
             {/* Child Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
               <TextInput
-                label="Child's First Name*"
                 type="text"
-                error={errors.children && errors.children[childIndex]?.first_name?.message}
+                label="Child's First Name*"
                 disabled={isPending || isSuccess}
-                placeholder="Enter your child's first name"
                 {...register(`children.${childIndex}.first_name`)}
+                error={
+                  errors.children ? errors.children[childIndex]?.first_name?.message : undefined
+                }
               />
               <TextInput
-                label="Child's Last Name*"
                 type="text"
-                error={errors.children && errors.children[childIndex]?.last_name?.message}
+                label="Child's Last Name*"
                 disabled={isPending || isSuccess}
-                placeholder="Enter your child's last name"
                 {...register(`children.${childIndex}.last_name`)}
+                error={
+                  errors.children ? errors.children[childIndex]?.last_name?.message : undefined
+                }
               />
             </div>
 
@@ -204,8 +204,8 @@ const NextGenRosterSignupForm = () => {
               <SelectInput
                 label="What age is your child?"
                 disabled={isPending || isSuccess}
-                error={errors.children && errors.children[childIndex]?.age?.message}
                 {...register(`children.${childIndex}.age`)}
+                error={errors.children ? errors.children[childIndex]?.age?.message : undefined}
                 options={[
                   { label: '6-11 months', value: '6-11 months' },
                   ...Array(16)
@@ -220,57 +220,46 @@ const NextGenRosterSignupForm = () => {
               <SelectInput
                 label="What grade is your child?"
                 disabled={isPending || isSuccess}
-                error={errors.children && errors.children[childIndex]?.grade?.message}
                 {...register(`children.${childIndex}.grade`)}
                 options={SCHOOL_GRADES.map((grade) => ({
                   label: grade,
                   value: grade,
                 }))}
+                error={errors.children ? errors.children[childIndex]?.grade?.message : undefined}
               />
-              <div className="flex flex-col gap-sm">
-                <Label
-                  htmlFor={`children.${childIndex}.gender`}
-                  value="What gender is your child?"
-                />
-                <div className="flex items-center gap-md">
-                  <div className="flex items-center gap-xs">
-                    <Radio
-                      value={Gender.MALE}
-                      defaultChecked
-                      disabled={isPending || isSuccess}
-                      {...register(`children.${childIndex}.gender`)}
-                    />
-                    <Label htmlFor={`children.${childIndex}.gender`} value={Gender.MALE} />
-                  </div>
-                  <div className="flex items-center gap-xs">
-                    <Radio
-                      value={Gender.FEMALE}
-                      disabled={isPending || isSuccess}
-                      {...register(`children.${childIndex}.gender`)}
-                    />
-                    <Label htmlFor={`children.${childIndex}.gender`} value={Gender.FEMALE} />
-                  </div>
-                </div>
-              </div>
+              <RadioGroup
+                name="request_email_back"
+                defaultValue={Gender.MALE}
+                disabled={isPending || isSuccess}
+                label="What gender is your child?"
+                options={[
+                  { value: Gender.MALE, label: Gender.MALE },
+                  { value: Gender.FEMALE, label: Gender.FEMALE },
+                ]}
+                onChange={(val) => setValue(`children.${childIndex}.gender`, val as Gender)}
+                error={errors.children ? errors.children[childIndex]?.gender?.message : undefined}
+              />
             </div>
 
             {/* Child Hobbies/Allergies */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
               <TextInput
-                label="What are 1-3 Hobbies/Activities your child enjoys?"
                 type="text"
-                error={errors.children && errors.children[childIndex]?.hobbies?.message}
                 disabled={isPending || isSuccess}
                 placeholder="e.g., Painting, Soccer, Kickball"
                 {...register(`children.${childIndex}.hobbies`)}
+                label="What are 1-3 Hobbies/Activities your child enjoys?"
+                error={errors.children ? errors.children[childIndex]?.hobbies?.message : undefined}
               />
               <TextInput
-                label="List your child's allergies"
                 type="text"
-                error={errors.children && errors.children[childIndex]?.allergies?.message}
+                label="List your child's allergies"
                 disabled={isPending || isSuccess}
                 placeholder="e.g., Peanuts, Pollen, Latex"
                 {...register(`children.${childIndex}.allergies`)}
+                error={
+                  errors.children ? errors.children[childIndex]?.allergies?.message : undefined
+                }
               />
             </div>
 

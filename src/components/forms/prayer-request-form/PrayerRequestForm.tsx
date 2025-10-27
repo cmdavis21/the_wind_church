@@ -1,7 +1,7 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Alert, Button, Label, Radio } from 'flowbite-react';
+import { Alert, Button } from 'flowbite-react';
 import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -12,27 +12,22 @@ import { PrayerRequest, YesNo } from '@/data/types';
 import CircleCheck from '@/components/icons/circleCheck';
 import SolidCircleX from '@/components/icons/solidCircleX';
 import { useCreatePrayerRequest } from '@/data/services/sanity/mutations/prayer-request';
+import RadioGroup from '../inputs/radio-group/RadioGroup';
 import TextInput from '../inputs/text-input/TextInput';
 import TextareaInput from '../inputs/textarea-input/TextareaInput';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required('Please enter your first name'),
-  last_name: yup.string().required('Please enter your last name'),
+  first_name: yup.string().required('Enter your first name'),
+  last_name: yup.string().required('Enter your last name'),
   request_email_back: yup.string().oneOf([YesNo.YES, YesNo.NO]).default(YesNo.YES).required(),
-  email: yup.string().email().required('Please enter your email'),
-  request: yup.string().required('Please enter your prayer'),
+  email: yup.string().email().required('Enter your email'),
+  request: yup.string().required('Share your prayer'),
 });
 
 const PrayerRequestForm = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
 
-  const {
-    mutate: submitRequest,
-    isPending,
-    isSuccess,
-    isError,
-    reset: resetMutation,
-  } = useCreatePrayerRequest();
+  const { mutate: submitRequest, isPending, isSuccess, isError } = useCreatePrayerRequest();
 
   const {
     reset,
@@ -122,37 +117,25 @@ const PrayerRequestForm = () => {
       />
 
       {/* request email back */}
-      <div className="flex flex-col md:flex-row md:items-center gap-md">
-        <Label htmlFor="requestEmailBack" value="Would you like us to respond to you by email?" />
-        <div className="flex items-center gap-md">
-          <div className="flex items-center gap-xs">
-            <Radio
-              name="request_email_back"
-              value={YesNo.YES}
-              defaultChecked
-              disabled={isPending || isSuccess}
-              onChange={() => setValue('request_email_back', YesNo.YES)}
-            />
-            <Label htmlFor="request_email_back" value="Yes" />
-          </div>
-          <div className="flex items-center gap-xs">
-            <Radio
-              name="request_email_back"
-              value={YesNo.NO}
-              disabled={isPending || isSuccess}
-              onChange={() => setValue('request_email_back', YesNo.NO)}
-            />
-            <Label htmlFor="request_email_back" value="No, just prayers" />
-          </div>
-        </div>
-      </div>
+      <RadioGroup
+        name="request_email_back"
+        defaultValue={YesNo.YES}
+        disabled={isPending || isSuccess}
+        label="Would you like us to respond to you by email?"
+        onChange={(val) => setValue('request_email_back', val as YesNo)}
+        options={[
+          { value: YesNo.YES, label: 'Yes' },
+          { value: YesNo.NO, label: 'No' },
+        ]}
+        error={errors.request_email_back?.message}
+      />
 
       {/* request */}
       <TextareaInput
         label="Prayer Request*"
         error={errors.request?.message}
         disabled={isPending || isSuccess}
-        placeholder="Enter your prayer here"
+        placeholder="Enter your prayer here..."
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
           setValue('request', e.target.value);
           if (e.target.value !== '') clearErrors('request');

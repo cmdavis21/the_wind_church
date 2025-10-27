@@ -1,11 +1,11 @@
-import { defineConfig } from 'eslint/config';
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
+import { FlatCompat } from '@eslint/eslintrc';
+import js from '@eslint/js';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import _import from 'eslint-plugin-import';
+import { defineConfig } from 'eslint/config';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,14 +37,22 @@ export default defineConfig([
         'warn',
         {
           groups: ['builtin', 'external', 'internal', ['sibling', 'parent'], 'index', 'object'],
-
           alphabetize: {
             order: 'asc',
             caseInsensitive: true,
           },
-
           'newlines-between': 'always',
         },
+      ],
+
+      // Prefer single quotes for JS/TS, allow template literals, avoid escaping
+      quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+
+      // Use the TypeScript-aware rule to avoid conflicts
+      '@typescript-eslint/quotes': [
+        'error',
+        'single',
+        { avoidEscape: true, allowTemplateLiterals: true },
       ],
     },
   },
