@@ -7,11 +7,6 @@ enum NAV_TYPE {
   SOLID,
 }
 
-enum STATUS {
-  ACTIVE,
-  NOT_ACTIVE,
-}
-
 interface NavbarButtonProps {
   label: string;
   link: string;
@@ -21,20 +16,12 @@ interface NavbarButtonProps {
   onClick: () => void;
 }
 
-const getStatus = (isActive: boolean): STATUS => (isActive ? STATUS.ACTIVE : STATUS.NOT_ACTIVE);
-
 const getNavType = (shouldChange: boolean): NAV_TYPE =>
   shouldChange ? NAV_TYPE.CHANGING : NAV_TYPE.SOLID;
 
 const variants = {
-  [STATUS.ACTIVE]: {
-    [NAV_TYPE.CHANGING]: 'text-black dark:text-textInverse',
-    [NAV_TYPE.SOLID]: 'text-black dark:text-textInverse dark:group-hover:text-black',
-  },
-  [STATUS.NOT_ACTIVE]: {
-    [NAV_TYPE.CHANGING]: 'text-white dark:text-textInverse hover:text-black',
-    [NAV_TYPE.SOLID]: 'text-black dark:text-textInverse dark:group-hover:text-black',
-  },
+  [NAV_TYPE.CHANGING]: 'text-black dark:text-textInverse',
+  [NAV_TYPE.SOLID]: 'text-white dark:text-textInverse dark:group-hover:text-black',
 };
 
 const NavbarButton: React.FC<NavbarButtonProps> = ({
@@ -45,9 +32,8 @@ const NavbarButton: React.FC<NavbarButtonProps> = ({
   changeColor,
   onClick,
 }) => {
-  const status = getStatus(activeNav);
   const navType = getNavType(changeColor);
-  const variantClass = variants[status][navType];
+  const variantClass = variants[navType];
 
   return (
     <Link href={link}>

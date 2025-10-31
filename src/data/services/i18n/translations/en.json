@@ -30,7 +30,7 @@
       "label": "Ministries",
       "submenu": [
         { "label": "All Ministries", "link": "/ministries" },
-        { "label": "Youth Service", "link": "/youth-service" },
+        { "label": "Next Gen", "link": "/next-gen" },
         { "label": "Gift Assessment", "link": "/gift-assessment" }
       ]
     },

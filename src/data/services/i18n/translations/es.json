@@ -30,7 +30,7 @@
       "label": "Ministerios",
       "submenu": [
         { "label": "Todos los Ministerios", "link": "/ministerios" },
-        { "label": "Servicio Juvenil", "link": "/servicio-juvenil" },
+        { "label": "Próxima Generación", "link": "/proxima-generacion" },
         { "label": "Evaluación de Dones", "link": "/evaluacion-de-dones" }
       ]
     },
@@ -152,10 +152,7 @@
     },
     "address": {
       "label": "Dirección",
-      "row": [
-        { "label": "6476 Streeter Avenue" },
-        { "label": "Riverside, CA 92504" }
-      ]
+      "row": [{ "label": "6476 Streeter Avenue" }, { "label": "Riverside, CA 92504" }]
     },
     "hours": {
       "label": "Horario de Oficina",

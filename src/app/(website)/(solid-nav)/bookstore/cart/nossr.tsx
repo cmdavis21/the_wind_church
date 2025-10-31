@@ -36,19 +36,19 @@ const CartPage = () => {
             <table className="w-full">
               <thead>
                 <tr>
-                  <th className="w-[50%] pb-sm text-left body-large font-bold text-charcoalLight">
+                  <th className="w-[50%] pb-sm text-left body-small font-bold text-charcoalLight">
                     Product
                   </th>
-                  <th className="w-[12.5%] pb-sm text-left body-large font-bold text-charcoalLight">
+                  <th className="w-[12.5%] pb-sm text-center body-small font-bold text-charcoalLight">
                     Price
                   </th>
-                  <th className="w-[12.5%] pb-sm text-left body-large font-bold text-charcoalLight">
+                  <th className="w-[12.5%] pb-sm text-center body-small font-bold text-charcoalLight">
                     Quantity
                   </th>
-                  <th className="w-[12.5%] pb-sm text-left body-large font-bold text-charcoalLight">
-                    Total
+                  <th className="w-[12.5%] pb-sm text-center body-small font-bold text-charcoalLight">
+                    Subtotal
                   </th>
-                  <th className="w-[12.5%] pb-sm text-left body-large font-bold text-charcoalLight"></th>
+                  <th className="w-[12.5%] pb-sm text-left body-small font-bold text-charcoalLight"></th>
                 </tr>
               </thead>
 
@@ -61,7 +61,7 @@ const CartPage = () => {
                     }`}
                   >
                     <td className="py-md">
-                      <div className="flex gap-md items-center">
+                      <div className="flex gap-md">
                         <div className="relative w-[100px] h-[100px] shrink-0">
                           <Image
                             fill
@@ -74,16 +74,18 @@ const CartPage = () => {
                           <h5>{line.title}</h5>
                           {line.variant.selectedOptions.map((opt) => (
                             <p key={opt.name} className="capitalize body-small">
-                              <span className="font-bold">{opt.name}:</span> {opt.value}
+                              <span className="text-charcoal">{opt.name}:</span> {opt.value}
                             </p>
                           ))}
                         </div>
                       </div>
                     </td>
 
-                    <td className="py-md body-large">{formatPrice(line.variant.price)}</td>
+                    <td className="py-md text-center body-large">
+                      {formatPrice(line.variant.price)}
+                    </td>
 
-                    <td className="py-md">
+                    <td className="py-md mx-auto">
                       <QuantityInput
                         maxQuantity={10}
                         quantity={line.quantity}
@@ -102,11 +104,11 @@ const CartPage = () => {
                       />
                     </td>
 
-                    <td className="py-md body-large font-bold">
+                    <td className="py-md text-center body-large font-bold">
                       {formatPrice(line.subtotalAmount)}
                     </td>
 
-                    <td className="py-md">
+                    <td className="py-md mx-auto">
                       <Button
                         size="sm"
                         color="danger"
@@ -117,8 +119,8 @@ const CartPage = () => {
                           );
                         }}
                       >
-                        <div className="flex items-center gap-xs text-sm">
-                          <Trash fill="white" className="size-[12px]" /> Remove
+                        <div className="flex items-center gap-xxs text-xs">
+                          <Trash fill="white" className="size-[10px]" /> Remove
                         </div>
                       </Button>
                     </td>
@@ -151,7 +153,7 @@ const CartPage = () => {
                     </p>
                   ))}
                   <p className="capitalize">
-                    <span className="font-bold">Price:</span> {formatPrice(line.variant.price)}{' '}
+                    <span className="text-charcoal">Price:</span> {formatPrice(line.variant.price)}{' '}
                     {line.variant.price.currencyCode}
                   </p>
                   <QuantityInput
