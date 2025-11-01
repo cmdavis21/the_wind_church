@@ -5,7 +5,7 @@ const ScrollToButtonStory = {
   title: 'Buttons/ScrollToButton',
   tags: ['autodocs'],
   decorators: (Story: React.FC) => (
-    <div className="relative h-[80dvh]">
+    <div className="relative h-screen">
       <Story />
       <div id="test-div" className="mt-20 bg-red w-full h-[20px]"></div>
     </div>

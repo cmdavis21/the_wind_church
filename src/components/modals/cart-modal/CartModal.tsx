@@ -30,7 +30,7 @@ const CartModal: React.FC<CartModalProps> = ({ open, setOpen, cartQuantity, cart
     <Modal.Body className="p-0">
       <div className="relative rounded-lg overflow-hidden">
         <CornerButton onClick={setOpen} className="absolute z-10 right-0 top-0" />
-        <div className="relative w-full aspect-video bg-white dark:bg-backgroundDark rounded-lg p-lg flex flex-col gap-md overflow-hidden min-h-[80dvh] max-h-[80dvh]">
+        <div className="relative w-full aspect-video bg-white dark:bg-backgroundDark rounded-lg p-lg flex flex-col gap-md overflow-hidden min-h-[80%] max-h-[80%]">
           <h5>
             You have{' '}
             <span className="font-bold">

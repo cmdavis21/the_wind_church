@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 
 import PageHeaderWithBackground from './PageHeaderWithBackground';
 
@@ -14,25 +13,13 @@ describe('PageHeaderWithBackground', () => {
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis delectus impedit dolorum!';
 
   it('should render title and subtitle correctly', () => {
-    render(
-      <PageHeaderWithBackground
-        media={media}
-        title={title}
-        subtitle={subtitle}
-      />
-    );
+    render(<PageHeaderWithBackground media={media} title={title} subtitle={subtitle} />);
     expect(screen.getByText(title)).toBeInTheDocument();
     expect(screen.getByText(subtitle)).toBeInTheDocument();
   });
 
   it('should apply the correct background image', () => {
-    render(
-      <PageHeaderWithBackground
-        media={media}
-        title={title}
-        subtitle={subtitle}
-      />
-    );
+    render(<PageHeaderWithBackground media={media} title={title} subtitle={subtitle} />);
     const image = screen.getByAltText(media.alt);
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', media.src);
@@ -40,27 +27,17 @@ describe('PageHeaderWithBackground', () => {
 
   it('should apply the short height class when short is true', () => {
     render(
-      <PageHeaderWithBackground
-        media={media}
-        title={title}
-        subtitle={subtitle}
-        short={true}
-      />
+      <PageHeaderWithBackground media={media} title={title} subtitle={subtitle} short={true} />
     );
     const container = screen.getByRole('banner');
-    expect(container).toHaveClass('h-[55dvh]');
+    expect(container).toHaveClass('h-[55%]');
   });
 
   it('should apply the default height class when short is false', () => {
     render(
-      <PageHeaderWithBackground
-        media={media}
-        title={title}
-        subtitle={subtitle}
-        short={false}
-      />
+      <PageHeaderWithBackground media={media} title={title} subtitle={subtitle} short={false} />
     );
     const container = screen.getByRole('banner');
-    expect(container).toHaveClass('h-[65dvh]');
+    expect(container).toHaveClass('h-[65%]');
   });
 });

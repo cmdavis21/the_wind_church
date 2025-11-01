@@ -36,7 +36,7 @@ const HomepageHero: React.FC<HomepageHeroProps> = ({
   media,
 }) => {
   return (
-    <div className="relative w-full h-[100dvh] overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden">
       {/* BACKGROUND IMAGE */}
       {findMediaType(media.src) === MediaType.IMAGE && (
         <Image

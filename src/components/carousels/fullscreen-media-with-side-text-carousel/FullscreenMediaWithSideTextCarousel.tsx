@@ -97,7 +97,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
   return (
     <>
       {/* Desktop */}
-      <div className="hidden md:block relative w-full h-[100dvh]">
+      <div className="hidden md:block relative w-full h-screen">
         {/* images */}
         {slides.map((slide, index) => (
           <div
@@ -144,7 +144,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
           {slides.map((slide) => (
             <div
               key={`media-with-side-text-${slide.title}`}
-              className="w-full 2xl:max-w-[70%] h-[100dvh] px-[150px] pb-[150px] flex flex-col gap-md justify-end text-white dark:text-textInverse"
+              className="w-full 2xl:max-w-[70%] h-screen px-[150px] pb-[150px] flex flex-col gap-md justify-end text-white dark:text-textInverse"
             >
               <h4>{slide.description}</h4>
               <div className="w-[100px] h-[1px] bg-primary rounded-sm" />
@@ -155,7 +155,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
       </div>
 
       {/* Mobile */}
-      <div className="md:hidden relative w-full h-[100dvh] overflow-hidden">
+      <div className="md:hidden relative w-full h-screen overflow-hidden">
         {/* images */}
         {slides.map((slide, mobileIndex) => (
           <div
@@ -199,7 +199,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
           {slides.map((slide) => (
             <div
               key={`mobile-media-with-side-text-${slide.title}`}
-              className="relative h-[100dvh] w-full px-[20px] pb-[70px] flex flex-col items-center justify-end text-justify text-white dark:text-textInverse gap-sm"
+              className="relative h-screen w-full px-[20px] pb-[70px] flex flex-col items-center justify-end text-justify text-white dark:text-textInverse gap-sm"
             >
               <p className="body-large">{slide.description}</p>
               <div className="w-[75px] h-[1px] bg-primary rounded-sm" />

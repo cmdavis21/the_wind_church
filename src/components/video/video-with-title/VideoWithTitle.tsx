@@ -48,7 +48,7 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
       {/* Desktop */}
       <div
         onClick={togglePlayback}
-        className={`hidden md:block relative w-full max-h-[85dvh] aspect-video ${rounded ? 'rounded-xl lg:rounded-xxl' : ''} overflow-hidden hover:cursor-pointer`}
+        className={`hidden md:block relative w-full max-h-[85%] aspect-video ${rounded ? 'rounded-xl lg:rounded-xxl' : ''} overflow-hidden hover:cursor-pointer`}
       >
         <video
           ref={videoRef}

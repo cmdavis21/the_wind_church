@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
+import Image from 'next/image';
+import React from 'react';
 
-import { findMediaType, MediaType, styleSelectedWords } from "@/data/utils";
+import { findMediaType, MediaType, styleSelectedWords } from '@/data/utils';
 
 interface PageHeroProps {
   title: string;
@@ -14,19 +14,9 @@ interface PageHeroProps {
   };
 }
 
-const PageHero: React.FC<PageHeroProps> = ({
-  title,
-  highlightTitle,
-  subtitle,
-  short,
-  media,
-}) => {
+const PageHero: React.FC<PageHeroProps> = ({ title, highlightTitle, subtitle, short, media }) => {
   return (
-    <div
-      className={`relative w-full ${
-        short ? "h-[60dvh] xl:h-[75dvh]" : "h-[95dvh]"
-      } overflow-hidden`}
-    >
+    <div className={`relative w-full ${short ? 'h-[60%] xl:h-[75%]' : 'h-[95%]'} overflow-hidden`}>
       {/* BACKGROUND IMAGE */}
       {findMediaType(media.src) === MediaType.IMAGE && (
         <Image
@@ -51,7 +41,7 @@ const PageHero: React.FC<PageHeroProps> = ({
       )}
 
       {/* GRADIENTS */}
-      {["t", "b", "l", "r"].map((area) => (
+      {['t', 'b', 'l', 'r'].map((area) => (
         <div
           key={`page-hero-gradient-${area}`}
           className={`absolute w-full h-full bg-gradient-to-${area} from-black/50 from-5% via-black/10 via-30% to-transparent to-90% z-20`}
@@ -69,8 +59,8 @@ const PageHero: React.FC<PageHeroProps> = ({
                 __html: styleSelectedWords({
                   text: title,
                   array: highlightTitle,
-                  htmlTag: "h1",
-                  className: "leading-none text-center 2xl:text-[55px] mx-auto",
+                  htmlTag: 'h1',
+                  className: 'leading-none text-center 2xl:text-[55px] mx-auto',
                 }),
               }}
               className="lg:max-w-[75%]"
@@ -81,9 +71,7 @@ const PageHero: React.FC<PageHeroProps> = ({
             </h1>
           )}
 
-          {subtitle && (
-            <h3 className="text-center mx-auto lg:max-w-[60%]">{subtitle}</h3>
-          )}
+          {subtitle && <h3 className="text-center mx-auto lg:max-w-[60%]">{subtitle}</h3>}
         </div>
       </div>
     </div>
