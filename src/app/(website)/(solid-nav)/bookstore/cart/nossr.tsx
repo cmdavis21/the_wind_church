@@ -36,19 +36,17 @@ const CartPage = () => {
             <table className="w-full">
               <thead>
                 <tr>
-                  <th className="w-[50%] pb-sm text-left body-small font-bold text-charcoalLight">
-                    Product
-                  </th>
-                  <th className="w-[12.5%] pb-sm text-center body-small font-bold text-charcoalLight">
+                  <th className="w-[50%] pb-sm text-left font-bold text-charcoalLight">Product</th>
+                  <th className="w-[12.5%] pb-sm text-center font-bold text-charcoalLight">
                     Price
                   </th>
-                  <th className="w-[12.5%] pb-sm text-center body-small font-bold text-charcoalLight">
+                  <th className="w-[12.5%] pb-sm text-center font-bold text-charcoalLight">
                     Quantity
                   </th>
-                  <th className="w-[12.5%] pb-sm text-center body-small font-bold text-charcoalLight">
+                  <th className="w-[12.5%] pb-sm text-center font-bold text-charcoalLight">
                     Subtotal
                   </th>
-                  <th className="w-[12.5%] pb-sm text-left body-small font-bold text-charcoalLight"></th>
+                  <th className="w-[12.5%] pb-sm text-left font-bold text-charcoalLight"></th>
                 </tr>
               </thead>
 
@@ -71,7 +69,7 @@ const CartPage = () => {
                           />
                         </div>
                         <div className="flex flex-col gap-xs">
-                          <h5>{line.title}</h5>
+                          <h5 className="font-[500]">{line.title}</h5>
                           {line.variant.selectedOptions.map((opt) => (
                             <p key={opt.name} className="capitalize body-small">
                               <span className="text-charcoal">{opt.name}:</span> {opt.value}
@@ -85,33 +83,36 @@ const CartPage = () => {
                       {formatPrice(line.variant.price)}
                     </td>
 
-                    <td className="py-md mx-auto">
-                      <QuantityInput
-                        maxQuantity={10}
-                        quantity={line.quantity}
-                        decrement={() => {
-                          setLoadingItem(index);
-                          updateCartItems([
-                            { quantity: line.quantity - 1, id: line.id as GraphQLTypes['ID'] },
-                          ]).then(() => setLoadingItem(null));
-                        }}
-                        increment={() => {
-                          setLoadingItem(index);
-                          updateCartItems([
-                            { quantity: line.quantity + 1, id: line.id as GraphQLTypes['ID'] },
-                          ]).then(() => setLoadingItem(null));
-                        }}
-                      />
+                    <td className="py-md">
+                      <div className="w-fit mx-auto">
+                        <QuantityInput
+                          maxQuantity={10}
+                          quantity={line.quantity}
+                          decrement={() => {
+                            setLoadingItem(index);
+                            updateCartItems([
+                              { quantity: line.quantity - 1, id: line.id as GraphQLTypes['ID'] },
+                            ]).then(() => setLoadingItem(null));
+                          }}
+                          increment={() => {
+                            setLoadingItem(index);
+                            updateCartItems([
+                              { quantity: line.quantity + 1, id: line.id as GraphQLTypes['ID'] },
+                            ]).then(() => setLoadingItem(null));
+                          }}
+                        />
+                      </div>
                     </td>
 
                     <td className="py-md text-center body-large font-bold">
                       {formatPrice(line.subtotalAmount)}
                     </td>
 
-                    <td className="py-md mx-auto">
+                    <td className="py-md">
                       <Button
                         size="sm"
                         color="danger"
+                        className="mx-auto"
                         onClick={() => {
                           setLoadingItem(index);
                           deleteCartItems([line.id as GraphQLTypes['ID']]).then(() =>
@@ -119,7 +120,7 @@ const CartPage = () => {
                           );
                         }}
                       >
-                        <div className="flex items-center gap-xxs text-xs">
+                        <div className="flex items-center gap-xs text-xs">
                           <Trash fill="white" className="size-[10px]" /> Remove
                         </div>
                       </Button>
@@ -142,14 +143,14 @@ const CartPage = () => {
                     fill
                     src={line.image.src}
                     alt={line.image.alt}
-                    className="object-contain rounded-lg"
+                    className="object-cover rounded-lg"
                   />
                 </div>
                 <div className="flex flex-col gap-xs">
-                  <h6 className="font-normal">{line.title}</h6>
+                  <h6 className="font-[500]">{line.title}</h6>
                   {line.variant.selectedOptions.map((opt) => (
                     <p className="capitalize">
-                      <span className="font-bold">{opt.name}:</span> {opt.value}
+                      <span className="font-[500]">{opt.name}:</span> {opt.value}
                     </p>
                   ))}
                   <p className="capitalize">
@@ -174,7 +175,7 @@ const CartPage = () => {
                     }}
                   />
                   <p className="capitalize">
-                    <span className="font-bold">Total:</span> {formatPrice(line.subtotalAmount)}{' '}
+                    <span className="font-[500]">Total:</span> {formatPrice(line.subtotalAmount)}{' '}
                     {line.subtotalAmount.currencyCode}
                   </p>
                   <Button

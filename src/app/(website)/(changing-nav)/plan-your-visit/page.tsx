@@ -58,7 +58,7 @@ const PlanYourVisit = () => (
           aspernatur natus ratione veritatis. Explicabo, ipsa tempore. Ipsum.
         </h4>
         <div className="flex flex-col gap-md">
-          <OpenWindowWithQueryButton label={'6476 Streeter Avenue Riverside, CA 92504'} />
+          <OpenWindowWithQueryButton label="6476 Streeter Avenue Riverside, CA 92504" />
           <Link target="_blank" href={YOUTUBE_CHANNEL} className="w-fit group">
             <div className="flex items-center gap-xs">
               <UpArrow className="fill-navy dark:fill-navyLight rotate-45 group-hover:rotate-90 transition-all duration-300" />

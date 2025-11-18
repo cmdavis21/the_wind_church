@@ -1,9 +1,9 @@
 'use client';
 
+import { setUserLocale } from '@/data/services/i18n/locale';
 import { LOCALES } from '@/data/services/i18n/utils';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { setCookie } from 'nookies';
 import LanguageSelectorSelect from './language-selector-select/LanguageSelectorSelect';
 
 interface LanguageSelectorProps {
@@ -15,19 +15,15 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ changeColor }) => {
   const locale = useLocale();
   const t = useTranslations('LanguageSelector');
 
-  const handleLocaleChange = (locale: string) => {
-    const newLocale = locale;
-    setCookie(null, 'WSWC_PREFERRED_LOCALE', newLocale, {
-      maxAge: 30 * 24 * 60 * 60, // 30 days
-      path: '/',
-    });
-    router.refresh(); // Refresh to re-render with the new locale
+  const handleLocaleChange = (newLocale: string) => {
+    setUserLocale(newLocale);
+    router.refresh();
   };
 
   return (
     <LanguageSelectorSelect
-      defaultValue={locale}
       label={t('label')}
+      defaultValue={locale}
       changeColor={changeColor}
       onLocaleChange={handleLocaleChange}
     >

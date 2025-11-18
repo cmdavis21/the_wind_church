@@ -73,6 +73,17 @@ export const theme = {
       sm_md: 'px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base',
     },
   },
+  checkbox: {
+    root: {
+      base: 'h-4 w-4 appearance-none rounded border border-gray-300 bg-gray-100 bg-[length:0.55em_0.55em] bg-center bg-no-repeat checked:border-transparent checked:bg-current checked:bg-check-icon focus:outline-none focus:ring-2 focus:ring-offset-2 dark:border-gray-600 dark:bg-gray-700 dark:checked:border-transparent dark:checked:bg-current',
+      color: {
+        default:
+          'text-primary focus:ring-primary dark:ring-offset-primaryDark dark:focus:ring-primaryDark',
+      },
+      indeterminate:
+        'border-transparent bg-current bg-dash-icon dark:border-transparent dark:bg-current',
+    },
+  },
   label: {
     root: {
       base: 'text-[16px] xl:text-[18px]',
@@ -340,7 +351,7 @@ export const theme = {
           lg: 'p-4 text-md',
         },
         colors: {
-          gray: 'border-gray bg-white text-textPrimary placeholder-textSecondary focus:ring-0 dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:ring-0',
+          gray: 'border-gray bg-backgroundLight text-textPrimary placeholder-textSecondary focus:border-primary focus:ring-primary dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:border-primaryDark dark:focus:ring-primaryDark',
         },
       },
     },

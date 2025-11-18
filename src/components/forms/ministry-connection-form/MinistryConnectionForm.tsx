@@ -1,12 +1,12 @@
 'use client';
 
+import { MinistryConnection } from '@/data/types';
 import { yupResolver } from '@hookform/resolvers/yup';
+import cn from 'classnames';
 import { Button, Checkbox, Label } from 'flowbite-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-
-import { MinistryConnection } from '@/data/types';
 
 import { useCreateMinistryConnection } from '@/data/services/sanity/mutations/ministry-connection';
 import PencilPaper from '../../icons/pencilPaper';
@@ -145,7 +145,12 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
                   setSelections((prev) => [...prev, name]);
                 }
               }}
-              className="flex items-center gap-xs hover:cursor-pointer"
+              className={cn(
+                selections.includes(name)
+                  ? 'border-primary dark:border-primaryDark'
+                  : 'border-skeletonGray hover:border-primary dark:hover:border-primaryDark',
+                'border-2 flex items-center gap-xs hover:cursor-pointer rounded-md p-sm w-fit'
+              )}
             >
               <Checkbox
                 value={name}
@@ -153,7 +158,7 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
                 checked={selections.includes(name)}
                 disabled={isPending || isSuccess}
               />
-              <div>{name}</div>
+              <div className="body-large">{name}</div>
             </button>
           ))}
         </div>

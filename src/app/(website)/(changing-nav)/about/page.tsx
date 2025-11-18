@@ -47,122 +47,61 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const About = async () => {
   const t = await getTranslations('About');
-
   const theWindCenterArr = [
-    <ImageWithTitleAndHiddenTextCard
-      key={1}
-      image={{
+    {
+      image: {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
         alt: t('alt'),
-      }}
-      title={
-        <div
-          dangerouslySetInnerHTML={{
-            __html: styleSelectedWords({
-              text: t('values.jesus.title'),
-              array: [[2, 2]],
-              htmlTag: 'h2',
-            }),
-          }}
-        />
-      }
-      description={t('values.jesus.description')}
-    />,
-    <ImageWithTitleAndHiddenTextCard
-      key={2}
-      image={{
+      },
+      title: t('values.jesus.title'),
+      highlight: [[2, 2]],
+      description: t('values.jesus.description'),
+    },
+    {
+      image: {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/praise_hands.jpg`,
         alt: t('alt'),
-      }}
-      title={
-        <div
-          dangerouslySetInnerHTML={{
-            __html: styleSelectedWords({
-              text: t('values.worship.title'),
-              array: [[1, 1]],
-              htmlTag: 'h2',
-            }),
-          }}
-        />
-      }
-      description={t('values.worship.description')}
-    />,
-    <ImageWithTitleAndHiddenTextCard
-      key={3}
-      image={{
+      },
+      title: t('values.worship.title'),
+      highlight: [[1, 1]],
+      description: t('values.worship.description'),
+    },
+    {
+      image: {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/family.jpeg`,
         alt: t('alt'),
-      }}
-      title={
-        <div
-          dangerouslySetInnerHTML={{
-            __html: styleSelectedWords({
-              text: t('values.family.title'),
-              array: [[1, 1]],
-              htmlTag: 'h2',
-            }),
-          }}
-        />
-      }
-      description={t('values.family.description')}
-    />,
-    <ImageWithTitleAndHiddenTextCard
-      key={4}
-      image={{
+      },
+      title: t('values.family.title'),
+      highlight: [[1, 1]],
+      description: t('values.family.description'),
+    },
+    {
+      image: {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/outreach.png`,
         alt: t('alt'),
-      }}
-      title={
-        <div
-          dangerouslySetInnerHTML={{
-            __html: styleSelectedWords({
-              text: t('values.serve.title'),
-              array: [[1, 1]],
-              htmlTag: 'h2',
-            }),
-          }}
-        />
-      }
-      description={t('values.serve.description')}
-    />,
-    <ImageWithTitleAndHiddenTextCard
-      key={5}
-      image={{
+      },
+      title: t('values.serve.title'),
+      highlight: [[1, 1]],
+      description: t('values.serve.description'),
+    },
+    {
+      image: {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/group_women.jpg`,
         alt: t('alt'),
-      }}
-      title={
-        <div
-          dangerouslySetInnerHTML={{
-            __html: styleSelectedWords({
-              text: t('values.love.title'),
-              array: [[1, 1]],
-              htmlTag: 'h2',
-            }),
-          }}
-        />
-      }
-      description={t('values.love.description')}
-    />,
-    <ImageWithTitleAndHiddenTextCard
-      key={6}
-      image={{
+      },
+      title: t('values.love.title'),
+      highlight: [[1, 1]],
+      description: t('values.love.description'),
+    },
+    {
+      image: {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`,
         alt: t('alt'),
-      }}
-      title={
-        <div
-          dangerouslySetInnerHTML={{
-            __html: styleSelectedWords({
-              text: t('values.transform.title'),
-              array: [[1, 1]],
-              htmlTag: 'h2',
-            }),
-          }}
-        />
-      }
-      description={t('values.transform.description')}
-    />,
+      },
+      title: t('values.transform.title'),
+      highlight: [[1, 1]],
+      description: t('values.transform.description'),
+    },
   ];
 
   return (
@@ -289,11 +228,49 @@ const About = async () => {
 
           {/* Tablet/Desktop */}
           <div className="hidden md:flex flex-wrap justify-center gap-lg md:gap-xl">
-            {theWindCenterArr.map((i) => i)}
+            {theWindCenterArr.map((item) => (
+              <ImageWithTitleAndHiddenTextCard
+                key={item.title}
+                image={item.image}
+                title={
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: styleSelectedWords({
+                        text: item.title,
+                        array: item.highlight,
+                        htmlTag: 'h2',
+                      }),
+                    }}
+                  />
+                }
+                description={item.description}
+              />
+            ))}
           </div>
 
           {/* Mobile */}
-          <SimpleCarousel blueDots slides={theWindCenterArr} className="md:hidden h-fit" />
+          <SimpleCarousel
+            blueDots
+            slides={theWindCenterArr.map((item) => (
+              <ImageWithTitleAndHiddenTextCard
+                key={item.title}
+                image={item.image}
+                title={
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: styleSelectedWords({
+                        text: item.title,
+                        array: item.highlight,
+                        htmlTag: 'h2',
+                      }),
+                    }}
+                  />
+                }
+                description={item.description}
+              />
+            ))}
+            className="md:hidden h-fit"
+          />
         </div>
 
         {/* Foursquare */}

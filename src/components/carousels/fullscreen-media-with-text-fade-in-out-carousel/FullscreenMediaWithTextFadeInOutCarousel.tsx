@@ -164,7 +164,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
                   <p className="body-large line-clamp-3">{slide.description}</p>
                 )}
               </div>
-              <Link href={slide.link}>
+              <Link href={slides[activeSlide].link}>
                 <Button pill color="primary" className="w-[200px]">
                   Learn more
                 </Button>
@@ -188,7 +188,6 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
 
         {/* Arrows */}
         <CarouselArrows
-          className=""
           leftArrowProps={{
             onClick: () => {
               if (activeSlide <= 0) {

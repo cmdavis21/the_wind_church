@@ -20,9 +20,7 @@ const LanguageSelectorSelect: React.FC<LanguageSelectorSelectProps> = ({
 
   const onSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const nextLocale = event.target.value;
-    startTransition(() => {
-      onLocaleChange(nextLocale);
-    });
+    startTransition(() => onLocaleChange(nextLocale));
   };
 
   return (

@@ -40,10 +40,10 @@ const FullscreenLatestSermon: React.FC<FullscreenLatestSermonProps> = ({
 
       {/* Content */}
       <div className="absolute bottom-0 left-0 w-full p-padding text-center md:text-left flex flex-col gap-lg">
-        <div className="flex gap-md items-center">
-          <h4 className="font-bold text-white bg-white/20 rounded-full px-md py-xs">
+        <div className="flex gap-lg items-center">
+          <h5 className="font-bold text-white bg-white/20 rounded-full px-md py-xs">
             Latest Sermon
-          </h4>
+          </h5>
           <button type="button" onClick={() => setMute(!mute)}>
             <Tooltip content={mute ? 'Listen to Sermon' : 'Silence Sermon'}>
               {mute ? (
@@ -55,13 +55,13 @@ const FullscreenLatestSermon: React.FC<FullscreenLatestSermonProps> = ({
           </button>
         </div>
 
-        <h1 className="text-primary text-left 2xl:text-[55px]">{title}</h1>
+        <h2 className="text-primary text-left 2xl:text-[52px]">{title}</h2>
 
         <div className="flex flex-row gap-md md:gap-lg items-center">
           <Button
             pill
             size="sm_md"
-            color="ghost"
+            color="primary"
             className="w-full md:w-fit group !border-0"
             href={link}
           >
@@ -70,7 +70,7 @@ const FullscreenLatestSermon: React.FC<FullscreenLatestSermonProps> = ({
           <Button
             pill
             size="sm_md"
-            color="ghost"
+            color="secondary"
             className="w-full md:w-fit group !border-0"
             href={PageRoutes.sermons}
           >

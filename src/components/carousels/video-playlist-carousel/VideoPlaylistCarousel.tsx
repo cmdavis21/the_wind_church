@@ -1,8 +1,8 @@
 'use client';
 
-import 'react-multi-carousel/lib/styles.css';
 import React from 'react';
 import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 import VideoCard from '@/components/cards/video-card/VideoCard';
 
@@ -18,9 +18,7 @@ interface VideoPlaylistCarouselProps {
   }[];
 }
 
-const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({
-  playlist,
-}) => {
+const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist }) => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1800 },
@@ -51,17 +49,14 @@ const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({
 
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
-      className=""
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName:
-          'bg-black/40 p-sm absolute -left-2 top-[50%] -translate-y-[50%]',
+        buttonClassName: 'bg-black/40 p-sm absolute -left-2 top-[50%] -translate-y-[50%]',
         iconClassName: 'fill-white size-[25px]',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName:
-          'bg-black/40 p-sm absolute -right-2 top-[50%] -translate-y-[50%]',
+        buttonClassName: 'bg-black/40 p-sm absolute -right-2 top-[50%] -translate-y-[50%]',
         iconClassName: 'fill-white size-[25px]',
       }}
     />

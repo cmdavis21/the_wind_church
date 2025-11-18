@@ -3,13 +3,12 @@ import ImageCardWithModal from '@/components/cards/image-card-with-modal/ImageCa
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
-import ErrorMessage from '@/components/error-message/ErrorMessage';
+import ErrorPage from '@/components/error-page/ErrorPage';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import EventCardsMasonryGrid from '@/components/masonry-grids/event-cards-masonry-grid/EventCardsMasonryGrid';
 import GalleryMasonryGrid from '@/components/masonry-grids/gallery-masonry-grid/GalleryMasonryGrid';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
-import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
@@ -43,9 +42,10 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
   const ministry = await getMinistryBySlug(slug);
   const { selectGallery } = await getGalleryImages(ministry?.name);
   const events = await getAllEvents({ hostName: ministry?.name });
+  const latestEvents = await getAllEvents({ latestEvents: true });
 
   if (!ministry) {
-    return <ErrorMessage message="Sorry, this page must be missing! Please try again later." />;
+    return <ErrorPage description="Sorry, this page must be missing! Please try again later." />;
   }
 
   return (
@@ -61,20 +61,18 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
       <div className="p-padding flex flex-col gap-xxl lg:gap-[100px]">
         {/* Mission */}
         <div className="flex flex-col gap-xl">
-          <SectionHeader noPadding title={'Our mission'} />
-          <h4 className="dark:text-textInverse">{ministry.description}</h4>
+          <SectionHeader noPadding title="About" />
+          <div className="space-y-md">
+            <h5 className="text-charcoal dark:text-charcoalLight">
+              {ministry.scripture.verse} - "{ministry.scripture.passage}"
+            </h5>
+            <h4 className="dark:text-textInverse">{ministry.description}</h4>
+          </div>
         </div>
-
-        {/* MINISTRY SELECTED SCRIPTURE */}
-        <PassageQuote passage={ministry.scripture.passage} verse={ministry.scripture.verse} />
 
         {/* MINISTRY LEADER */}
         <div className="flex flex-col gap-xl md:gap-xxl">
-          <SectionHeader
-            noPadding
-            title={'Meet the Team'}
-            subtitle="Select members to learn more"
-          />
+          <SectionHeader noPadding title="Meet the Team" subtitle="Select members to learn more" />
           {/* DESKTOP */}
           <div className="hidden md:block">
             <div className="grid grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
@@ -134,7 +132,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
           <CenterTextSection
             noPadding
             title="Ministry Events"
-            description="Look out for fun workshops, fellowships, and community development at the Wind!"
+            description="Look out for fun workshops, fellowships, and more at the Wind!"
           />
           <div>
             {events && events.length > 0 ? (
@@ -147,7 +145,19 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
                 />
               </div>
             ) : (
-              <h4 className="text-center">No related events at this time</h4>
+              <div className="flex flex-col gap-lg">
+                <h4 className="text-center dark:text-textInverse">
+                  No events for this ministry right now. But check out these upcomming events!
+                </h4>
+                <div className="2xl:px-padding">
+                  <EventCardsMasonryGrid
+                    events={latestEvents.map((event) => ({
+                      ...event,
+                      scale: false,
+                    }))}
+                  />
+                </div>
+              </div>
             )}
             <Button
               pill

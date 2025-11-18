@@ -1,6 +1,12 @@
+import ImageAndTextLinkCard from '@/components/cards/image-and-text-link-card/ImageAndTextLinkCard';
 import HomepageHero from '@/components/heroes/homepage-hero/HomepageHero';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
+import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
+import FullscreenLatestSermon from '@/components/video/fullscreen-latest-sermon/FullscreenLatestSermon';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
+import { Button } from 'flowbite-react';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata() {
   return {
@@ -13,7 +19,57 @@ export async function generateMetadata() {
 }
 
 const Home = async () => {
-  // const { lastestEvents } = await getAllEvents();
+  const t = await getTranslations('About');
+  const exploreOptions = [
+    {
+      image: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
+        alt: t('alt'),
+      },
+      text: 'Recieve Salvation',
+      link: PageRoutes.salvation,
+    },
+    {
+      image: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
+        alt: t('alt'),
+      },
+      text: 'Ministries',
+      link: PageRoutes.ministries,
+    },
+    {
+      image: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
+        alt: t('alt'),
+      },
+      text: 'Deep Dives',
+      link: PageRoutes.deepDive,
+    },
+    {
+      image: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
+        alt: t('alt'),
+      },
+      text: 'Events',
+      link: PageRoutes.events,
+    },
+    {
+      image: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
+        alt: t('alt'),
+      },
+      text: 'About the Wind',
+      link: PageRoutes.about,
+    },
+    {
+      image: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
+        alt: t('alt'),
+      },
+      text: 'Visit the Wind',
+      link: PageRoutes.planYourVisit,
+    },
+  ];
   return (
     <div>
       <HomepageHero
@@ -38,235 +94,91 @@ const Home = async () => {
         }}
       />
 
-      <div className="py-padding flex gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+      <div className="py-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
         {/* <FlipTextMediaCarousel
           slides={[
             {
-              header: "Lorem Ipsum Dolor...",
+              header: 'Lorem Ipsum Dolor...',
               description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!",
-              media: { src: "/placeholder-media/church_prayer.jpg" },
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!',
+              media: { src: '/placeholder-media/church_prayer.jpg' },
             },
             {
-              header: "Lorem Ipsum Dolor...",
+              header: 'Lorem Ipsum Dolor...',
               description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!",
-              media: { src: "/placeholder-media/food_bank.jpg" },
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!',
+              media: { src: '/placeholder-media/food_bank.jpg' },
             },
             {
-              header: "Lorem Ipsum Dolor...",
+              header: 'Lorem Ipsum Dolor...',
               description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!",
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!',
               media: {
-                src: "/placeholder-media/church_prayer.jpg",
+                src: '/placeholder-media/church_prayer.jpg',
               },
             },
             {
-              header: "Lorem Ipsum Dolor...",
+              header: 'Lorem Ipsum Dolor...',
               description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!",
-              media: { src: "/placeholder-media/family.jpeg" },
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!',
+              media: { src: '/placeholder-media/family.jpeg' },
             },
             {
-              header: "Lorem Ipsum Dolor...",
+              header: 'Lorem Ipsum Dolor...',
               description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!",
-              media: { src: "/placeholder-media/crosses.png" },
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit excepturi obcaecati hic magnam ex facere, qui suscipit sapiente tempore consequatur non quo? Omnis reprehenderit quae, ipsa architecto accusamus eos!',
+              media: { src: '/placeholder-media/crosses.png' },
             },
           ]}
         /> */}
-        {/* <FullscreenLatestSermon
+        <FullscreenLatestSermon
           title="Don't Stop the Roll"
           src="/placeholder-media/footer_video.mp4"
           poster="/images/misc/logo_placeholder.png"
           link="/sermons"
-        /> */}
-        {/* Testimonials */}
-        {/* <div className="p-padding flex flex-col gap-xl md:gap-xxl">
+        />
+
+        <div className="px-padding flex flex-col gap-xl md:gap-xxl">
           <CenterTextSection
             noPadding
-            highlight={[[4, 5]]}
-            title="Testimonials"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            title={'Explore the Wind'}
+            description={t('values.subtitle')}
           />
-          <div className="flex flex-wrap gap-xxl justify-center">
-            <TestimonialCard
-              src="/placeholder-media/people_hug.jpg"
-              name="Janice H."
-              statement="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
-            />
-            <TestimonialCard
-              src="/placeholder-media/people_hug.jpg"
-              name="Austen J."
-              statement="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
-            />
-            <TestimonialCard
-              src="/placeholder-media/people_hug.jpg"
-              name="Susanna M."
-              statement="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
-            />
+          <div className="flex flex-wrap justify-center gap-lg md:gap-xl">
+            {exploreOptions.map((item) => (
+              <ImageAndTextLinkCard
+                key={item.text}
+                image={item.image}
+                text={item.text}
+                link={item.link}
+              />
+            ))}
           </div>
-        </div> */}
-        {/* Message from Alaric Singletary */}
-        {/* <div className="p-padding">
-          <VideoWithTitle
+        </div>
+
+        <div className="px-padding">
+          <MediaBackgroundAndContent
             rounded
-            src="/placeholder-media/footer_video.mp4"
-            poster={""}
-            title="Message from Alaric Singletary"
-            subtitle="The Wind Church Senior Pastor"
-          />
-        </div>
-
-        <div className="w-full p-padding bg-beige grid grid-cols-1 md:grid-cols-3">
-          <div>
-            <h1>Why the Wind?</h1>
-          </div>
-        </div>
-
-        <div className="p-padding flex flex-col gap-xl md:gap-xxl">
-          <CenterTextSection
-            noPadding
-            highlight={[[4, 4]]}
-            title="Look out for these events!"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-          />
-          <div className="2xl:px-padding">
-            {lastestEvents && lastestEvents.length > 0 ? (
-              <EventCardsMasonryGrid
-                events={lastestEvents.map((event) => ({
-                  ...event,
-                  scale: true,
-                }))}
-              />
-            ) : (
-              <h4 className="text-center">No events at this time</h4>
-            )}
-            <Button
-              pill
-              size="lg"
-              color="primary"
-              href={PageRoutes.events}
-              className="mt-xl w-fit mx-auto"
-            >
-              View other Wind Events
-            </Button>
-          </div>
-        </div> */}
-        {/* <div className="p-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
-          <InfoCardOmbreCarousel
-            color={{
-              r: "252",
-              g: "206",
-              b: "47",
+            background={{
+              src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
             }}
-            cards={[
-              {
-                icon: <HandGift className="size-[30px]" />,
-                title: "Lorem Ispum Dolor",
-                description:
-                  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo expedita perferendis culpa voluptas mollitia asperiores laudantium. Sed, quas. Numquam optio nostrum, perferendis laborum iste laudantium.",
-              },
-              {
-                icon: <HandGift className="size-[30px]" />,
-                title: "Lorem Ispum Dolor",
-                description:
-                  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo expedita perferendis culpa voluptas mollitia asperiores laudantium. Sed, quas. Numquam optio nostrum, perferendis laborum iste laudantium.",
-              },
-              {
-                icon: <HandGift className="size-[30px]" />,
-                title: "Lorem Ispum Dolor",
-                description:
-                  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo expedita perferendis culpa voluptas mollitia asperiores laudantium. Sed, quas. Numquam optio nostrum, perferendis laborum iste laudantium.",
-              },
-              {
-                icon: <HandGift className="size-[30px]" />,
-                title: "Lorem Ispum Dolor",
-                description:
-                  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo expedita perferendis culpa voluptas mollitia asperiores laudantium. Sed, quas. Numquam optio nostrum, perferendis laborum iste laudantium.",
-              },
-              {
-                icon: <HandGift className="size-[30px]" />,
-                title: "Lorem Ispum Dolor",
-                description:
-                  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo expedita perferendis culpa voluptas mollitia asperiores laudantium. Sed, quas. Numquam optio nostrum, perferendis laborum iste laudantium.",
-              },
-            ]}
+            content={
+              <div className="pt-padding flex flex-col gap-xs">
+                <h2>More great videos</h2>
+                <h2>available on YouTube!</h2>
+                <Button
+                  pill
+                  size="lg"
+                  color="primary"
+                  className="mt-lg w-fit font-bold whitespace-nowrap"
+                  href={YOUTUBE_CHANNEL}
+                >
+                  Go to our Channel
+                </Button>
+              </div>
+            }
           />
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-xl lg:gap-xxl">
-            <div className="max-lg:order-first w-full h-full relative">
-              <div className="lg:sticky top-[100px]">
-                <SectionHeader
-                  largeHeader
-                  title="Explore the Wind"
-                  subtitle="Stay in the know!"
-                />
-                <h5>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi
-                  ad, dolor iste recusandae expedita atque sint, ex et eligendi
-                  iusto asperiores quo beatae cupiditate. Placeat corporis iure
-                  dolor minima tempora!
-                </h5>
-              </div>
-            </div>
-            <div className="lg:col-span-2 flex flex-col gap-lg">
-              <ImageLinkTextCard
-                media={{
-                  src: "/placeholder-media/food_bank.jpg",
-                  alt: "",
-                }}
-                title="Do you know Jesus?"
-                subtitle="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
-                link={PageRoutes.salvation}
-              />
-              <div className="flex gap-lg">
-                <ImageLinkTextCard
-                  media={{
-                    src: "/placeholder-media/food_bank.jpg",
-                    alt: "",
-                  }}
-                  className="max-w-[65%]"
-                  title="Join in Ministry"
-                  subtitle="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
-                  link={PageRoutes.ministries}
-                />
-                <ImageLinkTextCard
-                  media={{
-                    src: "/placeholder-media/food_bank.jpg",
-                    alt: "",
-                  }}
-                  className="max-w-[35%]"
-                  title="Visit Us!"
-                  subtitle="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
-                  link={PageRoutes.planYourVisit}
-                />
-              </div>
-              <div className="flex gap-lg">
-                <ImageLinkTextCard
-                  media={{
-                    src: "/placeholder-media/food_bank.jpg",
-                    alt: "",
-                  }}
-                  className="max-w-[35%]"
-                  title="Donate"
-                  subtitle="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
-                  link={PageRoutes.give}
-                />
-                <ImageLinkTextCard
-                  media={{
-                    src: "/placeholder-media/food_bank.jpg",
-                    alt: "",
-                  }}
-                  className="max-w-[65%]"
-                  title="Deep Dive"
-                  subtitle="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
-                  link={PageRoutes.deepDive}
-                />
-              </div>
-            </div>
-          </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

@@ -12,12 +12,15 @@ const AlertMessage: React.FC<AlertMessageProps> = ({ type = 'success', title, de
   return (
     <Alert color={type} withBorderAccent>
       <span className="flex flex-col md:flex-row md:items-center gap-xs">
-        {type === 'success' ? (
-          <CircleCheck className="fill-success" />
-        ) : (
-          <SolidCircleX className="fill-error" />
-        )}
-        <span className="font-bold">{title}</span> {description}
+        <span className="font-bold flex flex-row items-center gap-xs">
+          {type === 'success' ? (
+            <CircleCheck className="fill-success" />
+          ) : (
+            <SolidCircleX className="fill-error" />
+          )}
+          {title}
+        </span>
+        {description}
       </span>
     </Alert>
   );

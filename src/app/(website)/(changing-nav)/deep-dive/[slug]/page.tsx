@@ -1,10 +1,10 @@
-import ErrorMessage from '@/components/error-message/ErrorMessage';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 
 import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
+import ErrorPage from '@/components/error-page/ErrorPage';
 import AlertMessage from '@/components/forms/inputs/alert-message/AlertMessage';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
@@ -15,7 +15,6 @@ import { getAllDeepDives, getDeepDiveBySlug } from '@/data/services/sanity/queri
 
 export async function generateStaticParams() {
   const deepDives = await getAllDeepDives();
-
   return deepDives.map((deepDive) => ({
     slug: deepDive.slug,
   }));
@@ -38,7 +37,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
   const deepDive = await getDeepDiveBySlug(slug);
 
   if (!deepDive) {
-    return <ErrorMessage message="Sorry, this page must be missing! Please try again later." />;
+    return <ErrorPage description="This page must be missing! Please try again later." />;
   }
 
   return (
@@ -58,12 +57,12 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             <AlertMessage
               type="success"
               title="Accepting New Students!"
-              description="Don't wait, join and grow your connection to Jesus and we strive to be spirit-filled and spirit-led!"
+              description="Don't wait, join and grow your connection to Jesus ands strive to be spirit-filled and spirit-led!"
             />
           ) : (
             <AlertMessage
               type="failure"
-              title="Not accepting new student."
+              title="Not accepting new students"
               description="Due to time-sensitive structure and flow of the deep dive and in respect to student learning, this deep
                 dive cannot accept new students."
             />
@@ -71,7 +70,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
 
           {/* ABOUT */}
           <div className="flex flex-col gap-xl">
-            <SectionHeader noPadding title={'Description'} />
+            <SectionHeader noPadding title="Description" />
             <h4 className="dark:text-textInverse">{deepDive.description}</h4>
           </div>
         </div>
@@ -80,7 +79,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         <div className="flex flex-col gap-xl md:gap-xxl">
           <SectionHeader
             noPadding
-            title={'Meet the Instructors'}
+            title="Meet the Instructors"
             subtitle="Select Leaders to learn more"
           />
           {/* DESKTOP */}

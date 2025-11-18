@@ -68,7 +68,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                   setOpen(false);
                 }}
               >
-                <button type="button" className="relative group/sub w-full max-w-[225px]">
+                <div className="relative group/sub w-full border border-gray dark:border-grayDark shadow rounded-full max-w-[225px]">
                   {/* decorative button fill */}
                   <div
                     className={`absolute w-full h-full top-0 left-0 overflow-hidden rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-gray'}`}
@@ -101,7 +101,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                       />
                     </div>
                   </div>
-                </button>
+                </div>
               </Link>
             ))}
         </div>

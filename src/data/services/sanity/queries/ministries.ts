@@ -1,6 +1,8 @@
+import { GET_ALL_MINISTRIES } from '@/data/constants';
 import { Ministry } from '@/data/types';
-import { SanityQuery } from '../zeus-chain';
+import { useQuery } from '@tanstack/react-query';
 import { portableTextToString } from '../utils';
+import { SanityQuery } from '../zeus-chain';
 
 const getAllMinistriesQuery = async () => {
   return await SanityQuery({
@@ -256,4 +258,16 @@ export const getMinistryBySlug = async (slug: string): Promise<Ministry | undefi
   }
 
   return undefined;
+};
+
+export const useGetAllMinistries = () => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [GET_ALL_MINISTRIES],
+    queryFn: getAllMinistries,
+  });
+  return {
+    ministries: data ?? [],
+    ministriesLoading: isLoading,
+    ministriesError: isError,
+  };
 };

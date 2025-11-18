@@ -1,7 +1,6 @@
 import { ListObjectsCommand } from '@aws-sdk/client-s3';
 
-import { AWS_BUCKET_NAME, AWS_REGION, GET_GALLERY_KEY } from '@/data/constants';
-import { useQuery } from '@tanstack/react-query';
+import { AWS_BUCKET_NAME, AWS_REGION } from '@/data/constants';
 import { s3Config } from './config';
 
 export const getGalleryImages = async (category?: string) => {
@@ -60,16 +59,4 @@ export const getGalleryImages = async (category?: string) => {
     console.error('Error fetching gallery contents', e);
     throw new Error('AWS FETCH GALLERY CONTENTS ERROR');
   }
-};
-
-export const useGetGalleryImages = (category?: string) => {
-  const { data, isLoading, isError } = useQuery({
-    queryKey: [GET_GALLERY_KEY],
-    queryFn: () => getGalleryImages(category),
-  });
-  return {
-    gallery: data,
-    galleryLoading: isLoading,
-    galleryError: isError,
-  };
 };

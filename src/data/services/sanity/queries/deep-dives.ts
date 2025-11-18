@@ -1,4 +1,6 @@
+import { GET_ALL_DEEP_DIVES } from '@/data/constants';
 import { DeepDive } from '@/data/types';
+import { useQuery } from '@tanstack/react-query';
 import { portableTextToString } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
@@ -204,4 +206,16 @@ export const getDeepDiveBySlug = async (slug: string): Promise<DeepDive | undefi
   }
 
   return undefined;
+};
+
+export const useGetAllDeepDives = () => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [GET_ALL_DEEP_DIVES],
+    queryFn: getAllDeepDives,
+  });
+  return {
+    deepDives: data ?? [],
+    deepDivesLoading: isLoading,
+    deepDivesError: isError,
+  };
 };

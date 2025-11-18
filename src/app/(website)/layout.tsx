@@ -9,7 +9,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Manrope, Permanent_Marker } from 'next/font/google';
 import React from 'react';
-import NotFound from './(changing-nav)/not-found';
+import NotFound from './not-found';
 
 const manrope = Manrope({
   subsets: ['latin'],

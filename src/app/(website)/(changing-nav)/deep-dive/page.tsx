@@ -1,9 +1,7 @@
 import { Metadata } from 'next';
 
-import FullscreenMediaWithTextFadeInOutCarousel from '@/components/carousels/fullscreen-media-with-text-fade-in-out-carousel/FullscreenMediaWithTextFadeInOutCarousel';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
-import { PageRoutes } from '@/data/page-routes';
-import { getAllDeepDives } from '@/data/services/sanity/queries/deep-dives';
+import { WEBSITE_BASE_URL } from '@/data/constants';
+import DeepDivesClient from './nossr';
 
 export const metadata: Metadata = {
   title: 'Deep Dive',
@@ -14,41 +12,6 @@ export const metadata: Metadata = {
   },
 };
 
-const DeepDive = async () => {
-  const deepDives = await getAllDeepDives();
-  return (
-    <FullscreenMediaWithTextFadeInOutCarousel
-      slides={
-        deepDives && deepDives.length > 0
-          ? deepDives.map((deepDive) => ({
-              media: deepDive.image,
-              header: 'Deep Dive Studies',
-              title: deepDive.name,
-              subtitle:
-                `${deepDive.instructors.map((d, idx) => (idx >= deepDive.instructors.length - 1 ? `${d.first_name} ${d.last_name}` : `${d.first_name} ${d.last_name} & `))}`.replace(
-                  ',',
-                  ''
-                ),
-              description: deepDive.description,
-              link: `${PageRoutes.deepDive}/${deepDive.slug}`,
-            }))
-          : [
-              {
-                media: {
-                  src: `${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4`,
-                  poster: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`,
-                  alt: '',
-                },
-                header: 'Deep Dive Studies',
-                title: 'Sorry, No Deep Dives happening now',
-                description:
-                  "What are Deep Dives? Biblical Fellowship and Studies focused on select topics from God's word which applies to our relevant lives. For now, please check out our ministries if your are looking to get involved!",
-                link: PageRoutes.ministries,
-              },
-            ]
-      }
-    />
-  );
-};
+const DeepDive = async () => <DeepDivesClient />;
 
 export default DeepDive;

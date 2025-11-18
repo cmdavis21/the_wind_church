@@ -71,11 +71,12 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
         renderButtonGroupOutside
         customDot={<CustomDot />}
         customButtonGroup={<ButtonGroup />}
-        itemClass="grid grid-cols-1 place-items-center"
+        className="bg-red-400"
+        itemClass="max-w-fit bg-blue-400 relative grid grid-cols-1 place-items-center"
         dotListClass="flex gap-xs !justify-start !mb-5 !ml-5"
       >
         {slides.map((slide, index) => (
-          <div key={`simple-carousel-${index}`} className="relative w-full h-full">
+          <div key={`simple-carousel-${index}`} className="">
             {slide}
           </div>
         ))}

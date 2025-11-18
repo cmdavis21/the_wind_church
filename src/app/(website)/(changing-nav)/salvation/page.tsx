@@ -1,17 +1,13 @@
-import { Button } from 'flowbite-react';
-import { Metadata } from 'next';
-
 import { permanentMarker } from '@/app/(website)/layout';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
 import PrayerRequestForm from '@/components/forms/prayer-request-form/PrayerRequestForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import Caret from '@/components/icons/caret';
-import ColorBackgroundAndContent, {
-  ColorBackground,
-} from '@/components/sections/color-background-and-content/ColorBackgroundAndContent';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
+import { Button } from 'flowbite-react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -23,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-const salvationQuestions: { question: string; verse: string }[] = [
+const SALVATION_QUESTIONS: { question: string; verse: string }[] = [
   {
     question: 'Do you want to be forgiven and saved?',
     verse: 'Acts 3:38; 1 John 1:8',
@@ -56,7 +52,7 @@ const Salvation = () => (
     />
 
     <div className="pt-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
-      {/* What is salvation */}
+      {/* WHAT IS SALVATION */}
       <div className="px-padding flex flex-col gap-lg">
         <div
           dangerouslySetInnerHTML={{
@@ -77,7 +73,7 @@ const Salvation = () => (
         </h4>
       </div>
 
-      {/* How do you receive Salvation */}
+      {/* HOW DO YOU RECIEVE SALVATION */}
       <div className="px-padding flex flex-col gap-lg">
         <div
           dangerouslySetInnerHTML={{
@@ -89,8 +85,8 @@ const Salvation = () => (
           }}
         />
         <h4>God has made it really simple. Answer these four questions:</h4>
-        <div className="lg:py-lg max-lg:px-[20px] grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 justify-items-center gap-xl">
-          {salvationQuestions.map((item, index) => (
+        <div className="lg:py-lg max-lg:px-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center gap-xl">
+          {SALVATION_QUESTIONS.map((item, index) => (
             <ImageWithTitleAndHiddenTextCard
               key={`salvation-question-${item.question}`}
               image={{
@@ -127,43 +123,37 @@ const Salvation = () => (
         </h4>
       </div>
 
-      {/* The Prayer of Salvation */}
-      <ColorBackgroundAndContent
-        rounded
-        background={ColorBackground.BLUE}
-        outerClassName="px-[12.5px] md:px-[25px] xl:px-[50px] min-[1800px]:px-[100px]"
-        innerClassName="px-[12.5px] md:px-[25px] xl:px-[50px] min-[1800px]:px-[100px] py-padding"
-        content={
-          <div className="flex flex-col gap-lg">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: 'Prayer of Salvation',
-                  array: [[0, 0]],
-                  htmlTag: 'h2',
-                }),
-              }}
-            />
-            <h4>
-              Father in heaven, thank you for sending your Son, Jesus, to die on the cross for me,
-              and for His blood that was shed to redeem me and to cleanse me from my sins.
-            </h4>
-            <h4>
-              Lord, I am sorry and I repent of my sins. Forgive me. I understand that I must change
-              the course of my life. I am determined in my heart to follow you. I invite you to
-              become the Lord of my life from this point forward, forever.
-            </h4>
-            <h4>
-              I openly proclaim and confess that you are the Lord of my life. I believe in my heart
-              that You have been raised from the dead. Therefore I am saved. I am a new creature.
-              The old things have passed. All things have become new.
-            </h4>
-            <h4>I am a child of God. In the Name of Jesus, AMEN!</h4>
-          </div>
-        }
-      />
+      {/* PRAYER OF SALVATION */}
+      <div className="p-padding bg-navyLight text-white">
+        <div className="flex flex-col gap-lg">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: styleSelectedWords({
+                text: 'Prayer of Salvation',
+                array: [[0, 0]],
+                htmlTag: 'h2',
+              }),
+            }}
+          />
+          <h4>
+            Father in heaven, thank you for sending your Son, Jesus, to die on the cross for me, and
+            for His blood that was shed to redeem me and to cleanse me from my sins.
+          </h4>
+          <h4>
+            Lord, I am sorry and I repent of my sins. Forgive me. I understand that I must change
+            the course of my life. I am determined in my heart to follow you. I invite you to become
+            the Lord of my life from this point forward, forever.
+          </h4>
+          <h4>
+            I openly proclaim and confess that you are the Lord of my life. I believe in my heart
+            that You have been raised from the dead. Therefore I am saved. I am a new creature. The
+            old things have passed. All things have become new.
+          </h4>
+          <h4>I am a child of God. In the Name of Jesus, AMEN!</h4>
+        </div>
+      </div>
 
-      {/* The result */}
+      {/* RESULT */}
       <div className="px-padding flex flex-col gap-lg">
         <div
           dangerouslySetInnerHTML={{
@@ -205,33 +195,27 @@ const Salvation = () => (
       </div>
 
       {/* CTAs */}
-      <ColorBackgroundAndContent
-        rounded
-        background={ColorBackground.YELLOW}
-        outerClassName="px-[12.5px] md:px-[25px] xl:px-[50px] min-[1800px]:px-[100px]"
-        innerClassName="px-[12.5px] md:px-[25px] xl:px-[50px] min-[1800px]:px-[100px] py-padding"
-        content={
-          <div className="text-center flex flex-col gap-lg">
-            <h4>Learn What it Means to be a Follower of Christ!</h4>
-            <h3 className="font-bold">Grow in Relationship with God Now</h3>
-            <h5 className="lg:max-w-[65%] mx-auto">
-              Learn more about our deep dive sessions and ministries offered here at The Wind.
-            </h5>
-            <div className="flex flex-wrap items-center justify-center gap-lg">
-              <Link href={PageRoutes.deepDive}>
-                <Button pill size="lg" color="ghost">
-                  View Deep Dives
-                </Button>
-              </Link>
-              <Link href={PageRoutes.ministries}>
-                <Button pill size="lg" color="ghost">
-                  View Ministries
-                </Button>
-              </Link>
-            </div>
+      <div className="p-padding bg-navy text-white">
+        <div className="text-center flex flex-col gap-lg">
+          <h4>Learn What it Means to be a Follower of Christ!</h4>
+          <h3 className="font-bold">Grow in Relationship with God Now</h3>
+          <h5 className="lg:max-w-[65%] mx-auto">
+            Learn more about our deep dive sessions and ministries offered here at The Wind.
+          </h5>
+          <div className="flex flex-wrap items-center justify-center gap-lg">
+            <Link href={PageRoutes.deepDive}>
+              <Button pill size="lg" color="ghost">
+                View Deep Dives
+              </Button>
+            </Link>
+            <Link href={PageRoutes.ministries}>
+              <Button pill size="lg" color="ghost">
+                View Ministries
+              </Button>
+            </Link>
           </div>
-        }
-      />
+        </div>
+      </div>
     </div>
   </div>
 );

@@ -71,7 +71,6 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
 
   const MobileButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
-      className=""
       leftArrowProps={{
         onClick: () => previous(),
         buttonClassName: 'absolute bottom-5 left-5 z-10',

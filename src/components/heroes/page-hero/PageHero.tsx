@@ -16,7 +16,9 @@ interface PageHeroProps {
 
 const PageHero: React.FC<PageHeroProps> = ({ title, highlightTitle, subtitle, short, media }) => {
   return (
-    <div className={`relative w-full ${short ? 'h-[60%] xl:h-[75%]' : 'h-[95%]'} overflow-hidden`}>
+    <div
+      className={`relative w-full ${short ? 'h-[60vh] xl:h-[75vh]' : 'h-[95vh]'} overflow-hidden`}
+    >
       {/* BACKGROUND IMAGE */}
       {findMediaType(media.src) === MediaType.IMAGE && (
         <Image

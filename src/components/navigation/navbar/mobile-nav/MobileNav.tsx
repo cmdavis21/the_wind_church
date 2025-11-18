@@ -62,7 +62,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           <ThemeModeLogo changeColor={changeColor} className="w-full min-w-[140px] max-w-[140px]" />
         </Link>
 
-        <div className="flex items-center gap-sm">
+        <div className="flex items-center gap-xs">
           <NavbarButton
             forMobile
             label={menuOptions[menuOptions.length - 1].label}
@@ -78,7 +78,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
               setOpenNavSettings(false);
               setOpenNav(!openNav);
             }}
-            className="p-xs hover:opacity-75 hover:bg-gray/30 rounded-md"
+            className="ml-1 p-xs hover:opacity-75 hover:bg-gray/30 rounded-md"
           >
             <Plus
               className={`size-[25px] ${openNav ? 'rotate-45' : ''} transition-all duration-300 ${

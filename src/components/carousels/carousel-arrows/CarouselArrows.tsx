@@ -3,7 +3,7 @@ import React from 'react';
 import Chevron from '@/components/icons/chevron';
 
 interface CarouselArrowsProps {
-  className: string;
+  className?: string;
   leftArrowProps: {
     onClick: () => void;
     disable?: boolean;
@@ -23,38 +23,26 @@ const CarouselArrows: React.FC<CarouselArrowsProps> = ({
   leftArrowProps,
   rightArrowProps,
 }) => (
-  <div className={`${className} flex items-center justify-between gap-md`}>
+  <div className={`flex items-center justify-between gap-md ${className ?? ''}`}>
     <button
       onClick={leftArrowProps.onClick}
-      className={`${
-        leftArrowProps.buttonClassName ?? 'bg-black/40 p-sm'
-      } rounded-full shadow-lg ${
-        leftArrowProps.disable
-          ? 'opacity-50 pointer-events-none cursor-default'
-          : 'opacity-80'
+      className={`${leftArrowProps.buttonClassName ?? 'bg-black/40 p-sm'} rounded-full shadow-lg ${
+        leftArrowProps.disable ? 'opacity-50 pointer-events-none cursor-default' : 'opacity-80'
       } transition-opacity duration-300`}
     >
       <Chevron
-        className={`${
-          leftArrowProps.iconClassName ?? 'fill-white size-[22px]'
-        } -rotate-90`}
+        className={`${leftArrowProps.iconClassName ?? 'fill-white size-[22px]'} -rotate-90`}
       />
     </button>
 
     <button
       onClick={rightArrowProps.onClick}
-      className={`${
-        rightArrowProps.buttonClassName ?? 'bg-black/40 p-sm'
-      } rounded-full shadow-lg ${
-        rightArrowProps.disable
-          ? 'opacity-50 pointer-events-none cursor-default'
-          : 'opacity-80'
+      className={`${rightArrowProps.buttonClassName ?? 'bg-black/40 p-sm'} rounded-full shadow-lg ${
+        rightArrowProps.disable ? 'opacity-50 pointer-events-none cursor-default' : 'opacity-80'
       } transition-opacity duration-300`}
     >
       <Chevron
-        className={`${
-          rightArrowProps.iconClassName ?? 'fill-white size-[22px]'
-        } rotate-90`}
+        className={`${rightArrowProps.iconClassName ?? 'fill-white size-[22px]'} rotate-90`}
       />
     </button>
   </div>

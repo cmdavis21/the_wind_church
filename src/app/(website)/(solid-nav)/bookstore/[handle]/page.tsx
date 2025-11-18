@@ -1,4 +1,4 @@
-import ErrorMessage from '@/components/error-message/ErrorMessage';
+import ErrorPage from '@/components/error-page/ErrorPage';
 import { WEBSITE_BASE_URL } from '@/data/constants';
 import {
   getStorefrontProductByHandle,
@@ -29,7 +29,7 @@ const SingleProductPage = async ({ params }: { params: Promise<{ handle: string 
   const product = await getStorefrontProductByHandle(handle);
 
   if (!product) {
-    return <ErrorMessage message="Sorry, this page must be missing! Please try again later." />;
+    return <ErrorPage description="This page must be missing! Please try again later." />;
   }
 
   return <ProductPage {...product} />;

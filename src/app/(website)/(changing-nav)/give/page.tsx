@@ -1,7 +1,3 @@
-import { Button } from 'flowbite-react';
-import { Metadata } from 'next';
-import React from 'react';
-
 import { permanentMarker } from '@/app/(website)/layout';
 import Accordion from '@/components/accordion/Accordion';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
@@ -15,14 +11,14 @@ import HandHoldingHeart from '@/components/icons/handHoldingHeart';
 import Handshake from '@/components/icons/handshake';
 import Mailbox from '@/components/icons/mailbox';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
-import ColorBackgroundAndContent, {
-  ColorBackground,
-} from '@/components/sections/color-background-and-content/ColorBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
+import { Button } from 'flowbite-react';
+import { Metadata } from 'next';
 import Link from 'next/link';
+import React from 'react';
 
 export const metadata: Metadata = {
   title: 'Give',
@@ -325,49 +321,41 @@ const Give = () => (
       </div>
 
       {/* THANK YOU MESSAGE */}
-      <ColorBackgroundAndContent
-        rounded
-        background={ColorBackground.BLUE}
-        innerClassName="p-padding"
-        content={
-          <div className="text-white text-center flex flex-col gap-xl">
-            <h3>
-              We{' '}
-              <span className={`${permanentMarker.className} text-primary`}>
-                Thank You for your
-              </span>{' '}
-              financial{' '}
-              <span className={`${permanentMarker.className} text-primary`}>support!</span>
-            </h3>
-            <h4 className="md:max-w-[80%] mx-auto">
-              We are blessed to have supporters like you and we are honored
-              <br /> that you have chosen this Ministry as a place to sow your seed.
-            </h4>
-            <h4 className="md:max-w-[80%] mx-auto">
-              If you have any questions or concerns,
-              <br />
-              email{' '}
-              <Link
-                href="mailto:thewindchurch@outlook.com"
-                className="text-primary hover:underline break-normal"
-              >
-                thewindchurch@outlook.com
-              </Link>{' '}
-              <br />
-              or call <span className="text-primary">(951) 359-0203</span>.
-            </h4>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: 'Your partners in Christ at The Wind.',
-                  array: [[5, 6]],
-                  htmlTag: 'h3',
-                }),
-              }}
-            />
-          </div>
-        }
-      />
+      <div className="p-padding bg-navy text-white">
+        <div className="text-white text-center flex flex-col gap-xl">
+          <h3>
+            We{' '}
+            <span className={`${permanentMarker.className} text-primary`}>Thank You for your</span>{' '}
+            financial <span className={`${permanentMarker.className} text-primary`}>support!</span>
+          </h3>
+          <h4 className="md:max-w-[80%] mx-auto">
+            We are blessed to have supporters like you and we are honored
+            <br /> that you have chosen this Ministry as a place to sow your seed.
+          </h4>
+          <h4 className="md:max-w-[80%] mx-auto">
+            If you have any questions or concerns,
+            <br />
+            email{' '}
+            <Link
+              href="mailto:thewindchurch@outlook.com"
+              className="text-primary hover:underline break-normal"
+            >
+              thewindchurch@outlook.com
+            </Link>{' '}
+            <br />
+            or call <span className="text-primary">(951) 359-0203</span>.
+          </h4>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: styleSelectedWords({
+                text: 'Your partners in Christ at The Wind.',
+                array: [[5, 6]],
+                htmlTag: 'h3',
+              }),
+            }}
+          />
+        </div>
+      </div>
     </div>
 
     <PageScrollUpButton />
