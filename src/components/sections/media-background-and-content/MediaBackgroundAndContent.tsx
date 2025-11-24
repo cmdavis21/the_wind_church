@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
 import Image from 'next/image';
+import React, { ReactElement } from 'react';
 
 import { findMediaType, MediaType } from '@/data/utils';
 
@@ -27,7 +27,7 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
       id={id}
       className={`relative ${className ?? ''} ${
         rounded ? 'rounded-xl' : ''
-      } p-padding text-white dark:text-textInverse overflow-hidden`}
+      } p-[25px] md:p-[50px] 2xl:p-[75px] max-w-[1440px] text-white dark:text-textInverse overflow-hidden flex items-end`}
     >
       {/* Background */}
       <div className="absolute top-0 left-0 w-full h-full">
@@ -61,13 +61,8 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
           rounded ? 'rounded-xl' : ''
         }`}
       />
-      <div
-        className={`absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 ${
-          rounded ? 'rounded-xl' : ''
-        }`}
-      />
 
-      <div className="relative pt-padding">{content}</div>
+      <div className="relative pt-[25px] md:pt-[50px] 2xl:pt-[150px]">{content}</div>
     </div>
   );
 };

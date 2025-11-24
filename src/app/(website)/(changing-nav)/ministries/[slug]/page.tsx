@@ -179,7 +179,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             alt: 'Decorative Background Image',
           }}
           content={
-            <div className="pt-[100px] flex flex-col gap-md">
+            <div className="flex flex-col gap-md">
               <h2 className="font-bold">Why join a ministry?</h2>
               <h4 className="lg:max-w-[75%]">
                 Joining a ministry allows you to grow spiritually, build meaningful relationships,

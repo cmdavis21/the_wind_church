@@ -227,7 +227,7 @@ const About = async () => {
           />
 
           {/* Tablet/Desktop */}
-          <div className="hidden md:flex flex-wrap justify-center gap-lg md:gap-xl">
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg md:gap-xl">
             {theWindCenterArr.map((item) => (
               <ImageWithTitleAndHiddenTextCard
                 key={item.title}
@@ -251,6 +251,7 @@ const About = async () => {
           {/* Mobile */}
           <SimpleCarousel
             blueDots
+            className="md:hidden h-fit"
             slides={theWindCenterArr.map((item) => (
               <ImageWithTitleAndHiddenTextCard
                 key={item.title}
@@ -269,7 +270,6 @@ const About = async () => {
                 description={item.description}
               />
             ))}
-            className="md:hidden h-fit"
           />
         </div>
 

@@ -115,7 +115,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
           }}
           content={
-            <div className="pt-[100px] flex flex-col gap-md">
+            <div className="flex flex-col gap-md">
               <h2 className="font-bold">What is a Deep Dive Study?</h2>
               <h4 className="lg:max-w-[75%]">
                 A Deep Dive Study is an intentional time of fellowship, discipleship, and biblical

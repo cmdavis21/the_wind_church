@@ -144,7 +144,7 @@ const Home = async () => {
             title={'Explore the Wind'}
             description={t('values.subtitle')}
           />
-          <div className="flex flex-wrap justify-center gap-lg md:gap-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg md:gap-xl">
             {exploreOptions.map((item) => (
               <ImageAndTextLinkCard
                 key={item.text}
@@ -163,7 +163,7 @@ const Home = async () => {
               src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
             }}
             content={
-              <div className="pt-padding flex flex-col gap-xs">
+              <div className="flex flex-col gap-xs">
                 <h2>More great videos</h2>
                 <h2>available on YouTube!</h2>
                 <Button

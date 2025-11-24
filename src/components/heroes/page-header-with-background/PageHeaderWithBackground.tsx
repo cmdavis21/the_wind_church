@@ -23,7 +23,7 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
 }) => (
   <div
     className={`relative ${
-      short ? 'h-[55%]' : 'h-[65%]'
+      short ? 'h-[55vh]' : 'h-[65vh]'
     } rounded-xl overflow-hidden pointer-events-none`}
   >
     {findMediaType(media.src) === MediaType.IMAGE ? (

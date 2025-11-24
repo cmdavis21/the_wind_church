@@ -154,7 +154,7 @@ const NextGen = async () => {
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_1.jpg`,
         }}
         content={
-          <div className="pt-padding flex flex-col">
+          <div className="flex flex-col">
             <Baby className="size-[60px] fill-white" />
             <h3 className="pt-sm">Nursery for Infants & Toddlers</h3>
             <h3>is available during service!</h3>
