@@ -51,7 +51,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
         <div
           className={`relative w-full aspect-video ${
             scale ? 'group-hover:aspect-[4/3]' : ''
-          } transition-all duration-500 border border-gray dark:border-softGray rounded-lg`}
+          } transition-all duration-500 border border-gray dark:border-grayDark rounded-lg`}
         >
           {pastEvent && (
             <div className="absolute top-0 left-0 z-10 w-full h-full bg-black/30 rounded-lg" />

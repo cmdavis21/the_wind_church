@@ -34,7 +34,7 @@ const Home = async () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
         alt: t('alt'),
       },
-      text: 'Ministries',
+      text: 'View our Ministries',
       link: PageRoutes.ministries,
     },
     {
@@ -42,7 +42,7 @@ const Home = async () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
         alt: t('alt'),
       },
-      text: 'Deep Dives',
+      text: 'Try our Deep Dives',
       link: PageRoutes.deepDive,
     },
     {
@@ -50,7 +50,7 @@ const Home = async () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
         alt: t('alt'),
       },
-      text: 'Events',
+      text: 'See Events',
       link: PageRoutes.events,
     },
     {
@@ -58,7 +58,7 @@ const Home = async () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
         alt: t('alt'),
       },
-      text: 'About the Wind',
+      text: 'Learn about the Wind',
       link: PageRoutes.about,
     },
     {
@@ -70,6 +70,7 @@ const Home = async () => {
       link: PageRoutes.planYourVisit,
     },
   ];
+
   return (
     <div>
       <HomepageHero

@@ -54,6 +54,7 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
           ref={videoRef}
           playsInline
           poster={poster}
+          controls
           className={`relative w-full h-full bg-black/90 ${rounded ? 'rounded-lg lg:rounded-xl' : ''} object-cover`}
           onPlay={() => setIsPaused(false)}
           onPause={() => setIsPaused(true)}
@@ -73,8 +74,11 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
         <div
           className={`${
             isPaused ? '' : 'opacity-0'
-          } transition-opacity duration-500 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}
+          } transition-opacity duration-500 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-lg`}
         >
+          {title && <h2 className="text-primary dark:text-primaryDark font-bold">{title}</h2>}
+          {subtitle && <h4 className="text-gray dark:text-grayDark">{subtitle}</h4>}
+          {title && <div className="h-0.5 w-20 my-md bg-skeletonGray  rounded-full" />}
           <Button pill color="primary" size="md" className="drop-shadow-lg hover:cursor-pointer">
             <div className="flex items-center gap-xs px-lg">
               <Play className="size-[15px]" />
@@ -82,15 +86,6 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
             </div>
           </Button>
         </div>
-
-        {/* Text */}
-        {title && (
-          <div
-            className={`absolute bottom-0 left-0 pb-padding px-padding pointer-events-none ${!isPaused ? 'opacity-0' : ''} transition-opacity duration-300`}
-          >
-            <SectionHeader light title={title} subtitle={subtitle} />
-          </div>
-        )}
       </div>
 
       {/* Mobile */}
@@ -106,6 +101,7 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
             ref={mobileVideoRef}
             playsInline
             poster={poster}
+            controls
             className={`relative w-full h-full bg-black/90 ${rounded ? 'rounded-xl' : ''} object-cover`}
             onPlay={() => setMobileIsPaused(false)}
             onPause={() => setMobileIsPaused(true)}

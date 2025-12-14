@@ -58,20 +58,17 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         }}
       />
 
-      <div className="p-padding flex flex-col gap-xxl lg:gap-[100px]">
+      <div className="p-padding flex flex-col gap-xxl max-w-[1440px] mx-auto">
         {/* Mission */}
-        <div className="flex flex-col gap-xl">
-          <SectionHeader noPadding title="About" />
-          <div className="space-y-md">
-            <h5 className="text-charcoal dark:text-charcoalLight">
-              {ministry.scripture.verse} - "{ministry.scripture.passage}"
-            </h5>
-            <h4 className="dark:text-textInverse">{ministry.description}</h4>
-          </div>
+        <div className="flex flex-col gap-lg">
+          <h4 className="text-charcoal dark:text-charcoalLight">
+            {ministry.scripture.verse} - "{ministry.scripture.passage}"
+          </h4>
+          <h3 className="xl:text-[24px]">{ministry.description}</h3>
         </div>
 
         {/* MINISTRY LEADER */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <SectionHeader noPadding title="Meet the Team" subtitle="Select members to learn more" />
           {/* DESKTOP */}
           <div className="hidden md:block">
@@ -97,9 +94,24 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
           />
         </div>
 
+        {/* MISC DETAILS */}
+        <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
+          <SectionHeader noPadding title="Meeting times" subtitle="It’s the finer things..." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md justify-between">
+            {ministry.meeting_details.map((meet) => (
+              <div
+                key={`deep-dive-meeting-detail-${meet.day}-${meet.time.hour}`}
+                className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center"
+              >
+                {`${meet.day.slice(0, 3)} • ${meet.time.hour}:${meet.time.minute} ${meet.time.time_of_day} • ${meet.location}`}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* GALLERY */}
         {selectGallery && selectGallery.length > 0 && (
-          <div className="flex flex-col gap-xl md:gap-xxl">
+          <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
             <SectionHeader
               noPadding
               title="Ministry Gallery"
@@ -128,7 +140,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         )}
 
         {/* EVENTS */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <CenterTextSection
             noPadding
             title="Ministry Events"
@@ -146,9 +158,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
               </div>
             ) : (
               <div className="flex flex-col gap-lg">
-                <h4 className="text-center dark:text-textInverse">
-                  No events for this ministry right now. But check out these upcomming events!
-                </h4>
+                <h4 className="text-center dark:text-textInverse">No events at this time.</h4>
                 <div className="2xl:px-padding">
                   <EventCardsMasonryGrid
                     events={latestEvents.map((event) => ({
@@ -172,26 +182,28 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* WHY JOIN A MINISTRY */}
-        <MediaBackgroundAndContent
-          rounded
-          background={{
-            src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
-            alt: 'Decorative Background Image',
-          }}
-          content={
-            <div className="flex flex-col gap-md">
-              <h2 className="font-bold">Why join a ministry?</h2>
-              <h4 className="lg:max-w-[75%]">
-                Joining a ministry allows you to grow spiritually, build meaningful relationships,
-                and serve others in a way that aligns with your God-given gifts. It&apos;s a great
-                way to deepen your faith while making a real impact in the church and community.
-              </h4>
-            </div>
-          }
-        />
+        <div className="lg:pt-xl">
+          <MediaBackgroundAndContent
+            rounded
+            background={{
+              src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
+              alt: 'Decorative Background Image',
+            }}
+            content={
+              <div className="flex flex-col gap-md">
+                <h2 className="font-bold">Why join a ministry?</h2>
+                <h4 className="lg:max-w-[75%]">
+                  Joining a ministry allows you to grow spiritually, build meaningful relationships,
+                  and serve others in a way that aligns with your God-given gifts. It&apos;s a great
+                  way to deepen your faith while making a real impact in the church and community.
+                </h4>
+              </div>
+            }
+          />
+        </div>
 
         {/* FAQS */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <SectionHeader
             noPadding
             subtitle="Looking for more guidance?"
@@ -239,7 +251,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* CTAs */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <CenterTextSection
             noPadding
             highlight={[[4, 5]]}

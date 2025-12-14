@@ -49,7 +49,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
                 ? `${openNav || openNavSettings ? 'bg-[#1C1C1E]' : ''}`
                 : `${openNav || openNavSettings ? 'bg-black/80 backdrop-blur-sm' : ''}`
             }`
-      } transition-colors duration-500 shadow-sm lg:hidden max-w-screen-xl`}
+      } transition-colors duration-500 shadow-sm block lg:hidden max-w-screen-xl`}
     >
       <div className="py-3 flex items-end gap-lg justify-between">
         <Link

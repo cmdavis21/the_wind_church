@@ -7,6 +7,7 @@ interface MultiTextRadioContainerProps {
     selected: boolean;
     text: string;
     color?: string;
+    disabled?: boolean;
   }[];
 }
 
@@ -25,6 +26,7 @@ const MultiTextRadioContainer: React.FC<MultiTextRadioContainerProps> = ({
           color={opt.color}
           selected={opt.selected}
           onSelect={onSelect}
+          disabled={opt.disabled}
         />
       ))}
     </div>

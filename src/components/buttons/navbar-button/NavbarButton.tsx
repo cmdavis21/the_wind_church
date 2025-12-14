@@ -20,7 +20,7 @@ const getNavType = (shouldChange: boolean): NAV_TYPE =>
   shouldChange ? NAV_TYPE.CHANGING : NAV_TYPE.SOLID;
 
 const variants = {
-  [NAV_TYPE.CHANGING]: 'text-black dark:text-textInverse',
+  [NAV_TYPE.CHANGING]: 'text-black dark:text-textInverse group-hover:text-black',
   [NAV_TYPE.SOLID]: 'text-white dark:text-textInverse dark:group-hover:text-black',
 };
 

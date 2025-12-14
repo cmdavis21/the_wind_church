@@ -33,19 +33,26 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
       </div>
       {link && (
         <Link href={link.href}>
-          <button type="button" className="relative group rounded-full w-fit">
+          <div className="relative group w-fit border max-lg:bg-primary max-lg:dark:bg-primaryDark border-gray dark:border-grayDark shadow rounded-full">
             {/* decorative button fill */}
-            <div className="absolute w-full h-full top-0 left-0 rounded-full overflow-hidden">
-              <div className="flex items-center">
-                <div className="w-0 h-[40px] bg-primary dark:bg-primaryDark group-hover:w-full transition-all duration-300 rounded-full" />
-                <div className="w-full h-[40px] bg-gray dark:bg-grayDark group-hover:w-0 transition-all duration-300 rounded-full" />
+            <div
+              className={`hidden lg:block absolute w-full h-full top-0 left-0 overflow-hidden rounded-full bg-white dark:bg-grayDark`}
+            >
+              <div className="h-full flex items-center">
+                <div
+                  className={`w-full h-[42px] rounded-full shadow-2xl bg-white dark:bg-grayDark group-hover:w-0 transition-all duration-500`}
+                />
+                <div
+                  className={`w-0 h-[42px] group-hover:w-full rounded-full bg-primary dark:bg-primaryDark transition-all duration-500`}
+                />
               </div>
             </div>
+
             <div className="relative flex items-center gap-xxs py-xs px-md rounded-full">
               {link.label}{' '}
               <UpArrow className="size-[15px] dark:fill-textInverse rotate-45 group-hover:rotate-90 transition-all duration-300" />
             </div>
-          </button>
+          </div>
         </Link>
       )}
     </div>

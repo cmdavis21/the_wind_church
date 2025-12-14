@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <Link href={`${PageRoutes.bookstore}/${handle}`} className="group w-full h-fit max-w-[300px]">
       <div className="h-full flex flex-col items-center rounded-xl overflow-hidden border border-gray dark:border-grayDark bg-white dark:bg-backgroundDark shadow-sm hover:shadow-md transition-shadow duration-200">
         {/* Cover Image */}
-        <div className="relative w-full aspect-[3/4] bg-white dark:bg-backgroundDark overflow-hidden">
+        <div className="relative w-full aspect-[3/4] bg-white dark:opacity-75 overflow-hidden">
           <Image
             fill
             src={image.src}
@@ -41,24 +41,24 @@ const ProductCard: React.FC<ProductCardProps> = ({
           />
           {totalInventory <= 20 && (
             <Badge color="red" size="xs" className="top-1 left-1">
-              Only {totalInventory} left!
+              {totalInventory <= 0 ? 'Out of Stock' : `Only ${totalInventory} left!`}
             </Badge>
           )}
         </div>
 
         {/* Content */}
         <div className="p-4 w-full h-full text-center flex flex-col items-between gap-2">
-          <h5 className="text-base font-semibold text-textPrimary dark:text-textInverse line-clamp-2">
+          <h5 className="text-base font-semibold text-textPrimary dark:text-textInverse line-clamp-1">
             {title}
           </h5>
 
-          <p className="font-medium text-navy">
+          <p className="font-medium body-large text-navy dark:text-navyLight">
             {minPrice.amount !== maxPrice.amount
               ? `${formatPrice(minPrice)} – ${formatPrice(maxPrice)}`
               : formatPrice(minPrice)}
           </p>
 
-          <Button fullSized color="ghost">
+          <Button pill fullSized color="ghost">
             View Product
           </Button>
         </div>

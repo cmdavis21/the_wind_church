@@ -34,7 +34,7 @@ const GiftAssessmentPage = () => (
       </div>
 
       {/* Quiz Instructions */}
-      <div className="border border-gray dark:border-softGray dark:bg-softGray shadow-md p-md md:p-lg rounded-xl lg:max-w-[90%] 2xl:max-w-[80%] mx-auto flex flex-col gap-lg">
+      <div className="border border-gray dark:border-grayDark dark:bg-softGray shadow-md p-md md:p-lg rounded-xl lg:max-w-[90%] 2xl:max-w-[80%] mx-auto flex flex-col gap-lg">
         <h5>
           The Modified Houts Questionnaire is a tool designed to help identify your spiritual gifts.
           Originally created by Richard F. Houts, a Professor of Christian Education at Ontario

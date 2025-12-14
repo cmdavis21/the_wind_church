@@ -10,6 +10,7 @@ import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { formatDateMMMddyyyy } from '@/data/format-date';
 import { PageRoutes } from '@/data/page-routes';
 import { getAllDeepDives, getDeepDiveBySlug } from '@/data/services/sanity/queries/deep-dives';
 
@@ -50,33 +51,28 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         }}
       />
 
-      <div className="p-padding flex flex-col gap-xxl lg:gap-[100px]">
-        <div className="flex flex-col gap-xxl">
-          {/* ACCEPTING NEW STUDENTS */}
-          {deepDive.accepting_new_students ? (
-            <AlertMessage
-              type="success"
-              title="Accepting New Students!"
-              description="Don't wait, join and grow your connection to Jesus ands strive to be spirit-filled and spirit-led!"
-            />
-          ) : (
-            <AlertMessage
-              type="failure"
-              title="Not accepting new students"
-              description="Due to time-sensitive structure and flow of the deep dive and in respect to student learning, this deep
-                dive cannot accept new students."
-            />
-          )}
+      <div className="p-padding flex flex-col gap-xxl max-w-[1440px] mx-auto">
+        {/* DESCRIPTION */}
+        <h3 className="xl:text-[24px]">{deepDive.description}</h3>
 
-          {/* ABOUT */}
-          <div className="flex flex-col gap-xl">
-            <SectionHeader noPadding title="Description" />
-            <h4 className="dark:text-textInverse">{deepDive.description}</h4>
-          </div>
-        </div>
+        {/* ACCEPTING NEW STUDENTS */}
+        {deepDive.accepting_new_students ? (
+          <AlertMessage
+            type="success"
+            title="Accepting New Students!"
+            description="Don't wait, join and grow your connection to Jesus ands strive to be spirit-filled and spirit-led!"
+          />
+        ) : (
+          <AlertMessage
+            type="failure"
+            title="Not accepting new students"
+            description="Due to time-sensitive structure and flow of the deep dive and in respect to student learning, this deep
+                dive cannot accept new students."
+          />
+        )}
 
         {/* INSTRUCTORS */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <SectionHeader
             noPadding
             title="Meet the Instructors"
@@ -106,29 +102,93 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
           />
         </div>
 
-        {/* SCHEDULE */}
+        {/* MISC DETAILS */}
+        <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
+          <SectionHeader noPadding title="The Details" subtitle="It’s the finer things..." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md justify-between">
+            {/* START / END DATE */}
+            <div className="flex flex-col gap-sm">
+              <div className="flex flex-col gap-xs">
+                <p className="body-small font-bold text-charcoal dark:text-charcoalLight">
+                  Start date:
+                </p>
+                <div className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center">
+                  {formatDateMMMddyyyy(deepDive.start_date)}
+                </div>
+              </div>
+              <div className="flex flex-col gap-xs">
+                <p className="body-small font-bold text-charcoal dark:text-charcoalLight">
+                  End date:
+                </p>
+                <div className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center">
+                  {formatDateMMMddyyyy(deepDive.end_date)}
+                </div>
+              </div>
+            </div>
+
+            {/* MEETING TIMES */}
+            <div className="flex flex-col gap-sm">
+              <div className="flex flex-col gap-xs">
+                <p className="body-small font-bold text-charcoal dark:text-charcoalLight">
+                  Meeting times:
+                </p>
+                {deepDive.meeting_details.map((meet) => (
+                  <div
+                    key={`deep-dive-meeting-detail-${meet.day}-${meet.time.hour}`}
+                    className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center"
+                  >
+                    {`${meet.day.slice(0, 3)} • ${meet.time.hour}:${meet.time.minute} ${meet.time.time_of_day} • ${meet.location}`}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* REQUIRED MATERIALS */}
+            <div className="flex flex-col gap-sm">
+              <div className="flex flex-col gap-xs">
+                <p className="body-small font-bold text-charcoal dark:text-charcoalLight">
+                  Required materials:
+                </p>
+                {deepDive.required_materials?.map((mat) => (
+                  <div
+                    key={`deep-dive-required-material-${mat}`}
+                    className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center"
+                  >
+                    {mat}
+                  </div>
+                )) ?? (
+                  <div className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center">
+                    Just bring yourself!
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* WHAT IS A DEEP DIVE */}
-        <MediaBackgroundAndContent
-          rounded
-          background={{
-            src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
-          }}
-          content={
-            <div className="flex flex-col gap-md">
-              <h2 className="font-bold">What is a Deep Dive Study?</h2>
-              <h4 className="lg:max-w-[75%]">
-                A Deep Dive Study is an intentional time of fellowship, discipleship, and biblical
-                study designed to help you grow in faith. It&apos;s more than just reading
-                Scripture—it&apos;s about applying God&apos;s Word to your life in a community of
-                believers.
-              </h4>
-            </div>
-          }
-        />
+        <div className="lg:pt-xl">
+          <MediaBackgroundAndContent
+            rounded
+            background={{
+              src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
+            }}
+            content={
+              <div className="flex flex-col gap-md">
+                <h2 className="font-bold">What is a Deep Dive Study?</h2>
+                <h4 className="lg:max-w-[75%]">
+                  A Deep Dive Study is an intentional time of fellowship, discipleship, and biblical
+                  study designed to help you grow in faith. It&apos;s more than just reading
+                  Scripture—it&apos;s about applying God&apos;s Word to your life in a community of
+                  believers.
+                </h4>
+              </div>
+            }
+          />
+        </div>
 
         {/* FAQs */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <SectionHeader
             noPadding
             subtitle="Any more questions?"
@@ -166,7 +226,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* CTAs */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <CenterTextSection
             noPadding
             highlight={[[4, 5]]}

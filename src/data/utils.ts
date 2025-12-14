@@ -6,13 +6,18 @@ export enum MediaType {
 }
 
 export const findMediaType = (url: string) => {
-  if (/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url)) {
+  const imageRegex = /\.(jpg|jpeg|png|webp|avif|gif|svg)/i;
+  const videoRegex = /\.(mpg|mp2|mpeg|mpe|mpv|mp4|mov|wmv)/i;
+
+  if (imageRegex.test(url)) {
     return MediaType.IMAGE;
-  } else if (/\.(mpg|mp2|mpeg|mpe|mpv|mp4|mov|wmv)$/.test(url)) {
-    return MediaType.VIDEO;
-  } else {
-    return null;
   }
+
+  if (videoRegex.test(url)) {
+    return MediaType.VIDEO;
+  }
+
+  return null;
 };
 
 export const scrollToElem = (id: string) => {

@@ -77,7 +77,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ changeColor, open, setOpen 
               className={`flex justify-center ${
                 changeColor
                   ? 'bg-white dark:bg-backgroundDark drop-shadow-xl shadow-2xl'
-                  : 'bg-[rgba(255,255,255,0.98)] dark:bg-softGray'
+                  : 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark'
               } w-full max-w-[150px] rounded-full px-md py-xs`}
             >
               <LanguageSelector changeColor={changeColor} />

@@ -1,5 +1,6 @@
 'use client';
 
+import SingleSlideMediaCarousel from '@/components/carousels/single-slide-media-carousel/SingleSlideMediaCarousel';
 import MultiTextRadioContainer from '@/components/forms/inputs/multi-text-radio-container/MultiTextRadioContainer';
 import QuantityInput from '@/components/forms/inputs/quantity-input/QuantityInput';
 import Minus from '@/components/icons/minus';
@@ -11,7 +12,6 @@ import { useCartFunctions } from '@/data/services/shopify/cart-hook';
 import { GraphQLTypes } from '@/data/services/shopify/zeus';
 import { Product } from '@/data/types';
 import { Badge, Button, Spinner } from 'flowbite-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
@@ -42,19 +42,20 @@ const ProductPage = (product: Product) => {
   const [quantity, setQuantity] = useState(1);
   const [variations, setVariations] = useState<{ key: string; value: string }[]>([]);
 
-  const descriptionRef = useRef<HTMLDivElement>(null);
-  const [isClamped, setIsClamped] = useState(false);
-
+  // CART MODAL
   const [showModal, setShowModal] = useState(false);
 
+  // ADD TO CART LOADING STATE
   const [loading, setLoading] = useState(false);
 
+  // DYNAMICALLY TOGGLE DESCRIPTION HEIGHT
+  const descriptionRef = useRef<HTMLDivElement>(null);
+  const [isClamped, setIsClamped] = useState(false);
   useEffect(() => {
     const el = descriptionRef.current;
     if (el) {
       const fullHeight = el.scrollHeight;
       const clampHeight = parseFloat(getComputedStyle(el).lineHeight) * 2;
-
       setIsClamped(fullHeight > clampHeight);
     }
   }, [product.descriptionHtml]);
@@ -66,6 +67,7 @@ const ProductPage = (product: Product) => {
     });
   };
 
+  // DEFAULT SELECT FIRST AVAILABLE VARIANT
   useEffect(() => {
     if (product.firstVariant) {
       setVariations(product.firstVariant?.map((item) => ({ key: item.name, value: item.value })));
@@ -112,52 +114,13 @@ const ProductPage = (product: Product) => {
 
         <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 gap-[50px]">
           {/* MEDIA */}
-          <div>
-            {/* DESKTOP */}
-            <div className="hidden lg:grid grid-cols-1 gap-md">
-              {product.images.map((img, idx) => (
-                <div
-                  key={`product-single-desktop-${product.variants[selectedVariant].id}-${idx}`}
-                  className="relative w-full aspect-square"
-                >
-                  <Image
-                    fill
-                    src={img.src}
-                    alt={img.alt ?? product.title}
-                    className="object-cover rounded-lg"
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* MOBILE */}
-            <div className="lg:hidden flex flex-col gap-lg">
-              <div className="relative w-full aspect-square">
-                <Image
-                  fill
-                  src={product.images[activeImage].src ?? ''}
-                  alt={product.images[activeImage].alt ?? ''}
-                  className="object-contain rounded-xl"
-                />
-              </div>
-              <div className="flex items-center gap-sm x-scrollbox scrollbar-hide">
-                {product.images.map((img, idx) => (
-                  <button
-                    type="button"
-                    key={`product-single-mobile-${product.variants[selectedVariant].id}-${idx}`}
-                    onClick={() => setActiveImage(idx)}
-                    className="relative size-[75px] md:size-[150px] aspect-square"
-                  >
-                    <Image
-                      fill
-                      src={img.src}
-                      alt={img.alt ?? product.title}
-                      className="object-contain rounded-lg"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
+          <div className="md:sticky md:top-[100px] h-fit">
+            <SingleSlideMediaCarousel
+              media={product.images.map((img) => ({
+                src: img.src,
+                alt: img.alt,
+              }))}
+            />
           </div>
 
           {/* CONTENT */}
@@ -175,7 +138,9 @@ const ProductPage = (product: Product) => {
               {/* INVENTORY BADGE */}
               {product.variants[selectedVariant].quantityAvailable <= 20 && (
                 <Badge color="red" size="md">
-                  Only {product.variants[selectedVariant].quantityAvailable} left!
+                  {product.variants[selectedVariant].quantityAvailable <= 0
+                    ? 'Out of Stock'
+                    : `Only ${product.variants[selectedVariant].quantityAvailable} left!`}
                 </Badge>
               )}
             </div>
@@ -191,13 +156,13 @@ const ProductPage = (product: Product) => {
                 <button
                   type="button"
                   onClick={() => setShowDescription(!showDescription)}
-                  className="p-sm pb-0 border border-gray border-x-0 border-b-0 flex items-center gap-md justify-between text-charcoal dark:text-textInverse"
+                  className="p-sm pb-0 border border-gray dark:border-grayDark border-x-0 border-b-0 flex items-center gap-md justify-between text-charcoal dark:text-textInverse"
                 >
                   Read {showDescription ? 'Less' : 'More'}{' '}
                   {showDescription ? (
-                    <Minus className="fill-charcoal size-[15px]" />
+                    <Minus className="fill-charcoal dark:fill-charcoalLight size-[15px]" />
                   ) : (
-                    <Plus className="fill-charcoal size-[15px]" />
+                    <Plus className="fill-charcoal dark:fill-charcoalLight size-[15px]" />
                   )}
                 </button>
               )}
@@ -249,6 +214,8 @@ const ProductPage = (product: Product) => {
             {/* ACTION BUTTONS */}
             <div className="flex flex-col md:flex-row items-center gap-md">
               <Button
+                pill
+                disabled={product.variants[selectedVariant].quantityAvailable <= 0}
                 onClick={() => {
                   if (product.variants[selectedVariant].id) {
                     setLoading(true);
@@ -267,10 +234,16 @@ const ProductPage = (product: Product) => {
                 color="primary"
                 className="md:w-[calc(50%-8px)] whitespace-nowrap"
               >
-                {loading ? <Spinner /> : 'Add to cart'}
+                {loading ? (
+                  <Spinner />
+                ) : product.variants[selectedVariant].quantityAvailable <= 0 ? (
+                  'Out of Stock'
+                ) : (
+                  'Add to cart'
+                )}
               </Button>
               <Link href={PageRoutes.bookstore} className="w-full md:w-[calc(50%-8px)]">
-                <Button fullSized color="ghost" className="whitespace-nowrap">
+                <Button pill fullSized color="ghost" className="whitespace-nowrap">
                   Contine Shopping
                 </Button>
               </Link>

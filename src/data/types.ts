@@ -284,6 +284,12 @@ export interface Product {
   }[];
 }
 
+export interface Collection {
+  title: string;
+  handle: string;
+  products: ProductPreview[];
+}
+
 export interface Cart {
   id: string;
   checkoutUrl: string;

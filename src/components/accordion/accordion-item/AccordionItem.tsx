@@ -54,7 +54,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
         style={{ height: open ? `${height + 20}px` : '0px' }}
         className={`${
           open ? 'pt-[15px] md:pt-[20px] mt-[15px] md:mt-[20px]' : 'opacity-0 pointer-events-none'
-        } border border-gray dark:border-grayDark border-x-0 border-b-0 transition-[height, opacity] duration-300`}
+        } border border-gray dark:border-charcoalLight border-x-0 border-b-0 transition-[height, opacity] duration-300`}
       >
         <div ref={accordionDesc} className="body-large text-charcoal dark:text-textInverse">
           {description}

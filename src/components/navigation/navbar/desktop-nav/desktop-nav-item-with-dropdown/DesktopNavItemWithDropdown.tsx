@@ -38,6 +38,14 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
 
   return (
     <div className="relative inline-block group">
+      {/* CART QTY COUNT */}
+      {submenu.find((s) => s.link === PageRoutes.cart) && getCart && getCart.totalQuantity > 0 && (
+        <div className="absolute -top-2 -right-2.5 size-3.5 bg-error text-white dark:text-textInverse text-[8.5px] leading-none rounded-full flex items-center justify-center group-hover:opacity-0 pointer-events-none transition-opacity duration-100 line-clamp-1 overflow-hidden">
+          {getCart.totalQuantity}
+        </div>
+      )}
+
+      {/* BUTTON LABEL */}
       <button className="flex flex-col items-center justify-center gap-[2px] hover:cursor-pointer">
         <h5
           className={`${
@@ -57,6 +65,8 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
           ></div>
         </div>
       </button>
+
+      {/* SUBMENU */}
       <div className="h-0 pointer-events-none opacity-0 overflow-hidden group-hover:h-fit group-hover:pointer-events-auto group-hover:opacity-100 z-[9000] absolute pt-[15px] w-fit left-1/2 -translate-x-1/2 transition-[opacity] duration-300">
         <div className="flex flex-col gap-xs">
           {Array.isArray(submenu) &&
@@ -71,11 +81,11 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                 <div className="relative group/sub w-full border border-gray dark:border-grayDark shadow rounded-full max-w-[225px]">
                   {/* decorative button fill */}
                   <div
-                    className={`absolute w-full h-full top-0 left-0 overflow-hidden rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-gray'}`}
+                    className={`absolute w-full h-full top-0 left-0 overflow-hidden rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-grayDark'}`}
                   >
                     <div className="h-full flex items-center">
                       <div
-                        className={`w-full h-[42px] rounded-full shadow-2xl  ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-gray'} ${pathname === item.link ? '!w-0' : 'group-hover/sub:w-0'} transition-all duration-500`}
+                        className={`w-full h-[42px] rounded-full shadow-2xl  ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-grayDark'} ${pathname === item.link ? '!w-0' : 'group-hover/sub:w-0'} transition-all duration-500`}
                       />
                       <div
                         className={`w-0 h-[42px] rounded-full bg-primary dark:bg-primaryDark ${pathname === item.link ? 'w-full' : 'group-hover/sub:w-full'} transition-all duration-500`}
@@ -86,9 +96,9 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                   <div className="relative flex items-center gap-xxs py-xs px-md rounded-full">
                     <div className="body-large capitalize whitespace-nowrap flex items-center">
                       {item.label}
-                      {item.link === PageRoutes.cart && (
+                      {item.link === PageRoutes.cart && getCart && getCart.totalQuantity > 0 && (
                         <span className="ml-1.5 body-small font-bold">
-                          ({getCart?.totalQuantity} items)
+                          ({getCart.totalQuantity} items)
                         </span>
                       )}
                     </div>

@@ -4,14 +4,16 @@ interface TextRadioProps {
   text: string;
   color?: string;
   selected: boolean;
+  disabled?: boolean;
   onSelect: (selected: string) => void;
 }
 
-const TextRadio: React.FC<TextRadioProps> = ({ text, color, selected, onSelect }) => (
+const TextRadio: React.FC<TextRadioProps> = ({ text, color, selected, disabled, onSelect }) => (
   <button
     type="button"
+    disabled={disabled}
     onClick={() => onSelect(text)}
-    className={`px-sm py-xs min-w-[45px] max-w-fit border-2 rounded-md ${selected ? 'border-primary' : 'border-skeletonGray'}`}
+    className={`${disabled ? 'opacity-50' : ''} px-sm py-xs min-w-[45px] max-w-fit border-2 rounded-md ${selected ? 'border-primary' : 'border-skeletonGray dark:border-skeletonDarkGray'}`}
   >
     <div className="flex items-center justify-center capitalize gap-[6px]">
       {color && (

@@ -2,8 +2,8 @@
 
 import Carousel from 'react-multi-carousel';
 
-import 'react-multi-carousel/lib/styles.css';
 import Image from 'next/image';
+import 'react-multi-carousel/lib/styles.css';
 
 import { findMediaType, MediaType } from '@/data/utils';
 
@@ -18,9 +18,7 @@ interface SingleSlideMediaCarouselProps {
   }[];
 }
 
-const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({
-  media,
-}) => {
+const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({ media }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 4000, min: 1024 },
@@ -49,16 +47,12 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({
       className="absolute left-0 lg:px-[20px] top-[50%] -translate-y-[50%] w-full"
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: `bg-black/40 p-xs lg:p-sm ${
-          media.length === 1 ? 'hidden' : ''
-        }`,
+        buttonClassName: `bg-black/40 p-xs lg:p-sm ${media.length === 1 ? 'hidden' : ''}`,
         iconClassName: 'fill-white md:size-[22px]',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: `bg-black/40 p-xs lg:p-sm ${
-          media.length === 1 ? 'hidden' : ''
-        }`,
+        buttonClassName: `bg-black/40 p-xs lg:p-sm ${media.length === 1 ? 'hidden' : ''}`,
         iconClassName: 'fill-white md:size-[22px]',
       }}
     />
@@ -75,7 +69,7 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({
         renderButtonGroupOutside
         renderArrowsWhenDisabled
         customDot={<CustomDot />}
-        itemClass="w-full lg:h-full aspect-square relative"
+        itemClass="w-full lg:h-full aspect-square border rounded-xl border-gray dark:border-grayDark relative"
         dotListClass="h-[60px] flex gap-xs justify-center items-center"
         customButtonGroup={<ButtonGroup />}
       >
@@ -86,7 +80,7 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({
                 fill
                 src={slide.src}
                 alt={slide.alt}
-                className="object-cover object-center pointer-events-none rounded-xl"
+                className="object-contain object-center pointer-events-none w-full aspect-square rounded-xl"
               />
             ) : (
               <video

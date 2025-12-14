@@ -40,7 +40,7 @@ const PlanYourVisit = () => (
 
     <div className="p-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
       {/* Join Us */}
-      <div className="flex flex-col gap-lg py-[20px] md:py-[50px] 2xl:px-[100px]">
+      <div className="flex flex-col gap-lg pt-[20px] md:py-[50px] 2xl:px-[100px]">
         <h1>Join Us for Service!</h1>
         <div
           dangerouslySetInnerHTML={{
@@ -75,6 +75,7 @@ const PlanYourVisit = () => (
         src={`${AWS_ASSET_BASE_URL}/placeholder-media/plan-your-visit-video.mp4`}
         poster={`${AWS_ASSET_BASE_URL}/placeholder-media/plan-your-visit-poster.png`}
         title="What Makes The Wind Special?"
+        subtitle="How God leads our church and people"
       />
 
       {/* More ways to connect */}

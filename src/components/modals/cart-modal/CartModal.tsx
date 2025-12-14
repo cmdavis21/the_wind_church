@@ -26,11 +26,11 @@ interface CartModalProps {
 }
 
 const CartModal: React.FC<CartModalProps> = ({ open, setOpen, cartQuantity, cartLines }) => (
-  <Modal size="md" dismissible show={open} position="center" onClose={() => setOpen(false)}>
+  <Modal size="lg" dismissible={false} show={open} position="center" onClose={() => setOpen(false)}>
     <Modal.Body className="p-0">
-      <div className="relative rounded-lg overflow-hidden">
+      <div className="relative rounded-lg">
         <CornerButton onClick={setOpen} className="absolute z-10 right-0 top-0" />
-        <div className="relative w-full aspect-video bg-white dark:bg-backgroundDark rounded-lg p-lg flex flex-col gap-md overflow-hidden min-h-[80%] max-h-[80%]">
+        <div className="relative w-full bg-white dark:bg-backgroundDark rounded-lg p-lg flex flex-col gap-md">
           <h5>
             You have{' '}
             <span className="font-bold">
@@ -42,31 +42,34 @@ const CartModal: React.FC<CartModalProps> = ({ open, setOpen, cartQuantity, cart
           <hr className="text-gray dark:text-grayDark" />
 
           {/* CART ITEMS */}
-          <div className="grow y-scrollbox divide-y divide-gray dark:divide-grayDark scrollbar-hide">
+          <div className="grow y-scrollbox max-h-[300px] lg:max-h-[500px] divide-y divide-gray dark:divide-grayDark scrollbar-hide">
             {cartLines.map((line) => (
               <div key={`single-product-page-mobile-${line.title}`} className="flex gap-md p-sm">
-                <div className="relative size-[80px]">
-                  <Image
-                    fill
-                    src={line.image.src}
-                    alt={line.image.alt}
-                    className="object-contain rounded-lg"
-                  />
-                </div>
+                <Image
+                  width={60}
+                  height={60}
+                  src={line.image.src}
+                  alt={line.image.alt}
+                  className="object-cover min-w-[60px] size-[60px] object-top rounded-md"
+                />
                 <div className="flex flex-col gap-xs">
-                  <h6 className="font-normal">{line.title}</h6>
+                  <h6 className="font-bold">{line.title}</h6>
                   <p className="capitalize body-small">
-                    <span className="font-bold">Price:</span> {formatPrice(line.price)}
+                    <span className="text-charcoal dark:text-charcoalLight">Price:</span>{' '}
+                    {formatPrice(line.price)}
                   </p>
                   <p className="capitalize body-small">
-                    <span className="font-bold">Quantity:</span> {line.quantity}
+                    <span className="text-charcoal dark:text-charcoalLight">oty:</span>{' '}
+                    {line.quantity}
                   </p>
                   <p className="capitalize body-small">
-                    <span className="font-bold">Total:</span> {formatPrice(line.subtotal)}
+                    <span className="text-charcoal dark:text-charcoalLight">Total:</span>{' '}
+                    {formatPrice(line.subtotal)}
                   </p>
                   {line.selectedOptions.map((opt) => (
                     <p className="capitalize body-small">
-                      <span className="font-bold">{opt.name}:</span> {opt.value}
+                      <span className="text-charcoal dark:text-charcoalLight">{opt.name}:</span>{' '}
+                      {opt.value}
                     </p>
                   ))}
                 </div>
@@ -80,6 +83,7 @@ const CartModal: React.FC<CartModalProps> = ({ open, setOpen, cartQuantity, cart
           <div className="flex flex-col md:flex-row items-center gap-md">
             <Link href={PageRoutes.cart} className="w-full">
               <Button
+                pill
                 color="primary"
                 fullSized
                 onClick={() => setOpen(false)}
@@ -90,12 +94,13 @@ const CartModal: React.FC<CartModalProps> = ({ open, setOpen, cartQuantity, cart
             </Link>
             <Link href={PageRoutes.bookstore} className="w-full">
               <Button
+                pill
                 color="ghost"
                 fullSized
                 onClick={() => setOpen(false)}
                 className="max-md:!order-last whitespace-nowrap"
               >
-                Continue Shopping
+                Back to Bookstore
               </Button>
             </Link>
           </div>

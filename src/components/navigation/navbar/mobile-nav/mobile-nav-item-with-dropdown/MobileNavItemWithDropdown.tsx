@@ -5,6 +5,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { NavbarColumnItem } from '@/data/types';
 import Link from 'next/link';
 
+import { PageRoutes } from '@/data/page-routes';
+import { useCartFunctions } from '@/data/services/shopify/cart-hook';
 import MobileNavItem from '../mobile-nav-item/MobileNavItem';
 
 interface MobileNavItemWithDropdownProps {
@@ -24,8 +26,11 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
   navState,
   handleChange,
 }) => {
+  const { getCart } = useCartFunctions();
+
   const [open, setOpen] = useState(false);
   const subMenuDropdown = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     if (Array.isArray(submenu) && submenu.some((i) => pathname.includes(i.link))) {
       setOpen(true);
@@ -33,6 +38,7 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
       if (!navState) setOpen(false);
     }
   }, [navState, pathname, submenu]);
+
   return (
     <div
       className={`${
@@ -66,7 +72,7 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
                 }}
               >
                 <div
-                  className={`w-full p-sm body-large rounded-lg capitalize ${
+                  className={`w-full p-sm body-large rounded-lg capitalize flex items-center ${
                     pathname === item.link
                       ? `${changeColor ? 'text-primaryDark' : 'text-primary dark:text-primaryDark'}`
                       : `${
@@ -77,6 +83,11 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
                   }`}
                 >
                   {item.label}
+                  {item.link === PageRoutes.cart && getCart && getCart.totalQuantity > 0 && (
+                    <span className="ml-1.5 body-small font-bold">
+                      ({getCart.totalQuantity} items)
+                    </span>
+                  )}
                 </div>
               </Link>
             ))}

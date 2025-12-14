@@ -307,7 +307,7 @@ const Give = () => {
                     basket or drop box.
                     <br />
                     <br />
-                    If you&spos;d prefer to mail a check, please send it to:
+                    If you would prefer to mail a check, please send it to:
                     <br />
                     <br />
                     The Wind Church
