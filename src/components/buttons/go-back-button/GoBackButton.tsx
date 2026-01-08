@@ -29,7 +29,7 @@ const GoBackButton: React.FC<GoBackButtonProps> = ({
       className="h-full group"
     >
       <div className="flex items-center gap-sm">
-        {icon && <TurnLeft className={`${iconClassName ?? 'group-hover:fill-primary'}`} />}
+        {icon && <TurnLeft className={`${iconClassName ?? 'group-hover:fill-brand-primary'}`} />}
         {label ?? 'Go back'}
       </div>
     </Button>

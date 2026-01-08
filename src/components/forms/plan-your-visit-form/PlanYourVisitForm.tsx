@@ -6,11 +6,12 @@ import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import Calendar from '@/components/icons/calendar';
 import { formatDateMMMddyyyy, getDatesOfNextFiveSundays } from '@/data/format-date';
 import { PlanYourVisit } from '@/data/types';
 
+import Calendar from '@/components/icons/calendar';
 import { useCreateScheduleVisit } from '@/data/services/sanity/mutations/schedule-visit';
+import { isValidEmail, isValidPhone } from '@/data/utils';
 import AlertMessage from '../inputs/alert-message/AlertMessage';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
@@ -18,8 +19,21 @@ import TextInput from '../inputs/text-input/TextInput';
 const schema: yup.ObjectSchema<PlanYourVisit> = yup.object().shape({
   first_name: yup.string().required('Enter your first name'),
   last_name: yup.string().required('Enter your last name'),
-  email: yup.string().email().required('Enter your email'),
-  phone: yup.string().optional(),
+  email: yup
+    .string()
+    .email()
+    .required('Enter your email')
+    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
+  phone: yup
+    .string()
+    .min(10)
+    .max(11)
+    .optional()
+    .test('Include 10 to 11 digit valid phone number', (val) => {
+      if (val) {
+        return isValidPhone(val);
+      }
+    }),
   attendance: yup.number().min(1).max(15).required('Let us know how many will be coming with you.'),
   day_of_visit: yup.string().required('Select an ideal date we can expect you.'),
 });
@@ -56,10 +70,10 @@ const PlanYourVisitForm = () => {
     <form
       ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <Calendar className="dark:fill-textInverse" />
+        <Calendar className="dark:fill-dark-primaryText" />
         <h4>Plan Your Visit</h4>
       </div>
 

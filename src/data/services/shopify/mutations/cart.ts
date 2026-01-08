@@ -1,8 +1,8 @@
 import { Cart } from '@/data/types';
+import { NextPageContext } from 'next';
 import nookies from 'nookies';
 import { CropRegion, CurrencyCode, GraphQLTypes, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';
-import { NextPageContext } from 'next';
 
 export const cartCreateMutation = async (input: GraphQLTypes['CartInput']) => {
   return await ShopifyQuery.mutation({
@@ -235,7 +235,7 @@ export const cartLinesUpdateMutation = async (
   });
 };
 
-export const cartLinesRemoveMutation = async (cartId: string, lineIds: GraphQLTypes['ID'][]) => {
+export const cartLinesRemoveMutation = async (cartId: string, lineIds: string[]) => {
   return await ShopifyQuery.mutation({
     cartLinesRemove: [
       { cartId, lineIds },
@@ -317,9 +317,9 @@ export const cartCreate = async (input: GraphQLTypes['CartInput']): Promise<Cart
 
   return {
     id: cartCreate.cart?.id as string,
-    checkoutUrl: (cartCreate.cart?.checkoutUrl as string) ?? '',
-    totalQuantity: cartCreate.cart?.totalQuantity ?? 0,
-    subtotalAmount: {
+    checkout_url: (cartCreate.cart?.checkoutUrl as string) ?? '',
+    total_quantity: cartCreate.cart?.totalQuantity ?? 0,
+    subtotal_amount: {
       amount: (cartCreate.cart?.cost.subtotalAmount.amount as string) ?? 0,
       currencyCode: cartCreate.cart?.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
     },
@@ -331,7 +331,7 @@ export const cartCreate = async (input: GraphQLTypes['CartInput']): Promise<Cart
           src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
           alt: line.merchandise.product.images.nodes[0].altText ?? '',
         },
-        subtotalAmount: {
+        subtotal_amount: {
           amount: (line.cost.subtotalAmount.amount as string) ?? 0,
           currencyCode: line.cost.subtotalAmount.currencyCode,
         },
@@ -341,13 +341,13 @@ export const cartCreate = async (input: GraphQLTypes['CartInput']): Promise<Cart
             amount: (line.merchandise.price.amount as string) ?? 0,
             currencyCode: line.merchandise.price.currencyCode,
           },
-          compareAtPrice: line.merchandise.compareAtPrice
+          compare_price: line.merchandise.compareAtPrice
             ? {
                 amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
                 currencyCode: line.merchandise.compareAtPrice.currencyCode,
               }
             : undefined,
-          selectedOptions: line.merchandise.selectedOptions,
+          selected_options: line.merchandise.selectedOptions,
         },
         quantity: line.quantity,
       })) ?? [],
@@ -367,9 +367,9 @@ export const cartLinesAdd = async (
 
     return {
       id: cartLinesAdd.cart?.id as string,
-      checkoutUrl: (cartLinesAdd.cart?.checkoutUrl as string) ?? '',
-      totalQuantity: cartLinesAdd.cart?.totalQuantity ?? 0,
-      subtotalAmount: {
+      checkout_url: (cartLinesAdd.cart?.checkoutUrl as string) ?? '',
+      total_quantity: cartLinesAdd.cart?.totalQuantity ?? 0,
+      subtotal_amount: {
         amount: (cartLinesAdd.cart?.cost.subtotalAmount.amount as string) ?? 0,
         currencyCode: cartLinesAdd.cart?.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
       },
@@ -381,7 +381,7 @@ export const cartLinesAdd = async (
             src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
             alt: line.merchandise.product.images.nodes[0].altText ?? '',
           },
-          subtotalAmount: {
+          subtotal_amount: {
             amount: (line.cost.subtotalAmount.amount as string) ?? 0,
             currencyCode: line.cost.subtotalAmount.currencyCode,
           },
@@ -391,13 +391,13 @@ export const cartLinesAdd = async (
               amount: (line.merchandise.price.amount as string) ?? 0,
               currencyCode: line.merchandise.price.currencyCode,
             },
-            compareAtPrice: line.merchandise.compareAtPrice
+            compare_price: line.merchandise.compareAtPrice
               ? {
                   amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
                   currencyCode: line.merchandise.compareAtPrice.currencyCode,
                 }
               : undefined,
-            selectedOptions: line.merchandise.selectedOptions,
+            selected_options: line.merchandise.selectedOptions,
           },
           quantity: line.quantity,
         })) ?? [],
@@ -434,9 +434,9 @@ export const cartLinesUpdate = async (
 
     return {
       id: cartLinesUpdate.cart?.id as string,
-      checkoutUrl: (cartLinesUpdate.cart?.checkoutUrl as string) ?? '',
-      totalQuantity: cartLinesUpdate.cart?.totalQuantity ?? 0,
-      subtotalAmount: {
+      checkout_url: (cartLinesUpdate.cart?.checkoutUrl as string) ?? '',
+      total_quantity: cartLinesUpdate.cart?.totalQuantity ?? 0,
+      subtotal_amount: {
         amount: (cartLinesUpdate.cart?.cost.subtotalAmount.amount as string) ?? 0,
         currencyCode: cartLinesUpdate.cart?.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
       },
@@ -448,7 +448,7 @@ export const cartLinesUpdate = async (
             src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
             alt: line.merchandise.product.images.nodes[0].altText ?? '',
           },
-          subtotalAmount: {
+          subtotal_amount: {
             amount: (line.cost.subtotalAmount.amount as string) ?? 0,
             currencyCode: line.cost.subtotalAmount.currencyCode,
           },
@@ -458,13 +458,13 @@ export const cartLinesUpdate = async (
               amount: (line.merchandise.price.amount as string) ?? 0,
               currencyCode: line.merchandise.price.currencyCode,
             },
-            compareAtPrice: line.merchandise.compareAtPrice
+            compare_price: line.merchandise.compareAtPrice
               ? {
                   amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
                   currencyCode: line.merchandise.compareAtPrice.currencyCode,
                 }
               : undefined,
-            selectedOptions: line.merchandise.selectedOptions,
+            selected_options: line.merchandise.selectedOptions,
           },
           quantity: line.quantity,
         })) ?? [],
@@ -489,7 +489,7 @@ export const cartLinesUpdate = async (
 };
 
 export const cartLinesRemove = async (
-  lineIds: GraphQLTypes['ID'][],
+  lineIds: string[],
   context?: NextPageContext
 ): Promise<Cart | undefined> => {
   const cartId = context ? nookies.get(context).WSWC_CART_ID : nookies.get().WSWC_CART_ID;
@@ -501,9 +501,9 @@ export const cartLinesRemove = async (
 
     return {
       id: cartLinesRemove.cart?.id as string,
-      checkoutUrl: (cartLinesRemove.cart?.checkoutUrl as string) ?? '',
-      totalQuantity: cartLinesRemove.cart?.totalQuantity ?? 0,
-      subtotalAmount: {
+      checkout_url: (cartLinesRemove.cart?.checkoutUrl as string) ?? '',
+      total_quantity: cartLinesRemove.cart?.totalQuantity ?? 0,
+      subtotal_amount: {
         amount: (cartLinesRemove.cart?.cost.subtotalAmount.amount as string) ?? 0,
         currencyCode: cartLinesRemove.cart?.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
       },
@@ -515,7 +515,7 @@ export const cartLinesRemove = async (
             src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
             alt: line.merchandise.product.images.nodes[0].altText ?? '',
           },
-          subtotalAmount: {
+          subtotal_amount: {
             amount: (line.cost.subtotalAmount.amount as string) ?? 0,
             currencyCode: line.cost.subtotalAmount.currencyCode,
           },
@@ -525,13 +525,13 @@ export const cartLinesRemove = async (
               amount: (line.merchandise.price.amount as string) ?? 0,
               currencyCode: line.merchandise.price.currencyCode,
             },
-            compareAtPrice: line.merchandise.compareAtPrice
+            compare_price: line.merchandise.compareAtPrice
               ? {
                   amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
                   currencyCode: line.merchandise.compareAtPrice.currencyCode,
                 }
               : undefined,
-            selectedOptions: line.merchandise.selectedOptions,
+            selected_options: line.merchandise.selectedOptions,
           },
           quantity: line.quantity,
         })) ?? [],

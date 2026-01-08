@@ -17,7 +17,6 @@ export type Leader = {
   last_name: string;
   position: string;
   category: string;
-  roles: string[];
   description: string;
   image: string;
   video?: string;
@@ -32,7 +31,6 @@ export type DeepDive = {
     first_name: Leader['first_name'];
     last_name: Leader['last_name'];
     position: Leader['position'];
-    roles: Leader['roles'];
     description: Leader['description'];
     image: Leader['image'];
     video: Leader['video'];
@@ -79,7 +77,6 @@ export type Ministry = {
     first_name: Leader['first_name'];
     last_name: Leader['last_name'];
     position: Leader['position'];
-    roles: Leader['roles'];
     description: Leader['description'];
     image: Leader['image'];
     video: Leader['video'];
@@ -88,7 +85,6 @@ export type Ministry = {
     first_name: Leader['first_name'];
     last_name: Leader['last_name'];
     position: Leader['position'];
-    roles: Leader['roles'];
     description: Leader['description'];
     image: Leader['image'];
     video: Leader['video'];
@@ -106,7 +102,6 @@ export interface NextGenPage {
     first_name: Leader['first_name'];
     last_name: Leader['last_name'];
     position: Leader['position'];
-    roles: Leader['roles'];
     description: Leader['description'];
     image: Leader['image'];
     video: Leader['video'];
@@ -233,9 +228,21 @@ export interface GiftAssessmentDefinition {
   scriptures: string[];
 }
 
+export enum FORM_TYPES {
+  EVENT_RENTAL = 'eventRentalInquiries',
+  CONTACT_SIGNUP = 'contactSignup',
+  GIFT_ASSESSMENT = 'giftAssessments',
+  MINISTRY_CONNECTION = 'ministryConnection',
+  NEXT_GEN_SIGNUP = 'nextGenRosterSignup',
+  PLAN_YOUR_VISIT = 'scheduledVisits',
+  PRAYER_REQUEST = 'prayerRequests',
+  RIGHTNOW_MEDIA = 'rightnowMediaSignups',
+  VISITOR_FEEDBACK = 'visitorFeedback',
+}
+
 export interface YouTubeSnippet {
   title: string;
-  publishedAt: string;
+  published_at: string;
   thumbnail: string;
   videoUrl: string;
 }
@@ -246,21 +253,14 @@ export interface ProductPreview {
   minPrice: Price;
   maxPrice: Price;
   image: Image;
-  totalInventory: number;
-  options?: {
-    name: string;
-    values: {
-      name: string;
-      color?: string;
-    }[];
-  }[];
+  total_inventory: number;
 }
 
 export interface Product {
   title: string;
-  descriptionHtml: string;
+  description_html: string;
   images: Image[];
-  firstVariant?: {
+  first_variant?: {
     name: string;
     value: string;
   }[];
@@ -275,9 +275,9 @@ export interface Product {
     id: string;
     image?: Image;
     price: Price;
-    compareAtPrice?: Price;
-    quantityAvailable: number;
-    selectedOptions?: {
+    compare_price?: Price;
+    quantity_available: number;
+    selected_options?: {
       name: string;
       value: string;
     }[];
@@ -292,19 +292,19 @@ export interface Collection {
 
 export interface Cart {
   id: string;
-  checkoutUrl: string;
-  totalQuantity: number;
-  subtotalAmount: Price;
+  checkout_url: string;
+  total_quantity: number;
+  subtotal_amount: Price;
   lines: {
     id: string;
     title: string;
     image: Image;
-    subtotalAmount: Price;
+    subtotal_amount: Price;
     variant: {
       id: string;
       price: Price;
-      compareAtPrice?: Price;
-      selectedOptions: {
+      compare_price?: Price;
+      selected_options: {
         name: string;
         value: string;
       }[];
@@ -313,65 +313,60 @@ export interface Cart {
   }[];
 }
 
-export type VariantPriceRange = {
-  minVariantPrice?: number;
-  maxVariantPrice?: number;
-};
+export interface Address {
+  first_name: string;
+  last_name: string;
+  address1: string;
+  address2?: string;
+  city: string;
+  province: string;
+  country: string;
+  zip: string;
+}
 
-export type ShopifyDocumentProductVariant = {
-  _id: `shopifyProductVariant-${string}`; // Shopify product ID
-  _type: 'productVariant';
-  store: {
-    id: number;
-    gid: `gid://shopify/ProductVariant/${string}`;
-    compareAtPrice: number;
-    createdAt: string;
-    isDeleted: boolean;
-    option1: string;
-    option2: string;
-    option3: string;
-    previewImageUrl?: string;
-    price: number;
-    productGid: `gid://shopify/Product/${string}`;
-    productId: number;
-    sku: string;
-    status: 'active' | 'archived' | 'draft' | 'unknown';
+export interface Customer {
+  customer_id: string;
+  first_name: string;
+  last_name: string;
+  default_phone: string;
+  default_email: string;
+  default_address: Address;
+}
+
+export interface Order {
+  order_name: string;
+  created_date: Date;
+  status_page_url: string;
+  shipping_price: Price;
+  subtotal_price: Price;
+  total_tax: Price;
+  total_price: Price;
+  payment_details: {
+    company: string;
+    number: string;
+    expiration_year: string;
+    expiration_month: string;
+  };
+  shipping_address: Address;
+  billing_address: Address;
+  quantity: number;
+  line_items: {
     title: string;
-    updatedAt?: string;
-
-    inventory: {
-      policy: string;
-      quantity?: number;
-      management: string;
-      isAvailable?: boolean;
+    image: Image;
+    total_price: Price;
+    quantity: number;
+    variant: {
+      id: string;
+      price: Price;
+      selected_options: {
+        name: string;
+        value: string;
+      }[];
     };
-  };
-};
+  }[];
+}
 
-export type ShopifyDocumentProduct = {
-  _id: `shopifyProduct-${string}`; // Shopify product ID
-  _type: 'product';
-  store: {
-    id: number;
-    gid: `gid://shopify/Product/${string}`;
-    priceRange: VariantPriceRange;
-    productType: string;
-    slug: { _type: string; current: string };
-    status: 'active' | 'archived' | 'draft' | 'unknown';
-    tags: string[];
-    title: string;
-    updatedAt?: string;
-    previewImageUrl?: string;
-    createdAt: string;
-    isDeleted: boolean;
-    variants?: { _key: string; _type: string; _ref: string; _weak: boolean }[];
-    options: {
-      _type: string;
-      _key: string;
-      name: string;
-      values: string[];
-    }[];
-    vendor: string;
-    descriptionHtml: string;
-  };
-};
+export interface CustomerData {
+  profile: Customer | undefined;
+  orders: Order[];
+}

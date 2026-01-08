@@ -15,6 +15,7 @@ interface ThemeModeLogoProps {
 const ThemeModeLogo: React.FC<ThemeModeLogoProps> = ({ changeColor, noChangeColor, className }) => {
   const t = useTranslations('Footer');
   const { darkMode } = useTheme();
+
   const determineLogoToRender = () => {
     if (darkMode) {
       if (changeColor) {

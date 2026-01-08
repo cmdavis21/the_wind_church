@@ -24,7 +24,7 @@ describe('CarouselDot', () => {
     render(<CarouselDot onClick={mockOnClick} active={true} blueDot={false} />);
     const button = screen.getByRole('button');
 
-    expect(button).toHaveClass('bg-primary/20 border-primary');
+    expect(button).toHaveClass('bg-brand-primary/20 border-primary');
   });
 
   it('should have the correct classes when active and blueDot is true', () => {
@@ -38,6 +38,6 @@ describe('CarouselDot', () => {
     render(<CarouselDot onClick={mockOnClick} active={false} blueDot={false} />);
     const button = screen.getByRole('button');
 
-    expect(button).toHaveClass('bg-gray/20 border-gray');
+    expect(button).toHaveClass('bg-light-gray/20 border-light-gray');
   });
 });

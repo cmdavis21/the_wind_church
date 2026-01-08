@@ -5,7 +5,7 @@ import React, { ReactElement, useRef, useState } from 'react';
 
 interface AccordionItemProps {
   image?: string;
-  icon?: React.FC<React.SVGAttributes<unknown>> | ReactElement;
+  icon: React.FC<React.SVGAttributes<unknown>>;
   title: string;
   description: string | ReactElement;
   defaultOpen?: boolean;
@@ -23,11 +23,11 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   const height = useResizeHeightObserver(accordionDesc);
 
   return (
-    <div className="w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse px-[20px] md:px-[25px] py-[20px] rounded-lg overflow-hidden">
+    <div className="w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow hover:shadow-lg transition-shadow duration-200 p-5 md:p-6 rounded-lg overflow-hidden">
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-[15px] md:gap-[20px]"
+        className="w-full flex items-center justify-between gap-[15px] md:gap-5"
       >
         <div className="flex items-center gap-md">
           {image && (
@@ -35,17 +35,17 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
               <Image fill src={image} alt="decorative img" className="rounded-sm" />
             </div>
           )}
-          {Icon && (typeof Icon === 'function' ? <Icon width={30} height={30} /> : Icon)}
-          <p
-            className={`leading-[24px] font-light text-[18px] md:text-[20px] xl:text-[24px] text-navy dark:text-textInverse text-left tracking-wide ${
-              open ? 'italic' : ''
+          {Icon && <Icon width={30} height={30} />}
+          <h4
+            className={`text-light-navy dark:text-dark-primaryText text-left tracking-wide ${
+              open ? 'font-semibold' : ''
             }`}
           >
             {title}
-          </p>
+          </h4>
         </div>
         <Plus
-          className={`size-[20px] ${open ? 'rotate-45' : ''} fill-navy dark:fill-textInverse transition-all duration-300`}
+          className={`size-[20px] min-w-[20px] min-h-[20px] ${open ? 'rotate-45' : ''} fill-light-navy dark:fill-dark-primaryText transition-[rotate,fill] duration-300`}
         />
       </button>
 
@@ -53,10 +53,13 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
       <div
         style={{ height: open ? `${height + 20}px` : '0px' }}
         className={`${
-          open ? 'pt-[15px] md:pt-[20px] mt-[15px] md:mt-[20px]' : 'opacity-0 pointer-events-none'
-        } border border-gray dark:border-charcoalLight border-x-0 border-b-0 transition-[height, opacity] duration-300`}
+          open ? 'pt-5 md:pt-6 mt-5 md:mt-6' : 'opacity-0 pointer-events-none'
+        } border border-light-gray dark:border-x-dark-charcoal border-x-0 border-b-0 transition-[height, opacity] duration-500`}
       >
-        <div ref={accordionDesc} className="body-large text-charcoal dark:text-textInverse">
+        <div
+          ref={accordionDesc}
+          className="body-large text-light-secondaryText dark:text-dark-primaryText"
+        >
           {description}
         </div>
       </div>

@@ -25,7 +25,6 @@ const getAllMinistriesQuery = async () => {
             last_name: true,
           },
           position: true,
-          roles: true,
           description: true,
           image: {
             asset: {
@@ -44,7 +43,6 @@ const getAllMinistriesQuery = async () => {
             last_name: true,
           },
           position: true,
-          roles: true,
           description: true,
           image: {
             asset: {
@@ -172,7 +170,6 @@ export const getAllMinistries = async (): Promise<Ministry[]> => {
             first_name: coordinator.contact?.first_name ?? '',
             last_name: coordinator.contact?.last_name ?? '',
             position: coordinator.position ?? '',
-            roles: (coordinator.roles as string[]) ?? [],
             description: coordinator.description ?? '',
             image: coordinator.image?.asset?.url ?? '',
             video: coordinator.video?.asset?.url ?? undefined,
@@ -181,7 +178,6 @@ export const getAllMinistries = async (): Promise<Ministry[]> => {
           first_name: ministry.coach?.contact?.first_name ?? '',
           last_name: ministry.coach?.contact?.last_name ?? '',
           position: ministry.coach?.position ?? '',
-          roles: (ministry.coach?.roles as string[]) ?? [],
           description: ministry.coach?.description ?? '',
           image: ministry.coach?.image?.asset?.url ?? '',
           video: ministry.coach?.video?.asset?.url ?? undefined,
@@ -235,7 +231,6 @@ export const getMinistryBySlug = async (slug: string): Promise<Ministry | undefi
         first_name: ministries[0].coach?.contact?.first_name ?? '',
         last_name: ministries[0].coach?.contact?.last_name ?? '',
         position: ministries[0].coach?.position ?? '',
-        roles: (ministries[0].coach?.roles as string[]) ?? [],
         description: ministries[0].coach?.description ?? '',
         image: ministries[0].coach?.image?.asset?.url ?? '',
         video: ministries[0].coach?.video?.asset?.url ?? undefined,

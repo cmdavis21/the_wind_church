@@ -43,13 +43,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
 
   return (
     <div>
-      <PageHero
-        short
-        title={deepDive.name}
-        media={{
-          src: deepDive.image.src,
-        }}
-      />
+      <PageHero size="short" title={deepDive.name} media={{ src: deepDive.image.src }} />
 
       <div className="p-padding flex flex-col gap-xxl max-w-[1440px] mx-auto">
         {/* DESCRIPTION */}
@@ -73,11 +67,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* INSTRUCTORS */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
-          <SectionHeader
-            noPadding
-            title="Meet the Instructors"
-            subtitle="Select Leaders to learn more"
-          />
+          <SectionHeader title="Meet the Instructors" subtitle="Select Leaders to learn more" />
           {/* DESKTOP */}
           <div className="hidden md:block">
             <div className="grid grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
@@ -104,23 +94,23 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* MISC DETAILS */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
-          <SectionHeader noPadding title="The Details" subtitle="It’s the finer things..." />
+          <SectionHeader title="The Details" subtitle="It’s the finer things..." />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md justify-between">
             {/* START / END DATE */}
             <div className="flex flex-col gap-sm">
               <div className="flex flex-col gap-xs">
-                <p className="body-small font-bold text-charcoal dark:text-charcoalLight">
+                <p className="body-small font-bold text-light-charcoal dark:text-dark-charcoal">
                   Start date:
                 </p>
-                <div className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center">
+                <div className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center">
                   {formatDateMMMddyyyy(deepDive.start_date)}
                 </div>
               </div>
               <div className="flex flex-col gap-xs">
-                <p className="body-small font-bold text-charcoal dark:text-charcoalLight">
+                <p className="body-small font-bold text-light-charcoal dark:text-dark-charcoal">
                   End date:
                 </p>
-                <div className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center">
+                <div className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center">
                   {formatDateMMMddyyyy(deepDive.end_date)}
                 </div>
               </div>
@@ -129,13 +119,13 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             {/* MEETING TIMES */}
             <div className="flex flex-col gap-sm">
               <div className="flex flex-col gap-xs">
-                <p className="body-small font-bold text-charcoal dark:text-charcoalLight">
+                <p className="body-small font-bold text-light-charcoal dark:text-dark-charcoal">
                   Meeting times:
                 </p>
                 {deepDive.meeting_details.map((meet) => (
                   <div
                     key={`deep-dive-meeting-detail-${meet.day}-${meet.time.hour}`}
-                    className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center"
+                    className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center"
                   >
                     {`${meet.day.slice(0, 3)} • ${meet.time.hour}:${meet.time.minute} ${meet.time.time_of_day} • ${meet.location}`}
                   </div>
@@ -146,18 +136,18 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             {/* REQUIRED MATERIALS */}
             <div className="flex flex-col gap-sm">
               <div className="flex flex-col gap-xs">
-                <p className="body-small font-bold text-charcoal dark:text-charcoalLight">
+                <p className="body-small font-bold text-light-charcoal dark:text-dark-charcoal">
                   Required materials:
                 </p>
                 {deepDive.required_materials?.map((mat) => (
                   <div
                     key={`deep-dive-required-material-${mat}`}
-                    className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center"
+                    className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center"
                   >
                     {mat}
                   </div>
                 )) ?? (
-                  <div className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center">
+                  <div className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center">
                     Just bring yourself!
                   </div>
                 )}
@@ -169,7 +159,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         {/* WHAT IS A DEEP DIVE */}
         <div className="lg:pt-xl">
           <MediaBackgroundAndContent
-            rounded
+            fullWidth={false}
             background={{
               src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
             }}
@@ -190,7 +180,6 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         {/* FAQs */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <SectionHeader
-            noPadding
             subtitle="Any more questions?"
             title="Find answers to your questions here"
           />
@@ -228,7 +217,6 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         {/* CTAs */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <CenterTextSection
-            noPadding
             highlight={[[4, 5]]}
             title="Take your next steps with us!"
             description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
@@ -240,8 +228,8 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
               title="Visit on Sunday or Wednesday"
               description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
               link={{
-                label: 'Plan your visit',
-                href: PageRoutes.planYourVisit,
+                label: 'Learn about the Wind',
+                href: PageRoutes.about,
               }}
             />
             <ImageWithTitleDescriptionCard

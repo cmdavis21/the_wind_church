@@ -1,8 +1,9 @@
-import { permanentMarker } from '@/app/(website)/layout';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
 import PrayerRequestForm from '@/components/forms/prayer-request-form/PrayerRequestForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import Caret from '@/components/icons/caret';
+import MediaBackgroundAndContent, {
+  ColorBackground,
+} from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
@@ -43,27 +44,25 @@ const SALVATION_QUESTIONS: { question: string; verse: string }[] = [
 const Salvation = () => (
   <div>
     <PageHero
-      short
+      size="short"
       title="Salvation"
       subtitle="Jesus is here for you always"
-      media={{
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/crosses.png`,
-      }}
+      media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/crosses.png` }}
     />
 
-    <div className="pt-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+    <div className="pt-padding flex flex-col gap-xl lg:gap-[100px]">
       {/* WHAT IS SALVATION */}
-      <div className="px-padding flex flex-col gap-lg">
+      <div className="flex flex-col gap-xl px-padding max-width-center">
         <div
           dangerouslySetInnerHTML={{
             __html: styleSelectedWords({
-              text: 'What is salvation?',
+              text: 'What is Salvation?',
               array: [[0, 0]],
               htmlTag: 'h2',
             }),
           }}
         />
-        <h4>
+        <h4 className="text-light-charcoal dark:text-dark-charcoal">
           Salvation is God&apos;s plan to provide man an escape from the consequences of sin. Being
           saved or born again is the most important experience in your life (John 3:3, 15, 16). When
           you confess Jesus as Lord and Savior, you experience the new birth. Every abundant
@@ -74,7 +73,7 @@ const Salvation = () => (
       </div>
 
       {/* HOW DO YOU RECIEVE SALVATION */}
-      <div className="px-padding flex flex-col gap-lg">
+      <div className="flex flex-col gap-xl px-padding max-width-center">
         <div
           dangerouslySetInnerHTML={{
             __html: styleSelectedWords({
@@ -84,8 +83,10 @@ const Salvation = () => (
             }),
           }}
         />
-        <h4>God has made it really simple. Answer these four questions:</h4>
-        <div className="lg:py-lg max-lg:px-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center gap-xl">
+        <h4 className="text-light-charcoal dark:text-dark-charcoal">
+          God has made it really simple. Answer these four questions:
+        </h4>
+        <div className="lg:py-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center gap-lg">
           {SALVATION_QUESTIONS.map((item, index) => (
             <ImageWithTitleAndHiddenTextCard
               key={`salvation-question-${item.question}`}
@@ -94,67 +95,63 @@ const Salvation = () => (
                 alt: 'decorative background image',
               }}
               title={
-                <span
-                  className={`${permanentMarker.className} text-primary dark:text-primaryDark text-[55px] lg:text-[65px]`}
-                >
+                <span className={`font-display text-brand-primary text-[55px] lg:text-[65px]`}>
                   {index + 1}
                 </span>
               }
               description={
                 <div>
-                  <h4 className="font-semibold">{item.question}</h4>
+                  <h5 className="font-semibold">{item.question}</h5>
                   <p className="body-large">({item.verse})</p>
                 </div>
               }
             />
           ))}
         </div>
-        <h4>
+        <h4 className="text-light-charcoal dark:text-dark-charcoal">
           If you answered{' '}
-          <span className={`${permanentMarker.className} text-primary dark:text-primaryDark`}>
-            Yes
-          </span>
-          , you are ready to pray.
-        </h4>
-        <h4>
-          Remember God loves you. He wants you to be whole and complete or saved - spiritually,
-          emotionally, physically, mentally, financially, and socially (3 John 2). Pray this prayer,
-          mean it, and you will be saved, right where you are sitting.
+          <span className="font-bold italic text-black dark:text-dark-primaryText">Yes</span>, you
+          are ready to pray. Remember God loves you. He wants you to be whole and complete or saved
+          - spiritually, emotionally, physically, mentally, financially, and socially (3 John 2).
+          Pray this prayer, mean it, and you will be saved, right where you are sitting.
         </h4>
       </div>
 
       {/* PRAYER OF SALVATION */}
-      <div className="p-padding bg-navyLight text-white">
-        <div className="flex flex-col gap-lg">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: styleSelectedWords({
-                text: 'Prayer of Salvation',
-                array: [[0, 0]],
-                htmlTag: 'h2',
-              }),
-            }}
-          />
-          <h4>
-            Father in heaven, thank you for sending your Son, Jesus, to die on the cross for me, and
-            for His blood that was shed to redeem me and to cleanse me from my sins.
-          </h4>
-          <h4>
-            Lord, I am sorry and I repent of my sins. Forgive me. I understand that I must change
-            the course of my life. I am determined in my heart to follow you. I invite you to become
-            the Lord of my life from this point forward, forever.
-          </h4>
-          <h4>
-            I openly proclaim and confess that you are the Lord of my life. I believe in my heart
-            that You have been raised from the dead. Therefore I am saved. I am a new creature. The
-            old things have passed. All things have become new.
-          </h4>
-          <h4>I am a child of God. In the Name of Jesus, AMEN!</h4>
-        </div>
-      </div>
+      <MediaBackgroundAndContent
+        color={ColorBackground.BLUE}
+        content={
+          <div className="flex flex-col gap-xl">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: styleSelectedWords({
+                  text: 'Prayer of Salvation',
+                  array: [[0, 0]],
+                  htmlTag: 'h2',
+                }),
+              }}
+            />
+            <h4>
+              Father in heaven, thank you for sending your Son, Jesus, to die on the cross for me,
+              and for His blood that was shed to redeem me and to cleanse me from my sins.
+            </h4>
+            <h4>
+              Lord, I am sorry and I repent of my sins. Forgive me. I understand that I must change
+              the course of my life. I am determined in my heart to follow you. I invite you to
+              become the Lord of my life from this point forward, forever.
+            </h4>
+            <h4>
+              I openly proclaim and confess that you are the Lord of my life. I believe in my heart
+              that You have been raised from the dead. Therefore I am saved. I am a new creature.
+              The old things have passed. All things have become new.
+            </h4>
+            <h4>I am a child of God. In the Name of Jesus, AMEN!</h4>
+          </div>
+        }
+      />
 
       {/* RESULT */}
-      <div className="px-padding flex flex-col gap-lg">
+      <div className="flex flex-col gap-xl px-padding max-width-center">
         <div
           dangerouslySetInnerHTML={{
             __html: styleSelectedWords({
@@ -164,57 +161,72 @@ const Salvation = () => (
             }),
           }}
         />
-        <div className="flex flex-col gap-md py-sm">
-          <div className="flex items-center gap-xs">
-            <Caret className="fill-primary rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
-            <h4>Your sins are forgiven - (1 John 1:9; John 3:16)</h4>
-          </div>
-          <div className="flex items-center gap-xs">
-            <Caret className="fill-primary rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
-            <h4>You are a member of God&apos;s family - (John 1:12; John 3:2)</h4>
-          </div>
-          <div className="flex items-center gap-xs">
-            <Caret className="fill-primary rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
-            <h4>You have peace with God and access to Him - (Romans 5:1-2, Ephesians 2:6-7)</h4>
-          </div>
-          <div className="flex items-center gap-xs">
-            <Caret className="fill-primary rotate-90 min-w-[25px] min-h-[25px] size-[25px]" />
-            <h4>The Holy Spirit dwells within you - (Romans 8:9-11; 1 John 4:4)</h4>
-          </div>
+        <div className="py-md grid grid-cols-1 md:grid-cols-2 gap-xl">
+          {[
+            { text: 'Your sins are forgiven', verse: '(1 John 1:9; John 3:16)' },
+            { text: "You are a member of God's family", verse: '(John 1:12; John 3:2)' },
+            {
+              text: 'You have peace with God and access to Him',
+              verse: '(Romans 5:1-2, Ephesians 2:6-7)',
+            },
+            { text: 'The Holy Spirit dwells within you', verse: '(Romans 8:9-11; 1 John 4:4)' },
+          ].map((item, index) => (
+            <div key={`salvation-${item.text}`} className="flex gap-xs">
+              <h4>{index + 1}.</h4>
+              <div className="flex flex-col">
+                <h4 className="text-light-charcoal dark:text-dark-charcoal">{item.text}</h4>
+                <h6>{item.verse}</h6>
+              </div>
+            </div>
+          ))}
         </div>
-        <h4>
-          Remember, feelings have nothing to do with salvation. You may feel like you are floating
-          on a cloud, or as dull as a doorknob. It makes no difference. Trusting God&apos;s Word is
-          what counts.
+        <h4 className="text-light-charcoal dark:text-dark-charcoal">
+          <span className="font-bold italic text-black dark:text-dark-primaryText">Remember</span>,
+          feelings have nothing to do with salvation. You may feel like you are floating on a cloud,
+          or as dull as a doorknob. It makes no difference. Trusting God&apos;s Word is what counts.
         </h4>
-        <h4 className="pb-xl">
-          We would love to pray for you as you embark on your new walk with Christ. Feel free to
-          submit a prayer request.
+      </div>
+
+      {/* PRAYER REQUEST */}
+      <div className="w-full flex flex-col gap-xl items-center px-padding max-width-center">
+        <h2>We want to support you!</h2>
+        <h4 className="text-light-charcoal dark:text-dark-primaryText">
+          We will pray for you as you embark on your new walk with Christ. Submit a prayer request
+          and share your story.
         </h4>
         <PrayerRequestForm />
       </div>
 
       {/* CTAs */}
-      <div className="p-padding bg-navy text-white">
-        <div className="text-center flex flex-col gap-lg">
-          <h4>Learn What it Means to be a Follower of Christ!</h4>
-          <h3 className="font-bold">Grow in Relationship with God Now</h3>
-          <h5 className="lg:max-w-[65%] mx-auto">
-            Learn more about our deep dive sessions and ministries offered here at The Wind.
-          </h5>
-          <div className="flex flex-wrap items-center justify-center gap-lg">
-            <Link href={PageRoutes.deepDive}>
-              <Button pill size="lg" color="ghost">
-                View Deep Dives
-              </Button>
-            </Link>
-            <Link href={PageRoutes.ministries}>
-              <Button pill size="lg" color="ghost">
-                View Ministries
-              </Button>
-            </Link>
-          </div>
-        </div>
+      <div className="flex flex-row justify-center px-5">
+        <MediaBackgroundAndContent
+          fullWidth={false}
+          background={{
+            src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
+            alt: 'Decorative Background Image',
+          }}
+          content={
+            <div className="flex flex-col gap-md">
+              <h5>Learn What it Means to be a Follower of Christ!</h5>
+              <h3 className="font-bold">Grow in Relationship with God Now</h3>
+              <h5>
+                Learn more about our deep dive sessions and ministries offered here at The Wind.
+              </h5>
+              <div className="flex flex-col md:flex-row gap-lg">
+                <Link href={PageRoutes.deepDive} className="max-md:w-full">
+                  <Button pill size="lg" color="info" className="max-md:w-full">
+                    View Deep Dives
+                  </Button>
+                </Link>
+                <Link href={PageRoutes.ministries} className="max-md:w-full">
+                  <Button pill size="lg" color="info" className="max-md:w-full">
+                    View Ministries
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          }
+        />
       </div>
     </div>
   </div>

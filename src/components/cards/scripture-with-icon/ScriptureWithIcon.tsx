@@ -2,10 +2,9 @@ import React from 'react';
 
 interface ScriptureWithIconProps {
   icon: React.FC<React.SVGAttributes<unknown>>;
-  title?: string;
+  title: string;
   verse: string;
   passage: string;
-  horizontal?: boolean;
 }
 
 const ScriptureWithIcon: React.FC<ScriptureWithIconProps> = ({
@@ -13,19 +12,16 @@ const ScriptureWithIcon: React.FC<ScriptureWithIconProps> = ({
   title,
   verse,
   passage,
-  horizontal,
 }) => (
   <div
-    className={`${
-      horizontal ? 'flex' : 'flex flex-col'
-    } items-center justify-center gap-sm w-full min-w-[250px] max-w-[350px] dark:text-textInverse`}
+    className={`flex flex-col items-center justify-center gap-sm w-full min-w-[250px] max-w-[350px]`}
   >
-    <div className="rounded-full p-2 bg-gray">
-      <Icon className="size-[25px] fill-navyLight" />
+    <div className="rounded-full p-2 bg-light-neutral dark:bg-dark-navy">
+      <Icon className="size-[25px] fill-light-navy dark:fill-brand-primary" />
     </div>
-    <div className={`flex flex-col ${!horizontal ? 'items-center ' : ''} gap-sm`}>
-      {title && <h5 className="font-bold">{title}</h5>}
-      <p className="font-light italic text-charcoal dark:text-primaryDark">{verse}</p>
+    <div className={`flex flex-col items-center gap-sm`}>
+      <h5 className="font-bold">{title}</h5>
+      <p className="font-light italic text-light-charcoal dark:text-brand-dark">{verse}</p>
       <p className="text-center">{passage}</p>
     </div>
   </div>

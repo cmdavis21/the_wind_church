@@ -1,5 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import * as utils from '@/data/utils';
 
@@ -30,7 +29,7 @@ describe('ScrollToButton', () => {
     render(<ScrollToButton id="test-section" label="Scroll to Section" />);
     const button = screen.getByText('Scroll to Section');
 
-    expect(button).toHaveClass('bg-primary-500'); // Assuming Flowbite applies this class for yellow buttons
+    expect(button).toHaveClass('bg-brand-primary-500'); // Assuming Flowbite applies this class for yellow buttons
   });
 
   it('applies custom props correctly', () => {

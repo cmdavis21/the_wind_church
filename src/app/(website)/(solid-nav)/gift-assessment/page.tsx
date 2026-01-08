@@ -1,7 +1,6 @@
 import { Button } from 'flowbite-react';
 import { Metadata } from 'next';
 
-import { permanentMarker } from '@/app/(website)/layout';
 import GiftAssessment from '@/components/forms/gift-assessment/GiftAssessment';
 import { WEBSITE_BASE_URL } from '@/data/constants';
 
@@ -17,14 +16,12 @@ export const metadata: Metadata = {
 const GiftAssessmentPage = () => (
   <div>
     {/* Decorative Border */}
-    <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-primary dark:bg-primaryDark" />
+    <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
 
     <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
       {/* Header */}
       <div className="text-center space-y-lg">
-        <h1 className={`${permanentMarker.className} md:text-[75px] leading-snug`}>
-          Spiritual Gift Assessment
-        </h1>
+        <h1 className={`font-display md:text-[75px] leading-snug`}>Spiritual Gift Assessment</h1>
         <h2>Wagner-Modified Houts Questionnarie</h2>
         <h4 className="pt-md">
           Please complete the assessment in one setting.{' '}
@@ -34,7 +31,7 @@ const GiftAssessmentPage = () => (
       </div>
 
       {/* Quiz Instructions */}
-      <div className="border border-gray dark:border-grayDark dark:bg-softGray shadow-md p-md md:p-lg rounded-xl lg:max-w-[90%] 2xl:max-w-[80%] mx-auto flex flex-col gap-lg">
+      <div className="border border-light-gray dark:border-dark-gray dark:bg-softGray shadow-md p-md md:p-lg rounded-xl lg:max-w-[90%] 2xl:max-w-[80%] mx-auto flex flex-col gap-lg">
         <h5>
           The Modified Houts Questionnaire is a tool designed to help identify your spiritual gifts.
           Originally created by Richard F. Houts, a Professor of Christian Education at Ontario
@@ -75,7 +72,7 @@ const GiftAssessmentPage = () => (
           download="Spiritual_Gift_Assessment.pdf"
           href={`/spiritual-gifts-test.pdf`}
         >
-          <Button color="ghost" pill className="w-full md:w-fit">
+          <Button color="info" pill className="w-full md:w-fit">
             Optional: Download Blank PDF Assessment
           </Button>
         </a>
@@ -88,7 +85,7 @@ const GiftAssessmentPage = () => (
     </div>
 
     {/* Decorative Border */}
-    <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-primary dark:bg-primaryDark" />
+    <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
   </div>
 );
 

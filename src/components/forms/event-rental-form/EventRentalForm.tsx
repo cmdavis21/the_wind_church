@@ -8,9 +8,12 @@ import * as yup from 'yup';
 
 import { EventRentalInquiry, YesNo } from '@/data/types';
 
+import { useHoneyPot } from '@/data/hooks';
 import { useCreateEventRentalInquiry } from '@/data/services/sanity/mutations/event-rental-inquiry';
+import { isValidEmail, isValidPhone } from '@/data/utils';
 import PencilPaper from '../../icons/pencilPaper';
 import AlertMessage from '../inputs/alert-message/AlertMessage';
+import { HoneyPotInput } from '../inputs/honey-pot-input/HoneyPotInput';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
@@ -18,10 +21,25 @@ import TextInput from '../inputs/text-input/TextInput';
 const schema: yup.ObjectSchema<EventRentalInquiry> = yup.object().shape({
   first_name: yup.string().required('Enter your first name'),
   last_name: yup.string().required('Enter your last name'),
-  email: yup.string().email().required('Enter your email'),
-  phone: yup.string().required('Enter your phone number'),
+  email: yup
+    .string()
+    .email()
+    .required('Enter your email')
+    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
+  phone: yup
+    .string()
+    .required('Enter your phone number')
+    .test('Include 10 to 11 digit valid phone number', (val) => isValidPhone(val)),
   company_name: yup.string().optional(),
-  company_phone: yup.string().optional(),
+  company_phone: yup
+    .string()
+    .optional()
+    .test('Include 10 to 11 digit valid phone number', (val) => {
+      if (val) {
+        return isValidPhone(val);
+      }
+      return true;
+    }),
   purpose_for_rental: yup.string().required('Select an option'),
   describe_your_event: yup.string().required('Supply more details of your event'),
   referred: yup.mixed<YesNo>().oneOf([YesNo.YES, YesNo.NO]).default(YesNo.NO).required(),
@@ -29,6 +47,7 @@ const schema: yup.ObjectSchema<EventRentalInquiry> = yup.object().shape({
 });
 
 const EventRentalForm = () => {
+  const { isBot, setInputValue } = useHoneyPot();
   const formRef = useRef<HTMLFormElement | null>(null);
   const [showReference, setShowReference] = useState(false);
 
@@ -37,6 +56,7 @@ const EventRentalForm = () => {
   const {
     register,
     setValue,
+    setError,
     handleSubmit,
     formState: { errors },
   } = useForm<EventRentalInquiry>({
@@ -44,8 +64,14 @@ const EventRentalForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values: EventRentalInquiry) => submitInquiry(values);
-
+  const onSubmit = (values: EventRentalInquiry) => {
+    if (isBot) {
+      setError('root', { message: 'Unsafe submission. Access Denied.' });
+      return;
+    }
+    // submitInquiry(values);
+  };
+  console.log(isBot);
   useEffect(() => {
     if (formRef.current) {
       if (isSuccess || isError) {
@@ -62,10 +88,10 @@ const EventRentalForm = () => {
     <form
       ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-textInverse" />
+        <PencilPaper className="dark:fill-dark-primaryText" />
         <h4>Rental Inquiry</h4>
       </div>
 
@@ -85,6 +111,9 @@ const EventRentalForm = () => {
             Please try again later, or call our office at +1 (951) 359-0203."
         />
       )}
+
+      {/* HONEY POT */}
+      <HoneyPotInput setValue={setInputValue} />
 
       {/* names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">

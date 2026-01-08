@@ -3,7 +3,6 @@ import React from 'react';
 
 import { PageRoutes } from '@/data/page-routes';
 
-import { permanentMarker } from '@/app/(website)/layout';
 import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,7 +22,7 @@ interface ErrorPageProps {
 const ErrorPage: React.FC<ErrorPageProps> = ({ title, description, routeToPage, reloadPage }) => (
   <div className="m-auto">
     <div className="mx-padding">
-      <div className="bg-primary dark:bg-primaryDark grid grid-cols-1 md:grid-cols-2 md:drop-shadow-md rounded-xl">
+      <div className="bg-brand-primary grid grid-cols-1 md:grid-cols-2 md:drop-shadow-md rounded-xl">
         {/* IMAGE */}
         <div className="w-full h-full max-w-[1440px] pt-[25px] md:aspect-square flex items-end overflow-hidden">
           <div className="relative w-full aspect-video">
@@ -38,10 +37,8 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ title, description, routeToPage, 
 
         {/* MESSAGE + ACTION BUTTONS */}
         <div className="w-full h-full max-w-[1440px] md:aspect-square p-[25px] md:p-[50px]">
-          <div className="w-full h-full flex flex-col justify-center gap-lg rounded-lg bg-white dark:bg-grayDark p-[25px] md:p-[50px] shadow-md">
-            <h1 className={`${permanentMarker.className} text-primary dark:text-primaryDark`}>
-              {title ?? 'Error'}
-            </h1>
+          <div className="w-full h-full flex flex-col justify-center gap-lg rounded-lg bg-white dark:bg-dark-gray p-[25px] md:p-[50px] shadow-md">
+            <h1 className={`font-display text-brand-primary`}>{title ?? 'Error'}</h1>
             <h3>{description ?? 'An error has occured. Please try agin later.'}</h3>
             <div className="flex flex-wrap gap-md">
               <Link href={PageRoutes.home}>
@@ -68,7 +65,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ title, description, routeToPage, 
               )}
               {routeToPage && (
                 <Link href={routeToPage.link}>
-                  <Button pill size="xl" color="ghost">
+                  <Button pill size="xl" color="info">
                     {routeToPage.label}
                   </Button>
                 </Link>

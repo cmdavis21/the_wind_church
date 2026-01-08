@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useState, RefObject } from 'react';
+import { RefObject, useEffect, useState } from 'react';
+
+export const useHoneyPot = () => {
+  const [inputValue, setInputValue] = useState('');
+  const isBot = inputValue.trim().length > 0;
+  return { isBot, setInputValue };
+};
 
 export interface WindowDimensions {
   width: number;
@@ -24,9 +30,7 @@ function getWindowDimensions() {
 
 // Window Dimensions
 export const useWindowDimensions = () => {
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  );
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
   useEffect(() => {
     function handleResize() {
@@ -45,9 +49,7 @@ export const useWindowDimensions = () => {
 };
 
 // Resize Observer Hook
-export const useResizeHeightObserver = (
-  element: RefObject<HTMLDivElement | null>
-) => {
+export const useResizeHeightObserver = (element: RefObject<HTMLDivElement | null>) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
@@ -69,8 +71,6 @@ export const useResizeHeightObserver = (
 export const openWindowWithQuery = (query: string) => {
   const newWindow = window.open('about:blank', '_blank');
   if (newWindow) {
-    newWindow.location.href = `https://www.google.com/search?q=${encodeURIComponent(
-      query
-    )}`;
+    newWindow.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
   }
 };

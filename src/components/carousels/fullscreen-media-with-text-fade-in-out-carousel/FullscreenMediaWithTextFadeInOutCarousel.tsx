@@ -77,8 +77,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             setMobileActiveSlide(slides.length - 1);
           } else setMobileActiveSlide(mobileActiveSlide - 1);
         },
-        buttonClassName: 'bg-charcoal p-xs',
-        iconClassName: 'fill-white size-[18px]',
+        buttonClassName: 'p-xs',
+        iconClassName: 'size-[18px]',
       }}
       rightArrowProps={{
         onClick: () => {
@@ -87,8 +87,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             setMobileActiveSlide(0);
           } else setMobileActiveSlide(mobileActiveSlide + 1);
         },
-        buttonClassName: 'bg-charcoal p-xs',
-        iconClassName: 'fill-white size-[18px]',
+        buttonClassName: 'p-xs',
+        iconClassName: 'size-[18px]',
       }}
     />
   );
@@ -155,9 +155,11 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               index === activeSlide ? 'fade-in' : 'opacity-0'
             } transition-opacity duration-300 flex items-center`}
           >
-            <div className="flex flex-col gap-md text-white dark:text-textInverse">
+            <div className="flex flex-col gap-md text-white dark:text-dark-primaryText">
               <h5>{slide.header}</h5>
-              {slide.subtitle && <h3 className="text-primary line-clamp-1">{slide.subtitle}</h3>}
+              {slide.subtitle && (
+                <h3 className="text-brand-primary line-clamp-1">{slide.subtitle}</h3>
+              )}
               <h1 className="leading-none">{slide.title}</h1>
               <div className="min-h-[100px]">
                 {slide.description && (
@@ -195,8 +197,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               } else setActiveSlide(activeSlide - 1);
             },
             buttonClassName:
-              'bg-charcoal p-sm absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
-            iconClassName: 'fill-white size-[25px]',
+              'bg-black/50 p-sm absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
           }}
           rightArrowProps={{
             onClick: () => {
@@ -205,8 +206,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               } else setActiveSlide(activeSlide + 1);
             },
             buttonClassName:
-              'bg-charcoal p-sm absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
-            iconClassName: 'fill-white size-[25px]',
+              'bg-black/50 p-sm absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
           }}
         />
       </div>
@@ -263,9 +263,9 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               key={`carousel-mobile-content-${slide.title}-${slide.description}`}
               className="relative h-screen w-full px-[50px]"
             >
-              <div className="relative flex flex-col h-full w-full items-center justify-center text-center text-white dark:text-textInverse gap-sm">
+              <div className="relative flex flex-col h-full w-full items-center justify-center text-center text-white dark:text-dark-primaryText gap-sm">
                 <h6 className="font-normal">{slide.header}</h6>
-                {slide.subtitle && <h5 className="text-primary">{slide.subtitle}</h5>}
+                {slide.subtitle && <h5 className="text-brand-primary">{slide.subtitle}</h5>}
                 <h3 className="leading-none">{slide.title}</h3>
                 {slide.description && <p className="line-clamp-3">{slide.description}</p>}
                 <Link href={slide.link}>

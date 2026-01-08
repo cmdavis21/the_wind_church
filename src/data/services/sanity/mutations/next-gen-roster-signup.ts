@@ -1,9 +1,9 @@
-import { SanityClient } from '../client';
+import { NEXT_GEN_ROSTER_KEY, WEBSITE_BASE_URL } from '@/data/constants';
+import { FORM_TYPES, NextGenRosterSignup } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createContactClient } from './contact-signup';
-import { NEXT_GEN_ROSTER_KEY } from '@/data/constants';
+import { SanityClient } from '../client';
 import { getNextGenRosterSignupRecordIdByYouthNamesQuery } from '../queries/next-gen-roster-signup';
-import { NextGenRosterSignup } from '@/data/types';
+import { createContactClient } from './contact-signup';
 
 export const nextGenRosterSignupClient = async (data: NextGenRosterSignup) => {
   try {
@@ -71,9 +71,20 @@ export const useNextGenRosterSignup = () => {
   return useMutation({
     mutationFn: nextGenRosterSignupClient,
     mutationKey: [NEXT_GEN_ROSTER_KEY],
-    onSettled: () => {
+    onSettled: async (d, e, variables) => {
       queryClient.invalidateQueries({
         queryKey: [NEXT_GEN_ROSTER_KEY],
+      });
+      await fetch('/api/form-submission', {
+        method: 'POST',
+        body: JSON.stringify({
+          formType: FORM_TYPES.CONTACT_SIGNUP,
+          payload: {
+            firstName: variables.children[0].guardians[0].first_name,
+            lastName: `${variables.children[0].guardians[0].last_name.charAt(0)}.`,
+            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.CONTACT_SIGNUP}`,
+          },
+        }),
       });
     },
   });

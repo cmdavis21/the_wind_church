@@ -6,17 +6,17 @@ export const theme = {
       base: '-m-1.5 ml-auto inline-flex h-8 w-8 rounded-lg p-1.5 focus:ring-2',
       icon: 'h-5 w-5',
       color: {
-        gray: 'bg-gray text-gray hover:bg-grayDark focus:ring-gray-400 dark:hover:bg-gray-800 dark:hover:text-white',
+        gray: 'bg-light-gray dark:bg-dark-gray text-light-gray dark:text-dark-gray hover:bg-drak-gray dark:hover:bg-light-gray focus:ring-light-gray dark:focus:ring-dark-gray',
         failure: 'bg-error/10 text-error hover:bg-error/10 focus:ring-error',
         success: 'bg-success/10 text-success hover:bg-success/50 focus:ring-success',
-        warning: 'bg-primary/10 text-primary hover:bg-primaryDark focus:ring-primaryDark',
+        warning: 'bg-warning/10 text-warning hover:bg-warning focus:ring-warning',
       },
     },
     color: {
-      gray: 'border-gray bg-grayDark text-textPrimary',
+      gray: 'border-light-gray dark:border-dark-gray bg-light-gray/10 dark:bg-dark-gray/10 text-light-primaryText dark:text-dark-primaryText',
       failure: 'border-error bg-error/10 text-error',
       success: 'border-success bg-success/10 text-success',
-      warning: 'border-primary bg-primary/10 text-primaryDark',
+      warning: 'border-warning bg-warning/10 text-warning',
     },
     icon: 'mr-3 inline h-5 w-5 shrink-0',
     rounded: 'rounded-lg',
@@ -26,10 +26,9 @@ export const theme = {
     root: {
       base: 'flex w-fit h-fit items-center gap-1 font-semibold',
       color: {
-        gray: 'bg-gray text-textPrimary dark:bg-grayDark dark:text-textInverse',
-        red: 'bg-error text-white group-hover:bg-red-300 dark:bg-red-300 dark:text-red-900 dark:group-hover:bg-red-400',
-        yellow:
-          'bg-primary text-navy group-hover:bg-primaryDark dark:bg-primaryDark dark:text-yellow-900 dark:group-hover:bg-primary-400',
+        gray: 'bg-light-gray text-light-primaryText dark:bg-dark-gray dark:text-dark-primaryText',
+        red: 'bg-error text-white group-hover:bg-error/75 dark:bg-error/75 dark:text-dark-primaryText',
+        yellow: 'bg-warning text-light-primaryText group-hover:bg-warning/75',
       },
       href: 'group',
       size: {
@@ -51,13 +50,12 @@ export const theme = {
     fullSized: 'w-full',
     color: {
       primary:
-        'border border-primary bg-primary text-black hover:bg-primaryDark/80 hover:shadow-md dark:border-primaryDark dark:bg-primaryDark dark:text-black dark:hover:bg-primary',
+        'border border-brand-primary bg-brand-primary text-black hover:bg-brand-dark/80 hover:shadow-md',
       secondary:
-        'border border-navy bg-navy text-white hover:bg-navyLight dark:border-navyLight dark:bg-navyLight dark:text-white dark:hover:bg-navy',
-      ghost:
-        'border border-gray bg-transparent text-textPrimary hover:bg-gray hover:text-black dark:border-grayDark dark:bg-transparent dark:text-textInverse dark:hover:bg-grayDark dark:hover:text-white',
+        'border border-light-navy bg-light-navy text-white hover:bg-light-navy/80 dark:border-dark-navy dark:bg-dark-navy dark:text-white dark:hover:bg-light-navy',
+      info: 'border border-light-gray bg-transparent text-light-primaryText hover:bg-light-gray hover:text-black dark:border-dark-gray dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray dark:hover:text-white',
       danger:
-        'border border-error bg-error text-white hover:bg-red-600 dark:border-red-700 dark:bg-red-700 dark:text-white dark:hover:bg-error',
+        'border border-error bg-error text-white hover:bg-error/80 dark:border-error dark:bg-error dark:text-white dark:hover:bg-error/70',
     },
     disabled: 'cursor-not-allowed opacity-50 pointer-events-none',
     pill: {
@@ -75,10 +73,10 @@ export const theme = {
   },
   checkbox: {
     root: {
-      base: 'h-4 w-4 appearance-none rounded border border-gray-300 bg-gray-100 bg-[length:0.55em_0.55em] bg-center bg-no-repeat checked:border-transparent checked:bg-current checked:bg-check-icon focus:outline-none focus:ring-2 focus:ring-offset-2 dark:border-gray-600 dark:bg-gray-700 dark:checked:border-transparent dark:checked:bg-current',
+      base: 'h-4 w-4 appearance-none rounded border border-light-gray bg-light-neutral bg-[length:0.55em_0.55em] bg-center bg-no-repeat checked:border-transparent checked:bg-current checked:bg-check-icon focus:outline-none focus:ring-2 focus:ring-offset-2 dark:border-dark-gray dark:bg-dark-neutral dark:checked:border-transparent dark:checked:bg-current',
       color: {
         default:
-          'text-primary focus:ring-primary dark:ring-offset-primaryDark dark:focus:ring-primaryDark',
+          'text-brand-primary focus:ring-brand-primary dark:ring-offset-dark-bg dark:focus:ring-brand-dark',
       },
       indeterminate:
         'border-transparent bg-current bg-dash-icon dark:border-transparent dark:bg-current',
@@ -88,96 +86,10 @@ export const theme = {
     root: {
       base: 'text-[16px] xl:text-[18px]',
       colors: {
-        gray: 'text-textPrimary dark:text-textInverse',
+        gray: 'text-light-primaryText dark:text-dark-primaryText',
         white: 'text-white',
       },
       disabled: 'opacity-50',
-    },
-  },
-  megaMenu: {
-    root: {
-      base: 'bg-white pt-3 pb-5 px-[20px] 2xl:px-[75px] min-[1800px]:px-[200px] dark:border-grayDark dark:bg-backgroundDark',
-      rounded: {
-        on: 'rounded-b-lg',
-        off: '',
-      },
-      bordered: {
-        on: 'shadow-sm border border-x-0 border-t-0 border-gray',
-        off: '',
-      },
-      inner: {
-        base: 'flex items-end justify-between gap-lg',
-        fluid: {
-          on: '',
-          off: 'container',
-        },
-      },
-    },
-    brand: {
-      base: 'flex items-center',
-    },
-    collapse: {
-      base: 'w-full md:block',
-      list: 'mt-4 flex flex-col md:mt-0 md:flex-row justify-evenly md:space-x-8 md:text-sm md:font-medium',
-      hidden: {
-        on: 'hidden',
-        off: '',
-      },
-    },
-    link: {
-      base: 'block py-2 pl-3 pr-4 md:p-0',
-      active: {
-        on: 'bg-primaryDark text-white md:bg-transparent md:text-primary dark:text-white',
-        off: 'border-b border-gray text-textPrimary hover:bg-gray md:border-0 md:hover:bg-transparent md:hover:text-textSecondary dark:border-grayDark dark:text-textSecondary dark:hover:bg-grayDark dark:hover:text-textInverse md:dark:hover:bg-transparent md:dark:hover:text-textInverse',
-      },
-      disabled: {
-        on: 'text-grayDark hover:cursor-not-allowed dark:text-grayDark',
-        off: '',
-      },
-    },
-    toggle: {
-      base: 'inline-flex items-center rounded-lg p-2 text-sm text-textSecondary hover:bg-gray focus:outline-none focus:ring-2 focus:ring-gray md:hidden dark:text-textInverse dark:hover:bg-grayDark dark:focus:ring-grayDark',
-      icon: 'h-6 w-6 shrink-0',
-      title: 'sr-only',
-    },
-    dropdown: {
-      base: '',
-      toggle: {
-        arrowIcon: 'ml-1 h-4 w-4',
-        content: 'p-sm focus:outline-none',
-        floating: {
-          animation: 'transition-opacity duration-500',
-          arrow: {
-            base: 'absolute z-10 h-2 w-2 rotate-45',
-            style: {
-              dark: 'bg-backgroundDark',
-              light: 'bg-white',
-              auto: 'bg-white dark:bg-backgroundDark',
-            },
-            placement: '-4px',
-          },
-          base: 'z-10 w-fit border border-skeletonGray shadow-sm divide-y divide-gray rounded-lg shadow focus:outline-none mt-2 block',
-          content: 'py-1 text-sm text-textSecondary dark:text-textInverse',
-          divider: 'my-1 h-px bg-gray dark:bg-grayDark',
-          header: 'block px-4 py-2 text-sm text-textSecondary dark:text-textInverse',
-          hidden: 'invisible opacity-0',
-          item: {
-            container: '',
-            base: 'flex w-full cursor-pointer items-center justify-start px-4 py-2 text-sm text-textSecondary hover:bg-gray focus:bg-gray focus:outline-none dark:text-textInverse dark:hover:bg-grayDark dark:hover:text-white dark:focus:bg-grayDark dark:focus:text-white',
-            icon: 'mr-2 h-4 w-4',
-          },
-          style: {
-            dark: 'bg-backgroundDark text-textInverse',
-            light: 'bg-white text-textSecondary',
-            auto: 'bg-white dark:bg-backgroundDark',
-          },
-          target: 'w-fit',
-        },
-        inlineWrapper: 'flex w-full items-center justify-between',
-      },
-    },
-    dropdownToggle: {
-      base: 'py-2 pl-3 pr-4 md:p-0 border-b border-gray text-textPrimary hover:bg-gray md:border-0 md:hover:bg-transparent md:hover:text-primary dark:border-grayDark dark:text-textSecondary dark:hover:bg-grayDark dark:hover:text-textInverse md:dark:hover:bg-transparent md:dark:hover:text-textInverse flex w-full items-center justify-between',
     },
   },
   modal: {
@@ -211,38 +123,99 @@ export const theme = {
         'bottom-left': 'items-end justify-start',
       },
     },
+
     content: {
       base: 'relative h-full w-full p-4 md:h-auto',
-      inner:
-        'relative flex flex-col max-h-[90dvh] rounded-lg bg-backgroundLight shadow dark:bg-backgroundDark',
+      inner: 'relative flex flex-col max-h-[90dvh] rounded-lg bg-light-bg shadow dark:bg-dark-bg',
     },
+
     body: {
-      base: 'flex-1 overflow-auto p-6 text-textPrimary dark:text-textInverse',
+      base: 'flex-1 overflow-auto p-6 text-light-primaryText dark:text-dark-primaryText',
       popup: 'pt-0',
     },
+
     header: {
-      base: 'flex items-start justify-between rounded-t border-b p-5 dark:border-grayDark',
+      base: 'flex items-start justify-between rounded-t border-b p-5 dark:border-dark-gray',
       popup: 'border-b-0 p-2',
-      title: 'text-xl font-medium text-textPrimary dark:text-textInverse',
+      title: 'text-xl font-medium text-light-primaryText dark:text-dark-primaryText',
       close: {
-        base: 'ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray hover:bg-gray hover:text-textPrimary dark:hover:bg-grayDark dark:hover:text-white',
+        base: 'ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-light-gray hover:bg-light-neutral hover:text-light-primaryText dark:hover:bg-dark-neutral dark:hover:text-white',
         icon: 'h-5 w-5',
       },
     },
+
     footer: {
-      base: 'flex items-center space-x-2 rounded-b border-gray p-6 dark:border-grayDark',
+      base: 'flex items-center space-x-2 rounded-b border-light-gray p-6 dark:border-dark-gray',
       popup: 'border-t',
     },
   },
   radio: {
     root: {
-      base: 'h-6 w-6 rounded-full border-2 border-gray dark:border-grayDark !text-primary dark:!text-primaryDark focus:ring-primary hover:cursor-pointer disabled:opacity-50',
+      base: 'h-6 w-6 rounded-full border-2 border-light-gray dark:border-dark-gray text-brand-primary dark:text-brand-dark focus:ring-brand-primary hover:cursor-pointer disabled:opacity-50',
     },
+  },
+  tabs: {
+    base: 'flex flex-col gap-2',
+    tablist: {
+      base: 'flex text-center',
+      variant: {
+        default: 'flex-wrap border-b border-light-gray dark:border-dark-gray',
+        underline: '-mb-px flex-wrap border-b border-light-gray dark:border-dark-gray',
+        pills:
+          'flex-wrap space-x-2 text-sm font-medium text-light-primaryText dark:text-dark-primaryText',
+        fullWidth:
+          'grid w-full grid-flow-col divide-x divide-light-gray rounded-none text-sm font-medium shadow dark:divide-dark-gray dark:text-dark-primaryText',
+      },
+      tabitem: {
+        base: 'flex items-center justify-center rounded-t-lg p-4 text-sm font-medium first:ml-0 focus:outline-none disabled:cursor-not-allowed disabled:text-light-secondaryText disabled:dark:text-dark-secondaryText',
+        variant: {
+          default: {
+            base: 'rounded-t-lg',
+            active: {
+              on: 'bg-light-neutral text-light-primaryText dark:bg-dark-neutral dark:text-dark-primaryText',
+              off: 'text-light-charcoal hover:bg-light-gray/50 hover:text-light-charcoal dark:text-dark-charcoal dark:hover:bg-dark-gray/50 dark:hover:text-dark-charcoal',
+            },
+          },
+          underline: {
+            base: 'rounded-t-lg',
+            active: {
+              on: 'border-b-2 border-brand-dark text-brand-dark dark:border-brand-dark dark:text-brand-dark',
+              off: 'border-b-2 border-transparent text-light-primaryText hover:border-light-gray hover:text-light-gray dark:text-dark-gray dark:hover:text-dark-gray',
+            },
+          },
+          pills: {
+            base: '',
+            active: {
+              on: 'rounded-lg bg-brand-dark text-light-bg',
+              off: 'rounded-lg hover:bg-light-gray hover:text-light-charcoal dark:hover:bg-dark-gray dark:hover:text-dark-charcoal',
+            },
+          },
+          fullWidth: {
+            base: 'ml-0 flex w-full rounded-none first:ml-0',
+            active: {
+              on: 'rounded-none bg-light-neutral p-4 text-brand-dark dark:bg-dark-neutral dark:text-brand-dark',
+              off: 'rounded-none bg-transparent hover:bg-light-neutral/50 hover:text-brand-dark/50 dark:bg-transparent dark:hover:bg-dark-neutral/50 dark:hover:text-brand-dark/50',
+            },
+          },
+        },
+        icon: 'mr-2 h-5 w-5',
+      },
+    },
+    tabitemcontainer: {
+      base: '',
+      variant: {
+        default: '',
+        underline: '',
+        pills: '',
+        fullWidth: '',
+      },
+    },
+    tabpanel: 'py-3',
   },
   textarea: {
     base: 'block w-full rounded-md border text-md disabled:cursor-default disabled:opacity-50 p-3',
     colors: {
-      gray: 'border-gray bg-backgroundLight text-textPrimary placeholder-textSecondary focus:border-primary focus:ring-primary dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:border-primaryDark dark:focus:ring-primaryDark',
+      gray: 'border-light-gray bg-light-bg text-light-primaryText placeholder-light-secondaryText focus:border-brand-primary focus:ring-brand-primary dark:border-dark-gray dark:bg-dark-bg dark:text-dark-primaryText dark:placeholder-dark-secondaryText dark:focus:border-brand-dark dark:focus:ring-brand-dark',
     },
     withShadow: {
       on: 'shadow-sm dark:shadow-sm-light',
@@ -252,16 +225,16 @@ export const theme = {
   textInput: {
     base: 'flex',
     addon:
-      'inline-flex items-center rounded-l-md border border-r-0 border-gray bg-gray px-3 text-md text-textPrimary dark:border-grayDark dark:bg-grayDark dark:text-textInverse',
+      'inline-flex items-center rounded-l-md border border-r-0 border-light-gray bg-light-gray px-3 text-md text-light-primaryText dark:border-dark-gray dark:bg-dark-gray dark:text-dark-primaryText',
     field: {
       base: 'relative w-full',
       icon: {
         base: 'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3',
-        svg: 'h-5 w-5 text-textSecondary dark:text-textInverse',
+        svg: 'h-5 w-5 text-light-secondaryText dark:text-dark-secondaryText',
       },
       rightIcon: {
         base: 'pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3',
-        svg: 'h-5 w-5 text-textSecondary dark:text-textInverse',
+        svg: 'h-5 w-5 text-light-secondaryText dark:text-dark-secondaryText',
       },
       input: {
         base: 'block w-full border disabled:cursor-default disabled:opacity-50',
@@ -271,7 +244,7 @@ export const theme = {
           lg: 'p-4 sm:text-base',
         },
         colors: {
-          gray: 'border-gray bg-backgroundLight text-textPrimary placeholder-textSecondary focus:border-primary focus:ring-primary dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:border-primaryDark dark:focus:ring-primaryDark',
+          gray: 'border-light-gray bg-light-bg text-light-primaryText placeholder-light-secondaryText focus:border-brand-primary focus:ring-brand-primary dark:border-dark-gray dark:bg-dark-bg dark:text-dark-primaryText dark:placeholder-dark-secondaryText dark:focus:border-brand-dark dark:focus:ring-brand-dark',
         },
         withRightIcon: {
           on: 'pr-10',
@@ -299,18 +272,19 @@ export const theme = {
         on: 'cursor-pointer',
         off: 'cursor-not-allowed opacity-50',
       },
-      label: 'ms-3 mt-0.5 text-start text-sm font-medium text-textPrimary dark:text-textInverse',
+      label:
+        'ms-3 mt-0.5 text-start text-sm font-medium text-light-primaryText dark:text-dark-primaryText',
     },
     toggle: {
       base: 'relative rounded-full border after:absolute after:rounded-full after:bg-white after:transition-all group-focus:ring-0',
       checked: {
         on: 'after:translate-x-full after:border-white rtl:after:-translate-x-full',
-        off: 'border-gray bg-gray dark:border-grayDark dark:bg-grayDark',
+        off: 'border-light-gray bg-light-gray dark:border-dark-gray dark:bg-dark-gray',
         color: {
-          yellow: 'border-primary bg-primary',
-          blue: 'border-navy bg-navy',
-          dark: 'bg-backgroundDark border-grayDark',
-          light: 'bg-backgroundLight border-gray',
+          yellow: 'border-brand-primary bg-brand-primary',
+          blue: 'border-light-navy bg-light-navy',
+          dark: 'bg-dark-bg border-dark-gray',
+          light: 'bg-light-bg border-light-gray',
         },
       },
       sizes: {
@@ -323,12 +297,12 @@ export const theme = {
   select: {
     base: 'flex',
     addon:
-      'inline-flex items-center rounded-l-md border border-r-0 border-gray bg-gray px-3 text-sm text-textPrimary dark:border-grayDark dark:bg-grayDark dark:text-textInverse',
+      'inline-flex items-center rounded-l-md border border-r-0 border-light-gray bg-light-gray px-3 text-sm text-light-primaryText dark:border-dark-gray dark:bg-dark-gray dark:text-dark-primaryText',
     field: {
       base: 'relative w-full',
       icon: {
         base: 'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3',
-        svg: 'h-5 w-5 text-textSecondary dark:text-textInverse',
+        svg: 'h-5 w-5 text-light-secondaryText dark:text-dark-secondaryText',
       },
       select: {
         base: 'block w-full border disabled:cursor-default disabled:opacity-50',
@@ -351,7 +325,7 @@ export const theme = {
           lg: 'p-4 text-md',
         },
         colors: {
-          gray: 'border-gray bg-backgroundLight text-textPrimary placeholder-textSecondary focus:border-primary focus:ring-primary dark:border-grayDark dark:bg-backgroundDark dark:text-textInverse dark:placeholder-textInverse dark:focus:border-primaryDark dark:focus:ring-primaryDark',
+          gray: 'border-light-gray bg-light-bg text-light-primaryText placeholder-light-secondaryText focus:border-brand-primary focus:ring-brand-primary dark:border-dark-gray dark:bg-dark-bg dark:text-dark-primaryText dark:placeholder-dark-secondaryText dark:focus:border-brand-dark dark:focus:ring-brand-dark',
         },
       },
     },

@@ -12,6 +12,7 @@ import { PrayerRequest, YesNo } from '@/data/types';
 import CircleCheck from '@/components/icons/circleCheck';
 import SolidCircleX from '@/components/icons/solidCircleX';
 import { useCreatePrayerRequest } from '@/data/services/sanity/mutations/prayer-request';
+import { isValidEmail } from '@/data/utils';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import TextInput from '../inputs/text-input/TextInput';
 import TextareaInput from '../inputs/textarea-input/TextareaInput';
@@ -20,7 +21,11 @@ const schema = yup.object().shape({
   first_name: yup.string().required('Enter your first name'),
   last_name: yup.string().required('Enter your last name'),
   request_email_back: yup.string().oneOf([YesNo.YES, YesNo.NO]).default(YesNo.YES).required(),
-  email: yup.string().email().required('Enter your email'),
+  email: yup
+    .string()
+    .email()
+    .required('Enter your email')
+    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
   request: yup.string().required('Share your prayer'),
 });
 
@@ -59,10 +64,10 @@ const PrayerRequestForm = () => {
     <form
       ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-textInverse" />
+        <PencilPaper className="dark:fill-dark-primaryText" />
         <h4>Prayer Requests</h4>
       </div>
 

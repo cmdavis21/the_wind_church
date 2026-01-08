@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import Image from 'next/image';
 import React from 'react';
 
@@ -7,17 +8,30 @@ interface PageHeroProps {
   title: string;
   highlightTitle?: number[][];
   subtitle?: string;
-  short?: boolean;
+  size?: 'short' | 'reg' | 'full';
   media: {
     src: string;
     poster?: string;
   };
+  scrollTo?: string;
 }
 
-const PageHero: React.FC<PageHeroProps> = ({ title, highlightTitle, subtitle, short, media }) => {
+const PageHero: React.FC<PageHeroProps> = ({
+  title,
+  highlightTitle,
+  subtitle,
+  size = 'reg',
+  media,
+  scrollTo,
+}) => {
   return (
     <div
-      className={`relative w-full ${short ? 'h-[60vh] xl:h-[75vh]' : 'h-[95vh]'} overflow-hidden`}
+      className={cn(
+        size === 'short' && 'h-[60vh] xl:h-[75vh]',
+        size === 'reg' && 'h-[80vh]',
+        size === 'full' && 'h-[100vh]',
+        'relative w-full overflow-hidden'
+      )}
     >
       {/* BACKGROUND IMAGE */}
       {findMediaType(media.src) === MediaType.IMAGE && (
@@ -51,9 +65,9 @@ const PageHero: React.FC<PageHeroProps> = ({ title, highlightTitle, subtitle, sh
       ))}
 
       {/* CONTENT */}
-      <div className="absolute w-full h-full p-[20px] md:p-[50px] 2xl:p-[100px] z-30">
+      <div className="absolute w-full h-full p-5 md:p-[50px] 2xl:p-[100px] z-30">
         <div
-          className={`relative w-full h-full flex flex-col gap-lg items-center justify-end text-white`}
+          className={`relative w-full h-full flex flex-col gap-lg items-center ${scrollTo ? 'justify-center' : 'justify-end'} text-white`}
         >
           {highlightTitle ? (
             <div

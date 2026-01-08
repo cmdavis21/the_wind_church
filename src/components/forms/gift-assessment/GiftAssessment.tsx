@@ -71,7 +71,7 @@ const GiftAssessment = () => {
 
       {/* Results */}
       {showResults && dominateGifts && subordinateGifts && (
-        <div className="border border-gray  shadow-md p-md md:p-lg lg:p-xl rounded-xl flex flex-col gap-[50px]">
+        <div className="border border-light-gray  shadow-md p-md md:p-lg lg:p-xl rounded-xl flex flex-col gap-[50px]">
           {/* Gifts */}
           <div className="flex flex-col gap-md">
             <h3>Assessment Completed!</h3>
@@ -150,7 +150,7 @@ const GiftAssessment = () => {
                 }
                 fileName={PDF_FILE_NAME}
               >
-                <Button pill color="ghost" className="mx-auto max-md:!min-w-full md:w-fit">
+                <Button pill color="info" className="mx-auto max-md:!min-w-full md:w-fit">
                   Download Results as PDF
                 </Button>
               </PDFDownloadLink> */}

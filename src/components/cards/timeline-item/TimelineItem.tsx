@@ -40,18 +40,18 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
       >
         {/* line */}
         {vertical ? (
-          <div className="absolute left-[6px] -top-2 w-[0.5px] h-full bg-gray" />
+          <div className="absolute left-[6px] -top-2 w-[0.5px] h-full bg-light-gray" />
         ) : (
           <>
             {/* desktop */}
-            <div className="hidden md:block absolute -left-2 top-[6px] h-[0.5px] w-full bg-gray" />
+            <div className="hidden md:block absolute -left-2 top-[6px] h-[0.5px] w-full bg-light-gray" />
             {/* mobile */}
-            <div className="md:hidden absolute left-[6px] -top-2 w-[0.5px] h-full bg-gray" />
+            <div className="md:hidden absolute left-[6px] -top-2 w-[0.5px] h-full bg-light-gray" />
           </>
         )}
 
         {/* dot */}
-        <div className="relative min-w-3 min-h-3 max-w-3 max-h-3 bg-primary rounded-full" />
+        <div className="relative min-w-3 min-h-3 max-w-3 max-h-3 bg-brand-primary rounded-full" />
 
         {/* content */}
         <div
@@ -73,7 +73,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
                 {addTag}
               </Badge>
             )}
-            <h5 className="text-primaryDark font-bold leading-none">
+            <h5 className="text-brand-primary font-bold leading-none">
               {formatDateMMMddyyyy(event.date)}
             </h5>
             <h3 className="font-bold leading-none">{event.name}</h3>

@@ -16,7 +16,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ src, alt, open, setOpen }) => (
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute z-10 right-0 top-0 p-xs hover:cursor-pointer bg-gray hover:bg-gray/80 rounded-bl-lg rounded-tr-lg"
+          className="absolute z-10 right-0 top-0 p-xs hover:cursor-pointer bg-light-gray hover:bg-light-gray/80 rounded-bl-lg rounded-tr-lg"
         >
           <X />
         </button>

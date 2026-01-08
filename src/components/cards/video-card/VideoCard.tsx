@@ -2,8 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import { formatDateMMMddyyyy } from '@/data/format-date';
-
 interface VideoCardProps {
   poster: string;
   title: string;
@@ -15,7 +13,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ poster, title, date, link }) => (
   <Link href={link} target="_blank">
     <button
       type="button"
-      className="min-w-[200px] max-w-[500px] w-full rounded-lg hover:scale-105 hover:shadow-md hover:cursor-pointer transition-scale duration-300"
+      className="min-w-[200px] max-w-[350px] w-full rounded-lg hover:shadow-md hover:bg-brand-light p-xs hover:cursor-pointer"
     >
       <div className="relative w-full aspect-video">
         <Image
@@ -27,7 +25,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ poster, title, date, link }) => (
       </div>
       <div className="py-md flex flex-col gap-xs text-left">
         <h5 className="leading-none">{title}</h5>
-        <p className="font-bold">{formatDateMMMddyyyy(date)}</p>
+        {/* <p className="font-bold">{formatDateMMMddyyyy(date)}</p> */}
       </div>
     </button>
   </Link>

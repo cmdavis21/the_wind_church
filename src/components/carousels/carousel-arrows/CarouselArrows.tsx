@@ -1,6 +1,6 @@
-import React from 'react';
-
 import Chevron from '@/components/icons/chevron';
+import cn from 'classnames';
+import React from 'react';
 
 interface CarouselArrowsProps {
   className?: string;
@@ -23,27 +23,29 @@ const CarouselArrows: React.FC<CarouselArrowsProps> = ({
   leftArrowProps,
   rightArrowProps,
 }) => (
-  <div className={`flex items-center justify-between gap-md ${className ?? ''}`}>
+  <div className={cn('flex items-center justify-between gap-md', className)}>
     <button
       onClick={leftArrowProps.onClick}
-      className={`${leftArrowProps.buttonClassName ?? 'bg-black/40 p-sm'} rounded-full shadow-lg ${
-        leftArrowProps.disable ? 'opacity-50 pointer-events-none cursor-default' : 'opacity-80'
-      } transition-opacity duration-300`}
+      className={cn(
+        'rounded-full shadow-lg transition-opacity duration-300 bg-black/75 p-sm hover:opacity-50',
+        leftArrowProps.disable ? 'opacity-50 pointer-events-none cursor-default' : 'opacity-80',
+        leftArrowProps.buttonClassName
+      )}
     >
-      <Chevron
-        className={`${leftArrowProps.iconClassName ?? 'fill-white size-[22px]'} -rotate-90`}
-      />
+      {/* <Minus className={cn('fill-white size-6', leftArrowProps.iconClassName)} /> */}
+      <Chevron className={cn('-rotate-90 fill-white size-6', leftArrowProps.iconClassName)} />
     </button>
 
     <button
       onClick={rightArrowProps.onClick}
-      className={`${rightArrowProps.buttonClassName ?? 'bg-black/40 p-sm'} rounded-full shadow-lg ${
-        rightArrowProps.disable ? 'opacity-50 pointer-events-none cursor-default' : 'opacity-80'
-      } transition-opacity duration-300`}
+      className={cn(
+        'rounded-full shadow-lg transition-opacity duration-300 bg-black/75 p-sm hover:opacity-50',
+        rightArrowProps.disable ? 'opacity-50 pointer-events-none cursor-default' : 'opacity-80',
+        rightArrowProps.buttonClassName
+      )}
     >
-      <Chevron
-        className={`${rightArrowProps.iconClassName ?? 'fill-white size-[22px]'} rotate-90`}
-      />
+      {/* <Plus className={cn('fill-white size-6', rightArrowProps.iconClassName)} /> */}
+      <Chevron className={cn('rotate-90 fill-white size-6', rightArrowProps.iconClassName)} />
     </button>
   </div>
 );

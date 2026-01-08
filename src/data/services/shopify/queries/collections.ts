@@ -157,7 +157,7 @@ const getStorefrontCollections = async (): Promise<Collection[]> => {
         src: (item.node.featuredImage?.url as string) ?? '/images/misc/shop-placeholder-image.jpg',
         alt: item.node.featuredImage?.altText as string,
       },
-      totalInventory: item.node.totalInventory ?? 0,
+      total_inventory: item.node.totalInventory ?? 0,
       options:
         item.node.options && item.node.options[0]?.name !== 'Title'
           ? item.node.options.map((opt) => ({
@@ -195,7 +195,7 @@ const getStorefrontCollectionByHandle = async (handle: string): Promise<Collecti
         src: (item.node.featuredImage?.url as string) ?? '',
         alt: item.node.featuredImage?.altText as string,
       },
-      totalInventory: item.node.totalInventory ?? 0,
+      total_inventory: item.node.totalInventory ?? 0,
       options:
         item.node.options && item.node.options[0]?.name !== 'Title'
           ? item.node.options.map((opt) => ({

@@ -26,32 +26,8 @@ describe('CenterTextSection', () => {
     const highlightedWords = screen.getAllByText(/We're|family/); // Match highlighted words
     expect(highlightedWords.length).toBeGreaterThan(0); // Ensure at least one highlighted word is present
     highlightedWords.forEach((word) => {
-      expect(word).toHaveClass('font-bold text-primary dark:text-primaryDark');
+      expect(word).toHaveClass('font-bold text-brand-primary');
     });
-  });
-
-  it('should render title as React element', () => {
-    const reactElementTitle = <span className="text-navy">This is a React element title</span>;
-    render(<CenterTextSection title={reactElementTitle} description={description} />);
-
-    // Check if the React element title is rendered correctly
-    expect(screen.getByText('This is a React element title')).toBeInTheDocument();
-  });
-
-  it('should render without padding when noPadding is true', () => {
-    render(<CenterTextSection title={title} description={description} noPadding={true} />);
-    const container = screen.getByText(title).closest('div');
-
-    // Ensure no padding class is applied
-    expect(container).not.toHaveClass('py-[50px]');
-  });
-
-  it('should render with padding when noPadding is false or not provided', () => {
-    render(<CenterTextSection title={title} description={description} noPadding={false} />);
-    const container = screen.getByText(title).closest('div');
-
-    // Ensure padding class is applied
-    expect(container).toHaveClass('py-[50px]');
   });
 
   it('should handle the highlight prop for words correctly', () => {
@@ -61,7 +37,7 @@ describe('CenterTextSection', () => {
       htmlTag: 'h1',
     });
     const highlightedText =
-      '<span class="font-bold text-primary dark:text-primaryDark">We\'re</span>&nbsp;<span class="font-bold text-primary dark:text-primaryDark">family</span>';
+      '<span class="font-bold text-brand-primary">We\'re</span>&nbsp;<span class="font-bold text-brand-primary">family</span>';
     expect(result).toContain(highlightedText); // Check if the highlighted words are in the result
   });
 });

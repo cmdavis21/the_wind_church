@@ -13,6 +13,7 @@ import PencilPaper from '@/components/icons/pencilPaper';
 import Trash from '@/components/icons/trash';
 
 import { useNextGenRosterSignup } from '@/data/services/sanity/mutations/next-gen-roster-signup';
+import { isValidEmail, isValidPhone } from '@/data/utils';
 import AlertMessage from '../inputs/alert-message/AlertMessage';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import SelectInput from '../inputs/select-input/SelectInput';
@@ -43,17 +44,26 @@ const schema = yup.object().shape({
               yup.object().shape({
                 first_name: yup.string().required("Enter the guardian's first name"),
                 last_name: yup.string().required("Enter the guardian's last name"),
-                email: yup.string().email().required("Enter the guardian's email"),
-                phone: yup.string().required("Enter the guardian's phone number"),
+                email: yup
+                  .string()
+                  .email()
+                  .required("Enter the guardian's email")
+                  .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
+                phone: yup
+                  .string()
+                  .min(10)
+                  .max(11)
+                  .required("Enter the guardian's phone number")
+                  .test('Include 10 to 11 digit valid phone number', (val) => isValidPhone(val)),
                 relationship_to_child: yup.string().required('Enter the relationship'),
               })
             )
             .required()
             .min(1, 'At least one guardian is required'),
         })
-        .required()
+        .required('Add at least one guardian of this child')
     )
-    .required(),
+    .required('Add at least one child'),
 });
 
 const SCHOOL_GRADES = [
@@ -138,10 +148,10 @@ const NextGenRosterSignupForm = () => {
     <form
       ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-textInverse" />
+        <PencilPaper className="dark:fill-dark-primaryText" />
         <h4>Next Gen Roster Signup</h4>
       </div>
 
@@ -299,9 +309,9 @@ const NextGenRosterSignupForm = () => {
               ],
             })
           }
-          className="w-fit flex items-center gap-[4px] body-large hover:underline text-navyLight"
+          className="w-fit flex items-center gap-[4px] body-large hover:underline text-light-navyLight"
         >
-          <CirclePlus className="size-[16px] fill-navyLight" />
+          <CirclePlus className="size-[16px] fill-light-navyLight" />
           Add another child
         </button>
       )}

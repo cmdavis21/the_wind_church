@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-
-import UpArrow from '@/components/icons/upArrow';
-
+import BagIcon from '@/components/icons/bag';
 import { PageRoutes } from '@/data/page-routes';
+import { useTheme } from '@/data/providers/theme-mode-provider';
 import { useCartFunctions } from '@/data/services/shopify/cart-hook';
 import { NavbarColumnItem } from '@/data/types';
+import cn from 'classnames';
 import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 
 interface DesktopNavItemWithDropdownProps {
   label: string;
@@ -26,8 +26,10 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
   open,
   setOpen,
 }) => {
+  const { darkMode } = useTheme();
   const { getCart } = useCartFunctions();
   const [isActive, setIsActive] = useState(false);
+
   useEffect(() => {
     if (submenu.find((s) => pathname.includes(s.link))) {
       setIsActive(true);
@@ -39,9 +41,18 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
   return (
     <div className="relative inline-block group">
       {/* CART QTY COUNT */}
-      {submenu.find((s) => s.link === PageRoutes.cart) && getCart && getCart.totalQuantity > 0 && (
-        <div className="absolute -top-2 -right-2.5 size-3.5 bg-error text-white dark:text-textInverse text-[8.5px] leading-none rounded-full flex items-center justify-center group-hover:opacity-0 pointer-events-none transition-opacity duration-100 line-clamp-1 overflow-hidden">
-          {getCart.totalQuantity}
+      {submenu.find((s) => s.link === PageRoutes.cart) && getCart && getCart.total_quantity > 0 && (
+        <div className="absolute z-10 top-1 -right-4 group-hover:opacity-0 pointer-events-none transition-opacity duration-150">
+          <BagIcon
+            width={15}
+            height={15}
+            count={getCart.total_quantity > 5 ? '5+' : getCart.total_quantity}
+            fill={
+              changeColor
+                ? `${darkMode ? '#FFFFFFCC' : '#000000'}`
+                : `${darkMode ? '#FFFFFFCC' : '#FFF'}`
+            }
+          />
         </div>
       )}
 
@@ -49,7 +60,9 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
       <button className="flex flex-col items-center justify-center gap-[2px] hover:cursor-pointer">
         <h5
           className={`${
-            changeColor ? 'text-black dark:text-textInverse' : 'text-white dark:text-textInverse'
+            changeColor
+              ? 'text-light-primaryText dark:text-dark-primaryText'
+              : 'text-dark-primaryText'
           } whitespace-nowrap tracking-wider uppercase font-normal`}
         >
           {label}
@@ -58,58 +71,51 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
         {/* Decorative underline */}
         <div className="flex justify-center items-center h-fit w-full px-sm">
           <div
-            className={`h-[2px] bg-primary dark:bg-primaryDark w-1/2 transform origin-right scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 ${isActive || open ? 'scale-x-100' : 'group-hover:scale-x-100'} rounded-l-full`}
+            className={cn(
+              isActive || open ? 'scale-x-100' : 'group-hover:scale-x-100',
+              'h-[2px] bg-brand-primary w-1/2 transform origin-right scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 rounded-l-full'
+            )}
           ></div>
           <div
-            className={`h-[2px] bg-primary dark:bg-primaryDark w-1/2 transform origin-left scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 ${isActive || open ? 'scale-x-100' : 'group-hover:scale-x-100'} rounded-r-full`}
+            className={cn(
+              isActive || open ? 'scale-x-100' : 'group-hover:scale-x-100',
+              'h-[2px] bg-brand-primary w-1/2 transform origin-left scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 rounded-r-full'
+            )}
           ></div>
         </div>
       </button>
 
       {/* SUBMENU */}
-      <div className="h-0 pointer-events-none opacity-0 overflow-hidden group-hover:h-fit group-hover:pointer-events-auto group-hover:opacity-100 z-[9000] absolute pt-[15px] w-fit left-1/2 -translate-x-1/2 transition-[opacity] duration-300">
+      <div className="h-0 pointer-events-none opacity-0 overflow-hidden group-hover:h-fit group-hover:pointer-events-auto group-hover:opacity-100 z-[9000] absolute pt-[15px] pb-2 w-fit left-1/2 -translate-x-1/2 transition-[opacity,height] duration-300">
         <div className="flex flex-col gap-xs">
           {Array.isArray(submenu) &&
             submenu.map((item) => (
               <Link
                 href={item.link}
                 key={`desktop-submenu-nav-item-${item.label}-${item.link}`}
-                onClick={() => {
-                  setOpen(false);
-                }}
+                onClick={() => setOpen(false)}
               >
-                <div className="relative group/sub w-full border border-gray dark:border-grayDark shadow rounded-full max-w-[225px]">
-                  {/* decorative button fill */}
-                  <div
-                    className={`absolute w-full h-full top-0 left-0 overflow-hidden rounded-full ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-grayDark'}`}
-                  >
-                    <div className="h-full flex items-center">
-                      <div
-                        className={`w-full h-[42px] rounded-full shadow-2xl  ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark' : 'bg-white dark:bg-grayDark'} ${pathname === item.link ? '!w-0' : 'group-hover/sub:w-0'} transition-all duration-500`}
-                      />
-                      <div
-                        className={`w-0 h-[42px] rounded-full bg-primary dark:bg-primaryDark ${pathname === item.link ? 'w-full' : 'group-hover/sub:w-full'} transition-all duration-500`}
-                      />
-                    </div>
+                <div className="relative group/sub w-full border border-light-neutral dark:border-dark-gray bg-light-bg dark:bg-dark-bg shadow rounded-full">
+                  {/* decorative sliding fill */}
+                  <div className="absolute inset-0 overflow-hidden rounded-full">
+                    <div
+                      className={cn(
+                        'h-full rounded-full bg-brand-primary dark:bg-brand-dark',
+                        'transition-[width] duration-500 ease-out',
+                        'absolute right-0 origin-right',
+                        pathname === item.link ? 'w-full' : 'w-0 group-hover/sub:w-full'
+                      )}
+                    />
                   </div>
 
-                  <div className="relative flex items-center gap-xxs py-xs px-md rounded-full">
-                    <div className="body-large capitalize whitespace-nowrap flex items-center">
-                      {item.label}
-                      {item.link === PageRoutes.cart && getCart && getCart.totalQuantity > 0 && (
-                        <span className="ml-1.5 body-small font-bold">
-                          ({getCart.totalQuantity} items)
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="overflow-hidden relative min-w-[20px] min-h-[20px]">
-                      <UpArrow
-                        className={`${
-                          pathname === item.link ? 'hidden' : 'block'
-                        } dark:fill-textInverse absolute rotate-90 right-[20px] group-hover/sub:right-0 transition-all duration-500`}
-                      />
-                    </div>
+                  {/* button content */}
+                  <div className="relative py-xs px-lg body-large capitalize whitespace-nowrap flex items-center">
+                    {item.label}
+                    {item.link === PageRoutes.cart && getCart && getCart.total_quantity > 0 && (
+                      <span className="ml-1.5 body-small font-bold">
+                        ({getCart.total_quantity} items)
+                      </span>
+                    )}
                   </div>
                 </div>
               </Link>

@@ -1,87 +1,44 @@
-import React, { useRef } from 'react';
-
 import LanguageSelector from '@/components/buttons/language-selector/LanguageSelector';
 import VerticalEllipsis from '@/components/icons/verticalEllipsis';
 import DarkThemeToggler from '@/components/theme-mode/dark-theme-toggler/DarkThemeToggler';
-import { useWindowDimensions } from '@/data/hooks';
+import cn from 'classnames';
+import React from 'react';
 
 interface UserSettingsProps {
   changeColor: boolean;
-  open: boolean;
-  setOpen: (open: boolean) => void;
 }
 
-const UserSettings: React.FC<UserSettingsProps> = ({ changeColor, open, setOpen }) => {
-  // const [open, setOpen] = useState(false);
-  const { width } = useWindowDimensions();
-  const navItem = useRef<HTMLButtonElement | null>(null);
-  const subMenuDropdown = useRef<HTMLDivElement | null>(null);
-
+const UserSettings: React.FC<UserSettingsProps> = ({ changeColor }) => {
   return (
-    <div
-      onMouseEnter={() => width >= 1024 && setOpen(true)}
-      onMouseLeave={() => width >= 1024 && setOpen(false)}
-      onClick={() => {
-        if (width < 1024) {
-          return setOpen(!open);
-        } else {
-          return undefined;
-        }
-      }}
-      className="relative overflow-visible"
-    >
-      <button
-        type="button"
-        ref={navItem}
-        className="group flex flex-col items-center justify-center gap-[2px] hover:cursor-pointer"
-      >
+    <div className="relative inline-block group">
+      <button className="flex flex-col items-center justify-center gap-[2px] hover:cursor-pointer">
         <VerticalEllipsis
-          className={`size-[25px] ${changeColor ? 'fill-black dark:fill-textInverse' : 'fill-white dark:fill-textInverse'}`}
+          className={cn(changeColor ? 'fill-black dark:fill-white' : 'fill-white', 'size-[25px]')}
         />
-        <div
-          className={`w-0 h-[2px] bg-primary dark:bg-primaryDark ${
-            open ? 'w-[60%]' : 'group-hover:w-[60%]'
-          } rounded-sm transition-[width] duration-300`}
-        />
+
+        {/* Decorative underline */}
+        <div className="flex justify-center items-center h-fit w-full px-xxs">
+          <div
+            className={`h-[2px] bg-brand-primary w-1/2 transform origin-right scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 group-hover:scale-x-100 rounded-l-full`}
+          ></div>
+          <div
+            className={`h-[2px] bg-brand-primary w-1/2 transform origin-left scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 group-hover:scale-x-100 rounded-r-full`}
+          ></div>
+        </div>
       </button>
 
-      <div
-        onMouseLeave={() => setOpen(false)}
-        style={{
-          height: open ? `${subMenuDropdown.current?.offsetHeight}px` : '0px',
-        }}
-        className={`absolute left-[50%] -translate-x-[50%] bottom-[${
-          navItem.current?.getBoundingClientRect().bottom ?? 0
-        }px] ${
-          open ? 'opacity-100' : 'pointer-events-none overflow-hidden opacity-0'
-        } transition-[height, opacity] duration-500`}
-      >
-        {/* Transparent spacer */}
-        <div className="w-full h-[20px]" />
-
-        <div className="px-xs">
+      {/* SUBMENU */}
+      <div className="h-0 pointer-events-none opacity-0 overflow-hidden group-hover:h-fit group-hover:pointer-events-auto group-hover:opacity-100 z-[9000] absolute pt-[15px] pb-2 w-fit left-1/2 -translate-x-1/2 transition-[opacity] duration-300">
+        <div className="flex flex-col gap-xs">
           <div
-            ref={subMenuDropdown}
-            className="w-full flex flex-col gap-xs transition-colors duration-500"
+            className={`relative group/sub border border-light-neutral dark:border-dark-gray shadow rounded-full py-xs px-md ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-dark-bg' : 'bg-light-bg dark:bg-dark-bg'}`}
           >
-            <div
-              className={`flex justify-center ${
-                changeColor
-                  ? 'bg-white dark:bg-backgroundDark drop-shadow-xl shadow-2xl'
-                  : 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark'
-              } w-full max-w-[150px] rounded-full px-md py-xs`}
-            >
-              <DarkThemeToggler changeColor={changeColor} />
-            </div>
-            <div
-              className={`flex justify-center ${
-                changeColor
-                  ? 'bg-white dark:bg-backgroundDark drop-shadow-xl shadow-2xl'
-                  : 'bg-[rgba(255,255,255,0.98)] dark:bg-backgroundDark'
-              } w-full max-w-[150px] rounded-full px-md py-xs`}
-            >
-              <LanguageSelector changeColor={changeColor} />
-            </div>
+            <DarkThemeToggler changeColor={changeColor} />
+          </div>
+          <div
+            className={`relative group/sub border border-light-neutral dark:border-dark-gray shadow rounded-full py-xs px-md ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-dark-bg' : 'bg-light-bg dark:bg-dark-bg'}`}
+          >
+            <LanguageSelector changeColor={changeColor} />
           </div>
         </div>
       </div>

@@ -45,9 +45,8 @@ const NextGen = async () => {
       {/* Core Principles */}
       <div className="flex flex-col gap-xl md:gap-xxl">
         <CenterTextSection
-          noPadding
-          title="Core Principles"
           highlight={[[0, 0]]}
+          title="Core Principles"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, cum reiciendis ad, maiores quaerat"
         />
         <div className="flex flex-wrap gap-xxl justify-center">
@@ -86,7 +85,6 @@ const NextGen = async () => {
       {nextGenPageInfo && nextGenPageInfo.educators && (
         <div className="flex flex-col gap-xl md:gap-xxl">
           <SectionHeader
-            noPadding
             title="Meet our Educators & Caretakers"
             subtitle="Select Leaders to learn more"
           />
@@ -120,7 +118,6 @@ const NextGen = async () => {
       {/* Upcoming Events for Youth */}
       <div className="flex flex-col gap-xl md:gap-xxl">
         <CenterTextSection
-          noPadding
           title="Youth Events"
           description="Look out for fun, adventurous, and learning-focused events for the Wind youth!"
         />
@@ -149,7 +146,7 @@ const NextGen = async () => {
 
       {/* Nursery */}
       <MediaBackgroundAndContent
-        rounded
+        fullWidth={false}
         background={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_1.jpg`,
         }}
@@ -165,7 +162,6 @@ const NextGen = async () => {
       {/* FAQs */}
       <div className="flex flex-col gap-xl md:gap-xxl">
         <SectionHeader
-          noPadding
           title="Frequently Asked Questions"
           subtitle="Let us tell you more about The Wind Youth Services"
         />
@@ -225,6 +221,7 @@ const NextGen = async () => {
         <NextGenRosterSignupForm />
       </div>
 
+      {/* PAGE SCROLL-UP BUTTON */}
       <PageScrollUpButton />
     </div>
   );

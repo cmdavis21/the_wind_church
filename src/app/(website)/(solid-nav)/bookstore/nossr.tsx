@@ -2,9 +2,11 @@
 
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import ProductCard from '@/components/cards/product-card/ProductCard';
+import ProductCardSkeleton from '@/components/cards/product-card/ProductCard.skeleton';
 import ErrorPage from '@/components/error-page/ErrorPage';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
 import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import { useGetStorefrontCollections } from '@/data/services/shopify/queries/collections';
 
@@ -31,7 +33,18 @@ const BookstoreClient = () => {
 
       <div className="relative max-w-[1440px] flex flex-col gap-xxl">
         {/* LOADING */}
-        {collectionsLoading && <div />}
+        {collectionsLoading &&
+          Array.from({ length: 4 }).map((_, index) => (
+            <div key={`bookstore-collections-skeleton-${index}`} className="flex flex-col gap-md">
+              <SectionHeaderSkeleton />
+
+              <div className="pt-lg grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
+                {Array.from({ length: 6 }).map((_, idx) => (
+                  <ProductCardSkeleton key={`bookstore-collections-skeleton-card-${index}`} />
+                ))}
+              </div>
+            </div>
+          ))}
 
         {/* COLLECTIONS */}
         {!collectionsLoading &&
@@ -40,11 +53,11 @@ const BookstoreClient = () => {
             <div
               key={`bookstore-collections-${coll.handle}`}
               id={coll.handle}
-              className="flex flex-col gap-md"
+              className="flex flex-col gap-xl"
             >
               <SectionHeader title={coll.title} />
 
-              <div className="pt-lg grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg">
+              <div className="pt-lg grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
                 {coll.products
                   .sort((a, b) => a.title.localeCompare(b.title))
                   .map((prod) => (
@@ -53,9 +66,8 @@ const BookstoreClient = () => {
                       title={prod.title}
                       minPrice={prod.minPrice}
                       maxPrice={prod.maxPrice}
-                      totalInventory={prod.totalInventory}
+                      totalInventory={prod.total_inventory}
                       handle={prod.handle}
-                      options={prod.options}
                     />
                   ))}
               </div>
@@ -63,7 +75,7 @@ const BookstoreClient = () => {
           ))}
       </div>
 
-      {/* Page Scroll Button */}
+      {/* PAGE SCROLL-UP BUTTON */}
       <PageScrollUpButton />
     </div>
   );

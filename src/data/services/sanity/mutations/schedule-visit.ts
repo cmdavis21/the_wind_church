@@ -1,8 +1,8 @@
-import { PlanYourVisit } from '@/data/types';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { SCHEDULE_VISIT_KEY, WEBSITE_BASE_URL } from '@/data/constants';
+import { FORM_TYPES, PlanYourVisit } from '@/data/types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
-import { SCHEDULE_VISIT_KEY } from '@/data/constants';
 
 export const createScheduleVisitClient = async (data: PlanYourVisit) => {
   try {
@@ -29,9 +29,20 @@ export const useCreateScheduleVisit = () => {
   return useMutation({
     mutationFn: createScheduleVisitClient,
     mutationKey: [SCHEDULE_VISIT_KEY],
-    onSettled: () => {
+    onSettled: async (d, e, variables) => {
       queryClient.invalidateQueries({
         queryKey: [SCHEDULE_VISIT_KEY],
+      });
+      await fetch('/api/form-submission', {
+        method: 'POST',
+        body: JSON.stringify({
+          formType: FORM_TYPES.PLAN_YOUR_VISIT,
+          payload: {
+            firstName: variables.first_name,
+            lastName: `${variables.last_name.charAt(0)}.`,
+            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.PLAN_YOUR_VISIT}`,
+          },
+        }),
       });
     },
   });

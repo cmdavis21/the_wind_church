@@ -24,11 +24,11 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeCo
     <div
       className={`w-full hidden lg:block ${
         changeColor
-          ? `${darkMode ? 'bg-backgroundDark shadow-xl' : 'bg-[rgba(255,255,255,0.98)] shadow-sm'}`
+          ? `${darkMode ? 'bg-dark-bg shadow-xl' : 'bg-light-bg shadow-sm'}`
           : 'bg-gradient-to-b from-black/40'
       } transition-[height, opacity] duration-500 rounded-b-lg`}
     >
-      <div className="flex justify-between items-end gap-sm pt-3 pb-5 px-[20px] 2xl:px-[75px]">
+      <div className="flex justify-between items-end gap-sm pt-3 pb-5 px-5 2xl:px-[75px]">
         <Link href={PageRoutes.home}>
           <ThemeModeLogo changeColor={changeColor} className="w-full min-w-[150px] max-w-[150px]" />
         </Link>
@@ -65,19 +65,10 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeCo
           <NavbarButton
             label={menuOptions[menuOptions.length - 1].label}
             link={menuOptions[menuOptions.length - 1].link ?? '#'}
-            activeNav={openNav !== null}
-            changeColor={changeColor}
             onClick={() => setOpenNav(null)}
-          />
-          <UserSettings
             changeColor={changeColor}
-            open={openNav === menuOptions.length + 1}
-            setOpen={(open) => {
-              if (open) {
-                setOpenNav(menuOptions.length + 1);
-              } else setOpenNav(null);
-            }}
           />
+          <UserSettings changeColor={changeColor} />
         </div>
       </div>
     </div>

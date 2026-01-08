@@ -14,10 +14,6 @@ interface ProductCardProps {
   maxPrice: Price;
   totalInventory: number;
   handle: string;
-  options?: {
-    name: string;
-    values: { name: string; color?: string }[];
-  }[];
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -30,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   return (
     <Link href={`${PageRoutes.bookstore}/${handle}`} className="group w-full h-fit max-w-[300px]">
-      <div className="h-full flex flex-col items-center rounded-xl overflow-hidden border border-gray dark:border-grayDark bg-white dark:bg-backgroundDark shadow-sm hover:shadow-md transition-shadow duration-200">
+      <div className="h-full flex flex-col items-center rounded-xl overflow-hidden border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm hover:shadow-md transition-shadow duration-200">
         {/* Cover Image */}
         <div className="relative w-full aspect-[3/4] bg-white dark:opacity-75 overflow-hidden">
           <Image
@@ -48,17 +44,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Content */}
         <div className="p-4 w-full h-full text-center flex flex-col items-between gap-2">
-          <h5 className="text-base font-semibold text-textPrimary dark:text-textInverse line-clamp-1">
+          <h5 className="text-base font-semibold text-textPrimary dark:text-dark-primaryText line-clamp-1">
             {title}
           </h5>
 
-          <p className="font-medium body-large text-navy dark:text-navyLight">
+          <p className="font-medium body-large text-light-navy dark:text-dark-navy">
             {minPrice.amount !== maxPrice.amount
               ? `${formatPrice(minPrice)} – ${formatPrice(maxPrice)}`
               : formatPrice(minPrice)}
           </p>
 
-          <Button pill fullSized color="ghost">
+          <Button pill fullSized color="info">
             View Product
           </Button>
         </div>

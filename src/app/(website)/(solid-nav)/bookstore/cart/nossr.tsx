@@ -13,44 +13,60 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const CartPage = () => {
-  const { getCart, updateCartItems, deleteCartItems } = useCartFunctions();
+  const { getCart, cartLoading, updateCartItems, deleteCartItems } = useCartFunctions();
   const [loadingItem, setLoadingItem] = useState<number | null>(null);
+
   return (
     <div className="px-padding flex flex-col gap-lg lg:gap-xxl items-center">
       <PageHeader title="Your Cart" subtitle="" />
 
-      {getCart && getCart?.lines.length > 0 ? (
+      {cartLoading && <div></div>}
+
+      {!cartLoading && (!getCart || (getCart && getCart?.lines.length <= 0)) && (
+        <div className="flex flex-col gap-lg items-center justify-center">
+          <h4 className="text-center">There are no products in your cart.</h4>
+          <Link href={PageRoutes.bookstore} className="w-full md:w-[calc(50%-8px)]">
+            <Button pill fullSized color="primary" className="whitespace-nowrap">
+              Contine Shopping
+            </Button>
+          </Link>
+        </div>
+      )}
+
+      {!cartLoading && getCart && getCart?.lines.length > 0 && (
         <div className="w-full rounded-lg md:p-lg flex flex-col gap-lg">
           <h5>
             You have{' '}
             <span className="font-bold">
-              {getCart?.totalQuantity} item{getCart?.totalQuantity > 1 ? 's' : ''}
+              {getCart?.total_quantity} item{getCart?.total_quantity > 1 ? 's' : ''}
             </span>{' '}
             in the cart
           </h5>
 
-          <hr className="text-gray dark:text-grayDark" />
+          <hr className="text-light-gray dark:text-light-grayDark" />
 
           {/* DESKTOP */}
           <div className="hidden md:block w-full">
             <table className="w-full">
               <thead>
                 <tr>
-                  <th className="w-[50%] pb-md text-left font-bold text-charcoalLight">Product</th>
-                  <th className="w-[12.5%] pb-md text-center font-bold text-charcoalLight">
+                  <th className="w-[50%] pb-md text-left font-bold text-light-charcoalLight">
+                    Product
+                  </th>
+                  <th className="w-[12.5%] pb-md text-center font-bold text-light-charcoalLight">
                     Price
                   </th>
-                  <th className="w-[12.5%] pb-md text-center font-bold text-charcoalLight">
+                  <th className="w-[12.5%] pb-md text-center font-bold text-light-charcoalLight">
                     Quantity
                   </th>
-                  <th className="w-[12.5%] pb-md text-center font-bold text-charcoalLight">
+                  <th className="w-[12.5%] pb-md text-center font-bold text-light-charcoalLight">
                     Subtotal
                   </th>
-                  <th className="w-[12.5%] pb-md text-left font-bold text-charcoalLight"></th>
+                  <th className="w-[12.5%] pb-md text-left font-bold text-light-charcoalLight"></th>
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-gray dark:divide-grayDark">
+              <tbody className="divide-y divide-light-gray dark:divide-dark-gray">
                 {getCart?.lines
                   .sort((a, b) => a.title.localeCompare(b.title))
                   .map((line, index) => (
@@ -60,7 +76,7 @@ const CartPage = () => {
                         loadingItem === index ? 'opacity-50 pointer-events-none animate-pulse' : ''
                       }`}
                     >
-                      <td className="py-lg last:pb-0">
+                      <td className="py-lg">
                         <div className="flex gap-md">
                           <Image
                             width={100}
@@ -71,9 +87,9 @@ const CartPage = () => {
                           />
                           <div className="flex flex-col gap-xs">
                             <h5 className="font-bold">{line.title}</h5>
-                            {line.variant.selectedOptions.map((opt) => (
+                            {line.variant.selected_options.map((opt) => (
                               <p key={opt.name} className="capitalize body-small">
-                                <span className="text-charcoal dark:text-charcoalLight">
+                                <span className="text-light-charcoal dark:text-dark-charcoal">
                                   {opt.name}:
                                 </span>{' '}
                                 {opt.value}
@@ -83,11 +99,11 @@ const CartPage = () => {
                         </div>
                       </td>
 
-                      <td className="py-lg last:pb-0 text-center body-large">
+                      <td className="py-lg text-center body-large">
                         {formatPrice(line.variant.price)}
                       </td>
 
-                      <td className="py-lg last:pb-0">
+                      <td className="py-lg">
                         <div className="w-fit mx-auto">
                           <QuantityInput
                             maxQuantity={10}
@@ -108,11 +124,11 @@ const CartPage = () => {
                         </div>
                       </td>
 
-                      <td className="py-lg last:pb-0 text-center body-large font-[500]">
-                        {formatPrice(line.subtotalAmount)}
+                      <td className="py-lg text-center body-large font-[500]">
+                        {formatPrice(line.subtotal_amount)}
                       </td>
 
-                      <td className="py-lg last:pb-0">
+                      <td className="py-lg">
                         <Button
                           pill
                           size="sm"
@@ -137,11 +153,11 @@ const CartPage = () => {
           </div>
 
           {/* MOBILE */}
-          <div className="md:hidden divide-y divide-gray dark:divide-grayDark">
+          <div className="md:hidden divide-y divide-light-gray dark:divide-dark-gray">
             {getCart?.lines.map((line, index) => (
               <div
                 key={`cart-page-mobile-${line.title}`}
-                className={`${loadingItem === index ? 'opacity-50 pointer-events-none animate-pulse' : ''} flex gap-md px-sm py-lg first:pt-0 last:pb-0`}
+                className={`${loadingItem === index ? 'opacity-50 pointer-events-none animate-pulse' : ''} flex gap-md px-sm py-lg first:pt-0`}
               >
                 <Image
                   width={60}
@@ -152,14 +168,16 @@ const CartPage = () => {
                 />
                 <div className="flex flex-col gap-xs">
                   <h6 className="font-bold">{line.title}</h6>
-                  {line.variant.selectedOptions.map((opt) => (
+                  {line.variant.selected_options.map((opt) => (
                     <p className="capitalize">
-                      <span className="text-charcoal dark:text-charcoalLight">{opt.name}:</span>{' '}
+                      <span className="text-light-charcoal dark:text-dark-charcoal">
+                        {opt.name}:
+                      </span>{' '}
                       {opt.value}
                     </p>
                   ))}
                   <p className="capitalize">
-                    <span className="text-charcoal dark:text-charcoalLight">Price:</span>{' '}
+                    <span className="text-light-charcoal dark:text-dark-charcoal">Price:</span>{' '}
                     {formatPrice(line.variant.price)} {line.variant.price.currencyCode}
                   </p>
                   <QuantityInput
@@ -180,8 +198,8 @@ const CartPage = () => {
                     }}
                   />
                   <p className="capitalize">
-                    <span className="text-charcoal dark:text-charcoalLight">Total:</span>{' '}
-                    {formatPrice(line.subtotalAmount)} {line.subtotalAmount.currencyCode}
+                    <span className="text-light-charcoal dark:text-dark-charcoal">Total:</span>{' '}
+                    {formatPrice(line.subtotal_amount)} {line.subtotal_amount.currencyCode}
                   </p>
                   <Button
                     pill
@@ -203,34 +221,25 @@ const CartPage = () => {
             ))}
           </div>
 
-          <hr className="text-gray dark:text-grayDark" />
+          <hr className="text-light-gray dark:text-light-grayDark" />
 
           {/* TOTAL + CHECKOUT */}
           <div className="flex flex-col gap-md md:items-end text-left md:text-right">
-            <h3>Subtotal: {formatPrice(getCart?.subtotalAmount)}</h3>
+            <h3>Subtotal: {formatPrice(getCart?.subtotal_amount)}</h3>
             <h6>Taxes and Delivery charges calculated at checkout</h6>
             <div className="max-md:w-full flex flex-col md:flex-row gap-md">
               <Link href={PageRoutes.bookstore} className="w-full md:w-fit max-md:order-last">
-                <Button pill color="ghost" fullSized className="md:w-fit whitespace-nowrap">
+                <Button pill color="info" fullSized className="md:w-fit whitespace-nowrap">
                   Contine Shopping
                 </Button>
               </Link>
-              <Link href={getCart?.checkoutUrl} className="w-full md:w-fit">
+              <Link href={getCart?.checkout_url} className="w-full md:w-fit">
                 <Button pill color="primary" fullSized>
                   Checkout
                 </Button>
               </Link>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-lg items-center justify-center">
-          <h4 className="text-center">There are no products in your cart.</h4>
-          <Link href={PageRoutes.bookstore} className="w-full md:w-[calc(50%-8px)]">
-            <Button pill fullSized color="primary" className="whitespace-nowrap">
-              Contine Shopping
-            </Button>
-          </Link>
         </div>
       )}
     </div>

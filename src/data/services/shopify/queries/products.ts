@@ -16,7 +16,6 @@ const getStorefrontProductsQuery = () => {
           node: {
             title: true,
             handle: true,
-            descriptionHtml: true,
             featuredImage: {
               url: [
                 {
@@ -185,7 +184,7 @@ const getStorefrontProducts = async (): Promise<ProductPreview[]> => {
       src: (item.node.featuredImage?.url as string) ?? '',
       alt: item.node.featuredImage?.altText as string,
     },
-    totalInventory: item.node.totalInventory ?? 0,
+    total_inventory: item.node.totalInventory ?? 0,
     options:
       item.node.options && item.node.options[0]?.name !== 'Title'
         ? item.node.options.map((opt) => ({
@@ -206,12 +205,12 @@ export const getStorefrontProductByHandle = async (handle: string): Promise<Prod
 
   return {
     title: product.title,
-    descriptionHtml: (product.descriptionHtml as string) ?? '',
+    description_html: (product.descriptionHtml as string) ?? '',
     images: product.images.nodes.map((img) => ({
       src: (img.url as string) ?? '',
       alt: img.altText ?? '',
     })),
-    firstVariant:
+    first_variant:
       product.selectedOrFirstAvailableVariant?.selectedOptions[0].name !== 'Title'
         ? product.selectedOrFirstAvailableVariant?.selectedOptions
         : undefined,
@@ -237,14 +236,14 @@ export const getStorefrontProductByHandle = async (handle: string): Promise<Prod
         amount: (variant.price.amount as string) ?? 0,
         currencyCode: variant.price.currencyCode,
       },
-      compareAtPrice: variant.compareAtPrice
+      compare_price: variant.compareAtPrice
         ? {
             amount: (variant.compareAtPrice.amount as string) ?? 0,
             currencyCode: variant.compareAtPrice.currencyCode,
           }
         : undefined,
-      quantityAvailable: variant.quantityAvailable ?? 0,
-      selectedOptions:
+      quantity_available: variant.quantityAvailable ?? 0,
+      selected_options:
         variant.selectedOptions && variant.selectedOptions[0]?.name !== 'Title'
           ? variant.selectedOptions.map((opt) => ({
               name: opt.name,

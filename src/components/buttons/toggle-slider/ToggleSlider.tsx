@@ -32,12 +32,12 @@ const ToggleSlider: React.FC<ToggleSliderProps> = ({ defaultSelect, options }) =
   return (
     <div
       ref={containerRef}
-      className="relative flex gap-md w-fit justify-center bg-gray/20 dark:bg-softGray rounded-full p-xs"
+      className="relative flex gap-md w-fit justify-center bg-light-gray/20 dark:bg-softGray rounded-full p-xs"
     >
       {/* Sliding background */}
       <div
         style={sliderStyle}
-        className="absolute h-[calc(100%-16px)] bg-primary dark:bg-primaryDark shadow-md rounded-full transition-all duration-300"
+        className="absolute h-[calc(100%-16px)] bg-brand-primary shadow-md rounded-full transition-all duration-300"
       />
 
       {/* Options */}
@@ -54,7 +54,7 @@ const ToggleSlider: React.FC<ToggleSliderProps> = ({ defaultSelect, options }) =
             opt.onSelect();
             setActive(index);
           }}
-          className={`min-w-[170px] 2xl:min-w-[180px] relative z-10 flex items-center justify-center gap-[10px] p-xs ${active === index ? 'text-black' : 'text-charcoal/80 dark:text-textInverse/50'} line-clamp-1 text-ellipsis rounded-full transition-all duration-300`}
+          className={`min-w-[170px] 2xl:min-w-[180px] relative z-10 flex items-center justify-center gap-[10px] p-xs ${active === index ? 'text-black' : 'text-light-charcoal/80 dark:text-dark-primaryText/50'} line-clamp-1 text-ellipsis rounded-full transition-all duration-300`}
         >
           {opt.label}
         </button>

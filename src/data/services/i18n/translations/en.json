@@ -1,7 +1,7 @@
 {
   "LanguageSelector": {
     "label": "Change language",
-    "locale": "{locale, select, en {English} es {Spanish} other {Unknown}}"
+    "locale": "{locale, select, en {ENG} es {SPA} other {N/A}}"
   },
   "NotFound": {
     "404": "404",
@@ -13,8 +13,7 @@
     "about": {
       "label": "About",
       "submenu": [
-        { "label": "About Us", "link": "/about" },
-        { "label": "Plan Your Visit", "link": "/plan-your-visit" },
+        { "label": "Who We Are", "link": "/about" },
         { "label": "Wind Leaders", "link": "/wind-leaders" }
       ]
     },
@@ -53,7 +52,8 @@
       "label": "Bookstore",
       "submenu": [
         { "label": "Shop Products", "link": "/bookstore" },
-        { "label": "Your Cart", "link": "/bookstore/cart" }
+        { "label": "Your Cart", "link": "/bookstore/cart" },
+        { "label": "Your Orders", "link": "/bookstore/orders" }
       ]
     },
     "rental": {
@@ -71,20 +71,20 @@
       "label": "About",
       "row": [
         {
-          "label": "Pastor Singletary",
-          "link": "/about#pastor-singletary"
-        },
-        {
           "label": "Mission and Vision",
           "link": "/about#mission-and-vision"
         },
         {
-          "label": "Foursquare",
-          "link": "/about#foursquare"
-        },
-        {
           "label": "Our History",
           "link": "/about#history"
+        },
+        {
+          "label": "Pastor Singletary",
+          "link": "/about#pastor-singletary"
+        },
+        {
+          "label": "Wind Leaders",
+          "link": "/wind-leaders"
         }
       ]
     },
@@ -92,32 +92,28 @@
       "label": "Wind Family",
       "row": [
         {
-          "label": "Donate",
-          "link": "/give"
-        },
-        {
           "label": "Deep Dive",
           "link": "/deep-dive"
         },
         {
-          "label": "Events",
-          "link": "/events"
-        },
-        {
-          "label": "Sermons",
-          "link": "/sermons"
+          "label": "Gift Assessment",
+          "link": "/gift-assessment"
         },
         {
           "label": "Ministries",
           "link": "/ministries"
         },
         {
+          "label": "Prayer Requests",
+          "link": "/prayer-requests"
+        },
+        {
           "label": "Salvation",
           "link": "/salvation"
         },
         {
-          "label": "Prayer Requests",
-          "link": "/prayer-requests"
+          "label": "Sermons",
+          "link": "/sermons"
         }
       ]
     },
@@ -125,28 +121,28 @@
       "label": "More Wind",
       "row": [
         {
-          "label": "Plan Your Visit",
-          "link": "/plan-your-visit"
-        },
-        {
-          "label": "Gift Assessment",
-          "link": "/gift-assessment"
-        },
-        {
-          "label": "Wind Leaders",
-          "link": "/wind-leaders"
-        },
-        {
-          "label": "Gallery",
-          "link": "/gallery"
-        },
-        {
           "label": "Bookstore",
           "link": "/bookstore"
         },
         {
           "label": "Church Rental",
           "link": "/church-rental"
+        },
+        {
+          "label": "Donate",
+          "link": "/give"
+        },
+        {
+          "label": "Events",
+          "link": "/events"
+        },
+        {
+          "label": "Gallery",
+          "link": "/gallery"
+        },
+        {
+          "label": "Leave Feedback",
+          "link": "/feedback"
         }
       ]
     },

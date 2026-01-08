@@ -51,13 +51,11 @@ const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist 
     <CarouselArrows
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: 'bg-black/40 p-sm absolute -left-2 top-[50%] -translate-y-[50%]',
-        iconClassName: 'fill-white size-[25px]',
+        buttonClassName: 'absolute -left-2 top-[50%] -translate-y-[50%]',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: 'bg-black/40 p-sm absolute -right-2 top-[50%] -translate-y-[50%]',
-        iconClassName: 'fill-white size-[25px]',
+        buttonClassName: 'absolute -right-2 top-[50%] -translate-y-[50%]',
       }}
     />
   );

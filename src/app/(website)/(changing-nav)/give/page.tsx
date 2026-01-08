@@ -1,4 +1,3 @@
-import { permanentMarker } from '@/app/(website)/layout';
 import Accordion from '@/components/accordion/Accordion';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
@@ -11,6 +10,10 @@ import HandHoldingHeart from '@/components/icons/handHoldingHeart';
 import Handshake from '@/components/icons/handshake';
 import Mailbox from '@/components/icons/mailbox';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import MediaBackgroundAndContent, {
+  ColorBackground,
+} from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
+import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
@@ -18,7 +21,6 @@ import { styleSelectedWords } from '@/data/utils';
 import { Button } from 'flowbite-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import React from 'react';
 
 export const metadata: Metadata = {
   title: 'Give',
@@ -36,7 +38,7 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/building.jpg`,
         alt: '',
       },
-      icon: <Bank className="fill-primary size-[30px]" />,
+      icon: <Bank className="fill-brand-primary size-[30px]" />,
       title: 'Bank Account',
       description: (
         <>
@@ -60,7 +62,7 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/couple_credit_card.jpg`,
         alt: '',
       },
-      icon: <CreditCard className="fill-primary size-[30px]" />,
+      icon: <CreditCard className="fill-brand-primary size-[30px]" />,
       title: 'Credit/Debit',
       description: (
         <>
@@ -84,7 +86,7 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/offering.jpg`,
         alt: '',
       },
-      icon: <HandHoldingHeart className="fill-primary size-[30px]" />,
+      icon: <HandHoldingHeart className="fill-brand-primary size-[30px]" />,
       title: 'In-person',
       description:
         'The Wind church accepts check and bill pay. Donation boxes are availble at both exits of the santuary.Make checks payable to the Wind of the Spirit Worship Center.',
@@ -94,7 +96,7 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/mailbox.jpg`,
         alt: '',
       },
-      icon: <Mailbox className="fill-primary size-[30px]" />,
+      icon: <Mailbox className="fill-brand-primary size-[30px]" />,
       title: 'Mail',
       description: (
         <>
@@ -109,13 +111,13 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/garage.jpg`,
         alt: '',
       },
-      icon: <Car className="fill-primary size-[30px]" />,
+      icon: <Car className="fill-brand-primary size-[30px]" />,
       title: 'Assets',
       description: (
         <>
           If you have any other assets (vehicles, real estate, etc.) you would like to donate,
           please email{' '}
-          <Link href="mailto:thewindchurch@outlook.com" className="underline text-primary">
+          <Link href="mailto:thewindchurch@outlook.com" className="underline text-brand-primary">
             thewindchurch@outlook.com
           </Link>
           .
@@ -127,7 +129,7 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/support_hands.jpg`,
         alt: '',
       },
-      icon: <Handshake className="fill-primary size-[30px]" />,
+      icon: <Handshake className="fill-brand-primary size-[30px]" />,
       title: 'Your Time',
       description:
         "Contributting within the church as volunteers or with your ministry excels God's community.",
@@ -137,18 +139,17 @@ const Give = () => {
   return (
     <div>
       <PageHero
-        short
+        size="short"
         title="Giving"
-        subtitle="Your contribution makes a difference."
-        media={{
-          src: `${AWS_ASSET_BASE_URL}/placeholder-media/praise_hands.jpg`,
-        }}
         highlightTitle={[[0, 0]]}
+        subtitle="Your contribution makes a difference."
+        media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/praise_hands.jpg` }}
       />
 
       <div className="p-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
-        {/* WHY WE GIVE*/}
-        <div className="flex flex-col gap-xl py-[20px] md:py-[50px] 2xl:px-[100px]">
+        {/* WHY WE GIVE */}
+        <div className="flex flex-col gap-xl py-5 md:py-[50px] 2xl:px-[100px]">
+          {/* REASON #1 */}
           <div className="flex flex-col gap-lg">
             <div
               dangerouslySetInnerHTML={{
@@ -161,17 +162,10 @@ const Give = () => {
               }}
             />
             <h4>Acknowledging that all we have belongs to Him.</h4>
-            <div className="body-large flex flex-wrap gap-sm items-center">
-              {['Proverbs 3:9', 'Psalm 24:1'].map((verse, index) => (
-                <React.Fragment key={`about-page-vision-verses-${verse}`}>
-                  {verse}
-                  {index !== 1 && (
-                    <div className="rounded-full size-[5px] bg-charcoal dark:bg-primaryDark" />
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
+            <ScriptureList scriptures={['Proverbs 3:9', 'Psalm 24:1']} />
           </div>
+
+          {/* REASON #2 */}
           <div className="flex flex-col gap-lg">
             <div
               dangerouslySetInnerHTML={{
@@ -184,19 +178,12 @@ const Give = () => {
               }}
             />
             <h4>We imitate God&apos;s nature as a giver of eternal and temporal blessings.</h4>
-            <div className="body-large flex flex-wrap gap-sm items-center">
-              {['John 3:16', '1 Corinthians 2:12', 'Deuteronomy 8:17-18', 'James 1:17'].map(
-                (verse, index) => (
-                  <React.Fragment key={`about-page-vision-verses-${verse}`}>
-                    {verse}
-                    {index !== 3 && (
-                      <div className="rounded-full size-[5px] bg-charcoal dark:bg-primaryDark" />
-                    )}
-                  </React.Fragment>
-                )
-              )}
-            </div>
+            <ScriptureList
+              scriptures={['John 3:16', '1 Corinthians 2:12', 'Deuteronomy 8:17-18', 'James 1:17']}
+            />
           </div>
+
+          {/* REASON #3 */}
           <div className="flex flex-col gap-lg">
             <div
               dangerouslySetInnerHTML={{
@@ -212,33 +199,25 @@ const Give = () => {
               And relationship with God, communicates our faith to the world, and brings personal
               blessings through wise investments.
             </h4>
-            <div className="body-large flex flex-wrap gap-sm items-center">
-              {['2 Corinthians 9:12-15', 'Acts 20:35', 'Luke 12:33'].map((verse, index) => (
-                <React.Fragment key={`about-page-vision-verses-${verse}`}>
-                  {verse}
-                  {index !== 2 && (
-                    <div className="rounded-full size-[5px] bg-charcoal dark:bg-primaryDark" />
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-            <Button
-              pill
-              size="lg"
-              color="primary"
-              target="_blank"
-              href={PageRoutes.pushpay}
-              className="mt-6 md:px-6 w-full md:w-fit font-bold"
-            >
-              Donate online with PushPay
-            </Button>
+            <ScriptureList scriptures={['2 Corinthians 9:12-15', 'Acts 20:35', 'Luke 12:33']} />
           </div>
+
+          {/* DONATE CTA */}
+          <Button
+            pill
+            size="lg"
+            color="primary"
+            target="_blank"
+            href={PageRoutes.pushpay}
+            className="mt-8 md:px-6 w-full md:w-fit font-bold"
+          >
+            Donate online with PushPay
+          </Button>
         </div>
 
         {/* OTHER WAYS TO GIVE */}
         <div className="flex flex-col gap-xl md:gap-xxl">
           <CenterTextSection
-            noPadding
             title="Ways to Give"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, nostrum numquam quidem eveniet."
           />
@@ -273,7 +252,6 @@ const Give = () => {
         {/* FAQs */}
         <div className="flex flex-col gap-xl md:gap-xxl">
           <SectionHeader
-            noPadding
             title="Frequently Asked Questions"
             subtitle="Answers for PushPay, donation allocation and more"
           />
@@ -338,46 +316,62 @@ const Give = () => {
         </div>
 
         {/* THANK YOU MESSAGE */}
-        <div className="p-padding bg-navy text-white">
-          <div className="text-white text-center flex flex-col gap-xl">
-            <h3>
-              We{' '}
-              <span className={`${permanentMarker.className} text-primary`}>
-                Thank You for your
-              </span>{' '}
-              financial{' '}
-              <span className={`${permanentMarker.className} text-primary`}>support!</span>
-            </h3>
-            <h4 className="md:max-w-[80%] mx-auto">
-              We are blessed to have supporters like you and we are honored
-              <br /> that you have chosen this Ministry as a place to sow your seed.
-            </h4>
-            <h4 className="md:max-w-[80%] mx-auto">
-              If you have any questions or concerns,
-              <br />
-              email{' '}
-              <Link
-                href="mailto:thewindchurch@outlook.com"
-                className="text-primary hover:underline break-normal"
-              >
-                thewindchurch@outlook.com
-              </Link>{' '}
-              <br />
-              or call <span className="text-primary">(951) 359-0203</span>.
-            </h4>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: 'Your partners in Christ at The Wind.',
-                  array: [[5, 6]],
-                  htmlTag: 'h3',
-                }),
-              }}
-            />
-          </div>
-        </div>
+        <MediaBackgroundAndContent
+          centerContent
+          fullWidth={false}
+          color={ColorBackground.BLUE}
+          content={
+            <div className="flex flex-col gap-xl">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: styleSelectedWords({
+                    text: 'We Thank You for your financial support!',
+                    array: [
+                      [1, 4],
+                      [6, 6],
+                    ],
+                    htmlTag: 'h3',
+                    className: 'text-center',
+                  }),
+                }}
+              />
+              <h4 className="text-center">
+                We are blessed to have supporters like you and we are honored
+                <br /> that you have chosen this Ministry as a place to sow your seed.
+              </h4>
+              <h4 className="text-center">
+                If you have any questions or concerns,
+                <br />
+                email{' '}
+                <Link
+                  href="mailto:thewindchurch@outlook.com"
+                  className="text-brand-primary hover:underline break-normal"
+                >
+                  thewindchurch@outlook.com
+                </Link>{' '}
+                <br />
+                or call{' '}
+                <Link href={'tel:9513590203'} className="text-brand-primary hover:underline">
+                  (951) 359-0203
+                </Link>
+                .
+              </h4>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: styleSelectedWords({
+                    text: 'Your partners in Christ at The Wind.',
+                    array: [[5, 6]],
+                    htmlTag: 'h3',
+                    className: 'text-center',
+                  }),
+                }}
+              />
+            </div>
+          }
+        />
       </div>
 
+      {/* PAGE SCROLL-UP BUTTON */}
       <PageScrollUpButton />
     </div>
   );

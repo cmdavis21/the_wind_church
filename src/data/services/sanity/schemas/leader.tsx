@@ -49,13 +49,6 @@ export const LeaderSchema = {
       description: "Describe the Leader's personailty, goals, and aspirations (3-7 sentences).",
     }),
     defineField({
-      name: 'roles',
-      title: 'Roles',
-      description: "List the leader's roles if they have more than one.",
-      type: 'array',
-      of: [{ type: 'string' }],
-    }),
-    defineField({
       name: 'image',
       type: 'image',
       title: 'Image',

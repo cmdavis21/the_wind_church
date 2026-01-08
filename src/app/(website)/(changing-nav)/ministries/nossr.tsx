@@ -52,12 +52,10 @@ const MinistriesClient = () => {
   return (
     <div>
       <PageHero
-        short
+        size="short"
         title="Ministries"
         subtitle="Grow in love and service by joining a ministry"
-        media={{
-          src: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`,
-        }}
+        media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg` }}
       />
 
       <div className="p-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
@@ -93,7 +91,6 @@ const MinistriesClient = () => {
 
             <div className="flex flex-col gap-xxl">
               <CenterTextSection
-                noPadding
                 title="Not sure where to start?"
                 description="Tell us what you're interested in, and we’ll help you get connected."
               />
@@ -105,6 +102,7 @@ const MinistriesClient = () => {
         )}
       </div>
 
+      {/* PAGE SCROLL-UP BUTTON */}
       <PageScrollUpButton />
     </div>
   );

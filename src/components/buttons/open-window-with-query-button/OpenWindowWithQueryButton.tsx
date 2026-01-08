@@ -17,8 +17,10 @@ const OpenWindowWithQueryButton: React.FC<OpenWindowWithQueryButtonProps> = ({ l
       className="w-fit group hover:cursor-pointer"
     >
       <div className="flex items-center gap-xs">
-        <UpArrow className="fill-navy dark:fill-navyLight rotate-45 group-hover:rotate-90 transition-all duration-300" />
-        <h5 className="text-navy dark:text-navyLight group-hover:underline font-bold">{label}</h5>
+        <UpArrow className="fill-light-navy dark:fill-dark-navy rotate-45 group-hover:rotate-90 transition-all duration-300" />
+        <h5 className="text-light-navy dark:text-dark-navy group-hover:underline font-bold">
+          {label}
+        </h5>
       </div>
     </a>
   );

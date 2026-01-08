@@ -23,12 +23,12 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
   const responsive = {
     desktop: {
       breakpoint: { max: 4000, min: 1024 },
-      items: 1,
+      items: 3,
       partialVisibilityGutter: 0,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 1,
+      items: 2,
       partialVisibilityGutter: 0,
     },
     mobile: {
@@ -45,16 +45,16 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
 
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
-      className={`${slides.length <= 1 ? 'hidden' : ''} absolute bottom-3 right-3`}
+      className={`${slides.length <= 1 ? 'hidden' : ''} absolute max-sm:bottom-3 right-3 md:left-0 md:right-0 md:top-[50%] md:-translate-y-[50%]`}
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: 'bg-black/40 p-xs',
-        iconClassName: 'fill-white size-[18px]',
+        buttonClassName: 'p-xs',
+        iconClassName: 'size-[25px]',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: 'bg-black/40 p-xs',
-        iconClassName: 'fill-white size-[18px]',
+        buttonClassName: 'p-xs',
+        iconClassName: 'size-[25px]',
       }}
     />
   );
@@ -70,8 +70,9 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
         responsive={responsive}
         renderButtonGroupOutside
         customDot={<CustomDot />}
+        itemClass="text-center"
         customButtonGroup={<ButtonGroup />}
-        dotListClass="flex gap-xs !justify-start !mb-5 !ml-5"
+        dotListClass="flex gap-xs max-sm:!justify-start max-sm:!mb-5 md:!-mb-5 max-sm:ml-5"
       >
         {slides.map((slide, index) => (
           <div key={`simple-carousel-${index}`}>{slide}</div>

@@ -14,13 +14,13 @@ const FooterLogoAndSocials = () => (
 
     <div className="flex gap-4  items-center place-self-end  w-fit">
       <Link href={YOUTUBE_CHANNEL}>
-        <YouTubeIcon className="size-[22px] hover:opacity-50 fill-black dark:fill-textInverse" />
+        <YouTubeIcon className="size-[22px] hover:opacity-50 fill-black dark:fill-white" />
       </Link>
       <Link href={FACEBOOK_PROFILE}>
-        <FacebookIcon className="size-[22px] hover:opacity-50 fill-black dark:fill-textInverse" />
+        <FacebookIcon className="size-[22px] hover:opacity-50 fill-black dark:fill-white" />
       </Link>
       <Link href={INSTAGRAM_PROFILE}>
-        <InstagramIcon className="size-[22px] hover:opacity-50 fill-black dark:fill-textInverse" />
+        <InstagramIcon className="size-[22px] hover:opacity-50 fill-black dark:fill-white" />
       </Link>
     </div>
   </div>

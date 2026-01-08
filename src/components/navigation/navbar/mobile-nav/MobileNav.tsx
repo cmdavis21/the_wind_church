@@ -39,17 +39,17 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
   }, [openNav, openNavSettings]);
   return (
     <div
-      className={`relative px-[20px] md:px-[50px] ${
+      className={`relative px-5 md:px-[50px] ${
         openNav || openNavSettings ? 'overflow-hidden' : 'rounded-b-lg'
       } ${
         changeColor
-          ? `${darkMode ? 'bg-[#1C1C1E]' : 'bg-[rgba(255,255,255,0.98)]'}`
+          ? `${darkMode ? 'bg-dark-bg' : 'bg-light-bg'} shadow-md`
           : `${
               darkMode
-                ? `${openNav || openNavSettings ? 'bg-[#1C1C1E]' : ''}`
-                : `${openNav || openNavSettings ? 'bg-black/80 backdrop-blur-sm' : ''}`
+                ? `${openNav || openNavSettings ? 'bg-dark-bg' : ''}`
+                : `${openNav || openNavSettings ? 'bg-dark-bg backdrop-blur-sm' : ''}`
             }`
-      } transition-colors duration-500 shadow-sm block lg:hidden max-w-screen-xl`}
+      } transition-colors duration-500 block lg:hidden max-w-screen-xl`}
     >
       <div className="py-3 flex items-end gap-lg justify-between">
         <Link
@@ -67,9 +67,8 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
             forMobile
             label={menuOptions[menuOptions.length - 1].label}
             link={menuOptions[menuOptions.length - 1].link ?? '#'}
-            activeNav={openNav}
-            changeColor={changeColor}
             onClick={() => setOpenNav(false)}
+            changeColor={changeColor}
           />
 
           <button
@@ -78,13 +77,13 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
               setOpenNavSettings(false);
               setOpenNav(!openNav);
             }}
-            className="ml-1 p-xs hover:opacity-75 hover:bg-gray/30 rounded-md"
+            className="ml-1 p-xs rounded-md"
           >
             <Plus
-              className={`size-[25px] ${openNav ? 'rotate-45' : ''} transition-all duration-300 ${
+              className={`size-[25px] ${openNav ? 'rotate-45' : ''} transition-[rotate,fill] duration-300 ${
                 changeColor
-                  ? `${openNav ? 'fill-primaryDark' : 'fill-black dark:fill-textInverse'}`
-                  : `${openNav ? 'fill-primary dark:fill-primaryDark' : 'fill-textInverse'}`
+                  ? `${openNav ? 'fill-brand-primary' : 'fill-black dark:fill-dark-neutral'}`
+                  : `${openNav ? 'fill-brand-primary dark:fill-brand-primary' : 'fill-dark-neutral'}`
               }`}
             />
           </button>
@@ -94,13 +93,13 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
               setOpenNav(false);
               setOpenNavSettings(!openNavSettings);
             }}
-            className="p-xs hover:opacity-75 hover:bg-gray/30 rounded-md"
+            className="p-xs rounded-md"
           >
             <VerticalEllipsis
-              className={`size-[22px] transition-all duration-300 ${
+              className={`size-[22px] transition-[fill] duration-300 ${
                 changeColor
-                  ? `${openNavSettings ? 'fill-primaryDark' : 'fill-black dark:fill-textInverse'}`
-                  : `${openNavSettings ? 'fill-primary dark:fill-primaryDark' : 'fill-textInverse'}`
+                  ? `${openNavSettings ? 'fill-brand-primary' : 'fill-black dark:fill-dark-neutral'}`
+                  : `${openNavSettings ? 'fill-brand-primary dark:fill-brand-primary' : 'fill-dark-neutral'}`
               }`}
             />
           </button>
@@ -115,7 +114,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           openNav ? 'overflow-y-scroll ease-in scrollbar-hide' : 'ease-out overflow-hidden'
         } transition-[height] duration-500 shadow-sm`}
       >
-        <div className="pt-lg pb-[125px] flex flex-col gap-lg">
+        <div className="pt-lg pb-[125px] flex flex-col gap-lg y-scrollbox">
           {menuOptions.slice(0, menuOptions.length - 1).map((item) => (
             <React.Fragment key={`mobile-nav-item-${item.label}`}>
               {item.submenu && (
@@ -148,16 +147,16 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
         ref={settingsMenuRef}
         style={{ height: openNavSettings ? `${height}px` : '0px' }}
         className={`${
-          openNavSettings ? 'overflow-y-scroll ease-in scrollbar-hide' : 'ease-out overflow-hidden'
-        } ${openNav ? 'delay-500 duration-300' : 'duration-500'} transition-[height]`}
+          openNavSettings ? 'overflow-y-scroll scrollbar-hide' : 'overflow-hidden'
+        } ${openNav ? 'delay-300 duration-500 ease-out' : 'easie-in duration-500'} transition-[height]`}
       >
         <div className="pt-lg pb-[125px] flex flex-col gap-lg">
           <div className="flex justify-between gap-sm items-center">
             <h5
               className={`${
                 changeColor
-                  ? 'text-black dark:text-textInverse'
-                  : 'text-white dark:text-textInverse'
+                  ? 'text-black dark:text-dark-primaryText'
+                  : 'text-white dark:text-dark-primaryText'
               } whitespace-nowrap tracking-wider capitalize`}
             >
               Light/Dark Mode:
@@ -168,8 +167,8 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
             <h5
               className={`${
                 changeColor
-                  ? 'text-black dark:text-textInverse'
-                  : 'text-white dark:text-textInverse'
+                  ? 'text-black dark:text-dark-primaryText'
+                  : 'text-white dark:text-dark-primaryText'
               } whitespace-nowrap tracking-wider capitalize`}
             >
               Language:

@@ -13,7 +13,6 @@ import PencilPaper from '@/components/icons/pencilPaper';
 import PeopleGroup from '@/components/icons/peopleGroup';
 import PersonWithSign from '@/components/icons/personWithSign';
 import PrayerHands from '@/components/icons/prayerHands';
-import Tag from '@/components/icons/tag';
 import TV from '@/components/icons/tv';
 
 type docAttributes = {
@@ -83,12 +82,6 @@ export const sanityStudioStructure: StructureResolver = (S) =>
               )
             )
         ),
-
-      // SHOPIFY
-      S.listItem()
-        .title('Shopify Products')
-        .icon(Tag)
-        .child(S.documentTypeList('product').title('Shopify Products')),
 
       // fallback for uncategorized document types
       ...S.documentTypeListItems().filter(

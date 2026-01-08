@@ -28,7 +28,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             decrement(quantity - 1);
           }
         }}
-        className={`${quantity === 1 ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''} bg-skeletonGray dark:bg-skeletonDarkGray hover:opacity-75 rounded-sm h-full p-xs`}
+        className={`${quantity === 1 ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''} bg-light-neutral dark:bg-dark-neutral hover:opacity-75 rounded-sm h-full p-xs`}
       >
         <Minus className={`${scaleDown ? 'size-[12px]' : 'size-[15px]'}`} />
       </button>
@@ -43,7 +43,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             increment(quantity + 1);
           }
         }}
-        className={`${quantity === maxQuantity ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''} bg-skeletonGray dark:bg-skeletonDarkGray  hover:opacity-75 rounded-sm h-full p-xs`}
+        className={`${quantity === maxQuantity ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''} bg-light-neutral dark:bg-dark-neutral  hover:opacity-75 rounded-sm h-full p-xs`}
       >
         <Plus className={`${scaleDown ? 'size-[12px]' : 'size-[15px]'}`} />
       </button>

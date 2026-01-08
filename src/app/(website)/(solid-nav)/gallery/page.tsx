@@ -8,7 +8,7 @@ import PageHeader from '@/components/heroes/page-header/PageHeader';
 import GalleryMasonryGrid from '@/components/masonry-grids/gallery-masonry-grid/GalleryMasonryGrid';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { WEBSITE_BASE_URL } from '@/data/constants';
-import { getGalleryImages } from '@/data/services/aws/gallery';
+import { getGalleryImages } from '@/data/services/aws/s3/gallery';
 
 export const metadata: Metadata = {
   title: 'Gallery',
@@ -37,11 +37,7 @@ const Gallery = async () => {
 
       {gallery.gallery.map((category) => (
         <div key={`wind-gallery-${category.title}`} className="flex flex-col gap-xl md:gap-xxl">
-          <SectionHeader
-            noPadding
-            title={category.title}
-            subtitle="Select a photo and view the memories"
-          />
+          <SectionHeader title={category.title} subtitle="Select a photo and view the memories" />
 
           {/* Desktop */}
           <div className="hidden md:block">
@@ -64,6 +60,7 @@ const Gallery = async () => {
         </div>
       ))}
 
+      {/* PAGE SCROLL-UP BUTTON */}
       <PageScrollUpButton />
     </div>
   );

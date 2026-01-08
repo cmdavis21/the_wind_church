@@ -2,11 +2,11 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import { NavbarColumnItem } from '@/data/types';
-import Link from 'next/link';
-
 import { PageRoutes } from '@/data/page-routes';
 import { useCartFunctions } from '@/data/services/shopify/cart-hook';
+import { NavbarColumnItem } from '@/data/types';
+import cn from 'classnames';
+import Link from 'next/link';
 import MobileNavItem from '../mobile-nav-item/MobileNavItem';
 
 interface MobileNavItemWithDropdownProps {
@@ -41,9 +41,20 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
 
   return (
     <div
-      className={`${
-        changeColor ? 'text-black' : 'text-white'
-      } ${open ? `${changeColor ? 'bg-gray/40 dark:bg-softGray' : 'bg-charcoal/80 dark:bg-softGray'}` : `${changeColor ? 'hover:bg-gray/50 hover:dark:bg-softGray' : 'hover:bg-charcoal/80 hover:dark:bg-softGray'}`} rounded-lg p-sm transition-all duration-300 flex flex-col gap-sm`}
+      className={cn(
+        changeColor ? 'text-light-primaryText' : 'text-dark-primaryText',
+        'rounded-lg p-sm transition-all duration-300 flex flex-col gap-sm',
+        open
+          ? changeColor
+            ? 'bg-light-charcoal dark:bg-dark-gray'
+            : 'bg-light-charcoal dark:bg-dark-neutral'
+          : changeColor
+            ? 'hover:bg-light-gray/50 hover:dark:bg-dark-gray/80'
+            : 'hover:bg-light-charcoal/80 hover:dark:bg-dark-gray/80'
+      )}
+      // className={`${
+      //   changeColor ? 'text-black' : 'text-white'
+      // } ${open ? `${changeColor ? 'bg-light-gray/40 dark:bg-dark-gray/80' : 'bg-light-charcoal/80 dark:bg-dark-gray/80'}` : `${changeColor ? 'hover:bg-light-gray/50 hover:dark:bg-dark-gray/80' : 'hover:bg-light-charcoal/80 hover:dark:bg-dark-gray/80'}`} rounded-lg p-sm transition-all duration-300 flex flex-col gap-sm`}
     >
       <MobileNavItem
         label={label}
@@ -57,8 +68,8 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
           height: open ? `${subMenuDropdown.current?.offsetHeight}px` : '0px',
         }}
         className={`${
-          !open ? 'pointer-events-none overflow-hidden opacity-0 -mb-sm' : ''
-        } transition-[height, opacity] duration-300 mx-xs`}
+          !open ? 'pointer-events-none opacity-0 -mb-sm' : ''
+        } transition-[height, opacity] duration-300 mx-xs overflow-hidden`}
       >
         <div ref={subMenuDropdown} className="flex flex-col gap-sm w-full">
           {Array.isArray(submenu) &&
@@ -74,18 +85,18 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
                 <div
                   className={`w-full p-sm body-large rounded-lg capitalize flex items-center ${
                     pathname === item.link
-                      ? `${changeColor ? 'text-primaryDark' : 'text-primary dark:text-primaryDark'}`
+                      ? 'font-semibold bg-light-gray/20'
                       : `${
                           changeColor
-                            ? 'text-black dark:text-textInverse dark:hover:text-charcoal hover:bg-gray/80'
-                            : 'text-white dark:text-textInverse hover:bg-charcoal'
+                            ? 'text-black dark:text-dark-primaryText dark:hover:text-dark-charcoal hover:bg-light-gray/80'
+                            : 'text-white dark:text-dark-primaryText hover:bg-light-charcoal dark:hover:bg-dark-charcoal'
                         }`
                   }`}
                 >
                   {item.label}
-                  {item.link === PageRoutes.cart && getCart && getCart.totalQuantity > 0 && (
+                  {item.link === PageRoutes.cart && getCart && getCart.total_quantity > 0 && (
                     <span className="ml-1.5 body-small font-bold">
-                      ({getCart.totalQuantity} items)
+                      ({getCart.total_quantity} items)
                     </span>
                   )}
                 </div>

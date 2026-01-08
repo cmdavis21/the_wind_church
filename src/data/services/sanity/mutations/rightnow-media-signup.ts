@@ -1,8 +1,8 @@
-import { RightnowMediaSignup } from '@/data/types';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { RIGHTNOW_MEDIA_KEY, WEBSITE_BASE_URL } from '@/data/constants';
+import { FORM_TYPES, RightnowMediaSignup } from '@/data/types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
-import { RIGHTNOW_MEDIA_KEY } from '@/data/constants';
 
 export const createRightnowMediaSignupClient = async (data: RightnowMediaSignup) => {
   try {
@@ -29,9 +29,20 @@ export const useCreateRightnowMediaSignup = () => {
   return useMutation({
     mutationFn: createRightnowMediaSignupClient,
     mutationKey: [RIGHTNOW_MEDIA_KEY],
-    onSettled: () => {
+    onSettled: async (d, e, variables) => {
       queryClient.invalidateQueries({
         queryKey: [RIGHTNOW_MEDIA_KEY],
+      });
+      await fetch('/api/form-submission', {
+        method: 'POST',
+        body: JSON.stringify({
+          formType: FORM_TYPES.RIGHTNOW_MEDIA,
+          payload: {
+            firstName: variables.first_name,
+            lastName: `${variables.last_name.charAt(0)}.`,
+            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.RIGHTNOW_MEDIA}`,
+          },
+        }),
       });
     },
   });

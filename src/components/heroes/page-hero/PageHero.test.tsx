@@ -44,7 +44,9 @@ describe('PageHero', () => {
   });
 
   it('applies the correct height when short prop is true', () => {
-    const { container } = render(<PageHero title="Hero" short media={{ src: '/image.jpg' }} />);
+    const { container } = render(
+      <PageHero title="Hero" size="short" media={{ src: '/image.jpg' }} />
+    );
     expect(container.firstChild).toHaveClass('h-[60%]');
   });
 

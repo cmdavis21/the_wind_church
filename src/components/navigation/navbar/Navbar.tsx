@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
-
 import { NavbarColumnItem, NavbarItem } from '@/data/types';
+import cn from 'classNames';
+import { useTranslations } from 'next-intl';
+import React, { useEffect, useState } from 'react';
 
+import { usePathname } from 'next/navigation';
 import DesktopNav from './desktop-nav/DesktopNav';
 import MobileNav from './mobile-nav/MobileNav';
-import { usePathname } from 'next/navigation';
 
 const Navbar: React.FC<{ solidNav?: boolean }> = ({ solidNav = false }) => {
   const t = useTranslations('Navbar');
@@ -61,11 +61,11 @@ const Navbar: React.FC<{ solidNav?: boolean }> = ({ solidNav = false }) => {
     };
 
     if (window !== undefined) {
-      // window.addEventListener("load", handleScroll);
+      window.addEventListener('load', handleScroll);
       window.addEventListener('scroll', handleScroll);
 
       return () => {
-        // window.removeEventListener("load", handleScroll);
+        window.removeEventListener('load', handleScroll);
         window.removeEventListener('scroll', handleScroll);
       };
     }
@@ -73,18 +73,17 @@ const Navbar: React.FC<{ solidNav?: boolean }> = ({ solidNav = false }) => {
 
   return (
     <nav
-      className={`fixed !z-50 left-0 ${
+      className={cn(
+        'fixed !z-50 left-0 w-full transition-[colors, top, opacity] duration-500',
+        !solidNav && !changeNavColor && 'bg-gradient-to-b from-black/20',
         showNavOnScroll ? 'top-0 opacity-100' : '-top-[110px] opacity-0'
-      } ${
-        !solidNav && !changeNavColor ? 'bg-gradient-to-b from-black/20' : ''
-      } w-full transition-[colors, top, opacity] duration-500`}
+      )}
     >
       <DesktopNav
         menuOptions={NavbarMenu}
         pathname={pathname}
         changeColor={solidNav ? true : changeNavColor}
       />
-
       <MobileNav
         menuOptions={NavbarMenu}
         pathname={pathname}

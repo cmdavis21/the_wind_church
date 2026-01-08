@@ -44,7 +44,7 @@ const Sermons = async () => {
               key={video.videoUrl}
               poster={video.thumbnail}
               title={video.title}
-              date={video.publishedAt}
+              date={video.published_at}
               link={video.videoUrl}
             />
           ))}
@@ -54,8 +54,6 @@ const Sermons = async () => {
       {/* Other videos */}
       <div className="flex flex-col gap-xl lg:gap-xxl">
         <SectionHeader
-          noPadding
-          className="pl-sm"
           title="Other uploads"
           subtitle="Guide your studies with these learning lessons"
         />
@@ -65,7 +63,7 @@ const Sermons = async () => {
               key={video.videoUrl}
               poster={video.thumbnail}
               title={video.title}
-              date={video.publishedAt}
+              date={video.published_at}
               link={video.videoUrl}
             />
           ))}
@@ -74,7 +72,7 @@ const Sermons = async () => {
 
       {/* CTA to Youbtube Channel */}
       <MediaBackgroundAndContent
-        rounded
+        fullWidth={false}
         background={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
         }}

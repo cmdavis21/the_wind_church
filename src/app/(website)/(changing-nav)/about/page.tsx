@@ -1,5 +1,4 @@
 import { getTranslations } from 'next-intl/server';
-import React from 'react';
 
 import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
@@ -29,6 +28,7 @@ import ThreePersons from '@/components/icons/threePersons';
 import ThumbsDown from '@/components/icons/thumbsDown';
 import Waves from '@/components/icons/waves';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { styleSelectedWords } from '@/data/utils';
@@ -109,20 +109,18 @@ const About = async () => {
       <PageHero
         title={t('title')}
         subtitle={t('subtitle')}
-        media={{
-          src: `${AWS_ASSET_BASE_URL}/placeholder-media/group_people.jpg`,
-        }}
         highlightTitle={[[0, 1]]}
+        media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/group_people.jpg` }}
       />
 
       <div className="py-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
         {/* Mission and Vision */}
         <div
           id={t('mission.id')}
-          className="flex flex-col gap-xxl py-[20px] md:py-[50px] 2xl:px-[100px]"
+          className="flex flex-col gap-xxl py-5 md:py-[50px] 2xl:px-[100px]"
         >
           {/* Mission */}
-          <div className="flex flex-col gap-lg px-padding dark:text-textInverse">
+          <div className="flex flex-col gap-lg px-padding">
             <h1>{t('mission.title')}</h1>
             <div
               dangerouslySetInnerHTML={{
@@ -138,7 +136,7 @@ const About = async () => {
           </div>
 
           {/* Vision */}
-          <div className="flex flex-col gap-lg px-padding dark:text-textInverse">
+          <div className="flex flex-col gap-lg px-padding">
             <h1>{t('vision.title')}</h1>
             <div
               dangerouslySetInnerHTML={{
@@ -151,22 +149,15 @@ const About = async () => {
               }}
             />
             <h4>{t('vision.description')}</h4>
-            <div className="body-large flex flex-wrap gap-sm items-center">
-              {[
+            <ScriptureList
+              scriptures={[
                 t('vision.verse1'),
                 t('vision.verse2'),
                 t('vision.verse3'),
                 t('vision.verse4'),
                 t('vision.verse5'),
-              ].map((verse, index) => (
-                <React.Fragment key={`about-page-vision-verses-${verse}`}>
-                  {verse}
-                  {index !== 4 && (
-                    <div className="rounded-full size-[5px] bg-charcoal dark:bg-primaryDark" />
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
+              ]}
+            />
           </div>
         </div>
 
@@ -220,11 +211,7 @@ const About = async () => {
 
         {/* The Wind Center */}
         <div id={t('values.id')} className="px-padding flex flex-col gap-xl md:gap-xxl">
-          <CenterTextSection
-            noPadding
-            title={t('values.title')}
-            description={t('values.subtitle')}
-          />
+          <CenterTextSection title={t('values.title')} description={t('values.subtitle')} />
 
           {/* Tablet/Desktop */}
           <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg md:gap-xl">
@@ -276,13 +263,9 @@ const About = async () => {
         {/* Foursquare */}
         <div id={t('foursquare.id')} className="px-padding flex flex-col gap-xl md:gap-xxl">
           <div className="flex flex-col gap-xl">
-            <SectionHeader
-              noPadding
-              title={t('foursquare.title')}
-              subtitle={t('foursquare.subtitle')}
-            />
+            <SectionHeader title={t('foursquare.title')} subtitle={t('foursquare.subtitle')} />
 
-            <h5 className="lg:max-w-[60%] dark:text-textInverse">{t('foursquare.description')}</h5>
+            <h5 className="lg:max-w-[60%]">{t('foursquare.description')}</h5>
           </div>
 
           <Accordion
@@ -291,7 +274,7 @@ const About = async () => {
                 image: `${AWS_ASSET_BASE_URL}/images/foursquare/cross.png`,
                 title: t('foursquare.accordionItem1.title'),
                 description: (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-5 justify-items-center items-start">
                     <ScriptureWithIcon
                       icon={BulletList}
                       title={t('foursquare.accordionItem1.plan.title')}
@@ -329,7 +312,7 @@ const About = async () => {
                 image: `${AWS_ASSET_BASE_URL}/images/foursquare/dove.png`,
                 title: t('foursquare.accordionItem2.title'),
                 description: (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-5 justify-items-center items-start">
                     <ScriptureWithIcon
                       icon={PeopleGroup}
                       title={t('foursquare.accordionItem2.relationship.title')}
@@ -367,7 +350,7 @@ const About = async () => {
                 image: `${AWS_ASSET_BASE_URL}/images/foursquare/cup.png`,
                 title: t('foursquare.accordionItem3.title'),
                 description: (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-5 justify-items-center items-start">
                     <ScriptureWithIcon
                       icon={PrayerHands}
                       title={t('foursquare.accordionItem3.repent.title')}
@@ -446,9 +429,8 @@ const About = async () => {
         {/* History */}
         <div id={t('history.id')} className="flex flex-col gap-xl md:gap-xxl">
           <div className="px-padding flex flex-col gap-xl">
-            <SectionHeader noPadding title={t('history.title')} subtitle={t('history.subtitle')} />
-
-            <h5 className="lg:max-w-[60%] dark:text-textInverse">{t('history.description')}</h5>
+            <SectionHeader title={t('history.title')} subtitle={t('history.subtitle')} />
+            <h5 className="lg:max-w-[60%]">{t('history.description')}</h5>
           </div>
 
           <CenterModeMediaWithTextCarousel

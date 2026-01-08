@@ -1,60 +1,29 @@
 import Footer from '@/components/navigation/footer/Footer';
 import QueryProvider from '@/data/providers/query-provider';
 import ThemeModeProvider from '@/data/providers/theme-mode-provider';
-import { LOCALES } from '@/data/services/i18n/utils';
 import '@/styles/globals.css';
 import { theme } from '@/styles/theme';
-import { Flowbite, ThemeModeScript } from 'flowbite-react';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
-import { Manrope, Permanent_Marker } from 'next/font/google';
-import React from 'react';
-import NotFound from './not-found';
+import { Flowbite } from 'flowbite-react';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
 
-const manrope = Manrope({
-  subsets: ['latin'],
-  weight: ['300', '400', '500'],
-});
-
-export const permanentMarker = Permanent_Marker({
-  weight: '400',
-  subsets: ['latin'],
-});
-
-export default async function RootLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
-  const locale = params.locale;
-
-  if (!hasLocale(LOCALES, locale)) NotFound();
-
-  setRequestLocale(locale);
-
+export default async function WebsiteLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
+  const messages = await getMessages();
   return (
-    <html lang={locale}>
-      <head>
-        <ThemeModeScript />
-      </head>
-      <body className={manrope.className}>
-        <QueryProvider>
-          <ThemeModeProvider>
-            <Flowbite theme={{ theme }}>
-              <NextIntlClientProvider>
-                <div className="bg-backgroundLight dark:bg-backgroundDark text-textPrimary dark:text-textInverse relative min-h-screen flex flex-col">
-                  <main id="body" className="w-full relative mx-auto antialiased scroll-smooth">
-                    {children}
-                  </main>
-                  <Footer />
-                </div>
-              </NextIntlClientProvider>
-            </Flowbite>
-          </ThemeModeProvider>
-        </QueryProvider>
-      </body>
-    </html>
+    <QueryProvider>
+      <ThemeModeProvider>
+        <Flowbite theme={{ theme }}>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <div className="font-sans text-base bg-light-bg dark:bg-dark-bg text-light-primaryText dark:text-dark-primaryText relative min-h-screen flex flex-col">
+              <main id="body" className="w-full relative mx-auto antialiased scroll-smooth">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </NextIntlClientProvider>
+        </Flowbite>
+      </ThemeModeProvider>
+    </QueryProvider>
   );
 }

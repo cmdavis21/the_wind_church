@@ -1,5 +1,3 @@
-import { permanentMarker } from '@/app/(website)/layout';
-
 export enum MediaType {
   IMAGE,
   VIDEO,
@@ -53,15 +51,11 @@ export const styleSelectedWords = ({
     finalText += splitText.slice(startIndex, endIndex).join(' ');
 
     if (i === 0 && array[0][0] === 0) {
-      finalText += `<span class="${
-        permanentMarker.className
-      } text-primary dark:text-primaryDark">${splitText
+      finalText += `<span class="font-display text-brand-primary">${splitText
         .slice(array[i][0], array[i][1] + 1)
         .join(' ')}</span>&nbsp;`;
     } else {
-      finalText += `&nbsp;<span class="${
-        permanentMarker.className
-      } text-primary dark:text-primaryDark">${splitText
+      finalText += `&nbsp;<span class="font-display text-brand-primary">${splitText
         .slice(array[i][0], array[i][1] + 1)
         .join(' ')}</span>&nbsp;`;
     }
@@ -72,4 +66,14 @@ export const styleSelectedWords = ({
   finalText += `</${htmlTag}>`;
 
   return finalText;
+};
+
+export const isValidEmail = (email: string) => {
+  const pattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  return pattern.test(email);
+};
+
+export const isValidPhone = (phone: string) => {
+  const pattern = /^\d{10,11}$/;
+  return pattern.test(phone);
 };

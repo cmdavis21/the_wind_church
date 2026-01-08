@@ -36,7 +36,6 @@ const MISCELLANEOUS_DETAIL: { detail: string; description: string }[] = [
 const ProductPage = (product: Product) => {
   const { getCart, addToCart } = useCartFunctions();
 
-  const [activeImage, setActiveImage] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [showDescription, setShowDescription] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -58,7 +57,7 @@ const ProductPage = (product: Product) => {
       const clampHeight = parseFloat(getComputedStyle(el).lineHeight) * 2;
       setIsClamped(fullHeight > clampHeight);
     }
-  }, [product.descriptionHtml]);
+  }, [product.description_html]);
 
   const updateVariation = (key: string, value: string) => {
     setVariations((prev) => {
@@ -69,17 +68,17 @@ const ProductPage = (product: Product) => {
 
   // DEFAULT SELECT FIRST AVAILABLE VARIANT
   useEffect(() => {
-    if (product.firstVariant) {
-      setVariations(product.firstVariant?.map((item) => ({ key: item.name, value: item.value })));
+    if (product.first_variant) {
+      setVariations(product.first_variant?.map((item) => ({ key: item.name, value: item.value })));
     }
   }, []);
 
   useEffect(() => {
     const foundVariantIndex = product.variants.findIndex((v) => {
-      if (!v.selectedOptions) return false;
+      if (!v.selected_options) return false;
 
       return variations.every((opt) =>
-        v.selectedOptions?.some((so) => opt.key === so.name && opt.value === so.value)
+        v.selected_options?.some((so) => opt.key === so.name && opt.value === so.value)
       );
     });
 
@@ -95,26 +94,26 @@ const ProductPage = (product: Product) => {
       <CartModal
         open={showModal}
         setOpen={setShowModal}
-        cartQuantity={getCart?.totalQuantity ?? quantity}
+        cartQuantity={getCart?.total_quantity ?? quantity}
         cartLines={
           getCart?.lines.map((line) => ({
             image: line.image,
             title: line.title,
             price: line.variant.price,
             quantity: line.quantity,
-            subtotal: line.subtotalAmount,
-            selectedOptions: line.variant.selectedOptions.map((opt) => opt),
+            subtotal: line.subtotal_amount,
+            selectedOptions: line.variant.selected_options.map((opt) => opt),
           })) ?? []
         }
       />
 
       <div>
         {/* LEFT DECORATIVE BORDER */}
-        <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-primary dark:bg-primaryDark" />
+        <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
 
         <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 gap-[50px]">
           {/* MEDIA */}
-          <div className="md:sticky md:top-[100px] h-fit">
+          <div className="md:sticky md:top-[100px] h-fit pb-sm">
             <SingleSlideMediaCarousel
               media={product.images.map((img) => ({
                 src: img.src,
@@ -130,17 +129,17 @@ const ProductPage = (product: Product) => {
             {/* PRICING */}
             <div className="flex items-center gap-sm">
               <h3>{formatPrice(product.variants[selectedVariant].price)}</h3>
-              {product.variants[selectedVariant].compareAtPrice && (
-                <h4 className="line-through text-charcoal dark:text-textInverse">
-                  {formatPrice(product.variants[selectedVariant].compareAtPrice)}
+              {product.variants[selectedVariant].compare_price && (
+                <h4 className="line-through text-light-charcoal dark:text-dark-primaryText">
+                  {formatPrice(product.variants[selectedVariant].compare_price)}
                 </h4>
               )}
               {/* INVENTORY BADGE */}
-              {product.variants[selectedVariant].quantityAvailable <= 20 && (
+              {product.variants[selectedVariant].quantity_available <= 20 && (
                 <Badge color="red" size="md">
-                  {product.variants[selectedVariant].quantityAvailable <= 0
+                  {product.variants[selectedVariant].quantity_available <= 0
                     ? 'Out of Stock'
-                    : `Only ${product.variants[selectedVariant].quantityAvailable} left!`}
+                    : `Only ${product.variants[selectedVariant].quantity_available} left!`}
                 </Badge>
               )}
             </div>
@@ -149,20 +148,20 @@ const ProductPage = (product: Product) => {
             <div className="flex flex-col gap-sm">
               <div
                 ref={descriptionRef}
-                className={`body-large text-charcoal dark:text-textInverse ${!showDescription ? 'line-clamp-2' : ''} transition-all duration-200`}
-                dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+                className={`body-large text-light-charcoal dark:text-dark-primaryText ${!showDescription ? 'line-clamp-2' : ''} transition-all duration-200`}
+                dangerouslySetInnerHTML={{ __html: product.description_html }}
               />
               {isClamped && (
                 <button
                   type="button"
                   onClick={() => setShowDescription(!showDescription)}
-                  className="p-sm pb-0 border border-gray dark:border-grayDark border-x-0 border-b-0 flex items-center gap-md justify-between text-charcoal dark:text-textInverse"
+                  className="p-sm pb-0 border border-light-gray dark:border-dark-gray border-x-0 border-b-0 flex items-center gap-md justify-between text-light-charcoal dark:text-dark-primaryText"
                 >
                   Read {showDescription ? 'Less' : 'More'}{' '}
                   {showDescription ? (
-                    <Minus className="fill-charcoal dark:fill-charcoalLight size-[15px]" />
+                    <Minus className="fill-light-charcoal dark:fill-light-charcoalLight size-[15px]" />
                   ) : (
-                    <Plus className="fill-charcoal dark:fill-charcoalLight size-[15px]" />
+                    <Plus className="fill-light-charcoal dark:fill-light-charcoalLight size-[15px]" />
                   )}
                 </button>
               )}
@@ -198,7 +197,7 @@ const ProductPage = (product: Product) => {
                   decrement={setQuantity}
                   increment={setQuantity}
                 />
-                <div className="text-charcoal dark:text-textInverse body-small">
+                <div className="text-light-charcoal dark:text-dark-primaryText body-small">
                   In the Bag (
                   {getCart?.lines.find(
                     (item) => item.variant.id === product.variants[selectedVariant].id
@@ -215,7 +214,7 @@ const ProductPage = (product: Product) => {
             <div className="flex flex-col md:flex-row items-center gap-md">
               <Button
                 pill
-                disabled={product.variants[selectedVariant].quantityAvailable <= 0}
+                disabled={product.variants[selectedVariant].quantity_available <= 0}
                 onClick={() => {
                   if (product.variants[selectedVariant].id) {
                     setLoading(true);
@@ -236,14 +235,14 @@ const ProductPage = (product: Product) => {
               >
                 {loading ? (
                   <Spinner />
-                ) : product.variants[selectedVariant].quantityAvailable <= 0 ? (
+                ) : product.variants[selectedVariant].quantity_available <= 0 ? (
                   'Out of Stock'
                 ) : (
                   'Add to cart'
                 )}
               </Button>
               <Link href={PageRoutes.bookstore} className="w-full md:w-[calc(50%-8px)]">
-                <Button pill fullSized color="ghost" className="whitespace-nowrap">
+                <Button pill fullSized color="info" className="whitespace-nowrap">
                   Contine Shopping
                 </Button>
               </Link>
@@ -254,10 +253,10 @@ const ProductPage = (product: Product) => {
               {MISCELLANEOUS_DETAIL.map(({ detail, description }) => (
                 <div
                   key={detail}
-                  className="flex flex-col gap-sm text-charcoal dark:text-textInverse"
+                  className="flex flex-col gap-sm text-light-charcoal dark:text-dark-primaryText"
                 >
                   <h5>{detail}</h5>
-                  <hr className="text-gray" />
+                  <hr className="text-light-gray" />
                   <p>{description}</p>
                 </div>
               ))}
@@ -266,7 +265,7 @@ const ProductPage = (product: Product) => {
         </div>
 
         {/* RIGHT DECORATIVE BORDER */}
-        <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-primary dark:bg-primaryDark" />
+        <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
       </div>
     </>
   );

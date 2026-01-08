@@ -1,8 +1,8 @@
 import { Cart } from '@/data/types';
+import { NextPageContext } from 'next';
+import nookies from 'nookies';
 import { CropRegion, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';
-import nookies from 'nookies';
-import { NextPageContext } from 'next';
 
 export const getCurrentCartQuery = async (cartId: string) => {
   return ShopifyQuery.query({
@@ -87,9 +87,9 @@ export const getCurrentCart = async (context?: NextPageContext): Promise<Cart | 
 
     return {
       id: cart.id as string,
-      checkoutUrl: cart.checkoutUrl as string,
-      totalQuantity: cart.totalQuantity,
-      subtotalAmount: {
+      checkout_url: cart.checkoutUrl as string,
+      total_quantity: cart.totalQuantity,
+      subtotal_amount: {
         amount: (cart.cost.subtotalAmount.amount as string) ?? 0,
         currencyCode: cart.cost.subtotalAmount.currencyCode,
       },
@@ -100,7 +100,7 @@ export const getCurrentCart = async (context?: NextPageContext): Promise<Cart | 
           src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
           alt: line.merchandise.product.images.nodes[0].altText ?? '',
         },
-        subtotalAmount: {
+        subtotal_amount: {
           amount: (line.cost.subtotalAmount.amount as string) ?? 0,
           currencyCode: line.cost.subtotalAmount.currencyCode,
         },
@@ -110,13 +110,13 @@ export const getCurrentCart = async (context?: NextPageContext): Promise<Cart | 
             amount: (line.merchandise.price.amount as string) ?? 0,
             currencyCode: line.merchandise.price.currencyCode,
           },
-          compareAtPrice: line.merchandise.compareAtPrice
+          compare_price: line.merchandise.compareAtPrice
             ? {
                 amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
                 currencyCode: line.merchandise.compareAtPrice.currencyCode,
               }
             : undefined,
-          selectedOptions:
+          selected_options:
             line.merchandise.selectedOptions &&
             line.merchandise.selectedOptions[0]?.name !== 'Title'
               ? line.merchandise.selectedOptions.map((opt) => ({

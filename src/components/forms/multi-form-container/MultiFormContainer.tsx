@@ -1,7 +1,7 @@
 'use client';
 
-import React, { ReactElement, useState } from 'react';
 import { Button } from 'flowbite-react';
+import React, { ReactElement, useState } from 'react';
 
 import ToggleSlider from '@/components/buttons/toggle-slider/ToggleSlider';
 
@@ -46,13 +46,9 @@ const MultiFormContainer: React.FC<MultiFormContainerProps> = ({ forms }) => {
       </div>
 
       {forms[active] && forms[active].header && (
-        <div
-          className={
-            'flex flex-col gap-[25px] max-w-[1000px] mx-auto text-center font-light dark:text-textInverse'
-          }
-        >
+        <div className={'flex flex-col gap-[25px] max-w-[1000px] mx-auto text-center font-light'}>
           <h1>{forms[active].header.title}</h1>
-          <h4 className="text-charcoal dark:text-textInverse">
+          <h4 className="text-light-charcoal dark:text-dark-primaryText">
             {forms[active].header.description}
           </h4>
         </div>

@@ -18,20 +18,16 @@ export const metadata: Metadata = {
 const ChurchRental = () => (
   <div>
     <PageHero
-      short
+      size="short"
       title="Church Rental"
-      media={{
-        src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
-        poster: '',
-      }}
+      media={{ src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp` }}
     />
 
     <div className="py-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
       <div className="px-padding">
         <CenterTextSection
-          noPadding
-          title="Looking for your next event space?"
           highlight={[[4, 5]]}
+          title="Looking for your next event space?"
           description="We offer rentals of the parking lot, Fellowship Hall and the Sanctuary. Ideal for weddings, expos, family celebrations and more."
         />
       </div>
@@ -70,9 +66,8 @@ const ChurchRental = () => (
 
       <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
         <CenterTextSection
-          noPadding
-          title="Tailored solutions for your needs"
           highlight={[[0, 0]]}
+          title="Tailored solutions for your needs"
           description="We offer rentals of the parking lot, Fellowship Hall and the Sanctuary. Ideal for weddings, expos, family celebrations and more."
         />
         <EventRentalForm />

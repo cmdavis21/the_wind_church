@@ -1,7 +1,7 @@
 {
   "LanguageSelector": {
     "label": "Cambiar idioma",
-    "locale": "{locale, select, en {Inglés} es {Español} other {Unknown}}"
+    "locale": "{locale, select, en {ING} es {ESP} other {N/A}}"
   },
   "NotFound": {
     "404": "404",
@@ -13,56 +13,56 @@
     "about": {
       "label": "Acerca de",
       "submenu": [
-        { "label": "Sobre Nosotros", "link": "/acerca-de" },
-        { "label": "Planifica Tu Visita", "link": "/planifica-tu-visita" },
-        { "label": "Líderes de Wind", "link": "/lideres-de-wind" }
+        { "label": "Quiénes Somos", "link": "/about-us" },
+        { "label": "Líderes de Wind", "link": "/wind-leaders" }
       ]
     },
     "media": {
       "label": "Medios",
       "submenu": [
-        { "label": "Sermones", "link": "/sermones" },
+        { "label": "Sermones", "link": "/sermons" },
         { "label": "RightNow Media", "link": "/rightnowmedia" },
-        { "label": "Galería", "link": "/galeria" }
+        { "label": "Galería", "link": "/gallery" }
       ]
     },
     "ministries": {
       "label": "Ministerios",
       "submenu": [
-        { "label": "Todos los Ministerios", "link": "/ministerios" },
-        { "label": "Próxima Generación", "link": "/proxima-generacion" },
-        { "label": "Evaluación de Dones", "link": "/evaluacion-de-dones" }
+        { "label": "Todos los Ministerios", "link": "/ministries" },
+        { "label": "Próxima Generación", "link": "/next-gen" },
+        { "label": "Evaluación de Dones", "link": "/gift-assessment" }
       ]
     },
     "jesus": {
       "label": "Jesús",
       "submenu": [
-        { "label": "Salvación", "link": "/salvacion" },
-        { "label": "Peticiones de Oración", "link": "/peticiones-de-oracion" }
+        { "label": "Salvación", "link": "/salvation" },
+        { "label": "Peticiones de Oración", "link": "/prayer-requests" }
       ]
     },
     "deepDive": {
       "label": "Profundizar",
-      "link": "/profundizar"
+      "link": "/deep-dive"
     },
     "events": {
       "label": "Eventos",
-      "link": "/eventos"
+      "link": "/events"
     },
     "bookstore": {
       "label": "Librería",
       "submenu": [
-        { "label": "Comprar Productos", "link": "/libreria" },
-        { "label": "Tu Carrito", "link": "/libreria/carrito" }
+        { "label": "Comprar Productos", "link": "/bookstore" },
+        { "label": "Tu Carrito", "link": "/bookstore/cart" },
+        { "label": "Tus Pedidos", "link": "/bookstore/orders" }
       ]
     },
     "rental": {
       "label": "Alquiler",
-      "link": "/alquiler-de-iglesia"
+      "link": "/church-rental"
     },
     "give": {
       "label": "Donar",
-      "link": "/donar"
+      "link": "/give"
     }
   },
   "Footer": {
@@ -71,20 +71,20 @@
       "label": "Acerca de",
       "row": [
         {
-          "label": "Pastor Singletary",
-          "link": "/acerca-de#pastor-singletary"
-        },
-        {
           "label": "Misión y Visión",
-          "link": "/acerca-de#mision-y-vision"
-        },
-        {
-          "label": "Foursquare",
-          "link": "/acerca-de#foursquare"
+          "link": "/about#mission-and-vision"
         },
         {
           "label": "Nuestra Historia",
-          "link": "/acerca-de#historia"
+          "link": "/about#history"
+        },
+        {
+          "label": "Pastor Singletary",
+          "link": "/about#pastor-singletary"
+        },
+        {
+          "label": "Líderes Wind",
+          "link": "/wind-leaders"
         }
       ]
     },
@@ -92,32 +92,28 @@
       "label": "Familia Wind",
       "row": [
         {
-          "label": "Donar",
-          "link": "/donar"
-        },
-        {
           "label": "Profundización",
-          "link": "/profundizacion"
+          "link": "/deep-dive"
         },
         {
-          "label": "Eventos",
-          "link": "/eventos"
-        },
-        {
-          "label": "Sermones",
-          "link": "/sermones"
+          "label": "Evaluación de Dones",
+          "link": "/gift-assessment"
         },
         {
           "label": "Ministerios",
-          "link": "/ministerios"
-        },
-        {
-          "label": "Salvación",
-          "link": "/salvacion"
+          "link": "/ministries"
         },
         {
           "label": "Peticiones de Oración",
-          "link": "/peticiones-de-oracion"
+          "link": "/prayer-requests"
+        },
+        {
+          "label": "Salvación",
+          "link": "/salvation"
+        },
+        {
+          "label": "Sermones",
+          "link": "/sermons"
         }
       ]
     },
@@ -125,28 +121,28 @@
       "label": "Más de Wind",
       "row": [
         {
-          "label": "Planifica Tu Visita",
-          "link": "/planifica-tu-visita"
-        },
-        {
-          "label": "Evaluación de Dones",
-          "link": "/evaluacion-de-dones"
-        },
-        {
-          "label": "Líderes Wind",
-          "link": "/lideres-wind"
-        },
-        {
-          "label": "Galería",
-          "link": "/galeria"
-        },
-        {
           "label": "Librería",
-          "link": "/libreria"
+          "link": "/bookstore"
         },
         {
           "label": "Alquiler de Iglesia",
-          "link": "/alquiler-de-eventos"
+          "link": "/church-rental"
+        },
+        {
+          "label": "Donar",
+          "link": "/give"
+        },
+        {
+          "label": "Eventos",
+          "link": "/events"
+        },
+        {
+          "label": "Galería",
+          "link": "/gallery"
+        },
+        {
+          "label": "Deja un Comentario",
+          "link": "/feedback"
         }
       ]
     },

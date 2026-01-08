@@ -19,12 +19,12 @@ export const getPlaylistVideos = async (): Promise<YouTubeSnippet[]> => {
     const res = await youTubeClient.playlistItems.list({
       part: ['snippet'],
       playlistId,
-      maxResults: 7,
+      maxResults: 10,
     });
     return res.data.items
       ? res.data.items.map((item) => ({
           title: item.snippet?.title ?? '',
-          publishedAt: item.snippet?.publishedAt ?? '',
+          published_at: item.snippet?.publishedAt ?? '',
           thumbnail: item.snippet?.thumbnails?.medium?.url ?? '',
           videoUrl: `https://www.youtube.com/watch?v=${item.snippet?.resourceId?.videoId}`,
         }))
@@ -38,13 +38,32 @@ export const getPastLiveStreams = async (): Promise<YouTubeSnippet[]> => {
     channelId: YOUTUBE_CHANNEL_ID,
     eventType: 'completed',
     type: ['video'],
-    maxResults: 7,
+    maxResults: 10,
   });
 
   return res.data.items
     ? res.data.items.map((item) => ({
         title: item.snippet?.title ?? '',
-        publishedAt: item.snippet?.publishedAt ?? '',
+        published_at: item.snippet?.publishedAt ?? '',
+        thumbnail: item.snippet?.thumbnails?.medium?.url ?? '',
+        videoUrl: `https://www.youtube.com/watch?v=${item.id?.videoId}`,
+      }))
+    : [];
+};
+
+export const getRecentVideos = async (): Promise<YouTubeSnippet[]> => {
+  const res = await youTubeClient.search.list({
+    part: ['snippet'],
+    channelId: YOUTUBE_CHANNEL_ID,
+    eventType: 'completed',
+    type: ['video'],
+    maxResults: 6,
+  });
+
+  return res.data.items
+    ? res.data.items.map((item) => ({
+        title: item.snippet?.title ?? '',
+        published_at: item.snippet?.publishedAt ?? '',
         thumbnail: item.snippet?.thumbnails?.medium?.url ?? '',
         videoUrl: `https://www.youtube.com/watch?v=${item.id?.videoId}`,
       }))

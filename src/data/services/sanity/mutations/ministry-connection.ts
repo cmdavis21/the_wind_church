@@ -1,8 +1,8 @@
-import { MinistryConnection } from '@/data/types';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { MINISTRY_CONNECT_KEY, WEBSITE_BASE_URL } from '@/data/constants';
+import { FORM_TYPES, MinistryConnection } from '@/data/types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
-import { MINISTRY_CONNECT_KEY } from '@/data/constants';
 
 export const createMinistryConnectionClient = async (data: MinistryConnection) => {
   try {
@@ -29,9 +29,20 @@ export const useCreateMinistryConnection = () => {
   return useMutation({
     mutationFn: createMinistryConnectionClient,
     mutationKey: [MINISTRY_CONNECT_KEY],
-    onSettled: () => {
+    onSettled: async (d, e, variables) => {
       queryClient.invalidateQueries({
         queryKey: [MINISTRY_CONNECT_KEY],
+      });
+      await fetch('/api/form-submission', {
+        method: 'POST',
+        body: JSON.stringify({
+          formType: FORM_TYPES.MINISTRY_CONNECTION,
+          payload: {
+            firstName: variables.first_name,
+            lastName: `${variables.last_name.charAt(0)}.`,
+            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.MINISTRY_CONNECTION}`,
+          },
+        }),
       });
     },
   });

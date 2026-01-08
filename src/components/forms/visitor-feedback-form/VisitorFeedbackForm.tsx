@@ -3,6 +3,7 @@
 import PencilPaper from '@/components/icons/pencilPaper';
 import { useCreateVisitorFeedback } from '@/data/services/sanity/mutations/visitor-feedback';
 import { VisitorFeedback } from '@/data/types';
+import { isValidEmail, isValidPhone } from '@/data/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'flowbite-react';
 import { useEffect, useRef } from 'react';
@@ -15,8 +16,21 @@ import TextareaInput from '../inputs/textarea-input/TextareaInput';
 const schema: yup.ObjectSchema<VisitorFeedback> = yup.object().shape({
   first_name: yup.string().required('Enter your first name'),
   last_name: yup.string().required('Enter your last name'),
-  phone: yup.string().optional(),
-  email: yup.string().email().required('Enter your email'),
+  phone: yup
+    .string()
+    .min(10)
+    .max(11)
+    .optional()
+    .test('Include 10 to 11 digit valid phone number', (val) => {
+      if (val) {
+        return isValidPhone(val);
+      }
+    }),
+  email: yup
+    .string()
+    .email()
+    .required('Enter your email')
+    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
   feedback: yup.string().required('Share your feedback'),
 });
 
@@ -52,10 +66,10 @@ const VisitorFeedbackForm = () => {
     <form
       ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-textInverse" />
+        <PencilPaper className="dark:fill-dark-primaryText" />
         <h4>Visitor Feedback</h4>
       </div>
 

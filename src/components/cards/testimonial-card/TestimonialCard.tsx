@@ -1,5 +1,5 @@
-import React from 'react';
 import Image from 'next/image';
+import React from 'react';
 
 interface TestimonialCardProps {
   src: string;
@@ -18,8 +18,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ src, name, statement 
           className="pointer-events-none object-cover rounded-full"
         />
       </div>
-      <div className="flex flex-col gap-md dark:text-textInverse px-sm">
-        <p className="body-large text-charcoal dark:text-textInverse font-light italic">
+      <div className="flex flex-col gap-md dark:text-dark-primaryText px-sm">
+        <p className="body-large text-light-charcoal dark:text-dark-primaryText font-light italic">
           &quot;{statement}&quot;
         </p>
         <h5 className="italic text-right"> - {name}</h5>

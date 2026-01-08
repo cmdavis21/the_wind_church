@@ -63,13 +63,9 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
       className="absolute left-0 px-[50px] lg:px-[100px] min-[1800px]:px-[200px] top-[50%] -translate-y-[50%] w-full"
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: 'bg-black/40 p-sm',
-        iconClassName: 'fill-white size-[25px]',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: 'bg-black/40 p-sm',
-        iconClassName: 'fill-white size-[25px]',
       }}
     />
   );
@@ -89,7 +85,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
               mobileCarouselRef.current?.goToSlide(currentSlide - 1);
             }
           },
-          buttonClassName: 'bg-gray/40 p-xs',
+          buttonClassName: 'p-xs',
           iconClassName: 'fill-black/70 size-[18px]',
         }}
         rightArrowProps={{
@@ -100,7 +96,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
               mobileCarouselRef.current?.goToSlide(currentSlide + 1);
             }
           },
-          buttonClassName: 'bg-gray/40 p-xs',
+          buttonClassName: 'p-xs',
           iconClassName: 'fill-black/70 size-[18px]',
         }}
       />
@@ -182,7 +178,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
                 </video>
               )}
 
-              <div className="space-y-md text-black dark:text-textInverse">
+              <div className="space-y-md">
                 {slide.title && <h2>{slide.title}</h2>}
                 {slide.description && <h5>{slide.description}</h5>}
               </div>
@@ -237,7 +233,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
                 </video>
               )}
 
-              <div className="space-y-md dark:text-textInverse">
+              <div className="space-y-md">
                 {slide.title && <h2>{slide.title}</h2>}
                 {slide.description && <h5>{slide.description}</h5>}
               </div>

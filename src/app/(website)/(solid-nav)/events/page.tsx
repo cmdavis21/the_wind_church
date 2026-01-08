@@ -5,12 +5,9 @@ import TimelineItem from '@/components/cards/timeline-item/TimelineItem';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import EventCardsMasonryGrid from '@/components/masonry-grids/event-cards-masonry-grid/EventCardsMasonryGrid';
 import { WEBSITE_BASE_URL } from '@/data/constants';
-import { PageRoutes } from '@/data/page-routes';
 import { getAllEvents } from '@/data/services/sanity/queries/events';
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
-import { Button } from 'flowbite-react';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Events',
@@ -52,21 +49,11 @@ const Events = async () => {
       ) : (
         <div className="flex flex-col gap-lg">
           <h3>There are no upcoming events at this time.</h3>
-          <div className="flex flex-wrap gap-md">
-            <Link href={PageRoutes.about}>
-              <Button color="primary" size="lg">
-                Learn more about the Wind
-              </Button>
-            </Link>
-            <Link href={PageRoutes.planYourVisit}>
-              <Button color="primary" size="lg">
-                Plan your visit
-              </Button>
-            </Link>
-          </div>
+          <h3>Check back later</h3>
         </div>
       )}
 
+      {/* PAGE SCROLL-UP BUTTON */}
       <PageScrollUpButton />
     </div>
   );

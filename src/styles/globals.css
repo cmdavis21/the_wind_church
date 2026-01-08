@@ -96,6 +96,9 @@ body {
   .m-padding {
     @apply m-[25px] md:m-[50px] lg:m-[100px] min-[1800px]:mx-[200px] min-[1800px]:my-[150px];
   }
+  .max-width-center {
+    @apply max-w-[1800px] mx-auto;
+  }
 }
 
 /* remove ring border for all buttons */

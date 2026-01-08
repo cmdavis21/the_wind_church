@@ -44,16 +44,16 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({ med
 
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
-      className="absolute left-0 lg:px-[20px] top-[50%] -translate-y-[50%] w-full"
+      className="absolute left-0 lg:px-5 top-[50%] -translate-y-[50%] w-full"
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: `bg-black/40 p-xs lg:p-sm ${media.length === 1 ? 'hidden' : ''}`,
-        iconClassName: 'fill-white md:size-[22px]',
+        buttonClassName: `p-xs lg:p-sm ${media.length === 1 ? 'hidden' : ''}`,
+        iconClassName: 'md:size-[22px]',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: `bg-black/40 p-xs lg:p-sm ${media.length === 1 ? 'hidden' : ''}`,
-        iconClassName: 'fill-white md:size-[22px]',
+        buttonClassName: `p-xs lg:p-sm ${media.length === 1 ? 'hidden' : ''}`,
+        iconClassName: 'md:size-[22px]',
       }}
     />
   );
@@ -69,7 +69,7 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({ med
         renderButtonGroupOutside
         renderArrowsWhenDisabled
         customDot={<CustomDot />}
-        itemClass="w-full lg:h-full aspect-square border rounded-xl border-gray dark:border-grayDark relative"
+        itemClass="w-full lg:h-full aspect-square border rounded-xl border-light-gray dark:border-dark-gray relative bg-white"
         dotListClass="h-[60px] flex gap-xs justify-center items-center"
         customButtonGroup={<ButtonGroup />}
       >

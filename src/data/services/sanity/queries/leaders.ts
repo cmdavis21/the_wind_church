@@ -1,5 +1,7 @@
-import { SanityQuery } from '../zeus-chain';
+import { GET_ALL_LEADERS } from '@/data/constants';
 import { Leader } from '@/data/types';
+import { useQuery } from '@tanstack/react-query';
+import { SanityQuery } from '../zeus-chain';
 
 const getAllLeadersQuery = async () => {
   return await SanityQuery({
@@ -14,7 +16,6 @@ const getAllLeadersQuery = async () => {
         position: true,
         category: true,
         description: true,
-        roles: true,
         image: {
           asset: {
             url: true,
@@ -47,7 +48,6 @@ export const getAllCategorizedLeaders = async (): Promise<Record<string, Leader[
           description: leader.description ?? '',
           position: leader.position ?? '',
           category: leader.category ?? '',
-          roles: (leader.roles as string[]) ?? [],
           image: leader.image?.asset?.url ?? '',
           video: leader.video?.asset?.url ?? undefined,
         });
@@ -57,4 +57,17 @@ export const getAllCategorizedLeaders = async (): Promise<Record<string, Leader[
   }
 
   return categorizedLeaders;
+};
+
+export const useGetAllCategorizedLeaders = () => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [GET_ALL_LEADERS],
+    queryFn: getAllCategorizedLeaders,
+  });
+
+  return {
+    leaders: data,
+    leadersLoading: isLoading,
+    leadersError: isError,
+  };
 };

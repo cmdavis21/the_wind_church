@@ -1,5 +1,6 @@
 import { useCreateContactSignup } from '@/data/services/sanity/mutations/contact-signup';
 import { FullContact } from '@/data/types';
+import { isValidEmail, isValidPhone } from '@/data/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, TextInput } from 'flowbite-react';
 import { useTranslations } from 'next-intl';
@@ -10,8 +11,16 @@ import AlertMessage from '../inputs/alert-message/AlertMessage';
 const schema = yup.object().shape({
   first_name: yup.string().required('Enter your first name'),
   last_name: yup.string().required('Enter your last name'),
-  phone: yup.string().required('Enter your email'),
-  email: yup.string().required('Enter your email'),
+  phone: yup
+    .string()
+    .min(10)
+    .max(11)
+    .required('Enter your phone number')
+    .test('Include 10 to 11 digit valid phone number', (val) => isValidPhone(val)),
+  email: yup
+    .string()
+    .required('Enter your email')
+    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
 });
 
 const FooterContactForm = () => {

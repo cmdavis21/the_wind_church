@@ -2,7 +2,7 @@ import { Label, Select } from 'flowbite-react';
 import React, { useImperativeHandle, useRef } from 'react';
 
 interface SelectInputProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  label: string;
+  label?: string;
   options: { value: string; label: string }[];
   error?: string;
 }
@@ -16,7 +16,7 @@ const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>(
 
     return (
       <div className="w-full flex flex-col gap-xs">
-        <Label htmlFor="select" value={label} disabled={rest.disabled} />
+        {label && <Label htmlFor="select" value={label} disabled={rest.disabled} />}
         <Select ref={inputRef} name="select" {...rest}>
           <option value="">Select an option</option>
           {options.map((option) => (

@@ -40,7 +40,7 @@ describe('SimpleCarousel', () => {
     const dots = screen.getAllByRole('button').slice(2); // Exclude arrows
     fireEvent.click(dots[1]); // Click second dot
 
-    expect(dots[1]).toHaveClass('bg-primary/20 border-primary'); // Verifying active state change
+    expect(dots[1]).toHaveClass('bg-brand-primary/20 border-primary'); // Verifying active state change
   });
 
   it('should apply blue dot styling when blueDots is true', () => {

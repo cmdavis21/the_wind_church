@@ -22,7 +22,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
 }) => (
   <Modal size="5xl" dismissible show={openModal} onClose={() => setOpenModal(!openModal)}>
     <ModalBody className="p-0">
-      <div className="border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse relative rounded-lg grid grid-cols-1 md:grid-cols-3 gap-xl p-md md:p-xl">
+      <div className="border border-light-gray dark:bg-dark-gray dark:border-dark-gray dark:text-dark-primaryText relative rounded-lg grid grid-cols-1 md:grid-cols-3 gap-xl p-md md:p-xl">
         <CornerButton onClick={setOpenModal} className="absolute z-10 right-0 top-0" />
         <div className="relative min-w-full h-full min-h-[300px] md:min-h-[400px] max-h-[700px] my-auto">
           <Image
@@ -38,21 +38,21 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
           <h5 className="line-clamp-6">{event.description}</h5>
 
           <h5 className="flex items-center gap-sm">
-            <Calendar className="dark:fill-textInverse" /> {formatDateMMMddyyyy(event.date)}
+            <Calendar className="dark:fill-dark-primaryText" /> {formatDateMMMddyyyy(event.date)}
           </h5>
 
           <h5 className="flex items-center gap-sm">
-            <Clock className="dark:fill-textInverse" /> {event.time.hour}
+            <Clock className="dark:fill-dark-primaryText" /> {event.time.hour}
             {event.time.minute && `:${event.time.minute}`} {event.time.time_of_day}
           </h5>
 
           <h5 className="flex items-center gap-sm">
-            <Location className="dark:fill-textInverse" /> {event.location}
+            <Location className="dark:fill-dark-primaryText" /> {event.location}
           </h5>
 
           {event.cost && (
             <h5 className="flex items-center gap-sm">
-              <DollarSign className="dark:fill-textInverse" /> {event.cost}
+              <DollarSign className="dark:fill-dark-primaryText" /> {event.cost}
             </h5>
           )}
 

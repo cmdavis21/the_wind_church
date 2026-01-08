@@ -44,7 +44,7 @@ const PageScrollUpButton: React.FC<PageScrollUpButtonProps> = ({ className }) =>
       } transition-opacity duration-300`}
     >
       <Button
-        color="ghost"
+        color="info"
         pill
         onClick={() => {
           if (window !== undefined) {
@@ -57,7 +57,7 @@ const PageScrollUpButton: React.FC<PageScrollUpButtonProps> = ({ className }) =>
         }}
         className="group py-[10px] max-md:scale-75"
       >
-        <UpArrow className="fill-charcoal group-hover:fill-black size-[22px]" />
+        <UpArrow className="fill-light-charcoal group-hover:fill-black size-[22px]" />
       </Button>
     </div>
   );

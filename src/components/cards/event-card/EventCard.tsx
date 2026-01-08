@@ -51,7 +51,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
         <div
           className={`relative w-full aspect-video ${
             scale ? 'group-hover:aspect-[4/3]' : ''
-          } transition-all duration-500 border border-gray dark:border-grayDark rounded-lg`}
+          } transition-all duration-500 border border-light-gray dark:border-dark-gray rounded-lg`}
         >
           {pastEvent && (
             <div className="absolute top-0 left-0 z-10 w-full h-full bg-black/30 rounded-lg" />
@@ -74,7 +74,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
         </div>
 
         <div className="text-left flex flex-col gap-xs">
-          <h6 className="font-bold text-primaryDark">{formatDateMMMddyyyy(event.date)}</h6>
+          <h6 className="font-bold text-brand-primary">{formatDateMMMddyyyy(event.date)}</h6>
           <h5 className="font-bold">{event.name}</h5>
         </div>
       </button>

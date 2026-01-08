@@ -2,7 +2,7 @@ const MinistryCardSkeleton = ({ flip }: { flip?: boolean }) => {
   return (
     <div
       className={
-        'animate-pulse bg-skeletonGray dark:bg-skeletonDarkGray relative md:aspect-[3/1] rounded-xl p-lg md:p-xxl'
+        'animate-pulse bg-light-neutral dark:bg-dark-neutral relative md:aspect-[3/1] rounded-xl p-lg md:p-xxl'
       }
     >
       {/* color overlay */}
@@ -12,9 +12,9 @@ const MinistryCardSkeleton = ({ flip }: { flip?: boolean }) => {
       <div
         className={`relative w-full h-full z-20 pt-[200px] md:pt-[100px] flex flex-col justify-end ${flip ? 'md:items-start' : 'md:items-end md:text-right'} gap-md text-white`}
       >
-        <div className="w-[125px] h-[48px] rounded bg-gray"></div>
-        <div className="w-[175px] h-[55px] rounded bg-gray"></div>
-        <div className="w-[50px] h-[25px] rounded-full bg-gray"></div>
+        <div className="w-[125px] h-[48px] rounded bg-light-gray"></div>
+        <div className="w-[175px] h-[55px] rounded bg-light-gray"></div>
+        <div className="w-[50px] h-[25px] rounded-full bg-light-gray"></div>
       </div>
     </div>
   );

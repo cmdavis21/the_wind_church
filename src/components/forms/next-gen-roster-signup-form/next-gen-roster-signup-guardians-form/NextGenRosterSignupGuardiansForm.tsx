@@ -50,7 +50,7 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
   });
 
   return (
-    <div className="flex flex-col gap-lg rounded-lg p-sm md:p-lg bg-gray dark:bg-grayDark dark:border dark:border-gray">
+    <div className="flex flex-col gap-lg rounded-lg p-sm md:p-lg bg-light-gray dark:bg-dark-gray dark:border dark:border-light-gray">
       {guardianFields.map((guardian, guardianIndex) => (
         <React.Fragment key={guardian.id}>
           <div className="flex flex-wrap items-center justify-between gap-sm">
@@ -146,9 +146,9 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
               relationship_to_child: '',
             })
           }
-          className="w-fit flex items-center gap-[4px] body-large hover:underline text-navyLight"
+          className="w-fit flex items-center gap-[4px] body-large hover:underline text-light-navyLight"
         >
-          <CirclePlus className="size-[16px] fill-navyLight" />
+          <CirclePlus className="size-[16px] fill-light-navyLight" />
           Add another guardian
         </button>
       )}

@@ -55,13 +55,11 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({ slides })
       className="absolute left-0 px-[50px] min-[1800px]:px-[150px] top-[50%] -translate-y-[50%] w-full"
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: 'bg-black/40 p-sm',
-        iconClassName: 'fill-white size-[25px]',
+ 
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: 'bg-black/40 p-sm',
-        iconClassName: 'fill-white size-[25px]',
+
       }}
     />
   );
@@ -71,12 +69,12 @@ const FlipTextMediaCarousel: React.FC<FlipTextMediaCarouselProps> = ({ slides })
       leftArrowProps={{
         onClick: () => previous(),
         buttonClassName: 'absolute bottom-5 left-5 z-10',
-        iconClassName: 'fill-primary',
+        iconClassName: 'fill-brand-primary',
       }}
       rightArrowProps={{
         onClick: () => next(),
         buttonClassName: 'absolute bottom-5 right-5 z-10',
-        iconClassName: 'fill-primary',
+        iconClassName: 'fill-brand-primary',
       }}
     />
   );

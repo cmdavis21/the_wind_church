@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { useCreateMinistryConnection } from '@/data/services/sanity/mutations/ministry-connection';
+import { isValidEmail, isValidPhone } from '@/data/utils';
 import PencilPaper from '../../icons/pencilPaper';
 import AlertMessage from '../inputs/alert-message/AlertMessage';
 import TextInput from '../inputs/text-input/TextInput';
@@ -16,8 +17,17 @@ import TextInput from '../inputs/text-input/TextInput';
 const schema = yup.object().shape({
   first_name: yup.string().required('Enter your first name'),
   last_name: yup.string().required('Enter your last name'),
-  phone: yup.string().required('Enter your phone number'),
-  email: yup.string().email().required('Enter your email'),
+  phone: yup
+    .string()
+    .min(10)
+    .max(11)
+    .required('Enter your phone number')
+    .test('Include 10 to 11 digit valid phone number', (val) => isValidPhone(val)),
+  email: yup
+    .string()
+    .email()
+    .required('Enter your email')
+    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
   ministry_interests: yup
     .array(yup.string().default(''))
     .min(1)
@@ -71,10 +81,10 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
     <form
       ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-gray dark:bg-grayDark dark:border-grayDark dark:text-textInverse shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-textInverse" />
+        <PencilPaper className="dark:fill-dark-primaryText" />
         <h4>Ministry Connection</h4>
       </div>
 

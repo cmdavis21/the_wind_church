@@ -12,7 +12,7 @@ import MediaBackgroundAndContent from '@/components/sections/media-background-an
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
-import { getGalleryImages } from '@/data/services/aws/gallery';
+import { getGalleryImages } from '@/data/services/aws/s3/gallery';
 import { getAllEvents } from '@/data/services/sanity/queries/events';
 import { getAllMinistries, getMinistryBySlug } from '@/data/services/sanity/queries/ministries';
 import { Button } from 'flowbite-react';
@@ -50,18 +50,12 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
 
   return (
     <div>
-      <PageHero
-        short
-        title={ministry.name}
-        media={{
-          src: ministry.image.src,
-        }}
-      />
+      <PageHero size="short" title={ministry.name} media={{ src: ministry.image.src }} />
 
       <div className="p-padding flex flex-col gap-xxl max-w-[1440px] mx-auto">
         {/* Mission */}
         <div className="flex flex-col gap-lg">
-          <h4 className="text-charcoal dark:text-charcoalLight">
+          <h4 className="text-light-charcoal dark:text-dark-charcoal">
             {ministry.scripture.verse} - "{ministry.scripture.passage}"
           </h4>
           <h3 className="xl:text-[24px]">{ministry.description}</h3>
@@ -69,7 +63,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* MINISTRY LEADER */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
-          <SectionHeader noPadding title="Meet the Team" subtitle="Select members to learn more" />
+          <SectionHeader title="Meet the Team" subtitle="Select members to learn more" />
           {/* DESKTOP */}
           <div className="hidden md:block">
             <div className="grid grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
@@ -96,12 +90,12 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* MISC DETAILS */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
-          <SectionHeader noPadding title="Meeting times" subtitle="It’s the finer things..." />
+          <SectionHeader title="Meeting times" subtitle="It’s the finer things..." />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md justify-between">
             {ministry.meeting_details.map((meet) => (
               <div
                 key={`deep-dive-meeting-detail-${meet.day}-${meet.time.hour}`}
-                className="p-sm rounded-md border border-gray dark:border-grayDark dark:bg-grayDark shadow body-large text-center"
+                className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center"
               >
                 {`${meet.day.slice(0, 3)} • ${meet.time.hour}:${meet.time.minute} ${meet.time.time_of_day} • ${meet.location}`}
               </div>
@@ -113,7 +107,6 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         {selectGallery && selectGallery.length > 0 && (
           <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
             <SectionHeader
-              noPadding
               title="Ministry Gallery"
               subtitle="Select a photo to view the memories"
             />
@@ -142,7 +135,6 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         {/* EVENTS */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <CenterTextSection
-            noPadding
             title="Ministry Events"
             description="Look out for fun workshops, fellowships, and more at the Wind!"
           />
@@ -158,7 +150,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
               </div>
             ) : (
               <div className="flex flex-col gap-lg">
-                <h4 className="text-center dark:text-textInverse">No events at this time.</h4>
+                <h4 className="text-center dark:text-dark-primaryText">No events at this time.</h4>
                 <div className="2xl:px-padding">
                   <EventCardsMasonryGrid
                     events={latestEvents.map((event) => ({
@@ -184,7 +176,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         {/* WHY JOIN A MINISTRY */}
         <div className="lg:pt-xl">
           <MediaBackgroundAndContent
-            rounded
+            fullWidth={false}
             background={{
               src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
               alt: 'Decorative Background Image',
@@ -205,7 +197,6 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         {/* FAQS */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <SectionHeader
-            noPadding
             subtitle="Looking for more guidance?"
             title="Find answers to your questions here"
           />
@@ -253,7 +244,6 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         {/* CTAs */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <CenterTextSection
-            noPadding
             highlight={[[4, 5]]}
             title="Take your next steps with us!"
             description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
@@ -265,8 +255,8 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
               title="Visit on Sunday or Wednesday"
               description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
               link={{
-                label: 'Plan your visit',
-                href: PageRoutes.planYourVisit,
+                label: 'Learn about the Wind',
+                href: PageRoutes.about,
               }}
             />
             <ImageWithTitleDescriptionCard

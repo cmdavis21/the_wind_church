@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { permanentMarker } from '@/app/(website)/layout';
-
 interface PageHeaderProps {
   title: string;
   subtitle: string;
@@ -9,9 +7,7 @@ interface PageHeaderProps {
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle }) => (
   <div className="flex flex-col gap-sm text-center">
-    <div
-      className={`${permanentMarker.className} text-[36px] md:text-[75px] 2xl:text-[100px] leading-snug`}
-    >
+    <div className={`font-display text-[36px] md:text-[75px] 2xl:text-[100px] leading-snug`}>
       {title}
     </div>
     <h3>{subtitle}</h3>

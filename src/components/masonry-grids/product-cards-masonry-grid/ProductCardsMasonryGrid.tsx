@@ -13,8 +13,8 @@ interface ProductCardsMasonryGridProps {
     }[];
     title: string;
     price: Price;
-    compareAtPrice?: Price;
-    totalInventory: number;
+    compare_price?: Price;
+    total_inventory: number;
     handle: string;
   }[];
   columns?: number[];

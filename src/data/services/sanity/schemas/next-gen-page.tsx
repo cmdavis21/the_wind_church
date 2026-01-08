@@ -22,4 +22,12 @@ export const NextGenPageSchema = {
       description: 'Upload a PDF of the Next Gen cirriculum to be download applicable.',
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Next Gen Web Page',
+        subtitle: '',
+      };
+    },
+  },
 };

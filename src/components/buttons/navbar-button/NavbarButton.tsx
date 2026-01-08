@@ -10,7 +10,6 @@ enum NAV_TYPE {
 interface NavbarButtonProps {
   label: string;
   link: string;
-  activeNav: boolean;
   forMobile?: boolean;
   changeColor: boolean;
   onClick: () => void;
@@ -20,14 +19,14 @@ const getNavType = (shouldChange: boolean): NAV_TYPE =>
   shouldChange ? NAV_TYPE.CHANGING : NAV_TYPE.SOLID;
 
 const variants = {
-  [NAV_TYPE.CHANGING]: 'text-black dark:text-textInverse group-hover:text-black',
-  [NAV_TYPE.SOLID]: 'text-white dark:text-textInverse dark:group-hover:text-black',
+  [NAV_TYPE.CHANGING]:
+    'text-black dark:text-dark-primaryText group-hover:text-black dark:group-hover:text-black',
+  [NAV_TYPE.SOLID]: 'text-white dark:text-dark-primaryText dark:group-hover:text-black',
 };
 
 const NavbarButton: React.FC<NavbarButtonProps> = ({
   label,
   link,
-  activeNav,
   forMobile,
   changeColor,
   onClick,
@@ -42,7 +41,7 @@ const NavbarButton: React.FC<NavbarButtonProps> = ({
         onClick={onClick}
         className="px-xs group"
         size={forMobile ? 'sm' : 'lg'}
-        color={changeColor ? 'primary' : 'ghost'}
+        color={changeColor ? 'primary' : 'info'}
       >
         <h5 className={cn(variantClass, 'uppercase')}>{label}</h5>
       </Button>

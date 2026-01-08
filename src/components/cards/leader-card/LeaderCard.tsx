@@ -10,7 +10,6 @@ interface LeaderCardProps {
   last_name: string;
   position: string;
   description: string;
-  roles: string[];
   image: string;
   video?: string;
 }
@@ -20,7 +19,6 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
   last_name,
   position,
   description,
-  roles,
   image,
   video,
 }) => {
@@ -49,7 +47,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
   return (
     <div
       ref={card}
-      className="relative overflow-hidden w-full aspect-[3/4] min-w-[200px] max-w-[400px] border border-gray dark:border-grayDark rounded-lg"
+      className="relative overflow-hidden w-full aspect-[3/4] min-w-[200px] max-w-[400px] border border-light-gray dark:border-dark-gray rounded-lg"
     >
       {/* video */}
       {video ? (
@@ -82,22 +80,17 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
         }}
         className={`${
           open
-            ? 'bg-white dark:bg-grayDark overflow-scroll'
+            ? 'bg-white dark:bg-dark-gray overflow-scroll'
             : 'opacity-0 pointer-events-none overflow-hiden'
         } transition-[height, opacity] duration-500 absolute top-0 left-0 rounded-lg scrollbar-hide`}
       >
-        <div className="relative w-full h-full flex flex-col gap-xs p-md text-charcoal dark:text-textInverse scrollbar-hide">
+        <div className="relative w-full h-full flex flex-col gap-xs p-md text-light-charcoal dark:text-dark-primaryText scrollbar-hide">
           <CornerButton onClick={setOpen} className="absolute z-10 right-0 top-0" />
-          <h4 className="text-black dark:text-primaryDark">
+          <h4 className="text-black dark:text-brand-primary">
             {first_name} {last_name}
           </h4>
           <h5>{position}</h5>
-          {roles && roles.length > 0 && (
-            <div className="italic font-light">
-              Other roles: {roles.map((r, idx) => (idx >= roles.length - 1 ? r : `${r}, `))}
-            </div>
-          )}
-          <div className="w-[45px] h-[2px] bg-primary rounded-xs mb-2" />
+          <div className="w-[45px] h-[2px] bg-brand-primary rounded-xs mb-2" />
           <div className="flex-1 scrollbar-hide y-scrollbox">{description}</div>
         </div>
       </div>

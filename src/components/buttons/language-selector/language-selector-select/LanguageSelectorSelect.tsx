@@ -33,8 +33,8 @@ const LanguageSelectorSelect: React.FC<LanguageSelectorSelectProps> = ({
         onChange={onSelectChange}
         className={`${
           changeColor
-            ? 'text-textSecondary dark:text-textInverse'
-            : 'text-white lg:text-textSecondary dark:text-textInverse'
+            ? 'text-light-primaryText dark:text-dark-primaryText'
+            : 'text-white lg:text-light-primaryText dark:text-dark-primaryText'
         }`}
       >
         {children}

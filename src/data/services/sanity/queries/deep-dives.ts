@@ -21,7 +21,6 @@ const getAllDeepDivesQuery = async () => {
             last_name: true,
           },
           position: true,
-          roles: true,
           description: true,
           image: {
             asset: {
@@ -75,7 +74,6 @@ const getDeepDiveBySlugQuery = async (slug: string) => {
             last_name: true,
           },
           position: true,
-          roles: true,
           description: true,
           image: {
             asset: {
@@ -134,7 +132,6 @@ export const getAllDeepDives = async (): Promise<DeepDive[]> => {
             first_name: instructor.contact?.first_name ?? '',
             last_name: instructor.contact?.last_name ?? '',
             position: instructor.position ?? '',
-            roles: (instructor.roles as string[]) ?? [],
             description: instructor.description ?? '',
             image: instructor.image?.asset?.url ?? '',
             video: instructor.video?.asset?.url ?? undefined,
@@ -179,7 +176,6 @@ export const getDeepDiveBySlug = async (slug: string): Promise<DeepDive | undefi
           first_name: instructor.contact?.first_name ?? '',
           last_name: instructor.contact?.last_name ?? '',
           position: instructor.position ?? '',
-          roles: (instructor.roles as string[]) ?? [],
           description: instructor.description ?? '',
           image: instructor.image?.asset?.url ?? '',
           video: instructor.video?.asset?.url ?? undefined,

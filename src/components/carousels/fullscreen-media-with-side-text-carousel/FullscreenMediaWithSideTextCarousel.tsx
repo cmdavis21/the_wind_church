@@ -58,13 +58,9 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
       className="absolute left-0 px-[50px] min-[1800px]:px-[150px] top-[50%] -translate-y-[50%] w-full"
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: 'bg-black/40 p-sm',
-        iconClassName: 'fill-white size-[25px]',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: 'bg-black/40 p-sm',
-        iconClassName: 'fill-white size-[25px]',
       }}
     />
   );
@@ -74,12 +70,12 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
       leftArrowProps={{
         onClick: () => previous(),
         buttonClassName: 'absolute bottom-5 left-5 z-10',
-        iconClassName: 'fill-primary',
+        iconClassName: 'fill-brand-primary',
       }}
       rightArrowProps={{
         onClick: () => next(),
         buttonClassName: 'absolute bottom-5 right-5 z-10',
-        iconClassName: 'fill-primary',
+        iconClassName: 'fill-brand-primary',
       }}
     />
   );
@@ -143,10 +139,10 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
           {slides.map((slide) => (
             <div
               key={`media-with-side-text-${slide.title}`}
-              className="w-full 2xl:max-w-[70%] h-screen px-[150px] pb-[150px] flex flex-col gap-md justify-end text-white dark:text-textInverse"
+              className="w-full 2xl:max-w-[70%] h-screen px-[150px] pb-[150px] flex flex-col gap-md justify-end text-white dark:text-dark-primaryText"
             >
               <h4>{slide.description}</h4>
-              <div className="w-[100px] h-[1px] bg-primary rounded-sm" />
+              <div className="w-[100px] h-[1px] bg-brand-primary rounded-sm" />
               <h1>{slide.title}</h1>
             </div>
           ))}
@@ -198,10 +194,10 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
           {slides.map((slide) => (
             <div
               key={`mobile-media-with-side-text-${slide.title}`}
-              className="relative h-screen w-full px-[20px] pb-[70px] flex flex-col items-center justify-end text-justify text-white dark:text-textInverse gap-sm"
+              className="relative h-screen w-full px-5 pb-[70px] flex flex-col items-center justify-end text-justify text-white dark:text-dark-primaryText gap-sm"
             >
               <p className="body-large">{slide.description}</p>
-              <div className="w-[75px] h-[1px] bg-primary rounded-sm" />
+              <div className="w-[75px] h-[1px] bg-brand-primary rounded-sm" />
               <h3>{slide.title}</h3>
             </div>
           ))}

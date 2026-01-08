@@ -1,8 +1,8 @@
-import { VisitorFeedback } from '@/data/types';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { VISITOR_FEEDBACK_KEY, WEBSITE_BASE_URL } from '@/data/constants';
+import { FORM_TYPES, VisitorFeedback } from '@/data/types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
-import { VISITOR_FEEDBACK_KEY } from '@/data/constants';
 
 export const createVisitorFeedbackClient = async (data: VisitorFeedback) => {
   try {
@@ -29,9 +29,20 @@ export const useCreateVisitorFeedback = () => {
   return useMutation({
     mutationFn: createVisitorFeedbackClient,
     mutationKey: [VISITOR_FEEDBACK_KEY],
-    onSettled: () => {
+    onSettled: async (d, e, variables) => {
       queryClient.invalidateQueries({
         queryKey: [VISITOR_FEEDBACK_KEY],
+      });
+      await fetch('/api/form-submission', {
+        method: 'POST',
+        body: JSON.stringify({
+          formType: FORM_TYPES.VISITOR_FEEDBACK,
+          payload: {
+            firstName: variables.first_name,
+            lastName: `${variables.last_name.charAt(0)}.`,
+            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.VISITOR_FEEDBACK}`,
+          },
+        }),
       });
     },
   });
