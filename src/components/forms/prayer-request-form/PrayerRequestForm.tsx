@@ -9,8 +9,8 @@ import * as yup from 'yup';
 import PencilPaper from '@/components/icons/pencilPaper';
 import { PrayerRequest, YesNo } from '@/data/types';
 
-import CircleCheck from '@/components/icons/circleCheck';
-import SolidCircleX from '@/components/icons/solidCircleX';
+import CircleCheck from '@/components/icons/circle-check';
+import SolidCircleX from '@/components/icons/circle-x';
 import { useCreatePrayerRequest } from '@/data/services/sanity/mutations/prayer-request';
 import { isValidEmail } from '@/data/utils';
 import RadioGroup from '../inputs/radio-group/RadioGroup';

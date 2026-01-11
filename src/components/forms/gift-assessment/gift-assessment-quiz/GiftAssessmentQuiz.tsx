@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { GiftAssessmentDefinition, GiftAssessmentQuestion } from '@/data/types';
 
-import CircleExlaimation from '@/components/icons/circleExclaimation';
+import CircleExlaimation from '@/components/icons/circle-exclaimation';
 
 const schema = yup.object().shape({
   answers: yup

@@ -1,8 +1,10 @@
+'use client';
 import cn from 'classnames';
 import Image from 'next/image';
 import React from 'react';
 
-import { findMediaType, MediaType, styleSelectedWords } from '@/data/utils';
+import ScrollMouse from '@/components/icons/scrollMouse';
+import { findMediaType, MediaType, scrollToElem, styleSelectedWords } from '@/data/utils';
 
 interface PageHeroProps {
   title: string;
@@ -60,14 +62,19 @@ const PageHero: React.FC<PageHeroProps> = ({
       {['t', 'b', 'l', 'r'].map((area) => (
         <div
           key={`page-hero-gradient-${area}`}
-          className={`absolute w-full h-full bg-gradient-to-${area} from-black/50 from-5% via-black/10 via-30% to-transparent to-90% z-20`}
+          className={cn(
+            `absolute w-full h-full bg-gradient-to-${area} z-20`,
+            scrollTo
+              ? 'from-black/50 from-5% via-black/20 via-35% to-black/5 to-95%'
+              : 'from-black/50 from-5% via-black/10 via-30% to-transparent to-90%'
+          )}
         />
       ))}
 
       {/* CONTENT */}
       <div className="absolute w-full h-full p-5 md:p-[50px] 2xl:p-[100px] z-30">
         <div
-          className={`relative w-full h-full flex flex-col gap-lg items-center ${scrollTo ? 'justify-center' : 'justify-end'} text-white`}
+          className={`relative w-full h-full flex flex-col gap-lg items-center justify-end text-white`}
         >
           {highlightTitle ? (
             <div
@@ -88,6 +95,16 @@ const PageHero: React.FC<PageHeroProps> = ({
           )}
 
           {subtitle && <h3 className="text-center mx-auto lg:max-w-[60%]">{subtitle}</h3>}
+
+          {scrollTo && (
+            <button
+              type="button"
+              className="mt-[25vh]"
+              onClick={() => scrollTo && scrollToElem(scrollTo)}
+            >
+              <ScrollMouse />
+            </button>
+          )}
         </div>
       </div>
     </div>

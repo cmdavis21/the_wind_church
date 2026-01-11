@@ -1,7 +1,7 @@
 import CornerButton from '@/components/buttons/corner-button/CornerButton';
 import Calendar from '@/components/icons/calendar';
 import Clock from '@/components/icons/clock';
-import DollarSign from '@/components/icons/dollarSign';
+import DollarSign from '@/components/icons/dollar-sign';
 import Location from '@/components/icons/location';
 import { formatDateMMMddyyyy } from '@/data/format-date';
 import { Event } from '@/data/types';

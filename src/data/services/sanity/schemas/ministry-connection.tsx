@@ -1,11 +1,9 @@
-import LinkIcon from '@/components/icons/link';
 import { defineField } from 'sanity';
 
 export const MinistryConnectionSchema = {
   name: 'ministryConnection',
   title: 'Ministry Connections',
   type: 'document',
-  icon: LinkIcon,
   fields: [
     defineField({
       name: 'contact',

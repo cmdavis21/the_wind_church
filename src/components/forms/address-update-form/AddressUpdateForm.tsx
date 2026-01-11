@@ -129,7 +129,7 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
       }
     }
   }, [isSuccess, isError]);
-  console.log(current_address.province);
+
   return (
     <form
       ref={formRef}

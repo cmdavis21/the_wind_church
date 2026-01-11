@@ -1,15 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
 const TV: React.FC<React.SVGAttributes<unknown>> = (props) => (
   <svg
-    width={props.width ?? "20px"}
-    height={props.height ?? "20px"}
-    className={props.className ?? ""}
-    fill={props.fill ?? "#000000"}
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 512 512"
+    width={props.width ?? '20px'}
+    height={props.height ?? '20px'}
+    className={props.className ?? ''}
+    fill={props.fill ?? '#000000'}
+    viewBox="0 0 640 640"
     {...props}
   >
-    <path d="M135 7c9.4-9.4 24.6-9.4 33.9 0l87 87L343 7c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55L432 96c44.2 0 80 35.8 80 80l0 256c0 44.2-35.8 80-80 80L80 512c-44.2 0-80-35.8-80-80L0 176c0-44.2 35.8-80 80-80l110.1 0L135 41c-9.4-9.4-9.4-24.6 0-33.9zM80 144c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l352 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32L80 144zm336 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM392 304a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM144 192l160 0c26.5 0 48 21.5 48 48l0 128c0 26.5-21.5 48-48 48l-160 0c-26.5 0-48-21.5-48-48l0-128c0-26.5 21.5-48 48-48z" />
+    <path d="M96 160v240h448V160zm-64 0c0-35.3 28.7-64 64-64h448c35.3 0 64 28.7 64 64v240c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64zm160 352h256c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32" />
   </svg>
 );
 export default TV;

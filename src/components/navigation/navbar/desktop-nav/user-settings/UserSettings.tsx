@@ -1,5 +1,5 @@
 import LanguageSelector from '@/components/buttons/language-selector/LanguageSelector';
-import VerticalEllipsis from '@/components/icons/verticalEllipsis';
+import VerticalEllipsis from '@/components/icons/vertical-ellipsis';
 import DarkThemeToggler from '@/components/theme-mode/dark-theme-toggler/DarkThemeToggler';
 import cn from 'classnames';
 import React from 'react';

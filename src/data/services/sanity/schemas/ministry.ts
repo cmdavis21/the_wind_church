@@ -1,11 +1,9 @@
-import PeopleGroup from '@/components/icons/peopleGroup';
 import { defineField } from 'sanity';
 
 export const MinistrySchema = {
   name: 'ministry',
   title: 'Ministries',
   type: 'document',
-  icon: PeopleGroup,
   fields: [
     defineField({
       name: 'name',

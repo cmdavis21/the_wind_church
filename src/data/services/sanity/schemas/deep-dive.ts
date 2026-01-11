@@ -1,11 +1,9 @@
-import Books from '@/components/icons/books';
 import { defineField } from 'sanity';
 
 export const DeepDiveSchema = {
   name: 'deepDive',
   title: 'Deep Dives',
   type: 'document',
-  icon: Books,
   fields: [
     defineField({
       name: 'name',

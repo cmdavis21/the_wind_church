@@ -1,0 +1,14 @@
+import * as React from 'react';
+const UpArrow: React.FC<React.SVGAttributes<unknown>> = (props) => (
+  <svg
+    width={props.width ?? '20px'}
+    height={props.height ?? '20px'}
+    className={props.className ?? ''}
+    fill={props.fill ?? '#000000'}
+    viewBox="0 0 640 640"
+    {...props}
+  >
+    <path d="M342.6 81.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L288 181.3V552c0 17.7 14.3 32 32 32s32-14.3 32-32V181.3l105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+  </svg>
+);
+export default UpArrow;

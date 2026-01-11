@@ -1,11 +1,9 @@
-import ChildReaching from '@/components/icons/childReaching';
 import { defineField } from 'sanity';
 
 export const NextGenPageSchema = {
   name: 'nextGenPage',
   title: 'Next Gen Page',
   type: 'document',
-  icon: ChildReaching,
   fields: [
     defineField({
       name: 'educators',

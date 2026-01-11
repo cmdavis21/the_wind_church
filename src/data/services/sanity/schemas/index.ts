@@ -9,8 +9,8 @@ import { MinistryConnectionSchema } from './ministry-connection';
 import { NextGenPageSchema } from './next-gen-page';
 import { NextGenRosterSignupSchema } from './next-gen-roster-signup';
 import { PrayerRequestSchema } from './prayer-request';
+import { PromoBannerSchema } from './promo-banner';
 import { RightnowMediaSchema } from './rightnow-media';
-import { ScheduledVisitSchema } from './scheduled-visit';
 import { MeetingDetailsSchema } from './types/meeting-details';
 import { NextGenRosterSignupGuardianSchema } from './types/next-gen-roster-signup-guardian';
 import { ScriptureSchema } from './types/scripture';
@@ -24,7 +24,6 @@ export const SanitySchema = [
   RightnowMediaSchema,
   GiftAssessmentSchema,
   VisitorFeedbackSchema,
-  ScheduledVisitSchema,
   MinistryConnectionSchema,
   NextGenRosterSignupSchema,
   // Website
@@ -34,6 +33,7 @@ export const SanitySchema = [
   DeepDiveSchema,
   MinistrySchema,
   NextGenPageSchema,
+  PromoBannerSchema,
   // Misc Schemas
   TimeSchema,
   ScriptureSchema,

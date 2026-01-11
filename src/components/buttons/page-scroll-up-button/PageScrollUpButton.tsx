@@ -3,7 +3,7 @@
 import { Button } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
 
-import UpArrow from '@/components/icons/upArrow';
+import UpArrow from '@/components/icons/up-arrow';
 
 interface PageScrollUpButtonProps {
   className?: string;

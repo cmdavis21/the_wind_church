@@ -72,6 +72,7 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
               height: '100%',
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
+              opacity: 20,
               backgroundImage: `url(${
                 color === ColorBackground.BLUE
                   ? '/images/misc/navy_background.webp'
@@ -88,7 +89,7 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
           !fullWidth && 'rounded-xl',
           background && 'bg-gradient-to-r from-black/70',
           !background && color === ColorBackground.BLUE && 'bg-navy/80',
-          !background && color === ColorBackground.YELLOW && 'bg-brand-primary/80',
+          !background && color === ColorBackground.YELLOW && 'bg-brand-primary/30',
           'absolute top-0 left-0 w-full h-full backdrop-blur-[8px]'
         )}
       />

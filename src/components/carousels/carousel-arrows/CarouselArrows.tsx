@@ -1,4 +1,4 @@
-import Chevron from '@/components/icons/chevron';
+import ChevronLeft from '@/components/icons/chevron-left';
 import cn from 'classnames';
 import React from 'react';
 
@@ -32,8 +32,7 @@ const CarouselArrows: React.FC<CarouselArrowsProps> = ({
         leftArrowProps.buttonClassName
       )}
     >
-      {/* <Minus className={cn('fill-white size-6', leftArrowProps.iconClassName)} /> */}
-      <Chevron className={cn('-rotate-90 fill-white size-6', leftArrowProps.iconClassName)} />
+      <ChevronLeft className={cn('fill-white size-6', leftArrowProps.iconClassName)} />
     </button>
 
     <button
@@ -44,8 +43,7 @@ const CarouselArrows: React.FC<CarouselArrowsProps> = ({
         rightArrowProps.buttonClassName
       )}
     >
-      {/* <Plus className={cn('fill-white size-6', rightArrowProps.iconClassName)} /> */}
-      <Chevron className={cn('rotate-90 fill-white size-6', rightArrowProps.iconClassName)} />
+      <ChevronLeft className={cn('rotate-90 fill-white size-6', rightArrowProps.iconClassName)} />
     </button>
   </div>
 );

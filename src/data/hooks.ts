@@ -66,11 +66,3 @@ export const useResizeHeightObserver = (element: RefObject<HTMLDivElement | null
 
   return height;
 };
-
-// Open Window with searh query
-export const openWindowWithQuery = (query: string) => {
-  const newWindow = window.open('about:blank', '_blank');
-  if (newWindow) {
-    newWindow.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-  }
-};

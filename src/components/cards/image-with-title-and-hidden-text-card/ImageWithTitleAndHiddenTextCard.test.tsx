@@ -1,7 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
-import SquarePlus from '@/components/icons/squarePlus';
+import SquarePlus from '@/components/icons/square-plus';
 
 import ImageWithTitleAndHiddenTextCard from './ImageWithTitleAndHiddenTextCard';
 

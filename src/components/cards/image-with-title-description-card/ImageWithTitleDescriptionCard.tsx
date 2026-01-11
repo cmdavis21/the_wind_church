@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 
-import UpArrow from '@/components/icons/upArrow';
-import Link from 'next/link';
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
+import UpArrow from '@/components/icons/up-arrow';
 
 interface ImageWithTitleDescriptionCardProps {
   src: string;
@@ -32,28 +32,12 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
         <p className="body-large text-light-charcoal dark:text-dark-primaryText">{description}</p>
       </div>
       {link && (
-        <Link href={link.href}>
-          <div className="relative group w-fit border max-lg:bg-brand-primary border-light-gray dark:border-dark-gray shadow rounded-full">
-            {/* decorative button fill */}
-            <div
-              className={`hidden lg:block absolute w-full h-full top-0 left-0 overflow-hidden rounded-full bg-white dark:bg-dark-gray`}
-            >
-              <div className="h-full flex items-center">
-                <div
-                  className={`w-full h-[42px] rounded-full shadow-2xl bg-white dark:bg-dark-gray group-hover:w-0 transition-all duration-500`}
-                />
-                <div
-                  className={`w-0 h-[42px] group-hover:w-full rounded-full bg-brand-primary transition-all duration-500`}
-                />
-              </div>
-            </div>
-
-            <div className="relative flex items-center gap-xxs py-xs px-md rounded-full">
-              {link.label}{' '}
-              <UpArrow className="size-[15px] dark:fill-dark-primaryText rotate-45 group-hover:rotate-90 transition-all duration-300" />
-            </div>
+        <AnimativeFillButton link={link.href}>
+          <div className="relative flex items-center gap-xxs py-xs px-md rounded-full group">
+            {link.label}{' '}
+            <UpArrow className="size-[15px] dark:fill-dark-primaryText rotate-45 group-hover:rotate-90 transition-all duration-300" />
           </div>
-        </Link>
+        </AnimativeFillButton>
       )}
     </div>
   </div>

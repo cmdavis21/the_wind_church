@@ -3,12 +3,14 @@ import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageS
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import Bank from '@/components/icons/bank';
-import Car from '@/components/icons/car';
-import CreditCard from '@/components/icons/creditCard';
+import Buidling from '@/components/icons/building';
+
+import CreditCard from '@/components/icons/credit-card';
+import Envelope from '@/components/icons/envelope';
+import Gift from '@/components/icons/gift';
 import HandHoldingHeart from '@/components/icons/handHoldingHeart';
 import Handshake from '@/components/icons/handshake';
-import Mailbox from '@/components/icons/mailbox';
+
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent, {
   ColorBackground,
@@ -35,39 +37,14 @@ const Give = () => {
   const otherWaysToGiveArr = [
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/building.jpg`,
-        alt: '',
-      },
-      icon: <Bank className="fill-brand-primary size-[30px]" />,
-      title: 'Bank Account',
-      description: (
-        <>
-          The Wind church accepts check and bill pay. Donation boxes are available at both exits of
-          the sanctuary.
-          <Button
-            pill
-            size="lg"
-            color="primary"
-            target="_blank"
-            href={PageRoutes.pushpay}
-            className="mt-6 mx-auto px-4 w-[165px]"
-          >
-            Donate now
-          </Button>
-        </>
-      ),
-    },
-    {
-      image: {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/couple_credit_card.jpg`,
         alt: '',
       },
       icon: <CreditCard className="fill-brand-primary size-[30px]" />,
-      title: 'Credit/Debit',
+      title: 'Online Giving',
       description: (
         <>
-          The Wind church accepts check and bill pay. Donation boxes are available at both exits of
-          the sanctuary.
+          Give securely online through Pushpay using your debit card, credit card, or bank account.
           <Button
             pill
             size="lg"
@@ -76,7 +53,7 @@ const Give = () => {
             href={PageRoutes.pushpay}
             className="mt-6 mx-auto px-4 w-[165px]"
           >
-            Donate now
+            Give Online
           </Button>
         </>
       ),
@@ -87,22 +64,36 @@ const Give = () => {
         alt: '',
       },
       icon: <HandHoldingHeart className="fill-brand-primary size-[30px]" />,
-      title: 'In-person',
+      title: 'In‑Person Giving',
       description:
-        'The Wind church accepts check and bill pay. Donation boxes are availble at both exits of the santuary.Make checks payable to the Wind of the Spirit Worship Center.',
+        'You can give during any service using cash or check. Donation boxes are located at both exits of the sanctuary. Make checks payable to Wind of the Spirit Worship Center.',
     },
     {
       image: {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/mailbox.jpg`,
         alt: '',
       },
-      icon: <Mailbox className="fill-brand-primary size-[30px]" />,
-      title: 'Mail',
+      icon: <Envelope className="fill-brand-primary size-[30px]" />,
+      title: 'Mail‑In Giving',
       description: (
         <>
-          You can mail your gift to the Wind at <br />
+          You can mail your gift to: <br />
           Wind of the Spirit Worship Center <br />
-          6476 Streeter Avenue, Riverside, CA 92504.
+          6476 Streeter Avenue, Riverside, CA 92504
+        </>
+      ),
+    },
+    {
+      image: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/building.jpg`,
+        alt: '',
+      },
+      icon: <Buidling className="fill-brand-primary size-[30px]" />,
+      title: 'Bank Bill Pay',
+      description: (
+        <>
+          Set up recurring giving through your bank’s bill‑pay service. This is a simple and
+          consistent way to support the ministry.
         </>
       ),
     },
@@ -111,16 +102,15 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/garage.jpg`,
         alt: '',
       },
-      icon: <Car className="fill-brand-primary size-[30px]" />,
-      title: 'Assets',
+      icon: <Gift className="fill-brand-primary size-[30px]" />,
+      title: 'Non‑Cash Assets',
       description: (
         <>
-          If you have any other assets (vehicles, real estate, etc.) you would like to donate,
-          please email{' '}
+          You can donate anything that will go to support our community. Email{' '}
           <Link href="mailto:thewindchurch@outlook.com" className="underline text-brand-primary">
             thewindchurch@outlook.com
-          </Link>
-          .
+          </Link>{' '}
+          for more information.
         </>
       ),
     },
@@ -130,9 +120,9 @@ const Give = () => {
         alt: '',
       },
       icon: <Handshake className="fill-brand-primary size-[30px]" />,
-      title: 'Your Time',
+      title: 'Serve & Volunteer',
       description:
-        "Contributting within the church as volunteers or with your ministry excels God's community.",
+        "Giving isn't only financial — serving with your time and gifts helps build God's house and strengthen our community.",
     },
   ];
 
@@ -157,7 +147,6 @@ const Give = () => {
                   text: 'Giving honors God as an act of worship,',
                   array: [[0, 7]],
                   htmlTag: 'h2',
-                  className: 'font-bold',
                 }),
               }}
             />
@@ -173,7 +162,6 @@ const Give = () => {
                   text: 'When we give freely and joyfully,',
                   array: [[0, 5]],
                   htmlTag: 'h2',
-                  className: 'font-bold',
                 }),
               }}
             />
@@ -191,7 +179,6 @@ const Give = () => {
                   text: 'Giving reflects our heart',
                   array: [[0, 3]],
                   htmlTag: 'h2',
-                  className: 'font-bold',
                 }),
               }}
             />

@@ -243,3 +243,23 @@ input[type='number'] {
   width: 0;
   height: 0;
 }
+
+.scroll-wheel {
+  animation: scrollBounce 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes scrollBounce {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

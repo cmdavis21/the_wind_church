@@ -1,4 +1,4 @@
-import CircleCheck from '@/components/icons/circleCheck';
+import CircleCheck from '@/components/icons/circle-check';
 
 import ImageWithTitleAndHiddenTextCard from './ImageWithTitleAndHiddenTextCard';
 

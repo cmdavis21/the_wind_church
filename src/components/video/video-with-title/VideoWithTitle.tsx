@@ -21,6 +21,9 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
   subtitle,
   fullscreen = true,
 }) => {
+  const [initialPlaying, setInitialPlaying] = useState(true);
+  const [initialPlayingMobile, setInitialPlayingMobile] = useState(true);
+
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -30,15 +33,21 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
   const togglePlayback = () => {
     const video = videoRef.current;
     if (!video) return;
-    if (video.currentTime >= video.duration) video.currentTime = 0;
-    isPaused ? video.play() : video.pause();
+    if (initialPlaying || video.currentTime >= video.duration) video.currentTime = 0;
+    if (initialPlaying) {
+      video.play();
+      setInitialPlaying(false);
+    } else isPaused ? video.play() : video.pause();
   };
 
   const toggleMobilePlayback = () => {
     const video = mobileVideoRef.current;
     if (!video) return;
-    if (video.currentTime >= video.duration) video.currentTime = 0;
-    mobileIsPaused ? video.play() : video.pause();
+    if (initialPlayingMobile || video.currentTime >= video.duration) video.currentTime = 0;
+    if (initialPlayingMobile) {
+      video.play();
+      setInitialPlayingMobile(false);
+    } else mobileIsPaused ? video.play() : video.pause();
   };
 
   return (
@@ -52,8 +61,11 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
       >
         <video
           ref={videoRef}
-          controls
           poster={poster}
+          loop={initialPlaying}
+          muted={initialPlaying}
+          controls={!initialPlaying}
+          autoPlay={initialPlaying}
           onPlay={() => setIsPaused(false)}
           onPause={() => setIsPaused(true)}
           className={cn(
@@ -67,23 +79,20 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
         {/* Overlay */}
         <div
           className={cn(
-            isPaused ? 'opacity-100' : 'opacity-0 pointer-events-none',
+            initialPlaying
+              ? 'opacity-100'
+              : isPaused
+                ? 'opacity-100'
+                : 'opacity-0 pointer-events-none',
             !fullscreen && 'rounded-xl lg:rounded-xxl',
-            'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[50%] transition-opacity duration-700',
-            'bg-black/50 backdrop-blur-sm rounded-xl',
-            'flex flex-row items-center justify-center'
+            'flex flex-row items-center justify-center bg-black/50 backdrop-blur-sm rounded-xl',
+            'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[50%] transition-opacity duration-700'
           )}
         >
           <div className="flex flex-col items-center justify-center gap-lg">
             {title && <h2 className="text-brand-primary font-bold">{title}</h2>}
             {subtitle && <h4 className="text-light-gray dark:text-dark-gray">{subtitle}</h4>}
-            <Button
-              pill
-              color="primary"
-              onClick={togglePlayback}
-              disabled={!isPaused}
-              className="mt-lg drop-shadow-lg"
-            >
+            <Button pill color="primary" onClick={togglePlayback} className="mt-lg drop-shadow-lg">
               <div className="flex items-center gap-xs px-lg">
                 <Play className="size-[15px]" />
                 <h5 className="font-bold">Watch</h5>
@@ -94,13 +103,20 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
       </div>
 
       {/* Mobile */}
-      <div className="md:hidden">
-        {title && <SectionHeader title={title} subtitle={subtitle} />}
-        <div className="relative w-full aspect-video rounded-xl">
+      <div className={cn(!fullscreen && 'max-width-center', 'md:hidden flex flex-col gap-md')}>
+        {title && (
+          <div className="px-padding">
+            <SectionHeader title={title} subtitle={subtitle} />
+          </div>
+        )}
+        <div className={cn(!fullscreen && 'rounded-xl', 'relative w-full aspect-video')}>
           <video
             ref={mobileVideoRef}
-            controls
             poster={poster}
+            loop={initialPlayingMobile}
+            muted={initialPlayingMobile}
+            controls={!initialPlayingMobile}
+            autoPlay={initialPlayingMobile}
             onPlay={() => setMobileIsPaused(false)}
             onPause={() => setMobileIsPaused(true)}
             className={cn(
@@ -114,7 +130,7 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
           {/* Play Button */}
           <div
             className={cn(
-              mobileIsPaused ? 'opacity-100' : 'opacity-0',
+              mobileIsPaused ? 'opacity-100' : 'opacity-0 pointer-events-none',
               'transition-opacity duration-500 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
             )}
           >

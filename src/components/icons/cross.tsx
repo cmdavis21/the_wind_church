@@ -1,15 +1,14 @@
-import * as React from "react";
-const Cross: React.FC<React.SVGAttributes<unknown>> = ({ ...props }) => (
+import * as React from 'react';
+const Cross: React.FC<React.SVGAttributes<unknown>> = (props) => (
   <svg
-    width={props.width ?? "20px"}
-    height={props.height ?? "20px"}
-    className={props.className ?? ""}
-    fill={props.fill ?? "#000000"}
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 384 512"
+    width={props.width ?? '20px'}
+    height={props.height ?? '20px'}
+    className={props.className ?? ''}
+    fill={props.fill ?? '#000000'}
+    viewBox="0 0 640 640"
     {...props}
   >
-    <path d="M112 48c0-26.5 21.5-48 48-48l64 0c26.5 0 48 21.5 48 48l0 64 64 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-64 0 0 192c0 26.5-21.5 48-48 48l-64 0c-26.5 0-48-21.5-48-48l0-192-64 0c-26.5 0-48-21.5-48-48l0-64c0-26.5 21.5-48 48-48l64 0 0-64zm112 0l-64 0 0 88c0 13.3-10.7 24-24 24l-88 0 0 64 88 0c13.3 0 24 10.7 24 24l0 216 64 0 0-216c0-13.3 10.7-24 24-24l88 0 0-64-88 0c-13.3 0-24-10.7-24-24l0-88z" />
+    <path d="M304 64c-26.5 0-48 21.5-48 48v80h-80c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48h80v208c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V320h80c26.5 0 48-21.5 48-48v-32c0-26.5-21.5-48-48-48h-80v-80c0-26.5-21.5-48-48-48z" />
   </svg>
 );
 export default Cross;

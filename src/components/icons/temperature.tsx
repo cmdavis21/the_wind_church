@@ -1,30 +1,14 @@
 import * as React from 'react';
-const Temperature: React.FC<React.SVGAttributes<unknown>> = ({ ...props }) => (
+const Temperature: React.FC<React.SVGAttributes<unknown>> = (props) => (
   <svg
-    width={props.width ?? 20}
+    width={props.width ?? '20px'}
+    height={props.height ?? '20px'}
+    className={props.className ?? ''}
     fill={props.fill ?? '#000000'}
-    viewBox="0 0 48 48"
-    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 640 640"
     {...props}
   >
-    <title>thermometer</title>
-    <g id="Layer_2" data-name="Layer 2">
-      <g id="invisible_box" data-name="invisible box">
-        <rect width={48} height={48} fill="none" />
-      </g>
-      <g id="Layer_6" data-name="Layer 6">
-        <g id="icons_Q2" data-name="icons Q2">
-          <g>
-            <path d="M29,10a8,8,0,0,0-16,0V27.5A10.5,10.5,0,0,0,10,35a11,11,0,0,0,22,0,10.5,10.5,0,0,0-3-7.5ZM21,42a7,7,0,0,1-7-7,6.8,6.8,0,0,1,3-5.7V10a4,4,0,0,1,8,0V29.3A6.8,6.8,0,0,1,28,35,7,7,0,0,1,21,42Z" />
-            <path d="M23,30.4V17H19V30.4A5.1,5.1,0,0,0,16,35a5,5,0,0,0,10,0A5.1,5.1,0,0,0,23,30.4Z" />
-            <path d="M40,23H34a2,2,0,0,0,0,4h6a2,2,0,0,0,0-4Z" />
-            <path d="M40,17H34a2,2,0,0,0,0,4h6a2,2,0,0,0,0-4Z" />
-            <path d="M40,11H34a2,2,0,0,0,0,4h6a2,2,0,0,0,0-4Z" />
-            <path d="M34,9h6a2,2,0,0,0,0-4H34a2,2,0,0,0,0,4Z" />
-          </g>
-        </g>
-      </g>
-    </g>
+    <path d="M160 160c0-53 43-96 96-96s96 43 96 96v164.7c29.5 26.4 48 64.7 48 107.3 0 79.5-64.5 144-144 144s-144-64.5-144-144c0-42.6 18.5-81 48-107.3zm96 336c35.3 0 64-28.7 64-64 0-26.9-16.5-49.9-40-59.3V344c0-13.3-10.7-24-24-24s-24 10.7-24 24v28.7c-23.5 9.5-40 32.5-40 59.3 0 35.3 28.7 64 64 64m272-352c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32m-112 0c0-44.2 35.8-80 80-80s80 35.8 80 80-35.8 80-80 80-80-35.8-80-80" />
   </svg>
 );
 export default Temperature;

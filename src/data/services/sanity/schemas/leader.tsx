@@ -1,11 +1,9 @@
-import PersonWithSign from '@/components/icons/personWithSign';
 import { defineField } from 'sanity';
 
 export const LeaderSchema = {
   name: 'leader',
   title: 'Leaders',
   type: 'document',
-  icon: PersonWithSign,
   fields: [
     defineField({
       name: 'contact',

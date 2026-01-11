@@ -1,14 +1,12 @@
 import { defineField } from 'sanity';
 
-import { YesNo } from '@/data/types';
 import FileIcon from '@/components/icons/file';
-import Calendar from '@/components/icons/calendar';
+import { YesNo } from '@/data/types';
 
 export const EventRentalSchema = {
   name: 'eventRental',
   title: 'Event Rental Inquiries',
   type: 'document',
-  icon: Calendar,
   fields: [
     defineField({
       name: 'contact',

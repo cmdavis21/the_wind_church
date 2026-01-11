@@ -1,5 +1,5 @@
-import CircleCheck from '@/components/icons/circleCheck';
-import SolidCircleX from '@/components/icons/solidCircleX';
+import CircleCheck from '@/components/icons/circle-check';
+import SolidCircleX from '@/components/icons/circle-x';
 import { Alert } from 'flowbite-react';
 
 interface AlertMessageProps {

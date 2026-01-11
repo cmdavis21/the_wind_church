@@ -1,11 +1,9 @@
-import ChildReaching from '@/components/icons/childReaching';
 import { defineField } from 'sanity';
 
 export const NextGenRosterSignupSchema = {
   name: 'nextGenRosterSignup',
   title: 'Next Gen Roster Signup',
   type: 'document',
-  icon: ChildReaching,
   fields: [
     defineField({
       name: 'first_name',

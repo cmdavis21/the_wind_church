@@ -109,6 +109,15 @@ export interface NextGenPage {
   cirriculum_file: string;
 }
 
+export interface PromoBannerDetails {
+  header: string;
+  title: string;
+  description: string;
+  link?: string;
+  image: Image;
+  video?: string;
+}
+
 export interface NavbarItem {
   label: string;
   link?: string;

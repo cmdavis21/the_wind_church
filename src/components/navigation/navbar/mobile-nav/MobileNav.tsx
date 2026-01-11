@@ -1,7 +1,7 @@
 import LanguageSelector from '@/components/buttons/language-selector/LanguageSelector';
 import NavbarButton from '@/components/buttons/navbar-button/NavbarButton';
 import Plus from '@/components/icons/plus';
-import VerticalEllipsis from '@/components/icons/verticalEllipsis';
+import VerticalEllipsis from '@/components/icons/vertical-ellipsis';
 import DarkThemeToggler from '@/components/theme-mode/dark-theme-toggler/DarkThemeToggler';
 import ThemeModeLogo from '@/components/theme-mode/theme-mode-logo/ThemeModeLogo';
 import { useWindowDimensions } from '@/data/hooks';

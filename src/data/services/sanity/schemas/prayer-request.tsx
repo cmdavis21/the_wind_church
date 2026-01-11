@@ -1,13 +1,11 @@
 import { defineField } from 'sanity';
 
 import { YesNo } from '@/data/types';
-import Cross from '@/components/icons/cross';
 
 export const PrayerRequestSchema = {
   name: 'prayerRequest',
   title: 'Prayer Requests',
   type: 'document',
-  icon: Cross,
   fields: [
     defineField({
       name: 'contact',

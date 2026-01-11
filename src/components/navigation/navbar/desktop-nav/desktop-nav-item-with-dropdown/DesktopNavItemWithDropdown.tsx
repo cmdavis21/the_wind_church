@@ -96,7 +96,6 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                 onClick={() => setOpen(false)}
               >
                 <div className="relative group/sub w-full border border-light-neutral dark:border-dark-gray bg-light-bg dark:bg-dark-bg shadow rounded-full">
-                  {/* decorative sliding fill */}
                   <div className="absolute inset-0 overflow-hidden rounded-full">
                     <div
                       className={cn(
@@ -108,7 +107,6 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                     />
                   </div>
 
-                  {/* button content */}
                   <div className="relative py-xs px-lg body-large capitalize whitespace-nowrap flex items-center">
                     {item.label}
                     {item.link === PageRoutes.cart && getCart && getCart.total_quantity > 0 && (

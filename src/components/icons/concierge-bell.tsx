@@ -1,0 +1,14 @@
+import * as React from 'react';
+const ConciergeBell: React.FC<React.SVGAttributes<unknown>> = (props) => (
+  <svg
+    width={props.width ?? '20px'}
+    height={props.height ?? '20px'}
+    className={props.className ?? ''}
+    fill={props.fill ?? '#000000'}
+    viewBox="0 0 640 640"
+    {...props}
+  >
+    <path d="M280 128c-13.3 0-24 10.7-24 24s10.7 24 24 24h16v33.3C188.8 220.7 104.2 307.7 96.6 416h446.9c-7.7-108.3-92.3-195.3-199.5-206.7V176h16c13.3 0 24-10.7 24-24s-10.7-24-24-24zM88 464c-13.3 0-24 10.7-24 24s10.7 24 24 24h464c13.3 0 24-10.7 24-24s-10.7-24-24-24z" />
+  </svg>
+);
+export default ConciergeBell;

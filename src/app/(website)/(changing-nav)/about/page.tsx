@@ -8,25 +8,25 @@ import FullscreenMediaWithSideTextCarousel from '@/components/carousels/fullscre
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import Bible from '@/components/icons/bible';
-import BulletList from '@/components/icons/bulletList';
-import CheckeredFlag from '@/components/icons/checkeredFlag';
+
+import Buidling from '@/components/icons/building';
+import ClipboardList from '@/components/icons/clipboard-list';
+import ConciergeBell from '@/components/icons/concierge-bell';
+import Cross from '@/components/icons/cross';
 import Crown from '@/components/icons/crown';
-import HandGift from '@/components/icons/handGift';
-import HealCross from '@/components/icons/healCross';
-import LifeRing from '@/components/icons/lifeRing';
-import NewTag from '@/components/icons/newTag';
-import PaintBucket from '@/components/icons/paintBucket';
-import PeopleGroup from '@/components/icons/peopleGroup';
-import PersonFalling from '@/components/icons/personFalling';
-import PersonWalk from '@/components/icons/personWalk';
-import PrayerHands from '@/components/icons/prayerHands';
-import Senate from '@/components/icons/senate';
-import SunWithClouds from '@/components/icons/sunWithClouds';
-import SupperTop from '@/components/icons/supperTop';
+import Dove from '@/components/icons/dove';
+import Fire from '@/components/icons/fire';
+import FlagCheckered from '@/components/icons/flag-checkered';
+import Gift from '@/components/icons/gift';
+import LifeRing from '@/components/icons/life-ring';
+import Paintbrush from '@/components/icons/paintbursh';
+import PeopleGroup from '@/components/icons/people-group';
+import PersonFalling from '@/components/icons/person-falling';
+import PersonPraying from '@/components/icons/person-praying';
+import PersonWalking from '@/components/icons/person-walking';
+import SunWithClouds from '@/components/icons/sun-with-clouds';
 import Temperature from '@/components/icons/temperature';
-import ThreePersons from '@/components/icons/threePersons';
-import ThumbsDown from '@/components/icons/thumbsDown';
-import Waves from '@/components/icons/waves';
+import ThumbsDown from '@/components/icons/thumbs-down';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
@@ -128,7 +128,6 @@ const About = async () => {
                   text: t('mission.subtitle'),
                   array: [[0, 9]],
                   htmlTag: 'h2',
-                  className: 'font-bold',
                 }),
               }}
             />
@@ -144,7 +143,6 @@ const About = async () => {
                   text: t('vision.subtitle'),
                   array: [[0, 7]],
                   htmlTag: 'h2',
-                  className: 'font-bold',
                 }),
               }}
             />
@@ -276,7 +274,7 @@ const About = async () => {
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-5 justify-items-center items-start">
                     <ScriptureWithIcon
-                      icon={BulletList}
+                      icon={ClipboardList}
                       title={t('foursquare.accordionItem1.plan.title')}
                       verse={t('foursquare.accordionItem1.plan.verse')}
                       passage={t('foursquare.accordionItem1.plan.description')}
@@ -294,7 +292,7 @@ const About = async () => {
                       passage={t('foursquare.accordionItem1.scriptures.description')}
                     />
                     <ScriptureWithIcon
-                      icon={ThreePersons}
+                      icon={PeopleGroup}
                       title={t('foursquare.accordionItem1.eternal.title')}
                       verse={t('foursquare.accordionItem1.eternal.verse')}
                       passage={t('foursquare.accordionItem1.eternal.description')}
@@ -320,13 +318,13 @@ const About = async () => {
                       passage={t('foursquare.accordionItem2.relationship.description')}
                     />
                     <ScriptureWithIcon
-                      icon={Senate}
+                      icon={Buidling}
                       title={t('foursquare.accordionItem2.civil.title')}
                       verse={t('foursquare.accordionItem2.civil.verse')}
                       passage={t('foursquare.accordionItem2.civil.description')}
                     />
                     <ScriptureWithIcon
-                      icon={CheckeredFlag}
+                      icon={FlagCheckered}
                       title={t('foursquare.accordionItem2.final.title')}
                       verse={t('foursquare.accordionItem2.final.verse')}
                       passage={t('foursquare.accordionItem2.final.description')}
@@ -352,31 +350,31 @@ const About = async () => {
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-5 justify-items-center items-start">
                     <ScriptureWithIcon
-                      icon={PrayerHands}
+                      icon={PersonPraying}
                       title={t('foursquare.accordionItem3.repent.title')}
                       verse={t('foursquare.accordionItem3.repent.verse')}
                       passage={t('foursquare.accordionItem3.repent.description')}
                     />
                     <ScriptureWithIcon
-                      icon={NewTag}
+                      icon={Fire}
                       title={t('foursquare.accordionItem3.new.title')}
                       verse={t('foursquare.accordionItem3.new.verse')}
                       passage={t('foursquare.accordionItem3.new.description')}
                     />
                     <ScriptureWithIcon
-                      icon={PersonWalk}
+                      icon={PersonWalking}
                       title={t('foursquare.accordionItem3.daily.title')}
                       verse={t('foursquare.accordionItem3.daily.verse')}
                       passage={t('foursquare.accordionItem3.daily.description')}
                     />
                     <ScriptureWithIcon
-                      icon={SupperTop}
+                      icon={ConciergeBell}
                       title={t('foursquare.accordionItem3.supper.title')}
                       verse={t('foursquare.accordionItem3.supper.verse')}
                       passage={t('foursquare.accordionItem3.supper.description')}
                     />
                     <ScriptureWithIcon
-                      icon={Waves}
+                      icon={Dove}
                       title={t('foursquare.accordionItem3.spirit.title')}
                       verse={t('foursquare.accordionItem3.spirit.verse')}
                       passage={t('foursquare.accordionItem3.spirit.description')}
@@ -390,13 +388,13 @@ const About = async () => {
                 description: (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
                     <ScriptureWithIcon
-                      icon={PaintBucket}
+                      icon={Paintbrush}
                       title={t('foursquare.accordionItem4.life.title')}
                       verse={t('foursquare.accordionItem4.life.verse')}
                       passage={t('foursquare.accordionItem4.life.description')}
                     />
                     <ScriptureWithIcon
-                      icon={HandGift}
+                      icon={Gift}
                       title={t('foursquare.accordionItem4.gifts.title')}
                       verse={t('foursquare.accordionItem4.gifts.verse')}
                       passage={t('foursquare.accordionItem4.gifts.description')}
@@ -408,7 +406,7 @@ const About = async () => {
                       passage={t('foursquare.accordionItem4.moderation.description')}
                     />
                     <ScriptureWithIcon
-                      icon={HealCross}
+                      icon={Cross}
                       title={t('foursquare.accordionItem4.divine.title')}
                       verse={t('foursquare.accordionItem4.divine.verse')}
                       passage={t('foursquare.accordionItem4.divine.description')}

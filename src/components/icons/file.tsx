@@ -1,15 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
 const FileIcon: React.FC<React.SVGAttributes<unknown>> = (props) => (
   <svg
-    width={props.width ?? "20px"}
-    height={props.height ?? "20px"}
-    className={props.className ?? ""}
-    fill={props.fill ?? "#000000"}
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 384 512"
+    width={props.width ?? '20px'}
+    height={props.height ?? '20px'}
+    className={props.className ?? ''}
+    fill={props.fill ?? '#000000'}
+    viewBox="0 0 640 640"
     {...props}
   >
-    <path d="M320 464c8.8 0 16-7.2 16-16l0-288-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16l256 0zM0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 448c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64z" />
+    <path d="M192 64c-35.3 0-64 28.7-64 64v384c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V234.5c0-17-6.7-33.3-18.7-45.3L386.7 82.7c-12-12-28.2-18.7-45.2-18.7zm261.5 176H360c-13.3 0-24-10.7-24-24v-93.5z" />
   </svg>
 );
 export default FileIcon;

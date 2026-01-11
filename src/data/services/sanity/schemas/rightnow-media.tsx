@@ -1,13 +1,11 @@
 import { defineField } from 'sanity';
 
 import { YesNo } from '@/data/types';
-import TV from '@/components/icons/tv';
 
 export const RightnowMediaSchema = {
   name: 'rightnowMedia',
   title: 'Rightnow Media Signups',
   type: 'document',
-  icon: TV,
   fields: [
     defineField({
       name: 'contact',

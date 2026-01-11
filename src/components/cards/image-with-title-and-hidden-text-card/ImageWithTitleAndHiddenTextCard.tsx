@@ -1,6 +1,6 @@
 'use client';
 
-import SquarePlus from '@/components/icons/squarePlus';
+import SquarePlus from '@/components/icons/square-plus';
 import { useWindowDimensions } from '@/data/hooks';
 import cn from 'classnames';
 import Image from 'next/image';

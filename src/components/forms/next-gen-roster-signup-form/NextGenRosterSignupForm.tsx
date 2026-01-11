@@ -8,7 +8,7 @@ import * as yup from 'yup';
 
 import { Gender, NextGenRosterSignup } from '@/data/types';
 
-import CirclePlus from '@/components/icons/circlePlus';
+import CirclePlus from '@/components/icons/circle-plus';
 import PencilPaper from '@/components/icons/pencilPaper';
 import Trash from '@/components/icons/trash';
 

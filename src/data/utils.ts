@@ -34,11 +34,13 @@ export const styleSelectedWords = ({
   text,
   array,
   htmlTag,
+  blueText,
   className,
 }: {
   text: string;
   array: number[][];
   htmlTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+  blueText?: boolean;
   className?: string;
 }): string => {
   const splitText = text.split(' ');
@@ -51,11 +53,11 @@ export const styleSelectedWords = ({
     finalText += splitText.slice(startIndex, endIndex).join(' ');
 
     if (i === 0 && array[0][0] === 0) {
-      finalText += `<span class="font-display text-brand-primary">${splitText
+      finalText += `<span class="font-display ${blueText ? 'text-light-navy dark:text-dark-navy' : 'text-brand-primary'}">${splitText
         .slice(array[i][0], array[i][1] + 1)
         .join(' ')}</span>&nbsp;`;
     } else {
-      finalText += `&nbsp;<span class="font-display text-brand-primary">${splitText
+      finalText += `&nbsp;<span class="font-display ${blueText ? 'text-light-navy dark:text-dark-navy' : 'text-brand-primary'}">${splitText
         .slice(array[i][0], array[i][1] + 1)
         .join(' ')}</span>&nbsp;`;
     }
@@ -66,6 +68,14 @@ export const styleSelectedWords = ({
   finalText += `</${htmlTag}>`;
 
   return finalText;
+};
+
+// Open Window with searh query
+export const openWindowWithQuery = (query: string) => {
+  const newWindow = window.open('about:blank', '_blank');
+  if (newWindow) {
+    newWindow.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+  }
 };
 
 export const isValidEmail = (email: string) => {

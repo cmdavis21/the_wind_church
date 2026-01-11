@@ -1,6 +1,6 @@
 'use client';
 
-import CirclePlus from '@/components/icons/circlePlus';
+import CirclePlus from '@/components/icons/circle-plus';
 import Trash from '@/components/icons/trash';
 import { NextGenRosterSignup } from '@/data/types';
 import React from 'react';

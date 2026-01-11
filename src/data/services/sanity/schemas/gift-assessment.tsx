@@ -1,11 +1,9 @@
-import HandHoldingBox from '@/components/icons/handHoldingBox';
 import { defineField } from 'sanity';
 
 export const GiftAssessmentSchema = {
   name: 'giftAssessment',
   title: 'Gift Assessments',
   type: 'document',
-  icon: HandHoldingBox,
   fields: [
     defineField({
       name: 'contact',
