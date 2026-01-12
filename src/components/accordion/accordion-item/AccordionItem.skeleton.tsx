@@ -1,7 +1,7 @@
 import Plus from '@/components/icons/plus';
 import { ACCORDION_TYPE } from './AccordionItem';
 
-const AccordionItemSkeleton = (variant: ACCORDION_TYPE) =>
+const AccordionItemSkeleton = ({ variant }: { variant: ACCORDION_TYPE }) =>
   variant === ACCORDION_TYPE.DEFAULT ? (
     <div className="animate-pulse w-full border px-[25px] py-[15px] rounded-lg">
       <div className="flex items-center gap-md">

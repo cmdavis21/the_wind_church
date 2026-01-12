@@ -1,27 +1,16 @@
 import React from 'react';
 
+import { ACCORDION_TYPE } from './accordion-item/AccordionItem';
 import AccordionItemSkeleton from './accordion-item/AccordionItem.skeleton';
-import AccordionItemWithLineSkeleton from './accordion-item-with-line/AccordionItemWithLine.skeleton';
 
-const AccordionSkeleton: React.FC<{ productAccordion?: boolean }> = ({
-  productAccordion,
+const AccordionSkeleton: React.FC<{ variant?: ACCORDION_TYPE }> = ({
+  variant = ACCORDION_TYPE.DEFAULT,
 }) => (
   <div className="w-full flex flex-col gap-lg">
-    {productAccordion ? (
-      <>
-        <AccordionItemWithLineSkeleton />
-        <AccordionItemWithLineSkeleton />
-        <AccordionItemWithLineSkeleton />
-        <AccordionItemWithLineSkeleton />
-      </>
-    ) : (
-      <>
-        <AccordionItemSkeleton />
-        <AccordionItemSkeleton />
-        <AccordionItemSkeleton />
-        <AccordionItemSkeleton />
-      </>
-    )}
+    <AccordionItemSkeleton variant={variant} />
+    <AccordionItemSkeleton variant={variant} />
+    <AccordionItemSkeleton variant={variant} />
+    <AccordionItemSkeleton variant={variant} />
   </div>
 );
 
