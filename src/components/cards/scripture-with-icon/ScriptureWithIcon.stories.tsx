@@ -1,5 +1,4 @@
-import BulletList from '@/components/icons/bulletList';
-
+import ClipboardList from '@/components/icons/clipboard-list';
 import ScriptureWithIcon from './ScriptureWithIcon';
 
 const ScriptureWithIconStory = {
@@ -13,7 +12,7 @@ export default ScriptureWithIconStory;
 
 export const Default = {
   args: {
-    icon: BulletList,
+    icon: ClipboardList,
     title: 'The Plan of Salvation',
     verse: 'John 3:16; Romans 5:8',
     passage:
