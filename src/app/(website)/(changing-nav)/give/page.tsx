@@ -126,7 +126,7 @@ const Give = () => {
 
       <div className="p-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
         {/* WHY WE GIVE */}
-        <div className="flex flex-col gap-xl py-5 md:py-[50px] 2xl:px-[100px]">
+        <div className="flex flex-col gap-xl py-5 md:py-[50px] lg:px-[100px]">
           {/* REASON #1 */}
           <div className="flex flex-col gap-lg">
             <div

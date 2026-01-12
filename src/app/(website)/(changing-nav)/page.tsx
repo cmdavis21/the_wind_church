@@ -193,44 +193,46 @@ const Home = async () => {
         title="Hope Lives Here"
         highlightTitle={[[0, 2]]}
         subtitle="Jesus has a plan for your life. Join us and discover a church family ready to walk with you."
-        media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/group_people.jpg` }}
+        media={{
+          src: `${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4`,
+          poster: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+        }}
       />
       <div className="py-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
         {/* OVERVIEW */}
-        <div
-          id="overview"
-          className="flex flex-col gap-lg px-padding py-5 md:py-[50px] 2xl:px-[200px]"
-        >
-          <div
-            dangerouslySetInnerHTML={{
-              __html: styleSelectedWords({
-                text: 'Welcome to The Wind Church',
-                array: [[0, 0]],
-                htmlTag: 'h2',
-              }),
-            }}
-          />
-          <h4>
-            A Christ-focused community where lives are transformed and hope is restored. We gather
-            to worship, grow, and walk out our faith together. Whether you join us{' '}
-            <Link
-              href="https://www.google.com/search?q=wind+of+the+spirit+worship+center"
-              target="_blank"
-              className="text-light-navy dark:text-dark-navy underline hover:scale-105"
-            >
-              in person
-            </Link>{' '}
-            or{' '}
-            <Link
-              href={YOUTUBE_CHANNEL}
-              target="_blank"
-              className="text-light-navy dark:text-dark-navy underline hover:scale-105"
-            >
-              online
-            </Link>{' '}
-            , we&apos;d love to meet you and help you take your next step with Jesus.
-          </h4>
-          <h3>Sundays 9AM • Wednesdays 7PM</h3>
+        <div id="overview" className="px-padding">
+          <div className="flex flex-col gap-lg py-5 md:py-[50px] lg:px-[100px]">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: styleSelectedWords({
+                  text: 'Welcome to The Wind Church',
+                  array: [[0, 0]],
+                  htmlTag: 'h2',
+                }),
+              }}
+            />
+            <h4>
+              A Christ-focused community where lives are transformed and hope is restored. We gather
+              to worship, grow, and walk out our faith together. Whether you join us{' '}
+              <Link
+                href="https://www.google.com/search?q=wind+of+the+spirit+worship+center"
+                target="_blank"
+                className="text-light-navy dark:text-dark-navy underline hover:scale-105"
+              >
+                in person
+              </Link>{' '}
+              or{' '}
+              <Link
+                href={YOUTUBE_CHANNEL}
+                target="_blank"
+                className="text-light-navy dark:text-dark-navy underline hover:scale-105"
+              >
+                online
+              </Link>{' '}
+              , we&apos;d love to meet you and help you take your next step with Jesus.
+            </h4>
+            <h3>Sundays 9AM • Wednesdays 7PM</h3>
+          </div>
         </div>
 
         {/* COMMERCIAL */}

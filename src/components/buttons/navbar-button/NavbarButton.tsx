@@ -41,9 +41,9 @@ const NavbarButton: React.FC<NavbarButtonProps> = ({
         onClick={onClick}
         className="px-xs group"
         size={forMobile ? 'sm' : 'lg'}
-        color={changeColor ? 'primary' : 'info'}
+        color={changeColor ? 'primary' : 'teritiary'}
       >
-        <h5 className={cn(variantClass, 'uppercase')}>{label}</h5>
+        <h5 className={cn('uppercase')}>{label}</h5>
       </Button>
     </Link>
   );

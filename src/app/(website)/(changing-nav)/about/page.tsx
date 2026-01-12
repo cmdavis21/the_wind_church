@@ -115,10 +115,7 @@ const About = async () => {
 
       <div className="py-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
         {/* Mission and Vision */}
-        <div
-          id={t('mission.id')}
-          className="flex flex-col gap-xxl py-5 md:py-[50px] 2xl:px-[100px]"
-        >
+        <div id={t('mission.id')} className="flex flex-col gap-xxl py-5 md:py-[50px] lg:px-[100px]">
           {/* Mission */}
           <div className="flex flex-col gap-lg px-padding">
             <h1>{t('mission.title')}</h1>

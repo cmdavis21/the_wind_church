@@ -42,7 +42,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
 
   return (
     <div
-      className={`relative px-5 md:px-[50px] ${
+      className={`relative px-[25px] md:px-[50px] ${
         openNav || openNavSettings ? 'overflow-hidden' : 'rounded-b-lg'
       } ${
         changeColor

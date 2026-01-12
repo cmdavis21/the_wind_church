@@ -17,11 +17,11 @@ const DarkThemeToggler: React.FC<DarkThemeTogglerProps> = ({ changeColor }) => {
   return (
     <div className="flex items-center gap-xs">
       <Sun
-        className={`size-[18px] ${darkMode ? `${changeColor ? 'fill-dark-primaryText' : 'fill-light-primaryText'}` : `${changeColor ? 'fill-black' : 'fill-light-primaryText lg:fill-black'}`}`}
+        className={`size-[18px] ${darkMode ? `${changeColor ? 'fill-dark-primaryText' : 'fill-dark-primaryText'}` : `${changeColor ? 'fill-black' : 'fill-light-primaryText lg:fill-black'}`}`}
       />
-      <ToggleSwitch color="primary" onChange={toggleMode} checked={darkMode} />
+      <ToggleSwitch color="yellow" onChange={toggleMode} checked={darkMode} />
       <Moon
-        className={`size-[18px] ${darkMode ? `${changeColor ? 'fill-dark-primaryText' : 'fill-light-primaryText'}` : `${changeColor ? 'fill-black' : 'fill-light-primaryText lg:fill-black'}`}`}
+        className={`size-[18px] ${darkMode ? `${changeColor ? 'fill-dark-primaryText' : 'fill-dark-primaryText'}` : `${changeColor ? 'fill-black' : 'fill-light-primaryText lg:fill-black'}`}`}
       />
     </div>
   );

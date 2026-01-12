@@ -54,6 +54,8 @@ export const theme = {
       secondary:
         'border border-light-navy bg-light-navy text-white hover:bg-light-navy/80 dark:border-dark-navy dark:bg-dark-navy dark:text-white dark:hover:bg-light-navy',
       info: 'border border-light-gray bg-transparent text-light-primaryText hover:bg-light-gray hover:text-black dark:border-dark-gray dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray dark:hover:text-white',
+      teritiary:
+        'border border-light-gray bg-transparent text-dark-primaryText hover:bg-light-gray hover:text-light-primaryText dark:border-dark-gray dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray',
       danger:
         'border border-error bg-error text-white hover:bg-error/80 dark:border-error dark:bg-error dark:text-white dark:hover:bg-error/70',
     },

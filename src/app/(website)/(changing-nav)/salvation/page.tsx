@@ -1,3 +1,4 @@
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
 import PrayerRequestForm from '@/components/forms/prayer-request-form/PrayerRequestForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
@@ -7,7 +8,6 @@ import MediaBackgroundAndContent, {
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
-import { Button } from 'flowbite-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -214,14 +214,14 @@ const Salvation = () => (
               </h5>
               <div className="flex flex-col md:flex-row gap-lg">
                 <Link href={PageRoutes.deepDive} className="max-md:w-full">
-                  <Button pill size="lg" color="info" className="max-md:w-full">
+                  <AnimativeFillButton className="max-md:w-full">
                     View Deep Dives
-                  </Button>
+                  </AnimativeFillButton>
                 </Link>
                 <Link href={PageRoutes.ministries} className="max-md:w-full">
-                  <Button pill size="lg" color="info" className="max-md:w-full">
+                  <AnimativeFillButton className="max-md:w-full">
                     View Ministries
-                  </Button>
+                  </AnimativeFillButton>
                 </Link>
               </div>
             </div>
