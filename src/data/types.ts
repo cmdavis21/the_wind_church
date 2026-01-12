@@ -113,7 +113,10 @@ export interface PromoBannerDetails {
   header: string;
   title: string;
   description: string;
-  link?: string;
+  link?: {
+    label: string;
+    href: string;
+  };
   image: Image;
   video?: string;
 }

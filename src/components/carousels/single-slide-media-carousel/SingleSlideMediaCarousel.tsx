@@ -44,17 +44,9 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({ med
 
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
-      className="absolute left-0 lg:px-5 top-[50%] -translate-y-[50%] w-full"
-      leftArrowProps={{
-        onClick: () => previous(),
-        buttonClassName: `p-xs lg:p-sm ${media.length === 1 ? 'hidden' : ''}`,
-        iconClassName: 'md:size-[22px]',
-      }}
-      rightArrowProps={{
-        onClick: () => next(),
-        buttonClassName: `p-xs lg:p-sm ${media.length === 1 ? 'hidden' : ''}`,
-        iconClassName: 'md:size-[22px]',
-      }}
+      className={`${media.length === 1 ? 'hidden' : ''} absolute left-0 lg:px-5 top-[50%] -translate-y-[50%] w-full`}
+      leftArrowProps={{ onClick: () => previous() }}
+      rightArrowProps={{ onClick: () => next() }}
     />
   );
 

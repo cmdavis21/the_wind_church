@@ -1,5 +1,5 @@
 import { Label, Radio } from 'flowbite-react';
-import React, { useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
 interface Option {
   value: string;
@@ -7,11 +7,8 @@ interface Option {
 }
 
 export interface RadioGroupHandle {
-  /** currently selected value */
   value: string;
-  /** programmatically set the selected value */
   setValue: (val: string) => void;
-  /** focus the first radio input */
   focus: () => void;
 }
 
@@ -19,23 +16,21 @@ export interface RadioGroupProps
   extends Omit<React.FieldsetHTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
   name: string;
   label?: string;
+  labelColor?: string;
   options: Option[];
-  value?: string;
-  defaultValue?: string;
+  value?: string; // controlled
+  defaultValue?: string; // uncontrolled
   error?: string;
   onChange?: (value: string) => void;
   disabled?: boolean;
 }
 
-/**
- * RadioGroup forwards a handle with { value, setValue, focus } so parent forms
- * can read and manipulate the selected radio programmatically.
- */
-const RadioGroup = React.forwardRef<RadioGroupHandle, RadioGroupProps>(
+const RadioGroup = forwardRef<RadioGroupHandle, RadioGroupProps>(
   (
     {
       name,
       label,
+      labelColor = 'default',
       options,
       value: controlledValue,
       defaultValue,
@@ -47,20 +42,21 @@ const RadioGroup = React.forwardRef<RadioGroupHandle, RadioGroupProps>(
     ref
   ) => {
     const isControlled = controlledValue !== undefined;
-    const [internalValue, setInternalValue] = useState<string>(defaultValue ?? '');
-    const value = isControlled ? controlledValue! : internalValue;
+    const [internalValue, setInternalValue] = useState(defaultValue ?? '');
+    const value = isControlled ? controlledValue : internalValue;
 
-    // keep refs for each radio so focus() can target the first available
     const itemRefs = useRef<Array<HTMLInputElement | null>>([]);
+
+    const updateValue = (val: string) => {
+      if (!isControlled) setInternalValue(val);
+      onChange?.(val);
+    };
 
     useImperativeHandle(
       ref,
       () => ({
         value,
-        setValue: (val: string) => {
-          if (!isControlled) setInternalValue(val);
-          onChange?.(val);
-        },
+        setValue: updateValue,
         focus: () => {
           const first = itemRefs.current.find(Boolean);
           first?.focus();
@@ -69,43 +65,29 @@ const RadioGroup = React.forwardRef<RadioGroupHandle, RadioGroupProps>(
       [value, isControlled, onChange]
     );
 
-    const handleChange = (val: string) => {
-      if (!isControlled) setInternalValue(val);
-      onChange?.(val);
-    };
-
     return (
       <fieldset {...rest} className="flex flex-col gap-xs">
-        {label && <Label htmlFor={name} value={label} disabled={disabled} />}
+        {label && <Label htmlFor={name} value={label} disabled={disabled} color={labelColor} />}
+
         <div className="flex flex-wrap items-center gap-md">
           {options.map((opt, idx) => (
             <label key={opt.value} className="flex items-center gap-xs">
-              <input
-                ref={(el) => {
-                  if (el) {
-                    itemRefs.current[idx] = el;
-                  }
-                }}
-                type="radio"
-                name={name}
-                value={opt.value}
-                checked={value === opt.value}
-                onChange={() => handleChange(opt.value)}
-                disabled={disabled}
-                className="sr-only"
-              />
               <Radio
                 id={`${name}-${opt.value}`}
-                checked={value === opt.value}
+                ref={(el) => {
+                  if (el) itemRefs.current[idx] = el;
+                }}
                 name={name}
                 value={opt.value}
-                onChange={() => handleChange(opt.value)}
+                checked={value === opt.value}
+                onChange={() => updateValue(opt.value)}
                 disabled={disabled}
               />
-              <div className="ml-1">{opt.label}</div>
+              <span className="ml-1">{opt.label}</span>
             </label>
           ))}
         </div>
+
         {error && <div className="text-error">{error}</div>}
       </fieldset>
     );

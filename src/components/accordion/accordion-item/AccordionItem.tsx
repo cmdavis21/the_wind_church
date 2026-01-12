@@ -1,17 +1,25 @@
 import Plus from '@/components/icons/plus';
 import { useResizeHeightObserver } from '@/data/hooks';
+import cn from 'classnames';
 import Image from 'next/image';
 import React, { ReactElement, useRef, useState } from 'react';
 
+export enum ACCORDION_TYPE {
+  DEFAULT,
+  MINIMAL,
+}
+
 interface AccordionItemProps {
+  variant?: ACCORDION_TYPE;
   image?: string;
-  icon: React.FC<React.SVGAttributes<unknown>>;
+  icon?: React.FC<React.SVGAttributes<unknown>>;
   title: string;
   description: string | ReactElement;
   defaultOpen?: boolean;
 }
 
 const AccordionItem: React.FC<AccordionItemProps> = ({
+  variant = ACCORDION_TYPE.DEFAULT,
   image,
   icon: Icon,
   title,
@@ -19,16 +27,30 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   defaultOpen,
 }) => {
   const [open, setOpen] = useState(defaultOpen ?? false);
-  const accordionDesc = useRef<HTMLHeadingElement | null>(null);
+  const accordionDesc = useRef<HTMLDivElement | null>(null);
   const height = useResizeHeightObserver(accordionDesc);
-
+  const isDefault = variant === ACCORDION_TYPE.DEFAULT;
   return (
-    <div className="w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow hover:shadow-lg transition-shadow duration-200 p-5 md:p-6 rounded-lg overflow-hidden">
+    <div
+      className={cn(
+        'w-full overflow-hidden p-5 rounded-lg',
+        isDefault
+          ? 'border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow hover:shadow-lg transition-shadow duration-200'
+          : ''
+      )}
+    >
+      {/* Header Button */}
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-[15px] md:gap-5"
+        className={cn(
+          'w-full flex items-center',
+          isDefault
+            ? 'gap-[15px] md:gap-5 justify-between'
+            : 'gap-md pb-md border border-light-gray dark:border-dark-gray border-x-0 border-t-0'
+        )}
       >
+        {/* Left Section */}
         <div className="flex items-center gap-md">
           {image && (
             <div className="relative min-w-[30px] min-h-[30px]">
@@ -37,28 +59,46 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
           )}
           {Icon && <Icon width={30} height={30} />}
           <h4
-            className={`text-light-navy dark:text-dark-primaryText text-left tracking-wide ${
-              open ? 'font-semibold' : ''
-            }`}
+            className={cn(
+              'text-left tracking-wide',
+              isDefault
+                ? 'text-light-navy dark:text-dark-primaryText'
+                : 'max-sm:text-[20px] text-light-navy dark:text-dark-navy font-thin',
+              open ? 'font-semibold' : 'font-normal'
+            )}
           >
             {title}
           </h4>
         </div>
+
+        {/* Plus Icon */}
         <Plus
-          className={`size-[20px] min-w-[20px] min-h-[20px] ${open ? 'rotate-45' : ''} fill-light-navy dark:fill-dark-primaryText transition-[rotate,fill] duration-300`}
+          className={cn(
+            open && 'rotate-45',
+            'transition-[rotate] duration-300',
+            'size-[20px] min-w-[20px] min-h-[20px]',
+            isDefault
+              ? 'order-last fill-light-navy dark:fill-dark-primaryText'
+              : 'order-first fill-brand-primary'
+          )}
         />
       </button>
 
-      {/* dropdown */}
+      {/* Dropdown */}
       <div
-        style={{ height: open ? `${height + 20}px` : '0px' }}
-        className={`${
-          open ? 'pt-5 md:pt-6 mt-5 md:mt-6' : 'opacity-0 pointer-events-none'
-        } border border-light-gray dark:border-x-dark-charcoal border-x-0 border-b-0 transition-[height, opacity] duration-500`}
+        style={{ height: open ? `${height + (isDefault ? 20 : 10)}px` : '0px' }}
+        className={cn(
+          'transition-[height, opacity] duration-300',
+          open
+            ? isDefault
+              ? 'pt-5 mt-5 border border-light-gray dark:border-x-dark-charcoal border-x-0 border-b-0'
+              : 'pt-[10px]'
+            : 'opacity-0 pointer-events-none'
+        )}
       >
         <div
           ref={accordionDesc}
-          className="body-large text-light-secondaryText dark:text-dark-primaryText"
+          className="body-large text-light-secondaryText dark:text-dark-secondaryText"
         >
           {description}
         </div>

@@ -5,7 +5,7 @@ import AddressUpdateForm from '@/components/forms/address-update-form/AddressUpd
 import EmailUpdateForm from '@/components/forms/email-update-form/EmailUpdateForm';
 import OrderLookupForm from '@/components/forms/orders-lookup-form/OrderLookupForm';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
-import Package from '@/components/icons/package';
+import BoxOpen from '@/components/icons/box-open';
 import User from '@/components/icons/user';
 import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import { CustomerData } from '@/data/types';
@@ -34,7 +34,7 @@ const OrdersClient = () => {
           onClick={() => setActiveTab(0)}
           disabled={!customerData}
           title="Orders"
-          icon={Package}
+          icon={BoxOpen}
         >
           {!customerData ? (
             <div className="max-w-[600px] w-full mx-auto pt-xxl">

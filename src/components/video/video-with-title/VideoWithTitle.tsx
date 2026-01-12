@@ -1,15 +1,14 @@
 'use client';
-
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import Play from '@/components/icons/play';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import cn from 'classnames';
-import { Button } from 'flowbite-react';
 import React, { useRef, useState } from 'react';
 
 interface VideoWithTitleProps {
   src: string;
   poster: string;
-  title?: string;
+  title: string;
   subtitle?: string;
   fullscreen?: boolean;
 }
@@ -90,25 +89,23 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
           )}
         >
           <div className="flex flex-col items-center justify-center gap-lg">
-            {title && <h2 className="text-brand-primary font-bold">{title}</h2>}
+            <h2 className="text-brand-primary font-bold">{title}</h2>
             {subtitle && <h4 className="text-light-gray dark:text-dark-gray">{subtitle}</h4>}
-            <Button pill color="primary" onClick={togglePlayback} className="mt-lg drop-shadow-lg">
-              <div className="flex items-center gap-xs px-lg">
-                <Play className="size-[15px]" />
-                <h5 className="font-bold">Watch</h5>
+            <AnimativeFillButton onClick={togglePlayback} size="lg" className="mt-sm">
+              <div className="flex items-center gap-xxs">
+                <Play className="fill-light-primaryText dark:fill-text-dark-primaryText" />
+                Watch
               </div>
-            </Button>
+            </AnimativeFillButton>
           </div>
         </div>
       </div>
 
       {/* Mobile */}
       <div className={cn(!fullscreen && 'max-width-center', 'md:hidden flex flex-col gap-md')}>
-        {title && (
-          <div className="px-padding">
-            <SectionHeader title={title} subtitle={subtitle} />
-          </div>
-        )}
+        <div className="px-padding">
+          <SectionHeader title={title} subtitle={subtitle} />
+        </div>
         <div className={cn(!fullscreen && 'rounded-xl', 'relative w-full aspect-video')}>
           <video
             ref={mobileVideoRef}
@@ -134,18 +131,12 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
               'transition-opacity duration-500 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
             )}
           >
-            <Button
-              pill
-              size="sm"
-              color="primary"
-              className="drop-shadow-lg"
-              onClick={toggleMobilePlayback}
-            >
-              <div className="flex items-center gap-xs">
-                <Play className="size-[12px]" />
-                <p className="font-bold">Watch</p>
+            <AnimativeFillButton onClick={toggleMobilePlayback}>
+              <div className="flex items-center gap-xxs">
+                <Play className="fill-light-primaryText dark:fill-text-dark-primaryText" />
+                Watch
               </div>
-            </Button>
+            </AnimativeFillButton>
           </div>
         </div>
       </div>

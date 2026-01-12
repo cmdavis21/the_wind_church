@@ -37,7 +37,7 @@ const MinistryCard: React.FC<MinistryCardProps> = ({ name, description, slug, im
         <Button
           pill
           color="primary"
-          size="sm_md"
+          size="md"
           href={`${PageRoutes.ministries}/${slug}`}
           className="w-full md:max-w-[300px]"
         >

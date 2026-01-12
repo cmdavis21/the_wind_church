@@ -30,7 +30,7 @@ const ImageWithTitleAndHiddenTextCard: React.FC<ImageWithTitleAndHiddenTextCardP
       onMouseOver={() => width >= 1024 && setShowText(true)}
       onMouseLeave={() => width >= 1024 && setShowText(false)}
       onClick={width < 1024 ? handleCardClick : undefined}
-      className="relative aspect-square rounded-lg min-w-[200px] max-w-[400px] w-full cursor-pointer"
+      className="relative aspect-square rounded-lg min-w-[200px] max-w-[500px] w-full cursor-pointer"
     >
       <Image
         fill
@@ -53,8 +53,8 @@ const ImageWithTitleAndHiddenTextCard: React.FC<ImageWithTitleAndHiddenTextCardP
           {Icon && <Icon className="fill-white size-[25px]" />}
           <h2>{title}</h2>
         </div>
-        <div className="pt-xl lg:pt-xxl">
-          <SquarePlus className="fill-white size-[25px] md:size-[30px]" />
+        <div className="pt-lg lg:pt-xl">
+          <SquarePlus className="fill-white size-[30px]" />
         </div>
       </div>
 

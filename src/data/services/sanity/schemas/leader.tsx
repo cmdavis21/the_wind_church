@@ -83,8 +83,8 @@ export const LeaderSchema = {
         subtitle: position || '',
         media: image || (
           <span>
-            {first_name.charAt(0)}
-            {last_name.charAt(0)}
+            {first_name.charAt(0).toUpperCase()}
+            {last_name.charAt(0).toUpperCase()}
           </span>
         ),
       };

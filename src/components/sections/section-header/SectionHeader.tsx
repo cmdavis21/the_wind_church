@@ -31,7 +31,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ id, title, subtitle }) =>
       <div className={`w-[40px] h-[2px] bg-brand-primary rounded-md`} />
       {subtitle && (
         <h5
-          className={`font-light text-brand-navy dark:text-brand-dark text-center tracking-wider uppercase`}
+          className={`font-light text-light-navy dark:text-brand-dark text-center tracking-wider uppercase`}
         >
           {subtitle}
         </h5>

@@ -23,9 +23,6 @@ export const AllTypesProps: Record<string,any> = {
 		VisitorFeedback:{
 
 		},
-		ScheduledVisit:{
-
-		},
 		MinistryConnection:{
 
 		},
@@ -50,7 +47,7 @@ export const AllTypesProps: Record<string,any> = {
 		NextGenPage:{
 
 		},
-		Product:{
+		PromoBanner:{
 
 		},
 		Document:{
@@ -84,10 +81,6 @@ export const AllTypesProps: Record<string,any> = {
 			where:"VisitorFeedbackFilter",
 			sort:"VisitorFeedbackSorting"
 		},
-		allScheduledVisit:{
-			where:"ScheduledVisitFilter",
-			sort:"ScheduledVisitSorting"
-		},
 		allMinistryConnection:{
 			where:"MinistryConnectionFilter",
 			sort:"MinistryConnectionSorting"
@@ -120,9 +113,9 @@ export const AllTypesProps: Record<string,any> = {
 			where:"NextGenPageFilter",
 			sort:"NextGenPageSorting"
 		},
-		allProduct:{
-			where:"ProductFilter",
-			sort:"ProductSorting"
+		allPromoBanner:{
+			where:"PromoBannerFilter",
+			sort:"PromoBannerSorting"
 		},
 		allDocument:{
 			where:"DocumentFilter",
@@ -489,28 +482,6 @@ export const AllTypesProps: Record<string,any> = {
 		_key:"SortOrder",
 		feedback:"SortOrder"
 	},
-	ScheduledVisitFilter:{
-		_:"Sanity_DocumentFilter",
-		_id:"IDFilter",
-		_type:"StringFilter",
-		_createdAt:"DatetimeFilter",
-		_updatedAt:"DatetimeFilter",
-		_rev:"StringFilter",
-		_key:"StringFilter",
-		contact:"ContactFilter",
-		attendance:"FloatFilter",
-		day_of_visit:"StringFilter"
-	},
-	ScheduledVisitSorting:{
-		_id:"SortOrder",
-		_type:"SortOrder",
-		_createdAt:"SortOrder",
-		_updatedAt:"SortOrder",
-		_rev:"SortOrder",
-		_key:"SortOrder",
-		attendance:"SortOrder",
-		day_of_visit:"SortOrder"
-	},
 	MinistryConnectionFilter:{
 		_:"Sanity_DocumentFilter",
 		_id:"IDFilter",
@@ -827,7 +798,7 @@ export const AllTypesProps: Record<string,any> = {
 		_key:"SortOrder",
 		cirriculum_file:"FileSorting"
 	},
-	ProductFilter:{
+	PromoBannerFilter:{
 		_:"Sanity_DocumentFilter",
 		_id:"IDFilter",
 		_type:"StringFilter",
@@ -835,16 +806,40 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"DatetimeFilter",
 		_rev:"StringFilter",
 		_key:"StringFilter",
-		title:"StringFilter"
+		header:"StringFilter",
+		title:"StringFilter",
+		description:"StringFilter",
+		link:"LinkFilter",
+		image:"ImageFilter",
+		video:"FileFilter"
 	},
-	ProductSorting:{
+	LinkFilter:{
+		_key:"StringFilter",
+		_type:"StringFilter",
+		label:"StringFilter",
+		internal_href:"StringFilter",
+		external_href:"StringFilter"
+	},
+	PromoBannerSorting:{
 		_id:"SortOrder",
 		_type:"SortOrder",
 		_createdAt:"SortOrder",
 		_updatedAt:"SortOrder",
 		_rev:"SortOrder",
 		_key:"SortOrder",
-		title:"SortOrder"
+		header:"SortOrder",
+		title:"SortOrder",
+		description:"SortOrder",
+		link:"LinkSorting",
+		image:"ImageSorting",
+		video:"FileSorting"
+	},
+	LinkSorting:{
+		_key:"SortOrder",
+		_type:"SortOrder",
+		label:"SortOrder",
+		internal_href:"SortOrder",
+		external_href:"SortOrder"
 	},
 	DocumentFilter:{
 		_:"Sanity_DocumentFilter",
@@ -872,32 +867,6 @@ export const AllTypesProps: Record<string,any> = {
 		_dataset:"StringFilter",
 		_projectId:"StringFilter"
 	},
-	ShopifyAssetPreviewFilter:{
-		_key:"StringFilter",
-		_type:"StringFilter",
-		height:"FloatFilter",
-		width:"FloatFilter",
-		url:"StringFilter"
-	},
-	ShopifyAssetMetadataFilter:{
-		_key:"StringFilter",
-		_type:"StringFilter",
-		alt:"StringFilter",
-		duration:"FloatFilter",
-		fileSize:"FloatFilter",
-		height:"FloatFilter",
-		width:"FloatFilter"
-	},
-	ShopifyAssetFilter:{
-		_key:"StringFilter",
-		_type:"StringFilter",
-		filename:"StringFilter",
-		id:"StringFilter",
-		meta:"ShopifyAssetMetadataFilter",
-		preview:"ShopifyAssetPreviewFilter",
-		type:"StringFilter",
-		url:"StringFilter"
-	},
 	MeetingDetailsTypeFilter:{
 		_key:"StringFilter",
 		_type:"StringFilter",
@@ -918,32 +887,6 @@ export const AllTypesProps: Record<string,any> = {
 		_weak:"SortOrder",
 		_dataset:"SortOrder",
 		_projectId:"SortOrder"
-	},
-	ShopifyAssetPreviewSorting:{
-		_key:"SortOrder",
-		_type:"SortOrder",
-		height:"SortOrder",
-		width:"SortOrder",
-		url:"SortOrder"
-	},
-	ShopifyAssetMetadataSorting:{
-		_key:"SortOrder",
-		_type:"SortOrder",
-		alt:"SortOrder",
-		duration:"SortOrder",
-		fileSize:"SortOrder",
-		height:"SortOrder",
-		width:"SortOrder"
-	},
-	ShopifyAssetSorting:{
-		_key:"SortOrder",
-		_type:"SortOrder",
-		filename:"SortOrder",
-		id:"SortOrder",
-		meta:"ShopifyAssetMetadataSorting",
-		preview:"ShopifyAssetPreviewSorting",
-		type:"SortOrder",
-		url:"SortOrder"
 	},
 	MeetingDetailsTypeSorting:{
 		_key:"SortOrder",
@@ -979,7 +922,6 @@ export const ReturnTypes: Record<string,any> = {
 		RightnowMedia:"RightnowMedia",
 		GiftAssessment:"GiftAssessment",
 		VisitorFeedback:"VisitorFeedback",
-		ScheduledVisit:"ScheduledVisit",
 		MinistryConnection:"MinistryConnection",
 		NextGenRosterSignup:"NextGenRosterSignup",
 		Contact:"Contact",
@@ -988,7 +930,7 @@ export const ReturnTypes: Record<string,any> = {
 		DeepDive:"DeepDive",
 		Ministry:"Ministry",
 		NextGenPage:"NextGenPage",
-		Product:"Product",
+		PromoBanner:"PromoBanner",
 		Document:"Document",
 		allSanityImageAsset:"SanityImageAsset",
 		allSanityFileAsset:"SanityFileAsset",
@@ -997,7 +939,6 @@ export const ReturnTypes: Record<string,any> = {
 		allRightnowMedia:"RightnowMedia",
 		allGiftAssessment:"GiftAssessment",
 		allVisitorFeedback:"VisitorFeedback",
-		allScheduledVisit:"ScheduledVisit",
 		allMinistryConnection:"MinistryConnection",
 		allNextGenRosterSignup:"NextGenRosterSignup",
 		allContact:"Contact",
@@ -1006,7 +947,7 @@ export const ReturnTypes: Record<string,any> = {
 		allDeepDive:"DeepDive",
 		allMinistry:"Ministry",
 		allNextGenPage:"NextGenPage",
-		allProduct:"Product",
+		allPromoBanner:"PromoBanner",
 		allDocument:"Document"
 	},
 	SanityImageAsset:{
@@ -1041,7 +982,6 @@ export const ReturnTypes: Record<string,any> = {
 		"...on RightnowMedia": "RightnowMedia",
 		"...on GiftAssessment": "GiftAssessment",
 		"...on VisitorFeedback": "VisitorFeedback",
-		"...on ScheduledVisit": "ScheduledVisit",
 		"...on MinistryConnection": "MinistryConnection",
 		"...on NextGenRosterSignup": "NextGenRosterSignup",
 		"...on Event": "Event",
@@ -1049,7 +989,7 @@ export const ReturnTypes: Record<string,any> = {
 		"...on Ministry": "Ministry",
 		"...on DeepDive": "DeepDive",
 		"...on NextGenPage": "NextGenPage",
-		"...on Product": "Product",
+		"...on PromoBanner": "PromoBanner",
 		_id:"ID",
 		_type:"String",
 		_createdAt:"DateTime",
@@ -1205,17 +1145,6 @@ export const ReturnTypes: Record<string,any> = {
 		contact:"Contact",
 		feedback:"String"
 	},
-	ScheduledVisit:{
-		_id:"ID",
-		_type:"String",
-		_createdAt:"DateTime",
-		_updatedAt:"DateTime",
-		_rev:"String",
-		_key:"String",
-		contact:"Contact",
-		attendance:"Float",
-		day_of_visit:"String"
-	},
 	MinistryConnection:{
 		_id:"ID",
 		_type:"String",
@@ -1318,7 +1247,6 @@ export const ReturnTypes: Record<string,any> = {
 		position:"String",
 		category:"String",
 		description:"String",
-		roles:"String",
 		image:"Image",
 		video:"File"
 	},
@@ -1392,14 +1320,26 @@ export const ReturnTypes: Record<string,any> = {
 		educators:"Leader",
 		cirriculum_file:"File"
 	},
-	Product:{
+	PromoBanner:{
 		_id:"ID",
 		_type:"String",
 		_createdAt:"DateTime",
 		_updatedAt:"DateTime",
 		_rev:"String",
 		_key:"String",
-		title:"String"
+		header:"String",
+		title:"String",
+		description:"String",
+		link:"Link",
+		image:"Image",
+		video:"File"
+	},
+	Link:{
+		_key:"String",
+		_type:"String",
+		label:"String",
+		internal_href:"String",
+		external_href:"String"
 	},
 	Block:{
 		_key:"String",
@@ -1422,32 +1362,6 @@ export const ReturnTypes: Record<string,any> = {
 		_weak:"Boolean",
 		_dataset:"String",
 		_projectId:"String"
-	},
-	ShopifyAssetPreview:{
-		_key:"String",
-		_type:"String",
-		height:"Float",
-		width:"Float",
-		url:"String"
-	},
-	ShopifyAssetMetadata:{
-		_key:"String",
-		_type:"String",
-		alt:"String",
-		duration:"Float",
-		fileSize:"Float",
-		height:"Float",
-		width:"Float"
-	},
-	ShopifyAsset:{
-		_key:"String",
-		_type:"String",
-		filename:"String",
-		id:"String",
-		meta:"ShopifyAssetMetadata",
-		preview:"ShopifyAssetPreview",
-		type:"String",
-		url:"String"
 	},
 	ID: `scalar.ID` as const
 }

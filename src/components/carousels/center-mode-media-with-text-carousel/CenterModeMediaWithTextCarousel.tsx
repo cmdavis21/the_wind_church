@@ -61,12 +61,8 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
       className="absolute left-0 px-[50px] lg:px-[100px] min-[1800px]:px-[200px] top-[50%] -translate-y-[50%] w-full"
-      leftArrowProps={{
-        onClick: () => previous(),
-      }}
-      rightArrowProps={{
-        onClick: () => next(),
-      }}
+      leftArrowProps={{ onClick: () => previous() }}
+      rightArrowProps={{ onClick: () => next() }}
     />
   );
 
@@ -85,8 +81,6 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
               mobileCarouselRef.current?.goToSlide(currentSlide - 1);
             }
           },
-          buttonClassName: 'p-xs',
-          iconClassName: 'fill-black/70 size-[18px]',
         }}
         rightArrowProps={{
           onClick: () => {
@@ -96,8 +90,6 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
               mobileCarouselRef.current?.goToSlide(currentSlide + 1);
             }
           },
-          buttonClassName: 'p-xs',
-          iconClassName: 'fill-black/70 size-[18px]',
         }}
       />
     );

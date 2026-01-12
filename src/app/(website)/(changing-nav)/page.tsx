@@ -1,6 +1,7 @@
 import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
+import VideoPlaylistCarousel from '@/components/carousels/video-playlist-carousel/VideoPlaylistCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent, {
@@ -10,6 +11,7 @@ import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import VideoWithTitle from '@/components/video/video-with-title/VideoWithTitle';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
+import { getRecentVideos } from '@/data/services/youtube/playlists';
 import { styleSelectedWords } from '@/data/utils';
 import { Button } from 'flowbite-react';
 import Link from 'next/link';
@@ -25,7 +27,7 @@ export async function generateMetadata() {
 }
 
 const Home = async () => {
-  // const recentVideos = await getRecentVideos();
+  const recentVideos = await getRecentVideos();
 
   const exploreOptions = [
     {
@@ -228,30 +230,7 @@ const Home = async () => {
             </Link>{' '}
             , we&apos;d love to meet you and help you take your next step with Jesus.
           </h4>
-          <h3>
-            Join us for worship <span className="font-semibold">Sundays 9AM</span> and{' '}
-            <span className="font-semibold">Wednesdays 7PM</span>
-          </h3>
-          <h4>
-            Come experience God&apos;s presence, biblical teaching, and a family that welcomes you
-            as you are. If you&apos;re seeking{' '}
-            <Link
-              href={PageRoutes.prayerRequests}
-              target="_blank"
-              className="text-light-navy dark:text-dark-navy underline hover:scale-105"
-            >
-              prayer
-            </Link>{' '}
-            or want to learn more about{' '}
-            <Link
-              href={PageRoutes.salvation}
-              target="_blank"
-              className="text-light-navy dark:text-dark-navy underline hover:scale-105"
-            >
-              salvation
-            </Link>{' '}
-            , we’re here for you.
-          </h4>
+          <h3>Sundays 9AM • Wednesdays 7PM</h3>
         </div>
 
         {/* COMMERCIAL */}
@@ -275,17 +254,7 @@ const Home = async () => {
               </Button>
             </Link>
           </div>
-          {/* <SimpleCarousel
-            slides={recentVideos.map((video) => (
-              <VideoCard
-                key={video.videoUrl}
-                poster={video.thumbnail}
-                title={video.title}
-                date={video.published_at}
-                link={video.videoUrl}
-              />
-            ))}
-          /> */}
+          <VideoPlaylistCarousel playlist={recentVideos} />
         </div>
 
         {/* EXPLORE CTAs */}
@@ -305,7 +274,7 @@ const Home = async () => {
         <MediaBackgroundAndContent
           noFlex
           centerContent
-          color={ColorBackground.BLUE}
+          color={ColorBackground.YELLOW}
           content={
             <div className="space-y-xl md:space-y-xxl">
               <CenterTextSection

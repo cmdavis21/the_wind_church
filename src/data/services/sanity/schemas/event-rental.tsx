@@ -1,6 +1,5 @@
 import { defineField } from 'sanity';
 
-import FileIcon from '@/components/icons/file';
 import { YesNo } from '@/data/types';
 
 export const EventRentalSchema = {
@@ -88,7 +87,12 @@ export const EventRentalSchema = {
       return {
         title: !purpose_for_rental.includes('Other') ? purpose_for_rental : 'Event Rental Request',
         subtitle: `${first_name ?? ''} ${last_name ?? ''}`,
-        media: <FileIcon />,
+        media: (
+          <span>
+            {first_name.charAt(0).toUpperCase()}
+            {last_name.charAt(0).toUpperCase()}
+          </span>
+        ),
       };
     },
   },

@@ -13,7 +13,7 @@ const TextRadio: React.FC<TextRadioProps> = ({ text, color, selected, disabled, 
     type="button"
     disabled={disabled}
     onClick={() => onSelect(text)}
-    className={`${disabled ? 'opacity-50' : ''} px-sm py-xs min-w-[45px] max-w-fit border-2 rounded-md ${selected ? 'border-primary' : 'border-skeletonGray dark:border-skeletonDarkGray'}`}
+    className={`${disabled ? 'opacity-50' : ''} px-sm py-xs min-w-[45px] max-w-fit border-2 rounded-md ${selected ? 'border-brand-primary' : 'border-light-gray dark:border-dark-gray'}`}
   >
     <div className="flex items-center justify-center capitalize gap-[6px]">
       {color && (

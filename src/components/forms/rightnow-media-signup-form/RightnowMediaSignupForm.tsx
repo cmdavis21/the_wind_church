@@ -68,6 +68,7 @@ const RightnowMediaSignupForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
           type="text"
+          labelColor="light"
           label="First Name*"
           {...register('first_name')}
           error={errors.first_name?.message}
@@ -75,6 +76,7 @@ const RightnowMediaSignupForm = () => {
         />
         <TextInput
           type="text"
+          labelColor="light"
           label="Last Name*"
           {...register('last_name')}
           error={errors.last_name?.message}
@@ -86,6 +88,7 @@ const RightnowMediaSignupForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
           type="tel"
+          labelColor="light"
           label="Phone"
           {...register('phone')}
           error={errors.phone?.message}
@@ -93,6 +96,7 @@ const RightnowMediaSignupForm = () => {
         />
         <TextInput
           type="email"
+          labelColor="light"
           label="Email*"
           {...register('email')}
           error={errors.email?.message}
@@ -103,6 +107,7 @@ const RightnowMediaSignupForm = () => {
       {/* is a wind member */}
       <RadioGroup
         name="wind_member"
+        labelColor="light"
         label="Are you a member of The Wind Church?"
         disabled={isPending || isSuccess}
         onChange={(val) => setValue('wind_member', val as YesNo)}

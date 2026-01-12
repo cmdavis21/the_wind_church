@@ -6,16 +6,12 @@ import 'react-multi-carousel/lib/styles.css';
 
 import VideoCard from '@/components/cards/video-card/VideoCard';
 
+import { YouTubeSnippet } from '@/data/types';
 import CarouselArrows from '../carousel-arrows/CarouselArrows';
 import CarouselDot from '../carousel-dot/CarouselDot';
 
 interface VideoPlaylistCarouselProps {
-  playlist: {
-    poster: string;
-    title: string;
-    date: string;
-    link: string;
-  }[];
+  playlist: YouTubeSnippet[];
 }
 
 const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist }) => {
@@ -68,8 +64,8 @@ const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist 
         showDots
         draggable
         swipeable
-        itemClass="p-sm"
-        containerClass="pb-md"
+        itemClass="text-center"
+        containerClass="pb-sm"
         responsive={responsive}
         customDot={<CustomDot />}
         renderButtonGroupOutside
@@ -78,11 +74,11 @@ const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist 
       >
         {playlist.map((item) => (
           <VideoCard
-            key={`video-playlist-carousel-${item.title}-${item.date}`}
-            poster={item.poster}
+            key={`video-playlist-carousel-${item.title}-${item.published_at}`}
+            poster={item.thumbnail}
             title={item.title}
-            date={item.date}
-            link={item.link}
+            date={item.published_at}
+            link={item.videoUrl}
           />
         ))}
       </Carousel>

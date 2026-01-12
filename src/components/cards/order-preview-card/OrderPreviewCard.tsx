@@ -179,74 +179,57 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                   >
                     <div className="w-full flex flex-col gap-3">
                       <h5 className="font-semibold">{item.title}</h5>
-
-                      <div className="w-full gap-3 grid grid-cols-1 md:grid-cols-4">
-                        <div className="flex flex-row gap-3 md:col-span-2">
-                          {/* PRODUCT IMAGE */}
-                          <div className="rounded-md border border-skeletonGray dark:border-skeletonDarkGray w-fit h-fit">
-                            <Image
-                              width={70}
-                              height={70}
-                              src={item.image.src}
-                              alt={item.image.alt}
-                              className="size-[70px] min-w-[70px] max-h-[70px] object-cover rounded-md"
-                            />
-                          </div>
-
-                          {/* QUICK FACTS */}
-                          <div className="flex flex-col items-start">
-                            {item.variant.selected_options.length > 0 &&
-                              item.variant.selected_options.map((opt, index) => (
-                                <h6 key={`order-preview-card-opt-${item.title}-${opt.value}`}>
-                                  <span className="text-light-charcoal dark:text-dark-charcoal">
-                                    {opt.name}:
-                                  </span>{' '}
-                                  {opt.value}
-                                </h6>
-                              ))}
-                            {/* <h6>
-                              <span className="text-light-charcoal dark:text-dark-charcoal">
-                                Price:
-                              </span>{' '}
-                              {formatPrice(item.variant.price)}
-                            </h6>
-                            <h6>
-                              <span className="text-light-charcoal dark:text-dark-charcoal">
-                                Qty:
-                              </span>{' '}
-                              {item.quantity}
-                            </h6> */}
-                            {/* LINE ITEM TOTAL - MOBILE */}
-                            <h6 className="md:hidden">
-                              <span className="text-light-charcoal dark:text-dark-charcoal">
-                                Total:
-                              </span>{' '}
-                              {formatPrice(item.total_price)}
-                            </h6>
-                          </div>
+                      <div className="flex flex-row gap-3 md:col-span-2">
+                        {/* PRODUCT IMAGE */}
+                        <div className="rounded-md border border-skeletonGray dark:border-skeletonDarkGray w-fit h-fit">
+                          <Image
+                            width={70}
+                            height={70}
+                            src={item.image.src}
+                            alt={item.image.alt}
+                            className="size-[70px] min-w-[70px] max-h-[70px] object-cover rounded-md"
+                          />
                         </div>
 
-                        <div className="place-content-center place-items-center">
-                          <h6>
-                            {formatPrice(item.variant.price)}/per x {item.quantity} qty
+                        {/* QUICK FACTS */}
+                        <div className="flex flex-col items-start">
+                          <h6 className="font-normal">
+                            <span className="text-light-charcoal dark:text-dark-charcoal">
+                              Price:
+                            </span>{' '}
+                            {formatPrice(item.variant.price)}
+                          </h6>
+                          <h6 className="font-normal">
+                            <span className="text-light-charcoal dark:text-dark-charcoal">
+                              Qty:
+                            </span>{' '}
+                            {item.quantity}
+                          </h6>
+                          {item.variant.selected_options.length > 0 &&
+                            item.variant.selected_options.map((opt, index) => (
+                              <h6
+                                key={`order-preview-card-opt-${item.title}-${opt.value}`}
+                                className="font-normal"
+                              >
+                                <span className="text-light-charcoal dark:text-dark-charcoal">
+                                  {opt.name}:
+                                </span>{' '}
+                                {opt.value}
+                              </h6>
+                            ))}
+                          {/* LINE ITEM TOTAL - MOBILE */}
+                          <h6 className="md:hidden">
+                            <span className="text-light-charcoal dark:text-dark-charcoal">
+                              Total:
+                            </span>{' '}
+                            {formatPrice(item.total_price)}
                           </h6>
                         </div>
-
-                        <h4 className="hidden md:block text-right place-content-center">
-                          {formatPrice(item.total_price)}
-                        </h4>
                       </div>
                     </div>
 
                     {/* LINE ITEM TOTAL */}
-                    {/* <div className="flex flex-col gap-3">
-                      <h4 className="hidden md:block text-right">
-                        {formatPrice(item.total_price)}
-                      </h4>
-                      <h6>
-                        {formatPrice(item.variant.price)}/per x {item.quantity}
-                      </h6>
-                    </div> */}
+                    <h4 className="hidden md:block text-right">{formatPrice(item.total_price)}</h4>
                   </div>
                 ))}
               </div>

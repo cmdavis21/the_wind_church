@@ -44,12 +44,12 @@ const FullscreenMediaWithTextFadeInOutCarouselSkeleton = () => {
           leftArrowProps={{
             onClick: () => {},
             buttonClassName:
-              'bg-black/30 p-sm absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
+              'absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
           }}
           rightArrowProps={{
             onClick: () => {},
             buttonClassName:
-              'bg-black/30 p-sm absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
+              'absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
           }}
         />
       </div>

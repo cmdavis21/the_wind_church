@@ -77,8 +77,6 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             setMobileActiveSlide(slides.length - 1);
           } else setMobileActiveSlide(mobileActiveSlide - 1);
         },
-        buttonClassName: 'p-xs',
-        iconClassName: 'size-[18px]',
       }}
       rightArrowProps={{
         onClick: () => {
@@ -87,8 +85,6 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
             setMobileActiveSlide(0);
           } else setMobileActiveSlide(mobileActiveSlide + 1);
         },
-        buttonClassName: 'p-xs',
-        iconClassName: 'size-[18px]',
       }}
     />
   );
@@ -197,7 +193,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               } else setActiveSlide(activeSlide - 1);
             },
             buttonClassName:
-              'bg-black/50 p-sm absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
+              'absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
           }}
           rightArrowProps={{
             onClick: () => {
@@ -206,7 +202,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               } else setActiveSlide(activeSlide + 1);
             },
             buttonClassName:
-              'bg-black/50 p-sm absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
+              'absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
           }}
         />
       </div>

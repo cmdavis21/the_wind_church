@@ -9,7 +9,11 @@ const getPromoDetailsQuery = async () => {
         header: true,
         title: true,
         description: true,
-        link: true,
+        link: {
+          label: true,
+          external_href: true,
+          internal_href: true,
+        },
         image: {
           asset: {
             url: true,
@@ -34,8 +38,16 @@ export const getPromoDetails = async (): Promise<PromoBannerDetails | undefined>
       header: details[0].header ?? '',
       title: details[0].title ?? '',
       description: details[0].description ?? '',
-      link: details[0].link ?? undefined,
-      image: details[0].image?.asset?.url ?? '',
+      link: details[0].link
+        ? {
+            label: details[0].link.label ?? '',
+            href: details[0].link.external_href ?? details[0].link.internal_href ?? '#',
+          }
+        : undefined,
+      image: {
+        src: details[0].image?.asset?.url ?? '',
+        alt: details[0].image?.asset?.altText ?? '',
+      },
       video: details[0].video?.asset?.url ?? undefined,
     };
   }

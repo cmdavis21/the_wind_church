@@ -1,55 +1,56 @@
 import cn from 'classnames';
-import Link from 'next/link';
 import React from 'react';
 
 interface AnimativeFillButtonProps {
-  link?: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   onClick?: () => void;
   className?: string;
   children: React.ReactNode;
 }
 
 const AnimativeFillButton: React.FC<AnimativeFillButtonProps> = ({
-  link,
+  size = 'md',
   onClick,
   className,
   children,
 }) => {
-  const Button = () => (
-    <div
-      className={cn(
-        'relative group w-fit border border-light-neutral dark:border-dark-gray',
-        'bg-light-bg dark:bg-dark-bg shadow rounded-full cursor-pointer',
-        className
-      )}
-    >
-      {/* sliding fill */}
-      <div className="absolute inset-0 overflow-hidden rounded-full">
-        <div
-          className={cn(
-            'h-full rounded-full bg-brand-primary dark:bg-brand-dark',
-            'transition-[width] duration-500 ease-out',
-            'absolute right-0 origin-right',
-            'w-0 group-hover:w-full'
-          )}
-        />
-      </div>
+  const sizes = {
+    xs: 'px-2 py-1 text-xs',
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-base',
+    lg: 'px-5 py-2.5 text-base',
+    xl: 'px-6 py-3 text-lg',
+  };
 
-      {/* content */}
-      <div className="relative">{children}</div>
-    </div>
-  );
-
-  return link ? (
-    <Link href={link}>
-      <Button />
-    </Link>
-  ) : onClick ? (
+  return (
     <button type="button" onClick={onClick}>
-      <Button />
+      <div
+        className={cn(
+          'relative group w-fit border border-light-neutral dark:border-dark-gray',
+          'bg-light-bg dark:bg-dark-bg shadow rounded-full cursor-pointer',
+          className
+        )}
+      >
+        {/* sliding fill */}
+        <div className="absolute inset-0 overflow-hidden rounded-full">
+          <div
+            className={cn(
+              'h-full rounded-full bg-brand-primary dark:bg-brand-dark',
+              'transition-[width] duration-500 ease-out',
+              'absolute right-0 origin-right',
+              'w-0 group-hover:w-full'
+            )}
+          />
+        </div>
+
+        {/* content */}
+        <div
+          className={cn('relative text-light-primaryText dark:text-dark-primaryText', sizes[size])}
+        >
+          {children}
+        </div>
+      </div>
     </button>
-  ) : (
-    <Button />
   );
 };
 

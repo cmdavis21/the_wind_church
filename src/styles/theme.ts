@@ -1,7 +1,7 @@
 export const theme = {
   alert: {
     base: 'flex flex-col gap-2 p-4 text-sm',
-    borderAccent: 'border-b-[2.5px] border-l-[2.5px] border-t-[1px] border-r-[1px]',
+    borderAccent: 'border-b-[2.5px] border-l-[2.5px] border-t-px border-r-px',
     closeButton: {
       base: '-m-1.5 ml-auto inline-flex h-8 w-8 rounded-lg p-1.5 focus:ring-2',
       icon: 'h-5 w-5',
@@ -67,8 +67,7 @@ export const theme = {
       sm: 'px-3 py-1.5 text-sm',
       md: 'px-4 py-2 text-base',
       lg: 'px-5 py-2.5 text-base',
-      xl: 'px-6 py-3 text-base',
-      sm_md: 'px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base',
+      xl: 'px-6 py-3 text-lg',
     },
   },
   checkbox: {
@@ -84,12 +83,16 @@ export const theme = {
   },
   label: {
     root: {
-      base: 'text-[16px] xl:text-[18px]',
-      colors: {
-        gray: 'text-light-primaryText dark:text-dark-primaryText',
-        white: 'text-white',
-      },
+      base: 'text-sm font-medium',
       disabled: 'opacity-50',
+      colors: {
+        default: 'text-light-primaryText dark:text-dark-primaryText',
+        info: 'text-light-primaryText dark:text-dark-primaryText',
+        light: 'text-white',
+        failure: 'text-error dark:text-error',
+        warning: 'text-warning dark:text-warning',
+        success: 'text-success dark:text-success',
+      },
     },
   },
   modal: {
@@ -123,19 +126,16 @@ export const theme = {
         'bottom-left': 'items-end justify-start',
       },
     },
-
     content: {
-      base: 'relative h-full w-full p-4 md:h-auto',
+      base: 'relative h-full w-full p-4 md:h-auto font-sans',
       inner: 'relative flex flex-col max-h-[90dvh] rounded-lg bg-light-bg shadow dark:bg-dark-bg',
     },
-
     body: {
       base: 'flex-1 overflow-auto p-6 text-light-primaryText dark:text-dark-primaryText',
       popup: 'pt-0',
     },
-
     header: {
-      base: 'flex items-start justify-between rounded-t border-b p-5 dark:border-dark-gray',
+      base: 'flex items-start justify-between rounded-t border-b p-5 dark:border-dark-gray font-sans',
       popup: 'border-b-0 p-2',
       title: 'text-xl font-medium text-light-primaryText dark:text-dark-primaryText',
       close: {
@@ -143,7 +143,6 @@ export const theme = {
         icon: 'h-5 w-5',
       },
     },
-
     footer: {
       base: 'flex items-center space-x-2 rounded-b border-light-gray p-6 dark:border-dark-gray',
       popup: 'border-t',
@@ -179,8 +178,8 @@ export const theme = {
           underline: {
             base: 'rounded-t-lg',
             active: {
-              on: 'border-b-2 border-brand-dark text-brand-dark dark:border-brand-dark dark:text-brand-dark',
-              off: 'border-b-2 border-transparent text-light-primaryText hover:border-light-gray hover:text-light-gray dark:text-dark-gray dark:hover:text-dark-gray',
+              on: 'border-b-2 border-brand-primary font-bold',
+              off: 'border-b-2 border-transparent text-light-primaryText hover:opacity-75',
             },
           },
           pills: {

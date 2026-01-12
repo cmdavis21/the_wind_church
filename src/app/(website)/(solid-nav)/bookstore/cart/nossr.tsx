@@ -85,10 +85,10 @@ const CartPage = () => {
                             alt={line.image.alt}
                             className="object-cover min-w-[100px] size-[100px] object-top rounded-lg"
                           />
-                          <div className="flex flex-col gap-xs">
+                          <div className="flex flex-col">
                             <h5 className="font-bold">{line.title}</h5>
                             {line.variant.selected_options.map((opt) => (
-                              <p key={opt.name} className="capitalize body-small">
+                              <p key={opt.name} className="capitalize">
                                 <span className="text-light-charcoal dark:text-dark-charcoal">
                                   {opt.name}:
                                 </span>{' '}
@@ -142,7 +142,7 @@ const CartPage = () => {
                           }}
                         >
                           <div className="flex items-center gap-xs text-xs">
-                            <Trash fill="white" className="size-[10px]" /> Remove
+                            <Trash fill="white" className="size-[15px]" /> Remove
                           </div>
                         </Button>
                       </td>
@@ -197,9 +197,8 @@ const CartPage = () => {
                       ]).then(() => setLoadingItem(null));
                     }}
                   />
-                  <p className="capitalize">
-                    <span className="text-light-charcoal dark:text-dark-charcoal">Total:</span>{' '}
-                    {formatPrice(line.subtotal_amount)} {line.subtotal_amount.currencyCode}
+                  <p className="capitalize font-bold">
+                    Total: {formatPrice(line.subtotal_amount)} {line.subtotal_amount.currencyCode}
                   </p>
                   <Button
                     pill
@@ -212,8 +211,8 @@ const CartPage = () => {
                       );
                     }}
                   >
-                    <div className="flex items-center gap-xs text-xs">
-                      <Trash fill="white" className="size-[10px]" /> Remove
+                    <div className="flex items-center gap-xxs text-xs">
+                      <Trash fill="white" className="size-[12px]" /> Remove
                     </div>
                   </Button>
                 </div>

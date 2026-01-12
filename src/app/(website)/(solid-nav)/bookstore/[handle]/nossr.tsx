@@ -3,8 +3,6 @@
 import SingleSlideMediaCarousel from '@/components/carousels/single-slide-media-carousel/SingleSlideMediaCarousel';
 import MultiTextRadioContainer from '@/components/forms/inputs/multi-text-radio-container/MultiTextRadioContainer';
 import QuantityInput from '@/components/forms/inputs/quantity-input/QuantityInput';
-import Minus from '@/components/icons/minus';
-import Plus from '@/components/icons/plus';
 import CartModal from '@/components/modals/cart-modal/CartModal';
 import { formatPrice } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
@@ -155,14 +153,9 @@ const ProductPage = (product: Product) => {
                 <button
                   type="button"
                   onClick={() => setShowDescription(!showDescription)}
-                  className="p-sm pb-0 border border-light-gray dark:border-dark-gray border-x-0 border-b-0 flex items-center gap-md justify-between text-light-charcoal dark:text-dark-primaryText"
+                  className="py-sm pb-0 border border-light-gray hover:opacity-75 dark:border-dark-gray border-x-0 border-b-0 flex items-center gap-xs text-light-charcoal dark:text-dark-primaryText"
                 >
-                  Read {showDescription ? 'Less' : 'More'}{' '}
-                  {showDescription ? (
-                    <Minus className="fill-light-charcoal dark:fill-light-charcoalLight size-[15px]" />
-                  ) : (
-                    <Plus className="fill-light-charcoal dark:fill-light-charcoalLight size-[15px]" />
-                  )}
+                  Read {showDescription ? 'Less' : 'More'}
                 </button>
               )}
             </div>
@@ -181,7 +174,7 @@ const ProductPage = (product: Product) => {
                       return {
                         text: subOpt.name,
                         color: subOpt.color,
-                        selected: found !== undefined,
+                        selected: !!found,
                       };
                     })}
                   />

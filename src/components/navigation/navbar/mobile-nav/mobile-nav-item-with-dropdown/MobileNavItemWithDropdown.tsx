@@ -42,19 +42,15 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
   return (
     <div
       className={cn(
-        changeColor ? 'text-light-primaryText' : 'text-dark-primaryText',
-        'rounded-lg p-sm transition-all duration-300 flex flex-col gap-sm',
+        'rounded-lg p-sm transition-[colors,height] duration-300 flex flex-col gap-sm',
         open
           ? changeColor
-            ? 'bg-light-charcoal dark:bg-dark-gray'
-            : 'bg-light-charcoal dark:bg-dark-neutral'
+            ? 'bg-light-neutral dark:bg-dark-gray'
+            : 'bg-light-charcoal dark:bg-dark-charcoal'
           : changeColor
-            ? 'hover:bg-light-gray/50 hover:dark:bg-dark-gray/80'
-            : 'hover:bg-light-charcoal/80 hover:dark:bg-dark-gray/80'
+            ? 'hover:bg-light-neutral hover:dark:bg-dark-gray'
+            : 'hover:bg-light-charcoal hover:dark:bg-dark-charcoal'
       )}
-      // className={`${
-      //   changeColor ? 'text-black' : 'text-white'
-      // } ${open ? `${changeColor ? 'bg-light-gray/40 dark:bg-dark-gray/80' : 'bg-light-charcoal/80 dark:bg-dark-gray/80'}` : `${changeColor ? 'hover:bg-light-gray/50 hover:dark:bg-dark-gray/80' : 'hover:bg-light-charcoal/80 hover:dark:bg-dark-gray/80'}`} rounded-lg p-sm transition-all duration-300 flex flex-col gap-sm`}
     >
       <MobileNavItem
         label={label}
@@ -68,8 +64,8 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
           height: open ? `${subMenuDropdown.current?.offsetHeight}px` : '0px',
         }}
         className={`${
-          !open ? 'pointer-events-none opacity-0 -mb-sm' : ''
-        } transition-[height, opacity] duration-300 mx-xs overflow-hidden`}
+          !open ? 'pointer-events-none -mb-sm' : ''
+        } transition-[height] duration-300 mx-xs overflow-hidden`}
       >
         <div ref={subMenuDropdown} className="flex flex-col gap-sm w-full">
           {Array.isArray(submenu) &&
@@ -88,7 +84,7 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
                       ? 'font-semibold bg-light-gray/20'
                       : `${
                           changeColor
-                            ? 'text-black dark:text-dark-primaryText dark:hover:text-dark-charcoal hover:bg-light-gray/80'
+                            ? 'text-black dark:text-dark-primaryText dark:hover:text-dark-charcoal hover:bg-light-gray'
                             : 'text-white dark:text-dark-primaryText hover:bg-light-charcoal dark:hover:bg-dark-charcoal'
                         }`
                   }`}

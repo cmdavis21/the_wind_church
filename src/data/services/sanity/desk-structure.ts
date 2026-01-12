@@ -3,13 +3,13 @@ import { StructureResolver } from 'sanity/structure';
 import Bullhorn from '@/components/icons/bullhorn';
 import Calendar from '@/components/icons/calendar';
 import ChildReaching from '@/components/icons/child-reaching';
-import GlobePointer from '@/components/icons/globe-pointer';
 
 import LinkIcon from '@/components/icons/link';
 import PencilPaper from '@/components/icons/pencilPaper';
 
 import AddressCard from '@/components/icons/address-card';
 import Gift from '@/components/icons/gift';
+import Globe from '@/components/icons/globe';
 import PeopleGroup from '@/components/icons/people-group';
 import PersonPraying from '@/components/icons/person-praying';
 import PersonWithChalkboard from '@/components/icons/person-with-chalkboard';
@@ -57,7 +57,7 @@ export const sanityStudioStructure: StructureResolver = (S) =>
       // WEBSITE CM
       S.listItem()
         .title('Website')
-        .icon(GlobePointer)
+        .icon(Globe)
         .child(
           S.list()
             .title('Website')

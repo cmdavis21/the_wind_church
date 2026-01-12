@@ -6,8 +6,6 @@ import { PageRoutes } from '@/data/page-routes';
 import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import Image from 'next/image';
 import Link from 'next/link';
-import Home from '../icons/home';
-import Redo from '../icons/redo';
 
 interface ErrorPageProps {
   title?: string;
@@ -43,9 +41,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ title, description, routeToPage, 
             <div className="flex flex-wrap gap-md">
               <Link href={PageRoutes.home}>
                 <Button pill size="xl" color="primary">
-                  <div className="flex items-center gap-sm">
-                    <Home /> Home
-                  </div>
+                  Home
                 </Button>
               </Link>
               {reloadPage && (
@@ -58,9 +54,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ title, description, routeToPage, 
                     if (window) window.location.reload();
                   }}
                 >
-                  <div className="flex items-center gap-sm">
-                    <Redo /> Refresh page
-                  </div>
+                  Refresh page
                 </Button>
               )}
               {routeToPage && (

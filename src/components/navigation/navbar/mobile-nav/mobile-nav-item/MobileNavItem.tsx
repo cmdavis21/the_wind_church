@@ -31,7 +31,7 @@ const MobileNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
           </h5>
           {!link && (
             <Plus
-              className={`size-[15px] ${active ? 'rotate-45' : ''} transition-all duration-300 ${
+              className={`${active ? 'rotate-45' : ''} transition-all duration-300 ${
                 changeColor
                   ? `${active ? 'fill-brand-primary' : 'fill-black dark:fill-dark-primaryText'}`
                   : `${active ? 'fill-brand-primary dark:fill-brand-primary' : 'fill-dark-primaryText'}`

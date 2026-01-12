@@ -21,11 +21,13 @@ interface MobileNavProps {
 
 const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColor }) => {
   const { darkMode } = useTheme();
+  const { height } = useWindowDimensions();
+
   const [openNav, setOpenNav] = useState(false);
   const [openNavSettings, setOpenNavSettings] = useState(false);
+
   const menuRef = useRef<HTMLDivElement | null>(null);
   const settingsMenuRef = useRef<HTMLDivElement | null>(null);
-  const { height } = useWindowDimensions();
 
   useEffect(() => {
     const main = document.getElementsByTagName('body');
@@ -37,6 +39,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
       }
     }
   }, [openNav, openNavSettings]);
+
   return (
     <div
       className={`relative px-5 md:px-[50px] ${
@@ -62,7 +65,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           <ThemeModeLogo changeColor={changeColor} className="w-full min-w-[140px] max-w-[140px]" />
         </Link>
 
-        <div className="flex items-center gap-xs">
+        <div className="flex items-center gap-[4px]">
           <NavbarButton
             forMobile
             label={menuOptions[menuOptions.length - 1].label}
@@ -80,7 +83,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
             className="ml-1 p-xs rounded-md"
           >
             <Plus
-              className={`size-[25px] ${openNav ? 'rotate-45' : ''} transition-[rotate,fill] duration-300 ${
+              className={`size-[30px] ${openNav ? 'rotate-45' : ''} transition-[rotate,fill] duration-300 ${
                 changeColor
                   ? `${openNav ? 'fill-brand-primary' : 'fill-black dark:fill-dark-neutral'}`
                   : `${openNav ? 'fill-brand-primary dark:fill-brand-primary' : 'fill-dark-neutral'}`
@@ -96,7 +99,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
             className="p-xs rounded-md"
           >
             <VerticalEllipsis
-              className={`size-[22px] transition-[fill] duration-300 ${
+              className={`size-[30px] transition-[fill] duration-300 ${
                 changeColor
                   ? `${openNavSettings ? 'fill-brand-primary' : 'fill-black dark:fill-dark-neutral'}`
                   : `${openNavSettings ? 'fill-brand-primary dark:fill-brand-primary' : 'fill-dark-neutral'}`
@@ -111,10 +114,10 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
         ref={menuRef}
         style={{ height: openNav ? `${height}px` : '0px' }}
         className={`${
-          openNav ? 'overflow-y-scroll ease-in scrollbar-hide' : 'ease-out overflow-hidden'
+          openNav ? 'y-scrollbox ease-in scrollbar-hide' : 'ease-out overflow-hidden'
         } transition-[height] duration-500 shadow-sm`}
       >
-        <div className="pt-lg pb-[125px] flex flex-col gap-lg y-scrollbox">
+        <div className="pt-lg pb-[125px] flex flex-col gap-lg">
           {menuOptions.slice(0, menuOptions.length - 1).map((item) => (
             <React.Fragment key={`mobile-nav-item-${item.label}`}>
               {item.submenu && (
@@ -147,7 +150,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
         ref={settingsMenuRef}
         style={{ height: openNavSettings ? `${height}px` : '0px' }}
         className={`${
-          openNavSettings ? 'overflow-y-scroll scrollbar-hide' : 'overflow-hidden'
+          openNavSettings ? 'y-scrollbox scrollbar-hide' : 'overflow-hidden'
         } ${openNav ? 'delay-300 duration-500 ease-out' : 'easie-in duration-500'} transition-[height]`}
       >
         <div className="pt-lg pb-[125px] flex flex-col gap-lg">

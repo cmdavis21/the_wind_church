@@ -1,15 +1,9 @@
 import Accordion from '@/components/accordion/Accordion';
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import Buidling from '@/components/icons/building';
-
-import CreditCard from '@/components/icons/credit-card';
-import Envelope from '@/components/icons/envelope';
-import Gift from '@/components/icons/gift';
-import HandHoldingHeart from '@/components/icons/handHoldingHeart';
-import Handshake from '@/components/icons/handshake';
 
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent, {
@@ -40,7 +34,6 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/couple_credit_card.jpg`,
         alt: '',
       },
-      icon: <CreditCard className="fill-brand-primary size-[30px]" />,
       title: 'Online Giving',
       description: (
         <>
@@ -63,7 +56,6 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/offering.jpg`,
         alt: '',
       },
-      icon: <HandHoldingHeart className="fill-brand-primary size-[30px]" />,
       title: 'In‑Person Giving',
       description:
         'You can give during any service using cash or check. Donation boxes are located at both exits of the sanctuary. Make checks payable to Wind of the Spirit Worship Center.',
@@ -73,7 +65,6 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/mailbox.jpg`,
         alt: '',
       },
-      icon: <Envelope className="fill-brand-primary size-[30px]" />,
       title: 'Mail‑In Giving',
       description: (
         <>
@@ -88,7 +79,6 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/building.jpg`,
         alt: '',
       },
-      icon: <Buidling className="fill-brand-primary size-[30px]" />,
       title: 'Bank Bill Pay',
       description: (
         <>
@@ -102,7 +92,6 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/garage.jpg`,
         alt: '',
       },
-      icon: <Gift className="fill-brand-primary size-[30px]" />,
       title: 'Non‑Cash Assets',
       description: (
         <>
@@ -119,7 +108,6 @@ const Give = () => {
         src: `${AWS_ASSET_BASE_URL}/placeholder-media/support_hands.jpg`,
         alt: '',
       },
-      icon: <Handshake className="fill-brand-primary size-[30px]" />,
       title: 'Serve & Volunteer',
       description:
         "Giving isn't only financial — serving with your time and gifts helps build God's house and strengthen our community.",
@@ -190,16 +178,11 @@ const Give = () => {
           </div>
 
           {/* DONATE CTA */}
-          <Button
-            pill
-            size="lg"
-            color="primary"
-            target="_blank"
-            href={PageRoutes.pushpay}
-            className="mt-8 md:px-6 w-full md:w-fit font-bold"
-          >
-            Donate online with PushPay
-          </Button>
+          <Link href={PageRoutes.pushpay} className="mt-8">
+            <AnimativeFillButton size="lg">
+              <span className="font-semibold">Donate online with PushPay</span>
+            </AnimativeFillButton>
+          </Link>
         </div>
 
         {/* OTHER WAYS TO GIVE */}
@@ -212,12 +195,7 @@ const Give = () => {
           {/* Tablet/Desktop */}
           <div className="hidden md:grid grid-cols-3 gap-xxl justify-center">
             {otherWaysToGiveArr.map((item) => (
-              <ImageWithTitleAndHiddenTextCard
-                key={item.title}
-                image={item.image}
-                title={item.title}
-                description={item.description}
-              />
+              <ImageWithTitleAndHiddenTextCard key={`desktop-${item.title}`} {...item} />
             ))}
           </div>
 
@@ -226,12 +204,7 @@ const Give = () => {
             blueDots
             className="md:hidden h-fit"
             slides={otherWaysToGiveArr.map((item) => (
-              <ImageWithTitleAndHiddenTextCard
-                key={item.title}
-                image={item.image}
-                title={item.title}
-                description={item.description}
-              />
+              <ImageWithTitleAndHiddenTextCard key={`mobile-${item.title}`} {...item} />
             ))}
           />
         </div>

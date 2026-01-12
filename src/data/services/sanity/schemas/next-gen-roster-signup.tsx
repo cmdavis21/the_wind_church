@@ -65,8 +65,8 @@ export const NextGenRosterSignupSchema = {
         title: `${first_name} ${last_name.charAt(0)}.`,
         media: (
           <span>
-            {first_name.charAt(0)}
-            {last_name.charAt(0)}
+            {first_name.charAt(0).toUpperCase()}
+            {last_name.charAt(0).toUpperCase()}
           </span>
         ),
       };

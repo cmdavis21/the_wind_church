@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import VideoCard from '@/components/cards/video-card/VideoCard';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { getPastLiveStreams, getPlaylistVideos } from '@/data/services/youtube/playlists';
-import { Button } from 'flowbite-react';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Sermons',
@@ -79,16 +80,10 @@ const Sermons = async () => {
         content={
           <div className="flex flex-col gap-xs">
             <h2>More great videos</h2>
-            <h2>available on YouTube!</h2>
-            <Button
-              pill
-              size="lg"
-              color="primary"
-              className="mt-lg w-fit font-bold whitespace-nowrap"
-              href={YOUTUBE_CHANNEL}
-            >
-              Go to our Channel
-            </Button>
+            <h2 className="pb-lg">available on YouTube!</h2>
+            <Link href={YOUTUBE_CHANNEL}>
+              <AnimativeFillButton size="lg">Go to our Channel</AnimativeFillButton>
+            </Link>
           </div>
         }
       />

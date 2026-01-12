@@ -1,6 +1,6 @@
-import { Button } from 'flowbite-react';
 import { Metadata } from 'next';
 
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import GiftAssessment from '@/components/forms/gift-assessment/GiftAssessment';
 import { WEBSITE_BASE_URL } from '@/data/constants';
 
@@ -72,9 +72,9 @@ const GiftAssessmentPage = () => (
           download="Spiritual_Gift_Assessment.pdf"
           href={`/spiritual-gifts-test.pdf`}
         >
-          <Button color="info" pill className="w-full md:w-fit">
+          <AnimativeFillButton size="lg">
             Optional: Download Blank PDF Assessment
-          </Button>
+          </AnimativeFillButton>
         </a>
       </div>
 

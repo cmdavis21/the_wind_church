@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import {
   FullContact,
@@ -9,9 +9,13 @@ import {
   GiftAssessmentSubmission,
 } from '@/data/types';
 
-import Accordion, { AccordionType } from '@/components/accordion/Accordion';
+import Accordion from '@/components/accordion/Accordion';
+import { ACCORDION_TYPE } from '@/components/accordion/accordion-item/AccordionItem';
+import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import { GiftAssessmentDefinitions, GiftAssessmentQuestions } from '@/data/gift-assessment';
 import { useCreateGiftAssessment } from '@/data/services/sanity/mutations/gift-assessment';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { Button } from 'flowbite-react';
 import dynamic from 'next/dynamic';
 import GiftAssessmentContactForm from './gift-assessment-contact-form/GiftAssessmentContactForm';
 import GiftAssessmentQuiz from './gift-assessment-quiz/GiftAssessmentQuiz';
@@ -75,49 +79,41 @@ const GiftAssessment = () => {
           {/* Gifts */}
           <div className="flex flex-col gap-md">
             <h3>Assessment Completed!</h3>
-            <h5 className="pb-lg">
+            <h5>
               Thank you for taking the time to complete the assessment. You are one-step closer to
               undertsanding the purpose God had outlined in your life.
             </h5>
-            {[
-              {
-                title: `Your ${dominateGifts.length} Dominate Gifts`,
-                gifts: dominateGifts,
-              },
-              {
-                title: `Your ${subordinateGifts.length} Subordinate Gifts`,
-                gifts: subordinateGifts,
-              },
-            ].map((item) => (
-              <div
-                key={`gift-assessment-gifts-accordion-list-${item.title}`}
-                className="flex flex-col gap-lg"
-              >
-                <h4 className="font-light">{item.title}</h4>
-                <Accordion
-                  accordionType={AccordionType.PRODUCT}
-                  content={item.gifts.map((gift) => ({
-                    title: gift.gift,
-                    description: (
-                      <div className="flex flex-col gap-md">
-                        <h5>{gift?.definition ?? ''}</h5>
-                        <div className="flex flex-wrap gap-sm items-center">
-                          {gift?.scriptures.map((s, index) => (
-                            <React.Fragment key={`gift-assessment-modal-scripture-${s}`}>
-                              <h5>{s}</h5>
-
-                              {index !== gift.scriptures.length - 1 && (
-                                <div className="bg-charcoal rounded-full h-1 w-1" />
-                              )}
-                            </React.Fragment>
-                          ))}
+            <div className="pt-lg flex flex-col gap-lg">
+              {[
+                {
+                  title: `Your ${dominateGifts.length} Dominate Gifts`,
+                  gifts: dominateGifts,
+                },
+                {
+                  title: `Your ${subordinateGifts.length} Subordinate Gifts`,
+                  gifts: subordinateGifts,
+                },
+              ].map((item) => (
+                <div
+                  key={`gift-assessment-gifts-accordion-list-${item.title}`}
+                  className="flex flex-col gap-md"
+                >
+                  <h4 className="font-light">{item.title}</h4>
+                  <Accordion
+                    variant={ACCORDION_TYPE.MINIMAL}
+                    content={item.gifts.map((gift) => ({
+                      title: gift.gift,
+                      description: (
+                        <div className="flex flex-col gap-md">
+                          <h5>{gift?.definition ?? ''}</h5>
+                          <ScriptureList scriptures={gift.scriptures} />
                         </div>
-                      </div>
-                    ),
-                  }))}
-                />
-              </div>
-            ))}
+                      ),
+                    }))}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Follow-up Questions */}
@@ -138,7 +134,7 @@ const GiftAssessment = () => {
           {/* Download and Submission */}
           {reflectionQuestions && (
             <>
-              {/* <PDFDownloadLink
+              <PDFDownloadLink
                 document={
                   <GiftAssessmentResultsPdf
                     dominateGifts={dominateGifts}
@@ -153,7 +149,7 @@ const GiftAssessment = () => {
                 <Button pill color="info" className="mx-auto max-md:!min-w-full md:w-fit">
                   Download Results as PDF
                 </Button>
-              </PDFDownloadLink> */}
+              </PDFDownloadLink>
 
               <div className="flex flex-col gap-md">
                 <h3>Optional: Submit your results to the Wind!</h3>

@@ -14,9 +14,9 @@ const CarouselDot: React.FC<CarouselDotProps> = ({ onClick, active, blueDot }) =
       'size-3.5 md:size-4 rounded-full border-2',
       active
         ? blueDot
-          ? 'bg-brand-navy/20 border-brand-navy'
+          ? 'bg-light-navy/20 border-light-navy dark:bg-dark-navy/20 dark:border-dark-navy'
           : 'bg-brand-primary/20 border-brand-primary'
-        : 'bg-light-charcoal/50 dark:bg-dark-charcoal/50 border-light-charcoal dark:border-dark-charcoal'
+        : 'bg-light-gray/50 dark:bg-dark-gray/50 border-light-charcoal/50 dark:border-dark-charcoal/50'
     )}
     onClick={() => onClick()}
   />

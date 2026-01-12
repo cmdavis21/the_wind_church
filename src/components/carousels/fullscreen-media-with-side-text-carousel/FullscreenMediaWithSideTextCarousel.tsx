@@ -142,7 +142,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
               className="w-full 2xl:max-w-[70%] h-screen px-[150px] pb-[150px] flex flex-col gap-md justify-end text-white dark:text-dark-primaryText"
             >
               <h4>{slide.description}</h4>
-              <div className="w-[100px] h-[1px] bg-brand-primary rounded-sm" />
+              <div className="w-[100px] h-px bg-brand-primary rounded-sm" />
               <h1>{slide.title}</h1>
             </div>
           ))}
@@ -197,7 +197,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
               className="relative h-screen w-full px-5 pb-[70px] flex flex-col items-center justify-end text-justify text-white dark:text-dark-primaryText gap-sm"
             >
               <p className="body-large">{slide.description}</p>
-              <div className="w-[75px] h-[1px] bg-brand-primary rounded-sm" />
+              <div className="w-[75px] h-px bg-brand-primary rounded-sm" />
               <h3>{slide.title}</h3>
             </div>
           ))}

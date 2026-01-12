@@ -124,7 +124,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
       <div className="hidden lg:block">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-xl -mt-lg">
           {/* Header */}
-          <div className="sticky top-0 z-10 bg-backgroundLight dark:bg-dark-bg pt-lg flex flex-col gap-lg">
+          <div className="sticky top-0 z-10 bg-light-bg dark:bg-dark-bg pt-lg flex flex-col gap-lg">
             <div className="min-w-[820px] grid grid-cols-6 items-center">
               <h3 className="col-span-2 min-w-[300px] font-bold">Questions</h3>
               {scoreWithText.map((mark) => (
@@ -217,7 +217,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
               size="lg"
               type="submit"
               color="primary"
-              disabled={disable}
+              disabled={disable || isLoading}
               className="w-full md:max-w-[35%] mx-auto mt-md"
             >
               {isLoading ? 'Analyzing your answers...' : 'Submit Quiz'}
@@ -313,7 +313,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
             size="lg"
             type="submit"
             color="primary"
-            disabled={disable}
+            disabled={disable || isLoading}
             className="w-full md:max-w-[35%] mx-auto mt-md"
           >
             {isLoading ? 'Analyzing your answers...' : 'Submit Quiz'}

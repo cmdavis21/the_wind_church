@@ -1,4 +1,3 @@
-import { PageRoutes } from '@/data/page-routes';
 import { defineField } from 'sanity';
 
 export const PromoBannerSchema = {
@@ -36,14 +35,8 @@ export const PromoBannerSchema = {
     defineField({
       name: 'link',
       title: 'Link',
-      type: 'string',
-      description: 'Select an internal link on the website',
-      options: {
-        list: Object.entries(PageRoutes).map(([key, value]) => ({
-          title: key,
-          value: value,
-        })),
-      },
+      type: 'link',
+      description: 'Add a label and choose either an internal or external link.',
     }),
     defineField({
       name: 'image',

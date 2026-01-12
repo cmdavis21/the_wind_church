@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
 
 import UpArrow from '@/components/icons/up-arrow';
@@ -15,50 +14,39 @@ const PageScrollUpButton: React.FC<PageScrollUpButtonProps> = ({ className }) =>
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window !== undefined) {
-        const currentScroll = window.scrollY;
+      const currentScroll = window.scrollY;
 
-        if (currentScroll >= 50) {
-          setShowPageScrollButton(true);
-        } else {
-          setShowPageScrollButton(false);
-        }
-        setWindowScroll(currentScroll);
+      if (currentScroll >= 50) {
+        setShowPageScrollButton(true);
+      } else {
+        setShowPageScrollButton(false);
       }
+      setWindowScroll(currentScroll);
     };
 
-    if (window !== undefined) {
-      // window.addEventListener("load", handleScroll);
-      window.addEventListener('scroll', handleScroll);
-
-      return () => {
-        // window.removeEventListener("load", handleScroll);
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [windowScroll]);
+
   return (
     <div
       className={`${className ?? ''} z-40 fixed bottom-2 md:bottom-5 right-2 md:right-5 ${
         showPageScrollButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
       } transition-opacity duration-300`}
     >
-      <Button
-        color="info"
-        pill
+      <button
+        type="button"
         onClick={() => {
-          if (window !== undefined) {
-            window.scrollTo({
-              top: 0,
-              left: 0,
-              behavior: 'smooth',
-            });
-          }
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+          });
         }}
-        className="group py-[10px] max-md:scale-75"
+        className="group size-12 rounded-full border hover:bg-light-gray dark:hover:bg-dark-gray flex justify-center items-center"
       >
-        <UpArrow className="fill-light-charcoal group-hover:fill-black size-[22px]" />
-      </Button>
+        <UpArrow className="fill-light-charcoal group-hover:fill-black size-[25px]" />
+      </button>
     </div>
   );
 };

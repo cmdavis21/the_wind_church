@@ -11,6 +11,7 @@ import { NextGenRosterSignupSchema } from './next-gen-roster-signup';
 import { PrayerRequestSchema } from './prayer-request';
 import { PromoBannerSchema } from './promo-banner';
 import { RightnowMediaSchema } from './rightnow-media';
+import { LinkSchema } from './types/link';
 import { MeetingDetailsSchema } from './types/meeting-details';
 import { NextGenRosterSignupGuardianSchema } from './types/next-gen-roster-signup-guardian';
 import { ScriptureSchema } from './types/scripture';
@@ -35,6 +36,7 @@ export const SanitySchema = [
   NextGenPageSchema,
   PromoBannerSchema,
   // Misc Schemas
+  LinkSchema,
   TimeSchema,
   ScriptureSchema,
   MeetingDetailsSchema,

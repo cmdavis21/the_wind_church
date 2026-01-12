@@ -57,7 +57,7 @@ const CartModal: React.FC<CartModalProps> = ({
                   alt={line.image.alt}
                   className="object-cover min-w-[60px] size-[60px] object-top rounded-md"
                 />
-                <div className="flex flex-col gap-xs">
+                <div className="flex flex-col">
                   <h6 className="font-bold">{line.title}</h6>
                   <p className="capitalize body-small">
                     <span className="text-light-charcoal dark:text-dark-charcoal">Price:</span>{' '}
@@ -67,10 +67,6 @@ const CartModal: React.FC<CartModalProps> = ({
                     <span className="text-light-charcoal dark:text-dark-charcoal">oty:</span>{' '}
                     {line.quantity}
                   </p>
-                  <p className="capitalize body-small">
-                    <span className="text-light-charcoal dark:text-dark-charcoal">Total:</span>{' '}
-                    {formatPrice(line.subtotal)}
-                  </p>
                   {line.selectedOptions.map((opt) => (
                     <p className="capitalize body-small">
                       <span className="text-light-charcoal dark:text-dark-charcoal">
@@ -79,6 +75,9 @@ const CartModal: React.FC<CartModalProps> = ({
                       {opt.value}
                     </p>
                   ))}
+                  <p className="capitalize body-small font-bold">
+                    Total: {formatPrice(line.subtotal)}
+                  </p>
                 </div>
               </div>
             ))}

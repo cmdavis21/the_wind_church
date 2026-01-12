@@ -3,11 +3,12 @@ import React, { useImperativeHandle, useRef } from 'react';
 
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  labelColor?: string;
   error?: string;
 }
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-  ({ label, error, ...rest }, ref) => {
+  ({ label, labelColor = 'default', error, ...rest }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     // Forward the internal inputRef to the parent ref
@@ -15,7 +16,9 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 
     return (
       <div className="w-full flex flex-col gap-xs">
-        {label && <Label htmlFor="input" value={label} disabled={rest.disabled} />}
+        {label && (
+          <Label htmlFor="input" color={labelColor} value={label} disabled={rest.disabled} />
+        )}
         <FlowbiteTextInput ref={inputRef} name="input" {...rest} />
         {error && <div className="text-error">{error}</div>}
       </div>

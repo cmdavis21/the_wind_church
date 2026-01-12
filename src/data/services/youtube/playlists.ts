@@ -19,7 +19,7 @@ export const getPlaylistVideos = async (): Promise<YouTubeSnippet[]> => {
     const res = await youTubeClient.playlistItems.list({
       part: ['snippet'],
       playlistId,
-      maxResults: 10,
+      maxResults: 8,
     });
     return res.data.items
       ? res.data.items.map((item) => ({
@@ -38,7 +38,7 @@ export const getPastLiveStreams = async (): Promise<YouTubeSnippet[]> => {
     channelId: YOUTUBE_CHANNEL_ID,
     eventType: 'completed',
     type: ['video'],
-    maxResults: 10,
+    maxResults: 8,
   });
 
   return res.data.items

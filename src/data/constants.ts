@@ -1,6 +1,6 @@
 // WEBSITE URLs
 export const WEBSITE_BASE_URL = process.env.NEXT_PUBLIC_WEBSITE_BASEURL;
-export const PUSHPAY_URL = process.env.NEXT_PUBLIC_PUSHPAY_ENDPOINT;
+export const PUSHPAY_URL = process.env.NEXT_PUBLIC_PUSHPAY ?? '#';
 
 // SANITY
 export const SANITY_API_VERSION = process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? '';
@@ -8,7 +8,7 @@ export const SANITY_PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? ''
 export const SANITY_EDITOR_TOKEN = process.env.NEXT_PUBLIC_SANITY_EDITOR_TOKEN;
 export const SANITY_GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_SANITY_GRAPHQL_API_ENDPOINT ?? '';
 export const SANITY_MUTATION_API_ENDPOINT =
-  process.env.NEXT_PUBLIC_SANITY_MUTATION_API_ENDPOINT ?? '';
+  process.env.NEXT_PUBLIC_SANITY_MUTATION_API_ENDPOINT ?? '#';
 
 // SHOPIFY
 export const SHOPIFY_STOREFRONT_API_ENDPOINT =
@@ -23,9 +23,9 @@ export const AWS_IDENTITY_POOL_ID = process.env.NEXT_PUBLIC_AWS_IDENTITY_POOL_ID
 export const AWS_ASSET_BASE_URL = process.env.NEXT_PUBLIC_AWS_ASSET_BASE_URL ?? '';
 
 // SOCIALS
-export const YOUTUBE_CHANNEL = process.env.NEXT_PUBLIC_YOUTUBE ?? '';
-export const FACEBOOK_PROFILE = process.env.NEXT_PUBLIC_FACEBOOK ?? '';
-export const INSTAGRAM_PROFILE = process.env.NEXT_PUBLIC_INSTAGRAM ?? '';
+export const YOUTUBE_CHANNEL = process.env.NEXT_PUBLIC_YOUTUBE ?? '#';
+export const FACEBOOK_PROFILE = process.env.NEXT_PUBLIC_FACEBOOK ?? '#';
+export const INSTAGRAM_PROFILE = process.env.NEXT_PUBLIC_INSTAGRAM ?? '#';
 
 // YOUTUBE
 export const YOUTUBE_URI = process.env.NEXT_PUBLIC_YOUTUBE_API ?? '';
