@@ -96,7 +96,6 @@ const getMinistryBySlugQuery = async (slug: string) => {
             last_name: true,
           },
           position: true,
-          roles: true,
           description: true,
           image: {
             asset: {
@@ -115,7 +114,6 @@ const getMinistryBySlugQuery = async (slug: string) => {
             last_name: true,
           },
           position: true,
-          roles: true,
           description: true,
           image: {
             asset: {
@@ -222,7 +220,6 @@ export const getMinistryBySlug = async (slug: string): Promise<Ministry | undefi
           first_name: coordinator.contact?.first_name ?? '',
           last_name: coordinator.contact?.last_name ?? '',
           position: coordinator.position ?? '',
-          roles: (coordinator.roles as string[]) ?? [],
           description: coordinator.description ?? '',
           image: coordinator.image?.asset?.url ?? '',
           video: coordinator.video?.asset?.url ?? undefined,
