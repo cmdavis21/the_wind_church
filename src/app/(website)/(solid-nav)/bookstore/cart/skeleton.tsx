@@ -27,7 +27,7 @@ export const CartSkeleton = () => {
           </thead>
 
           <tbody className="divide-y divide-light-gray dark:divide-dark-gray">
-            {getCart?.lines
+            {/* {getCart?.lines
               .sort((a, b) => a.title.localeCompare(b.title))
               .map((line, index) => (
                 <tr
@@ -107,13 +107,13 @@ export const CartSkeleton = () => {
                     </Button>
                   </td>
                 </tr>
-              ))}
+              ))} */}
           </tbody>
         </table>
       </div>
 
       {/* MOBILE */}
-      <div className="md:hidden divide-y divide-light-gray dark:divide-dark-gray">
+      {/* <div className="md:hidden divide-y divide-light-gray dark:divide-dark-gray">
         {getCart?.lines.map((line, index) => (
           <div
             key={`cart-page-mobile-${line.title}`}
@@ -175,12 +175,12 @@ export const CartSkeleton = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
 
       <hr className="text-light-gray dark:text-light-grayDark" />
 
       {/* TOTAL + CHECKOUT */}
-      <div className="flex flex-col gap-md md:items-end text-left md:text-right">
+      {/* <div className="flex flex-col gap-md md:items-end text-left md:text-right">
         <h3>Subtotal: {formatPrice(getCart?.subtotalAmount)}</h3>
         <h6>Taxes and Delivery charges calculated at checkout</h6>
         <div className="max-md:w-full flex flex-col md:flex-row gap-md">
@@ -195,7 +195,7 @@ export const CartSkeleton = () => {
             </Button>
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
