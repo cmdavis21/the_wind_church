@@ -70,12 +70,10 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
       leftArrowProps={{
         onClick: () => previous(),
         buttonClassName: 'absolute bottom-5 left-5 z-10',
-        iconClassName: 'fill-brand-primary',
       }}
       rightArrowProps={{
         onClick: () => next(),
         buttonClassName: 'absolute bottom-5 right-5 z-10',
-        iconClassName: 'fill-brand-primary',
       }}
     />
   );
