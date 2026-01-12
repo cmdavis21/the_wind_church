@@ -1,4 +1,4 @@
-import PlanYourVisitForm from '../plan-your-visit-form/PlanYourVisitForm';
+import PrayerRequestForm from '../prayer-request-form/PrayerRequestForm';
 import VisitorFeedbackForm from '../visitor-feedback-form/VisitorFeedbackForm';
 import MultiFormContainer from './MultiFormContainer';
 
@@ -21,7 +21,7 @@ export const Default = {
           description:
             'Tell us about your visit at the Wind. Your feedback can help us improve our services within our community.',
         },
-        form: <PlanYourVisitForm />,
+        form: <PrayerRequestForm />,
       },
       {
         buttonLabel: 'Leave Your Feedback',
