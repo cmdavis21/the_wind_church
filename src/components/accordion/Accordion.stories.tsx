@@ -1,5 +1,6 @@
 import PencilPaper from '../icons/pencilPaper';
-import Accordion, { AccordionType } from './Accordion';
+import Accordion from './Accordion';
+import { ACCORDION_TYPE } from './accordion-item/AccordionItem';
 
 const AccordionStory = {
   component: Accordion,
@@ -39,9 +40,9 @@ export const Default = {
   },
 };
 
-export const ProductAccordion = {
+export const MinimalAccordion = {
   args: {
-    accordionType: AccordionType.PRODUCT,
+    variant: ACCORDION_TYPE.MINIMAL,
     content: [
       {
         title: 'Lorem ipsum dolor sit amet',
