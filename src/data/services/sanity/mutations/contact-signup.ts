@@ -1,5 +1,5 @@
-import { CONTACT_SIGNUP_KEY, WEBSITE_BASE_URL } from '@/data/constants';
-import { FORM_TYPES, FullContact, PartialContact } from '@/data/types';
+import { CONTACT_SIGNUP_KEY } from '@/data/constants';
+import { FullContact, PartialContact } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { getContactIdByEmailQuery } from '../queries/contacts';
@@ -29,20 +29,9 @@ export const useCreateContactSignup = () => {
   return useMutation({
     mutationFn: createContactClient,
     mutationKey: [CONTACT_SIGNUP_KEY],
-    onSettled: async (d, e, variables) => {
+    onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: [CONTACT_SIGNUP_KEY],
-      });
-      await fetch('/api/form-submission', {
-        method: 'POST',
-        body: JSON.stringify({
-          formType: FORM_TYPES.CONTACT_SIGNUP,
-          payload: {
-            firstName: variables.first_name,
-            lastName: `${variables.last_name.charAt(0)}.`,
-            link: `${WEBSITE_BASE_URL}/studio/structure/contacts`,
-          },
-        }),
       });
     },
   });
