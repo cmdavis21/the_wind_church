@@ -78,11 +78,11 @@ export const useNextGenRosterSignup = () => {
       await fetch('/api/form-submission', {
         method: 'POST',
         body: JSON.stringify({
-          formType: FORM_TYPES.CONTACT_SIGNUP,
+          formType: FORM_TYPES.NEXT_GEN_SIGNUP,
           payload: {
             firstName: variables.children[0].guardians[0].first_name,
             lastName: `${variables.children[0].guardians[0].last_name.charAt(0)}.`,
-            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.CONTACT_SIGNUP}`,
+            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.NEXT_GEN_SIGNUP}`,
           },
         }),
       });
