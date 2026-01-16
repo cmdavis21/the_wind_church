@@ -1,6 +1,5 @@
 import CircleCheck from '@/components/icons/circle-check';
-
-import ImageWithTitleDescriptionLinkCard from './ImageWithTitleDescriptionLinkCard';
+import ImageWithTitleDescriptionLinkCard from './ImageWithTitleAndHiddenTextCard';
 
 const ImageWithTitleDescriptionLinkCardStory = {
   component: ImageWithTitleDescriptionLinkCard,
