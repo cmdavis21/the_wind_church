@@ -1269,8 +1269,7 @@ export const ReturnTypes: Record<string,any> = {
 		descriptionRaw:"JSON",
 		coordinators:"Leader",
 		coach:"Leader",
-		image:"Image",
-		meeting_details:"MeetingDetailsType"
+		image:"Image"
 	},
 	Slug:{
 		_key:"String",
@@ -1285,13 +1284,6 @@ export const ReturnTypes: Record<string,any> = {
 		verse:"String"
 	},
 	JSON: `scalar.JSON` as const,
-	MeetingDetailsType:{
-		_key:"String",
-		_type:"String",
-		day:"String",
-		time:"TimeType",
-		location:"String"
-	},
 	DeepDive:{
 		_id:"ID",
 		_type:"String",
@@ -1309,6 +1301,13 @@ export const ReturnTypes: Record<string,any> = {
 		required_materials:"String",
 		meeting_details:"MeetingDetailsType",
 		accepting_new_students:"Boolean"
+	},
+	MeetingDetailsType:{
+		_key:"String",
+		_type:"String",
+		day:"String",
+		time:"TimeType",
+		location:"String"
 	},
 	NextGenPage:{
 		_id:"ID",

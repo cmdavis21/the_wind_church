@@ -34,7 +34,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
       <EventDetailsModal event={event} openModal={open} setOpenModal={setOpen} />
 
       <div
-        className={`relative w-full min-w-[200px] max-w-[700px] flex ${
+        className={`relative w-full min-w-7xl max-w-[700px] flex ${
           vertical ? '' : 'md:flex-col'
         } gap-md`}
       >

@@ -15,7 +15,7 @@ const SectionHeaderSkeleton = () => {
       {/* Mobile Skeleton */}
       <div className="md:hidden flex flex-col items-center justify-center gap-3">
         <div className="h-[28px] w-2/3 bg-light-neutral rounded" />
-        <div className="w-[40px] h-[2px] bg-skeletonDarkGray rounded-md" />
+        <div className="w-10 h-[2px] bg-skeletonDarkGray rounded-md" />
         <div className="h-[16px] w-1/2 bg-light-neutral rounded" />
       </div>
     </div>

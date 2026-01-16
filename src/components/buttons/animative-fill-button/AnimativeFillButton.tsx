@@ -18,7 +18,7 @@ const AnimativeFillButton: React.FC<AnimativeFillButtonProps> = ({
     xs: 'px-2 py-1 text-xs',
     sm: 'px-3 py-1.5 text-sm',
     md: 'px-4 py-2 text-base',
-    lg: 'px-5 py-2.5 text-base',
+    lg: 'px-lg py-2.5 text-base',
     xl: 'px-6 py-3 text-lg',
   };
 
@@ -27,7 +27,7 @@ const AnimativeFillButton: React.FC<AnimativeFillButtonProps> = ({
       <div
         className={cn(
           'relative group w-fit border border-light-neutral dark:border-dark-gray',
-          'bg-light-bg dark:bg-dark-bg shadow rounded-full cursor-pointer',
+          'bg-light-bg dark:bg-dark-gray shadow rounded-full cursor-pointer',
           className
         )}
       >
@@ -35,7 +35,7 @@ const AnimativeFillButton: React.FC<AnimativeFillButtonProps> = ({
         <div className="absolute inset-0 overflow-hidden rounded-full">
           <div
             className={cn(
-              'h-full rounded-full bg-brand-primary dark:bg-brand-dark',
+              'h-full rounded-full bg-brand-primary dark:bg-dark-navy',
               'transition-[width] duration-500 ease-out',
               'absolute right-0 origin-right',
               'w-0 group-hover:w-full'

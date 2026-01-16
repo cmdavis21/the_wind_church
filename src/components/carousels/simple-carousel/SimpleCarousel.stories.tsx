@@ -15,16 +15,16 @@ export const Default = {
     showDots: true,
     className: '',
     slides: [
-      <div className="w-[200px] h-[200px] bg-light-gray rounded-lg flex items-center justify-center text-[30px] font-bold">
+      <div className="w-7xl h-7xl bg-light-gray rounded-lg flex items-center justify-center text-[30px] font-bold">
         1
       </div>,
-      <div className="w-[200px] h-[200px] bg-light-gray rounded-lg flex items-center justify-center text-[30px] font-bold">
+      <div className="w-7xl h-7xl bg-light-gray rounded-lg flex items-center justify-center text-[30px] font-bold">
         2
       </div>,
-      <div className="w-[200px] h-[200px] bg-light-gray rounded-lg flex items-center justify-center text-[30px] font-bold">
+      <div className="w-7xl h-7xl bg-light-gray rounded-lg flex items-center justify-center text-[30px] font-bold">
         3
       </div>,
-      <div className="w-[200px] h-[200px] bg-light-gray rounded-lg flex items-center justify-center text-[30px] font-bold">
+      <div className="w-7xl h-7xl bg-light-gray rounded-lg flex items-center justify-center text-[30px] font-bold">
         4
       </div>,
     ],

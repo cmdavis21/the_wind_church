@@ -9,61 +9,11 @@ const getAllMinistriesQuery = async () => {
     allMinistry: [
       {},
       {
-        _id: true,
         name: true,
         slug: {
           current: true,
         },
         descriptionRaw: true,
-        scripture: {
-          verse: true,
-          passage: true,
-        },
-        coordinators: {
-          contact: {
-            first_name: true,
-            last_name: true,
-          },
-          position: true,
-          description: true,
-          image: {
-            asset: {
-              url: true,
-            },
-          },
-          video: {
-            asset: {
-              url: true,
-            },
-          },
-        },
-        coach: {
-          contact: {
-            first_name: true,
-            last_name: true,
-          },
-          position: true,
-          description: true,
-          image: {
-            asset: {
-              url: true,
-            },
-          },
-          video: {
-            asset: {
-              url: true,
-            },
-          },
-        },
-        meeting_details: {
-          day: true,
-          time: {
-            hour: true,
-            minute: true,
-            time_of_day: true,
-          },
-          location: true,
-        },
         image: {
           asset: {
             url: true,
@@ -126,15 +76,6 @@ const getMinistryBySlugQuery = async (slug: string) => {
             },
           },
         },
-        meeting_details: {
-          day: true,
-          time: {
-            hour: true,
-            minute: true,
-            time_of_day: true,
-          },
-          location: true,
-        },
         image: {
           asset: {
             url: true,
@@ -146,54 +87,29 @@ const getMinistryBySlugQuery = async (slug: string) => {
   }).then((m) => m.allMinistry);
 };
 
-export const getAllMinistries = async (): Promise<Ministry[]> => {
+export const getAllMinistries = async (): Promise<
+  {
+    name: Ministry['name'];
+    slug: Ministry['slug'];
+    description: Ministry['description'];
+    image: Ministry['image'];
+  }[]
+> => {
   const ministries = await getAllMinistriesQuery();
 
   if (ministries) {
     return ministries
       .filter((ministry) => ministry.name?.toLowerCase() !== 'youth service')
       .map((ministry) => ({
-        _id: (ministry._id as string) ?? undefined,
         name: ministry.name ?? '',
         slug: ministry.slug?.current ?? '',
-        scripture: {
-          verse: ministry.scripture?.verse ?? '',
-          passage: ministry.scripture?.passage ?? '',
-        },
-        description: ministry.descriptionRaw
-          ? portableTextToString(ministry.descriptionRaw as any)
-          : '',
-        coordinators:
-          ministry.coordinators?.map((coordinator) => ({
-            first_name: coordinator.contact?.first_name ?? '',
-            last_name: coordinator.contact?.last_name ?? '',
-            position: coordinator.position ?? '',
-            description: coordinator.description ?? '',
-            image: coordinator.image?.asset?.url ?? '',
-            video: coordinator.video?.asset?.url ?? undefined,
-          })) ?? [],
-        coach: {
-          first_name: ministry.coach?.contact?.first_name ?? '',
-          last_name: ministry.coach?.contact?.last_name ?? '',
-          position: ministry.coach?.position ?? '',
-          description: ministry.coach?.description ?? '',
-          image: ministry.coach?.image?.asset?.url ?? '',
-          video: ministry.coach?.video?.asset?.url ?? undefined,
-        },
         image: {
           src: ministry.image?.asset?.url ?? '',
           alt: ministry.image?.asset?.altText ?? '',
         },
-        meeting_details:
-          ministry.meeting_details?.map((detail) => ({
-            day: detail.day ?? '',
-            time: {
-              hour: detail.time?.hour ?? '',
-              minute: detail.time?.minute ?? '',
-              time_of_day: detail.time?.time_of_day ?? '',
-            },
-            location: detail.location ?? '',
-          })) ?? [],
+        description: ministries[0].descriptionRaw
+          ? portableTextToString(ministries[0].descriptionRaw as any)
+          : '',
       }));
   }
 
@@ -236,16 +152,6 @@ export const getMinistryBySlug = async (slug: string): Promise<Ministry | undefi
         src: ministries[0].image?.asset?.url ?? '',
         alt: ministries[0].image?.asset?.altText ?? '',
       },
-      meeting_details:
-        ministries[0].meeting_details?.map((detail) => ({
-          day: detail.day ?? '',
-          time: {
-            hour: detail.time?.hour ?? '',
-            minute: detail.time?.minute ?? '',
-            time_of_day: detail.time?.time_of_day ?? '',
-          },
-          location: detail.location ?? '',
-        })) ?? [],
     };
   }
 

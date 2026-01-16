@@ -42,7 +42,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
 
   return (
     <div
-      className={`relative px-[25px] md:px-[50px] ${
+      className={`relative px-lg md:px-xxl ${
         openNav || openNavSettings ? 'overflow-hidden' : 'rounded-b-lg'
       } ${
         changeColor
@@ -65,7 +65,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           <ThemeModeLogo changeColor={changeColor} className="w-full min-w-[140px] max-w-[140px]" />
         </Link>
 
-        <div className="flex items-center gap-[4px]">
+        <div className="flex items-center gap-1">
           <NavbarButton
             forMobile
             label={menuOptions[menuOptions.length - 1].label}
@@ -117,7 +117,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           openNav ? 'y-scrollbox ease-in scrollbar-hide' : 'ease-out overflow-hidden'
         } transition-[height] duration-500 shadow-sm`}
       >
-        <div className="pt-lg pb-[125px] flex flex-col gap-lg">
+        <div className="pt-lg pb-5xl flex flex-col gap-lg">
           {menuOptions.slice(0, menuOptions.length - 1).map((item) => (
             <React.Fragment key={`mobile-nav-item-${item.label}`}>
               {item.submenu && (
@@ -153,7 +153,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           openNavSettings ? 'y-scrollbox scrollbar-hide' : 'overflow-hidden'
         } ${openNav ? 'delay-300 duration-500 ease-out' : 'easie-in duration-500'} transition-[height]`}
       >
-        <div className="pt-lg pb-[125px] flex flex-col gap-lg">
+        <div className="pt-lg pb-5xl flex flex-col gap-lg">
           <div className="flex justify-between gap-sm items-center">
             <h5
               className={`${

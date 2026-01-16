@@ -56,7 +56,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                 height={100}
                 src={order.line_items[0].image.src}
                 alt={order.line_items[0].image.alt}
-                className="size-[100px] min-w-[100px] max-h-[100px] object-cover rounded-lg border"
+                className="size-4xl min-w-4xl max-h-4xl object-cover rounded-lg"
               />
             </div>
 
@@ -112,8 +112,8 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
           <div ref={subMenuDropdown} className="flex flex-col gap-5 pt-5">
             {/* MIDDLE LAYER */}
             <div className="flex flex-row gap-3 md:pl-2">
-              <div className="hidden md:block size-[100px]" />
-              <div className="w-full flex flex-col md:flex-row gap-5 justify-between border border-x-0 py-5 border-skeletonGray dark:border-skeletonDarkGray">
+              <div className="hidden md:block size-4xl" />
+              <div className="w-full flex flex-col md:flex-row gap-5 justify-between border border-x-0 py-lg border-skeletonGray dark:border-skeletonDarkGray">
                 <div className="w-full flex flex-wrap gap-md md:gap-xl">
                   {/* SHIPPING ADDRESS */}
                   <div>
@@ -170,7 +170,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
 
             {/* BOTTOM LAYER */}
             <div className="flex flex-row gap-3">
-              <div className="hidden md:block size-[100px]" />
+              <div className="hidden md:block size-4xl" />
               <div className="flex flex-col gap-3 w-full">
                 {order.line_items.map((item) => (
                   <div
@@ -181,15 +181,13 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                       <h5 className="font-semibold">{item.title}</h5>
                       <div className="flex flex-row gap-3 md:col-span-2">
                         {/* PRODUCT IMAGE */}
-                        <div className="rounded-md border border-skeletonGray dark:border-skeletonDarkGray w-fit h-fit">
-                          <Image
-                            width={70}
-                            height={70}
-                            src={item.image.src}
-                            alt={item.image.alt}
-                            className="size-[70px] min-w-[70px] max-h-[70px] object-cover rounded-md"
-                          />
-                        </div>
+                        <Image
+                          width={70}
+                          height={70}
+                          src={item.image.src}
+                          alt={item.image.alt}
+                          className="size-[70px] min-w-[70px] max-h-[70px] object-cover rounded-md"
+                        />
 
                         {/* QUICK FACTS */}
                         <div className="flex flex-col items-start">

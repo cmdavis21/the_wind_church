@@ -1428,7 +1428,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	/** Select the coach for this ministry. */
 	coach?:ValueTypes["Leader"],
 	image?:ValueTypes["Image"],
-	meeting_details?:ValueTypes["MeetingDetailsType"],
 		__typename?: boolean | `@${string}`
 }>;
 	["Slug"]: AliasType<{
@@ -1447,14 +1446,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 }>;
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]:unknown;
-	["MeetingDetailsType"]: AliasType<{
-	_key?:boolean | `@${string}`,
-	_type?:boolean | `@${string}`,
-	day?:boolean | `@${string}`,
-	time?:ValueTypes["TimeType"],
-	location?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
 	["DeepDive"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
@@ -1478,6 +1469,14 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	meeting_details?:ValueTypes["MeetingDetailsType"],
 	/** Is this deep dive actively accepting new Students? */
 	accepting_new_students?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["MeetingDetailsType"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	day?:boolean | `@${string}`,
+	time?:ValueTypes["TimeType"],
+	location?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["NextGenPage"]: AliasType<{
@@ -2940,7 +2939,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	/** Select the coach for this ministry. */
 	coach?:ResolverInputTypes["Leader"],
 	image?:ResolverInputTypes["Image"],
-	meeting_details?:ResolverInputTypes["MeetingDetailsType"],
 		__typename?: boolean | `@${string}`
 }>;
 	["Slug"]: AliasType<{
@@ -2959,14 +2957,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 }>;
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]:unknown;
-	["MeetingDetailsType"]: AliasType<{
-	_key?:boolean | `@${string}`,
-	_type?:boolean | `@${string}`,
-	day?:boolean | `@${string}`,
-	time?:ResolverInputTypes["TimeType"],
-	location?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
 	["DeepDive"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
@@ -2990,6 +2980,14 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	meeting_details?:ResolverInputTypes["MeetingDetailsType"],
 	/** Is this deep dive actively accepting new Students? */
 	accepting_new_students?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["MeetingDetailsType"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	day?:boolean | `@${string}`,
+	time?:ResolverInputTypes["TimeType"],
+	location?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["NextGenPage"]: AliasType<{
@@ -4345,8 +4343,7 @@ export type ModelTypes = {
 	coordinators?: Array<ModelTypes["Leader"] | undefined | null> | undefined | null,
 	/** Select the coach for this ministry. */
 	coach?: ModelTypes["Leader"] | undefined | null,
-	image?: ModelTypes["Image"] | undefined | null,
-	meeting_details?: Array<ModelTypes["MeetingDetailsType"] | undefined | null> | undefined | null
+	image?: ModelTypes["Image"] | undefined | null
 };
 	["Slug"]: {
 		_key?: string | undefined | null,
@@ -4362,13 +4359,6 @@ export type ModelTypes = {
 };
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]:any;
-	["MeetingDetailsType"]: {
-		_key?: string | undefined | null,
-	_type?: string | undefined | null,
-	day?: string | undefined | null,
-	time?: ModelTypes["TimeType"] | undefined | null,
-	location?: string | undefined | null
-};
 	["DeepDive"]: {
 		/** Document ID */
 	_id?: ModelTypes["ID"] | undefined | null,
@@ -4392,6 +4382,13 @@ export type ModelTypes = {
 	meeting_details?: Array<ModelTypes["MeetingDetailsType"] | undefined | null> | undefined | null,
 	/** Is this deep dive actively accepting new Students? */
 	accepting_new_students?: boolean | undefined | null
+};
+	["MeetingDetailsType"]: {
+		_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	day?: string | undefined | null,
+	time?: ModelTypes["TimeType"] | undefined | null,
+	location?: string | undefined | null
 };
 	["NextGenPage"]: {
 		/** Document ID */
@@ -5792,8 +5789,7 @@ export type GraphQLTypes = {
 	coordinators?: Array<GraphQLTypes["Leader"] | undefined | null> | undefined | null,
 	/** Select the coach for this ministry. */
 	coach?: GraphQLTypes["Leader"] | undefined | null,
-	image?: GraphQLTypes["Image"] | undefined | null,
-	meeting_details?: Array<GraphQLTypes["MeetingDetailsType"] | undefined | null> | undefined | null
+	image?: GraphQLTypes["Image"] | undefined | null
 };
 	["Slug"]: {
 	__typename: "Slug",
@@ -5811,14 +5807,6 @@ export type GraphQLTypes = {
 };
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]: "scalar" & { name: "JSON" };
-	["MeetingDetailsType"]: {
-	__typename: "MeetingDetailsType",
-	_key?: string | undefined | null,
-	_type?: string | undefined | null,
-	day?: string | undefined | null,
-	time?: GraphQLTypes["TimeType"] | undefined | null,
-	location?: string | undefined | null
-};
 	["DeepDive"]: {
 	__typename: "DeepDive",
 	/** Document ID */
@@ -5843,6 +5831,14 @@ export type GraphQLTypes = {
 	meeting_details?: Array<GraphQLTypes["MeetingDetailsType"] | undefined | null> | undefined | null,
 	/** Is this deep dive actively accepting new Students? */
 	accepting_new_students?: boolean | undefined | null
+};
+	["MeetingDetailsType"]: {
+	__typename: "MeetingDetailsType",
+	_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	day?: string | undefined | null,
+	time?: GraphQLTypes["TimeType"] | undefined | null,
+	location?: string | undefined | null
 };
 	["NextGenPage"]: {
 	__typename: "NextGenPage",

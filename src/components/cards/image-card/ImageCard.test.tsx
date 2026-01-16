@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
-import ImageCardWithModal from './ImageCardWithModal';
 import '@testing-library/jest-dom';
+import ImageCard from './ImageCard';
 
 jest.mock('next/image', () => ({
   __esModule: true,
@@ -16,7 +16,7 @@ jest.mock('../../modals/image-modal/ImageModal', () => (props: any) => (
   <div data-testid="image-modal" {...props} />
 ));
 
-describe('ImageCardWithModal', () => {
+describe('ImageCard', () => {
   const testProps = {
     src: '/test-image.jpg',
     alt: 'Test Image',
@@ -24,7 +24,7 @@ describe('ImageCardWithModal', () => {
   };
 
   it('should render the image and button', () => {
-    render(<ImageCardWithModal {...testProps} />);
+    render(<ImageCard {...testProps} />);
 
     // Check if the image is rendered
     expect(screen.getByAltText('Test Image')).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('ImageCardWithModal', () => {
   });
 
   it('should open modal when button is clicked', () => {
-    render(<ImageCardWithModal {...testProps} />);
+    render(<ImageCard {...testProps} />);
 
     // Click the button
     fireEvent.click(screen.getByRole('button'));

@@ -46,7 +46,7 @@ const MultiFormContainer: React.FC<MultiFormContainerProps> = ({ forms }) => {
       </div>
 
       {forms[active] && forms[active].header && (
-        <div className={'flex flex-col gap-[25px] max-w-[1000px] mx-auto text-center font-light'}>
+        <div className={'flex flex-col gap-lg max-w-[1000px] mx-auto text-center font-light'}>
           <h1>{forms[active].header.title}</h1>
           <h4 className="text-light-charcoal dark:text-dark-primaryText">
             {forms[active].header.description}

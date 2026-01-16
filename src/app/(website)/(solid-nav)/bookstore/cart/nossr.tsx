@@ -17,7 +17,7 @@ const CartPage = () => {
   const [loadingItem, setLoadingItem] = useState<number | null>(null);
 
   return (
-    <div className="px-padding flex flex-col gap-lg lg:gap-xxl items-center">
+    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeader title="Your Cart" subtitle="" />
 
       {cartLoading && <div></div>}
@@ -83,7 +83,7 @@ const CartPage = () => {
                             height={100}
                             src={line.image.src}
                             alt={line.image.alt}
-                            className="object-cover min-w-[100px] size-[100px] object-top rounded-lg"
+                            className="object-cover min-w-4xl size-4xl object-top rounded-lg"
                           />
                           <div className="flex flex-col">
                             <h5 className="font-bold">{line.title}</h5>

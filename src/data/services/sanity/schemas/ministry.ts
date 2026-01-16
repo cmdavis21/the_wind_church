@@ -66,13 +66,5 @@ export const MinistrySchema = {
       ],
       validation: (rule) => rule.required().error('Add an image depicting the ministry.'),
     }),
-    defineField({
-      name: 'meeting_details',
-      title: 'Meeting Details',
-      type: 'array',
-      description: 'Include one or more meeting days, times, and locations.',
-      validation: (rule) => rule.min(1).error('At least one meeting is required.'),
-      of: [{ type: 'meetingDetailsType' }],
-    }),
   ],
 };

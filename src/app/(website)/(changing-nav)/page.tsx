@@ -1,5 +1,5 @@
 import Accordion from '@/components/accordion/Accordion';
-import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
+import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
 import VideoPlaylistCarousel from '@/components/carousels/video-playlist-carousel/VideoPlaylistCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
@@ -31,54 +31,49 @@ const Home = async () => {
 
   const exploreOptions = [
     {
-      alt: 'People gathering for church service',
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/pastor_preaching.jpg`,
+      image: {
+        alt: 'People gathering for church service',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/pastor_preaching.jpg`,
+      },
       title: 'Who we are',
       description: 'Learn our values, facts about our pastor, and more!',
-      link: {
-        label: "Let's Go",
-        href: PageRoutes.about,
-      },
+      link: PageRoutes.about,
     },
     {
-      alt: 'Group in Bible study session',
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`,
+      image: {
+        alt: 'Group in Bible study session',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`,
+      },
       title: 'Try our Deep Dives',
       description: 'Explore the Word in a deeper way with small-group Bible studies.',
-      link: {
-        label: "Let's Go",
-        href: PageRoutes.deepDive,
-      },
+      link: PageRoutes.deepDive,
     },
     {
-      alt: 'Group in Bible study session',
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/outreach.png`,
+      image: {
+        alt: 'Group in Bible study session',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/outreach.png`,
+      },
       title: 'Looking to minister?',
       description: 'We have ministries for every age and stage.',
-      link: {
-        label: "Let's Go",
-        href: PageRoutes.ministries,
-      },
+      link: PageRoutes.ministries,
     },
     {
-      alt: 'Children in a classroom during youth service',
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/family.jpeg`,
+      image: {
+        alt: 'Children in a classroom during youth service',
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/family.jpeg`,
+      },
       title: 'Know your gifts!',
       description: 'Discover your spiritual gifts with our easy assessment!',
-      link: {
-        label: "Let's Go",
-        href: PageRoutes.giftAssessment,
-      },
+      link: PageRoutes.giftAssessment,
     },
     {
-      alt: 'Group in Bible study session',
-      src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+      image: {
+        alt: 'Group in Bible study session',
+        src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+      },
       title: 'Have an event?',
       description: 'Interested in renting our church? Get details and request your date today.',
-      link: {
-        label: "Let's Go",
-        href: PageRoutes.churchRental,
-      },
+      link: PageRoutes.churchRental,
     },
   ];
 
@@ -198,10 +193,10 @@ const Home = async () => {
           poster: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
         }}
       />
-      <div className="py-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+      <div className="py-padding flex flex-col gap-3xl lg:gap-5xl 2xl:gap-6xl">
         {/* OVERVIEW */}
-        <div id="overview" className="px-padding">
-          <div className="flex flex-col gap-lg py-5 md:py-[50px] lg:px-[100px]">
+        <div id="overview" className="lg:px-4xl max-width-center">
+          <div className="flex flex-col gap-lg px-padding">
             <div
               dangerouslySetInnerHTML={{
                 __html: styleSelectedWords({
@@ -217,7 +212,7 @@ const Home = async () => {
               <Link
                 href="https://www.google.com/search?q=wind+of+the+spirit+worship+center"
                 target="_blank"
-                className="text-light-navy dark:text-dark-navy underline hover:scale-105"
+                className="text-light-navy dark:text-brand-primary underline hover:scale-105"
               >
                 in person
               </Link>{' '}
@@ -225,13 +220,16 @@ const Home = async () => {
               <Link
                 href={YOUTUBE_CHANNEL}
                 target="_blank"
-                className="text-light-navy dark:text-dark-navy underline hover:scale-105"
+                className="text-light-navy dark:text-brand-primary underline hover:scale-105"
               >
                 online
               </Link>{' '}
               , we&apos;d love to meet you and help you take your next step with Jesus.
             </h4>
-            <h3>Sundays 9AM • Wednesdays 7PM</h3>
+            <h3>
+              <span className="dark:text-brand-primary">Sundays 9AM</span> •{' '}
+              <span className="dark:text-brand-primary">Wednesdays 7PM</span>
+            </h3>
           </div>
         </div>
 
@@ -262,10 +260,10 @@ const Home = async () => {
         {/* EXPLORE CTAs */}
         <div className="px-padding flex flex-col gap-xl md:gap-xxl max-width-center">
           <SectionHeader title="Explore The Wind" subtitle="There's much to do here!" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xxl 2xl:gap-x-[100px] justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
             {exploreOptions.map((opt) => (
-              <ImageWithTitleDescriptionCard
-                key={`home-explore-options-${opt.link.href}`}
+              <ImageWithTitleDescriptionLinkCard
+                key={`home-explore-options-${opt.link}`}
                 {...opt}
               />
             ))}
@@ -278,7 +276,7 @@ const Home = async () => {
           centerContent
           color={ColorBackground.YELLOW}
           content={
-            <div className="space-y-xl md:space-y-xxl">
+            <div className="space-y-xl md:space-y-3xl lg:p-xl">
               <CenterTextSection
                 title="From Our Church Family"
                 description="A glimpse into the experiences and journeys of those who call The Wind Church home."
@@ -290,10 +288,7 @@ const Home = async () => {
 
         {/* ABOUT THE FAQs */}
         <div className="px-padding flex flex-col gap-xl md:gap-xxl max-width-center">
-          <SectionHeader
-            title="Have questions about The Wind?"
-            subtitle="Frequently Asked Questions"
-          />
+          <SectionHeader title="More about The Wind" subtitle="Frequently Asked Questions" />
           <Accordion content={faqContent} />
         </div>
       </div>

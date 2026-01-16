@@ -60,7 +60,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
 
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
-      className="absolute left-0 px-[50px] lg:px-[100px] min-[1800px]:px-[200px] top-[50%] -translate-y-[50%] w-full"
+      className="absolute left-0 px-xxl lg:px-4xl min-[1800px]:px-7xl top-[50%] -translate-y-[50%] w-full"
       leftArrowProps={{ onClick: () => previous() }}
       rightArrowProps={{ onClick: () => next() }}
     />
@@ -147,7 +147,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
               className="flex flex-col gap-lg"
             >
               {findMediaType(slide.media.src) === MediaType.IMAGE ? (
-                <div className="relative aspect-[17/9] w-full min-w-[200px] max-w-[900px]">
+                <div className="relative aspect-[17/9] w-full min-w-7xl max-w-[900px]">
                   <Image
                     src={slide.media.src}
                     alt={slide.media.alt}
@@ -164,7 +164,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
                   loop
                   playsInline
                   poster={slide.media.poster}
-                  className="aspect-[17/9] w-full min-w-[200px] max-w-[900px] rounded-xl object-cover pointer-events-none"
+                  className="aspect-[17/9] w-full min-w-7xl max-w-[900px] rounded-xl object-cover pointer-events-none"
                 >
                   <source src={slide.media.src} />
                 </video>
@@ -186,7 +186,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
           showDots
           swipeable
           arrows={false}
-          itemClass="px-[25px]"
+          itemClass="px-lg"
           containerClass="pb-xl"
           responsive={responsive}
           renderButtonGroupOutside
@@ -202,7 +202,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
               className="flex flex-col gap-lg"
             >
               {findMediaType(slide.media.src) === MediaType.IMAGE ? (
-                <div className="relative aspect-[17/9] w-full min-w-[200px] max-w-[900px]">
+                <div className="relative aspect-[17/9] w-full min-w-7xl max-w-[900px]">
                   <Image
                     src={slide.media.src}
                     alt={slide.media.alt}
@@ -219,7 +219,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
                   loop
                   playsInline
                   poster={slide.media.poster}
-                  className="aspect-[17/9] w-full min-w-[200px] max-w-[900px] rounded-xl object-cover pointer-events-none"
+                  className="aspect-[17/9] w-full min-w-7xl max-w-[900px] rounded-xl object-cover pointer-events-none"
                 >
                   <source src={slide.media.src} />
                 </video>

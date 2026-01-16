@@ -6,6 +6,7 @@ import { PageRoutes } from '@/data/page-routes';
 import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import Image from 'next/image';
 import Link from 'next/link';
+import AnimativeFillButton from '../buttons/animative-fill-button/AnimativeFillButton';
 
 interface ErrorPageProps {
   title?: string;
@@ -22,7 +23,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ title, description, routeToPage, 
     <div className="mx-padding">
       <div className="bg-brand-primary grid grid-cols-1 md:grid-cols-2 md:drop-shadow-md rounded-xl">
         {/* IMAGE */}
-        <div className="w-full h-full max-w-[1440px] pt-[25px] md:aspect-square flex items-end overflow-hidden">
+        <div className="w-full h-full max-w-[1440px] pt-lg md:aspect-square flex items-end overflow-hidden">
           <div className="relative w-full aspect-video">
             <Image
               src={`${AWS_ASSET_BASE_URL}/placeholder-media/young-girl.png`}
@@ -34,21 +35,19 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ title, description, routeToPage, 
         </div>
 
         {/* MESSAGE + ACTION BUTTONS */}
-        <div className="w-full h-full max-w-[1440px] md:aspect-square p-[25px] md:p-[50px]">
-          <div className="w-full h-full flex flex-col justify-center gap-lg rounded-lg bg-white dark:bg-dark-gray p-[25px] md:p-[50px] shadow-md">
+        <div className="w-full h-full max-w-[1440px] md:aspect-square p-lg md:p-xxl">
+          <div className="w-full h-full flex flex-col justify-center gap-lg rounded-lg bg-white dark:bg-dark-gray p-lg md:p-xxl shadow-md">
             <h1 className={`font-display text-brand-primary`}>{title ?? 'Error'}</h1>
             <h3>{description ?? 'An error has occured. Please try agin later.'}</h3>
             <div className="flex flex-wrap gap-md">
               <Link href={PageRoutes.home}>
-                <Button pill size="xl" color="primary">
-                  Home
-                </Button>
+                <AnimativeFillButton size="lg">Home</AnimativeFillButton>
               </Link>
               {reloadPage && (
                 <Button
                   pill
-                  size="xl"
-                  color="secondary"
+                  size="lg"
+                  color="info"
                   className="h-full"
                   onClick={() => {
                     if (window) window.location.reload();
@@ -59,7 +58,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ title, description, routeToPage, 
               )}
               {routeToPage && (
                 <Link href={routeToPage.link}>
-                  <Button pill size="xl" color="info">
+                  <Button pill size="lg" color="info">
                     {routeToPage.label}
                   </Button>
                 </Link>

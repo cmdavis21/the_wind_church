@@ -6,7 +6,6 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const nextConfig = {
   compress: true,
-  swcMinify: false,
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,

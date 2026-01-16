@@ -124,9 +124,9 @@ const Give = () => {
         media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/praise_hands.jpg` }}
       />
 
-      <div className="p-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+      <div className="p-padding flex flex-col gap-3xl lg:gap-5xl 2xl:gap-6xl max-width-center">
         {/* WHY WE GIVE */}
-        <div className="flex flex-col gap-xl py-5 md:py-[50px] lg:px-[100px]">
+        <div className="flex flex-col gap-xxl px-padding">
           {/* REASON #1 */}
           <div className="flex flex-col gap-lg">
             <div

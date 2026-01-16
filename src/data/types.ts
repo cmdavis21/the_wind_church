@@ -89,11 +89,6 @@ export type Ministry = {
     image: Leader['image'];
     video: Leader['video'];
   };
-  meeting_details: {
-    day: string;
-    time: Time;
-    location: string;
-  }[];
   image: Image;
 };
 
@@ -242,7 +237,6 @@ export interface GiftAssessmentDefinition {
 
 export enum FORM_TYPES {
   EVENT_RENTAL = 'eventRentalInquiries',
-  CONTACT_SIGNUP = 'contactSignup',
   GIFT_ASSESSMENT = 'giftAssessments',
   MINISTRY_CONNECTION = 'ministryConnection',
   NEXT_GEN_SIGNUP = 'nextGenRosterSignup',

@@ -14,7 +14,7 @@ const FooterPromoBanner = async () => {
     <div
       className={cn(
         'relative md:rounded-xl -my-5 overflow-hidden',
-        '-mr-[25px] md:mr-0 -ml-[25px] lg:-ml-[50px] !min-w-[1800px]:-ml-[100px]',
+        '-mr-lg md:mr-0 -ml-lg lg:-ml-xxl !min-w-[1800px]:-ml-4xl',
         'min-w-full md:min-w-0 md:w-full'
       )}
     >
@@ -61,9 +61,9 @@ const FooterPromoBanner = async () => {
 
       {/* CONTENT */}
       {promoDetails ? (
-        <div className="relative flex flex-col gap-sm px-[25px] md:max-w-[70%] py-5 text-white">
+        <div className="relative flex flex-col gap-sm px-lg md:max-w-[70%] py-lg text-white">
           <h6 className="uppercase tracking-wider font-light">{promoDetails.header}</h6>
-          <div className="w-[40px] h-px rounded-sm bg-brand-primary" />
+          <div className="w-10 h-px rounded-sm bg-brand-primary" />
           <h3 className="pt-sm text-xl font-semibold leading-tight">{promoDetails.title}</h3>
           <h5>{promoDetails.description}</h5>
           {promoDetails.link && (
@@ -78,7 +78,7 @@ const FooterPromoBanner = async () => {
           )}
         </div>
       ) : (
-        <div className="relative flex flex-col gap-sm md:max-w-1/3 min-h-full pl-[25px] lg:pl-[50px] py-5 text-white">
+        <div className="relative flex flex-col gap-sm md:max-w-1/3 min-h-full pl-lg lg:pl-xxl py-lg text-white">
           <h6 className="uppercase tracking-wider font-light">Welcome to The Wind Church</h6>
           <p className="opacity-90 text-sm mt-2">
             A Christ-focused community where lives are transformed and hope is restored. We gather

@@ -17,14 +17,14 @@ const FullscreenMediaWithTextFadeInOutCarouselSkeleton = () => {
         {/* content */}
 
         <div
-          className={`w-full lg:max-w-[45%] lg:pl-[150px] min-[1800px]:pl-[250px] h-full absolute top-0 left-0 transition-opacity duration-300 flex items-center`}
+          className={`w-full lg:max-w-[45%] lg:pl-6xl min-[1800px]:pl-[250px] h-full absolute top-0 left-0 transition-opacity duration-300 flex items-center`}
         >
           <div className="flex flex-col gap-md text-white dark:text-dark-primaryText">
             <h5></h5>
             <h3 className="text-brand-primary line-clamp-1"></h3>
             <h1 className="leading-none"></h1>
-            <div className="min-h-[100px]"></div>
-            <div className="bg-brand-primary w-[200px]">Learn more</div>
+            <div className="min-h-4xl"></div>
+            <div className="bg-brand-primary w-7xl">Learn more</div>
           </div>
         </div>
 
@@ -43,13 +43,12 @@ const FullscreenMediaWithTextFadeInOutCarouselSkeleton = () => {
         <CarouselArrows
           leftArrowProps={{
             onClick: () => {},
-            buttonClassName:
-              'absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
+            buttonClassName: 'absolute left-xxl min-[1800px]:left-4xl top-[50%] -translate-y-[50%]',
           }}
           rightArrowProps={{
             onClick: () => {},
             buttonClassName:
-              'absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
+              'absolute right-xxl min-[1800px]:right-4xl top-[50%] -translate-y-[50%]',
           }}
         />
       </div>

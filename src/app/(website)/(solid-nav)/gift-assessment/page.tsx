@@ -18,13 +18,13 @@ const GiftAssessmentPage = () => (
     {/* Decorative Border */}
     <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
 
-    <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
       {/* Header */}
       <div className="text-center space-y-lg">
         <h1 className={`font-display md:text-[75px] leading-snug`}>Spiritual Gift Assessment</h1>
         <h2>Wagner-Modified Houts Questionnarie</h2>
         <h4 className="pt-md">
-          Please complete the assessment in one setting.{' '}
+          Complete the assessment in one setting.{' '}
           <span className="font-bold">Answers will be lost if abandoned midway.</span>
         </h4>
         <h4>Aproximate time to complete assessment is 30 minutes.</h4>

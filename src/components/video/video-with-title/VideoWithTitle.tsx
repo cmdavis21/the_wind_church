@@ -54,8 +54,8 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
       {/* Desktop */}
       <div
         className={cn(
-          !fullscreen && 'rounded-xl lg:rounded-xxl',
-          'hidden md:block relative w-full max-h-[80%] max-width-center aspect-video overflow-hidden'
+          !fullscreen && 'rounded-xl lg:rounded-xxl max-width-center',
+          'hidden md:block relative w-full h-[95vh] aspect-video overflow-hidden'
         )}
       >
         <video
@@ -90,10 +90,10 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
         >
           <div className="flex flex-col items-center justify-center gap-lg">
             <h2 className="text-brand-primary font-bold">{title}</h2>
-            {subtitle && <h4 className="text-light-gray dark:text-dark-gray">{subtitle}</h4>}
-            <AnimativeFillButton onClick={togglePlayback} size="lg" className="mt-sm">
-              <div className="flex items-center gap-xxs">
-                <Play className="fill-light-primaryText dark:fill-text-dark-primaryText" />
+            {subtitle && <h4 className="text-light-gray dark:text-dark-neutral">{subtitle}</h4>}
+            <AnimativeFillButton onClick={togglePlayback} size="xl" className="mt-sm">
+              <div className="flex items-center gap-xxs body-large font-bold">
+                <Play className="size-[18px] fill-light-primaryText dark:fill-dark-primaryText" />
                 Watch
               </div>
             </AnimativeFillButton>
@@ -133,7 +133,7 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
           >
             <AnimativeFillButton onClick={toggleMobilePlayback}>
               <div className="flex items-center gap-xxs">
-                <Play className="fill-light-primaryText dark:fill-text-dark-primaryText" />
+                <Play className="fill-light-primaryText dark:fill-dark-primaryText" />
                 Watch
               </div>
             </AnimativeFillButton>

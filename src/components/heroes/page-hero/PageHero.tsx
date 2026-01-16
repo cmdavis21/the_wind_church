@@ -31,7 +31,7 @@ const PageHero: React.FC<PageHeroProps> = ({
       className={cn(
         size === 'short' && 'h-[60vh] xl:h-[75vh]',
         size === 'reg' && 'h-[80vh]',
-        size === 'full' && 'h-[100vh]',
+        size === 'full' && 'h-[90vh] lg:h-[100vh]',
         'relative w-full overflow-hidden'
       )}
     >
@@ -72,7 +72,7 @@ const PageHero: React.FC<PageHeroProps> = ({
       ))}
 
       {/* CONTENT */}
-      <div className="absolute w-full h-full p-5 md:p-[50px] 2xl:p-[100px] z-30">
+      <div className="absolute w-full h-full p-5 md:p-xxl 2xl:p-4xl z-30">
         <div
           className={`relative w-full h-full flex flex-col gap-lg items-center justify-end text-white`}
         >

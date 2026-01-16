@@ -157,9 +157,9 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
               }}
               className={cn(
                 selections.includes(name)
-                  ? 'border-primary dark:border-primaryDark'
-                  : 'border-skeletonGray hover:border-primary dark:hover:border-primaryDark',
-                'border-2 flex items-center gap-xs hover:cursor-pointer rounded-md p-sm w-fit'
+                  ? 'bg-brand-light/30'
+                  : 'hover:shadow-md shadow-brand-light',
+                'flex items-center gap-xs cursor-pointer rounded-sm p-sm w-fit'
               )}
             >
               <Checkbox

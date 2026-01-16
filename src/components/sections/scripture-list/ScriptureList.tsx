@@ -11,7 +11,7 @@ const ScriptureList: React.FC<ScriptureListProps> = ({ scriptures }) => {
         <React.Fragment key={`scriptures-list-${verse}`}>
           {verse}
           {index !== scriptures.length - 1 && (
-            <div className="rounded-full size-[5px] bg-light-gray dark:bg-dark-gray" />
+            <div className="rounded-full size-[5px] bg-light-charcoal dark:bg-dark-charcoal" />
           )}
         </React.Fragment>
       ))}

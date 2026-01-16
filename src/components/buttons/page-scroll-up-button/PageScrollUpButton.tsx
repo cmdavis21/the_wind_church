@@ -45,7 +45,7 @@ const PageScrollUpButton: React.FC<PageScrollUpButtonProps> = ({ className }) =>
         }}
         className="group size-12 rounded-full border hover:bg-light-gray dark:hover:bg-dark-gray flex justify-center items-center"
       >
-        <UpArrow className="fill-light-charcoal group-hover:fill-black size-[25px]" />
+        <UpArrow className="fill-light-charcoal group-hover:fill-black size-lg" />
       </button>
     </div>
   );

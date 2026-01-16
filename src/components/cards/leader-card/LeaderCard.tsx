@@ -47,7 +47,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
   return (
     <div
       ref={card}
-      className="relative overflow-hidden w-full aspect-[3/4] min-w-[200px] max-w-[400px] border border-light-gray dark:border-dark-gray rounded-lg"
+      className="relative overflow-hidden w-full aspect-[3/4] min-w-7xl max-w-[400px] border border-light-gray dark:border-dark-gray rounded-lg"
     >
       {/* video */}
       {video ? (

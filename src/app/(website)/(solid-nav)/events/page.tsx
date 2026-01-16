@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
+import EventCard from '@/components/cards/event-card/EventCard';
 import TimelineItem from '@/components/cards/timeline-item/TimelineItem';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
-import EventCardsMasonryGrid from '@/components/masonry-grids/event-cards-masonry-grid/EventCardsMasonryGrid';
 import { WEBSITE_BASE_URL } from '@/data/constants';
 import { getAllEvents } from '@/data/services/sanity/queries/events';
 import { Event } from '@/data/types';
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const Events = async () => {
   const events = await getAllEvents();
   return (
-    <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeader
         title="Events"
         subtitle="Don't miss it! Stay informed on events happening at The Wind."
@@ -30,13 +30,10 @@ const Events = async () => {
       {events.length > 0 ? (
         <>
           {/* Desktop */}
-          <div className="hidden md:block 2xl:px-padding">
-            <EventCardsMasonryGrid
-              events={events.map((event: Event) => ({
-                ...event,
-                scale: isAfter(event.date, new Date()),
-              }))}
-            />
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xxl 2xl:px-padding">
+            {events.map((event: Event) => (
+              <EventCard event={event} scale={isAfter(event.date, new Date())} />
+            ))}
           </div>
 
           {/* Mobile */}

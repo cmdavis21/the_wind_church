@@ -147,7 +147,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
         {slides.map((slide, index) => (
           <div
             key={`carousel-content-${slide.title}`}
-            className={`w-full lg:max-w-[45%] lg:pl-[150px] min-[1800px]:pl-[250px] h-full absolute top-0 left-0 ${
+            className={`w-full lg:max-w-[45%] lg:pl-6xl min-[1800px]:pl-[250px] h-full absolute top-0 left-0 ${
               index === activeSlide ? 'fade-in' : 'opacity-0'
             } transition-opacity duration-300 flex items-center`}
           >
@@ -157,13 +157,13 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
                 <h3 className="text-brand-primary line-clamp-1">{slide.subtitle}</h3>
               )}
               <h1 className="leading-none">{slide.title}</h1>
-              <div className="min-h-[100px]">
+              <div className="min-h-4xl">
                 {slide.description && (
                   <p className="body-large line-clamp-3">{slide.description}</p>
                 )}
               </div>
               <Link href={slides[activeSlide].link}>
-                <Button pill color="primary" className="w-[200px]">
+                <Button pill color="primary" className="w-7xl">
                   Learn more
                 </Button>
               </Link>
@@ -192,8 +192,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
                 setActiveSlide(slides.length - 1);
               } else setActiveSlide(activeSlide - 1);
             },
-            buttonClassName:
-              'absolute left-[50px] min-[1800px]:left-[100px] top-[50%] -translate-y-[50%]',
+            buttonClassName: 'absolute left-xxl min-[1800px]:left-4xl top-[50%] -translate-y-[50%]',
           }}
           rightArrowProps={{
             onClick: () => {
@@ -202,7 +201,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               } else setActiveSlide(activeSlide + 1);
             },
             buttonClassName:
-              'absolute right-[50px] min-[1800px]:right-[100px] top-[50%] -translate-y-[50%]',
+              'absolute right-xxl min-[1800px]:right-4xl top-[50%] -translate-y-[50%]',
           }}
         />
       </div>
@@ -252,12 +251,12 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
           responsive={responsive}
           customDot={<CustomDot />}
           customButtonGroup={<MobileButtonGroup />}
-          dotListClass="h-[50px] flex gap-xs justify-center items-center"
+          dotListClass="h-xxl flex gap-xs justify-center items-center"
         >
           {slides.map((slide) => (
             <div
               key={`carousel-mobile-content-${slide.title}-${slide.description}`}
-              className="relative h-screen w-full px-[50px]"
+              className="relative h-screen w-full px-xxl"
             >
               <div className="relative flex flex-col h-full w-full items-center justify-center text-center text-white dark:text-dark-primaryText gap-sm">
                 <h6 className="font-normal">{slide.header}</h6>

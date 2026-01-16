@@ -28,10 +28,10 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ id, title, subtitle }) =>
     {/* Mobile */}
     <div className="md:hidden flex flex-col items-center justify-center gap-3">
       <h2 className="text-center capitalize">{title}</h2>
-      <div className={`w-[40px] h-[2px] bg-brand-primary rounded-md`} />
+      <div className={`w-10 h-[2px] bg-brand-primary rounded-md`} />
       {subtitle && (
         <h5
-          className={`font-light text-light-navy dark:text-brand-dark text-center tracking-wider uppercase`}
+          className={`font-light text-light-navy dark:text-brand-primary text-center tracking-wider uppercase`}
         >
           {subtitle}
         </h5>

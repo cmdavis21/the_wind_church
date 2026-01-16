@@ -45,7 +45,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
 
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
-      className={`${slides.length <= 1 ? 'hidden' : ''} absolute max-md:bottom-0 right-0 md:left-0 md:top-[50%] md:-translate-y-[50%]`}
+      className={`${slides.length <= 1 ? 'hidden' : ''} absolute max-md:bottom-1 right-1.5 md:left-0 md:top-[50%] md:-translate-y-[50%]`}
       leftArrowProps={{ onClick: () => previous() }}
       rightArrowProps={{ onClick: () => next() }}
     />
@@ -63,7 +63,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
         renderButtonGroupOutside
         customDot={<CustomDot />}
         customButtonGroup={<ButtonGroup />}
-        dotListClass="flex gap-xs max-md:!justify-start md:!-mb-5"
+        dotListClass="flex gap-xs max-md:!justify-start max-md:!mb-1.5 max-md:!ml-1.5 md:!-mb-5"
       >
         {slides.map((slide, index) => (
           <div key={index} className="flex justify-center">

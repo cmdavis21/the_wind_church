@@ -61,8 +61,8 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
         <h5
           className={`${
             changeColor
-              ? 'text-light-primaryText dark:text-dark-primaryText'
-              : 'text-dark-primaryText'
+              ? 'text-black dark:text-dark-primaryText'
+              : 'text-white text-dark-primaryText'
           } whitespace-nowrap tracking-wider uppercase font-normal`}
         >
           {label}
@@ -99,7 +99,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                   <div className="absolute inset-0 overflow-hidden rounded-full">
                     <div
                       className={cn(
-                        'h-full rounded-full bg-brand-primary dark:bg-brand-dark',
+                        'h-full rounded-full bg-brand-primary dark:bg-brand-primary',
                         'transition-[width] duration-500 ease-out',
                         'absolute right-0 origin-right',
                         pathname === item.link ? 'w-full' : 'w-0 group-hover/sub:w-full'

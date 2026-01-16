@@ -1,4 +1,5 @@
 import { PromoBannerDetails } from '@/data/types';
+import { cache } from 'react';
 import { SanityQuery } from '../zeus-chain';
 
 const getPromoDetailsQuery = async () => {
@@ -30,7 +31,7 @@ const getPromoDetailsQuery = async () => {
   }).then((y) => y.allPromoBanner);
 };
 
-export const getPromoDetails = async (): Promise<PromoBannerDetails | undefined> => {
+export const getPromoDetails = cache(async (): Promise<PromoBannerDetails | undefined> => {
   const details = await getPromoDetailsQuery();
 
   if (details && details[0]) {
@@ -53,4 +54,4 @@ export const getPromoDetails = async (): Promise<PromoBannerDetails | undefined>
   }
 
   return undefined;
-};
+});

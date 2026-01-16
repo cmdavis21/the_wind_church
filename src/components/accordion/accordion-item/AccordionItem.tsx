@@ -91,7 +91,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
           'transition-[height, opacity] duration-300',
           open
             ? isDefault
-              ? 'pt-5 mt-5 border border-light-gray dark:border-x-dark-charcoal border-x-0 border-b-0'
+              ? 'pt-5 mt-5 border border-light-gray dark:border-dark-charcoal border-x-0 border-b-0'
               : 'pt-[10px]'
             : 'opacity-0 pointer-events-none'
         )}

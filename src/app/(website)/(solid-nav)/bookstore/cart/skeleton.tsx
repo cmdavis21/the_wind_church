@@ -43,7 +43,7 @@ export const CartSkeleton = () => {
                         height={100}
                         src={line.image.src}
                         alt={line.image.alt}
-                        className="object-cover min-w-[100px] size-[100px] object-top rounded-lg"
+                        className="object-cover min-w-4xl size-4xl object-top rounded-lg"
                       />
                       <div className="flex flex-col gap-xs">
                         <h5 className="font-bold">{line.title}</h5>

@@ -3,6 +3,7 @@
 import TestimonialCard, {
   TestimonialCardProps,
 } from '@/components/cards/testimonial-card/TestimonialCard';
+import { useTheme } from '@/data/providers/theme-mode-provider';
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -13,6 +14,7 @@ interface TestimonialCarouselProps {
 }
 
 const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials }) => {
+  const { darkMode } = useTheme();
   const responsive = {
     desktop: {
       breakpoint: { max: 4000, min: 1024 },
@@ -33,7 +35,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
 
   const CustomDot = ({ onClick, ...rest }: any) => {
     const { active } = rest;
-    return <CarouselDot blueDot onClick={onClick} active={active} />;
+    return <CarouselDot blueDot={!darkMode} onClick={onClick} active={active} />;
   };
 
   const chunk = (arr: TestimonialCardProps[], size: number): TestimonialCardProps[][] =>
@@ -53,16 +55,20 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
           swipeable
           arrows={false}
           renderDotsOutside
+          containerClass="pb-12"
           showDots={true}
           responsive={responsive}
           customDot={<CustomDot />}
           itemClass="text-center"
           autoPlay={true}
           autoPlaySpeed={3000}
-          dotListClass="flex gap-xs !-mb-10"
+          dotListClass="flex gap-xs"
         >
           {testimonialSlides.map((group, index) => (
-            <div key={`desktop-slide-${index}`} className="grid grid-cols-2 gap-lg">
+            <div
+              key={`desktop-slide-${index}`}
+              className="grid grid-cols-2 gap-lg place-items-center"
+            >
               {group.map((item) => (
                 <TestimonialCard key={`testimonials-${item.name}`} {...item} />
               ))}
@@ -81,10 +87,10 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
           showDots={true}
           responsive={responsive}
           customDot={<CustomDot />}
-          itemClass="text-center"
+          itemClass="text-center px-1"
           autoPlay={true}
           autoPlaySpeed={3000}
-          dotListClass="flex gap-xs !-mb-3"
+          dotListClass="flex gap-xs"
         >
           {testimonials.map((item) => (
             <div key={`mobile-slide-${item.name}`}>

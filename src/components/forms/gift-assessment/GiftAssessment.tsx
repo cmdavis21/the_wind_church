@@ -61,7 +61,7 @@ const GiftAssessment = () => {
   };
 
   return (
-    <div className="flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+    <div className="flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl">
       <GiftAssessmentQuiz
         questions={GiftAssessmentQuestions}
         definitions={GiftAssessmentDefinitions}
@@ -75,7 +75,7 @@ const GiftAssessment = () => {
 
       {/* Results */}
       {showResults && dominateGifts && subordinateGifts && (
-        <div className="border border-light-gray  shadow-md p-md md:p-lg lg:p-xl rounded-xl flex flex-col gap-[50px]">
+        <div className="border border-light-gray  shadow-md p-md md:p-lg lg:p-xl rounded-xl flex flex-col gap-xxl">
           {/* Gifts */}
           <div className="flex flex-col gap-md">
             <h3>Assessment Completed!</h3>

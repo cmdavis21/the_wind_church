@@ -55,7 +55,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
 
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
-      className="absolute left-0 px-[50px] min-[1800px]:px-[150px] top-[50%] -translate-y-[50%] w-full"
+      className="absolute left-0 px-xxl min-[1800px]:px-6xl top-[50%] -translate-y-[50%] w-full"
       leftArrowProps={{
         onClick: () => previous(),
       }}
@@ -90,7 +90,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
   return (
     <>
       {/* Desktop */}
-      <div className="hidden md:block relative w-full h-screen">
+      <div className="hidden md:block relative w-full h-[95vh]">
         {/* images */}
         {slides.map((slide, index) => (
           <div
@@ -137,11 +137,11 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
           {slides.map((slide) => (
             <div
               key={`media-with-side-text-${slide.title}`}
-              className="w-full 2xl:max-w-[70%] h-screen px-[150px] pb-[150px] flex flex-col gap-md justify-end text-white dark:text-dark-primaryText"
+              className="w-full 2xl:max-w-[70%] h-[95vh] px-6xl pb-6xl flex flex-col gap-md justify-end text-white dark:text-dark-primaryText"
             >
-              <h4>{slide.description}</h4>
-              <div className="w-[100px] h-px bg-brand-primary rounded-sm" />
-              <h1>{slide.title}</h1>
+              <h5 className="max-w-[75%]">{slide.description}</h5>
+              <div className="w-4xl h-px bg-brand-primary rounded-sm" />
+              <h2>{slide.title}</h2>
             </div>
           ))}
         </Carousel>
@@ -192,7 +192,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
           {slides.map((slide) => (
             <div
               key={`mobile-media-with-side-text-${slide.title}`}
-              className="relative h-screen w-full px-5 pb-[70px] flex flex-col items-center justify-end text-justify text-white dark:text-dark-primaryText gap-sm"
+              className="relative h-screen w-full px-lg pb-[70px] flex flex-col items-center justify-end text-justify text-white dark:text-dark-primaryText gap-sm"
             >
               <p className="body-large">{slide.description}</p>
               <div className="w-[75px] h-px bg-brand-primary rounded-sm" />

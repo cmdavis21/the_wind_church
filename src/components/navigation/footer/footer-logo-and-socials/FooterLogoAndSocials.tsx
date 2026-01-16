@@ -12,7 +12,7 @@ const FooterLogoAndSocials = () => (
       <ThemeModeLogo noChangeColor className="min-w-[150px] max-w-[200px]" />
     </Link>
 
-    <div className="flex gap-4  items-center place-self-end  w-fit">
+    <div className="flex gap-4 items-center place-self-end w-fit">
       <Link href={YOUTUBE_CHANNEL}>
         <YouTubeIcon className="size-[22px] hover:opacity-50 fill-black dark:fill-white" />
       </Link>

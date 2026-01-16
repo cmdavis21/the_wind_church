@@ -46,11 +46,11 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="group w-full h-full min-w-[200px] max-w-[350px] mx-auto flex flex-col gap-md"
+        className="group w-full max-w-[350px] flex flex-col p-xs cursor-pointer"
       >
         <div
           className={`relative w-full aspect-video ${
-            scale ? 'group-hover:aspect-[4/3]' : ''
+            scale ? 'group-hover:scale-105' : ''
           } transition-all duration-500 border border-light-gray dark:border-dark-gray rounded-lg`}
         >
           {pastEvent && (
@@ -66,16 +66,16 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
           />
           {addTag && (
             <div className="absolute top-2 left-2 z-10">
-              <Badge color={addTag.color ?? 'yellow'} size="sm" className="text-black">
+              <Badge color={addTag.color ?? 'yellow'} size="sm">
                 {addTag.label}
               </Badge>
             </div>
           )}
         </div>
 
-        <div className="text-left flex flex-col gap-xs">
-          <h6 className="font-bold text-brand-primary">{formatDateMMMddyyyy(event.date)}</h6>
-          <h5 className="font-bold">{event.name}</h5>
+        <div className="pt-sm text-left">
+          <h6 className="text-light-navy dark:text-dark-navy">{formatDateMMMddyyyy(event.date)}</h6>
+          <h5>{event.name}</h5>
         </div>
       </button>
     </>

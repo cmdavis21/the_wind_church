@@ -28,7 +28,7 @@ export const theme = {
       color: {
         gray: 'bg-light-gray text-light-primaryText dark:bg-dark-gray dark:text-dark-primaryText',
         red: 'bg-error text-white group-hover:bg-error/75 dark:bg-error/75 dark:text-dark-primaryText',
-        yellow: 'bg-warning text-light-primaryText group-hover:bg-warning/75',
+        yellow: 'bg-brand-primary text-light-primaryText',
       },
       href: 'group',
       size: {
@@ -50,12 +50,12 @@ export const theme = {
     fullSized: 'w-full',
     color: {
       primary:
-        'border border-brand-primary bg-brand-primary text-black hover:bg-brand-dark/80 hover:shadow-md',
+        'border border-brand-primary bg-brand-primary text-black hover:bg-brand-primary/80 hover:shadow-md',
       secondary:
         'border border-light-navy bg-light-navy text-white hover:bg-light-navy/80 dark:border-dark-navy dark:bg-dark-navy dark:text-white dark:hover:bg-light-navy',
       info: 'border border-light-gray bg-transparent text-light-primaryText hover:bg-light-gray hover:text-black dark:border-dark-gray dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray dark:hover:text-white',
       teritiary:
-        'border border-light-gray bg-transparent text-dark-primaryText hover:bg-light-gray hover:text-light-primaryText dark:border-dark-gray dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray',
+        'border border-light-neutral bg-transparent text-white hover:bg-light-gray hover:text-light-primaryText dark:border-dark-neutral dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray',
       danger:
         'border border-error bg-error text-white hover:bg-error/80 dark:border-error dark:bg-error dark:text-white dark:hover:bg-error/70',
     },
@@ -68,7 +68,7 @@ export const theme = {
       xs: 'px-2 py-1 text-xs',
       sm: 'px-3 py-1.5 text-sm',
       md: 'px-4 py-2 text-base',
-      lg: 'px-5 py-2.5 text-base',
+      lg: 'px-lg py-2.5 text-base',
       xl: 'px-6 py-3 text-lg',
     },
   },
@@ -77,7 +77,7 @@ export const theme = {
       base: 'h-4 w-4 appearance-none rounded border border-light-gray bg-light-neutral bg-[length:0.55em_0.55em] bg-center bg-no-repeat checked:border-transparent checked:bg-current checked:bg-check-icon focus:outline-none focus:ring-2 focus:ring-offset-2 dark:border-dark-gray dark:bg-dark-neutral dark:checked:border-transparent dark:checked:bg-current',
       color: {
         default:
-          'text-brand-primary focus:ring-brand-primary dark:ring-offset-dark-bg dark:focus:ring-brand-dark',
+          'text-brand-primary focus:ring-brand-primary dark:ring-offset-dark-bg dark:focus:ring-brand-primary',
       },
       indeterminate:
         'border-transparent bg-current bg-dash-icon dark:border-transparent dark:bg-current',
@@ -152,7 +152,7 @@ export const theme = {
   },
   radio: {
     root: {
-      base: 'h-6 w-6 rounded-full border-2 border-light-gray dark:border-dark-gray text-brand-primary dark:text-brand-dark focus:ring-brand-primary hover:cursor-pointer disabled:opacity-50',
+      base: 'h-6 w-6 rounded-full border-2 border-light-gray dark:border-dark-gray text-brand-primary dark:text-brand-primary focus:ring-brand-primary hover:cursor-pointer disabled:opacity-50',
     },
   },
   tabs: {
@@ -187,15 +187,15 @@ export const theme = {
           pills: {
             base: '',
             active: {
-              on: 'rounded-lg bg-brand-dark text-light-bg',
+              on: 'rounded-lg bg-brand-primary text-light-bg',
               off: 'rounded-lg hover:bg-light-gray hover:text-light-charcoal dark:hover:bg-dark-gray dark:hover:text-dark-charcoal',
             },
           },
           fullWidth: {
             base: 'ml-0 flex w-full rounded-none first:ml-0',
             active: {
-              on: 'rounded-none bg-light-neutral p-4 text-brand-dark dark:bg-dark-neutral dark:text-brand-dark',
-              off: 'rounded-none bg-transparent hover:bg-light-neutral/50 hover:text-brand-dark/50 dark:bg-transparent dark:hover:bg-dark-neutral/50 dark:hover:text-brand-dark/50',
+              on: 'rounded-none bg-light-neutral p-4 text-brand-primary dark:bg-dark-neutral dark:text-brand-primary',
+              off: 'rounded-none bg-transparent hover:bg-light-neutral/50 hover:text-brand-primary/50 dark:bg-transparent dark:hover:bg-dark-neutral/50 dark:hover:text-brand-primary/50',
             },
           },
         },
@@ -216,7 +216,7 @@ export const theme = {
   textarea: {
     base: 'block w-full rounded-md border text-md disabled:cursor-default disabled:opacity-50 p-3',
     colors: {
-      gray: 'border-light-gray bg-light-bg text-light-primaryText placeholder-light-secondaryText focus:border-brand-primary focus:ring-brand-primary dark:border-dark-gray dark:bg-dark-bg dark:text-dark-primaryText dark:placeholder-dark-secondaryText dark:focus:border-brand-dark dark:focus:ring-brand-dark',
+      gray: 'border-light-gray bg-light-bg text-light-primaryText placeholder-light-secondaryText focus:border-brand-primary focus:ring-brand-primary dark:border-dark-gray dark:bg-dark-bg dark:text-dark-primaryText dark:placeholder-dark-secondaryText dark:focus:border-brand-primary dark:focus:ring-brand-primary',
     },
     withShadow: {
       on: 'shadow-sm dark:shadow-sm-light',
@@ -245,7 +245,7 @@ export const theme = {
           lg: 'p-4 sm:text-base',
         },
         colors: {
-          gray: 'border-light-gray bg-light-bg text-light-primaryText placeholder-light-secondaryText focus:border-brand-primary focus:ring-brand-primary dark:border-dark-gray dark:bg-dark-bg dark:text-dark-primaryText dark:placeholder-dark-secondaryText dark:focus:border-brand-dark dark:focus:ring-brand-dark',
+          gray: 'border-light-gray bg-light-bg text-light-primaryText placeholder-light-secondaryText focus:border-brand-primary focus:ring-brand-primary dark:border-dark-gray dark:bg-dark-bg dark:text-dark-primaryText dark:placeholder-dark-secondaryText dark:focus:border-brand-primary dark:focus:ring-brand-primary',
         },
         withRightIcon: {
           on: 'pr-10',
@@ -326,7 +326,7 @@ export const theme = {
           lg: 'p-4 text-md',
         },
         colors: {
-          gray: 'border-light-gray bg-light-bg text-light-primaryText placeholder-light-secondaryText focus:border-brand-primary focus:ring-brand-primary dark:border-dark-gray dark:bg-dark-bg dark:text-dark-primaryText dark:placeholder-dark-secondaryText dark:focus:border-brand-dark dark:focus:ring-brand-dark',
+          gray: 'border-light-gray bg-light-bg text-light-primaryText placeholder-light-secondaryText focus:border-brand-primary focus:ring-brand-primary dark:border-dark-gray dark:bg-dark-bg dark:text-dark-primaryText dark:placeholder-dark-secondaryText dark:focus:border-brand-primary dark:focus:ring-brand-primary',
         },
       },
     },

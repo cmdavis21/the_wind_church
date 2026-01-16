@@ -23,8 +23,8 @@ const ChurchRental = () => (
       media={{ src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp` }}
     />
 
-    <div className="py-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
-      <div className="px-padding">
+    <div className="py-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl">
+      <div className="px-padding max-width">
         <CenterTextSection
           highlight={[[4, 5]]}
           title="Looking for your next event space?"
@@ -64,7 +64,7 @@ const ChurchRental = () => (
         ]}
       />
 
-      <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+      <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
         <CenterTextSection
           highlight={[[0, 0]]}
           title="Tailored solutions for your needs"

@@ -50,7 +50,7 @@ const Salvation = () => (
       media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/crosses.png` }}
     />
 
-    <div className="pt-padding flex flex-col gap-xl lg:gap-[100px]">
+    <div className="py-padding flex flex-col gap-xl lg:gap-4xl">
       {/* WHAT IS SALVATION */}
       <div className="flex flex-col gap-xl px-padding max-width-center">
         <div
@@ -198,7 +198,7 @@ const Salvation = () => (
       </div>
 
       {/* CTAs */}
-      <div className="flex flex-row justify-center px-5">
+      <div className="flex flex-row justify-center px-lg">
         <MediaBackgroundAndContent
           fullWidth={false}
           background={{

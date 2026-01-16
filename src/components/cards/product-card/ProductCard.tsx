@@ -28,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <Link href={`${PageRoutes.bookstore}/${handle}`} className="group w-full h-fit max-w-[300px]">
       <div className="h-full flex flex-col items-center rounded-xl overflow-hidden border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm hover:shadow-md transition-shadow duration-200">
         {/* Cover Image */}
-        <div className="relative w-full aspect-[3/4] bg-white dark:opacity-75 overflow-hidden">
+        <div className="relative w-full aspect-[1/1.3] bg-white dark:opacity-75 overflow-hidden">
           <Image
             fill
             src={image.src}

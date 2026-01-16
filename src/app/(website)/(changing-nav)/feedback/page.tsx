@@ -21,7 +21,7 @@ const VisitorFeedback = () => (
       title="Visitor Feedback"
       media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg` }}
     />
-    <div className="p-padding flex flex-col gap-xl md:gap-xxl">
+    <div className="p-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <CenterTextSection
         highlight={[[2, 2]]}
         title="Let us know how we did!"

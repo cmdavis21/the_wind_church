@@ -33,19 +33,19 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
     <div
       className={cn(
         !noFlex && 'flex',
-        !fullWidth && 'rounded-xl max-w-[1800px]',
-        centerContent ? 'items-center justify-center' : 'items-end',
+        !fullWidth && 'rounded-xl max-width-center',
+        centerContent ? 'items-center justify-center' : 'items-end aspect-[3/1]',
         !background && color === ColorBackground.YELLOW
-          ? 'text-textPrimary'
+          ? 'text-light-primaryText'
           : 'text-white dark:text-dark-primaryText',
-        'relative p-padding overflow-hidden w-full'
+        'relative overflow-hidden w-full p-lg md:p-xxl lg:p-3xl'
       )}
     >
       {/* BACKGROUND */}
       <div className="absolute inset-0">
         {/* MEDIA SELECTION */}
-        {background ? (
-          findMediaType(background.src) === MediaType.IMAGE ? (
+        {background &&
+          (findMediaType(background.src) === MediaType.IMAGE ? (
             <div className="relative w-full h-full">
               <Image
                 fill
@@ -64,23 +64,7 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
               poster={background.poster}
               className={cn(!fullWidth && 'rounded-xl', 'object-cover pointer-events-none')}
             />
-          )
-        ) : (
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat',
-              opacity: 50,
-              backgroundImage: `url(${
-                color === ColorBackground.BLUE
-                  ? '/images/misc/navy_background.webp'
-                  : '/images/misc/yellow_background.webp'
-              })`,
-            }}
-          />
-        )}
+          ))}
       </div>
 
       {/* COLOR GRADIENT */}
@@ -88,22 +72,16 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
         className={cn(
           !fullWidth && 'rounded-xl',
           background && 'bg-gradient-to-r from-black/70',
-          !background && color === ColorBackground.BLUE && 'bg-navy/80',
-          !background && color === ColorBackground.YELLOW && 'bg-brand-primary/10',
+          !background && color === ColorBackground.BLUE && 'bg-light-navy dark:bg-dark-navy/90',
+          !background &&
+            color === ColorBackground.YELLOW &&
+            'bg-brand-primary/90 dark:bg-dark-navy/90',
           'absolute inset-0 backdrop-blur-sm'
         )}
       />
 
       {/* CONTENT */}
-      <div
-        className={cn(
-          fullWidth && 'max-width-center',
-          !centerContent && 'pt-[25px] md:pt-[50px] 2xl:pt-[150px]',
-          'relative'
-        )}
-      >
-        {content}
-      </div>
+      <div className={'relative'}>{content}</div>
     </div>
   );
 };

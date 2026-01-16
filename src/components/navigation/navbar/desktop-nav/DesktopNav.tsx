@@ -28,7 +28,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeCo
           : 'bg-gradient-to-b from-black/40'
       } transition-[height, opacity] duration-500 rounded-b-lg`}
     >
-      <div className="flex justify-between items-end gap-sm pt-3 pb-5 px-[25px] md:px-[50px] lg:px-[75px]">
+      <div className="flex justify-between items-end gap-sm pt-3 pb-5 px-lg md:px-xxl lg:px-[75px] max-width-center">
         <Link href={PageRoutes.home}>
           <ThemeModeLogo changeColor={changeColor} className="w-full min-w-[150px] max-w-[150px]" />
         </Link>

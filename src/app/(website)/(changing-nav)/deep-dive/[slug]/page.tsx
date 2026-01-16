@@ -45,7 +45,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
     <div>
       <PageHero size="short" title={deepDive.name} media={{ src: deepDive.image.src }} />
 
-      <div className="p-padding flex flex-col gap-xxl max-w-[1440px] mx-auto">
+      <div className="pt-padding px-padding flex flex-col gap-xxl max-width-center">
         {/* DESCRIPTION */}
         <h3 className="xl:text-[24px]">{deepDive.description}</h3>
 
@@ -221,7 +221,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             title="Take your next steps with us!"
             description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
           />
-          <div className="flex flex-wrap gap-xxl 2xl:gap-[100px] justify-center">
+          <div className="flex flex-wrap gap-xxl 2xl:gap-4xl justify-center">
             <ImageWithTitleDescriptionCard
               alt="People gathering for church service"
               src={`${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`}

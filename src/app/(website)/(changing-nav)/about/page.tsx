@@ -113,46 +113,48 @@ const About = async () => {
         media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/group_people.jpg` }}
       />
 
-      <div className="py-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+      <div className="py-padding flex flex-col gap-3xl lg:gap-5xl 2xl:gap-6xl">
         {/* Mission and Vision */}
-        <div id={t('mission.id')} className="flex flex-col gap-xxl py-5 md:py-[50px] lg:px-[100px]">
-          {/* Mission */}
-          <div className="flex flex-col gap-lg px-padding">
-            <h1>{t('mission.title')}</h1>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: t('mission.subtitle'),
-                  array: [[0, 9]],
-                  htmlTag: 'h2',
-                }),
-              }}
-            />
-            <h4>{t('mission.description')}</h4>
-          </div>
+        <div id={t('mission.id')} className="lg:px-4xl max-width-center">
+          <div className="flex flex-col gap-xxl px-padding">
+            {/* Mission */}
+            <div className="flex flex-col gap-lg">
+              <h1>{t('mission.title')}</h1>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: styleSelectedWords({
+                    text: t('mission.subtitle'),
+                    array: [[0, 9]],
+                    htmlTag: 'h2',
+                  }),
+                }}
+              />
+              <h4>{t('mission.description')}</h4>
+            </div>
 
-          {/* Vision */}
-          <div className="flex flex-col gap-lg px-padding">
-            <h1>{t('vision.title')}</h1>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: t('vision.subtitle'),
-                  array: [[0, 7]],
-                  htmlTag: 'h2',
-                }),
-              }}
-            />
-            <h4>{t('vision.description')}</h4>
-            <ScriptureList
-              scriptures={[
-                t('vision.verse1'),
-                t('vision.verse2'),
-                t('vision.verse3'),
-                t('vision.verse4'),
-                t('vision.verse5'),
-              ]}
-            />
+            {/* Vision */}
+            <div className="flex flex-col gap-lg">
+              <h1>{t('vision.title')}</h1>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: styleSelectedWords({
+                    text: t('vision.subtitle'),
+                    array: [[0, 7]],
+                    htmlTag: 'h2',
+                  }),
+                }}
+              />
+              <h4>{t('vision.description')}</h4>
+              <ScriptureList
+                scriptures={[
+                  t('vision.verse1'),
+                  t('vision.verse2'),
+                  t('vision.verse3'),
+                  t('vision.verse4'),
+                  t('vision.verse5'),
+                ]}
+              />
+            </div>
           </div>
         </div>
 
@@ -205,11 +207,14 @@ const About = async () => {
         </div>
 
         {/* The Wind Center */}
-        <div id={t('values.id')} className="px-padding flex flex-col gap-xl md:gap-xxl">
+        <div
+          id={t('values.id')}
+          className="flex flex-col gap-xl md:gap-3xl max-width-center px-padding"
+        >
           <CenterTextSection title={t('values.title')} description={t('values.subtitle')} />
 
           {/* Tablet/Desktop */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg md:gap-xl">
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
             {theWindCenterArr.map((item) => (
               <ImageWithTitleAndHiddenTextCard
                 key={item.title}
@@ -256,10 +261,12 @@ const About = async () => {
         </div>
 
         {/* Foursquare */}
-        <div id={t('foursquare.id')} className="px-padding flex flex-col gap-xl md:gap-xxl">
-          <div className="flex flex-col gap-xl">
+        <div
+          id={t('foursquare.id')}
+          className="flex flex-col gap-xl md:gap-xxl max-width-center px-padding"
+        >
+          <div className="flex flex-col gap-lg">
             <SectionHeader title={t('foursquare.title')} subtitle={t('foursquare.subtitle')} />
-
             <h5 className="lg:max-w-[60%]">{t('foursquare.description')}</h5>
           </div>
 
@@ -423,7 +430,7 @@ const About = async () => {
 
         {/* History */}
         <div id={t('history.id')} className="flex flex-col gap-xl md:gap-xxl">
-          <div className="px-padding flex flex-col gap-xl">
+          <div className="px-padding flex flex-col gap-lg max-width">
             <SectionHeader title={t('history.title')} subtitle={t('history.subtitle')} />
             <h5 className="lg:max-w-[60%]">{t('history.description')}</h5>
           </div>

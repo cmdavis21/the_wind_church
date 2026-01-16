@@ -21,6 +21,12 @@ export const AWS_REGION = process.env.NEXT_PUBLIC_AWS_REGION ?? '';
 export const AWS_BUCKET_NAME = process.env.NEXT_PUBLIC_AWS_BUCKET_NAME ?? '';
 export const AWS_IDENTITY_POOL_ID = process.env.NEXT_PUBLIC_AWS_IDENTITY_POOL_ID ?? '';
 export const AWS_ASSET_BASE_URL = process.env.NEXT_PUBLIC_AWS_ASSET_BASE_URL ?? '';
+export const AWS_ACCESS_KEY = process.env.NEXT_PUBLIC_AWS_ACCESS_KEY ?? '';
+export const AWS_SECRET_KEY = process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY ?? '';
+
+// EMAILS
+export const EMAIL_NO_REPLY = process.env.NEXT_PUBLIC_FROM_EMAIL ?? '';
+export const EMAIL_OFFICE = process.env.NEXT_PUBLIC_OFFICE_EMAIL ?? '';
 
 // SOCIALS
 export const YOUTUBE_CHANNEL = process.env.NEXT_PUBLIC_YOUTUBE ?? '#';

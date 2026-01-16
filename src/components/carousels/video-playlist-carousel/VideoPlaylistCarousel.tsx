@@ -47,11 +47,11 @@ const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist 
     <CarouselArrows
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: 'absolute -left-2 top-[50%] -translate-y-[50%]',
+        buttonClassName: 'absolute -left-2 -bottom-3 md:top-1/2 md:-translate-y-1/2',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: 'absolute -right-2 top-[50%] -translate-y-[50%]',
+        buttonClassName: 'absolute -right-2 -bottom-3 md:top-1/2 md:-translate-y-1/2',
       }}
     />
   );
@@ -65,10 +65,11 @@ const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist 
         draggable
         swipeable
         itemClass="text-center"
-        containerClass="pb-sm"
+        // containerClass="bg-blue-500"
         responsive={responsive}
         customDot={<CustomDot />}
         renderButtonGroupOutside
+        renderDotsOutside
         customButtonGroup={<ButtonGroup />}
         dotListClass="flex gap-xs"
       >

@@ -16,7 +16,9 @@ const DeepDivesClient = () => {
 
   if (deepDivesError) {
     return (
-      <ErrorPage description="There are no ministries at this time. Please check again later." />
+      <div className="pt-padding">
+        <ErrorPage description="There are no ministries at this time. Please check again later." />
+      </div>
     );
   }
 

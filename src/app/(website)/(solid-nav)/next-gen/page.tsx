@@ -1,12 +1,13 @@
 import Accordion from '@/components/accordion/Accordion';
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
+import EventCard from '@/components/cards/event-card/EventCard';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import NextGenRosterSignupForm from '@/components/forms/next-gen-roster-signup-form/NextGenRosterSignupForm';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import Baby from '@/components/icons/baby';
-import EventCardsMasonryGrid from '@/components/masonry-grids/event-cards-masonry-grid/EventCardsMasonryGrid';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
@@ -15,8 +16,10 @@ import { PageRoutes } from '@/data/page-routes';
 import { getAllEvents } from '@/data/services/sanity/queries/events';
 import { getNextGenPage } from '@/data/services/sanity/queries/next-gen-page';
 import { Event } from '@/data/types';
+import { isAfter } from 'date-fns';
 import { Button } from 'flowbite-react';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Next Gen',
@@ -31,7 +34,7 @@ const NextGen = async () => {
   const nextGenPageInfo = await getNextGenPage();
   const events = await getAllEvents({ hostName: 'Next Gen' });
   return (
-    <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeaderWithBackground
         media={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_group.jpg`,
@@ -121,26 +124,19 @@ const NextGen = async () => {
           title="Youth Events"
           description="Look out for fun, adventurous, and learning-focused events for the Wind youth!"
         />
-        <div className="2xl:px-padding">
+        <div className="2xl:px-padding flex flex-col justify-center gap-xl">
           {events && events.length > 0 ? (
-            <EventCardsMasonryGrid
-              events={events.map((event: Event) => ({
-                ...event,
-                scale: false,
-              }))}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xxl">
+              {events.map((event: Event) => (
+                <EventCard event={event} scale={isAfter(event.date, new Date())} />
+              ))}
+            </div>
           ) : (
             <h4 className="text-center">No events at this time</h4>
           )}
-          <Button
-            pill
-            size="lg"
-            color="primary"
-            href={PageRoutes.events}
-            className="mt-xl w-fit mx-auto"
-          >
-            View other Wind Events
-          </Button>
+          <Link href={PageRoutes.events}>
+            <AnimativeFillButton size="lg">View other Wind Events</AnimativeFillButton>
+          </Link>
         </div>
       </div>
 
@@ -217,7 +213,6 @@ const NextGen = async () => {
           title="Add your child to the register"
           description=" Ut assumenda eius consequatur magni nisi temporibus debitis excepturi pariatur beatae corporis, laborum ea sed soluta reprehenderit inventore unde nihil eaque alias?"
         />
-
         <NextGenRosterSignupForm />
       </div>
 

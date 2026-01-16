@@ -30,7 +30,7 @@ const MinistryCard: React.FC<MinistryCardProps> = ({ name, description, slug, im
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 rounded-xl" />
 
       <div
-        className={`relative w-full h-full z-20 pt-[200px] md:pt-[100px] flex flex-col justify-end ${flip ? 'md:items-start' : 'md:items-end md:text-right'} gap-md text-white`}
+        className={`relative w-full h-full z-20 pt-7xl md:pt-4xl flex flex-col justify-end ${flip ? 'md:items-start' : 'md:items-end md:text-right'} gap-md text-white`}
       >
         <h2>{name}</h2>
         <div className="body-large line-clamp-2 md:max-w-[40%]">{description}</div>

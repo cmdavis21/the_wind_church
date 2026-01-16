@@ -109,9 +109,9 @@ const ProductPage = (product: Product) => {
         {/* LEFT DECORATIVE BORDER */}
         <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
 
-        <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 gap-[50px]">
+        <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 gap-xxl max-width-center">
           {/* MEDIA */}
-          <div className="md:sticky md:top-[100px] h-fit pb-sm">
+          <div className="md:sticky md:top-4xl h-fit pb-sm">
             <SingleSlideMediaCarousel
               media={product.images.map((img) => ({
                 src: img.src,
@@ -161,7 +161,7 @@ const ProductPage = (product: Product) => {
             </div>
 
             {/* OPTIONS */}
-            <div className="pb-lg flex flex-col gap-[25px]">
+            <div className="pb-lg flex flex-col gap-lg">
               {product.options &&
                 product.options.map((opt) => (
                   <MultiTextRadioContainer
@@ -242,7 +242,7 @@ const ProductPage = (product: Product) => {
             </div>
 
             {/* MISCELLANEOUS INFO */}
-            <div className="pt-xl flex flex-col gap-[25px]">
+            <div className="pt-xl flex flex-col gap-lg">
               {MISCELLANEOUS_DETAIL.map(({ detail, description }) => (
                 <div
                   key={detail}

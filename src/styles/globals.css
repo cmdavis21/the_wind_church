@@ -60,9 +60,6 @@ body {
   div {
     @apply leading-[22px] xl:leading-[24px] font-normal text-[14px] xl:text-[16px];
   }
-  figcaption {
-    @apply leading-[14px] font-light text-[12px];
-  }
   .body-large {
     @apply leading-[24px] xl:leading-[26px] font-normal text-[16px] xl:text-[18px];
   }
@@ -81,23 +78,17 @@ body {
   .pt-padding {
     @apply pt-[25px] md:pt-[50px] lg:pt-[100px] min-[1800px]:pt-[150px];
   }
-  .pb-padding {
-    @apply pb-[25px] md:pb-[50px] lg:pb-[100px] min-[1800px]:pb-[150px];
-  }
   .nav-padding {
     @apply pt-[125px] lg:pt-[150px];
   }
   .mx-padding {
     @apply mx-[25px] md:mx-[50px] xl:mx-[100px] min-[1800px]:mx-[200px];
   }
-  .my-padding {
-    @apply my-[25px] md:my-[50px] lg:my-[100px] min-[1800px]:my-[100px];
-  }
-  .m-padding {
-    @apply m-[25px] md:m-[50px] lg:m-[100px] min-[1800px]:mx-[200px] min-[1800px]:my-[150px];
+  .max-width {
+    @apply w-full max-w-[1800px];
   }
   .max-width-center {
-    @apply max-w-[1800px] mx-auto;
+    @apply w-full max-w-[1800px] mx-auto;
   }
 }
 

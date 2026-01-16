@@ -20,7 +20,7 @@ const WindLeadersClient = () => {
   }
 
   return (
-    <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeader title="The Leaders" subtitle="Get to know your leaders in the church." />
 
       {leadersLoading &&

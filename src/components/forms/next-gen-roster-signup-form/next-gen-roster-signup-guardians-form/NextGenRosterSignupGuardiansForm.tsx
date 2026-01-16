@@ -60,7 +60,7 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
               onClick={() => removeGuardian(guardianIndex)}
               className={`${
                 guardianIndex === 0 ? 'hidden' : ''
-              } w-fit flex items-center gap-[4px] body-small text-error hover:underline`}
+              } w-fit flex items-center gap-1 body-small text-error hover:underline`}
             >
               <Trash className="size-[12px] fill-error" /> Remove Guardian
             </button>
@@ -146,9 +146,9 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
               relationship_to_child: '',
             })
           }
-          className="w-fit flex items-center gap-[4px] body-large hover:underline text-light-navyLight"
+          className="w-fit flex items-center gap-1 body-large hover:underline text-light-navyLight"
         >
-          <CirclePlus className="size-[16px] fill-light-navyLight" />
+          <CirclePlus className="size-[16px] fill-light-navy dark:fill-dark-navy" />
           Add another guardian
         </button>
       )}

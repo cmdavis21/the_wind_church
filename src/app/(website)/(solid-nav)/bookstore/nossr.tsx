@@ -20,7 +20,7 @@ const BookstoreClient = () => {
   }
 
   return (
-    <div className="px-padding flex flex-col gap-xxl">
+    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeaderWithBackground
         media={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/open_sign.webp`,
@@ -31,7 +31,7 @@ const BookstoreClient = () => {
         subtitle="Grab the latest Wind Gear and supplies here."
       />
 
-      <div className="relative max-w-[1440px] flex flex-col gap-xxl">
+      <div className="relative max-width-center flex flex-col gap-xxl">
         {/* LOADING */}
         {collectionsLoading &&
           Array.from({ length: 4 }).map((_, index) => (

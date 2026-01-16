@@ -45,7 +45,9 @@ const MinistriesClient = () => {
 
   if (ministriesError) {
     return (
-      <ErrorPage description="There are no ministries at this time. Please check again later." />
+      <div className="pt-padding">
+        <ErrorPage description="There are no ministries at this time. Please check again later." />
+      </div>
     );
   }
 
@@ -58,7 +60,7 @@ const MinistriesClient = () => {
         media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg` }}
       />
 
-      <div className="p-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+      <div className="p-padding flex flex-col gap-3xl lg:gap-5xl 2xl:gap-6xl max-width-center">
         {/* LOADING */}
         {ministriesLoading &&
           Array.from({ length: 5 }).map((_, index) => (

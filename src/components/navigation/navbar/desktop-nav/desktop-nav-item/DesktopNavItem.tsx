@@ -20,8 +20,8 @@ const DesktopNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
           <h5
             className={`${
               changeColor
-                ? 'text-light-primaryText dark:text-dark-primaryText'
-                : 'text-white dark:text-dark-primaryText'
+                ? 'text-black dark:text-dark-primaryText'
+                : 'text-white text-dark-primaryText'
             } whitespace-nowrap tracking-wider uppercase font-normal`}
           >
             {label}

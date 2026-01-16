@@ -16,7 +16,7 @@ const OrdersClient = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [customerData, setCustomerData] = useState<CustomerData | undefined>(undefined);
   return (
-    <div className="px-padding flex flex-col gap-xxl max-w-[1440px] mx-auto">
+    <div className="px-padding flex flex-col gap-xxl lg:gap-3xl max-width-center">
       <PageHeaderWithBackground
         short
         media={{

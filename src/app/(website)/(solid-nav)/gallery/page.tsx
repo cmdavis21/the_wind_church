@@ -1,11 +1,13 @@
 import { Metadata } from 'next';
 
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
-import ImageCardWithModal from '@/components/cards/image-card-with-modal/ImageCardWithModal';
+import {
+  default as ImageCard,
+  default as ImageCardWithModal,
+} from '@/components/cards/image-card/ImageCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import ErrorPage from '@/components/error-page/ErrorPage';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
-import GalleryMasonryGrid from '@/components/masonry-grids/gallery-masonry-grid/GalleryMasonryGrid';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { WEBSITE_BASE_URL } from '@/data/constants';
 import { getGalleryImages } from '@/data/services/aws/s3/gallery';
@@ -29,7 +31,7 @@ const Gallery = async () => {
   }
 
   return (
-    <div className="px-padding flex flex-col gap-xxl lg:gap-[100px] 2xl:gap-[125px]">
+    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeader
         title="The Gallery"
         subtitle="View photos of great times spent together in the Wind family."
@@ -40,20 +42,25 @@ const Gallery = async () => {
           <SectionHeader title={category.title} subtitle="Select a photo and view the memories" />
 
           {/* Desktop */}
-          <div className="hidden md:block">
-            <GalleryMasonryGrid images={category.urls} />
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
+            {category.urls.map((src) => (
+              <ImageCard
+                key={`wind-gallery-${src}`}
+                src={src}
+                alt="The Wind Church Gallery Image"
+              />
+            ))}
           </div>
 
           {/* Mobile */}
           <SimpleCarousel
             showDots={false}
             className="md:hidden"
-            slides={category.urls.map((img) => (
+            slides={category.urls.map((src) => (
               <ImageCardWithModal
-                key={`wind-gallery-mobile-${img}`}
-                src={img}
-                alt="wind gallery image"
-                className="w-full min-w-[200px] max-w-[500px] aspect-square"
+                key={`wind-gallery-mobile-${src}`}
+                src={src}
+                alt="The Wind Church Gallery Image"
               />
             ))}
           />

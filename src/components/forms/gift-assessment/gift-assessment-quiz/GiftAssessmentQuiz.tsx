@@ -1,12 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Alert, Button, Radio } from 'flowbite-react';
+import { Button, Radio } from 'flowbite-react';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { GiftAssessmentDefinition, GiftAssessmentQuestion } from '@/data/types';
 
-import CircleExlaimation from '@/components/icons/circle-exclaimation';
+import AlertMessage from '../../inputs/alert-message/AlertMessage';
 
 const schema = yup.object().shape({
   answers: yup
@@ -170,12 +170,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
               </div>
 
               {errors.answers?.[index]?.score?.message && (
-                <Alert color="failure" className="col-span-6" withBorderAccent>
-                  <span className="flex items-center gap-sm">
-                    <CircleExlaimation className="fill-error min-w-[20px] min-h-[20px]" />
-                    {errors.answers[index].score?.message}
-                  </span>
-                </Alert>
+                <AlertMessage type="failure" title={errors.answers[index].score?.message} />
               )}
 
               {index !== questions.length - 1 && (
@@ -187,28 +182,22 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
           {Array.isArray(errors.answers) &&
             errors.answers.length > 0 &&
             errors.answers.some((s) => s.score) && (
-              <Alert color="failure" withBorderAccent>
-                <span className="flex items-center gap-sm">
-                  <CircleExlaimation className="fill-error min-w-[20px] min-h-[20px]" />
-                  <span className="whitespace-nowrap">
-                    Please answer question{errors.answers.length > 1 && '(s)'}:
-                  </span>{' '}
-                  <span className="font-bold">
-                    {errors.answers
-                      .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
-                      .map((error) => {
-                        //Extract number inside brackets using regex
-                        const match = error.questionId.message.match(/\[(\d+)\]/); //Match the number inside brackets
-                        if (match) {
-                          const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
-                          return questionNumber;
-                        }
-                        return 'Unknown'; // Fallback if no match is found
-                      })
-                      .join(', ')}
-                  </span>
-                </span>
-              </Alert>
+              <AlertMessage
+                type="failure"
+                title={`Answer question${errors.answers.length > 1 && '(s)'}:`}
+                description={errors.answers
+                  .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
+                  .map((error) => {
+                    //Extract number inside brackets using regex
+                    const match = error.questionId.message.match(/\[(\d+)\]/); //Match the number inside brackets
+                    if (match) {
+                      const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
+                      return questionNumber;
+                    }
+                    return 'Unknown'; // Fallback if no match is found
+                  })
+                  .join(', ')}
+              />
             )}
 
           <div className="pt-xl flex flex-col gap-lg">
@@ -268,12 +257,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
             </div>
 
             {errors.answers?.[index]?.score?.message && (
-              <Alert color="failure" className="col-span-6" withBorderAccent>
-                <span className="flex items-center gap-sm">
-                  <CircleExlaimation className="fill-error min-w-[20px] min-h-[20px]" />
-                  {errors.answers[index].score?.message}
-                </span>
-              </Alert>
+              <AlertMessage type="failure" title={errors.answers[index].score?.message} />
             )}
 
             {index !== questions.length - 1 && (
@@ -285,26 +269,22 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
         {Array.isArray(errors.answers) &&
           errors.answers.length > 0 &&
           errors.answers.some((s) => s.score) && (
-            <Alert color="failure" withBorderAccent>
-              <span className="flex items-center gap-sm pb-sm">
-                <CircleExlaimation className="fill-error min-w-[20px] min-h-[20px]" />
-                Please answer question{errors.answers.length > 1 && '(s)'}:
-              </span>
-              <span className="font-bold">
-                {errors.answers
-                  .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
-                  .map((error) => {
-                    //Extract number inside brackets using regex
-                    const match = error.questionId.message.match(/\[(\d+)\]/); //Match the number inside brackets
-                    if (match) {
-                      const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
-                      return questionNumber;
-                    }
-                    return 'Unknown'; // Fallback if no match is found
-                  })
-                  .join(', ')}
-              </span>
-            </Alert>
+            <AlertMessage
+              type="failure"
+              title={`Answer question${errors.answers.length > 1 && '(s)'}:`}
+              description={errors.answers
+                .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
+                .map((error) => {
+                  //Extract number inside brackets using regex
+                  const match = error.questionId.message.match(/\[(\d+)\]/); //Match the number inside brackets
+                  if (match) {
+                    const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
+                    return questionNumber;
+                  }
+                  return 'Unknown'; // Fallback if no match is found
+                })
+                .join(', ')}
+            />
           )}
 
         <div className="pt-xl flex flex-col gap-lg">

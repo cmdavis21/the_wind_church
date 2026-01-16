@@ -13,7 +13,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ changeColor }) => {
     <div className="relative inline-block group">
       <button className="flex flex-col items-center justify-center gap-[2px] hover:cursor-pointer">
         <VerticalEllipsis
-          className={cn(changeColor ? 'fill-black dark:fill-white' : 'fill-white', 'size-[25px]')}
+          className={cn(changeColor ? 'fill-black dark:fill-white' : 'fill-white', 'size-lg')}
         />
 
         {/* Decorative underline */}

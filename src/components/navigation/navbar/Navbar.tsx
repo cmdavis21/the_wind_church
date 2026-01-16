@@ -75,7 +75,7 @@ const Navbar: React.FC<{ solidNav?: boolean }> = ({ solidNav = false }) => {
     <nav
       className={cn(
         'fixed !z-50 left-0 w-full transition-[colors, top] duration-700',
-        !solidNav && !changeNavColor && 'bg-gradient-to-b from-black/20',
+        !solidNav && !changeNavColor && 'bg-gradient-to-b from-black/10',
         showNavOnScroll ? 'top-0' : '-top-[110px]'
       )}
     >
