@@ -62,6 +62,7 @@ const BookstoreClient = () => {
                   .sort((a, b) => a.title.localeCompare(b.title))
                   .map((prod) => (
                     <ProductCard
+                      key={`bookstore-product-${prod.title}`}
                       image={prod.image}
                       title={prod.title}
                       minPrice={prod.minPrice}

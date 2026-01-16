@@ -32,7 +32,11 @@ const Events = async () => {
           {/* Desktop */}
           <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xxl 2xl:px-padding">
             {events.map((event: Event) => (
-              <EventCard event={event} scale={isAfter(event.date, new Date())} />
+              <EventCard
+                key={`event-card-${event.name}`}
+                event={event}
+                scale={isAfter(event.date, new Date())}
+              />
             ))}
           </div>
 

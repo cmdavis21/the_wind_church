@@ -4,12 +4,12 @@ import Bullhorn from '@/components/icons/bullhorn';
 import Calendar from '@/components/icons/calendar';
 import ChildReaching from '@/components/icons/child-reaching';
 
-import LinkIcon from '@/components/icons/link';
 import PencilPaper from '@/components/icons/pencilPaper';
 
 import AddressCard from '@/components/icons/address-card';
 import Gift from '@/components/icons/gift';
 import Globe from '@/components/icons/globe';
+import Handshake from '@/components/icons/handshake';
 import PeopleGroup from '@/components/icons/people-group';
 import PersonPraying from '@/components/icons/person-praying';
 import PersonWithChalkboard from '@/components/icons/person-with-chalkboard';
@@ -39,7 +39,7 @@ const formsDocsWithIcons: docAttributes[] = [
   { id: 'rightnowMedia', title: 'Rightnow Media Signups', icon: TV },
   { id: 'eventRental', title: 'Event Rental Inquiries', icon: Calendar },
   { id: 'giftAssessment', title: 'Gift Assessments', icon: Gift },
-  { id: 'ministryConnection', title: 'Ministry Connection', icon: LinkIcon },
+  { id: 'ministryConnection', title: 'Ministry Connection', icon: Handshake },
   { id: 'visitorFeedback', title: 'Visitor Feedback', icon: Bullhorn },
   { id: 'nextGenRosterSignup', title: 'Next Gen Roster Signup', icon: ChildReaching },
 ];

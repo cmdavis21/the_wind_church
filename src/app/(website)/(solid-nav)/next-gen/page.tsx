@@ -128,7 +128,11 @@ const NextGen = async () => {
           {events && events.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xxl">
               {events.map((event: Event) => (
-                <EventCard event={event} scale={isAfter(event.date, new Date())} />
+                <EventCard
+                  key={`event-card-${event.name}`}
+                  event={event}
+                  scale={isAfter(event.date, new Date())}
+                />
               ))}
             </div>
           ) : (

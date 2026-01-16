@@ -52,16 +52,12 @@ export type Event = {
   name: string;
   date: Date;
   time: Time;
-  description?: string;
+  description: string;
   location: string;
   ministry_event?: string;
   external_host?: string;
-  contact?: {
-    first_name: Leader['first_name'];
-    last_name: Leader['last_name'];
-    position: Leader['position'];
-  };
   cost?: string;
+  categories?: string[];
   how_to_signup?: string;
   help_needed?: string[];
   image: Image;

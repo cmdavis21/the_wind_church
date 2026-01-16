@@ -1,10 +1,7 @@
 import Accordion from '@/components/accordion/Accordion';
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import EventCard from '@/components/cards/event-card/EventCard';
-import {
-  default as ImageCard,
-  default as ImageCardWithModal,
-} from '@/components/cards/image-card/ImageCard';
+import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
@@ -116,7 +113,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
               showDots={false}
               className="md:hidden"
               slides={selectGallery.map((src) => (
-                <ImageCardWithModal
+                <ImageCard
                   key={`wind-gallery-mobile-${src}`}
                   src={src}
                   alt="The Wind Church Gallery Image"
@@ -136,7 +133,11 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             {events && events.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xxl">
                 {events.map((event: Event) => (
-                  <EventCard event={event} scale={isAfter(event.date, new Date())} />
+                  <EventCard
+                    key={`event-card-${event.name}`}
+                    event={event}
+                    scale={isAfter(event.date, new Date())}
+                  />
                 ))}
               </div>
             ) : (

@@ -1,7 +1,6 @@
 import { isAfter } from 'date-fns';
-import { portableTextToString } from '../utils';
-import { SanityQuery } from '../zeus-chain';
 import { Event } from '../../../types';
+import { SanityQuery } from '../zeus-chain';
 
 const getAllEventsQuery = async () => {
   return await SanityQuery({
@@ -23,13 +22,6 @@ const getAllEventsQuery = async () => {
           name: true,
         },
         external_host: true,
-        contact: {
-          contact: {
-            first_name: true,
-            last_name: true,
-          },
-          position: true,
-        },
         cost: true,
         how_to_signup: true,
         help_needed: true,
@@ -67,17 +59,10 @@ export const getAllEvents = async ({
       time_of_day: event.time?.time_of_day ?? '',
     },
     categories: (event.categories as string[]) ?? undefined,
-    description: portableTextToString(event.description as any) ?? undefined,
+    description: event.description ?? '',
     location: event.location ?? '',
     ministry_event: event.ministry_event?.name ?? undefined,
     external_host: event.external_host ?? undefined,
-    contact: event.contact
-      ? {
-          first_name: event.contact?.contact?.first_name ?? '',
-          last_name: event.contact?.contact?.last_name ?? '',
-          position: event.contact?.position ?? '',
-        }
-      : undefined,
     cost: event.cost ?? undefined,
     how_to_signup: event.how_to_signup ?? undefined,
     help_needed: (event.help_needed as string[]) ?? undefined,

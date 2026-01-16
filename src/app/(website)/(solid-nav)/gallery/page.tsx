@@ -1,10 +1,7 @@
 import { Metadata } from 'next';
 
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
-import {
-  default as ImageCard,
-  default as ImageCardWithModal,
-} from '@/components/cards/image-card/ImageCard';
+import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import ErrorPage from '@/components/error-page/ErrorPage';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
@@ -57,7 +54,7 @@ const Gallery = async () => {
             showDots={false}
             className="md:hidden"
             slides={category.urls.map((src) => (
-              <ImageCardWithModal
+              <ImageCard
                 key={`wind-gallery-mobile-${src}`}
                 src={src}
                 alt="The Wind Church Gallery Image"
