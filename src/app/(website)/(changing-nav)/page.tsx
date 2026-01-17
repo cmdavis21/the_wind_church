@@ -1,7 +1,6 @@
 import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
-import VideoPlaylistCarousel from '@/components/carousels/video-playlist-carousel/VideoPlaylistCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent, {
@@ -11,7 +10,6 @@ import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import VideoWithTitle from '@/components/video/video-with-title/VideoWithTitle';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
-import { getRecentVideos } from '@/data/services/youtube/playlists';
 import { styleSelectedWords } from '@/data/utils';
 import { Button } from 'flowbite-react';
 import Link from 'next/link';
@@ -27,7 +25,7 @@ export async function generateMetadata() {
 }
 
 const Home = async () => {
-  const recentVideos = await getRecentVideos();
+  // const recentVideos = await getRecentVideos();
 
   const exploreOptions = [
     {
@@ -254,7 +252,7 @@ const Home = async () => {
               </Button>
             </Link>
           </div>
-          <VideoPlaylistCarousel playlist={recentVideos} />
+          {/* <VideoPlaylistCarousel playlist={recentVideos} /> */}
         </div>
 
         {/* EXPLORE CTAs */}

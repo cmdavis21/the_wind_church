@@ -6,8 +6,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-manrope)', 'sans-serif'],
-        display: ['var(--font-permanent-marker)', 'cursive'],
+        sans: ['var(--font-manrope)'],
+        display: ['var(--font-permanent-marker)'],
       },
       width: {
         lg: '25px',

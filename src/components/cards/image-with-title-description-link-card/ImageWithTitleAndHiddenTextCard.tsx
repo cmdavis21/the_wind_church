@@ -45,7 +45,7 @@ const ImageWithTitleDescriptionLinkCard: React.FC<ImageWithTitleDescriptionLinkC
               </h3>
               <h5 className="text-left">{description}</h5>
             </div>
-            <div className="group-hover:bg-brand-primary/50 rounded-full size-12 min-w-12 flex items-center justify-center transition-colors duration-200">
+            <div className="group-hover:bg-brand-primary/50 rounded-full size-12 min-w-12 flex items-center justify-center delay-75 transition-colors duration-200">
               <UpArrow className="size-[30px] fill-white rotate-45 group-hover:rotate-90 transition-all duration-300" />
             </div>
           </div>

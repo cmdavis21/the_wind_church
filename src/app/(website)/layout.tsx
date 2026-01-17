@@ -1,7 +1,6 @@
 import Footer from '@/components/navigation/footer/Footer';
 import QueryProvider from '@/data/providers/query-provider';
 import ThemeModeProvider from '@/data/providers/theme-mode-provider';
-import '@/styles/globals.css';
 import { theme } from '@/styles/theme';
 import { Flowbite } from 'flowbite-react';
 import { NextIntlClientProvider } from 'next-intl';

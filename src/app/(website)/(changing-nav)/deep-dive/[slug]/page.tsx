@@ -49,22 +49,6 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         {/* DESCRIPTION */}
         <h3 className="xl:text-[24px]">{deepDive.description}</h3>
 
-        {/* ACCEPTING NEW STUDENTS */}
-        {deepDive.accepting_new_students ? (
-          <AlertMessage
-            type="success"
-            title="Accepting New Students!"
-            description="Don't wait, join and grow your connection to Jesus ands strive to be spirit-filled and spirit-led!"
-          />
-        ) : (
-          <AlertMessage
-            type="failure"
-            title="Not accepting new students"
-            description="Due to time-sensitive structure and flow of the deep dive and in respect to student learning, this deep
-                dive cannot accept new students."
-          />
-        )}
-
         {/* INSTRUCTORS */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <SectionHeader title="Meet the Instructors" subtitle="Select Leaders to learn more" />
@@ -95,6 +79,23 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         {/* MISC DETAILS */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">
           <SectionHeader title="The Details" subtitle="It’s the finer things..." />
+
+          {/* ACCEPTING NEW STUDENTS */}
+          {deepDive.accepting_new_students ? (
+            <AlertMessage
+              type="success"
+              title="Accepting New Students!"
+              description="Don't wait, join and grow your connection to Jesus ands strive to be spirit-filled and spirit-led!"
+            />
+          ) : (
+            <AlertMessage
+              type="failure"
+              title="Not accepting new students"
+              description="Due to time-sensitive structure and flow of the deep dive and in respect to student learning, this deep
+                dive cannot accept new students."
+            />
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md justify-between">
             {/* START / END DATE */}
             <div className="flex flex-col gap-sm">

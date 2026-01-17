@@ -1,4 +1,4 @@
-import { manrope, permanentMarker } from '@/styles/font';
+import '@/styles/fonts.css';
 import '@/styles/globals.css';
 import { ThemeModeScript } from 'flowbite-react';
 
@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${permanentMarker.variable}`}>
+    <html lang="en">
       <head>
         <ThemeModeScript />
       </head>
