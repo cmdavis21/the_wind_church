@@ -1,8 +1,8 @@
 'use client';
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
-import Play from '@/components/icons/play';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import cn from 'classnames';
+import { Button } from 'flowbite-react';
 import React, { useRef, useState } from 'react';
 
 interface VideoWithTitleProps {
@@ -21,7 +21,6 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
   fullscreen = true,
 }) => {
   const [initialPlaying, setInitialPlaying] = useState(true);
-  const [initialPlayingMobile, setInitialPlayingMobile] = useState(true);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -42,11 +41,8 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
   const toggleMobilePlayback = () => {
     const video = mobileVideoRef.current;
     if (!video) return;
-    if (initialPlayingMobile || video.currentTime >= video.duration) video.currentTime = 0;
-    if (initialPlayingMobile) {
-      video.play();
-      setInitialPlayingMobile(false);
-    } else mobileIsPaused ? video.play() : video.pause();
+    if (video.currentTime >= video.duration) video.currentTime = 0;
+    mobileIsPaused ? video.play() : video.pause();
   };
 
   return (
@@ -91,11 +87,13 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
           <div className="flex flex-col items-center justify-center gap-lg">
             <h2 className="text-brand-primary font-bold">{title}</h2>
             {subtitle && <h4 className="text-light-gray dark:text-dark-neutral">{subtitle}</h4>}
-            <AnimativeFillButton onClick={togglePlayback} size="xl" className="mt-sm">
-              <div className="flex items-center gap-xxs body-large font-bold">
-                <Play className="size-[18px] fill-light-primaryText dark:fill-dark-primaryText" />
-                Watch
-              </div>
+            <AnimativeFillButton
+              onClick={togglePlayback}
+              size="xl"
+              className="mt-sm"
+              contentClass="font-bold"
+            >
+              Watch Video
             </AnimativeFillButton>
           </div>
         </div>
@@ -110,10 +108,7 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
           <video
             ref={mobileVideoRef}
             poster={poster}
-            loop={initialPlayingMobile}
-            muted={initialPlayingMobile}
-            controls={!initialPlayingMobile}
-            autoPlay={initialPlayingMobile}
+            controls={!mobileIsPaused}
             onPlay={() => setMobileIsPaused(false)}
             onPause={() => setMobileIsPaused(true)}
             className={cn(
@@ -131,12 +126,15 @@ const VideoWithTitle: React.FC<VideoWithTitleProps> = ({
               'transition-opacity duration-500 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
             )}
           >
-            <AnimativeFillButton onClick={toggleMobilePlayback}>
-              <div className="flex items-center gap-xxs">
-                <Play className="fill-light-primaryText dark:fill-dark-primaryText" />
-                Watch
-              </div>
-            </AnimativeFillButton>
+            <Button
+              pill
+              size="sm"
+              color="primary"
+              className="font-bold"
+              onClick={toggleMobilePlayback}
+            >
+              Watch Video
+            </Button>
           </div>
         </div>
       </div>

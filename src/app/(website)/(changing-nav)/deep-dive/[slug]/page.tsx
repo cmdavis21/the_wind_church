@@ -47,7 +47,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
 
       <div className="pt-padding px-padding flex flex-col gap-xxl max-width-center">
         {/* DESCRIPTION */}
-        <h3 className="xl:text-[24px]">{deepDive.description}</h3>
+        <h4 className="xl:text-[24px]">{deepDive.description}</h4>
 
         {/* INSTRUCTORS */}
         <div className="flex flex-col gap-xl md:gap-xxl lg:pt-xl">

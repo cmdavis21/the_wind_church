@@ -4,6 +4,13 @@ export const EventSchema = {
   name: 'event',
   title: 'Events',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'eventOrganizer',
+      title: 'Event Organizer',
+      options: { collapsible: false, collapsed: false },
+    },
+  ],
   fields: [
     defineField({
       name: 'name',
@@ -115,13 +122,15 @@ export const EventSchema = {
       title: 'Ministry Event',
       type: 'reference',
       to: [{ type: 'ministry' }],
-      description: 'Select if a Ministry is the organizer/host for this event.',
+      description: 'Select if a Ministry is the organizer for this event.',
+      fieldset: 'eventOrganizer',
     }),
     defineField({
       name: 'external_host',
       type: 'string',
       title: 'External Host',
-      description: 'Is there an external organization/host for this event?',
+      description: 'Is there an external organization for this event?',
+      fieldset: 'eventOrganizer',
     }),
     defineField({
       name: 'help_needed',
@@ -136,6 +145,12 @@ export const EventSchema = {
       title: 'Cost',
       description:
         'Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket)',
+    }),
+    defineField({
+      name: 'additional_notes',
+      type: 'string',
+      title: 'Additional Notes',
+      description: 'Are there any additional notes or instructions to add?',
     }),
   ],
 };

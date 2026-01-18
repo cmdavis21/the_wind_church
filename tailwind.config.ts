@@ -5,6 +5,7 @@ const config: Config = {
   content: [flowbite.content(), './src/**/*.{js,jsx,ts,tsx}', './public/**/*.html'],
   theme: {
     extend: {
+      darkMode: 'media', // or 'class'
       fontFamily: {
         sans: ['var(--font-manrope)'],
         display: ['var(--font-permanent-marker)'],

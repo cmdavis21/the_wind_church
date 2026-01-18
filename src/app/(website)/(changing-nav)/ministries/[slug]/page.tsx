@@ -1,5 +1,4 @@
 import Accordion from '@/components/accordion/Accordion';
-import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import EventCard from '@/components/cards/event-card/EventCard';
 import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
@@ -13,10 +12,11 @@ import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { getGalleryImages } from '@/data/services/aws/s3/gallery';
-import { getAllEvents } from '@/data/services/sanity/queries/events';
+import { getMinistryEvents } from '@/data/services/sanity/queries/events';
 import { getAllMinistries, getMinistryBySlug } from '@/data/services/sanity/queries/ministries';
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
+import { Button } from 'flowbite-react';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
@@ -43,7 +43,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
   const { slug } = await params;
   const ministry = await getMinistryBySlug(slug);
   const { selectGallery } = await getGalleryImages(ministry?.name);
-  const events = await getAllEvents({ hostName: ministry?.name });
+  const events = await getMinistryEvents(ministry?.name ?? '');
 
   if (!ministry) {
     return <ErrorPage description="Sorry, this page must be missing! Please try again later." />;
@@ -98,7 +98,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             />
 
             {/* Desktop */}
-            <div className="hidden md:grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
+            <div className="hidden md:grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
               {selectGallery.map((src) => (
                 <ImageCard
                   key={`wind-gallery-${src}`}
@@ -129,9 +129,9 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             title="Ministry Events"
             description="Look out for fun workshops, fellowships, and more at the Wind!"
           />
-          <div className="2xl:px-padding flex flex-col justify-center gap-xl">
+          <div className="2xl:px-padding flex flex-col items-center gap-xl">
             {events && events.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xxl">
+              <div className="w-full flex flex-wrap justify-center gap-xxl">
                 {events.map((event: Event) => (
                   <EventCard
                     key={`event-card-${event.name}`}
@@ -144,7 +144,9 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
               <h4 className="text-center">No events at this time</h4>
             )}
             <Link href={PageRoutes.events}>
-              <AnimativeFillButton size="lg">View other Wind Events</AnimativeFillButton>
+              <Button pill color="primary" size="lg">
+                View other Wind Events
+              </Button>
             </Link>
           </div>
         </div>

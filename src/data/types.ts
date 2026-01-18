@@ -59,6 +59,7 @@ export type Event = {
   cost?: string;
   categories?: string[];
   how_to_signup?: string;
+  additional_notes?: string;
   help_needed?: string[];
   image: Image;
 };

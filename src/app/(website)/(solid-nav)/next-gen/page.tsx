@@ -1,5 +1,4 @@
 import Accordion from '@/components/accordion/Accordion';
-import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import EventCard from '@/components/cards/event-card/EventCard';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
@@ -10,10 +9,11 @@ import PageHeaderWithBackground from '@/components/heroes/page-header-with-backg
 import Baby from '@/components/icons/baby';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
+import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
-import { getAllEvents } from '@/data/services/sanity/queries/events';
+import { getMinistryEvents } from '@/data/services/sanity/queries/events';
 import { getNextGenPage } from '@/data/services/sanity/queries/next-gen-page';
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
 
 const NextGen = async () => {
   const nextGenPageInfo = await getNextGenPage();
-  const events = await getAllEvents({ hostName: 'Next Gen' });
+  const events = await getMinistryEvents('Next Gen');
   return (
-    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeaderWithBackground
         media={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_group.jpg`,
@@ -45,46 +45,52 @@ const NextGen = async () => {
         subtitle="Sunday Services provided for infants to High School children"
       />
 
-      {/* Core Principles */}
+      {/* CORE PRINCIPLES */}
       <div className="flex flex-col gap-xl md:gap-xxl">
         <CenterTextSection
           highlight={[[0, 0]]}
           title="Core Principles"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, cum reiciendis ad, maiores quaerat"
+          description="We believe every child—infant through high school—is uniquely created by God and worthy of intentional care, discipleship, and joy‑filled community. Our Next Gen ministry is built on principles that help young hearts grow in faith, character, and confidence as they discover who they are in Christ"
         />
         <div className="flex flex-wrap gap-xxl justify-center">
           <ImageWithTitleDescriptionCard
             alt=""
             src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_2.jpg`}
             title="Christ-Centered Studies"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
+            description="Through interactive teaching, worship, and hands‑on learning, we guide students to build a strong foundation in Christ that will carry them through every season of life."
           />
           <ImageWithTitleDescriptionCard
             alt=""
             src={`${AWS_ASSET_BASE_URL}/placeholder-media/kid_outside.jpg`}
-            title="Fun Indoor/Activities"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
+            title="Creative Fun & Exploration"
+            description="From creative crafts and games to outdoor play and team‑building activities, our environments are designed to spark curiosity, build friendships, and make church a place kids are excited to be every week."
           />
           <ImageWithTitleDescriptionCard
             alt=""
             src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_1.jpg`}
-            title="Respect and Love for one another"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex numquam maiores ut. consectetur adipisicing elit. Ex numquam maiores ut."
+            title="Respect and Love"
+            description="Through guided conversations, positive role‑modeling, and Christ‑like encouragement, we teach students how to treat others with kindness, empathy, and respect—reflecting the heart of Jesus in their everyday lives."
           />
         </div>
         {nextGenPageInfo && nextGenPageInfo.cirriculum_file && (
           <a
+            className="mx-auto"
             href={nextGenPageInfo.cirriculum_file}
             download="the_wind_church_youth_service_cirriculum.pdf"
           >
-            <Button color="primary" size="lg" pill className="mx-auto">
+            <Button pill color="primary" size="lg">
               Download Cirriculum
             </Button>
           </a>
         )}
       </div>
 
-      {/* Educators */}
+      <PassageQuote
+        passage="Let no one despise your youth, but set an example for the believers in speech, in conduct, in love, in faith, and in purity"
+        verse="1 Timothy 4:12"
+      />
+
+      {/* EDUCATORS */}
       {nextGenPageInfo && nextGenPageInfo.educators && (
         <div className="flex flex-col gap-xl md:gap-xxl">
           <SectionHeader
@@ -118,15 +124,15 @@ const NextGen = async () => {
         </div>
       )}
 
-      {/* Upcoming Events for Youth */}
+      {/* EVENTS */}
       <div className="flex flex-col gap-xl md:gap-xxl">
         <CenterTextSection
-          title="Youth Events"
+          title="Next Gen Events"
           description="Look out for fun, adventurous, and learning-focused events for the Wind youth!"
         />
-        <div className="2xl:px-padding flex flex-col justify-center gap-xl">
+        <div className="2xl:px-padding flex flex-col items-center gap-xl">
           {events && events.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xxl">
+            <div className="w-full flex flex-wrap justify-center gap-xxl">
               {events.map((event: Event) => (
                 <EventCard
                   key={`event-card-${event.name}`}
@@ -139,12 +145,14 @@ const NextGen = async () => {
             <h4 className="text-center">No events at this time</h4>
           )}
           <Link href={PageRoutes.events}>
-            <AnimativeFillButton size="lg">View other Wind Events</AnimativeFillButton>
+            <Button pill color="primary" size="lg">
+              View other Wind Events
+            </Button>
           </Link>
         </div>
       </div>
 
-      {/* Nursery */}
+      {/* NURSERY CTA */}
       <MediaBackgroundAndContent
         fullWidth={false}
         background={{
@@ -211,7 +219,7 @@ const NextGen = async () => {
         />
       </div>
 
-      {/* Signup Form */}
+      {/* ROSTER SIGNUP */}
       <div className="flex flex-col gap-xl md:gap-xxl">
         <CenterTextSection
           title="Add your child to the register"

@@ -28,7 +28,7 @@ const Gallery = async () => {
   }
 
   return (
-    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeader
         title="The Gallery"
         subtitle="View photos of great times spent together in the Wind family."
@@ -39,7 +39,7 @@ const Gallery = async () => {
           <SectionHeader title={category.title} subtitle="Select a photo and view the memories" />
 
           {/* Desktop */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
+          <div className="hidden md:flex flex-wrap gap-lg max-lg:justify-center 2xl:px-padding">
             {category.urls.map((src) => (
               <ImageCard
                 key={`wind-gallery-${src}`}

@@ -558,10 +558,10 @@ export const AllTypesProps: Record<string,any> = {
 		image:"ImageFilter",
 		location:"StringFilter",
 		how_to_signup:"StringFilter",
-		contact:"LeaderFilter",
 		ministry_event:"MinistryFilter",
 		external_host:"StringFilter",
-		cost:"StringFilter"
+		cost:"StringFilter",
+		additional_notes:"StringFilter"
 	},
 	DateFilter:{
 		eq:"Date",
@@ -608,27 +608,6 @@ export const AllTypesProps: Record<string,any> = {
 		left:"FloatFilter",
 		right:"FloatFilter"
 	},
-	LeaderFilter:{
-		_:"Sanity_DocumentFilter",
-		_id:"IDFilter",
-		_type:"StringFilter",
-		_createdAt:"DatetimeFilter",
-		_updatedAt:"DatetimeFilter",
-		_rev:"StringFilter",
-		_key:"StringFilter",
-		contact:"ContactFilter",
-		position:"StringFilter",
-		category:"StringFilter",
-		description:"StringFilter",
-		image:"ImageFilter",
-		video:"FileFilter"
-	},
-	FileFilter:{
-		_key:"StringFilter",
-		_type:"StringFilter",
-		asset:"SanityFileAssetFilter",
-		media:"GlobalDocumentReferenceFilter"
-	},
 	MinistryFilter:{
 		_:"Sanity_DocumentFilter",
 		_id:"IDFilter",
@@ -655,6 +634,27 @@ export const AllTypesProps: Record<string,any> = {
 		passage:"StringFilter",
 		verse:"StringFilter"
 	},
+	LeaderFilter:{
+		_:"Sanity_DocumentFilter",
+		_id:"IDFilter",
+		_type:"StringFilter",
+		_createdAt:"DatetimeFilter",
+		_updatedAt:"DatetimeFilter",
+		_rev:"StringFilter",
+		_key:"StringFilter",
+		contact:"ContactFilter",
+		position:"StringFilter",
+		category:"StringFilter",
+		description:"StringFilter",
+		image:"ImageFilter",
+		video:"FileFilter"
+	},
+	FileFilter:{
+		_key:"StringFilter",
+		_type:"StringFilter",
+		asset:"SanityFileAssetFilter",
+		media:"GlobalDocumentReferenceFilter"
+	},
 	EventSorting:{
 		_id:"SortOrder",
 		_type:"SortOrder",
@@ -670,7 +670,8 @@ export const AllTypesProps: Record<string,any> = {
 		location:"SortOrder",
 		how_to_signup:"SortOrder",
 		external_host:"SortOrder",
-		cost:"SortOrder"
+		cost:"SortOrder",
+		additional_notes:"SortOrder"
 	},
 	TimeTypeSorting:{
 		_key:"SortOrder",
@@ -985,8 +986,8 @@ export const ReturnTypes: Record<string,any> = {
 		"...on MinistryConnection": "MinistryConnection",
 		"...on NextGenRosterSignup": "NextGenRosterSignup",
 		"...on Event": "Event",
-		"...on Leader": "Leader",
 		"...on Ministry": "Ministry",
+		"...on Leader": "Leader",
 		"...on DeepDive": "DeepDive",
 		"...on NextGenPage": "NextGenPage",
 		"...on PromoBanner": "PromoBanner",
@@ -1192,11 +1193,11 @@ export const ReturnTypes: Record<string,any> = {
 		image:"Image",
 		location:"String",
 		how_to_signup:"String",
-		contact:"Leader",
 		ministry_event:"Ministry",
 		external_host:"String",
 		help_needed:"String",
-		cost:"String"
+		cost:"String",
+		additional_notes:"String"
 	},
 	Date: `scalar.Date` as const,
 	TimeType:{
@@ -1236,26 +1237,6 @@ export const ReturnTypes: Record<string,any> = {
 		left:"Float",
 		right:"Float"
 	},
-	Leader:{
-		_id:"ID",
-		_type:"String",
-		_createdAt:"DateTime",
-		_updatedAt:"DateTime",
-		_rev:"String",
-		_key:"String",
-		contact:"Contact",
-		position:"String",
-		category:"String",
-		description:"String",
-		image:"Image",
-		video:"File"
-	},
-	File:{
-		_key:"String",
-		_type:"String",
-		asset:"SanityFileAsset",
-		media:"GlobalDocumentReference"
-	},
 	Ministry:{
 		_id:"ID",
 		_type:"String",
@@ -1284,6 +1265,26 @@ export const ReturnTypes: Record<string,any> = {
 		verse:"String"
 	},
 	JSON: `scalar.JSON` as const,
+	Leader:{
+		_id:"ID",
+		_type:"String",
+		_createdAt:"DateTime",
+		_updatedAt:"DateTime",
+		_rev:"String",
+		_key:"String",
+		contact:"Contact",
+		position:"String",
+		category:"String",
+		description:"String",
+		image:"Image",
+		video:"File"
+	},
+	File:{
+		_key:"String",
+		_type:"String",
+		asset:"SanityFileAsset",
+		media:"GlobalDocumentReference"
+	},
 	DeepDive:{
 		_id:"ID",
 		_type:"String",

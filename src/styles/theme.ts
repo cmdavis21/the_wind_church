@@ -99,7 +99,7 @@ export const theme = {
   },
   modal: {
     root: {
-      base: 'fixed inset-x-0 top-0 z-50 h-screen overflow-y-auto overflow-x-hidden inset-0 h-full',
+      base: 'fixed inset-x-0 top-0 z-50 h-full overflow-y-auto overflow-x-hidden inset-0 h-full',
       show: {
         on: 'flex bg-black bg-opacity-50 dark:bg-opacity-80',
         off: 'hidden',

@@ -1,5 +1,4 @@
 'use client';
-
 import { differenceInDays, isToday } from 'date-fns';
 import { Badge } from 'flowbite-react';
 import Image from 'next/image';
@@ -46,24 +45,22 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="group w-full max-w-[350px] flex flex-col p-xs cursor-pointer"
+        className="group w-[300px] md:w-[350px] flex flex-col p-xs cursor-pointer"
       >
         <div
-          className={`relative w-full aspect-video ${
-            scale ? 'group-hover:scale-105' : ''
-          } transition-all duration-500 border border-light-gray dark:border-dark-gray rounded-lg`}
+          className={`relative w-full aspect-video rounded-md ${scale ? 'group-hover:scale-105 transition-scale duration-300' : ''} border border-light-gray dark:border-dark-gray`}
         >
-          {pastEvent && (
-            <div className="absolute top-0 left-0 z-10 w-full h-full bg-black/30 rounded-lg" />
-          )}
           <Image
             fill
             src={event.image.src}
             alt={event.image.alt ?? 'Image of event'}
-            className="object-cover rounded-[10px]"
+            className="object-cover rounded-md"
             placeholder="blur"
             blurDataURL="data:..."
           />
+          {pastEvent && (
+            <div className="absolute top-0 left-0 z-10 w-full h-full bg-black/30 rounded-lg" />
+          )}
           {addTag && (
             <div className="absolute top-2 left-2 z-10">
               <Badge color={addTag.color ?? 'yellow'} size="sm">

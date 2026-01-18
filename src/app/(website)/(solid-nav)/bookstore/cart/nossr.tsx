@@ -17,7 +17,7 @@ const CartPage = () => {
   const [loadingItem, setLoadingItem] = useState<number | null>(null);
 
   return (
-    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeader title="Your Cart" subtitle="" />
 
       {cartLoading && <div></div>}

@@ -1047,8 +1047,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 		['...on MinistryConnection']?: Omit<ValueTypes["MinistryConnection"],keyof ValueTypes["Document"]>;
 		['...on NextGenRosterSignup']?: Omit<ValueTypes["NextGenRosterSignup"],keyof ValueTypes["Document"]>;
 		['...on Event']?: Omit<ValueTypes["Event"],keyof ValueTypes["Document"]>;
-		['...on Leader']?: Omit<ValueTypes["Leader"],keyof ValueTypes["Document"]>;
 		['...on Ministry']?: Omit<ValueTypes["Ministry"],keyof ValueTypes["Document"]>;
+		['...on Leader']?: Omit<ValueTypes["Leader"],keyof ValueTypes["Document"]>;
 		['...on DeepDive']?: Omit<ValueTypes["DeepDive"],keyof ValueTypes["Document"]>;
 		['...on NextGenPage']?: Omit<ValueTypes["NextGenPage"],keyof ValueTypes["Document"]>;
 		['...on PromoBanner']?: Omit<ValueTypes["PromoBanner"],keyof ValueTypes["Document"]>;
@@ -1323,15 +1323,15 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	location?:boolean | `@${string}`,
 	/** Instructions for how to join/participate in this event. */
 	how_to_signup?:boolean | `@${string}`,
-	/** Instructions for who to contact regarding this event. */
-	contact?:ValueTypes["Leader"],
-	/** Select if a Ministry is the organizer/host for this event. */
+	/** Select if a Ministry is the organizer for this event. */
 	ministry_event?:ValueTypes["Ministry"],
-	/** Is there an external organization/host for this event? */
+	/** Is there an external organization for this event? */
 	external_host?:boolean | `@${string}`,
 	help_needed?:boolean | `@${string}`,
 	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
 	cost?:boolean | `@${string}`,
+	/** Are there any additional notes or instructions to add? */
+	additional_notes?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
@@ -1378,36 +1378,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	right?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["Leader"]: AliasType<{
-	/** Document ID */
-	_id?:boolean | `@${string}`,
-	/** Document type */
-	_type?:boolean | `@${string}`,
-	/** Date the document was created */
-	_createdAt?:boolean | `@${string}`,
-	/** Date the document was last modified */
-	_updatedAt?:boolean | `@${string}`,
-	/** Current document revision */
-	_rev?:boolean | `@${string}`,
-	_key?:boolean | `@${string}`,
-	contact?:ValueTypes["Contact"],
-	/** The official position assigned to the Leader. */
-	position?:boolean | `@${string}`,
-	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
-	category?:boolean | `@${string}`,
-	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
-	description?:boolean | `@${string}`,
-	image?:ValueTypes["Image"],
-	video?:ValueTypes["File"],
-		__typename?: boolean | `@${string}`
-}>;
-	["File"]: AliasType<{
-	_key?:boolean | `@${string}`,
-	_type?:boolean | `@${string}`,
-	asset?:ValueTypes["SanityFileAsset"],
-	media?:ValueTypes["GlobalDocumentReference"],
-		__typename?: boolean | `@${string}`
-}>;
 	["Ministry"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
@@ -1446,6 +1416,36 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 }>;
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]:unknown;
+	["Leader"]: AliasType<{
+	/** Document ID */
+	_id?:boolean | `@${string}`,
+	/** Document type */
+	_type?:boolean | `@${string}`,
+	/** Date the document was created */
+	_createdAt?:boolean | `@${string}`,
+	/** Date the document was last modified */
+	_updatedAt?:boolean | `@${string}`,
+	/** Current document revision */
+	_rev?:boolean | `@${string}`,
+	_key?:boolean | `@${string}`,
+	contact?:ValueTypes["Contact"],
+	/** The official position assigned to the Leader. */
+	position?:boolean | `@${string}`,
+	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
+	category?:boolean | `@${string}`,
+	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
+	description?:boolean | `@${string}`,
+	image?:ValueTypes["Image"],
+	video?:ValueTypes["File"],
+		__typename?: boolean | `@${string}`
+}>;
+	["File"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	asset?:ValueTypes["SanityFileAsset"],
+	media?:ValueTypes["GlobalDocumentReference"],
+		__typename?: boolean | `@${string}`
+}>;
 	["DeepDive"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
@@ -2016,10 +2016,10 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
 	location?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	how_to_signup?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	contact?: ValueTypes["LeaderFilter"] | undefined | null | Variable<any, string>,
 	ministry_event?: ValueTypes["MinistryFilter"] | undefined | null | Variable<any, string>,
 	external_host?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	cost?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+	cost?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	additional_notes?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
 	["DateFilter"]: {
 	/** Checks if the value is equal to the given input. */
@@ -2074,28 +2074,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	left?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>,
 	right?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>
 };
-	["LeaderFilter"]: {
-	/** Apply filters on document level */
-	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
-	_id?: ValueTypes["IDFilter"] | undefined | null | Variable<any, string>,
-	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	_createdAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
-	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
-	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	contact?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,
-	position?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	category?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	description?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
-	video?: ValueTypes["FileFilter"] | undefined | null | Variable<any, string>
-};
-	["FileFilter"]: {
-	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	asset?: ValueTypes["SanityFileAssetFilter"] | undefined | null | Variable<any, string>,
-	media?: ValueTypes["GlobalDocumentReferenceFilter"] | undefined | null | Variable<any, string>
-};
 	["MinistryFilter"]: {
 	/** Apply filters on document level */
 	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
@@ -2123,6 +2101,28 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	passage?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	verse?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
+	["LeaderFilter"]: {
+	/** Apply filters on document level */
+	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
+	_id?: ValueTypes["IDFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_createdAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
+	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
+	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	contact?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,
+	position?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	category?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
+	video?: ValueTypes["FileFilter"] | undefined | null | Variable<any, string>
+};
+	["FileFilter"]: {
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	asset?: ValueTypes["SanityFileAssetFilter"] | undefined | null | Variable<any, string>,
+	media?: ValueTypes["GlobalDocumentReferenceFilter"] | undefined | null | Variable<any, string>
+};
 	["EventSorting"]: {
 	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2138,7 +2138,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	location?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	how_to_signup?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	external_host?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	cost?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+	cost?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	additional_notes?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["TimeTypeSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2558,8 +2559,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 		['...on MinistryConnection']?: Omit<ResolverInputTypes["MinistryConnection"],keyof ResolverInputTypes["Document"]>;
 		['...on NextGenRosterSignup']?: Omit<ResolverInputTypes["NextGenRosterSignup"],keyof ResolverInputTypes["Document"]>;
 		['...on Event']?: Omit<ResolverInputTypes["Event"],keyof ResolverInputTypes["Document"]>;
-		['...on Leader']?: Omit<ResolverInputTypes["Leader"],keyof ResolverInputTypes["Document"]>;
 		['...on Ministry']?: Omit<ResolverInputTypes["Ministry"],keyof ResolverInputTypes["Document"]>;
+		['...on Leader']?: Omit<ResolverInputTypes["Leader"],keyof ResolverInputTypes["Document"]>;
 		['...on DeepDive']?: Omit<ResolverInputTypes["DeepDive"],keyof ResolverInputTypes["Document"]>;
 		['...on NextGenPage']?: Omit<ResolverInputTypes["NextGenPage"],keyof ResolverInputTypes["Document"]>;
 		['...on PromoBanner']?: Omit<ResolverInputTypes["PromoBanner"],keyof ResolverInputTypes["Document"]>;
@@ -2834,15 +2835,15 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	location?:boolean | `@${string}`,
 	/** Instructions for how to join/participate in this event. */
 	how_to_signup?:boolean | `@${string}`,
-	/** Instructions for who to contact regarding this event. */
-	contact?:ResolverInputTypes["Leader"],
-	/** Select if a Ministry is the organizer/host for this event. */
+	/** Select if a Ministry is the organizer for this event. */
 	ministry_event?:ResolverInputTypes["Ministry"],
-	/** Is there an external organization/host for this event? */
+	/** Is there an external organization for this event? */
 	external_host?:boolean | `@${string}`,
 	help_needed?:boolean | `@${string}`,
 	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
 	cost?:boolean | `@${string}`,
+	/** Are there any additional notes or instructions to add? */
+	additional_notes?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
@@ -2889,36 +2890,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	right?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["Leader"]: AliasType<{
-	/** Document ID */
-	_id?:boolean | `@${string}`,
-	/** Document type */
-	_type?:boolean | `@${string}`,
-	/** Date the document was created */
-	_createdAt?:boolean | `@${string}`,
-	/** Date the document was last modified */
-	_updatedAt?:boolean | `@${string}`,
-	/** Current document revision */
-	_rev?:boolean | `@${string}`,
-	_key?:boolean | `@${string}`,
-	contact?:ResolverInputTypes["Contact"],
-	/** The official position assigned to the Leader. */
-	position?:boolean | `@${string}`,
-	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
-	category?:boolean | `@${string}`,
-	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
-	description?:boolean | `@${string}`,
-	image?:ResolverInputTypes["Image"],
-	video?:ResolverInputTypes["File"],
-		__typename?: boolean | `@${string}`
-}>;
-	["File"]: AliasType<{
-	_key?:boolean | `@${string}`,
-	_type?:boolean | `@${string}`,
-	asset?:ResolverInputTypes["SanityFileAsset"],
-	media?:ResolverInputTypes["GlobalDocumentReference"],
-		__typename?: boolean | `@${string}`
-}>;
 	["Ministry"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
@@ -2957,6 +2928,36 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 }>;
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]:unknown;
+	["Leader"]: AliasType<{
+	/** Document ID */
+	_id?:boolean | `@${string}`,
+	/** Document type */
+	_type?:boolean | `@${string}`,
+	/** Date the document was created */
+	_createdAt?:boolean | `@${string}`,
+	/** Date the document was last modified */
+	_updatedAt?:boolean | `@${string}`,
+	/** Current document revision */
+	_rev?:boolean | `@${string}`,
+	_key?:boolean | `@${string}`,
+	contact?:ResolverInputTypes["Contact"],
+	/** The official position assigned to the Leader. */
+	position?:boolean | `@${string}`,
+	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
+	category?:boolean | `@${string}`,
+	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
+	description?:boolean | `@${string}`,
+	image?:ResolverInputTypes["Image"],
+	video?:ResolverInputTypes["File"],
+		__typename?: boolean | `@${string}`
+}>;
+	["File"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	asset?:ResolverInputTypes["SanityFileAsset"],
+	media?:ResolverInputTypes["GlobalDocumentReference"],
+		__typename?: boolean | `@${string}`
+}>;
 	["DeepDive"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
@@ -3527,10 +3528,10 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
 	location?: ResolverInputTypes["StringFilter"] | undefined | null,
 	how_to_signup?: ResolverInputTypes["StringFilter"] | undefined | null,
-	contact?: ResolverInputTypes["LeaderFilter"] | undefined | null,
 	ministry_event?: ResolverInputTypes["MinistryFilter"] | undefined | null,
 	external_host?: ResolverInputTypes["StringFilter"] | undefined | null,
-	cost?: ResolverInputTypes["StringFilter"] | undefined | null
+	cost?: ResolverInputTypes["StringFilter"] | undefined | null,
+	additional_notes?: ResolverInputTypes["StringFilter"] | undefined | null
 };
 	["DateFilter"]: {
 	/** Checks if the value is equal to the given input. */
@@ -3585,28 +3586,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	left?: ResolverInputTypes["FloatFilter"] | undefined | null,
 	right?: ResolverInputTypes["FloatFilter"] | undefined | null
 };
-	["LeaderFilter"]: {
-	/** Apply filters on document level */
-	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
-	_id?: ResolverInputTypes["IDFilter"] | undefined | null,
-	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
-	_createdAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
-	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
-	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
-	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	contact?: ResolverInputTypes["ContactFilter"] | undefined | null,
-	position?: ResolverInputTypes["StringFilter"] | undefined | null,
-	category?: ResolverInputTypes["StringFilter"] | undefined | null,
-	description?: ResolverInputTypes["StringFilter"] | undefined | null,
-	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
-	video?: ResolverInputTypes["FileFilter"] | undefined | null
-};
-	["FileFilter"]: {
-	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
-	asset?: ResolverInputTypes["SanityFileAssetFilter"] | undefined | null,
-	media?: ResolverInputTypes["GlobalDocumentReferenceFilter"] | undefined | null
-};
 	["MinistryFilter"]: {
 	/** Apply filters on document level */
 	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -3634,6 +3613,28 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	passage?: ResolverInputTypes["StringFilter"] | undefined | null,
 	verse?: ResolverInputTypes["StringFilter"] | undefined | null
 };
+	["LeaderFilter"]: {
+	/** Apply filters on document level */
+	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
+	_id?: ResolverInputTypes["IDFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_createdAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
+	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
+	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	contact?: ResolverInputTypes["ContactFilter"] | undefined | null,
+	position?: ResolverInputTypes["StringFilter"] | undefined | null,
+	category?: ResolverInputTypes["StringFilter"] | undefined | null,
+	description?: ResolverInputTypes["StringFilter"] | undefined | null,
+	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
+	video?: ResolverInputTypes["FileFilter"] | undefined | null
+};
+	["FileFilter"]: {
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	asset?: ResolverInputTypes["SanityFileAssetFilter"] | undefined | null,
+	media?: ResolverInputTypes["GlobalDocumentReferenceFilter"] | undefined | null
+};
 	["EventSorting"]: {
 	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3649,7 +3650,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	location?: ResolverInputTypes["SortOrder"] | undefined | null,
 	how_to_signup?: ResolverInputTypes["SortOrder"] | undefined | null,
 	external_host?: ResolverInputTypes["SortOrder"] | undefined | null,
-	cost?: ResolverInputTypes["SortOrder"] | undefined | null
+	cost?: ResolverInputTypes["SortOrder"] | undefined | null,
+	additional_notes?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["TimeTypeSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3993,7 +3995,7 @@ export type ModelTypes = {
 	source?: ModelTypes["SanityAssetSourceData"] | undefined | null
 };
 	/** A Sanity document */
-["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["RightnowMedia"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenRosterSignup"] | ModelTypes["Event"] | ModelTypes["Leader"] | ModelTypes["Ministry"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["PromoBanner"];
+["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["RightnowMedia"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenRosterSignup"] | ModelTypes["Event"] | ModelTypes["Ministry"] | ModelTypes["Leader"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["PromoBanner"];
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["DateTime"]:any;
 	["SanityImageMetadata"]: {
@@ -4247,15 +4249,15 @@ export type ModelTypes = {
 	location?: string | undefined | null,
 	/** Instructions for how to join/participate in this event. */
 	how_to_signup?: string | undefined | null,
-	/** Instructions for who to contact regarding this event. */
-	contact?: ModelTypes["Leader"] | undefined | null,
-	/** Select if a Ministry is the organizer/host for this event. */
+	/** Select if a Ministry is the organizer for this event. */
 	ministry_event?: ModelTypes["Ministry"] | undefined | null,
-	/** Is there an external organization/host for this event? */
+	/** Is there an external organization for this event? */
 	external_host?: string | undefined | null,
 	help_needed?: Array<string | undefined | null> | undefined | null,
 	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
-	cost?: string | undefined | null
+	cost?: string | undefined | null,
+	/** Are there any additional notes or instructions to add? */
+	additional_notes?: string | undefined | null
 };
 	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["Date"]:any;
@@ -4296,34 +4298,6 @@ export type ModelTypes = {
 	left?: number | undefined | null,
 	right?: number | undefined | null
 };
-	["Leader"]: {
-		/** Document ID */
-	_id?: ModelTypes["ID"] | undefined | null,
-	/** Document type */
-	_type?: string | undefined | null,
-	/** Date the document was created */
-	_createdAt?: ModelTypes["DateTime"] | undefined | null,
-	/** Date the document was last modified */
-	_updatedAt?: ModelTypes["DateTime"] | undefined | null,
-	/** Current document revision */
-	_rev?: string | undefined | null,
-	_key?: string | undefined | null,
-	contact?: ModelTypes["Contact"] | undefined | null,
-	/** The official position assigned to the Leader. */
-	position?: string | undefined | null,
-	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
-	category?: string | undefined | null,
-	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
-	description?: string | undefined | null,
-	image?: ModelTypes["Image"] | undefined | null,
-	video?: ModelTypes["File"] | undefined | null
-};
-	["File"]: {
-		_key?: string | undefined | null,
-	_type?: string | undefined | null,
-	asset?: ModelTypes["SanityFileAsset"] | undefined | null,
-	media?: ModelTypes["GlobalDocumentReference"] | undefined | null
-};
 	["Ministry"]: {
 		/** Document ID */
 	_id?: ModelTypes["ID"] | undefined | null,
@@ -4359,6 +4333,34 @@ export type ModelTypes = {
 };
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]:any;
+	["Leader"]: {
+		/** Document ID */
+	_id?: ModelTypes["ID"] | undefined | null,
+	/** Document type */
+	_type?: string | undefined | null,
+	/** Date the document was created */
+	_createdAt?: ModelTypes["DateTime"] | undefined | null,
+	/** Date the document was last modified */
+	_updatedAt?: ModelTypes["DateTime"] | undefined | null,
+	/** Current document revision */
+	_rev?: string | undefined | null,
+	_key?: string | undefined | null,
+	contact?: ModelTypes["Contact"] | undefined | null,
+	/** The official position assigned to the Leader. */
+	position?: string | undefined | null,
+	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
+	category?: string | undefined | null,
+	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
+	description?: string | undefined | null,
+	image?: ModelTypes["Image"] | undefined | null,
+	video?: ModelTypes["File"] | undefined | null
+};
+	["File"]: {
+		_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	asset?: ModelTypes["SanityFileAsset"] | undefined | null,
+	media?: ModelTypes["GlobalDocumentReference"] | undefined | null
+};
 	["DeepDive"]: {
 		/** Document ID */
 	_id?: ModelTypes["ID"] | undefined | null,
@@ -4924,10 +4926,10 @@ export type ModelTypes = {
 	image?: ModelTypes["ImageFilter"] | undefined | null,
 	location?: ModelTypes["StringFilter"] | undefined | null,
 	how_to_signup?: ModelTypes["StringFilter"] | undefined | null,
-	contact?: ModelTypes["LeaderFilter"] | undefined | null,
 	ministry_event?: ModelTypes["MinistryFilter"] | undefined | null,
 	external_host?: ModelTypes["StringFilter"] | undefined | null,
-	cost?: ModelTypes["StringFilter"] | undefined | null
+	cost?: ModelTypes["StringFilter"] | undefined | null,
+	additional_notes?: ModelTypes["StringFilter"] | undefined | null
 };
 	["DateFilter"]: {
 	/** Checks if the value is equal to the given input. */
@@ -4982,28 +4984,6 @@ export type ModelTypes = {
 	left?: ModelTypes["FloatFilter"] | undefined | null,
 	right?: ModelTypes["FloatFilter"] | undefined | null
 };
-	["LeaderFilter"]: {
-	/** Apply filters on document level */
-	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
-	_id?: ModelTypes["IDFilter"] | undefined | null,
-	_type?: ModelTypes["StringFilter"] | undefined | null,
-	_createdAt?: ModelTypes["DatetimeFilter"] | undefined | null,
-	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
-	_rev?: ModelTypes["StringFilter"] | undefined | null,
-	_key?: ModelTypes["StringFilter"] | undefined | null,
-	contact?: ModelTypes["ContactFilter"] | undefined | null,
-	position?: ModelTypes["StringFilter"] | undefined | null,
-	category?: ModelTypes["StringFilter"] | undefined | null,
-	description?: ModelTypes["StringFilter"] | undefined | null,
-	image?: ModelTypes["ImageFilter"] | undefined | null,
-	video?: ModelTypes["FileFilter"] | undefined | null
-};
-	["FileFilter"]: {
-	_key?: ModelTypes["StringFilter"] | undefined | null,
-	_type?: ModelTypes["StringFilter"] | undefined | null,
-	asset?: ModelTypes["SanityFileAssetFilter"] | undefined | null,
-	media?: ModelTypes["GlobalDocumentReferenceFilter"] | undefined | null
-};
 	["MinistryFilter"]: {
 	/** Apply filters on document level */
 	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -5031,6 +5011,28 @@ export type ModelTypes = {
 	passage?: ModelTypes["StringFilter"] | undefined | null,
 	verse?: ModelTypes["StringFilter"] | undefined | null
 };
+	["LeaderFilter"]: {
+	/** Apply filters on document level */
+	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
+	_id?: ModelTypes["IDFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null,
+	_createdAt?: ModelTypes["DatetimeFilter"] | undefined | null,
+	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
+	_rev?: ModelTypes["StringFilter"] | undefined | null,
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	contact?: ModelTypes["ContactFilter"] | undefined | null,
+	position?: ModelTypes["StringFilter"] | undefined | null,
+	category?: ModelTypes["StringFilter"] | undefined | null,
+	description?: ModelTypes["StringFilter"] | undefined | null,
+	image?: ModelTypes["ImageFilter"] | undefined | null,
+	video?: ModelTypes["FileFilter"] | undefined | null
+};
+	["FileFilter"]: {
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null,
+	asset?: ModelTypes["SanityFileAssetFilter"] | undefined | null,
+	media?: ModelTypes["GlobalDocumentReferenceFilter"] | undefined | null
+};
 	["EventSorting"]: {
 	_id?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
@@ -5046,7 +5048,8 @@ export type ModelTypes = {
 	location?: ModelTypes["SortOrder"] | undefined | null,
 	how_to_signup?: ModelTypes["SortOrder"] | undefined | null,
 	external_host?: ModelTypes["SortOrder"] | undefined | null,
-	cost?: ModelTypes["SortOrder"] | undefined | null
+	cost?: ModelTypes["SortOrder"] | undefined | null,
+	additional_notes?: ModelTypes["SortOrder"] | undefined | null
 };
 	["TimeTypeSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
@@ -5387,7 +5390,7 @@ export type GraphQLTypes = {
 };
 	/** A Sanity document */
 ["Document"]: {
-	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "RightnowMedia" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenRosterSignup" | "Event" | "Leader" | "Ministry" | "DeepDive" | "NextGenPage" | "PromoBanner",
+	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "RightnowMedia" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenRosterSignup" | "Event" | "Ministry" | "Leader" | "DeepDive" | "NextGenPage" | "PromoBanner",
 	/** Document ID */
 	_id?: GraphQLTypes["ID"] | undefined | null,
 	/** Document type */
@@ -5409,8 +5412,8 @@ export type GraphQLTypes = {
 	['...on MinistryConnection']: '__union' & GraphQLTypes["MinistryConnection"];
 	['...on NextGenRosterSignup']: '__union' & GraphQLTypes["NextGenRosterSignup"];
 	['...on Event']: '__union' & GraphQLTypes["Event"];
-	['...on Leader']: '__union' & GraphQLTypes["Leader"];
 	['...on Ministry']: '__union' & GraphQLTypes["Ministry"];
+	['...on Leader']: '__union' & GraphQLTypes["Leader"];
 	['...on DeepDive']: '__union' & GraphQLTypes["DeepDive"];
 	['...on NextGenPage']: '__union' & GraphQLTypes["NextGenPage"];
 	['...on PromoBanner']: '__union' & GraphQLTypes["PromoBanner"];
@@ -5685,15 +5688,15 @@ export type GraphQLTypes = {
 	location?: string | undefined | null,
 	/** Instructions for how to join/participate in this event. */
 	how_to_signup?: string | undefined | null,
-	/** Instructions for who to contact regarding this event. */
-	contact?: GraphQLTypes["Leader"] | undefined | null,
-	/** Select if a Ministry is the organizer/host for this event. */
+	/** Select if a Ministry is the organizer for this event. */
 	ministry_event?: GraphQLTypes["Ministry"] | undefined | null,
-	/** Is there an external organization/host for this event? */
+	/** Is there an external organization for this event? */
 	external_host?: string | undefined | null,
 	help_needed?: Array<string | undefined | null> | undefined | null,
 	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
-	cost?: string | undefined | null
+	cost?: string | undefined | null,
+	/** Are there any additional notes or instructions to add? */
+	additional_notes?: string | undefined | null
 };
 	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["Date"]: "scalar" & { name: "Date" };
@@ -5739,36 +5742,6 @@ export type GraphQLTypes = {
 	left?: number | undefined | null,
 	right?: number | undefined | null
 };
-	["Leader"]: {
-	__typename: "Leader",
-	/** Document ID */
-	_id?: GraphQLTypes["ID"] | undefined | null,
-	/** Document type */
-	_type?: string | undefined | null,
-	/** Date the document was created */
-	_createdAt?: GraphQLTypes["DateTime"] | undefined | null,
-	/** Date the document was last modified */
-	_updatedAt?: GraphQLTypes["DateTime"] | undefined | null,
-	/** Current document revision */
-	_rev?: string | undefined | null,
-	_key?: string | undefined | null,
-	contact?: GraphQLTypes["Contact"] | undefined | null,
-	/** The official position assigned to the Leader. */
-	position?: string | undefined | null,
-	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
-	category?: string | undefined | null,
-	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
-	description?: string | undefined | null,
-	image?: GraphQLTypes["Image"] | undefined | null,
-	video?: GraphQLTypes["File"] | undefined | null
-};
-	["File"]: {
-	__typename: "File",
-	_key?: string | undefined | null,
-	_type?: string | undefined | null,
-	asset?: GraphQLTypes["SanityFileAsset"] | undefined | null,
-	media?: GraphQLTypes["GlobalDocumentReference"] | undefined | null
-};
 	["Ministry"]: {
 	__typename: "Ministry",
 	/** Document ID */
@@ -5807,6 +5780,36 @@ export type GraphQLTypes = {
 };
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]: "scalar" & { name: "JSON" };
+	["Leader"]: {
+	__typename: "Leader",
+	/** Document ID */
+	_id?: GraphQLTypes["ID"] | undefined | null,
+	/** Document type */
+	_type?: string | undefined | null,
+	/** Date the document was created */
+	_createdAt?: GraphQLTypes["DateTime"] | undefined | null,
+	/** Date the document was last modified */
+	_updatedAt?: GraphQLTypes["DateTime"] | undefined | null,
+	/** Current document revision */
+	_rev?: string | undefined | null,
+	_key?: string | undefined | null,
+	contact?: GraphQLTypes["Contact"] | undefined | null,
+	/** The official position assigned to the Leader. */
+	position?: string | undefined | null,
+	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
+	category?: string | undefined | null,
+	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
+	description?: string | undefined | null,
+	image?: GraphQLTypes["Image"] | undefined | null,
+	video?: GraphQLTypes["File"] | undefined | null
+};
+	["File"]: {
+	__typename: "File",
+	_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	asset?: GraphQLTypes["SanityFileAsset"] | undefined | null,
+	media?: GraphQLTypes["GlobalDocumentReference"] | undefined | null
+};
 	["DeepDive"]: {
 	__typename: "DeepDive",
 	/** Document ID */
@@ -6377,10 +6380,10 @@ export type GraphQLTypes = {
 	image?: GraphQLTypes["ImageFilter"] | undefined | null,
 	location?: GraphQLTypes["StringFilter"] | undefined | null,
 	how_to_signup?: GraphQLTypes["StringFilter"] | undefined | null,
-	contact?: GraphQLTypes["LeaderFilter"] | undefined | null,
 	ministry_event?: GraphQLTypes["MinistryFilter"] | undefined | null,
 	external_host?: GraphQLTypes["StringFilter"] | undefined | null,
-	cost?: GraphQLTypes["StringFilter"] | undefined | null
+	cost?: GraphQLTypes["StringFilter"] | undefined | null,
+	additional_notes?: GraphQLTypes["StringFilter"] | undefined | null
 };
 	["DateFilter"]: {
 		/** Checks if the value is equal to the given input. */
@@ -6435,28 +6438,6 @@ export type GraphQLTypes = {
 	left?: GraphQLTypes["FloatFilter"] | undefined | null,
 	right?: GraphQLTypes["FloatFilter"] | undefined | null
 };
-	["LeaderFilter"]: {
-		/** Apply filters on document level */
-	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
-	_id?: GraphQLTypes["IDFilter"] | undefined | null,
-	_type?: GraphQLTypes["StringFilter"] | undefined | null,
-	_createdAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
-	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
-	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
-	_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	contact?: GraphQLTypes["ContactFilter"] | undefined | null,
-	position?: GraphQLTypes["StringFilter"] | undefined | null,
-	category?: GraphQLTypes["StringFilter"] | undefined | null,
-	description?: GraphQLTypes["StringFilter"] | undefined | null,
-	image?: GraphQLTypes["ImageFilter"] | undefined | null,
-	video?: GraphQLTypes["FileFilter"] | undefined | null
-};
-	["FileFilter"]: {
-		_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	_type?: GraphQLTypes["StringFilter"] | undefined | null,
-	asset?: GraphQLTypes["SanityFileAssetFilter"] | undefined | null,
-	media?: GraphQLTypes["GlobalDocumentReferenceFilter"] | undefined | null
-};
 	["MinistryFilter"]: {
 		/** Apply filters on document level */
 	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -6484,6 +6465,28 @@ export type GraphQLTypes = {
 	passage?: GraphQLTypes["StringFilter"] | undefined | null,
 	verse?: GraphQLTypes["StringFilter"] | undefined | null
 };
+	["LeaderFilter"]: {
+		/** Apply filters on document level */
+	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
+	_id?: GraphQLTypes["IDFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null,
+	_createdAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
+	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
+	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
+	_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	contact?: GraphQLTypes["ContactFilter"] | undefined | null,
+	position?: GraphQLTypes["StringFilter"] | undefined | null,
+	category?: GraphQLTypes["StringFilter"] | undefined | null,
+	description?: GraphQLTypes["StringFilter"] | undefined | null,
+	image?: GraphQLTypes["ImageFilter"] | undefined | null,
+	video?: GraphQLTypes["FileFilter"] | undefined | null
+};
+	["FileFilter"]: {
+		_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null,
+	asset?: GraphQLTypes["SanityFileAssetFilter"] | undefined | null,
+	media?: GraphQLTypes["GlobalDocumentReferenceFilter"] | undefined | null
+};
 	["EventSorting"]: {
 		_id?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6499,7 +6502,8 @@ export type GraphQLTypes = {
 	location?: GraphQLTypes["SortOrder"] | undefined | null,
 	how_to_signup?: GraphQLTypes["SortOrder"] | undefined | null,
 	external_host?: GraphQLTypes["SortOrder"] | undefined | null,
-	cost?: GraphQLTypes["SortOrder"] | undefined | null
+	cost?: GraphQLTypes["SortOrder"] | undefined | null,
+	additional_notes?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["TimeTypeSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6828,11 +6832,11 @@ type ZEUS_VARIABLES = {
 	["GlobalDocumentReferenceFilter"]: ValueTypes["GlobalDocumentReferenceFilter"];
 	["SanityImageHotspotFilter"]: ValueTypes["SanityImageHotspotFilter"];
 	["SanityImageCropFilter"]: ValueTypes["SanityImageCropFilter"];
-	["LeaderFilter"]: ValueTypes["LeaderFilter"];
-	["FileFilter"]: ValueTypes["FileFilter"];
 	["MinistryFilter"]: ValueTypes["MinistryFilter"];
 	["SlugFilter"]: ValueTypes["SlugFilter"];
 	["ScriptureFilter"]: ValueTypes["ScriptureFilter"];
+	["LeaderFilter"]: ValueTypes["LeaderFilter"];
+	["FileFilter"]: ValueTypes["FileFilter"];
 	["EventSorting"]: ValueTypes["EventSorting"];
 	["TimeTypeSorting"]: ValueTypes["TimeTypeSorting"];
 	["ImageSorting"]: ValueTypes["ImageSorting"];

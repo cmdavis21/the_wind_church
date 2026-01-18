@@ -69,11 +69,11 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
     <CarouselArrows
       leftArrowProps={{
         onClick: () => previous(),
-        buttonClassName: 'absolute bottom-5 left-5 z-10',
+        buttonClassName: 'absolute bottom-3 left-5 z-10',
       }}
       rightArrowProps={{
         onClick: () => next(),
-        buttonClassName: 'absolute bottom-5 right-5 z-10',
+        buttonClassName: 'absolute bottom-3 right-5 z-10',
       }}
     />
   );

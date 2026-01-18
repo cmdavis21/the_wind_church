@@ -15,12 +15,12 @@ const ImageCard: React.FC<ImageCardProps> = ({ src, alt }) => {
   return (
     <>
       <ImageModal src={src} alt={alt} open={openModal} setOpen={setOpenModal} />
-      <button type="button" onClick={() => setOpenModal(true)} className="cursor-pointer">
-        <div
-          className={`relative aspect-square max-w-[350px] rounded-lg md:hover:scale-105 transition-scale duration-300`}
-        >
-          <Image fill src={src} alt={alt} className="object-cover rounded-lg pointer-events-none" />
-        </div>
+      <button
+        type="button"
+        onClick={() => setOpenModal(true)}
+        className="cursor-pointer relative aspect-square w-full max-w-[400px] md:max-w-[300px] rounded-lg lg:hover:scale-105 transition-scale duration-300"
+      >
+        <Image fill src={src} alt={alt} className="object-cover rounded-lg pointer-events-none" />
       </button>
     </>
   );

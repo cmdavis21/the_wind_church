@@ -201,8 +201,7 @@ const Give = () => {
 
           {/* Mobile */}
           <SimpleCarousel
-            blueDots
-            className="md:hidden h-fit"
+            className="md:hidden"
             slides={otherWaysToGiveArr.map((item) => (
               <ImageWithTitleAndHiddenTextCard key={`mobile-${item.title}`} {...item} />
             ))}

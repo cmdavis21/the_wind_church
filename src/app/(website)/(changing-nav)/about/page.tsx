@@ -237,8 +237,7 @@ const About = async () => {
 
           {/* Mobile */}
           <SimpleCarousel
-            blueDots
-            className="md:hidden h-fit"
+            className="md:hidden"
             slides={theWindCenterArr.map((item) => (
               <ImageWithTitleAndHiddenTextCard
                 key={item.title}

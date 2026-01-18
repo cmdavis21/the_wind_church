@@ -20,7 +20,7 @@ const BookstoreClient = () => {
   }
 
   return (
-    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeaderWithBackground
         media={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/open_sign.webp`,
@@ -38,7 +38,7 @@ const BookstoreClient = () => {
             <div key={`bookstore-collections-skeleton-${index}`} className="flex flex-col gap-md">
               <SectionHeaderSkeleton />
 
-              <div className="pt-lg grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
+              <div className="pt-lg grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
                 {Array.from({ length: 6 }).map((_, idx) => (
                   <ProductCardSkeleton key={`bookstore-collections-skeleton-card-${index}`} />
                 ))}
@@ -57,7 +57,7 @@ const BookstoreClient = () => {
             >
               <SectionHeader title={coll.title} />
 
-              <div className="pt-lg grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
+              <div className="pt-lg grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
                 {coll.products
                   .sort((a, b) => a.title.localeCompare(b.title))
                   .map((prod) => (

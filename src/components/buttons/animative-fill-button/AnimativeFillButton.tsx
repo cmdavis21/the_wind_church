@@ -5,6 +5,7 @@ interface AnimativeFillButtonProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   onClick?: () => void;
   className?: string;
+  contentClass?: string;
   children: React.ReactNode;
 }
 
@@ -12,6 +13,7 @@ const AnimativeFillButton: React.FC<AnimativeFillButtonProps> = ({
   size = 'md',
   onClick,
   className,
+  contentClass,
   children,
 }) => {
   const sizes = {
@@ -23,32 +25,36 @@ const AnimativeFillButton: React.FC<AnimativeFillButtonProps> = ({
   };
 
   return (
-    <button type="button" onClick={onClick}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        'relative group w-fit border border-light-neutral dark:border-dark-gray',
+        'bg-light-bg dark:bg-dark-gray shadow rounded-full cursor-pointer',
+        className
+      )}
+    >
+      {/* sliding fill */}
+      <div className="absolute inset-0 overflow-hidden rounded-full">
+        <div
+          className={cn(
+            'h-full rounded-full bg-brand-primary dark:bg-dark-navy',
+            'transition-[width] duration-500 ease-out',
+            'absolute right-0 origin-right',
+            'w-0 group-hover:w-full'
+          )}
+        />
+      </div>
+
+      {/* content */}
       <div
         className={cn(
-          'relative group w-fit border border-light-neutral dark:border-dark-gray',
-          'bg-light-bg dark:bg-dark-gray shadow rounded-full cursor-pointer',
-          className
+          'relative text-light-primaryText dark:text-dark-primaryText',
+          sizes[size],
+          contentClass
         )}
       >
-        {/* sliding fill */}
-        <div className="absolute inset-0 overflow-hidden rounded-full">
-          <div
-            className={cn(
-              'h-full rounded-full bg-brand-primary dark:bg-dark-navy',
-              'transition-[width] duration-500 ease-out',
-              'absolute right-0 origin-right',
-              'w-0 group-hover:w-full'
-            )}
-          />
-        </div>
-
-        {/* content */}
-        <div
-          className={cn('relative text-light-primaryText dark:text-dark-primaryText', sizes[size])}
-        >
-          {children}
-        </div>
+        {children}
       </div>
     </button>
   );

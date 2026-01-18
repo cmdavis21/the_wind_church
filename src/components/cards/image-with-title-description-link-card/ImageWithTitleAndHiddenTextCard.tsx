@@ -40,7 +40,7 @@ const ImageWithTitleDescriptionLinkCard: React.FC<ImageWithTitleDescriptionLinkC
         <div className="relative w-full h-full rounded-lg flex flex-col justify-between px-lg py-xl text-white dark:text-dark-primaryText">
           <div className="flex justify-between gap-5">
             <div className="flex flex-col items-start gap-xs">
-              <h3 className="font-bold group-hover:text-brand-light transition-colors duration-300">
+              <h3 className="font-bold text-left group-hover:text-brand-light transition-colors duration-300">
                 {title}
               </h3>
               <h5 className="text-left">{description}</h5>

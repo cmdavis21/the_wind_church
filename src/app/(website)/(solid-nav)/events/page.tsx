@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const Events = async () => {
   const events = await getAllEvents();
   return (
-    <div className="px-padding flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
       <PageHeader
         title="Events"
         subtitle="Don't miss it! Stay informed on events happening at The Wind."
@@ -30,7 +30,7 @@ const Events = async () => {
       {events.length > 0 ? (
         <>
           {/* Desktop */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xxl 2xl:px-padding">
+          <div className="hidden md:grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-xxl 2xl:px-padding place-items-center">
             {events.map((event: Event) => (
               <EventCard
                 key={`event-card-${event.name}`}

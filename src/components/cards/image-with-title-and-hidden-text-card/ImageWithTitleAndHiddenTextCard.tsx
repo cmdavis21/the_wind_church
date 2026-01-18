@@ -13,14 +13,12 @@ interface ImageWithTitleAndHiddenTextCardProps {
   };
   title: string | ReactElement;
   description: string | ReactElement;
-  icon?: React.FC<React.SVGAttributes<unknown>>;
 }
 
 const ImageWithTitleAndHiddenTextCard: React.FC<ImageWithTitleAndHiddenTextCardProps> = ({
   image,
   title,
   description,
-  icon: Icon,
 }) => {
   const { width } = useWindowDimensions();
   const [showText, setShowText] = useState(false);
@@ -49,10 +47,7 @@ const ImageWithTitleAndHiddenTextCard: React.FC<ImageWithTitleAndHiddenTextCardP
           'transition-opacity duration-300 absolute top-0 left-0 w-full h-full rounded-lg flex flex-col items-center justify-center p-md'
         )}
       >
-        <div className="flex items-center justify-center gap-sm text-white">
-          {Icon && <Icon className="fill-white size-lg" />}
-          <h2>{title}</h2>
-        </div>
+        <h2 className="text-white text-center">{title}</h2>
         <div className="pt-lg lg:pt-xl">
           <SquarePlus className="fill-white size-10" />
         </div>

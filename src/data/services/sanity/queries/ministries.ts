@@ -99,7 +99,7 @@ export const getAllMinistries = async (): Promise<
 
   if (ministries) {
     return ministries
-      .filter((ministry) => ministry.name?.toLowerCase() !== 'youth service')
+      .filter((ministry) => ministry.slug?.current !== 'next-gen')
       .map((ministry) => ({
         name: ministry.name ?? '',
         slug: ministry.slug?.current ?? '',

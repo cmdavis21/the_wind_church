@@ -18,7 +18,7 @@ const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist 
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1800 },
-      items: 4,
+      items: 5,
       partialVisibilityGutter: 300,
     },
     desktop: {
@@ -64,14 +64,13 @@ const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist 
         showDots
         draggable
         swipeable
-        itemClass="text-center"
-        // containerClass="bg-blue-500"
+        containerClass="pb-lg"
         responsive={responsive}
         customDot={<CustomDot />}
         renderButtonGroupOutside
-        renderDotsOutside
-        customButtonGroup={<ButtonGroup />}
         dotListClass="flex gap-xs"
+        customButtonGroup={<ButtonGroup />}
+        itemClass="flex justify-center w-[300px] md:w-[350px]"
       >
         {playlist.map((item) => (
           <VideoCard
@@ -80,6 +79,7 @@ const VideoPlaylistCarousel: React.FC<VideoPlaylistCarouselProps> = ({ playlist 
             title={item.title}
             date={item.published_at}
             link={item.videoUrl}
+            scale={false}
           />
         ))}
       </Carousel>
