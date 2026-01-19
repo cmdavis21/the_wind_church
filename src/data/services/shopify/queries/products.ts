@@ -154,10 +154,11 @@ const getStorefrontProductByHandleQuery = (handle: string) => {
 const getStorefrontProductHandlesQuery = () => {
   return ShopifyQuery.query({
     products: [
-      { first: 50 },
+      { first: 100 },
       {
         nodes: {
           handle: true,
+          updatedAt: true,
         },
       },
     ],
@@ -261,6 +262,7 @@ export const getStorefrontProductHandles = async () => {
 
   return products.nodes.map((item) => ({
     handle: item.handle,
+    updatedAt: item.updatedAt,
   }));
 };
 

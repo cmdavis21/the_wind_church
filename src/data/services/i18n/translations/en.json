@@ -179,8 +179,7 @@
   "About": {
     "metadata": {
       "title": "About Us",
-      "description": "Learn more about the mission, vision, beliefs, and leadership behind The Wind Church in Riverside, CA.",
-      "endpoint": "about"
+      "description": "Learn more about the mission, vision, beliefs, and leadership behind The Wind Church in Riverside, CA."
     },
     "alt": "A decorative background image",
     "title": "The WIND",
@@ -377,6 +376,113 @@
       "carouselItem1": "Since 1976, the Edwards have impacted lives through teaching, counseling, discipleship, and church planting, leading to the founding of A New and Living Way Foursquare Church in 1989.",
       "carouselItem2": "By God's divine plan, their church merged with another congregation to form Wind of the Spirit Worship Center, becoming a vital community resource and ministry partner.",
       "carouselItem3": "Known as “The Wind,” the church is celebrated for its outreach, leadership training, and expressive worship, embodying Christ's love and leaving a legacy of faithful stewardship that endures today."
+    }
+  },
+  "ChurchRental": {
+    "metadata": {
+      "title": "Church Rental",
+      "description": "Interested in renting our church facilities? Get details and request your date today."
+    }
+  },
+  "DeepDive": {
+    "metadata": {
+      "title": "Deep Dive",
+      "description": "Join our Deep Dive sessions for in-depth teaching, biblical study, and spiritual growth."
+    }
+  },
+  "Feedback": {
+    "metadata": {
+      "title": "Visitor Feedback",
+      "description": "Thank you for visiting our church. Please leave feedback on your experience so we can improve for the body of Christ."
+    }
+  },
+  "Give": {
+    "metadata": {
+      "title": "Give",
+      "description": "Support the mission of The Wind Church by giving online. Your generosity makes a difference."
+    }
+  },
+  "Ministries": {
+    "metadata": {
+      "title": "Ministries",
+      "description": "Explore ministries at The Wind Church for every age and stage—join us in growing together in Christ."
+    }
+  },
+  "PrayerRequests": {
+    "metadata": {
+      "title": "Prayer Requests",
+      "description": "Let us pray with you. Submit your prayer requests and our team will stand with you in faith."
+    }
+  },
+  "RightNowMedia": {
+    "metadata": {
+      "title": "RightNow Media",
+      "description": "Access thousands of discipleship videos for kids, youth, and adults with our RightNow Media partnership."
+    }
+  },
+  "Salvation": {
+    "metadata": {
+      "title": "Salvation",
+      "description": "Learn about the message of salvation through Jesus Christ and how you can begin a new life in Him today."
+    }
+  },
+  "Home": {
+    "metadata": {
+      "description": "Welcome to The Wind Church—where Jesus is the center and lives are transformed through His presence."
+    }
+  },
+  "Bookstore": {
+    "metadata": {
+      "title": "Bookstore",
+      "description": "Shop faith-based books, apparel, and gifts in The Wind Church bookstore—equipping you for your spiritual journey."
+    }
+  },
+  "Orders": {
+    "metadata": {
+      "title": "Orders",
+      "description": "View your orders from The Wind Church bookstore."
+    }
+  },
+  "Cart": {
+    "metadata": {
+      "title": "Shopping Cart",
+      "description": "View your cart and checkout items from The Wind Church bookstore."
+    }
+  },
+  "Events": {
+    "metadata": {
+      "title": "Events",
+      "description": "Stay up to date with upcoming church events, services, and community gatherings at The Wind Church."
+    }
+  },
+  "Gallery": {
+    "metadata": {
+      "title": "Gallery",
+      "description": "Browse our church photo gallery and relive the special moments from recent events and gatherings."
+    }
+  },
+  "GiftAssessment": {
+    "metadata": {
+      "title": "Gift Assessement",
+      "description": "Discover your spiritual gifts with our easy assessment and learn how you can serve in God's Kingdom."
+    }
+  },
+  "NextGen": {
+    "metadata": {
+      "title": "Next Gen",
+      "description": "Our Youth Services empower the next generation to know Jesus and make Him known through fun and faith-filled gatherings."
+    }
+  },
+  "Sermons": {
+    "metadata": {
+      "title": "Sermons",
+      "description": "Watch or listen to recent sermons from The Wind Church and grow in your faith anytime, anywhere."
+    }
+  },
+  "WindLeaders": {
+    "metadata": {
+      "title": "WIND Leaders",
+      "description": "Meet the dedicated leaders who serve and guide our church community with wisdom and compassion."
     }
   }
 }

@@ -1,15 +1,33 @@
-import { Metadata } from 'next';
-import React from 'react';
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
+import { getTranslations } from 'next-intl/server';
 import CartPage from './nossr';
 
-export const metadata: Metadata = {
-  title: 'Shopping Cart',
-  description: 'View your cart and checkout items from The Wind Church bookstore.',
-  alternates: {
-    canonical: `${WEBSITE_BASE_URL}/bookstore/cart`,
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Cart' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.cart}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/open_sign.webp`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 const Cart = () => <CartPage />;
 

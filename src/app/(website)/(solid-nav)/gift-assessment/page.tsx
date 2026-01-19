@@ -1,17 +1,34 @@
-import { Metadata } from 'next';
-
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import GiftAssessment from '@/components/forms/gift-assessment/GiftAssessment';
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Gift Assessement',
-  description:
-    "Discover your spiritual gifts with our easy assessment and learn how you can serve in God's Kingdom.",
-  alternates: {
-    canonical: `${WEBSITE_BASE_URL}/gift-assessment`,
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'GiftAssessment' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.giftAssessment}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 const GiftAssessmentPage = () => (
   <div>

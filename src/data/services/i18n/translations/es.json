@@ -13,7 +13,7 @@
     "about": {
       "label": "Acerca de",
       "submenu": [
-        { "label": "Quiénes Somos", "link": "/about-us" },
+        { "label": "Quiénes Somos", "link": "/about" },
         { "label": "Líderes de Wind", "link": "/wind-leaders" }
       ]
     },
@@ -179,8 +179,7 @@
   "About": {
     "metadata": {
       "title": "Sobre Nosotros",
-      "description": "Obtenga más información sobre la misión, la visión, las creencias y el liderazgo de The Wind Church en Riverside, CA.",
-      "endpoint": "sobre"
+      "description": "Obtenga más información sobre la misión, la visión, las creencias y el liderazgo de The Wind Church en Riverside, CA."
     },
     "alt": "Una imagen de fondo decorativa",
     "title": "The WIND",
@@ -377,6 +376,113 @@
       "carouselItem1": "Desde 1976, los Edwards han impactado vidas a través de la enseñanza, el asesoramiento, el discipulado y la plantación de iglesias, lo que llevó a la fundación de A New and Living Way Foursquare Church en 1989.",
       "carouselItem2": "Por el plan divino de Dios, su iglesia se fusionó con otra congregación para formar el Centro de Adoración Viento del Espíritu, convirtiéndose en un recurso vital para la comunidad y un aliado en el ministerio.",
       "carouselItem3": "Conocida como “El Viento”, la iglesia es reconocida por su alcance comunitario, formación en liderazgo y adoración expresiva, encarnando el amor de Cristo y dejando un legado de mayordomía fiel que perdura hasta hoy."
+    }
+  },
+  "ChurchRental": {
+    "metadata": {
+      "title": "Alquiler de la Iglesia",
+      "description": "¿Interesado en alquilar nuestras instalaciones? Obtén más detalles y solicita tu fecha hoy mismo."
+    }
+  },
+  "DeepDive": {
+    "metadata": {
+      "title": "Estudio Profundo",
+      "description": "Únete a nuestras sesiones de Estudio Profundo para recibir enseñanza profunda, estudio bíblico y crecimiento espiritual."
+    }
+  },
+  "Feedback": {
+    "metadata": {
+      "title": "Comentarios de Visitantes",
+      "description": "Gracias por visitar nuestra iglesia. Por favor comparte tus comentarios para ayudarnos a mejorar para el cuerpo de Cristo."
+    }
+  },
+  "Give": {
+    "metadata": {
+      "title": "Dar",
+      "description": "Apoya la misión de The Wind Church dando en línea. Tu generosidad marca la diferencia."
+    }
+  },
+  "Ministries": {
+    "metadata": {
+      "title": "Ministerios",
+      "description": "Explora los ministerios de The Wind Church para cada etapa y edad. Únete a nosotros para crecer juntos en Cristo."
+    }
+  },
+  "PrayerRequests": {
+    "metadata": {
+      "title": "Peticiones de Oración",
+      "description": "Permítenos orar contigo. Envía tus peticiones de oración y nuestro equipo se unirá contigo en fe."
+    }
+  },
+  "RightNowMedia": {
+    "metadata": {
+      "title": "RightNow Media",
+      "description": "Accede a miles de videos de discipulado para niños, jóvenes y adultos a través de nuestra asociación con RightNow Media."
+    }
+  },
+  "Salvation": {
+    "metadata": {
+      "title": "Salvación",
+      "description": "Conoce el mensaje de salvación por medio de Jesucristo y cómo puedes comenzar una nueva vida en Él hoy."
+    }
+  },
+  "Home": {
+    "metadata": {
+      "description": "Bienvenido a The Wind Church—donde Jesús es el centro y las vidas son transformadas por Su presencia."
+    }
+  },
+  "Bookstore": {
+    "metadata": {
+      "title": "Librería",
+      "description": "Compra libros, ropa y regalos basados en la fe en la librería de The Wind Church—equipándote para tu caminar espiritual."
+    }
+  },
+  "Orders": {
+    "metadata": {
+      "title": "Pedidos",
+      "description": "Consulta tus pedidos de la librería de The Wind Church."
+    }
+  },
+  "Cart": {
+    "metadata": {
+      "title": "Carrito de Compras",
+      "description": "Revisa tu carrito y completa tu compra en la librería de The Wind Church."
+    }
+  },
+  "Events": {
+    "metadata": {
+      "title": "Eventos",
+      "description": "Mantente al día con los próximos eventos, servicios y reuniones comunitarias en The Wind Church."
+    }
+  },
+  "Gallery": {
+    "metadata": {
+      "title": "Galería",
+      "description": "Explora nuestra galería de fotos y revive los momentos especiales de eventos y reuniones recientes."
+    }
+  },
+  "GiftAssessment": {
+    "metadata": {
+      "title": "Evaluación de Dones",
+      "description": "Descubre tus dones espirituales con nuestra evaluación sencilla y aprende cómo puedes servir en el Reino de Dios."
+    }
+  },
+  "NextGen": {
+    "metadata": {
+      "title": "Next Gen",
+      "description": "Nuestros servicios para jóvenes empoderan a la próxima generación a conocer a Jesús y darlo a conocer mediante reuniones llenas de fe y diversión."
+    }
+  },
+  "Sermons": {
+    "metadata": {
+      "title": "Predicaciones",
+      "description": "Mira o escucha las predicaciones recientes de The Wind Church y crece en tu fe en cualquier momento y lugar."
+    }
+  },
+  "WindLeaders": {
+    "metadata": {
+      "title": "Líderes WIND",
+      "description": "Conoce a los líderes dedicados que sirven y guían a nuestra comunidad con sabiduría y compasión."
     }
   }
 }

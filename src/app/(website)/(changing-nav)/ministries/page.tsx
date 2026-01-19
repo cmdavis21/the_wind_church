@@ -1,16 +1,33 @@
-import { Metadata } from 'next';
-
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
+import { getTranslations } from 'next-intl/server';
 import MinistriesClient from './nossr';
 
-export const metadata: Metadata = {
-  title: 'Ministries',
-  description:
-    'Explore ministries at The Wind Church for every age and stage—join us in growing together in Christ.',
-  alternates: {
-    canonical: `${WEBSITE_BASE_URL}/ministries`,
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Ministries' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.ministries}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 const Ministries = () => <MinistriesClient />;
 

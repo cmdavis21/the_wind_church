@@ -13,6 +13,7 @@ import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { formatDateMMMddyyyy } from '@/data/format-date';
 import { PageRoutes } from '@/data/page-routes';
 import { getAllDeepDives, getDeepDiveBySlug } from '@/data/services/sanity/queries/deep-dives';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateStaticParams() {
   const deepDives = await getAllDeepDives();
@@ -21,14 +22,32 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: 'DeepDive' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.deepDive}/${slug}`;
+  const image = `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`;
   return {
-    title: 'Deep Dive',
-    description:
-      'Join our Deep Dive sessions for in-depth teaching, biblical study, and spiritual growth.',
-    alternates: {
-      canonical: `${WEBSITE_BASE_URL}/deep-dive/${slug}`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
     },
   };
 }

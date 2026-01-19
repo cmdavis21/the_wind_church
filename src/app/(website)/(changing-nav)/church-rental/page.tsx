@@ -1,19 +1,36 @@
-import { Metadata } from 'next';
-
 import CenterModeMediaWithTextCarousel from '@/components/carousels/center-mode-media-with-text-carousel/CenterModeMediaWithTextCarousel';
 import EventRentalForm from '@/components/forms/event-rental-form/EventRentalForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Church Rental',
-  description:
-    'Interested in renting our church facilities? Get details and request your date today.',
-  alternates: {
-    canonical: `${WEBSITE_BASE_URL}/church-rental`,
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'ChurchRental' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.churchRental}`;
+  const image = `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 const ChurchRental = () => (
   <div>

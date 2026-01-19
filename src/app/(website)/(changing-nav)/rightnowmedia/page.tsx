@@ -1,17 +1,35 @@
-import { Metadata } from 'next';
 import Image from 'next/image';
 
 import RightnowMediaSignupForm from '@/components/forms/rightnow-media-signup-form/RightnowMediaSignupForm';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'RightNow Media',
-  description:
-    'Access thousands of discipleship videos for kids, youth, and adults with our RightNow Media partnership.',
-  alternates: {
-    canonical: `${WEBSITE_BASE_URL}/rightnowmedia`,
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'RightNowMedia' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.rightnowMedia}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/rightnowmedia.png`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 const Rightnowmedia = () => (
   <div className="relative min-h-screen">

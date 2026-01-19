@@ -18,17 +18,34 @@ import { getNextGenPage } from '@/data/services/sanity/queries/next-gen-page';
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
 import { Button } from 'flowbite-react';
-import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'Next Gen',
-  description:
-    'Our Youth Services empower the next generation to know Jesus and make Him known through fun and faith-filled gatherings.',
-  alternates: {
-    canonical: `${WEBSITE_BASE_URL}/next-gen`,
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'NextGen' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.nextGen}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/kids_group.jpg`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 const NextGen = async () => {
   const nextGenPageInfo = await getNextGenPage();

@@ -1,22 +1,39 @@
-import { Metadata } from 'next';
-
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import VideoCard from '@/components/cards/video-card/VideoCard';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
 import { getPastLiveStreams, getPlaylistVideos } from '@/data/services/youtube/playlists';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'Sermons',
-  description:
-    'Watch or listen to recent sermons from The Wind Church and grow in your faith anytime, anywhere.',
-  alternates: {
-    canonical: `${WEBSITE_BASE_URL}/sermons`,
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Sermons' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.sermons}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/pastor_preaching.jpg`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 const Sermons = async () => {
   const liveStreams = await getPastLiveStreams();

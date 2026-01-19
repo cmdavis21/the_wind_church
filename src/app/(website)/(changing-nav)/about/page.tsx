@@ -31,16 +31,31 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'About' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.about}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/group_people.jpg`;
   return {
-    title: t('metadata.title'),
-    description: t('metadata.description'),
-    alternates: {
-      canonical: `${WEBSITE_BASE_URL}/about`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
     },
   };
 }

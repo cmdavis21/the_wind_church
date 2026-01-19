@@ -1,22 +1,39 @@
-import { Metadata } from 'next';
-
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import ErrorPage from '@/components/error-page/ErrorPage';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
+import { PageRoutes } from '@/data/page-routes';
 import { getGalleryImages } from '@/data/services/aws/s3/gallery';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Gallery',
-  description:
-    'Browse our church photo gallery and relive the special moments from recent events and gatherings.',
-  alternates: {
-    canonical: `${WEBSITE_BASE_URL}/gallery`,
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Gallery' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.gallery}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 const Gallery = async () => {
   const gallery = await getGalleryImages();

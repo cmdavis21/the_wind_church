@@ -8,17 +8,34 @@ import MediaBackgroundAndContent, {
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
-import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'Salvation',
-  description:
-    'Learn about the message of salvation through Jesus Christ and how you can begin a new life in Him today.',
-  alternates: {
-    canonical: `${WEBSITE_BASE_URL}/salvation`,
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Salvation' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.salvation}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/crosses.png`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 const SALVATION_QUESTIONS: { question: string; verse: string }[] = [
   {

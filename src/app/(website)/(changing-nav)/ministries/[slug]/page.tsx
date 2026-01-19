@@ -17,6 +17,7 @@ import { getAllMinistries, getMinistryBySlug } from '@/data/services/sanity/quer
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
 import { Button } from 'flowbite-react';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
@@ -27,14 +28,32 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: 'Ministries' });
+  const title = t('metadata.title');
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}${PageRoutes.ministries}/${slug}`;
+  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`;
   return {
-    title: 'Ministries',
-    description:
-      'Explore ministries at The Wind Church for every age and stage—join us in growing together in Christ.',
-    alternates: {
-      canonical: `${WEBSITE_BASE_URL}/ministries/${slug}`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
     },
   };
 }

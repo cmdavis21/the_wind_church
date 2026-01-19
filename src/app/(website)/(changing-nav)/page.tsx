@@ -12,14 +12,27 @@ import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/co
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
 import { Button } from 'flowbite-react';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Home' });
+  const description = t('metadata.description');
+  const url = `${WEBSITE_BASE_URL}/`;
+  const image = `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`;
   return {
-    description:
-      'Welcome to The Wind Church—where Jesus is the center and lives are transformed through His presence.',
-    alternates: {
-      canonical: `${WEBSITE_BASE_URL}/`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      description,
+      url,
+      images: [{ url: image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      description,
+      images: [image],
     },
   };
 }
