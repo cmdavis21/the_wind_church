@@ -1,35 +1,79 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
+import AccordionItem, { ACCORDION_TYPE } from './AccordionItem';
 
-import AccordionItem from './AccordionItem';
+// Mock Plus icon
+jest.mock('@/components/icons/plus', () => () => <svg data-testid="plus-icon" />);
+
+// Mock next/image
+jest.mock('next/image', () => (props: any) => <img {...props} alt={props.alt || 'image'} />);
+
+// Mock height observer hook
+jest.mock('@/data/hooks', () => ({
+  useResizeHeightObserver: () => 100,
+}));
 
 describe('AccordionItem', () => {
-  const title = 'Is there coffee?';
-  const description =
-    'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.';
+  const baseProps = {
+    title: 'Test Title',
+    description: 'Test Description',
+  };
 
-  it('should render correctly', () => {
-    render(<AccordionItem title={title} description={description} />);
+  test('renders title and description (collapsed by default)', () => {
+    render(<AccordionItem {...baseProps} />);
 
-    expect(screen.getByText(title)).toBeInTheDocument();
-    expect(screen.getByText(description)).toBeInTheDocument();
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+
+    // Description should be hidden initially
+    const dropdown = screen.getByText('Test Description').parentElement?.parentElement;
+    expect(dropdown).toHaveStyle('height: 0px');
   });
 
-  it('should toggle the dropdown when clicked', () => {
-    render(<AccordionItem title={title} description={description} />);
+  test('opens when clicked', () => {
+    render(<AccordionItem {...baseProps} />);
 
     const button = screen.getByRole('button');
-    const dropdownText = screen.getByText(description);
-
-    // Initially, the description should be hidden (opacity-0 class makes it invisible)
-    expect(dropdownText).toHaveClass('opacity-0', { exact: false });
-
-    // Click to open
     fireEvent.click(button);
-    expect(dropdownText).not.toHaveClass('opacity-0', { exact: false });
 
-    // Click to close
-    fireEvent.click(button);
-    expect(dropdownText).toHaveClass('opacity-0', { exact: false });
+    const dropdown = screen.getByText('Test Description').parentElement?.parentElement;
+    expect(dropdown).toHaveStyle('height: 120px'); // 100 + 20 for DEFAULT variant
+  });
+
+  test('respects defaultOpen prop', () => {
+    render(<AccordionItem {...baseProps} defaultOpen />);
+
+    const dropdown = screen.getByText('Test Description').parentElement?.parentElement;
+    expect(dropdown).toHaveStyle('height: 120px');
+  });
+
+  test('renders image when provided', () => {
+    render(<AccordionItem {...baseProps} image="/test.png" />);
+
+    expect(screen.getByRole('img')).toHaveAttribute('src', '/test.png');
+  });
+
+  test('renders icon when provided', () => {
+    const MockIcon = () => <svg data-testid="mock-icon" />;
+
+    render(<AccordionItem {...baseProps} icon={MockIcon} />);
+
+    expect(screen.getByTestId('mock-icon')).toBeInTheDocument();
+  });
+
+  test('applies MINIMAL variant styles', () => {
+    render(<AccordionItem {...baseProps} variant={ACCORDION_TYPE.MINIMAL} />);
+
+    const button = screen.getByRole('button');
+
+    // Minimal variant uses border-bottom only
+    expect(button.className).toMatch(/border-light-gray/);
+  });
+
+  test('dropdown height uses minimal offset when MINIMAL variant is open', () => {
+    render(<AccordionItem {...baseProps} variant={ACCORDION_TYPE.MINIMAL} defaultOpen />);
+
+    const dropdown = screen.getByText('Test Description').parentElement?.parentElement;
+
+    // height = 100 + 10 for MINIMAL
+    expect(dropdown).toHaveStyle('height: 110px');
   });
 });

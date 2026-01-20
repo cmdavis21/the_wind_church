@@ -4,8 +4,8 @@ import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageS
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import LeaderCardSkeleton from '@/components/cards/leader-card/LeaderCard.skeleton';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
-import ErrorPage from '@/components/error-page/ErrorPage';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
+import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
 import { useGetAllCategorizedLeaders } from '@/data/services/sanity/queries/leaders';

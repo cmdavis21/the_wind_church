@@ -3,8 +3,8 @@
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import ProductCard from '@/components/cards/product-card/ProductCard';
 import ProductCardSkeleton from '@/components/cards/product-card/ProductCard.skeleton';
-import ErrorPage from '@/components/error-page/ErrorPage';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
+import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
 import { AWS_ASSET_BASE_URL } from '@/data/constants';

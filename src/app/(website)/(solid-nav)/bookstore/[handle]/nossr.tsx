@@ -1,8 +1,8 @@
 'use client';
 
 import SingleSlideMediaCarousel from '@/components/carousels/single-slide-media-carousel/SingleSlideMediaCarousel';
-import MultiTextRadioContainer from '@/components/forms/inputs/multi-text-radio-container/MultiTextRadioContainer';
 import QuantityInput from '@/components/forms/inputs/quantity-input/QuantityInput';
+import TextRadio from '@/components/forms/inputs/text-radio/TextRadio';
 import CartModal from '@/components/modals/cart-modal/CartModal';
 import { formatPrice } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
@@ -164,20 +164,25 @@ const ProductPage = (product: Product) => {
             <div className="pb-lg flex flex-col gap-lg">
               {product.options &&
                 product.options.map((opt) => (
-                  <MultiTextRadioContainer
-                    label={opt.name}
-                    onSelect={(value) => updateVariation(opt.name, value)}
-                    options={opt.values.map((subOpt) => {
-                      const found = variations.find(
-                        (obj) => obj.key === opt.name && obj.value === subOpt.name
-                      );
-                      return {
-                        text: subOpt.name,
-                        color: subOpt.color,
-                        selected: !!found,
-                      };
-                    })}
-                  />
+                  <div className="flex flex-col gap-sm">
+                    <h5>{opt.name}</h5>
+                    <div className="flex flex-wrap gap-sm">
+                      {opt.values.map((subOpt) => {
+                        const found = variations.find(
+                          (obj) => obj.key === opt.name && obj.value === subOpt.name
+                        );
+                        return (
+                          <TextRadio
+                            key={subOpt.name}
+                            text={subOpt.name}
+                            color={subOpt.color}
+                            selected={!!found}
+                            onSelect={(value) => updateVariation(opt.name, value)}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
                 ))}
             </div>
 

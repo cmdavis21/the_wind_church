@@ -3,9 +3,9 @@
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import MinistryCard from '@/components/cards/ministry-card/MinistryCard';
 import MinistryCardSkeleton from '@/components/cards/ministry-card/MinistryCard.skeleton';
-import ErrorPage from '@/components/error-page/ErrorPage';
 import MinistryConnectionForm from '@/components/forms/ministry-connection-form/MinistryConnectionForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
+import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import { AWS_ASSET_BASE_URL } from '@/data/constants';

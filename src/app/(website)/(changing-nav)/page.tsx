@@ -2,12 +2,12 @@ import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
+import VideoWithTitle from '@/components/misc/video-with-title/VideoWithTitle';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent, {
   ColorBackground,
 } from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import VideoWithTitle from '@/components/video/video-with-title/VideoWithTitle';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';

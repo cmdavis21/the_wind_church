@@ -1,4 +1,4 @@
-import ErrorPage from '@/components/error-page/ErrorPage';
+import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 

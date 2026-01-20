@@ -53,7 +53,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
         {/* Left Section */}
         <div className="flex items-center gap-md">
           {image && (
-            <div className="relative min-w-[30px] min-h-[30px]">
+            <div className="relative min-w-[30px] size-[30px] aspect-square">
               <Image fill src={image} alt="decorative img" className="rounded-sm" />
             </div>
           )}

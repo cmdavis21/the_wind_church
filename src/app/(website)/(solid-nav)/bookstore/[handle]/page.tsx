@@ -1,4 +1,4 @@
-import ErrorPage from '@/components/error-page/ErrorPage';
+import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import {

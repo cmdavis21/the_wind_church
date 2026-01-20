@@ -22,7 +22,10 @@ import GiftAssessmentQuiz from './gift-assessment-quiz/GiftAssessmentQuiz';
 import GiftAssessmentReflectionQuestionsForm from './gift-assessment-reflection-questions-form/GiftAssessmentReflectionQuestionsForm';
 
 const GiftAssessmentResultsPdf = dynamic(
-  () => import('@/components/pdfs/gift-assessment-results-pdf/GiftAssessmentResultsPdf'),
+  () =>
+    import(
+      '@/components/forms/gift-assessment/gift-assessment-results-pdf/GiftAssessmentResultsPdf'
+    ),
   { ssr: false }
 );
 const PDF_FILE_NAME = 'The_Wind_Church_Spiritual_Gift_Assessment_Results.pdf';

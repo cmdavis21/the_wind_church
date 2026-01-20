@@ -1,8 +1,8 @@
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
-import ErrorPage from '@/components/error-page/ErrorPage';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
+import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';

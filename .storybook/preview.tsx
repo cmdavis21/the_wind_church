@@ -1,10 +1,11 @@
-import type { Preview } from "@storybook/react";
-import { Flowbite } from "flowbite-react";
-import React from "react";
-import "../src/styles/globals.css";
-import { withThemeByClassName } from "@storybook/addon-themes";
-import { theme } from "../src/styles/theme";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import { withThemeByClassName } from '@storybook/addon-themes';
+import type { Preview } from '@storybook/nextjs';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Flowbite } from 'flowbite-react';
+import React from 'react';
+import '../src/styles/fonts.css';
+import '../src/styles/globals.css';
+import { theme } from '../src/styles/theme';
 
 const preview: Preview = {
   parameters: {
@@ -21,7 +22,7 @@ const preview: Preview = {
       return (
         <QueryClientProvider client={client}>
           <Flowbite theme={{ theme }}>
-            <div className="relative w-full flex items-center justify-center p-6">
+            <div className="relative flex items-center justify-center p-4">
               <Story />
             </div>
           </Flowbite>
@@ -33,12 +34,12 @@ const preview: Preview = {
 
 export default preview;
 
-export const decorators = [
-  withThemeByClassName({
-    themes: {
-      light: "light",
-      dark: "dark",
-    },
-    defaultTheme: "light",
-  }),
-];
+// export const decorators = [
+//   withThemeByClassName({
+//     themes: {
+//       light: 'light',
+//       dark: 'dark',
+//     },
+//     defaultTheme: 'light',
+//   }),
+// ];
