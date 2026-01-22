@@ -28,7 +28,7 @@ const CarouselArrows: React.FC<CarouselArrowsProps> = ({
       className={cn(
         'rounded-full shadow-lg transition-opacity duration-300 bg-black/50 hover:opacity-50',
         leftArrowProps.disable && 'opacity-50 pointer-events-none cursor-default',
-        'flex justify-center items-center size-10 md:size-xxl',
+        'flex justify-center items-center size-10 md:size-12',
 
         leftArrowProps.buttonClassName
       )}
@@ -42,7 +42,7 @@ const CarouselArrows: React.FC<CarouselArrowsProps> = ({
       className={cn(
         'rounded-full shadow-lg transition-opacity duration-300 bg-black/50 hover:opacity-50',
         rightArrowProps.disable && 'opacity-50 pointer-events-none cursor-default',
-        'flex justify-center items-center size-10 md:size-xxl',
+        'flex justify-center items-center size-10 md:size-12',
         rightArrowProps.buttonClassName
       )}
     >
