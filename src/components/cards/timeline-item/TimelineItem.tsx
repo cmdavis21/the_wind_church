@@ -3,7 +3,7 @@
 import { formatDateMMMddyyyy } from '@/data/format-date';
 import { Event } from '@/data/types';
 import { differenceInDays, isToday } from 'date-fns';
-import { Badge } from 'flowbite-react';
+import { Badge, Button } from 'flowbite-react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import EventDetailsModal from '../../modals/event-details-modal/EventDetailsModal';
@@ -13,7 +13,7 @@ interface TimelineItemProps {
   vertical?: boolean;
 }
 
-const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
+const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical = true }) => {
   const [open, setOpen] = useState(false);
   const [addTag, setAddTag] = useState<string | null>(null);
 
@@ -51,38 +51,40 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical }) => {
         )}
 
         {/* dot */}
-        <div className="relative min-w-3 min-h-3 max-w-3 max-h-3 bg-brand-primary rounded-full" />
+        <div className="relative min-w-3 size-3 aspect-square bg-brand-primary rounded-full" />
 
         {/* content */}
         <div
-          className={`relative max-w-[90%] flex gap-xs p-2 ${
+          className={`relative max-w-[90%] flex flex-col gap-xs p-2 ${
             vertical ? '-mt-3 pb-16' : 'max-md:-mt-2 md:-ml-2'
           }`}
         >
-          <div className="relative size-[70px] rounded-md aspect-square">
-            <Image
-              fill
-              src={event.image.src}
-              alt={event.image.alt}
-              className="object-cover rounded-md"
-            />
-          </div>
-          <div className="flex flex-col gap-xs items-start text-left">
-            {addTag && (
-              <Badge color="primary" className="text-black">
-                {addTag}
-              </Badge>
-            )}
-            <h5 className="text-brand-primary font-bold leading-none">
-              {formatDateMMMddyyyy(event.date)}
-            </h5>
-            <h3 className="font-bold leading-none">{event.name}</h3>
-            {event.description && (
-              <div className="body-large line-clamp-2 text-ellipsis">{event.description}</div>
-            )}
-            <button type="button" onClick={() => setOpen(!open)} className="underline">
-              Click to View Details
-            </button>
+          {addTag && (
+            <Badge color="yellow" size="xs" className="w-full">
+              {addTag}
+            </Badge>
+          )}
+          <div className="flex gap-xs">
+            <div className="relative size-[70px] rounded-md aspect-square">
+              <Image
+                fill
+                src={event.image.src}
+                alt={event.image.alt}
+                className="object-cover rounded-md"
+              />
+            </div>
+            <div className="flex flex-col gap-xs items-start text-left">
+              <h5 className="text-light-navy dark:text-dark-navy font-bold leading-none">
+                {formatDateMMMddyyyy(event.date)}
+              </h5>
+              <h4 className="font-bold leading-none">{event.name}</h4>
+              {event.description && (
+                <div className="body-large line-clamp-1 text-ellipsis">{event.description}</div>
+              )}
+              <Button color="info" size="xs" onClick={() => setOpen(!open)}>
+                View Details
+              </Button>
+            </div>
           </div>
         </div>
       </div>

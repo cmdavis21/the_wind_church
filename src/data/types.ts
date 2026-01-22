@@ -1,3 +1,4 @@
+import { EVENT_CATEGORIES, LEADER_CATEGORIES } from './constants';
 import { Price } from './format-price';
 
 type Time = {
@@ -16,7 +17,7 @@ export type Leader = {
   first_name: string;
   last_name: string;
   position: string;
-  category: string;
+  category: (typeof LEADER_CATEGORIES)[0];
   description: string;
   image: string;
   video?: string;
@@ -57,7 +58,7 @@ export type Event = {
   ministry_event?: string;
   external_host?: string;
   cost?: string;
-  categories?: string[];
+  categories?: typeof EVENT_CATEGORIES;
   how_to_signup?: string;
   additional_notes?: string;
   help_needed?: string[];

@@ -218,10 +218,13 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
           {...register('province')}
           defaultValue={current_address.province}
           error={errors.province?.message}
-          options={STATES.map((state) => ({
-            label: state,
-            value: state,
-          }))}
+          options={[
+            { label: 'Select an option', value: '' },
+            ...STATES.map((state) => ({
+              label: state,
+              value: state,
+            })),
+          ]}
         />
       </div>
 

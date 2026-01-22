@@ -1,3 +1,4 @@
+import { LEADER_CATEGORIES } from '@/data/constants';
 import { defineField } from 'sanity';
 
 export const LeaderSchema = {
@@ -25,18 +26,7 @@ export const LeaderSchema = {
       description:
         'Select a category this leader belongs to (if they fit more than one; select their primary role).',
       options: {
-        list: [
-          { title: 'Senior Leadership', value: 'senior leadership' },
-          { title: 'Church Staff', value: 'church staff' },
-          { title: 'Church Council', value: 'church council' },
-          { title: 'Coaches', value: 'coaches' },
-          { title: 'Elders', value: 'elders' },
-          {
-            title: 'Deacons and Deaconesses',
-            value: 'deacons and deaconesses',
-          },
-          { title: 'Youth Educators', value: 'youth educators' },
-        ],
+        list: LEADER_CATEGORIES,
       },
       validation: (rule) => rule.required().error('You must select a category.'),
     }),

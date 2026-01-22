@@ -9,6 +9,51 @@ export const SANITY_EDITOR_TOKEN = process.env.NEXT_PUBLIC_SANITY_EDITOR_TOKEN;
 export const SANITY_GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_SANITY_GRAPHQL_API_ENDPOINT ?? '';
 export const SANITY_MUTATION_API_ENDPOINT =
   process.env.NEXT_PUBLIC_SANITY_MUTATION_API_ENDPOINT ?? '#';
+export const EVENT_CATEGORIES = [
+  'Worship Service',
+  'Prayer Meeting',
+  'Bible Study',
+  'Revival/Crusade',
+  'Fasting & Prayer',
+  'Church Fellowship',
+  'Potluck / Shared Meals',
+  'Game Night / Movie Night',
+  'Church Picnic',
+  'Small Group Gathering',
+  'Community Outreach',
+  'Evangelism',
+  'Food / Clothing Drive',
+  'Volunteer Service',
+  'Youth Ministry',
+  'Young Adults Fellowship',
+  "Children's Church",
+  'Leadership Training',
+  'Discipleship Class',
+  'New Members Class',
+  'Ministry Workshops',
+  'Sunday School',
+  'Holiday Celebration',
+  'Church Anniversary',
+  'Fundraiser',
+  'Guest Speaker / Concert',
+  'Baptism / Baby Dedication',
+  "Men's Ministry",
+  "Women's Ministry",
+  'Marriage / Couples Retreat',
+  'Family Day',
+];
+export const LEADER_CATEGORIES = [
+  'Pastoral Team',
+  'Church Staff',
+  'Church Council',
+  'Elders',
+  'Deacons and Deaconesses',
+  'Ministry Directors',
+  'Next Gen Educators',
+  'Hospitality & Guest Experience',
+  'Outreach & Evangelism',
+  'Production & Media',
+];
 
 // SHOPIFY
 export const SHOPIFY_STOREFRONT_API_ENDPOINT =
@@ -39,6 +84,7 @@ export const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY ?? '';
 export const YOUTUBE_CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID ?? '';
 
 // TANSTACK QUERY + MUTATION KEYS
+export const GET_ALL_EVENTS = 'SANITY QUERY GET ALL EVENTS';
 export const GET_ALL_LEADERS = 'SANITY QUERY GET ALL LEADERS';
 export const GET_ALL_MINISTRIES = 'SANITY QUERY GET ALL MINISTRIES';
 export const GET_ALL_DEEP_DIVES = 'SANITY QUERY GET ALL DEEP DIVES';

@@ -3,6 +3,7 @@ import React, { useImperativeHandle, useRef } from 'react';
 
 interface SelectInputProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
+  icon?: React.FC<React.SVGAttributes<unknown>>;
   options: { value: string; label: string }[];
   error?: string;
 }
@@ -17,8 +18,7 @@ const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>(
     return (
       <div className="w-full flex flex-col gap-xs">
         {label && <Label htmlFor="select" value={label} disabled={rest.disabled} />}
-        <Select ref={inputRef} name="select" {...rest}>
-          <option value="">Select an option</option>
+        <Select ref={inputRef} name="select" icon={rest.icon} {...rest}>
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

@@ -38,7 +38,7 @@ const PrayerRequests = () => (
       title="Prayer Requests"
       media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg` }}
     />
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
       <CenterTextSection
         highlight={[[2, 2]]}
         title="We're a family going through life together"

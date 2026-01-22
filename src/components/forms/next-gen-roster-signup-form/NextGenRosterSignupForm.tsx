@@ -217,6 +217,7 @@ const NextGenRosterSignupForm = () => {
                 {...register(`children.${childIndex}.age`)}
                 error={errors.children ? errors.children[childIndex]?.age?.message : undefined}
                 options={[
+                  { label: 'Select an option', value: '' },
                   { label: '6-11 months', value: '6-11 months' },
                   ...Array(16)
                     .fill(16)
@@ -231,10 +232,13 @@ const NextGenRosterSignupForm = () => {
                 label="What grade is your child?"
                 disabled={isPending || isSuccess}
                 {...register(`children.${childIndex}.grade`)}
-                options={SCHOOL_GRADES.map((grade) => ({
-                  label: grade,
-                  value: grade,
-                }))}
+                options={[
+                  { label: 'Select an option', value: '' },
+                  ...SCHOOL_GRADES.map((grade) => ({
+                    label: grade,
+                    value: grade,
+                  })),
+                ]}
                 error={errors.children ? errors.children[childIndex]?.grade?.message : undefined}
               />
               <RadioGroup

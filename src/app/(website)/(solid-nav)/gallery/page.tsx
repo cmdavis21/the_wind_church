@@ -45,7 +45,7 @@ const Gallery = async () => {
   }
 
   return (
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
       <PageHeader
         title="The Gallery"
         subtitle="View photos of great times spent together in the Wind family."

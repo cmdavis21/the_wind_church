@@ -56,7 +56,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
-          className="relative rounded-lg p-md md:p-xl overflow-y-scroll scrollbar-hide max-h-[400px] md:max-h-[500px]"
+          className="relative rounded-lg p-md md:p-xl overflow-y-scroll scrollbar-hide max-h-[600px] md:max-h-[500px]"
         >
           {/* BLUR */}
           <div
@@ -71,7 +71,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
           >
             <CornerButton onClick={setOpenModal} className="absolute z-10 right-0 top-0" />
             {categories && categories.length > 0 && (
-              <div className="flex flex-wrap gap-sm">
+              <div className="flex flex-wrap gap-sm pr-2.5">
                 {categories?.map((cat) => (
                   <Badge
                     key={`event-modal-${cat}`}

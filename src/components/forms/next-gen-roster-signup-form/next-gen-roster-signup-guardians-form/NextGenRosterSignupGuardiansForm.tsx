@@ -125,10 +125,13 @@ const NextGenRosterSignupGuardiansForm: React.FC<NextGenRosterSignupGuardiansFor
                   : undefined
               }
               {...register(`children.${index}.guardians.${guardianIndex}.relationship_to_child`)}
-              options={RELATIONSHIP_TO_CHILD.map((relation) => ({
-                label: relation,
-                value: relation,
-              }))}
+              options={[
+                { label: 'Select an option', value: '' },
+                ...RELATIONSHIP_TO_CHILD.map((relation) => ({
+                  label: relation,
+                  value: relation,
+                })),
+              ]}
             />
           </div>
         </React.Fragment>

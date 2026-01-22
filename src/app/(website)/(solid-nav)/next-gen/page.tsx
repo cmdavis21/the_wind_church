@@ -51,7 +51,7 @@ const NextGen = async () => {
   const nextGenPageInfo = await getNextGenPage();
   const events = await getMinistryEvents('Next Gen');
   return (
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
       <PageHeaderWithBackground
         media={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_group.jpg`,

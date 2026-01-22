@@ -177,6 +177,7 @@ const EventRentalForm = () => {
           {...register('purpose_for_rental')}
           error={errors.purpose_for_rental?.message}
           options={[
+            { label: 'Select an option', value: '' },
             { label: 'Wedding', value: 'Wedding' },
             { label: 'Family Celebrations', value: 'Family Celebrations' },
             { label: 'Birthday', value: 'Birthday' },
@@ -218,6 +219,7 @@ const EventRentalForm = () => {
           error={errors.referred_by?.message}
           disabled={!showReference || isPending || isSuccess}
           options={[
+            { label: 'Select an option', value: '' },
             { label: 'Wind Member', value: 'Wind Member' },
             { label: 'Spouse', value: 'Spouse' },
             { label: 'Family', value: 'Family' },

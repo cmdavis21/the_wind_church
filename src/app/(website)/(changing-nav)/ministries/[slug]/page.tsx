@@ -72,7 +72,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
     <div>
       <PageHero size="short" title={ministry.name} media={{ src: ministry.image.src }} />
 
-      <div className="p-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
+      <div className="p-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
         {/* DESCRIPTION */}
         <div className="flex flex-col gap-lg">
           <h5 className="text-light-charcoal dark:text-dark-charcoal">

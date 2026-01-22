@@ -99,9 +99,9 @@ export const theme = {
   },
   modal: {
     root: {
-      base: 'fixed inset-x-0 top-0 z-50 h-full overflow-y-auto overflow-x-hidden inset-0 h-full',
+      base: 'fixed inset-0 z-50 flex items-center justify-center bg-black/60 dark:bg-opacity-80',
       show: {
-        on: 'flex bg-black bg-opacity-50 dark:bg-opacity-80',
+        on: 'flex',
         off: 'hidden',
       },
       sizes: {
@@ -117,37 +117,16 @@ export const theme = {
         '7xl': 'max-w-7xl',
       },
       positions: {
-        'top-left': 'items-start justify-start',
-        'top-center': 'items-start justify-center',
-        'top-right': 'items-start justify-end',
-        'center-left': 'items-center justify-start',
         center: 'items-center justify-center',
-        'center-right': 'items-center justify-end',
-        'bottom-right': 'items-end justify-end',
-        'bottom-center': 'items-end justify-center',
-        'bottom-left': 'items-end justify-start',
       },
     },
     content: {
-      base: 'relative h-full w-full p-4 md:h-auto font-sans',
-      inner: 'relative flex flex-col max-h-[90dvh] rounded-lg bg-light-bg shadow dark:bg-dark-bg',
+      base: 'relative w-full p-4 font-sans',
+      inner:
+        'relative flex flex-col max-h-[90dvh] overflow-y-auto rounded-lg bg-light-bg shadow dark:bg-dark-bg',
     },
     body: {
       base: 'flex-1 overflow-auto p-6 text-light-primaryText dark:text-dark-primaryText',
-      popup: 'pt-0',
-    },
-    header: {
-      base: 'flex items-start justify-between rounded-t border-b p-5 dark:border-dark-gray font-sans',
-      popup: 'border-b-0 p-2',
-      title: 'text-xl font-medium text-light-primaryText dark:text-dark-primaryText',
-      close: {
-        base: 'ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-light-gray hover:bg-light-neutral hover:text-light-primaryText dark:hover:bg-dark-neutral dark:hover:text-white',
-        icon: 'h-5 w-5',
-      },
-    },
-    footer: {
-      base: 'flex items-center space-x-2 rounded-b border-light-gray p-6 dark:border-dark-gray',
-      popup: 'border-t',
     },
   },
   radio: {

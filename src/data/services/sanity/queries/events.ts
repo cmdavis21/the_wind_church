@@ -1,3 +1,5 @@
+import { GET_ALL_EVENTS } from '@/data/constants';
+import { useQuery } from '@tanstack/react-query';
 import { Event } from '../../../types';
 import { SanityQuery } from '../zeus-chain';
 
@@ -133,4 +135,17 @@ export const getMinistryEvents = async (name: string): Promise<Event[]> => {
       },
     }))
     .sort((a, b) => new Date(a.date!).getTime() - new Date(b.date!).getTime());
+};
+
+export const useGetAllEvents = () => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [GET_ALL_EVENTS],
+    queryFn: getAllEvents,
+  });
+
+  return {
+    events: data,
+    eventsLoading: isLoading,
+    eventsError: isError,
+  };
 };

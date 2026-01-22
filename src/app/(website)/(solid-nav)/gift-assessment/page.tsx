@@ -35,7 +35,7 @@ const GiftAssessmentPage = () => (
     {/* Decorative Border */}
     <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
 
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl 2xl:gap-5xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
       {/* Header */}
       <div className="text-center space-y-lg">
         <h1 className={`font-display md:text-[75px] leading-snug`}>Spiritual Gift Assessment</h1>
