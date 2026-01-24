@@ -916,8 +916,6 @@ EventRental?: [{	/** EventRental document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["EventRental"]],
 PrayerRequest?: [{	/** PrayerRequest document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["PrayerRequest"]],
-RightnowMedia?: [{	/** RightnowMedia document ID */
-	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["RightnowMedia"]],
 GiftAssessment?: [{	/** GiftAssessment document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["GiftAssessment"]],
 VisitorFeedback?: [{	/** VisitorFeedback document ID */
@@ -954,9 +952,6 @@ allEventRental?: [{	where?: ValueTypes["EventRentalFilter"] | undefined | null |
 allPrayerRequest?: [{	where?: ValueTypes["PrayerRequestFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["PrayerRequestSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["PrayerRequest"]],
-allRightnowMedia?: [{	where?: ValueTypes["RightnowMediaFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["RightnowMediaSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
-	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null | Variable<any, string>},ValueTypes["RightnowMedia"]],
 allGiftAssessment?: [{	where?: ValueTypes["GiftAssessmentFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["GiftAssessmentSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["GiftAssessment"]],
@@ -1041,7 +1036,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 		['...on EventRental']?: Omit<ValueTypes["EventRental"],keyof ValueTypes["Document"]>;
 		['...on Contact']?: Omit<ValueTypes["Contact"],keyof ValueTypes["Document"]>;
 		['...on PrayerRequest']?: Omit<ValueTypes["PrayerRequest"],keyof ValueTypes["Document"]>;
-		['...on RightnowMedia']?: Omit<ValueTypes["RightnowMedia"],keyof ValueTypes["Document"]>;
 		['...on GiftAssessment']?: Omit<ValueTypes["GiftAssessment"],keyof ValueTypes["Document"]>;
 		['...on VisitorFeedback']?: Omit<ValueTypes["VisitorFeedback"],keyof ValueTypes["Document"]>;
 		['...on MinistryConnection']?: Omit<ValueTypes["MinistryConnection"],keyof ValueTypes["Document"]>;
@@ -1200,23 +1194,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	contact?:ValueTypes["Contact"],
 	request_email_back?:boolean | `@${string}`,
 	request?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	["RightnowMedia"]: AliasType<{
-	/** Document ID */
-	_id?:boolean | `@${string}`,
-	/** Document type */
-	_type?:boolean | `@${string}`,
-	/** Date the document was created */
-	_createdAt?:boolean | `@${string}`,
-	/** Date the document was last modified */
-	_updatedAt?:boolean | `@${string}`,
-	/** Current document revision */
-	_rev?:boolean | `@${string}`,
-	_key?:boolean | `@${string}`,
-	contact?:ValueTypes["Contact"],
-	wind_member?:boolean | `@${string}`,
-	has_access?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["GiftAssessment"]: AliasType<{
@@ -1864,29 +1841,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	request_email_back?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	request?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
-	["RightnowMediaFilter"]: {
-	/** Apply filters on document level */
-	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
-	_id?: ValueTypes["IDFilter"] | undefined | null | Variable<any, string>,
-	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	_createdAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
-	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
-	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	contact?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,
-	wind_member?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	has_access?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
-};
-	["RightnowMediaSorting"]: {
-	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_createdAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	wind_member?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	has_access?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
-};
 	["GiftAssessmentFilter"]: {
 	/** Apply filters on document level */
 	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
@@ -2428,8 +2382,6 @@ EventRental?: [{	/** EventRental document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["EventRental"]],
 PrayerRequest?: [{	/** PrayerRequest document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["PrayerRequest"]],
-RightnowMedia?: [{	/** RightnowMedia document ID */
-	id: ResolverInputTypes["ID"]},ResolverInputTypes["RightnowMedia"]],
 GiftAssessment?: [{	/** GiftAssessment document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["GiftAssessment"]],
 VisitorFeedback?: [{	/** VisitorFeedback document ID */
@@ -2466,9 +2418,6 @@ allEventRental?: [{	where?: ResolverInputTypes["EventRentalFilter"] | undefined 
 allPrayerRequest?: [{	where?: ResolverInputTypes["PrayerRequestFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["PrayerRequestSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["PrayerRequest"]],
-allRightnowMedia?: [{	where?: ResolverInputTypes["RightnowMediaFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["RightnowMediaSorting"]> | undefined | null,	/** Max documents to return */
-	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null},ResolverInputTypes["RightnowMedia"]],
 allGiftAssessment?: [{	where?: ResolverInputTypes["GiftAssessmentFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["GiftAssessmentSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["GiftAssessment"]],
@@ -2553,7 +2502,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 		['...on EventRental']?: Omit<ResolverInputTypes["EventRental"],keyof ResolverInputTypes["Document"]>;
 		['...on Contact']?: Omit<ResolverInputTypes["Contact"],keyof ResolverInputTypes["Document"]>;
 		['...on PrayerRequest']?: Omit<ResolverInputTypes["PrayerRequest"],keyof ResolverInputTypes["Document"]>;
-		['...on RightnowMedia']?: Omit<ResolverInputTypes["RightnowMedia"],keyof ResolverInputTypes["Document"]>;
 		['...on GiftAssessment']?: Omit<ResolverInputTypes["GiftAssessment"],keyof ResolverInputTypes["Document"]>;
 		['...on VisitorFeedback']?: Omit<ResolverInputTypes["VisitorFeedback"],keyof ResolverInputTypes["Document"]>;
 		['...on MinistryConnection']?: Omit<ResolverInputTypes["MinistryConnection"],keyof ResolverInputTypes["Document"]>;
@@ -2712,23 +2660,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	contact?:ResolverInputTypes["Contact"],
 	request_email_back?:boolean | `@${string}`,
 	request?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	["RightnowMedia"]: AliasType<{
-	/** Document ID */
-	_id?:boolean | `@${string}`,
-	/** Document type */
-	_type?:boolean | `@${string}`,
-	/** Date the document was created */
-	_createdAt?:boolean | `@${string}`,
-	/** Date the document was last modified */
-	_updatedAt?:boolean | `@${string}`,
-	/** Current document revision */
-	_rev?:boolean | `@${string}`,
-	_key?:boolean | `@${string}`,
-	contact?:ResolverInputTypes["Contact"],
-	wind_member?:boolean | `@${string}`,
-	has_access?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["GiftAssessment"]: AliasType<{
@@ -3376,29 +3307,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	request_email_back?: ResolverInputTypes["SortOrder"] | undefined | null,
 	request?: ResolverInputTypes["SortOrder"] | undefined | null
 };
-	["RightnowMediaFilter"]: {
-	/** Apply filters on document level */
-	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
-	_id?: ResolverInputTypes["IDFilter"] | undefined | null,
-	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
-	_createdAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
-	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
-	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
-	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	contact?: ResolverInputTypes["ContactFilter"] | undefined | null,
-	wind_member?: ResolverInputTypes["StringFilter"] | undefined | null,
-	has_access?: ResolverInputTypes["StringFilter"] | undefined | null
-};
-	["RightnowMediaSorting"]: {
-	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_createdAt?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	wind_member?: ResolverInputTypes["SortOrder"] | undefined | null,
-	has_access?: ResolverInputTypes["SortOrder"] | undefined | null
-};
 	["GiftAssessmentFilter"]: {
 	/** Apply filters on document level */
 	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -3935,7 +3843,6 @@ export type ModelTypes = {
 	SanityFileAsset?: ModelTypes["SanityFileAsset"] | undefined | null,
 	EventRental?: ModelTypes["EventRental"] | undefined | null,
 	PrayerRequest?: ModelTypes["PrayerRequest"] | undefined | null,
-	RightnowMedia?: ModelTypes["RightnowMedia"] | undefined | null,
 	GiftAssessment?: ModelTypes["GiftAssessment"] | undefined | null,
 	VisitorFeedback?: ModelTypes["VisitorFeedback"] | undefined | null,
 	MinistryConnection?: ModelTypes["MinistryConnection"] | undefined | null,
@@ -3952,7 +3859,6 @@ export type ModelTypes = {
 	allSanityFileAsset: Array<ModelTypes["SanityFileAsset"]>,
 	allEventRental: Array<ModelTypes["EventRental"]>,
 	allPrayerRequest: Array<ModelTypes["PrayerRequest"]>,
-	allRightnowMedia: Array<ModelTypes["RightnowMedia"]>,
 	allGiftAssessment: Array<ModelTypes["GiftAssessment"]>,
 	allVisitorFeedback: Array<ModelTypes["VisitorFeedback"]>,
 	allMinistryConnection: Array<ModelTypes["MinistryConnection"]>,
@@ -3995,7 +3901,7 @@ export type ModelTypes = {
 	source?: ModelTypes["SanityAssetSourceData"] | undefined | null
 };
 	/** A Sanity document */
-["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["RightnowMedia"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenRosterSignup"] | ModelTypes["Event"] | ModelTypes["Ministry"] | ModelTypes["Leader"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["PromoBanner"];
+["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenRosterSignup"] | ModelTypes["Event"] | ModelTypes["Ministry"] | ModelTypes["Leader"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["PromoBanner"];
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["DateTime"]:any;
 	["SanityImageMetadata"]: {
@@ -4133,22 +4039,6 @@ export type ModelTypes = {
 	contact?: ModelTypes["Contact"] | undefined | null,
 	request_email_back?: string | undefined | null,
 	request?: string | undefined | null
-};
-	["RightnowMedia"]: {
-		/** Document ID */
-	_id?: ModelTypes["ID"] | undefined | null,
-	/** Document type */
-	_type?: string | undefined | null,
-	/** Date the document was created */
-	_createdAt?: ModelTypes["DateTime"] | undefined | null,
-	/** Date the document was last modified */
-	_updatedAt?: ModelTypes["DateTime"] | undefined | null,
-	/** Current document revision */
-	_rev?: string | undefined | null,
-	_key?: string | undefined | null,
-	contact?: ModelTypes["Contact"] | undefined | null,
-	wind_member?: string | undefined | null,
-	has_access?: string | undefined | null
 };
 	["GiftAssessment"]: {
 		/** Document ID */
@@ -4774,29 +4664,6 @@ export type ModelTypes = {
 	request_email_back?: ModelTypes["SortOrder"] | undefined | null,
 	request?: ModelTypes["SortOrder"] | undefined | null
 };
-	["RightnowMediaFilter"]: {
-	/** Apply filters on document level */
-	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
-	_id?: ModelTypes["IDFilter"] | undefined | null,
-	_type?: ModelTypes["StringFilter"] | undefined | null,
-	_createdAt?: ModelTypes["DatetimeFilter"] | undefined | null,
-	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
-	_rev?: ModelTypes["StringFilter"] | undefined | null,
-	_key?: ModelTypes["StringFilter"] | undefined | null,
-	contact?: ModelTypes["ContactFilter"] | undefined | null,
-	wind_member?: ModelTypes["StringFilter"] | undefined | null,
-	has_access?: ModelTypes["StringFilter"] | undefined | null
-};
-	["RightnowMediaSorting"]: {
-	_id?: ModelTypes["SortOrder"] | undefined | null,
-	_type?: ModelTypes["SortOrder"] | undefined | null,
-	_createdAt?: ModelTypes["SortOrder"] | undefined | null,
-	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
-	_rev?: ModelTypes["SortOrder"] | undefined | null,
-	_key?: ModelTypes["SortOrder"] | undefined | null,
-	wind_member?: ModelTypes["SortOrder"] | undefined | null,
-	has_access?: ModelTypes["SortOrder"] | undefined | null
-};
 	["GiftAssessmentFilter"]: {
 	/** Apply filters on document level */
 	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -5328,7 +5195,6 @@ export type GraphQLTypes = {
 	SanityFileAsset?: GraphQLTypes["SanityFileAsset"] | undefined | null,
 	EventRental?: GraphQLTypes["EventRental"] | undefined | null,
 	PrayerRequest?: GraphQLTypes["PrayerRequest"] | undefined | null,
-	RightnowMedia?: GraphQLTypes["RightnowMedia"] | undefined | null,
 	GiftAssessment?: GraphQLTypes["GiftAssessment"] | undefined | null,
 	VisitorFeedback?: GraphQLTypes["VisitorFeedback"] | undefined | null,
 	MinistryConnection?: GraphQLTypes["MinistryConnection"] | undefined | null,
@@ -5345,7 +5211,6 @@ export type GraphQLTypes = {
 	allSanityFileAsset: Array<GraphQLTypes["SanityFileAsset"]>,
 	allEventRental: Array<GraphQLTypes["EventRental"]>,
 	allPrayerRequest: Array<GraphQLTypes["PrayerRequest"]>,
-	allRightnowMedia: Array<GraphQLTypes["RightnowMedia"]>,
 	allGiftAssessment: Array<GraphQLTypes["GiftAssessment"]>,
 	allVisitorFeedback: Array<GraphQLTypes["VisitorFeedback"]>,
 	allMinistryConnection: Array<GraphQLTypes["MinistryConnection"]>,
@@ -5390,7 +5255,7 @@ export type GraphQLTypes = {
 };
 	/** A Sanity document */
 ["Document"]: {
-	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "RightnowMedia" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenRosterSignup" | "Event" | "Ministry" | "Leader" | "DeepDive" | "NextGenPage" | "PromoBanner",
+	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenRosterSignup" | "Event" | "Ministry" | "Leader" | "DeepDive" | "NextGenPage" | "PromoBanner",
 	/** Document ID */
 	_id?: GraphQLTypes["ID"] | undefined | null,
 	/** Document type */
@@ -5406,7 +5271,6 @@ export type GraphQLTypes = {
 	['...on EventRental']: '__union' & GraphQLTypes["EventRental"];
 	['...on Contact']: '__union' & GraphQLTypes["Contact"];
 	['...on PrayerRequest']: '__union' & GraphQLTypes["PrayerRequest"];
-	['...on RightnowMedia']: '__union' & GraphQLTypes["RightnowMedia"];
 	['...on GiftAssessment']: '__union' & GraphQLTypes["GiftAssessment"];
 	['...on VisitorFeedback']: '__union' & GraphQLTypes["VisitorFeedback"];
 	['...on MinistryConnection']: '__union' & GraphQLTypes["MinistryConnection"];
@@ -5565,23 +5429,6 @@ export type GraphQLTypes = {
 	contact?: GraphQLTypes["Contact"] | undefined | null,
 	request_email_back?: string | undefined | null,
 	request?: string | undefined | null
-};
-	["RightnowMedia"]: {
-	__typename: "RightnowMedia",
-	/** Document ID */
-	_id?: GraphQLTypes["ID"] | undefined | null,
-	/** Document type */
-	_type?: string | undefined | null,
-	/** Date the document was created */
-	_createdAt?: GraphQLTypes["DateTime"] | undefined | null,
-	/** Date the document was last modified */
-	_updatedAt?: GraphQLTypes["DateTime"] | undefined | null,
-	/** Current document revision */
-	_rev?: string | undefined | null,
-	_key?: string | undefined | null,
-	contact?: GraphQLTypes["Contact"] | undefined | null,
-	wind_member?: string | undefined | null,
-	has_access?: string | undefined | null
 };
 	["GiftAssessment"]: {
 	__typename: "GiftAssessment",
@@ -6228,29 +6075,6 @@ export type GraphQLTypes = {
 	request_email_back?: GraphQLTypes["SortOrder"] | undefined | null,
 	request?: GraphQLTypes["SortOrder"] | undefined | null
 };
-	["RightnowMediaFilter"]: {
-		/** Apply filters on document level */
-	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
-	_id?: GraphQLTypes["IDFilter"] | undefined | null,
-	_type?: GraphQLTypes["StringFilter"] | undefined | null,
-	_createdAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
-	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
-	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
-	_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	contact?: GraphQLTypes["ContactFilter"] | undefined | null,
-	wind_member?: GraphQLTypes["StringFilter"] | undefined | null,
-	has_access?: GraphQLTypes["StringFilter"] | undefined | null
-};
-	["RightnowMediaSorting"]: {
-		_id?: GraphQLTypes["SortOrder"] | undefined | null,
-	_type?: GraphQLTypes["SortOrder"] | undefined | null,
-	_createdAt?: GraphQLTypes["SortOrder"] | undefined | null,
-	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
-	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
-	_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	wind_member?: GraphQLTypes["SortOrder"] | undefined | null,
-	has_access?: GraphQLTypes["SortOrder"] | undefined | null
-};
 	["GiftAssessmentFilter"]: {
 		/** Apply filters on document level */
 	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -6814,8 +6638,6 @@ type ZEUS_VARIABLES = {
 	["EventRentalSorting"]: ValueTypes["EventRentalSorting"];
 	["PrayerRequestFilter"]: ValueTypes["PrayerRequestFilter"];
 	["PrayerRequestSorting"]: ValueTypes["PrayerRequestSorting"];
-	["RightnowMediaFilter"]: ValueTypes["RightnowMediaFilter"];
-	["RightnowMediaSorting"]: ValueTypes["RightnowMediaSorting"];
 	["GiftAssessmentFilter"]: ValueTypes["GiftAssessmentFilter"];
 	["GiftAssessmentSorting"]: ValueTypes["GiftAssessmentSorting"];
 	["VisitorFeedbackFilter"]: ValueTypes["VisitorFeedbackFilter"];

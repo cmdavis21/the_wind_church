@@ -20,12 +20,6 @@ export const Default = {
           'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
       },
       {
-        image: '/images/misc/logo_placeholder.png',
-        title: 'Lorem ipsum dolor sit amet',
-        description:
-          'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-      },
-      {
         icon: PencilPaper,
         title: 'Lorem ipsum dolor sit amet',
         description:

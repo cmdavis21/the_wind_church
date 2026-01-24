@@ -238,9 +238,7 @@ export enum FORM_TYPES {
   GIFT_ASSESSMENT = 'giftAssessments',
   MINISTRY_CONNECTION = 'ministryConnection',
   NEXT_GEN_SIGNUP = 'nextGenRosterSignup',
-  PLAN_YOUR_VISIT = 'scheduledVisits',
   PRAYER_REQUEST = 'prayerRequests',
-  RIGHTNOW_MEDIA = 'rightnowMediaSignups',
   VISITOR_FEEDBACK = 'visitorFeedback',
 }
 

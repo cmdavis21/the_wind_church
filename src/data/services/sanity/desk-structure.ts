@@ -13,7 +13,6 @@ import Handshake from '@/components/icons/handshake';
 import PeopleGroup from '@/components/icons/people-group';
 import PersonPraying from '@/components/icons/person-praying';
 import PersonWithChalkboard from '@/components/icons/person-with-chalkboard';
-import TV from '@/components/icons/tv';
 import User from '@/components/icons/user';
 
 type docAttributes = {
@@ -36,7 +35,6 @@ const websiteDocsWithIcons: docAttributes[] = [
 
 const formsDocsWithIcons: docAttributes[] = [
   { id: 'prayerRequest', title: 'Prayer Requests', icon: PersonPraying },
-  { id: 'rightnowMedia', title: 'Rightnow Media Signups', icon: TV },
   { id: 'eventRental', title: 'Event Rental Inquiries', icon: Calendar },
   { id: 'giftAssessment', title: 'Gift Assessments', icon: Gift },
   { id: 'ministryConnection', title: 'Ministry Connection', icon: Handshake },

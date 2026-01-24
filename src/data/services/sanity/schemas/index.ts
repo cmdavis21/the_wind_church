@@ -10,7 +10,6 @@ import { NextGenPageSchema } from './next-gen-page';
 import { NextGenRosterSignupSchema } from './next-gen-roster-signup';
 import { PrayerRequestSchema } from './prayer-request';
 import { PromoBannerSchema } from './promo-banner';
-import { RightnowMediaSchema } from './rightnow-media';
 import { LinkSchema } from './types/link';
 import { MeetingDetailsSchema } from './types/meeting-details';
 import { NextGenRosterSignupGuardianSchema } from './types/next-gen-roster-signup-guardian';
@@ -22,7 +21,6 @@ export const SanitySchema = [
   // Forms
   EventRentalSchema,
   PrayerRequestSchema,
-  RightnowMediaSchema,
   GiftAssessmentSchema,
   VisitorFeedbackSchema,
   MinistryConnectionSchema,

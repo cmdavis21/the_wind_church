@@ -1,7 +1,6 @@
 import Plus from '@/components/icons/plus';
 import { useResizeHeightObserver } from '@/data/hooks';
 import cn from 'classnames';
-import Image from 'next/image';
 import React, { ReactElement, useRef, useState } from 'react';
 
 export enum ACCORDION_TYPE {
@@ -11,7 +10,6 @@ export enum ACCORDION_TYPE {
 
 interface AccordionItemProps {
   variant?: ACCORDION_TYPE;
-  image?: string;
   icon?: React.FC<React.SVGAttributes<unknown>>;
   title: string;
   description: string | ReactElement;
@@ -20,7 +18,6 @@ interface AccordionItemProps {
 
 const AccordionItem: React.FC<AccordionItemProps> = ({
   variant = ACCORDION_TYPE.DEFAULT,
-  image,
   icon: Icon,
   title,
   description,
@@ -52,11 +49,6 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
       >
         {/* Left Section */}
         <div className="flex items-center gap-md">
-          {image && (
-            <div className="relative min-w-[30px] size-[30px] aspect-square">
-              <Image fill src={image} alt="decorative img" className="rounded-sm" />
-            </div>
-          )}
           {Icon && <Icon width={30} height={30} />}
           <h4
             className={cn(

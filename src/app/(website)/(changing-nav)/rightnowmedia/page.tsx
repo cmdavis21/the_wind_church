@@ -1,6 +1,5 @@
 import Image from 'next/image';
 
-import RightnowMediaSignupForm from '@/components/forms/rightnow-media-signup-form/RightnowMediaSignupForm';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { getTranslations } from 'next-intl/server';
@@ -60,8 +59,6 @@ const Rightnowmedia = () => (
           Join now and get access to RightNow Media for{' '}
           <span className="text-brand-primary">FREE</span> by becoming a wind member.
         </h3>
-
-        <RightnowMediaSignupForm />
       </div>
     </div>
   </div>

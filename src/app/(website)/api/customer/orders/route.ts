@@ -5,9 +5,7 @@ export async function POST(req: Request) {
   const { email } = await req.json();
   const orders = await getAdminCustomerOrders(email);
 
-  if (!orders) {
-    return NextResponse.json({ error: 'Customer not found' }, { status: 404 });
-  }
+  if (!orders) return NextResponse.json({ error: 'Customer not found' }, { status: 404 });
 
   return NextResponse.json(orders);
 }

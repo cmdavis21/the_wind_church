@@ -14,9 +14,6 @@ export const AllTypesProps: Record<string,any> = {
 		PrayerRequest:{
 
 		},
-		RightnowMedia:{
-
-		},
 		GiftAssessment:{
 
 		},
@@ -68,10 +65,6 @@ export const AllTypesProps: Record<string,any> = {
 		allPrayerRequest:{
 			where:"PrayerRequestFilter",
 			sort:"PrayerRequestSorting"
-		},
-		allRightnowMedia:{
-			where:"RightnowMediaFilter",
-			sort:"RightnowMediaSorting"
 		},
 		allGiftAssessment:{
 			where:"GiftAssessmentFilter",
@@ -411,28 +404,6 @@ export const AllTypesProps: Record<string,any> = {
 		_key:"SortOrder",
 		request_email_back:"SortOrder",
 		request:"SortOrder"
-	},
-	RightnowMediaFilter:{
-		_:"Sanity_DocumentFilter",
-		_id:"IDFilter",
-		_type:"StringFilter",
-		_createdAt:"DatetimeFilter",
-		_updatedAt:"DatetimeFilter",
-		_rev:"StringFilter",
-		_key:"StringFilter",
-		contact:"ContactFilter",
-		wind_member:"StringFilter",
-		has_access:"StringFilter"
-	},
-	RightnowMediaSorting:{
-		_id:"SortOrder",
-		_type:"SortOrder",
-		_createdAt:"SortOrder",
-		_updatedAt:"SortOrder",
-		_rev:"SortOrder",
-		_key:"SortOrder",
-		wind_member:"SortOrder",
-		has_access:"SortOrder"
 	},
 	GiftAssessmentFilter:{
 		_:"Sanity_DocumentFilter",
@@ -920,7 +891,6 @@ export const ReturnTypes: Record<string,any> = {
 		SanityFileAsset:"SanityFileAsset",
 		EventRental:"EventRental",
 		PrayerRequest:"PrayerRequest",
-		RightnowMedia:"RightnowMedia",
 		GiftAssessment:"GiftAssessment",
 		VisitorFeedback:"VisitorFeedback",
 		MinistryConnection:"MinistryConnection",
@@ -937,7 +907,6 @@ export const ReturnTypes: Record<string,any> = {
 		allSanityFileAsset:"SanityFileAsset",
 		allEventRental:"EventRental",
 		allPrayerRequest:"PrayerRequest",
-		allRightnowMedia:"RightnowMedia",
 		allGiftAssessment:"GiftAssessment",
 		allVisitorFeedback:"VisitorFeedback",
 		allMinistryConnection:"MinistryConnection",
@@ -980,7 +949,6 @@ export const ReturnTypes: Record<string,any> = {
 		"...on EventRental": "EventRental",
 		"...on Contact": "Contact",
 		"...on PrayerRequest": "PrayerRequest",
-		"...on RightnowMedia": "RightnowMedia",
 		"...on GiftAssessment": "GiftAssessment",
 		"...on VisitorFeedback": "VisitorFeedback",
 		"...on MinistryConnection": "MinistryConnection",
@@ -1110,17 +1078,6 @@ export const ReturnTypes: Record<string,any> = {
 		contact:"Contact",
 		request_email_back:"String",
 		request:"String"
-	},
-	RightnowMedia:{
-		_id:"ID",
-		_type:"String",
-		_createdAt:"DateTime",
-		_updatedAt:"DateTime",
-		_rev:"String",
-		_key:"String",
-		contact:"Contact",
-		wind_member:"String",
-		has_access:"String"
 	},
 	GiftAssessment:{
 		_id:"ID",
