@@ -200,7 +200,7 @@ const EventRentalForm = () => {
         <RadioGroup
           name="referred"
           disabled={isPending || isSuccess}
-          label="3. Is your vocational status lay or clergy?"
+          label="Was you referred by someone to the Wind church?"
           options={[
             { value: YesNo.NO, label: YesNo.NO },
             { value: YesNo.YES, label: YesNo.YES },
