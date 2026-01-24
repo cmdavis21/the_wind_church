@@ -249,6 +249,20 @@ export interface YouTubeSnippet {
   videoUrl: string;
 }
 
+export interface YouTubeSermonSnippet {
+  kind: 'youtube';
+  videoId: string;
+  duration: number;
+  title: string;
+  link: string;
+}
+
+export interface FallbackSermonSnippet {
+  kind: 'fallback';
+  url: string;
+  poster: string;
+}
+
 export interface ProductPreview {
   title: string;
   handle: string;
