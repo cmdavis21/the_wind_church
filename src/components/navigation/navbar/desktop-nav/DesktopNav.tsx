@@ -30,7 +30,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeCo
     >
       <div className="flex justify-between items-end gap-sm pt-3 pb-5 px-lg md:px-xxl lg:px-[75px] max-width-center">
         <Link href={PageRoutes.home}>
-          <ThemeModeLogo changeColor={changeColor} className="w-full min-w-[150px] max-w-[150px]" />
+          <ThemeModeLogo changeColor={changeColor} />
         </Link>
 
         {menuOptions.slice(0, menuOptions.length - 1).map((item, index) => (

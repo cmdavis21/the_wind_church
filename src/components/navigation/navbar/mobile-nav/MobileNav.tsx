@@ -62,7 +62,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
             setOpenNavSettings(false);
           }}
         >
-          <ThemeModeLogo changeColor={changeColor} className="w-full min-w-[140px] max-w-[140px]" />
+          <ThemeModeLogo changeColor={changeColor} />
         </Link>
 
         <div className="flex items-center gap-1">

@@ -9,7 +9,7 @@ import Link from 'next/link';
 const FooterLogoAndSocials = () => (
   <div className="flex lg:flex-col max-lg:justify-between gap-3">
     <Link href={PageRoutes.home}>
-      <ThemeModeLogo noChangeColor className="min-w-[150px] max-w-[200px]" />
+      <ThemeModeLogo noChangeColor />
     </Link>
 
     <div className="flex gap-4 items-center place-self-end w-fit">
