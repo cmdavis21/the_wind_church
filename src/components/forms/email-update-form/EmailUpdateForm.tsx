@@ -8,7 +8,7 @@ import * as yup from 'yup';
 
 import PencilPaper from '@/components/icons/pencilPaper';
 import { useUpdateCustomerEmail } from '@/data/services/shopify/admin/mutations/customer';
-import AlertMessage from '../inputs/alert-message/AlertMessage';
+import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import TextInput from '../inputs/text-input/TextInput';
 
 const schema = yup.object().shape({

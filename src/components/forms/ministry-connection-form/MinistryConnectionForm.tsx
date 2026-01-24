@@ -10,8 +10,8 @@ import * as yup from 'yup';
 
 import { useCreateMinistryConnection } from '@/data/services/sanity/mutations/ministry-connection';
 import { isValidEmail, isValidPhone } from '@/data/utils';
+import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';
-import AlertMessage from '../inputs/alert-message/AlertMessage';
 import TextInput from '../inputs/text-input/TextInput';
 
 const schema = yup.object().shape({

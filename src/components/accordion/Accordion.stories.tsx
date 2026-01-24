@@ -4,7 +4,7 @@ import { ACCORDION_TYPE } from './accordion-item/AccordionItem';
 
 const AccordionStory = {
   component: Accordion,
-  title: 'Accordion/Accordion',
+  title: 'Accordion',
   tags: ['autodocs'],
   decorators: (Story: React.FC) => <Story />,
 };

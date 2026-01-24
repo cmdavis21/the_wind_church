@@ -32,20 +32,20 @@ export async function POST(req: Request) {
       title = 'Next Gen Roster Applicant';
       break;
 
-    case FORM_TYPES.PLAN_YOUR_VISIT:
-      subject = 'Visitor Coming!';
-      title = 'Visitor Coming!';
-      break;
+    // case FORM_TYPES.PLAN_YOUR_VISIT:
+    //   subject = 'Visitor Coming!';
+    //   title = 'Visitor Coming!';
+    //   break;
 
     case FORM_TYPES.PRAYER_REQUEST:
       subject = 'Prayer Request Submission';
       title = 'Prayer Request';
       break;
 
-    case FORM_TYPES.RIGHTNOW_MEDIA:
-      subject = 'RightNow Media Signup Request';
-      title = 'RightNow Media Signup Request';
-      break;
+    // case FORM_TYPES.RIGHTNOW_MEDIA:
+    //   subject = 'RightNow Media Signup Request';
+    //   title = 'RightNow Media Signup Request';
+    //   break;
 
     case FORM_TYPES.VISITOR_FEEDBACK:
       subject = 'Visitor Feedback';

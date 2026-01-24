@@ -4,9 +4,14 @@
     "locale": "{locale, select, en {ING} es {ESP} other {N/A}}"
   },
   "NotFound": {
-    "404": "404",
-    "title": "Página No Encontrada",
-    "description": "Parece que la página que buscas no existe. Te ayudamos a encontrar el camino correcto."
+    "metadata": {
+      "title": "Página No Encontrada",
+      "description": "La página que buscas no existe. Verifica la URL o regresa a la página principal de The Wind Church."
+    },
+    "header": "¿Estás perdido?",
+    "title": "Esta página no existe",
+    "subtitle": "Vamos a llevarte de regreso",
+    "btnLabel": "Ir a la página principal de The Wind Church"
   },
   "Navbar": {
     "logoAlt": "La Iglesia Wind",

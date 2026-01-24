@@ -1,12 +1,12 @@
 'use client';
 
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import ProductCard from '@/components/cards/product-card/ProductCard';
 import ProductCardSkeleton from '@/components/cards/product-card/ProductCard.skeleton';
 import SelectInput from '@/components/forms/inputs/select-input/SelectInput';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import Filter from '@/components/icons/filter';
-import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
 import { AWS_ASSET_BASE_URL } from '@/data/constants';
@@ -17,11 +17,7 @@ const BookstoreClient = () => {
   const [filter, setFilter] = useState('');
   const { collections, collectionsLoading, collectionsError } = useGetStorefrontCollections();
 
-  if (collectionsError) {
-    return (
-      <ErrorPage description="There are no store products at this time. Please check again later." />
-    );
-  }
+  if (collectionsError) return <ErrorAlert />;
 
   return (
     <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">

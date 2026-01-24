@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { GiftAssessmentDefinition, GiftAssessmentQuestion } from '@/data/types';
 
-import AlertMessage from '../../inputs/alert-message/AlertMessage';
+import AlertMessage from '../../../alerts/alert-message/AlertMessage';
 
 const schema = yup.object().shape({
   answers: yup

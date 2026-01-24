@@ -1,4 +1,4 @@
-import ErrorPage from '@/components/misc/error-page/ErrorPage';
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import {
@@ -49,9 +49,7 @@ const SingleProductPage = async ({ params }: { params: Promise<{ handle: string 
   const { handle } = await params;
   const product = await getStorefrontProductByHandle(handle);
 
-  if (!product) {
-    return <ErrorPage description="This page must be missing! Please try again later." />;
-  }
+  if (!product) return <ErrorAlert reloadPage={false} />;
 
   return <ProductPage {...product} />;
 };

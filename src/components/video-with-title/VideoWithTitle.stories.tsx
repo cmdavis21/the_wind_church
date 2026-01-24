@@ -2,7 +2,7 @@ import VideoWithTitle from './VideoWithTitle';
 
 const VideoWithTitleStory = {
   component: VideoWithTitle,
-  title: 'Videos/VideoWithTitle',
+  title: 'VideoWithTitle',
   tags: ['autodocs'],
   decorators: (Story: React.FC) => <Story />,
 };
@@ -14,7 +14,6 @@ export const Default = {
     src: '/placeholder-media/footer_video.mp4',
     poster: '/images/misc/logo_placeholder.png',
     title: 'Sample Video Title',
-    subtitle:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit recusandae ad voluptas',
+    subtitle: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit recusandae ad voluptas',
   },
 };

@@ -1,11 +1,11 @@
 import Accordion from '@/components/accordion/Accordion';
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import EventCard from '@/components/cards/event-card/EventCard';
 import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
@@ -65,7 +65,20 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
   const events = await getMinistryEvents(ministry?.name ?? '');
 
   if (!ministry) {
-    return <ErrorPage description="Sorry, this page must be missing! Please try again later." />;
+    return (
+      <MediaBackgroundAndContent
+        centerContent
+        background={{
+          src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+          alt: 'Image of The Wind Church building',
+        }}
+        content={
+          <div className="py-xxl">
+            <ErrorAlert />
+          </div>
+        }
+      />
+    );
   }
 
   return (

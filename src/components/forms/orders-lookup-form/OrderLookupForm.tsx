@@ -11,8 +11,8 @@ import { useLookupCustomerOrders } from '@/data/services/shopify/admin/queries/o
 import { CustomerData } from '@/data/types';
 
 import { isValidEmail } from '@/data/utils';
+import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';
-import AlertMessage from '../inputs/alert-message/AlertMessage';
 import TextInput from '../inputs/text-input/TextInput';
 
 const schema = yup.object().shape({

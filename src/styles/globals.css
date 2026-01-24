@@ -80,11 +80,11 @@ body {
   .pt-padding {
     @apply pt-[25px] md:pt-[50px] lg:pt-[100px] min-[1800px]:pt-[150px];
   }
+  .pb-padding {
+    @apply pb-[25px] md:pb-[50px] lg:pb-[100px] min-[1800px]:pb-[150px];
+  }
   .nav-padding {
     @apply pt-[125px] lg:pt-[150px];
-  }
-  .mx-padding {
-    @apply mx-[25px] md:mx-[50px] xl:mx-[100px] min-[1800px]:mx-[200px];
   }
   .max-width {
     @apply w-full max-w-[1800px];

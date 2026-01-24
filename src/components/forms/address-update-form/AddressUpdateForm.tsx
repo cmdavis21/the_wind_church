@@ -9,7 +9,7 @@ import * as yup from 'yup';
 import PencilPaper from '@/components/icons/pencilPaper';
 import { useUpdateCustomerAddress } from '@/data/services/shopify/admin/mutations/customer';
 import { Address } from '@/data/types';
-import AlertMessage from '../inputs/alert-message/AlertMessage';
+import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
 

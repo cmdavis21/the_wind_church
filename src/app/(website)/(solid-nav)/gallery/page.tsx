@@ -1,8 +1,8 @@
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
-import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
@@ -38,11 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const Gallery = async () => {
   const gallery = await getGalleryImages();
 
-  if (!gallery?.gallery) {
-    return (
-      <ErrorPage description="There was an issue loading the gallery. Please try again later." />
-    );
-  }
+  if (!gallery?.gallery) return <ErrorAlert reloadPage={false} />;
 
   return (
     <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">

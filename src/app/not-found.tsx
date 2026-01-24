@@ -1,20 +1,28 @@
-import ErrorPage from '@/components/misc/error-page/ErrorPage';
-import { Metadata } from 'next';
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
+import '@/styles/fonts.css';
+import '@/styles/globals.css';
 import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Page Not Found',
-  description:
-    "Sorry, the page you're looking for does not exist. Please check the URL or return to the homepage of The Wind Church.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'NotFound' });
+  return {
+    title: t('metadata.title'),
+    description: t('metadata.description'),
+  };
+}
 
 const NotFound = async () => {
   const t = await getTranslations('NotFound');
   return (
-    <div className="font-sans text-base bg-light-bg dark:bg-dark-bg text-light-primaryText dark:text-dark-primaryText relative min-h-screen flex flex-col">
-      <main className="w-full relative mx-auto antialiased scroll-smooth">
-        <ErrorPage title={t('title')} description={t('description')} />
-      </main>
+    <div className="bg-light-bg dark:bg-dark-bg text-light-primaryText dark:text-dark-primaryText relative h-screen flex flex-col items-end justify-center">
+      <ErrorAlert
+        reloadPage={false}
+        header={t('header')}
+        title={t('title')}
+        subtitle={t('subtitle')}
+        homeBtnLabel={t('btnLabel')}
+      />
     </div>
   );
 };

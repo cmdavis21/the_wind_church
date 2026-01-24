@@ -14,7 +14,7 @@ import Trash from '@/components/icons/trash';
 
 import { useNextGenRosterSignup } from '@/data/services/sanity/mutations/next-gen-roster-signup';
 import { isValidEmail, isValidPhone } from '@/data/utils';
-import AlertMessage from '../inputs/alert-message/AlertMessage';
+import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';

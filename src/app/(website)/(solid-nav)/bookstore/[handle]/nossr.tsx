@@ -32,18 +32,13 @@ const MISCELLANEOUS_DETAIL: { detail: string; description: string }[] = [
 ];
 
 const ProductPage = (product: Product) => {
-  const { getCart, addToCart } = useCartFunctions();
+  const { getCart, addToCart, cartLoading } = useCartFunctions();
 
+  const [quantity, setQuantity] = useState(1);
+  const [showModal, setShowModal] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [showDescription, setShowDescription] = useState(false);
-  const [quantity, setQuantity] = useState(1);
   const [variations, setVariations] = useState<{ key: string; value: string }[]>([]);
-
-  // CART MODAL
-  const [showModal, setShowModal] = useState(false);
-
-  // ADD TO CART LOADING STATE
-  const [loading, setLoading] = useState(false);
 
   // DYNAMICALLY TOGGLE DESCRIPTION HEIGHT
   const descriptionRef = useRef<HTMLDivElement>(null);
@@ -215,23 +210,19 @@ const ProductPage = (product: Product) => {
                 disabled={product.variants[selectedVariant].quantity_available <= 0}
                 onClick={() => {
                   if (product.variants[selectedVariant].id) {
-                    setLoading(true);
                     addToCart([
                       {
                         quantity,
                         merchandiseId: product.variants[selectedVariant].id as GraphQLTypes['ID'],
                       },
-                    ]).then(() => {
-                      setShowModal(true);
-                      setLoading(false);
-                    });
+                    ]).then(() => setShowModal(true));
                   }
                 }}
                 fullSized
                 color="primary"
                 className="md:w-[calc(50%-8px)] whitespace-nowrap"
               >
-                {loading ? (
+                {cartLoading ? (
                   <Spinner />
                 ) : product.variants[selectedVariant].quantity_available <= 0 ? (
                   'Out of Stock'

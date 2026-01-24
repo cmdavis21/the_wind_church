@@ -4,9 +4,14 @@
     "locale": "{locale, select, en {ENG} es {SPA} other {N/A}}"
   },
   "NotFound": {
-    "404": "404",
-    "title": "Page Not Found",
-    "description": "It seems the page your looking for does not exist. Let's get you back ontrack."
+    "metadata": {
+      "title": "Page Not Found",
+      "description": "The page you're looking for does not exist. Check the URL or return to the homepage of The Wind Church."
+    },
+    "header": "Are you lost?",
+    "title": "This page does not exist",
+    "subtitle": "Let's get you back ontrack",
+    "btnLabel": "Go to The Wind Church home"
   },
   "Navbar": {
     "logoAlt": "The Wind Church",
@@ -428,6 +433,7 @@
   },
   "Home": {
     "metadata": {
+      "title": "The Wind Church",
       "description": "Welcome to The Wind Church—where Jesus is the center and lives are transformed through His presence."
     }
   },

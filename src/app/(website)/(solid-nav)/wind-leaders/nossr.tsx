@@ -1,5 +1,6 @@
 'use client';
 
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import LeaderCardSkeleton from '@/components/cards/leader-card/LeaderCard.skeleton';
@@ -7,7 +8,6 @@ import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarouse
 import SelectInput from '@/components/forms/inputs/select-input/SelectInput';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import Filter from '@/components/icons/filter';
-import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
 import { useGetAllCategorizedLeaders } from '@/data/services/sanity/queries/leaders';
@@ -28,11 +28,7 @@ const WindLeadersClient = () => {
     setCount(total);
   }, [leaders, filter]);
 
-  if (leadersError) {
-    return (
-      <ErrorPage description="There are no Wind Leaders at this time. Please check again later." />
-    );
-  }
+  if (leadersError) return <ErrorAlert />;
 
   return (
     <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">

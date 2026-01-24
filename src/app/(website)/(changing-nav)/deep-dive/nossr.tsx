@@ -1,24 +1,31 @@
 'use client';
 
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import FullscreenMediaWithTextFadeInOutCarousel from '@/components/carousels/fullscreen-media-with-text-fade-in-out-carousel/FullscreenMediaWithTextFadeInOutCarousel';
 import FullscreenMediaWithTextFadeInOutCarouselSkeleton from '@/components/carousels/fullscreen-media-with-text-fade-in-out-carousel/FullscreenMediaWithTextFadeInOutCarousel.skeleton';
-import ErrorPage from '@/components/misc/error-page/ErrorPage';
+import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { useGetAllDeepDives } from '@/data/services/sanity/queries/deep-dives';
+import { combineNames } from '@/data/utils';
 
 const DeepDivesClient = () => {
   const { deepDives, deepDivesLoading, deepDivesError } = useGetAllDeepDives();
-  const constructSubtitle = (names: { first_name: string; last_name: string }[]) => {
-    if (!names || names.length === 0) return '';
-    return names.map((n) => `${n.first_name} ${n.last_name}`).join(' & ');
-  };
 
   if (deepDivesError) {
     return (
-      <div className="pt-padding">
-        <ErrorPage description="There are no ministries at this time. Please check again later." />
-      </div>
+      <MediaBackgroundAndContent
+        centerContent
+        background={{
+          src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+          alt: 'Image of The Wind Church building',
+        }}
+        content={
+          <div className="py-xxl">
+            <ErrorAlert />
+          </div>
+        }
+      />
     );
   }
 
@@ -34,7 +41,7 @@ const DeepDivesClient = () => {
                   media: deepDive.image,
                   header: 'Deep Dive Studies',
                   title: deepDive.name,
-                  subtitle: constructSubtitle(deepDive.instructors),
+                  subtitle: combineNames(deepDive.instructors),
                   description: deepDive.description,
                   link: `${PageRoutes.deepDive}/${deepDive.slug}`,
                 }))

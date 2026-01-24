@@ -1,12 +1,12 @@
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 
 import Accordion from '@/components/accordion/Accordion';
+import AlertMessage from '@/components/alerts/alert-message/AlertMessage';
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
-import AlertMessage from '@/components/forms/inputs/alert-message/AlertMessage';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
@@ -57,7 +57,20 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
   const deepDive = await getDeepDiveBySlug(slug);
 
   if (!deepDive) {
-    return <ErrorPage description="This page must be missing! Please try again later." />;
+    return (
+      <MediaBackgroundAndContent
+        centerContent
+        background={{
+          src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+          alt: 'Image of The Wind Church building',
+        }}
+        content={
+          <div className="py-xxl">
+            <ErrorAlert />
+          </div>
+        }
+      />
+    );
   }
 
   return (

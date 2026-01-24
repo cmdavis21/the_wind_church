@@ -87,3 +87,8 @@ export const isValidPhone = (phone: string) => {
   const pattern = /^\d{10,11}$/;
   return pattern.test(phone);
 };
+
+export const combineNames = (names: { first_name: string; last_name: string }[]) => {
+  if (!names || names.length === 0) return '';
+  return names.map((n) => `${n.first_name} ${n.last_name}`).join(' & ');
+};

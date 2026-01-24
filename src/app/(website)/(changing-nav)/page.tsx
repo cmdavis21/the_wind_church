@@ -2,12 +2,12 @@ import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import VideoWithTitle from '@/components/misc/video-with-title/VideoWithTitle';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent, {
   ColorBackground,
 } from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import VideoWithTitle from '@/components/video-with-title/VideoWithTitle';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
@@ -18,13 +18,16 @@ import Link from 'next/link';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Home' });
+  const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_BASE_URL}/`;
   const image = `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`;
   return {
+    title,
     description,
     alternates: { canonical: url },
     openGraph: {
+      title,
       description,
       url,
       images: [{ url: image, width: 1200, height: 630 }],

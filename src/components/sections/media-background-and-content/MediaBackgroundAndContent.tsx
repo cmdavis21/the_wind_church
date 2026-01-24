@@ -76,12 +76,12 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
           !background &&
             color === ColorBackground.YELLOW &&
             'bg-brand-primary/90 dark:bg-dark-navy/90',
-          'absolute inset-0 backdrop-blur-sm'
+          'absolute inset-0 backdrop-blur-[3px]'
         )}
       />
 
       {/* CONTENT */}
-      <div className={'relative'}>{content}</div>
+      <div className={cn('relative', fullWidth && 'max-width')}>{content}</div>
     </div>
   );
 };

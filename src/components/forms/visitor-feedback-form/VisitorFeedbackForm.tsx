@@ -9,7 +9,7 @@ import { Button } from 'flowbite-react';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import AlertMessage from '../inputs/alert-message/AlertMessage';
+import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import TextInput from '../inputs/text-input/TextInput';
 import TextareaInput from '../inputs/textarea-input/TextareaInput';
 

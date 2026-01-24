@@ -1,12 +1,12 @@
 'use client';
 
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import EventCard from '@/components/cards/event-card/EventCard';
 import TimelineItem from '@/components/cards/timeline-item/TimelineItem';
 import SelectInput from '@/components/forms/inputs/select-input/SelectInput';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import Filter from '@/components/icons/filter';
-import ErrorPage from '@/components/misc/error-page/ErrorPage';
 import { EVENT_CATEGORIES } from '@/data/constants';
 import { useGetAllEvents } from '@/data/services/sanity/queries/events';
 import { isAfter } from 'date-fns';
@@ -18,9 +18,7 @@ const EventsClient = () => {
   const filteredEvents =
     events?.filter((e) => filter === '' || e.categories?.includes(filter)) ?? [];
 
-  if (eventsError) {
-    return <ErrorPage description="There are no events at this time. Please check again later." />;
-  }
+  if (eventsError) return <ErrorAlert />;
 
   return (
     <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">

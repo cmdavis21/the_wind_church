@@ -9,7 +9,7 @@ import { RightnowMediaSignup, YesNo } from '@/data/types';
 
 import { useCreateRightnowMediaSignup } from '@/data/services/sanity/mutations/rightnow-media-signup';
 import { isValidEmail, isValidPhone } from '@/data/utils';
-import AlertMessage from '../inputs/alert-message/AlertMessage';
+import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import TextInput from '../inputs/text-input/TextInput';
 
