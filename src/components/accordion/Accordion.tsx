@@ -7,6 +7,7 @@ import AccordionItem, { ACCORDION_TYPE } from './accordion-item/AccordionItem';
 interface AccordionProps {
   variant?: ACCORDION_TYPE;
   content: {
+    image?: string;
     icon?: React.FC<React.SVGAttributes<unknown>>;
     title: string;
     description: string | ReactElement;

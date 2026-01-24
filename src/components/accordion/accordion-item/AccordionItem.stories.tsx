@@ -22,6 +22,15 @@ export const Default = {
   },
 };
 
+export const WithImage = {
+  args: {
+    image: '/images/misc/logo_placeholder.png',
+    title: 'Lorem ipsum dolor sit amet',
+    description:
+      'Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit consectetur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+  },
+};
+
 export const WithIcon = {
   args: {
     icon: PencilPaper,
