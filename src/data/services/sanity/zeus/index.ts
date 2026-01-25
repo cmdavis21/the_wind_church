@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import { AllTypesProps, ReturnTypes, Ops } from './const';
-export const HOST = "https://pyayajuh.api.sanity.io/v2025-03-04/graphql/production/default"
+export const HOST = "https://pyayajuh.api.sanity.io/v2023-08-01/graphql/production/default"
 
 
 export const HEADERS = {}
