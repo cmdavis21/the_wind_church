@@ -3,7 +3,7 @@ import cn from 'classnames';
 import Image from 'next/image';
 import React from 'react';
 
-import ScrollMouse from '@/components/icons/scrollMouse';
+import ChevronLeft from '@/components/icons/chevron-left';
 import { findMediaType, MediaType, scrollToElem, styleSelectedWords } from '@/data/utils';
 
 interface PageHeroProps {
@@ -102,7 +102,9 @@ const PageHero: React.FC<PageHeroProps> = ({
               className="mt-[25vh]"
               onClick={() => scrollTo && scrollToElem(scrollTo)}
             >
-              <ScrollMouse />
+              <div className="animate-bounce motion-safe:animate-bounce">
+                <ChevronLeft fill="#FFF" className="-rotate-90 size-10" />
+              </div>
             </button>
           )}
         </div>

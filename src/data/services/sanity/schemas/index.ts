@@ -6,13 +6,12 @@ import { GiftAssessmentSchema } from './gift-assessment';
 import { LeaderSchema } from './leader';
 import { MinistrySchema } from './ministry';
 import { MinistryConnectionSchema } from './ministry-connection';
+import { NextGenGuardianInquirySchema } from './next-gen-guardian-inquiry';
 import { NextGenPageSchema } from './next-gen-page';
-import { NextGenRosterSignupSchema } from './next-gen-roster-signup';
 import { PrayerRequestSchema } from './prayer-request';
 import { PromoBannerSchema } from './promo-banner';
 import { LinkSchema } from './types/link';
 import { MeetingDetailsSchema } from './types/meeting-details';
-import { NextGenRosterSignupGuardianSchema } from './types/next-gen-roster-signup-guardian';
 import { ScriptureSchema } from './types/scripture';
 import { TimeSchema } from './types/time';
 import { VisitorFeedbackSchema } from './visitor-feedback';
@@ -24,7 +23,7 @@ export const SanitySchema = [
   GiftAssessmentSchema,
   VisitorFeedbackSchema,
   MinistryConnectionSchema,
-  NextGenRosterSignupSchema,
+  NextGenGuardianInquirySchema,
   // Website
   ContactSchema,
   EventSchema,
@@ -38,5 +37,4 @@ export const SanitySchema = [
   TimeSchema,
   ScriptureSchema,
   MeetingDetailsSchema,
-  NextGenRosterSignupGuardianSchema,
 ];

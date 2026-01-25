@@ -27,9 +27,9 @@ export async function POST(req: Request) {
       title = 'Ministry Connection Submission';
       break;
 
-    case FORM_TYPES.NEXT_GEN_SIGNUP:
-      subject = 'Next Gen Roster Submission';
-      title = 'Next Gen Roster Applicant';
+    case FORM_TYPES.NEXT_GEN_GUARDIAN_INQUIRY:
+      subject = 'Next Gen Guardian Inquiry';
+      title = 'Next Gen Guardian Inquiry';
       break;
 
     case FORM_TYPES.PRAYER_REQUEST:

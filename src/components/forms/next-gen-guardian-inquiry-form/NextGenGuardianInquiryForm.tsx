@@ -1,51 +1,57 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from 'flowbite-react';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import PencilPaper from '@/components/icons/pencilPaper';
-import { PrayerRequest, YesNo } from '@/data/types';
+import { NextGenGuardianInquiry } from '@/data/types';
 
 import AlertMessage from '@/components/alerts/alert-message/AlertMessage';
-import { useCreatePrayerRequest } from '@/data/services/sanity/mutations/prayer-request';
-import { isValidEmail } from '@/data/utils';
-import RadioGroup from '../inputs/radio-group/RadioGroup';
+import PencilPaper from '@/components/icons/pencilPaper';
+import { useCreateNextGenGuardianInquiry } from '@/data/services/sanity/mutations/next-gen-guardian-inquiry';
+import { isValidEmail, isValidPhone } from '@/data/utils';
+import { Button } from 'flowbite-react';
 import TextInput from '../inputs/text-input/TextInput';
 import TextareaInput from '../inputs/textarea-input/TextareaInput';
 
 const schema = yup.object().shape({
   first_name: yup.string().required('Enter your first name'),
   last_name: yup.string().required('Enter your last name'),
-  request_email_back: yup.string().oneOf([YesNo.YES, YesNo.NO]).default(YesNo.YES).required(),
   email: yup
     .string()
     .email()
     .required('Enter your email')
     .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
-  request: yup.string().required('Share your prayer'),
+  phone: yup
+    .string()
+    .required('Enter your phone number')
+    .test('Include 10 to 11 digit valid phone number', (val) => isValidPhone(val)),
+  questions: yup.string().required('Share your questions'),
 });
 
-const PrayerRequestForm = () => {
+const NextGenGuardianInquiryForm = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
 
-  const { mutate: submitRequest, isPending, isSuccess, isError } = useCreatePrayerRequest();
+  const {
+    mutate: submitRequest,
+    isPending,
+    isSuccess,
+    isError,
+  } = useCreateNextGenGuardianInquiry();
 
   const {
-    reset,
     register,
     handleSubmit,
     setValue,
     clearErrors,
     formState: { errors },
-  } = useForm<PrayerRequest>({
+  } = useForm<NextGenGuardianInquiry>({
     mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values: PrayerRequest) => submitRequest(values);
+  const onSubmit = (values: NextGenGuardianInquiry) => submitRequest(values);
 
   useEffect(() => {
     if (formRef.current) {
@@ -67,15 +73,15 @@ const PrayerRequestForm = () => {
     >
       <div className="flex items-center gap-sm">
         <PencilPaper className="dark:fill-dark-primaryText" />
-        <h4>Prayer Requests</h4>
+        <h4>Next Gen Guardian Inquiry</h4>
       </div>
 
       {isSuccess && (
         <AlertMessage
           type="success"
-          title="Thank you!"
-          description="We will keep you in our prayers, and if you
-            requested an email back, we will email you shortly."
+          title="Success!"
+          description="Please allow up to 3 business
+            days for a member of our team to reach out to you."
         />
       )}
 
@@ -83,7 +89,7 @@ const PrayerRequestForm = () => {
         <AlertMessage
           type="failure"
           title="Oh no!"
-          description="There was an problem submitting your feedback. Please try again later."
+          description="There was an problem submitting your request. Please try again later."
         />
       )}
 
@@ -106,37 +112,32 @@ const PrayerRequestForm = () => {
       </div>
 
       {/* contact */}
-      <TextInput
-        label="Email*"
-        type="email"
-        error={errors.email?.message}
-        disabled={isPending || isSuccess}
-        {...register('email')}
-      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
+        <TextInput
+          type="tel"
+          label="Phone*"
+          {...register('phone')}
+          error={errors.phone?.message}
+          disabled={isPending || isSuccess}
+        />
+        <TextInput
+          type="email"
+          label="Email*"
+          {...register('email')}
+          error={errors.email?.message}
+          disabled={isPending || isSuccess}
+        />
+      </div>
 
-      {/* request email back */}
-      <RadioGroup
-        name="request_email_back"
-        defaultValue={YesNo.YES}
-        disabled={isPending || isSuccess}
-        label="Would you like us to respond to you by email?"
-        onChange={(val) => setValue('request_email_back', val as YesNo)}
-        options={[
-          { value: YesNo.YES, label: 'Yes' },
-          { value: YesNo.NO, label: 'No' },
-        ]}
-        error={errors.request_email_back?.message}
-      />
-
-      {/* request */}
+      {/* inquriy */}
       <TextareaInput
-        label="Prayer Request*"
-        error={errors.request?.message}
+        label="Questions*"
+        error={errors.questions?.message}
         disabled={isPending || isSuccess}
-        placeholder="Enter your prayer here..."
+        placeholder="Enter any questions you may have so our member can prepare for you."
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-          setValue('request', e.target.value);
-          if (e.target.value !== '') clearErrors('request');
+          setValue('questions', e.target.value);
+          if (e.target.value !== '') clearErrors('questions');
         }}
       />
 
@@ -154,4 +155,4 @@ const PrayerRequestForm = () => {
   );
 };
 
-export default PrayerRequestForm;
+export default NextGenGuardianInquiryForm;

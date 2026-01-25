@@ -2,15 +2,10 @@ import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import LatestSermonVideo from '@/components/latest-sermon-video/LatestSermonVideo';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
-import MediaBackgroundAndContent, {
-  ColorBackground,
-} from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
-import { getLatestSermon } from '@/data/services/youtube/playlists';
 import { styleSelectedWords } from '@/data/utils';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -41,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const Home = async () => {
-  const result = await getLatestSermon();
+  // const result = await getLatestSermon();
 
   const exploreOptions = [
     {
@@ -207,83 +202,73 @@ const Home = async () => {
           poster: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
         }}
       />
-      <div className="py-padding flex flex-col gap-3xl lg:gap-5xl 2xl:gap-6xl">
-        {/* OVERVIEW */}
-        <div id="overview" className="lg:px-4xl max-width-center">
-          <div className="flex flex-col gap-lg px-padding">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: 'Welcome to The Wind Church',
-                  array: [[0, 0]],
-                  htmlTag: 'h2',
-                }),
-              }}
-            />
-            <h4>
-              A Christ-focused community where lives are transformed and hope is restored. We gather
-              to worship, grow, and walk out our faith together. Whether you join us{' '}
-              <Link
-                href="https://www.google.com/search?q=wind+of+the+spirit+worship+center"
-                target="_blank"
-                className="text-light-navy dark:text-brand-primary underline hover:scale-105"
-              >
-                in person
-              </Link>{' '}
-              or{' '}
-              <Link
-                href={YOUTUBE_CHANNEL}
-                target="_blank"
-                className="text-light-navy dark:text-brand-primary underline hover:scale-105"
-              >
-                online
-              </Link>{' '}
-              , we&apos;d love to meet you and help you take your next step with Jesus.
-            </h4>
-            <h3>
-              <span className="dark:text-brand-primary">Sundays 9AM</span> •{' '}
-              <span className="dark:text-brand-primary">Wednesdays 7PM</span>
-            </h3>
-          </div>
+      {/* OVERVIEW */}
+      <div id="overview" className="py-padding lg:px-4xl max-width-center">
+        <div className="flex flex-col gap-lg px-padding">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: styleSelectedWords({
+                text: 'Welcome to The Wind Church',
+                array: [[0, 0]],
+                htmlTag: 'h2',
+              }),
+            }}
+          />
+          <h4>
+            A Christ-focused community where lives are transformed and hope is restored. We gather
+            to worship, grow, and walk out our faith together. Whether you join us{' '}
+            <Link
+              href="https://www.google.com/search?q=wind+of+the+spirit+worship+center"
+              target="_blank"
+              className="text-light-navy dark:text-brand-primary underline hover:scale-105"
+            >
+              in person
+            </Link>{' '}
+            or{' '}
+            <Link
+              href={YOUTUBE_CHANNEL}
+              target="_blank"
+              className="text-light-navy dark:text-brand-primary underline hover:scale-105"
+            >
+              online,
+            </Link>{' '}
+            we&apos;d love to meet you and help you take your next step with Jesus.
+          </h4>
+          <h3>
+            <span className="dark:text-brand-primary">Sundays 9AM</span> •{' '}
+            <span className="dark:text-brand-primary">Wednesdays 7PM</span>
+          </h3>
         </div>
+      </div>
 
-        {/* LATEST SERMON */}
-        <LatestSermonVideo ok={result.ok} data={result.data} />
+      {/* LATEST SERMON */}
+      {/* <LatestSermonVideo ok={result.ok} data={result.data} /> */}
 
-        {/* EXPLORE CTAs */}
-        <div className="px-padding flex flex-col gap-xl md:gap-xxl max-width-center">
-          <CenterTextSection title="Explore The Wind" description="There's much to do here!" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
-            {exploreOptions.map((opt) => (
-              <ImageWithTitleDescriptionLinkCard
-                key={`home-explore-options-${opt.link}`}
-                {...opt}
-              />
-            ))}
-          </div>
+      {/* EXPLORE CTAs */}
+      <div className="p-padding flex flex-col gap-xl md:gap-xxl max-width-center">
+        <CenterTextSection title="Explore The Wind" description="There's much to do here!" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
+          {exploreOptions.map((opt) => (
+            <ImageWithTitleDescriptionLinkCard key={`home-explore-options-${opt.link}`} {...opt} />
+          ))}
         </div>
+      </div>
 
-        {/* ABOUT THE FAQs */}
-        <div className="px-padding flex flex-col gap-xl md:gap-xxl max-width-center">
-          <SectionHeader title="More about The Wind" subtitle="Frequently Asked Questions" />
-          <Accordion content={faqContent} />
+      {/* ABOUT THE FAQs */}
+      <div className="py-xxl px-padding flex flex-col gap-xl md:gap-xxl max-width-center">
+        <SectionHeader title="More about The Wind" subtitle="Frequently Asked Questions" />
+        <Accordion content={faqContent} />
+      </div>
+
+      {/* TESTIMONIALS */}
+      <div className="py-padding space-y-xl md:space-y-3xl">
+        <div className="px-padding">
+          <CenterTextSection
+            title="Testimonials From The Wind Family"
+            description="A glimpse into the experiences and journeys of those who call The Wind Church home."
+          />
         </div>
-
-        {/* TESTIMONIALS */}
-        <MediaBackgroundAndContent
-          noFlex
-          centerContent
-          color={ColorBackground.YELLOW}
-          content={
-            <div className="space-y-xl md:space-y-3xl lg:p-xl">
-              <CenterTextSection
-                title="From Our Church Family"
-                description="A glimpse into the experiences and journeys of those who call The Wind Church home."
-              />
-              <TestimonialCarousel testimonials={testimonials} />
-            </div>
-          }
-        />
+        <TestimonialCarousel testimonials={testimonials} />
       </div>
     </div>
   );

@@ -18,7 +18,6 @@ interface MediaBackgroundAndContentProps {
   fullWidth?: boolean;
   content: ReactElement;
   centerContent?: boolean;
-  noFlex?: boolean;
 }
 
 const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
@@ -27,18 +26,16 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
   fullWidth = true,
   content,
   centerContent = false,
-  noFlex = false,
 }) => {
   return (
     <div
       className={cn(
-        !noFlex && 'flex',
         !fullWidth && 'rounded-xl max-width-center',
         centerContent ? 'items-center justify-center' : 'items-end aspect-[3/1]',
         !background && color === ColorBackground.YELLOW
           ? 'text-light-primaryText'
           : 'text-white dark:text-dark-primaryText',
-        'relative overflow-hidden w-full p-lg md:p-xxl lg:p-3xl'
+        'flex relative overflow-hidden w-full p-lg md:p-xxl lg:p-3xl'
       )}
     >
       {/* BACKGROUND */}

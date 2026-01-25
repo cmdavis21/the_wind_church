@@ -3,10 +3,10 @@
 import TestimonialCard, {
   TestimonialCardProps,
 } from '@/components/cards/testimonial-card/TestimonialCard';
-import { useTheme } from '@/data/providers/theme-mode-provider';
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import CarouselArrows from '../carousel-arrows/CarouselArrows';
 import CarouselDot from '../carousel-dot/CarouselDot';
 
 interface TestimonialCarouselProps {
@@ -14,17 +14,21 @@ interface TestimonialCarouselProps {
 }
 
 const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials }) => {
-  const { darkMode } = useTheme();
   const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 1800 },
+      items: 3,
+      partialVisibilityGutter: 1000,
+    },
     desktop: {
-      breakpoint: { max: 4000, min: 1024 },
-      items: 1,
-      partialVisibilityGutter: 0,
+      breakpoint: { max: 1800, min: 1024 },
+      items: 3,
+      partialVisibilityGutter: 200,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 1,
-      partialVisibilityGutter: 0,
+      items: 2,
+      partialVisibilityGutter: 100,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -35,44 +39,52 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
 
   const CustomDot = ({ onClick, ...rest }: any) => {
     const { active } = rest;
-    return <CarouselDot blueDot={!darkMode} onClick={onClick} active={active} />;
+    return <CarouselDot onClick={onClick} active={active} />;
   };
 
-  const chunk = (arr: TestimonialCardProps[], size: number): TestimonialCardProps[][] =>
-    arr.reduce<TestimonialCardProps[][]>((acc, _, i) => {
-      if (i % size === 0) acc.push(arr.slice(i, i + size));
-      return acc;
-    }, []);
+  const ButtonGroup = ({ next, previous }: any) => (
+    <CarouselArrows
+      className="absolute left-0 px-xxl lg:px-4xl min-[1800px]:px-7xl top-[50%] -translate-y-[50%] w-full"
+      leftArrowProps={{ onClick: () => previous() }}
+      rightArrowProps={{ onClick: () => next() }}
+    />
+  );
 
-  const testimonialSlides = chunk(testimonials, 4);
+  const MobileButtonGroup = ({ next, previous }: any) => (
+    <CarouselArrows
+      className="absolute -bottom-2.5 right-5"
+      leftArrowProps={{ onClick: () => previous() }}
+      rightArrowProps={{ onClick: () => next() }}
+    />
+  );
 
   return (
     <>
       {/* Desktop */}
       <div className="hidden md:block relative">
         <Carousel
-          infinite
-          swipeable
           arrows={false}
-          renderDotsOutside
-          containerClass="pb-12"
-          showDots={true}
+          infinite
+          showDots
+          draggable
+          swipeable
+          centerMode
+          customButtonGroup={<ButtonGroup />}
+          renderButtonGroupOutside
+          containerClass="pb-xxl"
           responsive={responsive}
           customDot={<CustomDot />}
-          itemClass="text-center"
-          autoPlay={true}
-          autoPlaySpeed={3000}
           dotListClass="flex gap-xs"
+          itemClass="px-md lg:px-xl"
         >
-          {testimonialSlides.map((group, index) => (
-            <div
-              key={`desktop-slide-${index}`}
-              className="grid grid-cols-2 gap-lg place-items-center"
-            >
-              {group.map((item) => (
-                <TestimonialCard key={`testimonials-${item.name}`} {...item} />
-              ))}
-            </div>
+          {testimonials.map((item) => (
+            <TestimonialCard
+              key={`testimonials-carousel-${item.name}`}
+              src={item.src}
+              name={item.name}
+              position={item.position}
+              statement={item.statement}
+            />
           ))}
         </Carousel>
       </div>
@@ -81,21 +93,25 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
       <div className="md:hidden relative">
         <Carousel
           infinite
+          showDots
           swipeable
           arrows={false}
-          renderDotsOutside
-          showDots={true}
+          itemClass="px-lg"
+          containerClass="pb-xl"
           responsive={responsive}
+          renderButtonGroupOutside
           customDot={<CustomDot />}
-          itemClass="text-center px-1"
-          autoPlay={true}
-          autoPlaySpeed={3000}
-          dotListClass="flex gap-xs"
+          customButtonGroup={<MobileButtonGroup />}
+          dotListClass="flex gap-xs !justify-start !ml-5"
         >
           {testimonials.map((item) => (
-            <div key={`mobile-slide-${item.name}`}>
-              <TestimonialCard {...item} />
-            </div>
+            <TestimonialCard
+              key={`testimonials-carousel-mobile-${item.name}`}
+              src={item.src}
+              name={item.name}
+              position={item.position}
+              statement={item.statement}
+            />
           ))}
         </Carousel>
       </div>

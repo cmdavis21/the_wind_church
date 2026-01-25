@@ -4,7 +4,7 @@ import EventCard from '@/components/cards/event-card/EventCard';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
-import NextGenRosterSignupForm from '@/components/forms/next-gen-roster-signup-form/NextGenRosterSignupForm';
+import NextGenGuardianInquiryForm from '@/components/forms/next-gen-guardian-inquiry-form/NextGenGuardianInquiryForm';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import Baby from '@/components/icons/baby';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
@@ -236,13 +236,13 @@ const NextGen = async () => {
         />
       </div>
 
-      {/* ROSTER SIGNUP */}
+      {/* GUARDIAN INQUIRY */}
       <div className="flex flex-col gap-xl md:gap-xxl">
         <CenterTextSection
-          title="Add your child to the register"
-          description=" Ut assumenda eius consequatur magni nisi temporibus debitis excepturi pariatur beatae corporis, laborum ea sed soluta reprehenderit inventore unde nihil eaque alias?"
+          title="Have more questions?"
+          description="Submit an inquiry and a member of our team will contact you."
         />
-        <NextGenRosterSignupForm />
+        <NextGenGuardianInquiryForm />
       </div>
 
       {/* PAGE SCROLL-UP BUTTON */}

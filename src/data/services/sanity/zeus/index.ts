@@ -37,6 +37,125 @@ export const apiSubscription = (options: chainOptions) => (query: string) => {
     throw new Error('No websockets implemented');
   }
 };
+export const apiSubscriptionSSE = (options: chainOptions) => (query: string, variables?: Record<string, unknown>) => {
+  const url = options[0];
+  const fetchOptions = options[1] || {};
+
+  let abortController: AbortController | null = null;
+  let reader: ReadableStreamDefaultReader<Uint8Array> | null = null;
+  let onCallback: ((args: unknown) => void) | null = null;
+  let errorCallback: ((args: unknown) => void) | null = null;
+  let openCallback: (() => void) | null = null;
+  let offCallback: ((args: unknown) => void) | null = null;
+  let isClosing = false; // Flag to track intentional close
+
+  const startStream = async () => {
+    try {
+      abortController = new AbortController();
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'text/event-stream',
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
+          ...fetchOptions.headers,
+        },
+        body: JSON.stringify({ query, variables }),
+        signal: abortController.signal,
+        ...fetchOptions,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      if (openCallback) {
+        openCallback();
+      }
+
+      reader = response.body?.getReader() || null;
+      if (!reader) {
+        throw new Error('No response body');
+      }
+
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) {
+          if (offCallback) {
+            offCallback({ data: null, code: 1000, reason: 'Stream completed' });
+          }
+          break;
+        }
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              const data = line.slice(6);
+              const parsed = JSON.parse(data);
+
+              if (parsed.errors) {
+                if (errorCallback) {
+                  errorCallback({ data: parsed.data, errors: parsed.errors });
+                }
+              } else if (onCallback && parsed.data) {
+                onCallback(parsed.data);
+              }
+            } catch {
+              if (errorCallback) {
+                errorCallback({ errors: ['Failed to parse SSE data'] });
+              }
+            }
+          }
+        }
+      }
+    } catch (err: unknown) {
+      const error = err as Error;
+      // Don't report errors if we're intentionally closing (AbortError) or during cleanup
+      if (error.name !== 'AbortError' && !isClosing && errorCallback) {
+        errorCallback({ errors: [error.message || 'Unknown error'] });
+      }
+    }
+  };
+
+  return {
+    on: (e: (args: unknown) => void) => {
+      onCallback = e;
+    },
+    off: (e: (args: unknown) => void) => {
+      offCallback = e;
+    },
+    error: (e: (args: unknown) => void) => {
+      errorCallback = e;
+    },
+    open: (e?: () => void) => {
+      if (e) {
+        openCallback = e;
+      }
+      startStream();
+    },
+    close: () => {
+      isClosing = true; // Mark as intentionally closing to suppress error callbacks
+      if (abortController) {
+        abortController.abort();
+      }
+      if (reader) {
+        // Wrap in try-catch to suppress AbortError during cleanup
+        reader.cancel().catch(() => {
+          // Ignore cancel errors - stream may already be closed
+        });
+      }
+    },
+  };
+};
 const handleFetchResponse = (response: Response): Promise<GraphQLResponse> => {
   if (!response.ok) {
     return new Promise((_, reject) => {
@@ -207,7 +326,7 @@ export const SubscriptionThunder =
     o: Z & {
       [P in keyof Z]: P extends keyof ValueTypes[R] ? Z[P] : never;
     },
-    ops?: OperationOptions & { variables?: ExtractVariables<Z> },
+    ops?: OperationOptions & { variables?: Record<string, unknown> },
   ) => {
     const options = {
       ...thunderGraphQLOptions,
@@ -243,6 +362,60 @@ export const SubscriptionThunder =
   };
 
 export const Subscription = (...options: chainOptions) => SubscriptionThunder(apiSubscription(options));
+export type SubscriptionToGraphQLSSE<Z, T, SCLR extends ScalarDefinition> = {
+  on: (fn: (args: InputType<T, Z, SCLR>) => void) => void;
+  off: (fn: (e: { data?: InputType<T, Z, SCLR>; code?: number; reason?: string; message?: string }) => void) => void;
+  error: (fn: (e: { data?: InputType<T, Z, SCLR>; errors?: string[] }) => void) => void;
+  open: (fn?: () => void) => void;
+  close: () => void;
+};
+
+export const SubscriptionThunderSSE =
+  <SCLR extends ScalarDefinition>(fn: SubscriptionFunction, thunderGraphQLOptions?: ThunderGraphQLOptions<SCLR>) =>
+  <O extends keyof typeof Ops, OVERRIDESCLR extends SCLR, R extends keyof ValueTypes = GenericOperation<O>>(
+    operation: O,
+    graphqlOptions?: ThunderGraphQLOptions<OVERRIDESCLR>,
+  ) =>
+  <Z extends ValueTypes[R]>(
+    o: Z & {
+      [P in keyof Z]: P extends keyof ValueTypes[R] ? Z[P] : never;
+    },
+    ops?: OperationOptions & { variables?: Record<string, unknown> },
+  ) => {
+    const options = {
+      ...thunderGraphQLOptions,
+      ...graphqlOptions,
+    };
+    type CombinedSCLR = UnionOverrideKeys<SCLR, OVERRIDESCLR>;
+    const returnedFunction = fn(
+      Zeus(operation, o, {
+        operationOptions: ops,
+        scalars: options?.scalars,
+      }),
+      ops?.variables,
+    ) as SubscriptionToGraphQLSSE<Z, GraphQLTypes[R], CombinedSCLR>;
+    if (returnedFunction?.on && options?.scalars) {
+      const wrapped = returnedFunction.on;
+      returnedFunction.on = (fnToCall: (args: InputType<GraphQLTypes[R], Z, CombinedSCLR>) => void) =>
+        wrapped((data: InputType<GraphQLTypes[R], Z, CombinedSCLR>) => {
+          if (options?.scalars) {
+            return fnToCall(
+              decodeScalarsInResponse({
+                response: data,
+                initialOp: operation,
+                initialZeusQuery: o as VType,
+                returns: ReturnTypes,
+                scalars: options.scalars,
+                ops: Ops,
+              }),
+            );
+          }
+          return fnToCall(data);
+        });
+    }
+    return returnedFunction;
+  };
+export const SubscriptionSSE = (...options: chainOptions) => SubscriptionThunderSSE(apiSubscriptionSSE(options));
 export const Zeus = <
   Z extends ValueTypes[R],
   O extends keyof typeof Ops,
@@ -435,7 +608,7 @@ export type fetchOptions = Parameters<typeof fetch>;
 type websocketOptions = typeof WebSocket extends new (...args: infer R) => WebSocket ? R : never;
 export type chainOptions = [fetchOptions[0], fetchOptions[1] & { websocket?: websocketOptions }] | [fetchOptions[0]];
 export type FetchFunction = (query: string, variables?: Record<string, unknown>) => Promise<any>;
-export type SubscriptionFunction = (query: string) => any;
+export type SubscriptionFunction = (query: string, variables?: Record<string, unknown>) => any;
 type NotUndefined<T> = T extends undefined ? never : T;
 export type ResolverType<F> = NotUndefined<F extends [infer ARGS, any] ? ARGS : undefined>;
 
@@ -460,7 +633,7 @@ export class GraphQLError extends Error {
     return 'GraphQL Response Error';
   }
 }
-export type GenericOperation<O> = O extends keyof typeof Ops ? typeof Ops[O] : never;
+export type GenericOperation<O> = O extends keyof typeof Ops ? (typeof Ops)[O] : never;
 export type ThunderGraphQLOptions<SCLR extends ScalarDefinition> = {
   scalars?: SCLR | ScalarCoders;
 };
@@ -707,8 +880,8 @@ export const InternalArgsBuilt = ({
 };
 
 export const resolverFor = <X, T extends keyof ResolverInputTypes, Z extends keyof ResolverInputTypes[T]>(
-  type: T,
-  field: Z,
+  _type: T,
+  _field: Z,
   fn: (
     args: Required<ResolverInputTypes[T]>[Z] extends [infer Input, any] ? Input : any,
     source: any,
@@ -765,7 +938,7 @@ type IsInterfaced<SRC extends DeepAnify<DST>, DST, SCLR extends ScalarDefinition
         Pick<
           SRC,
           {
-            [P in keyof DST]: SRC[P] extends '__union' & infer R ? never : P;
+            [P in keyof DST]: SRC[P] extends '__union' & infer _R ? never : P;
           }[keyof DST]
         >,
         '__typename'
@@ -922,8 +1095,8 @@ VisitorFeedback?: [{	/** VisitorFeedback document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["VisitorFeedback"]],
 MinistryConnection?: [{	/** MinistryConnection document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["MinistryConnection"]],
-NextGenRosterSignup?: [{	/** NextGenRosterSignup document ID */
-	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["NextGenRosterSignup"]],
+NextGenGuardianInquiry?: [{	/** NextGenGuardianInquiry document ID */
+	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["NextGenGuardianInquiry"]],
 Contact?: [{	/** Contact document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["Contact"]],
 Event?: [{	/** Event document ID */
@@ -961,9 +1134,9 @@ allVisitorFeedback?: [{	where?: ValueTypes["VisitorFeedbackFilter"] | undefined 
 allMinistryConnection?: [{	where?: ValueTypes["MinistryConnectionFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["MinistryConnectionSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["MinistryConnection"]],
-allNextGenRosterSignup?: [{	where?: ValueTypes["NextGenRosterSignupFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["NextGenRosterSignupSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
+allNextGenGuardianInquiry?: [{	where?: ValueTypes["NextGenGuardianInquiryFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["NextGenGuardianInquirySorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null | Variable<any, string>},ValueTypes["NextGenRosterSignup"]],
+	offset?: number | undefined | null | Variable<any, string>},ValueTypes["NextGenGuardianInquiry"]],
 allContact?: [{	where?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["ContactSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Contact"]],
@@ -988,7 +1161,8 @@ allPromoBanner?: [{	where?: ValueTypes["PromoBannerFilter"] | undefined | null |
 allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DocumentSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Document"]],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on RootQuery']?: Omit<ValueTypes["RootQuery"], "...on RootQuery">
 }>;
 	["SanityImageAsset"]: AliasType<{
 	/** Document ID */
@@ -1017,7 +1191,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	url?:boolean | `@${string}`,
 	metadata?:ValueTypes["SanityImageMetadata"],
 	source?:ValueTypes["SanityAssetSourceData"],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on SanityImageAsset']?: Omit<ValueTypes["SanityImageAsset"], "...on SanityImageAsset">
 }>;
 	/** A Sanity document */
 ["Document"]:AliasType<{
@@ -1039,7 +1214,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 		['...on GiftAssessment']?: Omit<ValueTypes["GiftAssessment"],keyof ValueTypes["Document"]>;
 		['...on VisitorFeedback']?: Omit<ValueTypes["VisitorFeedback"],keyof ValueTypes["Document"]>;
 		['...on MinistryConnection']?: Omit<ValueTypes["MinistryConnection"],keyof ValueTypes["Document"]>;
-		['...on NextGenRosterSignup']?: Omit<ValueTypes["NextGenRosterSignup"],keyof ValueTypes["Document"]>;
+		['...on NextGenGuardianInquiry']?: Omit<ValueTypes["NextGenGuardianInquiry"],keyof ValueTypes["Document"]>;
 		['...on Event']?: Omit<ValueTypes["Event"],keyof ValueTypes["Document"]>;
 		['...on Ministry']?: Omit<ValueTypes["Ministry"],keyof ValueTypes["Document"]>;
 		['...on Leader']?: Omit<ValueTypes["Leader"],keyof ValueTypes["Document"]>;
@@ -1060,7 +1235,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	blurHash?:boolean | `@${string}`,
 	hasAlpha?:boolean | `@${string}`,
 	isOpaque?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on SanityImageMetadata']?: Omit<ValueTypes["SanityImageMetadata"], "...on SanityImageMetadata">
 }>;
 	["Geopoint"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1068,7 +1244,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	lat?:boolean | `@${string}`,
 	lng?:boolean | `@${string}`,
 	alt?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Geopoint']?: Omit<ValueTypes["Geopoint"], "...on Geopoint">
 }>;
 	["SanityImageDimensions"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1076,7 +1253,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	height?:boolean | `@${string}`,
 	width?:boolean | `@${string}`,
 	aspectRatio?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on SanityImageDimensions']?: Omit<ValueTypes["SanityImageDimensions"], "...on SanityImageDimensions">
 }>;
 	["SanityImagePalette"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1088,7 +1266,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	dominant?:ValueTypes["SanityImagePaletteSwatch"],
 	lightMuted?:ValueTypes["SanityImagePaletteSwatch"],
 	muted?:ValueTypes["SanityImagePaletteSwatch"],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on SanityImagePalette']?: Omit<ValueTypes["SanityImagePalette"], "...on SanityImagePalette">
 }>;
 	["SanityImagePaletteSwatch"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1097,7 +1276,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	foreground?:boolean | `@${string}`,
 	population?:boolean | `@${string}`,
 	title?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on SanityImagePaletteSwatch']?: Omit<ValueTypes["SanityImagePaletteSwatch"], "...on SanityImagePaletteSwatch">
 }>;
 	["SanityAssetSourceData"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1108,7 +1288,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	id?:boolean | `@${string}`,
 	/** A URL to find more information about this asset in the originating source */
 	url?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on SanityAssetSourceData']?: Omit<ValueTypes["SanityAssetSourceData"], "...on SanityAssetSourceData">
 }>;
 	["SanityFileAsset"]: AliasType<{
 	/** Document ID */
@@ -1136,7 +1317,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	path?:boolean | `@${string}`,
 	url?:boolean | `@${string}`,
 	source?:ValueTypes["SanityAssetSourceData"],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on SanityFileAsset']?: Omit<ValueTypes["SanityFileAsset"], "...on SanityFileAsset">
 }>;
 	["EventRental"]: AliasType<{
 	/** Document ID */
@@ -1159,7 +1341,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	company_phone?:boolean | `@${string}`,
 	referred?:boolean | `@${string}`,
 	referred_by?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on EventRental']?: Omit<ValueTypes["EventRental"], "...on EventRental">
 }>;
 	["Contact"]: AliasType<{
 	/** Document ID */
@@ -1177,7 +1360,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
 	email?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Contact']?: Omit<ValueTypes["Contact"], "...on Contact">
 }>;
 	["PrayerRequest"]: AliasType<{
 	/** Document ID */
@@ -1194,7 +1378,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	contact?:ValueTypes["Contact"],
 	request_email_back?:boolean | `@${string}`,
 	request?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on PrayerRequest']?: Omit<ValueTypes["PrayerRequest"], "...on PrayerRequest">
 }>;
 	["GiftAssessment"]: AliasType<{
 	/** Document ID */
@@ -1214,7 +1399,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	ministries_involved_in?:boolean | `@${string}`,
 	change_in_ministry?:boolean | `@${string}`,
 	lay_or_clergy?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on GiftAssessment']?: Omit<ValueTypes["GiftAssessment"], "...on GiftAssessment">
 }>;
 	["VisitorFeedback"]: AliasType<{
 	/** Document ID */
@@ -1230,7 +1416,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_key?:boolean | `@${string}`,
 	contact?:ValueTypes["Contact"],
 	feedback?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on VisitorFeedback']?: Omit<ValueTypes["VisitorFeedback"], "...on VisitorFeedback">
 }>;
 	["MinistryConnection"]: AliasType<{
 	/** Document ID */
@@ -1246,9 +1433,10 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_key?:boolean | `@${string}`,
 	contact?:ValueTypes["Contact"],
 	ministry_interests?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on MinistryConnection']?: Omit<ValueTypes["MinistryConnection"], "...on MinistryConnection">
 }>;
-	["NextGenRosterSignup"]: AliasType<{
+	["NextGenGuardianInquiry"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
 	/** Document type */
@@ -1260,22 +1448,10 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	first_name?:boolean | `@${string}`,
-	last_name?:boolean | `@${string}`,
-	age?:boolean | `@${string}`,
-	grade?:boolean | `@${string}`,
-	gender?:boolean | `@${string}`,
-	hobbies?:boolean | `@${string}`,
-	allergies?:boolean | `@${string}`,
-	guardians?:ValueTypes["NextGenRosterSignupGuardian"],
-		__typename?: boolean | `@${string}`
-}>;
-	["NextGenRosterSignupGuardian"]: AliasType<{
-	_key?:boolean | `@${string}`,
-	_type?:boolean | `@${string}`,
 	contact?:ValueTypes["Contact"],
-	relationship_to_child?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+	questions?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`,
+	['...on NextGenGuardianInquiry']?: Omit<ValueTypes["NextGenGuardianInquiry"], "...on NextGenGuardianInquiry">
 }>;
 	["Event"]: AliasType<{
 	/** Document ID */
@@ -1309,7 +1485,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	cost?:boolean | `@${string}`,
 	/** Are there any additional notes or instructions to add? */
 	additional_notes?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Event']?: Omit<ValueTypes["Event"], "...on Event">
 }>;
 	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["Date"]:unknown;
@@ -1319,7 +1496,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	hour?:boolean | `@${string}`,
 	minute?:boolean | `@${string}`,
 	time_of_day?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on TimeType']?: Omit<ValueTypes["TimeType"], "...on TimeType">
 }>;
 	["Image"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1328,14 +1506,16 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	media?:ValueTypes["GlobalDocumentReference"],
 	hotspot?:ValueTypes["SanityImageHotspot"],
 	crop?:ValueTypes["SanityImageCrop"],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Image']?: Omit<ValueTypes["Image"], "...on Image">
 }>;
 	["GlobalDocumentReference"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	_ref?:boolean | `@${string}`,
 	_weak?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on GlobalDocumentReference']?: Omit<ValueTypes["GlobalDocumentReference"], "...on GlobalDocumentReference">
 }>;
 	["SanityImageHotspot"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1344,7 +1524,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	y?:boolean | `@${string}`,
 	height?:boolean | `@${string}`,
 	width?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on SanityImageHotspot']?: Omit<ValueTypes["SanityImageHotspot"], "...on SanityImageHotspot">
 }>;
 	["SanityImageCrop"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1353,7 +1534,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	bottom?:boolean | `@${string}`,
 	left?:boolean | `@${string}`,
 	right?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on SanityImageCrop']?: Omit<ValueTypes["SanityImageCrop"], "...on SanityImageCrop">
 }>;
 	["Ministry"]: AliasType<{
 	/** Document ID */
@@ -1375,21 +1557,24 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	/** Select the coach for this ministry. */
 	coach?:ValueTypes["Leader"],
 	image?:ValueTypes["Image"],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Ministry']?: Omit<ValueTypes["Ministry"], "...on Ministry">
 }>;
 	["Slug"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	current?:boolean | `@${string}`,
 	source?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Slug']?: Omit<ValueTypes["Slug"], "...on Slug">
 }>;
 	["Scripture"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	passage?:boolean | `@${string}`,
 	verse?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Scripture']?: Omit<ValueTypes["Scripture"], "...on Scripture">
 }>;
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]:unknown;
@@ -1414,14 +1599,16 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	description?:boolean | `@${string}`,
 	image?:ValueTypes["Image"],
 	video?:ValueTypes["File"],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Leader']?: Omit<ValueTypes["Leader"], "...on Leader">
 }>;
 	["File"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	asset?:ValueTypes["SanityFileAsset"],
 	media?:ValueTypes["GlobalDocumentReference"],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on File']?: Omit<ValueTypes["File"], "...on File">
 }>;
 	["DeepDive"]: AliasType<{
 	/** Document ID */
@@ -1446,7 +1633,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	meeting_details?:ValueTypes["MeetingDetailsType"],
 	/** Is this deep dive actively accepting new Students? */
 	accepting_new_students?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on DeepDive']?: Omit<ValueTypes["DeepDive"], "...on DeepDive">
 }>;
 	["MeetingDetailsType"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1454,7 +1642,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	day?:boolean | `@${string}`,
 	time?:ValueTypes["TimeType"],
 	location?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on MeetingDetailsType']?: Omit<ValueTypes["MeetingDetailsType"], "...on MeetingDetailsType">
 }>;
 	["NextGenPage"]: AliasType<{
 	/** Document ID */
@@ -1470,7 +1659,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_key?:boolean | `@${string}`,
 	educators?:ValueTypes["Leader"],
 	cirriculum_file?:ValueTypes["File"],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on NextGenPage']?: Omit<ValueTypes["NextGenPage"], "...on NextGenPage">
 }>;
 	["PromoBanner"]: AliasType<{
 	/** Document ID */
@@ -1493,7 +1683,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	link?:ValueTypes["Link"],
 	image?:ValueTypes["Image"],
 	video?:ValueTypes["File"],
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on PromoBanner']?: Omit<ValueTypes["PromoBanner"], "...on PromoBanner">
 }>;
 	["Link"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1502,7 +1693,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	internal_href?:boolean | `@${string}`,
 	/** Optional external link (e.g., https://example.com) */
 	external_href?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Link']?: Omit<ValueTypes["Link"], "...on Link">
 }>;
 	["SanityImageAssetFilter"]: {
 	/** Apply filters on document level */
@@ -1910,7 +2102,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
-	["NextGenRosterSignupFilter"]: {
+	["NextGenGuardianInquiryFilter"]: {
 	/** Apply filters on document level */
 	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
 	_id?: ValueTypes["IDFilter"] | undefined | null | Variable<any, string>,
@@ -1919,28 +2111,17 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	first_name?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	last_name?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	age?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	grade?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	gender?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	hobbies?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	allergies?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+	contact?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,
+	questions?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
-	["NextGenRosterSignupSorting"]: {
+	["NextGenGuardianInquirySorting"]: {
 	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_createdAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	first_name?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	last_name?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	age?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	grade?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	gender?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	hobbies?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	allergies?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+	questions?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["ContactSorting"]: {
 	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2290,14 +2471,16 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	style?:boolean | `@${string}`,
 	listItem?:boolean | `@${string}`,
 	level?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Block']?: Omit<ValueTypes["Block"], "...on Block">
 }>;
 	["Span"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	marks?:boolean | `@${string}`,
 	text?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on Span']?: Omit<ValueTypes["Span"], "...on Span">
 }>;
 	["CrossDatasetReference"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -2306,7 +2489,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_weak?:boolean | `@${string}`,
 	_dataset?:boolean | `@${string}`,
 	_projectId?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
+		__typename?: boolean | `@${string}`,
+	['...on CrossDatasetReference']?: Omit<ValueTypes["CrossDatasetReference"], "...on CrossDatasetReference">
 }>;
 	["IntFilter"]: {
 	/** Checks if the value is equal to the given input. */
@@ -2339,12 +2523,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	time?: ValueTypes["TimeTypeFilter"] | undefined | null | Variable<any, string>,
 	location?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
-	["NextGenRosterSignupGuardianFilter"]: {
-	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	contact?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,
-	relationship_to_child?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
-};
 	["CrossDatasetReferenceSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2359,11 +2537,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	day?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	time?: ValueTypes["TimeTypeSorting"] | undefined | null | Variable<any, string>,
 	location?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
-};
-	["NextGenRosterSignupGuardianSorting"]: {
-	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	relationship_to_child?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["ID"]:unknown
   }
@@ -2388,8 +2561,8 @@ VisitorFeedback?: [{	/** VisitorFeedback document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["VisitorFeedback"]],
 MinistryConnection?: [{	/** MinistryConnection document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["MinistryConnection"]],
-NextGenRosterSignup?: [{	/** NextGenRosterSignup document ID */
-	id: ResolverInputTypes["ID"]},ResolverInputTypes["NextGenRosterSignup"]],
+NextGenGuardianInquiry?: [{	/** NextGenGuardianInquiry document ID */
+	id: ResolverInputTypes["ID"]},ResolverInputTypes["NextGenGuardianInquiry"]],
 Contact?: [{	/** Contact document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["Contact"]],
 Event?: [{	/** Event document ID */
@@ -2427,9 +2600,9 @@ allVisitorFeedback?: [{	where?: ResolverInputTypes["VisitorFeedbackFilter"] | un
 allMinistryConnection?: [{	where?: ResolverInputTypes["MinistryConnectionFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["MinistryConnectionSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["MinistryConnection"]],
-allNextGenRosterSignup?: [{	where?: ResolverInputTypes["NextGenRosterSignupFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["NextGenRosterSignupSorting"]> | undefined | null,	/** Max documents to return */
+allNextGenGuardianInquiry?: [{	where?: ResolverInputTypes["NextGenGuardianInquiryFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["NextGenGuardianInquirySorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null},ResolverInputTypes["NextGenRosterSignup"]],
+	offset?: number | undefined | null},ResolverInputTypes["NextGenGuardianInquiry"]],
 allContact?: [{	where?: ResolverInputTypes["ContactFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["ContactSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["Contact"]],
@@ -2505,7 +2678,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 		['...on GiftAssessment']?: Omit<ResolverInputTypes["GiftAssessment"],keyof ResolverInputTypes["Document"]>;
 		['...on VisitorFeedback']?: Omit<ResolverInputTypes["VisitorFeedback"],keyof ResolverInputTypes["Document"]>;
 		['...on MinistryConnection']?: Omit<ResolverInputTypes["MinistryConnection"],keyof ResolverInputTypes["Document"]>;
-		['...on NextGenRosterSignup']?: Omit<ResolverInputTypes["NextGenRosterSignup"],keyof ResolverInputTypes["Document"]>;
+		['...on NextGenGuardianInquiry']?: Omit<ResolverInputTypes["NextGenGuardianInquiry"],keyof ResolverInputTypes["Document"]>;
 		['...on Event']?: Omit<ResolverInputTypes["Event"],keyof ResolverInputTypes["Document"]>;
 		['...on Ministry']?: Omit<ResolverInputTypes["Ministry"],keyof ResolverInputTypes["Document"]>;
 		['...on Leader']?: Omit<ResolverInputTypes["Leader"],keyof ResolverInputTypes["Document"]>;
@@ -2714,7 +2887,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	ministry_interests?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["NextGenRosterSignup"]: AliasType<{
+	["NextGenGuardianInquiry"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
 	/** Document type */
@@ -2726,21 +2899,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	first_name?:boolean | `@${string}`,
-	last_name?:boolean | `@${string}`,
-	age?:boolean | `@${string}`,
-	grade?:boolean | `@${string}`,
-	gender?:boolean | `@${string}`,
-	hobbies?:boolean | `@${string}`,
-	allergies?:boolean | `@${string}`,
-	guardians?:ResolverInputTypes["NextGenRosterSignupGuardian"],
-		__typename?: boolean | `@${string}`
-}>;
-	["NextGenRosterSignupGuardian"]: AliasType<{
-	_key?:boolean | `@${string}`,
-	_type?:boolean | `@${string}`,
 	contact?:ResolverInputTypes["Contact"],
-	relationship_to_child?:boolean | `@${string}`,
+	questions?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["Event"]: AliasType<{
@@ -3376,7 +3536,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null
 };
-	["NextGenRosterSignupFilter"]: {
+	["NextGenGuardianInquiryFilter"]: {
 	/** Apply filters on document level */
 	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
 	_id?: ResolverInputTypes["IDFilter"] | undefined | null,
@@ -3385,28 +3545,17 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	first_name?: ResolverInputTypes["StringFilter"] | undefined | null,
-	last_name?: ResolverInputTypes["StringFilter"] | undefined | null,
-	age?: ResolverInputTypes["StringFilter"] | undefined | null,
-	grade?: ResolverInputTypes["StringFilter"] | undefined | null,
-	gender?: ResolverInputTypes["StringFilter"] | undefined | null,
-	hobbies?: ResolverInputTypes["StringFilter"] | undefined | null,
-	allergies?: ResolverInputTypes["StringFilter"] | undefined | null
+	contact?: ResolverInputTypes["ContactFilter"] | undefined | null,
+	questions?: ResolverInputTypes["StringFilter"] | undefined | null
 };
-	["NextGenRosterSignupSorting"]: {
+	["NextGenGuardianInquirySorting"]: {
 	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_createdAt?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	first_name?: ResolverInputTypes["SortOrder"] | undefined | null,
-	last_name?: ResolverInputTypes["SortOrder"] | undefined | null,
-	age?: ResolverInputTypes["SortOrder"] | undefined | null,
-	grade?: ResolverInputTypes["SortOrder"] | undefined | null,
-	gender?: ResolverInputTypes["SortOrder"] | undefined | null,
-	hobbies?: ResolverInputTypes["SortOrder"] | undefined | null,
-	allergies?: ResolverInputTypes["SortOrder"] | undefined | null
+	questions?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["ContactSorting"]: {
 	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3805,12 +3954,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	time?: ResolverInputTypes["TimeTypeFilter"] | undefined | null,
 	location?: ResolverInputTypes["StringFilter"] | undefined | null
 };
-	["NextGenRosterSignupGuardianFilter"]: {
-	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
-	contact?: ResolverInputTypes["ContactFilter"] | undefined | null,
-	relationship_to_child?: ResolverInputTypes["StringFilter"] | undefined | null
-};
 	["CrossDatasetReferenceSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3825,11 +3968,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	day?: ResolverInputTypes["SortOrder"] | undefined | null,
 	time?: ResolverInputTypes["TimeTypeSorting"] | undefined | null,
 	location?: ResolverInputTypes["SortOrder"] | undefined | null
-};
-	["NextGenRosterSignupGuardianSorting"]: {
-	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
-	relationship_to_child?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["ID"]:unknown
   }
@@ -3846,7 +3984,7 @@ export type ModelTypes = {
 	GiftAssessment?: ModelTypes["GiftAssessment"] | undefined | null,
 	VisitorFeedback?: ModelTypes["VisitorFeedback"] | undefined | null,
 	MinistryConnection?: ModelTypes["MinistryConnection"] | undefined | null,
-	NextGenRosterSignup?: ModelTypes["NextGenRosterSignup"] | undefined | null,
+	NextGenGuardianInquiry?: ModelTypes["NextGenGuardianInquiry"] | undefined | null,
 	Contact?: ModelTypes["Contact"] | undefined | null,
 	Event?: ModelTypes["Event"] | undefined | null,
 	Leader?: ModelTypes["Leader"] | undefined | null,
@@ -3862,7 +4000,7 @@ export type ModelTypes = {
 	allGiftAssessment: Array<ModelTypes["GiftAssessment"]>,
 	allVisitorFeedback: Array<ModelTypes["VisitorFeedback"]>,
 	allMinistryConnection: Array<ModelTypes["MinistryConnection"]>,
-	allNextGenRosterSignup: Array<ModelTypes["NextGenRosterSignup"]>,
+	allNextGenGuardianInquiry: Array<ModelTypes["NextGenGuardianInquiry"]>,
 	allContact: Array<ModelTypes["Contact"]>,
 	allEvent: Array<ModelTypes["Event"]>,
 	allLeader: Array<ModelTypes["Leader"]>,
@@ -3901,7 +4039,7 @@ export type ModelTypes = {
 	source?: ModelTypes["SanityAssetSourceData"] | undefined | null
 };
 	/** A Sanity document */
-["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenRosterSignup"] | ModelTypes["Event"] | ModelTypes["Ministry"] | ModelTypes["Leader"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["PromoBanner"];
+["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenGuardianInquiry"] | ModelTypes["Event"] | ModelTypes["Ministry"] | ModelTypes["Leader"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["PromoBanner"];
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["DateTime"]:any;
 	["SanityImageMetadata"]: {
@@ -4089,7 +4227,7 @@ export type ModelTypes = {
 	contact?: ModelTypes["Contact"] | undefined | null,
 	ministry_interests?: Array<string | undefined | null> | undefined | null
 };
-	["NextGenRosterSignup"]: {
+	["NextGenGuardianInquiry"]: {
 		/** Document ID */
 	_id?: ModelTypes["ID"] | undefined | null,
 	/** Document type */
@@ -4101,20 +4239,8 @@ export type ModelTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	first_name?: string | undefined | null,
-	last_name?: string | undefined | null,
-	age?: string | undefined | null,
-	grade?: string | undefined | null,
-	gender?: string | undefined | null,
-	hobbies?: string | undefined | null,
-	allergies?: string | undefined | null,
-	guardians?: Array<ModelTypes["NextGenRosterSignupGuardian"] | undefined | null> | undefined | null
-};
-	["NextGenRosterSignupGuardian"]: {
-		_key?: string | undefined | null,
-	_type?: string | undefined | null,
 	contact?: ModelTypes["Contact"] | undefined | null,
-	relationship_to_child?: string | undefined | null
+	questions?: string | undefined | null
 };
 	["Event"]: {
 		/** Document ID */
@@ -4733,7 +4859,7 @@ export type ModelTypes = {
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null
 };
-	["NextGenRosterSignupFilter"]: {
+	["NextGenGuardianInquiryFilter"]: {
 	/** Apply filters on document level */
 	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
 	_id?: ModelTypes["IDFilter"] | undefined | null,
@@ -4742,28 +4868,17 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ModelTypes["StringFilter"] | undefined | null,
 	_key?: ModelTypes["StringFilter"] | undefined | null,
-	first_name?: ModelTypes["StringFilter"] | undefined | null,
-	last_name?: ModelTypes["StringFilter"] | undefined | null,
-	age?: ModelTypes["StringFilter"] | undefined | null,
-	grade?: ModelTypes["StringFilter"] | undefined | null,
-	gender?: ModelTypes["StringFilter"] | undefined | null,
-	hobbies?: ModelTypes["StringFilter"] | undefined | null,
-	allergies?: ModelTypes["StringFilter"] | undefined | null
+	contact?: ModelTypes["ContactFilter"] | undefined | null,
+	questions?: ModelTypes["StringFilter"] | undefined | null
 };
-	["NextGenRosterSignupSorting"]: {
+	["NextGenGuardianInquirySorting"]: {
 	_id?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
 	_createdAt?: ModelTypes["SortOrder"] | undefined | null,
 	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null,
-	first_name?: ModelTypes["SortOrder"] | undefined | null,
-	last_name?: ModelTypes["SortOrder"] | undefined | null,
-	age?: ModelTypes["SortOrder"] | undefined | null,
-	grade?: ModelTypes["SortOrder"] | undefined | null,
-	gender?: ModelTypes["SortOrder"] | undefined | null,
-	hobbies?: ModelTypes["SortOrder"] | undefined | null,
-	allergies?: ModelTypes["SortOrder"] | undefined | null
+	questions?: ModelTypes["SortOrder"] | undefined | null
 };
 	["ContactSorting"]: {
 	_id?: ModelTypes["SortOrder"] | undefined | null,
@@ -5159,12 +5274,6 @@ export type ModelTypes = {
 	time?: ModelTypes["TimeTypeFilter"] | undefined | null,
 	location?: ModelTypes["StringFilter"] | undefined | null
 };
-	["NextGenRosterSignupGuardianFilter"]: {
-	_key?: ModelTypes["StringFilter"] | undefined | null,
-	_type?: ModelTypes["StringFilter"] | undefined | null,
-	contact?: ModelTypes["ContactFilter"] | undefined | null,
-	relationship_to_child?: ModelTypes["StringFilter"] | undefined | null
-};
 	["CrossDatasetReferenceSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
@@ -5180,11 +5289,6 @@ export type ModelTypes = {
 	time?: ModelTypes["TimeTypeSorting"] | undefined | null,
 	location?: ModelTypes["SortOrder"] | undefined | null
 };
-	["NextGenRosterSignupGuardianSorting"]: {
-	_key?: ModelTypes["SortOrder"] | undefined | null,
-	_type?: ModelTypes["SortOrder"] | undefined | null,
-	relationship_to_child?: ModelTypes["SortOrder"] | undefined | null
-};
 	["ID"]:any
     }
 
@@ -5198,7 +5302,7 @@ export type GraphQLTypes = {
 	GiftAssessment?: GraphQLTypes["GiftAssessment"] | undefined | null,
 	VisitorFeedback?: GraphQLTypes["VisitorFeedback"] | undefined | null,
 	MinistryConnection?: GraphQLTypes["MinistryConnection"] | undefined | null,
-	NextGenRosterSignup?: GraphQLTypes["NextGenRosterSignup"] | undefined | null,
+	NextGenGuardianInquiry?: GraphQLTypes["NextGenGuardianInquiry"] | undefined | null,
 	Contact?: GraphQLTypes["Contact"] | undefined | null,
 	Event?: GraphQLTypes["Event"] | undefined | null,
 	Leader?: GraphQLTypes["Leader"] | undefined | null,
@@ -5214,7 +5318,7 @@ export type GraphQLTypes = {
 	allGiftAssessment: Array<GraphQLTypes["GiftAssessment"]>,
 	allVisitorFeedback: Array<GraphQLTypes["VisitorFeedback"]>,
 	allMinistryConnection: Array<GraphQLTypes["MinistryConnection"]>,
-	allNextGenRosterSignup: Array<GraphQLTypes["NextGenRosterSignup"]>,
+	allNextGenGuardianInquiry: Array<GraphQLTypes["NextGenGuardianInquiry"]>,
 	allContact: Array<GraphQLTypes["Contact"]>,
 	allEvent: Array<GraphQLTypes["Event"]>,
 	allLeader: Array<GraphQLTypes["Leader"]>,
@@ -5222,7 +5326,8 @@ export type GraphQLTypes = {
 	allMinistry: Array<GraphQLTypes["Ministry"]>,
 	allNextGenPage: Array<GraphQLTypes["NextGenPage"]>,
 	allPromoBanner: Array<GraphQLTypes["PromoBanner"]>,
-	allDocument: Array<GraphQLTypes["Document"]>
+	allDocument: Array<GraphQLTypes["Document"]>,
+	['...on RootQuery']: Omit<GraphQLTypes["RootQuery"], "...on RootQuery">
 };
 	["SanityImageAsset"]: {
 	__typename: "SanityImageAsset",
@@ -5251,11 +5356,12 @@ export type GraphQLTypes = {
 	path?: string | undefined | null,
 	url?: string | undefined | null,
 	metadata?: GraphQLTypes["SanityImageMetadata"] | undefined | null,
-	source?: GraphQLTypes["SanityAssetSourceData"] | undefined | null
+	source?: GraphQLTypes["SanityAssetSourceData"] | undefined | null,
+	['...on SanityImageAsset']: Omit<GraphQLTypes["SanityImageAsset"], "...on SanityImageAsset">
 };
 	/** A Sanity document */
 ["Document"]: {
-	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenRosterSignup" | "Event" | "Ministry" | "Leader" | "DeepDive" | "NextGenPage" | "PromoBanner",
+	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenGuardianInquiry" | "Event" | "Ministry" | "Leader" | "DeepDive" | "NextGenPage" | "PromoBanner",
 	/** Document ID */
 	_id?: GraphQLTypes["ID"] | undefined | null,
 	/** Document type */
@@ -5274,7 +5380,7 @@ export type GraphQLTypes = {
 	['...on GiftAssessment']: '__union' & GraphQLTypes["GiftAssessment"];
 	['...on VisitorFeedback']: '__union' & GraphQLTypes["VisitorFeedback"];
 	['...on MinistryConnection']: '__union' & GraphQLTypes["MinistryConnection"];
-	['...on NextGenRosterSignup']: '__union' & GraphQLTypes["NextGenRosterSignup"];
+	['...on NextGenGuardianInquiry']: '__union' & GraphQLTypes["NextGenGuardianInquiry"];
 	['...on Event']: '__union' & GraphQLTypes["Event"];
 	['...on Ministry']: '__union' & GraphQLTypes["Ministry"];
 	['...on Leader']: '__union' & GraphQLTypes["Leader"];
@@ -5294,7 +5400,8 @@ export type GraphQLTypes = {
 	lqip?: string | undefined | null,
 	blurHash?: string | undefined | null,
 	hasAlpha?: boolean | undefined | null,
-	isOpaque?: boolean | undefined | null
+	isOpaque?: boolean | undefined | null,
+	['...on SanityImageMetadata']: Omit<GraphQLTypes["SanityImageMetadata"], "...on SanityImageMetadata">
 };
 	["Geopoint"]: {
 	__typename: "Geopoint",
@@ -5302,7 +5409,8 @@ export type GraphQLTypes = {
 	_type?: string | undefined | null,
 	lat?: number | undefined | null,
 	lng?: number | undefined | null,
-	alt?: number | undefined | null
+	alt?: number | undefined | null,
+	['...on Geopoint']: Omit<GraphQLTypes["Geopoint"], "...on Geopoint">
 };
 	["SanityImageDimensions"]: {
 	__typename: "SanityImageDimensions",
@@ -5310,7 +5418,8 @@ export type GraphQLTypes = {
 	_type?: string | undefined | null,
 	height?: number | undefined | null,
 	width?: number | undefined | null,
-	aspectRatio?: number | undefined | null
+	aspectRatio?: number | undefined | null,
+	['...on SanityImageDimensions']: Omit<GraphQLTypes["SanityImageDimensions"], "...on SanityImageDimensions">
 };
 	["SanityImagePalette"]: {
 	__typename: "SanityImagePalette",
@@ -5322,7 +5431,8 @@ export type GraphQLTypes = {
 	vibrant?: GraphQLTypes["SanityImagePaletteSwatch"] | undefined | null,
 	dominant?: GraphQLTypes["SanityImagePaletteSwatch"] | undefined | null,
 	lightMuted?: GraphQLTypes["SanityImagePaletteSwatch"] | undefined | null,
-	muted?: GraphQLTypes["SanityImagePaletteSwatch"] | undefined | null
+	muted?: GraphQLTypes["SanityImagePaletteSwatch"] | undefined | null,
+	['...on SanityImagePalette']: Omit<GraphQLTypes["SanityImagePalette"], "...on SanityImagePalette">
 };
 	["SanityImagePaletteSwatch"]: {
 	__typename: "SanityImagePaletteSwatch",
@@ -5331,7 +5441,8 @@ export type GraphQLTypes = {
 	background?: string | undefined | null,
 	foreground?: string | undefined | null,
 	population?: number | undefined | null,
-	title?: string | undefined | null
+	title?: string | undefined | null,
+	['...on SanityImagePaletteSwatch']: Omit<GraphQLTypes["SanityImagePaletteSwatch"], "...on SanityImagePaletteSwatch">
 };
 	["SanityAssetSourceData"]: {
 	__typename: "SanityAssetSourceData",
@@ -5342,7 +5453,8 @@ export type GraphQLTypes = {
 	/** The unique ID for the asset within the originating source so you can programatically find back to it */
 	id?: string | undefined | null,
 	/** A URL to find more information about this asset in the originating source */
-	url?: string | undefined | null
+	url?: string | undefined | null,
+	['...on SanityAssetSourceData']: Omit<GraphQLTypes["SanityAssetSourceData"], "...on SanityAssetSourceData">
 };
 	["SanityFileAsset"]: {
 	__typename: "SanityFileAsset",
@@ -5370,7 +5482,8 @@ export type GraphQLTypes = {
 	uploadId?: string | undefined | null,
 	path?: string | undefined | null,
 	url?: string | undefined | null,
-	source?: GraphQLTypes["SanityAssetSourceData"] | undefined | null
+	source?: GraphQLTypes["SanityAssetSourceData"] | undefined | null,
+	['...on SanityFileAsset']: Omit<GraphQLTypes["SanityFileAsset"], "...on SanityFileAsset">
 };
 	["EventRental"]: {
 	__typename: "EventRental",
@@ -5393,7 +5506,8 @@ export type GraphQLTypes = {
 	company_name?: string | undefined | null,
 	company_phone?: string | undefined | null,
 	referred?: string | undefined | null,
-	referred_by?: string | undefined | null
+	referred_by?: string | undefined | null,
+	['...on EventRental']: Omit<GraphQLTypes["EventRental"], "...on EventRental">
 };
 	["Contact"]: {
 	__typename: "Contact",
@@ -5411,7 +5525,8 @@ export type GraphQLTypes = {
 	first_name?: string | undefined | null,
 	last_name?: string | undefined | null,
 	phone?: string | undefined | null,
-	email?: string | undefined | null
+	email?: string | undefined | null,
+	['...on Contact']: Omit<GraphQLTypes["Contact"], "...on Contact">
 };
 	["PrayerRequest"]: {
 	__typename: "PrayerRequest",
@@ -5428,7 +5543,8 @@ export type GraphQLTypes = {
 	_key?: string | undefined | null,
 	contact?: GraphQLTypes["Contact"] | undefined | null,
 	request_email_back?: string | undefined | null,
-	request?: string | undefined | null
+	request?: string | undefined | null,
+	['...on PrayerRequest']: Omit<GraphQLTypes["PrayerRequest"], "...on PrayerRequest">
 };
 	["GiftAssessment"]: {
 	__typename: "GiftAssessment",
@@ -5448,7 +5564,8 @@ export type GraphQLTypes = {
 	subordinate_gifts?: string | undefined | null,
 	ministries_involved_in?: string | undefined | null,
 	change_in_ministry?: string | undefined | null,
-	lay_or_clergy?: string | undefined | null
+	lay_or_clergy?: string | undefined | null,
+	['...on GiftAssessment']: Omit<GraphQLTypes["GiftAssessment"], "...on GiftAssessment">
 };
 	["VisitorFeedback"]: {
 	__typename: "VisitorFeedback",
@@ -5464,7 +5581,8 @@ export type GraphQLTypes = {
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
 	contact?: GraphQLTypes["Contact"] | undefined | null,
-	feedback?: string | undefined | null
+	feedback?: string | undefined | null,
+	['...on VisitorFeedback']: Omit<GraphQLTypes["VisitorFeedback"], "...on VisitorFeedback">
 };
 	["MinistryConnection"]: {
 	__typename: "MinistryConnection",
@@ -5480,10 +5598,11 @@ export type GraphQLTypes = {
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
 	contact?: GraphQLTypes["Contact"] | undefined | null,
-	ministry_interests?: Array<string | undefined | null> | undefined | null
+	ministry_interests?: Array<string | undefined | null> | undefined | null,
+	['...on MinistryConnection']: Omit<GraphQLTypes["MinistryConnection"], "...on MinistryConnection">
 };
-	["NextGenRosterSignup"]: {
-	__typename: "NextGenRosterSignup",
+	["NextGenGuardianInquiry"]: {
+	__typename: "NextGenGuardianInquiry",
 	/** Document ID */
 	_id?: GraphQLTypes["ID"] | undefined | null,
 	/** Document type */
@@ -5495,21 +5614,9 @@ export type GraphQLTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	first_name?: string | undefined | null,
-	last_name?: string | undefined | null,
-	age?: string | undefined | null,
-	grade?: string | undefined | null,
-	gender?: string | undefined | null,
-	hobbies?: string | undefined | null,
-	allergies?: string | undefined | null,
-	guardians?: Array<GraphQLTypes["NextGenRosterSignupGuardian"] | undefined | null> | undefined | null
-};
-	["NextGenRosterSignupGuardian"]: {
-	__typename: "NextGenRosterSignupGuardian",
-	_key?: string | undefined | null,
-	_type?: string | undefined | null,
 	contact?: GraphQLTypes["Contact"] | undefined | null,
-	relationship_to_child?: string | undefined | null
+	questions?: string | undefined | null,
+	['...on NextGenGuardianInquiry']: Omit<GraphQLTypes["NextGenGuardianInquiry"], "...on NextGenGuardianInquiry">
 };
 	["Event"]: {
 	__typename: "Event",
@@ -5543,7 +5650,8 @@ export type GraphQLTypes = {
 	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
 	cost?: string | undefined | null,
 	/** Are there any additional notes or instructions to add? */
-	additional_notes?: string | undefined | null
+	additional_notes?: string | undefined | null,
+	['...on Event']: Omit<GraphQLTypes["Event"], "...on Event">
 };
 	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["Date"]: "scalar" & { name: "Date" };
@@ -5553,7 +5661,8 @@ export type GraphQLTypes = {
 	_type?: string | undefined | null,
 	hour?: string | undefined | null,
 	minute?: string | undefined | null,
-	time_of_day?: string | undefined | null
+	time_of_day?: string | undefined | null,
+	['...on TimeType']: Omit<GraphQLTypes["TimeType"], "...on TimeType">
 };
 	["Image"]: {
 	__typename: "Image",
@@ -5562,14 +5671,16 @@ export type GraphQLTypes = {
 	asset?: GraphQLTypes["SanityImageAsset"] | undefined | null,
 	media?: GraphQLTypes["GlobalDocumentReference"] | undefined | null,
 	hotspot?: GraphQLTypes["SanityImageHotspot"] | undefined | null,
-	crop?: GraphQLTypes["SanityImageCrop"] | undefined | null
+	crop?: GraphQLTypes["SanityImageCrop"] | undefined | null,
+	['...on Image']: Omit<GraphQLTypes["Image"], "...on Image">
 };
 	["GlobalDocumentReference"]: {
 	__typename: "GlobalDocumentReference",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	_ref?: string | undefined | null,
-	_weak?: boolean | undefined | null
+	_weak?: boolean | undefined | null,
+	['...on GlobalDocumentReference']: Omit<GraphQLTypes["GlobalDocumentReference"], "...on GlobalDocumentReference">
 };
 	["SanityImageHotspot"]: {
 	__typename: "SanityImageHotspot",
@@ -5578,7 +5689,8 @@ export type GraphQLTypes = {
 	x?: number | undefined | null,
 	y?: number | undefined | null,
 	height?: number | undefined | null,
-	width?: number | undefined | null
+	width?: number | undefined | null,
+	['...on SanityImageHotspot']: Omit<GraphQLTypes["SanityImageHotspot"], "...on SanityImageHotspot">
 };
 	["SanityImageCrop"]: {
 	__typename: "SanityImageCrop",
@@ -5587,7 +5699,8 @@ export type GraphQLTypes = {
 	top?: number | undefined | null,
 	bottom?: number | undefined | null,
 	left?: number | undefined | null,
-	right?: number | undefined | null
+	right?: number | undefined | null,
+	['...on SanityImageCrop']: Omit<GraphQLTypes["SanityImageCrop"], "...on SanityImageCrop">
 };
 	["Ministry"]: {
 	__typename: "Ministry",
@@ -5609,21 +5722,24 @@ export type GraphQLTypes = {
 	coordinators?: Array<GraphQLTypes["Leader"] | undefined | null> | undefined | null,
 	/** Select the coach for this ministry. */
 	coach?: GraphQLTypes["Leader"] | undefined | null,
-	image?: GraphQLTypes["Image"] | undefined | null
+	image?: GraphQLTypes["Image"] | undefined | null,
+	['...on Ministry']: Omit<GraphQLTypes["Ministry"], "...on Ministry">
 };
 	["Slug"]: {
 	__typename: "Slug",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	current?: string | undefined | null,
-	source?: string | undefined | null
+	source?: string | undefined | null,
+	['...on Slug']: Omit<GraphQLTypes["Slug"], "...on Slug">
 };
 	["Scripture"]: {
 	__typename: "Scripture",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	passage?: string | undefined | null,
-	verse?: string | undefined | null
+	verse?: string | undefined | null,
+	['...on Scripture']: Omit<GraphQLTypes["Scripture"], "...on Scripture">
 };
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]: "scalar" & { name: "JSON" };
@@ -5648,14 +5764,16 @@ export type GraphQLTypes = {
 	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
 	description?: string | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
-	video?: GraphQLTypes["File"] | undefined | null
+	video?: GraphQLTypes["File"] | undefined | null,
+	['...on Leader']: Omit<GraphQLTypes["Leader"], "...on Leader">
 };
 	["File"]: {
 	__typename: "File",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	asset?: GraphQLTypes["SanityFileAsset"] | undefined | null,
-	media?: GraphQLTypes["GlobalDocumentReference"] | undefined | null
+	media?: GraphQLTypes["GlobalDocumentReference"] | undefined | null,
+	['...on File']: Omit<GraphQLTypes["File"], "...on File">
 };
 	["DeepDive"]: {
 	__typename: "DeepDive",
@@ -5680,7 +5798,8 @@ export type GraphQLTypes = {
 	required_materials?: Array<string | undefined | null> | undefined | null,
 	meeting_details?: Array<GraphQLTypes["MeetingDetailsType"] | undefined | null> | undefined | null,
 	/** Is this deep dive actively accepting new Students? */
-	accepting_new_students?: boolean | undefined | null
+	accepting_new_students?: boolean | undefined | null,
+	['...on DeepDive']: Omit<GraphQLTypes["DeepDive"], "...on DeepDive">
 };
 	["MeetingDetailsType"]: {
 	__typename: "MeetingDetailsType",
@@ -5688,7 +5807,8 @@ export type GraphQLTypes = {
 	_type?: string | undefined | null,
 	day?: string | undefined | null,
 	time?: GraphQLTypes["TimeType"] | undefined | null,
-	location?: string | undefined | null
+	location?: string | undefined | null,
+	['...on MeetingDetailsType']: Omit<GraphQLTypes["MeetingDetailsType"], "...on MeetingDetailsType">
 };
 	["NextGenPage"]: {
 	__typename: "NextGenPage",
@@ -5704,7 +5824,8 @@ export type GraphQLTypes = {
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
 	educators?: Array<GraphQLTypes["Leader"] | undefined | null> | undefined | null,
-	cirriculum_file?: GraphQLTypes["File"] | undefined | null
+	cirriculum_file?: GraphQLTypes["File"] | undefined | null,
+	['...on NextGenPage']: Omit<GraphQLTypes["NextGenPage"], "...on NextGenPage">
 };
 	["PromoBanner"]: {
 	__typename: "PromoBanner",
@@ -5727,7 +5848,8 @@ export type GraphQLTypes = {
 	description?: string | undefined | null,
 	link?: GraphQLTypes["Link"] | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
-	video?: GraphQLTypes["File"] | undefined | null
+	video?: GraphQLTypes["File"] | undefined | null,
+	['...on PromoBanner']: Omit<GraphQLTypes["PromoBanner"], "...on PromoBanner">
 };
 	["Link"]: {
 	__typename: "Link",
@@ -5736,7 +5858,8 @@ export type GraphQLTypes = {
 	label?: string | undefined | null,
 	internal_href?: string | undefined | null,
 	/** Optional external link (e.g., https://example.com) */
-	external_href?: string | undefined | null
+	external_href?: string | undefined | null,
+	['...on Link']: Omit<GraphQLTypes["Link"], "...on Link">
 };
 	["SanityImageAssetFilter"]: {
 		/** Apply filters on document level */
@@ -6144,7 +6267,7 @@ export type GraphQLTypes = {
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null
 };
-	["NextGenRosterSignupFilter"]: {
+	["NextGenGuardianInquiryFilter"]: {
 		/** Apply filters on document level */
 	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
 	_id?: GraphQLTypes["IDFilter"] | undefined | null,
@@ -6153,28 +6276,17 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
 	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
 	_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	first_name?: GraphQLTypes["StringFilter"] | undefined | null,
-	last_name?: GraphQLTypes["StringFilter"] | undefined | null,
-	age?: GraphQLTypes["StringFilter"] | undefined | null,
-	grade?: GraphQLTypes["StringFilter"] | undefined | null,
-	gender?: GraphQLTypes["StringFilter"] | undefined | null,
-	hobbies?: GraphQLTypes["StringFilter"] | undefined | null,
-	allergies?: GraphQLTypes["StringFilter"] | undefined | null
+	contact?: GraphQLTypes["ContactFilter"] | undefined | null,
+	questions?: GraphQLTypes["StringFilter"] | undefined | null
 };
-	["NextGenRosterSignupSorting"]: {
+	["NextGenGuardianInquirySorting"]: {
 		_id?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
 	_createdAt?: GraphQLTypes["SortOrder"] | undefined | null,
 	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	first_name?: GraphQLTypes["SortOrder"] | undefined | null,
-	last_name?: GraphQLTypes["SortOrder"] | undefined | null,
-	age?: GraphQLTypes["SortOrder"] | undefined | null,
-	grade?: GraphQLTypes["SortOrder"] | undefined | null,
-	gender?: GraphQLTypes["SortOrder"] | undefined | null,
-	hobbies?: GraphQLTypes["SortOrder"] | undefined | null,
-	allergies?: GraphQLTypes["SortOrder"] | undefined | null
+	questions?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["ContactSorting"]: {
 		_id?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6524,14 +6636,16 @@ export type GraphQLTypes = {
 	children?: Array<GraphQLTypes["Span"] | undefined | null> | undefined | null,
 	style?: string | undefined | null,
 	listItem?: string | undefined | null,
-	level?: number | undefined | null
+	level?: number | undefined | null,
+	['...on Block']: Omit<GraphQLTypes["Block"], "...on Block">
 };
 	["Span"]: {
 	__typename: "Span",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	marks?: Array<string | undefined | null> | undefined | null,
-	text?: string | undefined | null
+	text?: string | undefined | null,
+	['...on Span']: Omit<GraphQLTypes["Span"], "...on Span">
 };
 	["CrossDatasetReference"]: {
 	__typename: "CrossDatasetReference",
@@ -6540,7 +6654,8 @@ export type GraphQLTypes = {
 	_ref?: string | undefined | null,
 	_weak?: boolean | undefined | null,
 	_dataset?: string | undefined | null,
-	_projectId?: string | undefined | null
+	_projectId?: string | undefined | null,
+	['...on CrossDatasetReference']: Omit<GraphQLTypes["CrossDatasetReference"], "...on CrossDatasetReference">
 };
 	["IntFilter"]: {
 		/** Checks if the value is equal to the given input. */
@@ -6573,12 +6688,6 @@ export type GraphQLTypes = {
 	time?: GraphQLTypes["TimeTypeFilter"] | undefined | null,
 	location?: GraphQLTypes["StringFilter"] | undefined | null
 };
-	["NextGenRosterSignupGuardianFilter"]: {
-		_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	_type?: GraphQLTypes["StringFilter"] | undefined | null,
-	contact?: GraphQLTypes["ContactFilter"] | undefined | null,
-	relationship_to_child?: GraphQLTypes["StringFilter"] | undefined | null
-};
 	["CrossDatasetReferenceSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6593,11 +6702,6 @@ export type GraphQLTypes = {
 	day?: GraphQLTypes["SortOrder"] | undefined | null,
 	time?: GraphQLTypes["TimeTypeSorting"] | undefined | null,
 	location?: GraphQLTypes["SortOrder"] | undefined | null
-};
-	["NextGenRosterSignupGuardianSorting"]: {
-		_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	_type?: GraphQLTypes["SortOrder"] | undefined | null,
-	relationship_to_child?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["ID"]: "scalar" & { name: "ID" }
     }
@@ -6644,8 +6748,8 @@ type ZEUS_VARIABLES = {
 	["VisitorFeedbackSorting"]: ValueTypes["VisitorFeedbackSorting"];
 	["MinistryConnectionFilter"]: ValueTypes["MinistryConnectionFilter"];
 	["MinistryConnectionSorting"]: ValueTypes["MinistryConnectionSorting"];
-	["NextGenRosterSignupFilter"]: ValueTypes["NextGenRosterSignupFilter"];
-	["NextGenRosterSignupSorting"]: ValueTypes["NextGenRosterSignupSorting"];
+	["NextGenGuardianInquiryFilter"]: ValueTypes["NextGenGuardianInquiryFilter"];
+	["NextGenGuardianInquirySorting"]: ValueTypes["NextGenGuardianInquirySorting"];
 	["ContactSorting"]: ValueTypes["ContactSorting"];
 	["EventFilter"]: ValueTypes["EventFilter"];
 	["DateFilter"]: ValueTypes["DateFilter"];
@@ -6683,9 +6787,7 @@ type ZEUS_VARIABLES = {
 	["IntFilter"]: ValueTypes["IntFilter"];
 	["CrossDatasetReferenceFilter"]: ValueTypes["CrossDatasetReferenceFilter"];
 	["MeetingDetailsTypeFilter"]: ValueTypes["MeetingDetailsTypeFilter"];
-	["NextGenRosterSignupGuardianFilter"]: ValueTypes["NextGenRosterSignupGuardianFilter"];
 	["CrossDatasetReferenceSorting"]: ValueTypes["CrossDatasetReferenceSorting"];
 	["MeetingDetailsTypeSorting"]: ValueTypes["MeetingDetailsTypeSorting"];
-	["NextGenRosterSignupGuardianSorting"]: ValueTypes["NextGenRosterSignupGuardianSorting"];
 	["ID"]: ValueTypes["ID"];
 }

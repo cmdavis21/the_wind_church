@@ -163,11 +163,6 @@ export interface PartialContact {
   email: string;
 }
 
-export interface PlanYourVisit extends PartialContact {
-  attendance: number;
-  day_of_visit: string;
-}
-
 export interface VisitorFeedback extends PartialContact {
   feedback: string;
 }
@@ -177,9 +172,8 @@ export interface PrayerRequest extends PartialContact {
   request: string;
 }
 
-export interface RightnowMediaSignup extends FullContact {
-  wind_member: YesNo;
-  has_access: YesNo;
+export interface NextGenGuardianInquiry extends FullContact {
+  questions: string;
 }
 
 export interface MinistryConnection extends FullContact {
@@ -237,7 +231,7 @@ export enum FORM_TYPES {
   EVENT_RENTAL = 'eventRentalInquiries',
   GIFT_ASSESSMENT = 'giftAssessments',
   MINISTRY_CONNECTION = 'ministryConnection',
-  NEXT_GEN_SIGNUP = 'nextGenRosterSignup',
+  NEXT_GEN_GUARDIAN_INQUIRY = 'nextGenGuardianInquiry',
   PRAYER_REQUEST = 'prayerRequests',
   VISITOR_FEEDBACK = 'visitorFeedback',
 }

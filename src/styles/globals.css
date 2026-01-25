@@ -72,16 +72,16 @@ body {
     @apply px-[25px] md:px-[50px] xl:px-[100px] min-[1800px]:px-[200px];
   }
   .py-padding {
-    @apply py-[25px] md:py-[50px] lg:py-[100px] min-[1800px]:py-[100px];
+    @apply py-[50px] lg:py-[100px] min-[1800px]:py-[100px];
   }
   .p-padding {
-    @apply p-[25px] md:p-[50px] lg:p-[100px] min-[1800px]:px-[200px] min-[1800px]:py-[150px];
+    @apply p-[25px] py-[50px] md:p-[50px] lg:p-[100px] min-[1800px]:px-[200px] min-[1800px]:py-[150px];
   }
   .pt-padding {
-    @apply pt-[25px] md:pt-[50px] lg:pt-[100px] min-[1800px]:pt-[150px];
+    @apply pt-[50px] lg:pt-[100px] min-[1800px]:pt-[150px];
   }
   .pb-padding {
-    @apply pb-[25px] md:pb-[50px] lg:pb-[100px] min-[1800px]:pb-[150px];
+    @apply pb-[50px] lg:pb-[100px] min-[1800px]:pb-[150px];
   }
   .nav-padding {
     @apply pt-[125px] lg:pt-[150px];
@@ -235,24 +235,4 @@ input[type='number'] {
   display: none;
   width: 0;
   height: 0;
-}
-
-.scroll-wheel {
-  animation: scrollBounce 1.6s ease-in-out infinite;
-  transform-origin: center;
-}
-
-@keyframes scrollBounce {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(4px);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }

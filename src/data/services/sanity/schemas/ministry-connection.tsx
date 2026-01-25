@@ -1,3 +1,4 @@
+import { formatDateMMMddyyyy } from '@/data/format-date';
 import { defineField } from 'sanity';
 
 export const MinistryConnectionSchema = {
@@ -23,10 +24,20 @@ export const MinistryConnectionSchema = {
     select: {
       first_name: 'contact.first_name',
       last_name: 'contact.last_name',
+      created: '_createdAt',
     },
-    prepare({ first_name, last_name }: { first_name: string; last_name: string }) {
+    prepare({
+      first_name,
+      last_name,
+      created,
+    }: {
+      first_name: string;
+      last_name: string;
+      created: string;
+    }) {
       return {
         title: `${first_name} ${last_name}`,
+        subtitle: `Submitted: ${formatDateMMMddyyyy(created)}`,
         media: (
           <span>
             {first_name.charAt(0).toUpperCase()}

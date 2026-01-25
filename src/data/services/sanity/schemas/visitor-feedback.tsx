@@ -1,3 +1,4 @@
+import { formatDateMMMddyyyy } from '@/data/format-date';
 import { defineField } from 'sanity';
 
 export const VisitorFeedbackSchema = {
@@ -24,18 +25,22 @@ export const VisitorFeedbackSchema = {
       first_name: 'contact.first_name',
       last_name: 'contact.last_name',
       feedback: 'feedback',
+      created: '_createdAt',
     },
     prepare({
       first_name,
       last_name,
       feedback,
+      created,
     }: {
       first_name: string;
       last_name: string;
       feedback: string;
+      created: string;
     }) {
       return {
         title: `${feedback.slice(0, 32)}...`,
+        subtitle: `Submitted: ${formatDateMMMddyyyy(created)}`,
         media: (
           <span>
             {first_name.charAt(0).toUpperCase()}

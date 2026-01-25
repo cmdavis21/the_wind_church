@@ -1,5 +1,6 @@
 import { defineField } from 'sanity';
 
+import { formatDateMMMddyyyy } from '@/data/format-date';
 import { YesNo } from '@/data/types';
 
 export const EventRentalSchema = {
@@ -74,19 +75,22 @@ export const EventRentalSchema = {
       first_name: 'contact.first_name',
       last_name: 'contact.last_name',
       purpose_for_rental: 'purpose_for_rental',
+      created: '_createdAt',
     },
     prepare({
       first_name,
       last_name,
       purpose_for_rental,
+      created,
     }: {
       first_name: string;
       last_name: string;
       purpose_for_rental: string;
+      created: string;
     }) {
       return {
         title: !purpose_for_rental.includes('Other') ? purpose_for_rental : 'Event Rental Request',
-        subtitle: `${first_name ?? ''} ${last_name ?? ''}`,
+        subtitle: `Submitted: ${formatDateMMMddyyyy(created)}`,
         media: (
           <span>
             {first_name.charAt(0).toUpperCase()}

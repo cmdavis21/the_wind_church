@@ -1,9 +1,10 @@
+import { formatDateMMMddyyyy } from '@/data/format-date';
 import { defineField } from 'sanity';
 
-export const NextGenRosterSignupGuardianSchema = {
-  name: 'nextGenRosterSignupGuardian',
-  title: 'Next Gen Roster Signup Guardian',
-  type: 'object',
+export const NextGenGuardianInquirySchema = {
+  name: 'nextGenGuardianInquiry',
+  title: 'Next Gen Guardian Inquiry',
+  type: 'document',
   fields: [
     defineField({
       name: 'contact',
@@ -13,9 +14,9 @@ export const NextGenRosterSignupGuardianSchema = {
       readOnly: true,
     }),
     defineField({
-      name: 'relationship_to_child',
-      title: 'Relationship To Child',
-      type: 'string',
+      name: 'questions',
+      title: 'Questions',
+      type: 'text',
       readOnly: true,
     }),
   ],
@@ -23,20 +24,20 @@ export const NextGenRosterSignupGuardianSchema = {
     select: {
       first_name: 'contact.first_name',
       last_name: 'contact.last_name',
-      relationship_to_child: 'relationship_to_child',
+      created: '_createdAt',
     },
     prepare({
       first_name,
       last_name,
-      relationship_to_child,
+      created,
     }: {
       first_name: string;
       last_name: string;
-      relationship_to_child: string;
+      created: string;
     }) {
       return {
         title: `${first_name} ${last_name}`,
-        subtitle: relationship_to_child,
+        subtitle: `Submitted: ${formatDateMMMddyyyy(created)}`,
         media: (
           <span>
             {first_name.charAt(0).toUpperCase()}

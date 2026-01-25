@@ -2,7 +2,7 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'flowbite-react';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -12,13 +12,10 @@ import CirclePlus from '@/components/icons/circle-plus';
 import PencilPaper from '@/components/icons/pencilPaper';
 import Trash from '@/components/icons/trash';
 
-import { useNextGenRosterSignup } from '@/data/services/sanity/mutations/next-gen-roster-signup';
 import { isValidEmail, isValidPhone } from '@/data/utils';
-import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
-import NextGenRosterSignupGuardiansForm from './next-gen-roster-signup-guardians-form/NextGenRosterSignupGuardiansForm';
 
 const schema = yup.object().shape({
   children: yup
@@ -87,7 +84,7 @@ const SCHOOL_GRADES = [
 const NextGenRosterSignupForm = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
 
-  const { mutate: submitInquiry, isPending, isSuccess, isError } = useNextGenRosterSignup();
+  // const { mutate: submitInquiry, isPending, isSuccess, isError } = useNextGenRosterSignup();
 
   const {
     control,
@@ -130,24 +127,24 @@ const NextGenRosterSignupForm = () => {
     name: 'children',
   });
 
-  const onSubmit = (values: NextGenRosterSignup) => submitInquiry(values);
+  // const onSubmit = (values: NextGenRosterSignup) => submitInquiry(values);
 
-  useEffect(() => {
-    if (formRef.current) {
-      if (isSuccess || isError) {
-        window.scrollTo({
-          left: 0,
-          top: formRef.current.offsetTop - 100,
-          behavior: 'smooth',
-        });
-      }
-    }
-  }, [isSuccess, isError]);
+  // useEffect(() => {
+  //   if (formRef.current) {
+  //     if (isSuccess || isError) {
+  //       window.scrollTo({
+  //         left: 0,
+  //         top: formRef.current.offsetTop - 100,
+  //         behavior: 'smooth',
+  //       });
+  //     }
+  //   }
+  // }, [isSuccess, isError]);
 
   return (
     <form
       ref={formRef}
-      onSubmit={handleSubmit(onSubmit)}
+      // onSubmit={handleSubmit(onSubmit)}
       className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
@@ -155,7 +152,7 @@ const NextGenRosterSignupForm = () => {
         <h4>Next Gen Roster Signup</h4>
       </div>
 
-      {isSuccess && (
+      {/* {isSuccess && (
         <AlertMessage
           type="success"
           title="Success!"
@@ -169,7 +166,7 @@ const NextGenRosterSignupForm = () => {
           title="Oh no!"
           description="There was an problem submitting your inquiry. Please try again later."
         />
-      )}
+      )} */}
 
       {childrenFields.map((child, childIndex) => {
         return (
@@ -192,7 +189,7 @@ const NextGenRosterSignupForm = () => {
               <TextInput
                 type="text"
                 label="Child's First Name*"
-                disabled={isPending || isSuccess}
+                // disabled={isPending || isSuccess}
                 {...register(`children.${childIndex}.first_name`)}
                 error={
                   errors.children ? errors.children[childIndex]?.first_name?.message : undefined
@@ -201,7 +198,7 @@ const NextGenRosterSignupForm = () => {
               <TextInput
                 type="text"
                 label="Child's Last Name*"
-                disabled={isPending || isSuccess}
+                // disabled={isPending || isSuccess}
                 {...register(`children.${childIndex}.last_name`)}
                 error={
                   errors.children ? errors.children[childIndex]?.last_name?.message : undefined
@@ -213,7 +210,7 @@ const NextGenRosterSignupForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-xl">
               <SelectInput
                 label="What age is your child?"
-                disabled={isPending || isSuccess}
+                // disabled={isPending || isSuccess}
                 {...register(`children.${childIndex}.age`)}
                 error={errors.children ? errors.children[childIndex]?.age?.message : undefined}
                 options={[
@@ -230,7 +227,7 @@ const NextGenRosterSignupForm = () => {
               />
               <SelectInput
                 label="What grade is your child?"
-                disabled={isPending || isSuccess}
+                // disabled={isPending || isSuccess}
                 {...register(`children.${childIndex}.grade`)}
                 options={[
                   { label: 'Select an option', value: '' },
@@ -244,7 +241,7 @@ const NextGenRosterSignupForm = () => {
               <RadioGroup
                 name="request_email_back"
                 defaultValue={Gender.MALE}
-                disabled={isPending || isSuccess}
+                // disabled={isPending || isSuccess}
                 label="What gender is your child?"
                 options={[
                   { value: Gender.MALE, label: Gender.MALE },
@@ -259,7 +256,7 @@ const NextGenRosterSignupForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
               <TextInput
                 type="text"
-                disabled={isPending || isSuccess}
+                // disabled={isPending || isSuccess}
                 placeholder="e.g., Painting, Soccer, Kickball"
                 {...register(`children.${childIndex}.hobbies`)}
                 label="What are 1-3 Hobbies/Activities your child enjoys?"
@@ -268,7 +265,7 @@ const NextGenRosterSignupForm = () => {
               <TextInput
                 type="text"
                 label="List your child's allergies"
-                disabled={isPending || isSuccess}
+                // disabled={isPending || isSuccess}
                 placeholder="e.g., Peanuts, Pollen, Latex"
                 {...register(`children.${childIndex}.allergies`)}
                 error={
@@ -278,14 +275,14 @@ const NextGenRosterSignupForm = () => {
             </div>
 
             {/* Guardian */}
-            <NextGenRosterSignupGuardiansForm
+            {/* <NextGenRosterSignupGuardiansForm
               index={childIndex}
               control={control}
               register={register}
               errors={errors}
               isPending={isPending}
               isSuccess={isSuccess}
-            />
+            /> */}
           </React.Fragment>
         );
       })}
@@ -325,10 +322,10 @@ const NextGenRosterSignupForm = () => {
         size="lg"
         type="submit"
         color="primary"
-        disabled={isPending || isSuccess || isError}
+        // disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
+        {/* {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'} */}
       </Button>
     </form>
   );

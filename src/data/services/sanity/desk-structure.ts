@@ -13,6 +13,7 @@ import Handshake from '@/components/icons/handshake';
 import PeopleGroup from '@/components/icons/people-group';
 import PersonPraying from '@/components/icons/person-praying';
 import PersonWithChalkboard from '@/components/icons/person-with-chalkboard';
+import Question from '@/components/icons/question';
 import User from '@/components/icons/user';
 
 type docAttributes = {
@@ -39,7 +40,7 @@ const formsDocsWithIcons: docAttributes[] = [
   { id: 'giftAssessment', title: 'Gift Assessments', icon: Gift },
   { id: 'ministryConnection', title: 'Ministry Connection', icon: Handshake },
   { id: 'visitorFeedback', title: 'Visitor Feedback', icon: Bullhorn },
-  { id: 'nextGenRosterSignup', title: 'Next Gen Roster Signup', icon: ChildReaching },
+  { id: 'nextGenGuardianInquiry', title: 'Next Gen Guardian Inquiry', icon: Question },
 ];
 
 export const sanityStudioStructure: StructureResolver = (S) =>
