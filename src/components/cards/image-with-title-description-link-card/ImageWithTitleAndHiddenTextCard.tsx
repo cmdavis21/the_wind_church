@@ -25,7 +25,7 @@ const ImageWithTitleDescriptionLinkCard: React.FC<ImageWithTitleDescriptionLinkC
     <Link href={link}>
       <button
         type="button"
-        className="relative aspect-[1/1.2] rounded-lg min-w-7xl max-w-[500px] w-full h-full cursor-pointer group overflow-hidden"
+        className="relative aspect-[1/1.2] rounded-lg min-w-7xl max-w-[400px] w-full h-full cursor-pointer group overflow-hidden"
       >
         <Image
           fill

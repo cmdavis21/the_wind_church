@@ -44,7 +44,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 1,
-      partialVisibilityGutter: 100,
+      partialVisibilityGutter: 50,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -124,7 +124,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
   return (
     <>
       {/* Desktop */}
-      <div className="hidden md:block relative">
+      <div className="hidden sm:block relative">
         <Carousel
           arrows={false}
           infinite
@@ -147,7 +147,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
               className="flex flex-col gap-lg"
             >
               {findMediaType(slide.media.src) === MediaType.IMAGE ? (
-                <div className="relative aspect-[17/9] w-full min-w-7xl max-w-[900px]">
+                <div className="relative aspect-[17/9] w-full min-w-7xl max-w-[1000px]">
                   <Image
                     src={slide.media.src}
                     alt={slide.media.alt}
@@ -180,7 +180,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
       </div>
 
       {/* Mobile */}
-      <div className="md:hidden relative">
+      <div className="sm:hidden relative">
         <Carousel
           infinite
           showDots

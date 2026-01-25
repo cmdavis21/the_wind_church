@@ -247,7 +247,7 @@ const Home = async () => {
       {/* EXPLORE CTAs */}
       <div className="p-padding flex flex-col gap-xl md:gap-xxl max-width-center">
         <CenterTextSection title="Explore The Wind" description="There's much to do here!" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl place-items-center">
           {exploreOptions.map((opt) => (
             <ImageWithTitleDescriptionLinkCard key={`home-explore-options-${opt.link}`} {...opt} />
           ))}

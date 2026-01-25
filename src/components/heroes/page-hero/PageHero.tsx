@@ -72,7 +72,7 @@ const PageHero: React.FC<PageHeroProps> = ({
       ))}
 
       {/* CONTENT */}
-      <div className="absolute w-full h-full p-5 md:p-xxl 2xl:p-4xl z-30">
+      <div className="absolute w-full h-full p-xxl 2xl:p-4xl z-30">
         <div
           className={`relative w-full h-full flex flex-col gap-lg items-center justify-end text-white`}
         >

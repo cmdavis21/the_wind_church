@@ -9,7 +9,7 @@ interface SectionHeaderProps {
 const SectionHeader: React.FC<SectionHeaderProps> = ({ id, title, subtitle }) => (
   <div id={id} className="relative">
     {/* Desktop */}
-    <div className="hidden md:block">
+    <div className="hidden sm:block">
       <div className="flex gap-3">
         <div className={`w-[3px] min-h-full bg-brand-primary rounded-md`} />
         <div className="flex flex-col gap-2 w-full">
@@ -26,7 +26,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ id, title, subtitle }) =>
     </div>
 
     {/* Mobile */}
-    <div className="md:hidden flex flex-col items-center justify-center gap-3">
+    <div className="sm:hidden flex flex-col items-center justify-center gap-3">
       <h2 className="text-center capitalize">{title}</h2>
       <div className={`w-10 h-[2px] bg-brand-primary rounded-md`} />
       {subtitle && (
