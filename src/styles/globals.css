@@ -68,10 +68,13 @@ body {
   .body-small {
     @apply leading-[20px] xl:leading-[22px] font-normal text-[12px] xl:text-[14px];
   }
-  .px-padding {
-    @apply px-[25px] md:px-[100px] min-[1800px]:px-[200px];
+  .p-padding {
+    @apply p-[25px] sm:px-[50px] py-[50px] md:p-[100px] min-[1800px]:p-[200px];
   }
-  .py-padding {
+  .px-padding {
+    @apply px-[25px] sm:px-[50px] md:px-[100px] min-[1800px]:px-[200px];
+  }
+  /* .py-padding {
     @apply py-[50px] md:py-[100px] min-[1800px]:py-[100px];
   }
   .p-padding {
@@ -82,10 +85,10 @@ body {
   }
   .pb-padding {
     @apply pb-[50px] md:pb-[100px] min-[1800px]:pb-[150px];
-  }
-  .nav-padding {
+  } */
+  /* .nav-padding {
     @apply pt-[125px] lg:pt-[150px];
-  }
+  } */
   .max-width {
     @apply w-full max-w-[1800px];
   }

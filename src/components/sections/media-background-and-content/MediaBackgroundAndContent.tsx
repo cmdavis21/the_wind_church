@@ -31,7 +31,7 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
     <div
       className={cn(
         !fullWidth && 'rounded-xl max-width-center',
-        centerContent ? 'items-center justify-center' : 'items-end aspect-[3/1]',
+        centerContent ? 'items-center justify-center' : 'items-end md:aspect-[3/1]',
         !background && color === ColorBackground.YELLOW
           ? 'text-light-primaryText'
           : 'text-white dark:text-dark-primaryText',
@@ -78,7 +78,7 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
       />
 
       {/* CONTENT */}
-      <div className={cn('relative', fullWidth && 'max-width')}>{content}</div>
+      <div className={cn('relative pt-xxl', fullWidth && 'max-width')}>{content}</div>
     </div>
   );
 };

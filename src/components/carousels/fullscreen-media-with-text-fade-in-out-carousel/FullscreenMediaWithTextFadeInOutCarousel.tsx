@@ -147,7 +147,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
         {slides.map((slide, index) => (
           <div
             key={`carousel-content-${slide.title}`}
-            className={`w-full lg:max-w-[45%] lg:pl-6xl min-[1800px]:pl-[250px] h-full absolute top-0 left-0 ${
+            className={`w-full lg:max-w-[55%] lg:pl-6xl min-[1800px]:pl-[250px] h-full absolute top-0 left-0 ${
               index === activeSlide ? 'fade-in' : 'opacity-0'
             } transition-opacity duration-300 flex items-center`}
           >
@@ -256,7 +256,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
           {slides.map((slide) => (
             <div
               key={`carousel-mobile-content-${slide.title}-${slide.description}`}
-              className="relative h-screen w-full px-xxl"
+              className="relative h-screen w-full px-xxl sm:px-4xl"
             >
               <div className="relative flex flex-col h-full w-full items-center justify-center text-center text-white dark:text-dark-primaryText gap-sm">
                 <h6 className="font-normal">{slide.header}</h6>

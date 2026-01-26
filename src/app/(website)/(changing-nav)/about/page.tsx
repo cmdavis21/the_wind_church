@@ -62,6 +62,50 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const About = async () => {
   const t = await getTranslations('About');
+
+  const aboutPastorArr = [
+    {
+      media: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/pastor.webp`,
+        alt: t('alt'),
+      },
+      title: t('aboutPastor.title'),
+      description: t('aboutPastor.subtitle'),
+    },
+    {
+      media: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`,
+        alt: t('alt'),
+      },
+      title: t('aboutPastor.history.title'),
+      description: t('aboutPastor.history.description'),
+    },
+    {
+      media: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/members.webp`,
+        alt: t('alt'),
+      },
+      title: t('aboutPastor.why.title'),
+      description: t('aboutPastor.why.description'),
+    },
+    {
+      media: {
+        src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+        alt: t('alt'),
+      },
+      title: t('aboutPastor.goals.title'),
+      description: t('aboutPastor.goals.description'),
+    },
+    {
+      media: {
+        src: `${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`,
+        alt: t('alt'),
+      },
+      title: t('aboutPastor.fact.title'),
+      description: t('aboutPastor.fact.description'),
+    },
+  ];
+
   const theWindCenterArr = [
     {
       image: {
@@ -119,6 +163,156 @@ const About = async () => {
     },
   ];
 
+  const foursquareBeliefsArr = [
+    {
+      image: `${AWS_ASSET_BASE_URL}/images/foursquare/cross.png`,
+      title: t('foursquare.accordionItem1.title'),
+      items: [
+        {
+          icon: ClipboardList,
+          title: t('foursquare.accordionItem1.plan.title'),
+          verse: t('foursquare.accordionItem1.plan.verse'),
+          passage: t('foursquare.accordionItem1.plan.description'),
+        },
+        {
+          icon: LifeRing,
+          title: t('foursquare.accordionItem1.salvation.title'),
+          verse: t('foursquare.accordionItem1.salvation.verse'),
+          passage: t('foursquare.accordionItem1.salvation.description'),
+        },
+        {
+          icon: Bible,
+          title: t('foursquare.accordionItem1.scriptures.title'),
+          verse: t('foursquare.accordionItem1.scriptures.verse'),
+          passage: t('foursquare.accordionItem1.scriptures.description'),
+        },
+        {
+          icon: PeopleGroup,
+          title: t('foursquare.accordionItem1.eternal.title'),
+          verse: t('foursquare.accordionItem1.eternal.verse'),
+          passage: t('foursquare.accordionItem1.eternal.description'),
+        },
+        {
+          icon: PersonFalling,
+          title: t('foursquare.accordionItem1.fall.title'),
+          verse: t('foursquare.accordionItem1.fall.verse'),
+          passage: t('foursquare.accordionItem1.fall.description'),
+        },
+      ],
+    },
+
+    {
+      image: `${AWS_ASSET_BASE_URL}/images/foursquare/dove.png`,
+      title: t('foursquare.accordionItem2.title'),
+      items: [
+        {
+          icon: PeopleGroup,
+          title: t('foursquare.accordionItem2.relationship.title'),
+          verse: t('foursquare.accordionItem2.relationship.verse'),
+          passage: t('foursquare.accordionItem2.relationship.description'),
+        },
+        {
+          icon: Buidling,
+          title: t('foursquare.accordionItem2.civil.title'),
+          verse: t('foursquare.accordionItem2.civil.verse'),
+          passage: t('foursquare.accordionItem2.civil.description'),
+        },
+        {
+          icon: FlagCheckered,
+          title: t('foursquare.accordionItem2.final.title'),
+          verse: t('foursquare.accordionItem2.final.verse'),
+          passage: t('foursquare.accordionItem2.final.description'),
+        },
+        {
+          icon: SunWithClouds,
+          title: t('foursquare.accordionItem2.heaven.title'),
+          verse: t('foursquare.accordionItem2.heaven.verse'),
+          passage: t('foursquare.accordionItem2.heaven.description'),
+        },
+        {
+          icon: ThumbsDown,
+          title: t('foursquare.accordionItem2.hell.title'),
+          verse: t('foursquare.accordionItem2.hell.verse'),
+          passage: t('foursquare.accordionItem2.hell.description'),
+        },
+      ],
+    },
+
+    {
+      image: `${AWS_ASSET_BASE_URL}/images/foursquare/cup.png`,
+      title: t('foursquare.accordionItem3.title'),
+      items: [
+        {
+          icon: PersonPraying,
+          title: t('foursquare.accordionItem3.repent.title'),
+          verse: t('foursquare.accordionItem3.repent.verse'),
+          passage: t('foursquare.accordionItem3.repent.description'),
+        },
+        {
+          icon: Fire,
+          title: t('foursquare.accordionItem3.new.title'),
+          verse: t('foursquare.accordionItem3.new.verse'),
+          passage: t('foursquare.accordionItem3.new.description'),
+        },
+        {
+          icon: PersonWalking,
+          title: t('foursquare.accordionItem3.daily.title'),
+          verse: t('foursquare.accordionItem3.daily.verse'),
+          passage: t('foursquare.accordionItem3.daily.description'),
+        },
+        {
+          icon: ConciergeBell,
+          title: t('foursquare.accordionItem3.supper.title'),
+          verse: t('foursquare.accordionItem3.supper.verse'),
+          passage: t('foursquare.accordionItem3.supper.description'),
+        },
+        {
+          icon: Dove,
+          title: t('foursquare.accordionItem3.spirit.title'),
+          verse: t('foursquare.accordionItem3.spirit.verse'),
+          passage: t('foursquare.accordionItem3.spirit.description'),
+        },
+      ],
+    },
+
+    {
+      image: `${AWS_ASSET_BASE_URL}/images/foursquare/crown.png`,
+      title: t('foursquare.accordionItem4.title'),
+      items: [
+        {
+          icon: Paintbrush,
+          title: t('foursquare.accordionItem4.life.title'),
+          verse: t('foursquare.accordionItem4.life.verse'),
+          passage: t('foursquare.accordionItem4.life.description'),
+        },
+        {
+          icon: Gift,
+          title: t('foursquare.accordionItem4.gifts.title'),
+          verse: t('foursquare.accordionItem4.gifts.verse'),
+          passage: t('foursquare.accordionItem4.gifts.description'),
+        },
+        {
+          icon: Temperature,
+          title: t('foursquare.accordionItem4.moderation.title'),
+          verse: t('foursquare.accordionItem4.moderation.verse'),
+          passage: t('foursquare.accordionItem4.moderation.description'),
+        },
+        {
+          icon: Cross,
+          title: t('foursquare.accordionItem4.divine.title'),
+          verse: t('foursquare.accordionItem4.divine.verse'),
+          passage: t('foursquare.accordionItem4.divine.description'),
+        },
+        {
+          icon: Crown,
+          title: t('foursquare.accordionItem4.coming.title'),
+          verse: t('foursquare.accordionItem4.coming.verse'),
+          passage: t('foursquare.accordionItem4.coming.description'),
+        },
+      ],
+    },
+  ];
+
   return (
     <div>
       <PageHero
@@ -129,7 +323,7 @@ const About = async () => {
       />
 
       {/* Mission and Vision */}
-      <div id={t('mission.id')} className="py-padding lg:px-4xl max-width-center">
+      <div id={t('mission.id')} className="max-width-center py-3xl sm:py-4xl lg:px-4xl">
         <div className="flex flex-col gap-xxl px-padding">
           {/* Mission */}
           <div className="flex flex-col gap-lg">
@@ -174,56 +368,13 @@ const About = async () => {
 
       {/* About Pastor */}
       <div id={t('aboutPastor.id')}>
-        <FullscreenMediaWithSideTextCarousel
-          slides={[
-            {
-              media: {
-                src: `${AWS_ASSET_BASE_URL}/placeholder-media/pastor.webp`,
-                alt: t('alt'),
-              },
-              title: t('aboutPastor.title'),
-              description: t('aboutPastor.subtitle'),
-            },
-            {
-              media: {
-                src: `${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`,
-                alt: t('alt'),
-              },
-              title: t('aboutPastor.history.title'),
-              description: t('aboutPastor.history.description'),
-            },
-            {
-              media: {
-                src: `${AWS_ASSET_BASE_URL}/placeholder-media/members.webp`,
-                alt: t('alt'),
-              },
-              title: t('aboutPastor.why.title'),
-              description: t('aboutPastor.why.description'),
-            },
-            {
-              media: {
-                src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
-                alt: t('alt'),
-              },
-              title: t('aboutPastor.goals.title'),
-              description: t('aboutPastor.goals.description'),
-            },
-            {
-              media: {
-                src: `${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`,
-                alt: t('alt'),
-              },
-              title: t('aboutPastor.fact.title'),
-              description: t('aboutPastor.fact.description'),
-            },
-          ]}
-        />
+        <FullscreenMediaWithSideTextCarousel slides={aboutPastorArr} />
       </div>
 
       {/* The Wind Center */}
       <div
         id={t('values.id')}
-        className="flex flex-col gap-xl md:gap-3xl max-width-center p-padding"
+        className="flex flex-col gap-xxl md:gap-3xl max-width-center pt-3xl sm:pt-4xl px-padding"
       >
         <CenterTextSection title={t('values.title')} description={t('values.subtitle')} />
 
@@ -276,173 +427,36 @@ const About = async () => {
       {/* Foursquare */}
       <div
         id={t('foursquare.id')}
-        className="flex flex-col gap-xl md:gap-xxl max-width-center py-xxl px-padding"
+        className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding"
       >
-        <div className="flex flex-col gap-lg">
+        <div className="flex flex-col gap-lg max-width">
           <SectionHeader title={t('foursquare.title')} subtitle={t('foursquare.subtitle')} />
           <h5 className="lg:max-w-[60%]">{t('foursquare.description')}</h5>
         </div>
 
         <Accordion
-          content={[
-            {
-              image: `${AWS_ASSET_BASE_URL}/images/foursquare/cross.png`,
-              title: t('foursquare.accordionItem1.title'),
-              description: (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-5 place-items-start place-content-center">
+          content={foursquareBeliefsArr.map((section) => ({
+            image: section.image,
+            title: section.title,
+            description: (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-5 place-items-start place-content-center">
+                {section.items.map((item, idx) => (
                   <ScriptureWithIcon
-                    icon={ClipboardList}
-                    title={t('foursquare.accordionItem1.plan.title')}
-                    verse={t('foursquare.accordionItem1.plan.verse')}
-                    passage={t('foursquare.accordionItem1.plan.description')}
+                    key={`about-page-foursquare-${item.title}-${idx}`}
+                    icon={item.icon}
+                    title={item.title}
+                    verse={item.verse}
+                    passage={item.passage}
                   />
-                  <ScriptureWithIcon
-                    icon={LifeRing}
-                    title={t('foursquare.accordionItem1.salvation.title')}
-                    verse={t('foursquare.accordionItem1.salvation.verse')}
-                    passage={t('foursquare.accordionItem1.salvation.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={Bible}
-                    title={t('foursquare.accordionItem1.scriptures.title')}
-                    verse={t('foursquare.accordionItem1.scriptures.verse')}
-                    passage={t('foursquare.accordionItem1.scriptures.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={PeopleGroup}
-                    title={t('foursquare.accordionItem1.eternal.title')}
-                    verse={t('foursquare.accordionItem1.eternal.verse')}
-                    passage={t('foursquare.accordionItem1.eternal.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={PersonFalling}
-                    title={t('foursquare.accordionItem1.fall.title')}
-                    verse={t('foursquare.accordionItem1.fall.verse')}
-                    passage={t('foursquare.accordionItem1.fall.description')}
-                  />
-                </div>
-              ),
-            },
-            {
-              image: `${AWS_ASSET_BASE_URL}/images/foursquare/dove.png`,
-              title: t('foursquare.accordionItem2.title'),
-              description: (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-5 justify-items-center items-start">
-                  <ScriptureWithIcon
-                    icon={PeopleGroup}
-                    title={t('foursquare.accordionItem2.relationship.title')}
-                    verse={t('foursquare.accordionItem2.relationship.verse')}
-                    passage={t('foursquare.accordionItem2.relationship.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={Buidling}
-                    title={t('foursquare.accordionItem2.civil.title')}
-                    verse={t('foursquare.accordionItem2.civil.verse')}
-                    passage={t('foursquare.accordionItem2.civil.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={FlagCheckered}
-                    title={t('foursquare.accordionItem2.final.title')}
-                    verse={t('foursquare.accordionItem2.final.verse')}
-                    passage={t('foursquare.accordionItem2.final.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={SunWithClouds}
-                    title={t('foursquare.accordionItem2.heaven.title')}
-                    verse={t('foursquare.accordionItem2.heaven.verse')}
-                    passage={t('foursquare.accordionItem2.heaven.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={ThumbsDown}
-                    title={t('foursquare.accordionItem2.hell.title')}
-                    verse={t('foursquare.accordionItem2.hell.verse')}
-                    passage={t('foursquare.accordionItem2.hell.description')}
-                  />
-                </div>
-              ),
-            },
-            {
-              image: `${AWS_ASSET_BASE_URL}/images/foursquare/cup.png`,
-              title: t('foursquare.accordionItem3.title'),
-              description: (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-5 justify-items-center items-start">
-                  <ScriptureWithIcon
-                    icon={PersonPraying}
-                    title={t('foursquare.accordionItem3.repent.title')}
-                    verse={t('foursquare.accordionItem3.repent.verse')}
-                    passage={t('foursquare.accordionItem3.repent.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={Fire}
-                    title={t('foursquare.accordionItem3.new.title')}
-                    verse={t('foursquare.accordionItem3.new.verse')}
-                    passage={t('foursquare.accordionItem3.new.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={PersonWalking}
-                    title={t('foursquare.accordionItem3.daily.title')}
-                    verse={t('foursquare.accordionItem3.daily.verse')}
-                    passage={t('foursquare.accordionItem3.daily.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={ConciergeBell}
-                    title={t('foursquare.accordionItem3.supper.title')}
-                    verse={t('foursquare.accordionItem3.supper.verse')}
-                    passage={t('foursquare.accordionItem3.supper.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={Dove}
-                    title={t('foursquare.accordionItem3.spirit.title')}
-                    verse={t('foursquare.accordionItem3.spirit.verse')}
-                    passage={t('foursquare.accordionItem3.spirit.description')}
-                  />
-                </div>
-              ),
-            },
-            {
-              image: `${AWS_ASSET_BASE_URL}/images/foursquare/crown.png`,
-              title: t('foursquare.accordionItem4.title'),
-              description: (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] p-[20px] justify-items-center items-start">
-                  <ScriptureWithIcon
-                    icon={Paintbrush}
-                    title={t('foursquare.accordionItem4.life.title')}
-                    verse={t('foursquare.accordionItem4.life.verse')}
-                    passage={t('foursquare.accordionItem4.life.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={Gift}
-                    title={t('foursquare.accordionItem4.gifts.title')}
-                    verse={t('foursquare.accordionItem4.gifts.verse')}
-                    passage={t('foursquare.accordionItem4.gifts.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={Temperature}
-                    title={t('foursquare.accordionItem4.moderation.title')}
-                    verse={t('foursquare.accordionItem4.moderation.verse')}
-                    passage={t('foursquare.accordionItem4.moderation.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={Cross}
-                    title={t('foursquare.accordionItem4.divine.title')}
-                    verse={t('foursquare.accordionItem4.divine.verse')}
-                    passage={t('foursquare.accordionItem4.divine.description')}
-                  />
-                  <ScriptureWithIcon
-                    icon={Crown}
-                    title={t('foursquare.accordionItem4.coming.title')}
-                    verse={t('foursquare.accordionItem4.coming.verse')}
-                    passage={t('foursquare.accordionItem4.coming.description')}
-                  />
-                </div>
-              ),
-            },
-          ]}
+                ))}
+              </div>
+            ),
+          }))}
         />
       </div>
 
       {/* History */}
-      <div id={t('history.id')} className="py-padding flex flex-col gap-xl md:gap-xxl">
+      <div id={t('history.id')} className="flex flex-col gap-xl md:gap-xxl pt-3xl sm:pt-4xl">
         <div className="px-padding flex flex-col gap-lg max-width">
           <SectionHeader title={t('history.title')} subtitle={t('history.subtitle')} />
           <h5 className="lg:max-w-[60%]">{t('history.description')}</h5>

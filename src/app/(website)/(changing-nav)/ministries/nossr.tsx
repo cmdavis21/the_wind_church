@@ -70,7 +70,7 @@ const MinistriesClient = () => {
         media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg` }}
       />
 
-      <div className="p-padding flex flex-col gap-3xl lg:gap-5xl 2xl:gap-6xl max-width-center">
+      <div className="p-padding flex flex-col gap-3xl sm:gap-4xl lg:gap-5xl max-width-center">
         {/* LOADING */}
         {ministriesLoading &&
           Array.from({ length: 5 }).map((_, index) => (

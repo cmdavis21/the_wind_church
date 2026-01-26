@@ -27,7 +27,7 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
     <div className="relative aspect-square">
       <Image fill src={src} alt={alt} className="pointer-events-none object-cover rounded-lg" />
     </div>
-    <div className="flex flex-col gap-md dark:text-dark-primaryText h-full justify-between">
+    <div className="flex flex-col gap-md dark:text-dark-primaryText justify-between">
       <div className="flex flex-col gap-md">
         <h4 className="font-bold">{title}</h4>
         <p className="body-large text-light-charcoal dark:text-dark-primaryText">{description}</p>

@@ -40,55 +40,53 @@ const ChurchRental = () => (
       media={{ src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp` }}
     />
 
-    <div className="py-padding flex flex-col gap-3xl lg:gap-4xl">
-      <div className="px-padding max-width">
-        <CenterTextSection
-          highlight={[[4, 5]]}
-          title="Looking for your next event space?"
-          description="We offer rentals of the parking lot, Fellowship Hall and the Sanctuary. Ideal for weddings, expos, family celebrations and more."
-        />
-      </div>
-
-      <CenterModeMediaWithTextCarousel
-        slides={[
-          {
-            media: {
-              src: `${AWS_ASSET_BASE_URL}/placeholder-media/fellowship_hall.jpeg`,
-              alt: 'decorative background image',
-            },
-            title: 'Fellowship Hall',
-            description:
-              'This hall is great for hosting a large quantity of guests. Featuring a kitchen for events involving cooking and a projector screen and speaking podium for lecturing sessions.',
-          },
-          {
-            media: {
-              src: `${AWS_ASSET_BASE_URL}/placeholder-media/kitchen.jpg`,
-              alt: 'decorative background image',
-            },
-            title: 'Kitchen',
-            description:
-              'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.',
-          },
-          {
-            media: {
-              src: `${AWS_ASSET_BASE_URL}/placeholder-media/parking_lot.jpg`,
-              alt: 'decorative background image',
-            },
-            title: 'Parking Lot',
-            description:
-              'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.',
-          },
-        ]}
+    <div className="max-width-center py-3xl sm:py-4xl px-padding">
+      <CenterTextSection
+        highlight={[[4, 5]]}
+        title="Looking for your next event space?"
+        description="We offer rentals of the parking lot, Fellowship Hall and the Sanctuary. Ideal for weddings, expos, family celebrations and more."
       />
+    </div>
 
-      <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
-        <CenterTextSection
-          highlight={[[0, 0]]}
-          title="Tailored solutions for your needs"
-          description="We offer rentals of the parking lot, Fellowship Hall and the Sanctuary. Ideal for weddings, expos, family celebrations and more."
-        />
-        <EventRentalForm />
-      </div>
+    <CenterModeMediaWithTextCarousel
+      slides={[
+        {
+          media: {
+            src: `${AWS_ASSET_BASE_URL}/placeholder-media/fellowship_hall.jpeg`,
+            alt: 'decorative background image',
+          },
+          title: 'Fellowship Hall',
+          description:
+            'This hall is great for hosting a large quantity of guests. Featuring a kitchen for events involving cooking and a projector screen and speaking podium for lecturing sessions.',
+        },
+        {
+          media: {
+            src: `${AWS_ASSET_BASE_URL}/placeholder-media/kitchen.jpg`,
+            alt: 'decorative background image',
+          },
+          title: 'Kitchen',
+          description:
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.',
+        },
+        {
+          media: {
+            src: `${AWS_ASSET_BASE_URL}/placeholder-media/parking_lot.jpg`,
+            alt: 'decorative background image',
+          },
+          title: 'Parking Lot',
+          description:
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.',
+        },
+      ]}
+    />
+
+    <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
+      <CenterTextSection
+        highlight={[[0, 0]]}
+        title="Tailored solutions for your needs"
+        description="We offer rentals of the parking lot, Fellowship Hall and the Sanctuary. Ideal for weddings, expos, family celebrations and more."
+      />
+      <EventRentalForm />
     </div>
   </div>
 );

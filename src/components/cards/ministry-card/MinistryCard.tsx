@@ -17,7 +17,7 @@ interface MinistryCardProps {
 
 const MinistryCard: React.FC<MinistryCardProps> = ({ name, description, slug, image, flip }) => {
   return (
-    <div className={'relative md:aspect-[3/1] rounded-xl p-lg md:p-xxl'}>
+    <div className="relative sm:aspect-[3/1] rounded-xl p-lg sm:p-xxl">
       <Image
         fill
         src={image.src}
@@ -30,16 +30,16 @@ const MinistryCard: React.FC<MinistryCardProps> = ({ name, description, slug, im
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 rounded-xl" />
 
       <div
-        className={`relative w-full h-full z-20 pt-7xl md:pt-4xl flex flex-col justify-end ${flip ? 'md:items-start' : 'md:items-end md:text-right'} gap-md text-white`}
+        className={`relative w-full h-full z-20 pt-7xl sm:pt-4xl flex flex-col justify-end ${flip ? 'sm:items-start' : 'sm:items-end sm:text-right'} gap-md text-white`}
       >
         <h2>{name}</h2>
-        <div className="body-large line-clamp-2 md:max-w-[40%]">{description}</div>
+        <div className="body-large line-clamp-2 md:max-w-[50%]">{description}</div>
         <Button
           pill
           color="primary"
           size="md"
           href={`${PageRoutes.ministries}/${slug}`}
-          className="w-full md:max-w-[300px]"
+          className="w-full sm:max-w-[300px]"
         >
           Learn More
         </Button>

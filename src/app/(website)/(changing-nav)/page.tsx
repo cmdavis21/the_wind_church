@@ -2,10 +2,12 @@ import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
+import LatestSermonVideo from '@/components/latest-sermon-video/LatestSermonVideo';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
+import { getLatestSermon } from '@/data/services/youtube/playlists';
 import { styleSelectedWords } from '@/data/utils';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -36,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const Home = async () => {
-  // const result = await getLatestSermon();
+  const result = await getLatestSermon();
 
   const exploreOptions = [
     {
@@ -202,9 +204,11 @@ const Home = async () => {
           poster: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
         }}
       />
+
       {/* OVERVIEW */}
-      <div id="overview" className="py-padding lg:px-4xl max-width-center">
+      <div id="overview" className="max-width-center py-3xl sm:py-4xl lg:px-4xl">
         <div className="flex flex-col gap-lg px-padding">
+          {/* WELCOME */}
           <div
             dangerouslySetInnerHTML={{
               __html: styleSelectedWords({
@@ -214,6 +218,8 @@ const Home = async () => {
               }),
             }}
           />
+
+          {/* INTRO */}
           <h4>
             A Christ-focused community where lives are transformed and hope is restored. We gather
             to worship, grow, and walk out our faith together. Whether you join us{' '}
@@ -234,6 +240,8 @@ const Home = async () => {
             </Link>{' '}
             we&apos;d love to meet you and help you take your next step with Jesus.
           </h4>
+
+          {/* SERVICE TIMES */}
           <h3>
             <span className="dark:text-brand-primary">Sundays 9AM</span> •{' '}
             <span className="dark:text-brand-primary">Wednesdays 7PM</span>
@@ -242,12 +250,12 @@ const Home = async () => {
       </div>
 
       {/* LATEST SERMON */}
-      {/* <LatestSermonVideo ok={result.ok} data={result.data} /> */}
+      <LatestSermonVideo ok={result.ok} data={result.data} />
 
       {/* EXPLORE CTAs */}
-      <div className="p-padding flex flex-col gap-xl md:gap-xxl max-width-center">
+      <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
         <CenterTextSection title="Explore The Wind" description="There's much to do here!" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl place-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl place-items-center">
           {exploreOptions.map((opt) => (
             <ImageWithTitleDescriptionLinkCard key={`home-explore-options-${opt.link}`} {...opt} />
           ))}
@@ -255,13 +263,13 @@ const Home = async () => {
       </div>
 
       {/* ABOUT THE FAQs */}
-      <div className="py-xxl px-padding flex flex-col gap-xl md:gap-xxl max-width-center">
+      <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
         <SectionHeader title="More about The Wind" subtitle="Frequently Asked Questions" />
         <Accordion content={faqContent} />
       </div>
 
       {/* TESTIMONIALS */}
-      <div className="py-padding space-y-xl md:space-y-3xl">
+      <div className="flex flex-col gap-xl md:gap-xxl pt-3xl sm:pt-4xl">
         <div className="px-padding">
           <CenterTextSection
             title="Testimonials From The Wind Family"

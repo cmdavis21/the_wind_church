@@ -74,16 +74,16 @@ const LatestSermonVideo: React.FC<LatestSermonVideoProps> = ({ ok, data }) => {
 
         {!isFallback && <h2 className="text-white font-semibold text-left">{data.title}</h2>}
 
-        <div className="flex flex-col lg:flex-row gap-md lg:gap-lg items-center">
+        <div className="flex flex-col sm:flex-row gap-md sm:gap-lg items-center">
           {!isFallback && (
-            <Link href={data.link} target="_blank" className="w-full lg:w-fit">
-              <Button pill color="primary" className="w-full lg:w-fit">
+            <Link href={data.link} target="_blank" className="w-full sm:w-fit">
+              <Button pill color="primary" className="w-full sm:w-fit">
                 <h5>Watch Full Video</h5>
               </Button>
             </Link>
           )}
-          <Link href={PageRoutes.sermons} className="w-full lg:w-fit">
-            <Button pill color="secondary" className="w-full lg:w-fit">
+          <Link href={PageRoutes.sermons} className="w-full sm:w-fit">
+            <Button pill color="secondary" className="w-full sm:w-fit">
               <h5>View Sermons</h5>
             </Button>
           </Link>

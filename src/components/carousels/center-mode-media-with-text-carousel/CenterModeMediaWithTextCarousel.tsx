@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useRef } from 'react';
+import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -17,7 +17,6 @@ interface CenterModeMediaWithTextCarouselProps {
       alt: string;
       poster?: string;
     };
-
     title?: string;
     description?: string;
   }[];
@@ -26,10 +25,6 @@ interface CenterModeMediaWithTextCarouselProps {
 const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselProps> = ({
   slides,
 }) => {
-  const mobileCarouselRef = useRef<Carousel | null>(null);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const mobileVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1800 },
@@ -66,65 +61,52 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
     />
   );
 
-  const MobileButtonGroup = ({ ...rest }: any) => {
-    const {
-      carouselState: { currentSlide, totalItems },
-    } = rest;
+  const MobileButtonGroup = ({ next, previous }: any) => (
+    <CarouselArrows
+      className="absolute -bottom-3 right-0 mr-lg sm:mr-xxl"
+      leftArrowProps={{ onClick: () => previous() }}
+      rightArrowProps={{ onClick: () => next() }}
+    />
+  );
+
+  const Card: React.FC<{ slide: (typeof slides)[0] }> = ({ slide }) => {
     return (
-      <CarouselArrows
-        className="absolute -bottom-2 right-0 mr-5"
-        leftArrowProps={{
-          onClick: () => {
-            if (currentSlide <= 0) {
-              mobileCarouselRef.current?.goToSlide(totalItems.length - 1);
-            } else {
-              mobileCarouselRef.current?.goToSlide(currentSlide - 1);
-            }
-          },
-        }}
-        rightArrowProps={{
-          onClick: () => {
-            if (currentSlide >= totalItems.length - 1) {
-              mobileCarouselRef.current?.goToSlide(0);
-            } else {
-              mobileCarouselRef.current?.goToSlide(currentSlide + 1);
-            }
-          },
-        }}
-      />
+      <div
+        key={`mobile-media-with-side-text-carousel-${slide.media.src}`}
+        className="flex flex-col gap-lg"
+      >
+        <div className="relative aspect-[17/9] w-full min-w-7xl max-w-[900px] pointer-events-none overflow-hidden">
+          {findMediaType(slide.media.src) === MediaType.IMAGE ? (
+            <Image
+              fill
+              src={slide.media.src}
+              alt={slide.media.alt}
+              className="rounded-xl object-cover"
+            />
+          ) : (
+            <video
+              loop
+              muted
+              playsInline
+              poster={slide.media.poster}
+              className="rounded-xl object-cover pointer-events-none"
+            >
+              <source src={slide.media.src} />
+            </video>
+          )}
+        </div>
+        <div className="flex flex-col gap-md">
+          {slide.title && <h2>{slide.title}</h2>}
+          {slide.description && <h5>{slide.description}</h5>}
+        </div>
+      </div>
     );
-  };
-
-  const handleAfterChange = (currentSlide: number) => {
-    // Stop all videos
-    videoRefs.current.forEach((video, index) => {
-      if (video) {
-        if (index === currentSlide) {
-          video.play();
-        } else {
-          video.pause();
-          video.currentTime = 0; // Reset video to the start
-        }
-      }
-    });
-
-    // Stop all mobile videos
-    mobileVideoRefs.current.forEach((video, index) => {
-      if (video) {
-        if (index === currentSlide) {
-          video.play();
-        } else {
-          video.pause();
-          video.currentTime = 0;
-        }
-      }
-    });
   };
 
   return (
     <>
       {/* Desktop */}
-      <div className="hidden sm:block relative">
+      <div className="hidden md:block relative">
         <Carousel
           arrows={false}
           infinite
@@ -138,98 +120,31 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
           responsive={responsive}
           customDot={<CustomDot />}
           dotListClass="flex gap-xs"
-          itemClass="px-md lg:px-xl"
-          afterChange={handleAfterChange}
+          itemClass="px-xl"
         >
-          {slides.map((slide, index) => (
-            <div
-              key={`media-with-side-text-carousel-${slide.media.src}`}
-              className="flex flex-col gap-lg"
-            >
-              {findMediaType(slide.media.src) === MediaType.IMAGE ? (
-                <div className="relative aspect-[17/9] w-full min-w-7xl max-w-[1000px]">
-                  <Image
-                    src={slide.media.src}
-                    alt={slide.media.alt}
-                    fill
-                    className="rounded-xl object-cover pointer-events-none"
-                  />
-                </div>
-              ) : (
-                <video
-                  ref={(el) => {
-                    if (el) videoRefs.current[index] = el;
-                  }}
-                  muted
-                  loop
-                  playsInline
-                  poster={slide.media.poster}
-                  className="aspect-[17/9] w-full min-w-7xl max-w-[900px] rounded-xl object-cover pointer-events-none"
-                >
-                  <source src={slide.media.src} />
-                </video>
-              )}
-
-              <div className="space-y-md">
-                {slide.title && <h2>{slide.title}</h2>}
-                {slide.description && <h5>{slide.description}</h5>}
-              </div>
-            </div>
+          {slides.map((slide) => (
+            <Card key={`media-with-side-text-carousel-${slide.media.src}`} slide={slide} />
           ))}
         </Carousel>
       </div>
 
       {/* Mobile */}
-      <div className="sm:hidden relative">
+      <div className="md:hidden relative px-[21px] sm:px-[46px]">
         <Carousel
           infinite
           showDots
           swipeable
           arrows={false}
-          itemClass="px-lg"
+          itemClass="px-1"
           containerClass="pb-xl"
           responsive={responsive}
           renderButtonGroupOutside
           customDot={<CustomDot />}
           customButtonGroup={<MobileButtonGroup />}
-          dotListClass="flex gap-xs !justify-start !ml-5"
-          ref={(el: any) => (mobileCarouselRef.current = el)}
-          afterChange={handleAfterChange}
+          dotListClass="flex gap-xs !justify-start"
         >
-          {slides.map((slide, index) => (
-            <div
-              key={`mobile-media-with-side-text-carousel-${slide.media.src}`}
-              className="flex flex-col gap-lg"
-            >
-              {findMediaType(slide.media.src) === MediaType.IMAGE ? (
-                <div className="relative aspect-[17/9] w-full min-w-7xl max-w-[900px]">
-                  <Image
-                    src={slide.media.src}
-                    alt={slide.media.alt}
-                    fill
-                    className="rounded-xl object-cover pointer-events-none"
-                  />
-                </div>
-              ) : (
-                <video
-                  ref={(el) => {
-                    if (el) mobileVideoRefs.current[index] = el;
-                  }}
-                  muted
-                  loop
-                  playsInline
-                  poster={slide.media.poster}
-                  className="aspect-[17/9] w-full min-w-7xl max-w-[900px] rounded-xl object-cover pointer-events-none"
-                >
-                  <source src={slide.media.src} />
-                </video>
-              )}
-
-              <div className="space-y-md">
-                {slide.title && <h2>{slide.title}</h2>}
-                {slide.description && <h5>{slide.description}</h5>}
-              </div>
-            </div>
+          {slides.map((slide) => (
+            <Card key={`media-with-side-text-carousel-mobile-${slide.media.src}`} slide={slide} />
           ))}
         </Carousel>
       </div>

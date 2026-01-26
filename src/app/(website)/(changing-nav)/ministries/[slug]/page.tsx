@@ -84,13 +84,12 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
   return (
     <div>
       <PageHero size="short" title={ministry.name} media={{ src: ministry.image.src }} />
-
-      <div className="p-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
+      <div className="flex flex-col gap-3xl sm:gap-4xl max-width-center pt-3xl sm:pt-4xl px-padding">
         {/* DESCRIPTION */}
         <div className="flex flex-col gap-lg">
-          <h5 className="text-light-charcoal dark:text-dark-charcoal">
+          <h4 className="text-light-charcoal dark:text-dark-charcoal">
             {ministry.scripture.verse} - "{ministry.scripture.passage}"
-          </h5>
+          </h4>
           <h4>{ministry.description}</h4>
         </div>
 
@@ -98,20 +97,18 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         <div className="flex flex-col gap-xl md:gap-xxl">
           <SectionHeader title="Meet the Team" subtitle="Select members to learn more" />
           {/* DESKTOP */}
-          <div className="hidden md:block">
-            <div className="grid grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
-              {[ministry.coach, ...ministry.coordinators].map((leader) => (
-                <LeaderCard
-                  key={`ministry-leader-desktop-${leader.first_name}-${leader.last_name}`}
-                  {...leader}
-                />
-              ))}
-            </div>
+          <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+            {[ministry.coach, ...ministry.coordinators].map((leader) => (
+              <LeaderCard
+                key={`ministry-leader-desktop-${leader.first_name}-${leader.last_name}`}
+                {...leader}
+              />
+            ))}
           </div>
 
           {/* MOBILE */}
           <SimpleCarousel
-            className="md:hidden"
+            className="sm:hidden"
             slides={[ministry.coach, ...ministry.coordinators].map((leader) => (
               <LeaderCard
                 key={`ministry-leader-mobile-${leader.first_name}-${leader.last_name}`}
@@ -130,7 +127,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             />
 
             {/* Desktop */}
-            <div className="hidden md:grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
+            <div className="hidden sm:grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
               {selectGallery.map((src) => (
                 <ImageCard
                   key={`wind-gallery-${src}`}
@@ -143,7 +140,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             {/* Mobile */}
             <SimpleCarousel
               showDots={false}
-              className="md:hidden"
+              className="sm:hidden"
               slides={selectGallery.map((src) => (
                 <ImageCard
                   key={`wind-gallery-mobile-${src}`}
@@ -161,7 +158,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             title="Ministry Events"
             description="Look out for fun workshops, fellowships, and more at the Wind!"
           />
-          <div className="2xl:px-padding flex flex-col items-center gap-xl">
+          <div className="flex flex-col items-center gap-xl">
             {events && events.length > 0 ? (
               <div className="w-full flex flex-wrap justify-center gap-xxl">
                 {events.map((event: Event) => (
@@ -253,7 +250,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             title="Take your next steps with us!"
             description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
           />
-          <div className="flex flex-wrap gap-xxl 2xl:gap-4xl justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-xl">
             <ImageWithTitleDescriptionCard
               alt="People gathering for church service"
               src={`${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`}
