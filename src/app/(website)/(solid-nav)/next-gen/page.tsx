@@ -69,7 +69,7 @@ const NextGen = async () => {
           title="Core Principles"
           description="We believe every child—infant through high school—is uniquely created by God and worthy of intentional care, discipleship, and joy‑filled community. Our Next Gen ministry is built on principles that help young hearts grow in faith, character, and confidence as they discover who they are in Christ"
         />
-        <div className="flex flex-wrap gap-xxl justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
           <ImageWithTitleDescriptionCard
             alt=""
             src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_2.jpg`}
@@ -116,20 +116,18 @@ const NextGen = async () => {
           />
           <div>
             {/* Desktop */}
-            <div className="hidden md:block">
-              <div className="grid grid-cols-3 lg:grid-cols-4 gap-xl mx-auto">
-                {nextGenPageInfo.educators.map((educator) => (
-                  <LeaderCard
-                    key={`youth-service-educator-${educator.first_name}-${educator.last_name}`}
-                    {...educator}
-                  />
-                ))}
-              </div>
+            <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+              {nextGenPageInfo.educators.map((educator) => (
+                <LeaderCard
+                  key={`youth-service-educator-${educator.first_name}-${educator.last_name}`}
+                  {...educator}
+                />
+              ))}
             </div>
 
             {/* Mobile */}
             <SimpleCarousel
-              className="md:hidden"
+              className="sm:hidden"
               slides={nextGenPageInfo.educators.map((educator) => (
                 <LeaderCard
                   key={`mobile-youth-service-educator-${educator.first_name}-${educator.last_name}`}
@@ -147,7 +145,7 @@ const NextGen = async () => {
           title="Next Gen Events"
           description="Look out for fun, adventurous, and learning-focused events for the Wind youth!"
         />
-        <div className="2xl:px-padding flex flex-col items-center gap-xl">
+        <div className="flex flex-col items-center gap-xl">
           {events && events.length > 0 ? (
             <div className="w-full flex flex-wrap justify-center gap-xxl">
               {events.map((event: Event) => (

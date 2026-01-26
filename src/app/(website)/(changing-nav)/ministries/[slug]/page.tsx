@@ -250,7 +250,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             title="Take your next steps with us!"
             description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
             <ImageWithTitleDescriptionCard
               alt="People gathering for church service"
               src={`${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`}

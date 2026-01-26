@@ -15,17 +15,26 @@ interface TimelineItemProps {
 
 const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical = true }) => {
   const [open, setOpen] = useState(false);
-  const [addTag, setAddTag] = useState<string | null>(null);
+  const [pastEvent, setPastEvent] = useState(false);
+  const [addTag, setAddTag] = useState<{
+    label: string;
+    color?: string;
+  } | null>(null);
 
   useEffect(() => {
     const now = Date.now();
     const eventDate = new Date(event.date);
     const daysUntilEvent = differenceInDays(eventDate, now);
 
-    if (daysUntilEvent <= 30 && daysUntilEvent > 0) {
-      setAddTag('Upcoming Event');
+    if (daysUntilEvent > 0 && daysUntilEvent <= 30) {
+      setAddTag({ label: 'Upcoming' });
     } else if (isToday(eventDate)) {
-      setAddTag('Happening Today!');
+      setAddTag({ label: 'Happening Today!' });
+    }
+
+    if (new Date(now) > eventDate) {
+      setPastEvent(true);
+      setAddTag({ label: 'Past Event', color: 'gray' });
     }
   }, [event.date]);
 
@@ -51,7 +60,9 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical = true }) =
         )}
 
         {/* dot */}
-        <div className="relative min-w-3 size-3 aspect-square bg-brand-primary rounded-full" />
+        <div
+          className={`relative min-w-3 size-3 aspect-square ${pastEvent ? 'bg-light-gray dark:bg-dark-gray' : 'bg-brand-primary'} rounded-full`}
+        />
 
         {/* content */}
         <div
@@ -60,8 +71,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical = true }) =
           }`}
         >
           {addTag && (
-            <Badge color="yellow" size="xs" className="w-full">
-              {addTag}
+            <Badge color={addTag.color ?? 'yellow'} size="xs" className="w-full">
+              {addTag.label}
             </Badge>
           )}
           <div className="flex gap-xs">
@@ -72,6 +83,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical = true }) =
                 alt={event.image.alt}
                 className="object-cover rounded-md"
               />
+              {pastEvent && <div className="absolute inset-0 z-10 bg-black/30 rounded-lg" />}
             </div>
             <div className="flex flex-col gap-xs items-start text-left">
               <h5 className="text-light-navy dark:text-dark-navy font-bold leading-none">

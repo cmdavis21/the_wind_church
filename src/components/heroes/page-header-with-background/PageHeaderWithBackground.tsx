@@ -21,8 +21,8 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
 }) => (
   <div
     className={`relative ${
-      short ? 'h-[45vh]' : 'h-[65vh]'
-    } rounded-xl overflow-hidden pointer-events-none flex items-end p-lg md:p-xxl lg:p-3xl`}
+      short ? 'h-[30vh] md:h-[45vh]' : 'h-[50vh] md:h-[65vh]'
+    } rounded-xl overflow-hidden pointer-events-none flex items-end p-lg sm:p-xxl lg:p-3xl`}
   >
     <div className="absolute inset-0">
       {findMediaType(media.src) === MediaType.IMAGE ? (
@@ -53,7 +53,7 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
 
     <div className="relative">
       <div className="w-full 2xl:max-w-[70%] text-white">
-        <div className={`font-display text-xl md:text-[75px] leading-snug`}>{title}</div>
+        <div className={`font-display text-3xl md:text-[75px] leading-snug`}>{title}</div>
         {subtitle && <h3>{subtitle}</h3>}
       </div>
     </div>

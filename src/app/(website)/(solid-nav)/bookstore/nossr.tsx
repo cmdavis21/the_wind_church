@@ -38,6 +38,7 @@ const BookstoreClient = () => {
             <div className="w-full md:w-fit">
               <SelectInput
                 icon={Filter}
+                className="sm:w-fit"
                 disabled={collectionsLoading || collectionsError}
                 onChange={(e) => setFilter(e.target.value)}
                 options={[

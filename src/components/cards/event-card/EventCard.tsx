@@ -58,9 +58,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
             placeholder="blur"
             blurDataURL="data:..."
           />
-          {pastEvent && (
-            <div className="absolute top-0 left-0 z-10 w-full h-full bg-black/30 rounded-lg" />
-          )}
+          {pastEvent && <div className="absolute inset-0 z-10 bg-black/30 rounded-lg" />}
           {addTag && (
             <div className="absolute top-2 left-2 z-10">
               <Badge color={addTag.color ?? 'yellow'} size="sm">

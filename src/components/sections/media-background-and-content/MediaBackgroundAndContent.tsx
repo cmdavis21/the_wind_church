@@ -78,7 +78,9 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
       />
 
       {/* CONTENT */}
-      <div className={cn('relative pt-xxl', fullWidth && 'max-width')}>{content}</div>
+      <div className={cn('relative', fullWidth && 'max-width', !centerContent && 'pt-xxl')}>
+        {content}
+      </div>
     </div>
   );
 };

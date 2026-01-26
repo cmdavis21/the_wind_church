@@ -36,12 +36,11 @@ const WindLeadersClient = () => {
 
       {/* FILTERING */}
       {leaders && (
-        <div className="flex flex-wrap justify-between items-center gap-sm w-full pb-sm border border-x-0 border-t-0 border-light-gray dark:border-dark-gray">
-          <h4 className="font-bold">({count}) Leaders</h4>
-          <div className="max-md:w-full">
+        <div className="w-full flex md:justify-end">
+          <div className="w-full md:w-fit">
             <SelectInput
               icon={Filter}
-              className="md:w-fit"
+              className="sm:w-fit"
               disabled={leadersLoading || leadersError}
               onChange={(e) => setFilter(e.target.value)}
               options={[
@@ -55,21 +54,19 @@ const WindLeadersClient = () => {
 
       {leadersLoading &&
         Array.from({ length: 2 }).map((_, index) => (
-          <div key={`wind-leaders-skelton-${index}`} className="flex flex-col gap-xl">
+          <div key={`wind-leaders-skelton-${index}`} className="flex flex-col gap-xl md:gap-xxl">
             <SectionHeaderSkeleton />
 
             {/* DESKTOP */}
-            <div className="hidden md:block">
-              <div className="grid grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
-                {Array.from({ length: 5 }).map((_, idx) => (
-                  <LeaderCardSkeleton key={`wind-leader-desktop-skeleton-${idx}`} />
-                ))}
-              </div>
+            <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <LeaderCardSkeleton key={`wind-leader-desktop-skeleton-${idx}`} />
+              ))}
             </div>
 
             {/* MOBILE */}
             <SimpleCarousel
-              className="md:hidden"
+              className="sm:hidden"
               slides={Array.from({ length: 5 }).map((_, idx) => (
                 <LeaderCardSkeleton key={`wind-leader-mobile-skeleton-${idx}`} />
               ))}
@@ -83,24 +80,22 @@ const WindLeadersClient = () => {
           .sort(([a], [b]) => a.localeCompare(b))
           .filter(([cat]) => filter === '' || cat === filter)
           .map(([cat, leaderList]) => (
-            <div key={`wind-leaders-${cat}`} className="flex flex-col gap-xl">
+            <div key={`wind-leaders-${cat}`} className="flex flex-col gap-xl md:gap-xxl">
               <SectionHeader title={cat} subtitle="Select Leaders to learn more" />
 
               {/* DESKTOP */}
-              <div className="hidden md:block">
-                <div className="grid grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
-                  {leaderList.map((leader) => (
-                    <LeaderCard
-                      key={`wind-leader-desktop-${leader.first_name}-${leader.last_name}`}
-                      {...leader}
-                    />
-                  ))}
-                </div>
+              <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+                {leaderList.map((leader) => (
+                  <LeaderCard
+                    key={`wind-leader-desktop-${leader.first_name}-${leader.last_name}`}
+                    {...leader}
+                  />
+                ))}
               </div>
 
               {/* MOBILE */}
               <SimpleCarousel
-                className="md:hidden"
+                className="sm:hidden"
                 slides={leaderList.map((leader) => (
                   <LeaderCard
                     key={`wind-leader-mobile-${leader.first_name}-${leader.last_name}`}

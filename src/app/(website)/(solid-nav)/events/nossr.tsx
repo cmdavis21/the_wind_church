@@ -29,12 +29,11 @@ const EventsClient = () => {
 
       {/* FILTERING */}
       {events && (
-        <div className="flex flex-wrap justify-between items-center gap-sm w-full pb-sm border border-x-0 border-t-0 border-light-gray dark:border-dark-gray">
-          <h4 className="font-bold">({filteredEvents.length}) Events</h4>
-          <div className="max-md:w-full">
+        <div className="w-full flex md:justify-end">
+          <div className="w-full md:w-fit">
             <SelectInput
               icon={Filter}
-              className="md:w-fit"
+              className="sm:w-fit"
               disabled={eventsLoading || eventsError}
               onChange={(e) => setFilter(e.target.value)}
               options={[
