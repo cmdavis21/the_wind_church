@@ -67,6 +67,7 @@ export const AWS_BUCKET_NAME = process.env.NEXT_PUBLIC_AWS_BUCKET_NAME ?? '';
 export const AWS_IDENTITY_POOL_ID = process.env.NEXT_PUBLIC_AWS_IDENTITY_POOL_ID ?? '';
 export const AWS_ASSET_BASE_URL = process.env.NEXT_PUBLIC_AWS_ASSET_BASE_URL ?? '';
 export const AWS_ACCESS_KEY = process.env.NEXT_PUBLIC_AWS_ACCESS_KEY ?? '';
+export const AWS_SECRET_KEY = process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY ?? '';
 export const AWS_SERMON_FALLBACK_VIDEO = process.env.NEXT_PUBLIC_AWS_SERMON_FALLBACK_VIDEO ?? '';
 export const AWS_SERMON_FALLBACK_POSTER = process.env.NEXT_PUBLIC_AWS_SERMON_FALLBACK_POSTER ?? '';
 
