@@ -51,7 +51,7 @@ const NextGen = async () => {
   const nextGenPageInfo = await getNextGenPage();
   const events = await getMinistryEvents('Next Gen');
   return (
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       <PageHeaderWithBackground
         media={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_group.jpg`,
@@ -67,28 +67,29 @@ const NextGen = async () => {
         <CenterTextSection
           highlight={[[0, 0]]}
           title="Core Principles"
-          description="We believe every child—infant through high school—is uniquely created by God and worthy of intentional care, discipleship, and joy‑filled community. Our Next Gen ministry is built on principles that help young hearts grow in faith, character, and confidence as they discover who they are in Christ"
+          description="We believe every child is uniquely created by God and deserving of intentional care, discipleship, and joyful community. Our Next Gen ministry helps young hearts grow in faith, character, and confidence as they discover who they are in Christ."
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
           <ImageWithTitleDescriptionCard
             alt=""
             src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_2.jpg`}
             title="Christ-Centered Studies"
-            description="Through interactive teaching, worship, and hands‑on learning, we guide students to build a strong foundation in Christ that will carry them through every season of life."
+            description="We use interactive teaching, worship, and hands‑on learning to help students build a strong, lasting foundation in Christ."
           />
           <ImageWithTitleDescriptionCard
             alt=""
             src={`${AWS_ASSET_BASE_URL}/placeholder-media/kid_outside.jpg`}
             title="Creative Fun & Exploration"
-            description="From creative crafts and games to outdoor play and team‑building activities, our environments are designed to spark curiosity, build friendships, and make church a place kids are excited to be every week."
+            description="From crafts and games to outdoor play and team activities, we create fun, engaging spaces that spark curiosity and build friendships."
           />
           <ImageWithTitleDescriptionCard
             alt=""
             src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_1.jpg`}
             title="Respect and Love"
-            description="Through guided conversations, positive role‑modeling, and Christ‑like encouragement, we teach students how to treat others with kindness, empathy, and respect—reflecting the heart of Jesus in their everyday lives."
+            description="We model and teach kindness, empathy, and Christ‑like respect so students learn to care for others in everyday life."
           />
         </div>
+
         {nextGenPageInfo && nextGenPageInfo.cirriculum_file && (
           <a
             className="mx-auto"

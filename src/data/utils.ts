@@ -1,3 +1,5 @@
+import { GiftAssessmentDefinition } from './types';
+
 export enum MediaType {
   IMAGE,
   VIDEO,
@@ -91,4 +93,17 @@ export const isValidPhone = (phone: string) => {
 export const combineNames = (names: { first_name: string; last_name: string }[]) => {
   if (!names || names.length === 0) return '';
   return names.map((n) => `${n.first_name} ${n.last_name}`).join(' & ');
+};
+
+export const downloadPDF = async (results: {
+  dominateGifts: GiftAssessmentDefinition[];
+  subordinateGifts: GiftAssessmentDefinition[];
+  ministriesInvolvedIn: string;
+  changeInMinistry: string;
+  layOrClergy: string;
+}) => {
+  await fetch('/api/gift-assessment', {
+    method: 'POST',
+    body: JSON.stringify({ results }),
+  });
 };

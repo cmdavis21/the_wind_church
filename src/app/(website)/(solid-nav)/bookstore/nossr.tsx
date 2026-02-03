@@ -20,7 +20,7 @@ const BookstoreClient = () => {
   if (collectionsError) return <ErrorAlert />;
 
   return (
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       <PageHeaderWithBackground
         media={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/open_sign.webp`,
@@ -32,69 +32,69 @@ const BookstoreClient = () => {
       />
 
       {/* FILTERING */}
-      <div className="relative max-width-center flex flex-col gap-xxl">
-        {collections && (
-          <div className="w-full flex md:justify-end">
-            <div className="w-full md:w-fit">
-              <SelectInput
-                icon={Filter}
-                className="sm:w-fit"
-                disabled={collectionsLoading || collectionsError}
-                onChange={(e) => setFilter(e.target.value)}
-                options={[
-                  { label: 'All Products', value: '' },
-                  ...collections.map((c) => ({ label: c.title, value: c.title })),
-                ]}
-              />
+      {collections && (
+        <div className="w-full flex md:justify-end">
+          <div className="w-full md:w-fit">
+            <SelectInput
+              icon={Filter}
+              className="sm:w-fit"
+              disabled={collectionsLoading || collectionsError}
+              onChange={(e) => setFilter(e.target.value)}
+              options={[
+                { label: 'All Products', value: '' },
+                ...collections.map((c) => ({ label: c.title, value: c.title })),
+              ]}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* LOADING */}
+      {collectionsLoading &&
+        Array.from({ length: 4 }).map((_, index) => (
+          <div
+            key={`bookstore-collections-skeleton-${index}`}
+            className="flex flex-col gap-xl md:gap-xxl"
+          >
+            <SectionHeaderSkeleton />
+
+            <div className="pt-lg grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
+              {Array.from({ length: 6 }).map((_, idx) => (
+                <ProductCardSkeleton key={`bookstore-collections-skeleton-card-${index}`} />
+              ))}
             </div>
           </div>
-        )}
+        ))}
 
-        {/* LOADING */}
-        {collectionsLoading &&
-          Array.from({ length: 4 }).map((_, index) => (
-            <div key={`bookstore-collections-skeleton-${index}`} className="flex flex-col gap-md">
-              <SectionHeaderSkeleton />
-
-              <div className="pt-lg grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
-                {Array.from({ length: 6 }).map((_, idx) => (
-                  <ProductCardSkeleton key={`bookstore-collections-skeleton-card-${index}`} />
-                ))}
+      {/* COLLECTIONS */}
+      {!collectionsLoading &&
+        collections &&
+        collections
+          .filter((c) => filter === '' || c.title === filter)
+          .map((coll) => (
+            <div
+              key={`bookstore-collections-${coll.handle}`}
+              id={coll.handle}
+              className="flex flex-col gap-xl md:gap-xxl"
+            >
+              <SectionHeader title={coll.title} />
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-[1800px]:grid-cols-5 gap-xl place-items-center">
+                {coll.products
+                  .sort((a, b) => a.title.localeCompare(b.title))
+                  .map((prod) => (
+                    <ProductCard
+                      key={`bookstore-product-${prod.title}`}
+                      image={prod.image}
+                      title={prod.title}
+                      minPrice={prod.minPrice}
+                      maxPrice={prod.maxPrice}
+                      totalInventory={prod.total_inventory}
+                      handle={prod.handle}
+                    />
+                  ))}
               </div>
             </div>
           ))}
-
-        {/* COLLECTIONS */}
-        {!collectionsLoading &&
-          collections &&
-          collections
-            .filter((c) => filter === '' || c.title === filter)
-            .map((coll) => (
-              <div
-                key={`bookstore-collections-${coll.handle}`}
-                id={coll.handle}
-                className="flex flex-col gap-xl"
-              >
-                <SectionHeader title={coll.title} />
-
-                <div className="pt-lg grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
-                  {coll.products
-                    .sort((a, b) => a.title.localeCompare(b.title))
-                    .map((prod) => (
-                      <ProductCard
-                        key={`bookstore-product-${prod.title}`}
-                        image={prod.image}
-                        title={prod.title}
-                        minPrice={prod.minPrice}
-                        maxPrice={prod.maxPrice}
-                        totalInventory={prod.total_inventory}
-                        handle={prod.handle}
-                      />
-                    ))}
-                </div>
-              </div>
-            ))}
-      </div>
 
       {/* PAGE SCROLL-UP BUTTON */}
       <PageScrollUpButton />

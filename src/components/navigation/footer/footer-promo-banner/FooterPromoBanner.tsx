@@ -1,24 +1,19 @@
-import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
-import UpArrow from '@/components/icons/up-arrow';
-import { AWS_ASSET_BASE_URL } from '@/data/constants';
-import { getPromoDetails } from '@/data/services/sanity/queries/promo-details';
 import cn from 'classnames';
 import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
-import Link from 'next/link';
 
 const FooterPromoBanner = async () => {
   const t = await getTranslations('Footer');
-  const promoDetails = await getPromoDetails();
+  // const promoDetails = await getPromoDetails();
   return (
     <div
       className={cn(
         'relative sm:rounded-xl -my-5 overflow-hidden',
-        '-mr-lg -ml-lg lg:-ml-xxl !min-w-[1800px]:-ml-4xl'
+        '-mr-lg -ml-lg lg:-ml-xxl !min-w-[1800px]:-ml-4xl',
+        'w-full'
       )}
     >
       {/* MEDIA */}
-      <div className="absolute top-0 left-0 w-full h-full">
+      {/* <div className="absolute top-0 left-0 w-full h-full">
         {promoDetails ? (
           <>
             {promoDetails.video ? (
@@ -53,13 +48,13 @@ const FooterPromoBanner = async () => {
             />
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* OVERLAY */}
       <div className="absolute inset-0 bg-gradient-to-r from-light-navy/50 to-brand-primary/20 md:rounded-xl pointer-events-none" />
 
       {/* CONTENT */}
-      {promoDetails ? (
+      {/* {promoDetails ? (
         <div className="relative flex flex-col gap-sm px-lg sm:max-w-[70%] py-lg text-white">
           <h6 className="uppercase tracking-wider font-light">{promoDetails.header}</h6>
           <div className="w-10 h-px rounded-sm bg-brand-primary" />
@@ -84,7 +79,7 @@ const FooterPromoBanner = async () => {
             to worship, grow, and walk out our faith together.
           </p>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

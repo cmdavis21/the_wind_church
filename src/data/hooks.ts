@@ -2,12 +2,6 @@
 
 import { RefObject, useEffect, useRef, useState } from 'react';
 
-export const useHoneyPot = () => {
-  const [inputValue, setInputValue] = useState('');
-  const isBot = inputValue.trim().length > 0;
-  return { isBot, setInputValue };
-};
-
 export interface WindowDimensions {
   width: number;
   height: number;

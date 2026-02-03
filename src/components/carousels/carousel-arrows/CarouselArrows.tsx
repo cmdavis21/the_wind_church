@@ -28,12 +28,12 @@ const CarouselArrows: React.FC<CarouselArrowsProps> = ({
       className={cn(
         'rounded-full shadow-lg transition-opacity duration-300 bg-black/50 hover:opacity-50',
         leftArrowProps.disable && 'opacity-50 pointer-events-none cursor-default',
-        'flex justify-center items-center size-10 md:size-12',
+        'flex justify-center items-center size-8 sm:size-10 md:size-12',
 
         leftArrowProps.buttonClassName
       )}
     >
-      <ChevronLeft className="fill-white size-6 md:size-8" />
+      <ChevronLeft className="fill-white size-5 sm:size-6 md:size-8" />
     </button>
 
     <button
@@ -42,11 +42,11 @@ const CarouselArrows: React.FC<CarouselArrowsProps> = ({
       className={cn(
         'rounded-full shadow-lg transition-opacity duration-300 bg-black/50 hover:opacity-50',
         rightArrowProps.disable && 'opacity-50 pointer-events-none cursor-default',
-        'flex justify-center items-center size-10 md:size-12',
+        'flex justify-center items-center size-8 sm:size-10 md:size-12',
         rightArrowProps.buttonClassName
       )}
     >
-      <ChevronLeft className="rotate-180 fill-white size-6 md:size-8" />
+      <ChevronLeft className="rotate-180 fill-white size-5 sm:size-6 md:size-8" />
     </button>
   </div>
 );

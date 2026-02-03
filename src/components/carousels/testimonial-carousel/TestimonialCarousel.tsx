@@ -39,7 +39,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
 
   const CustomDot = ({ onClick, ...rest }: any) => {
     const { active } = rest;
-    return <CarouselDot onClick={onClick} active={active} />;
+    return <CarouselDot onClick={onClick} active={active} blueDot />;
   };
 
   const ButtonGroup = ({ next, previous }: any) => (

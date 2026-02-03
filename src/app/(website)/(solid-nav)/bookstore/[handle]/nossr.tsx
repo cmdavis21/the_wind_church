@@ -102,11 +102,11 @@ const ProductPage = (product: Product) => {
 
       <div>
         {/* LEFT DECORATIVE BORDER */}
-        <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
+        <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-3 lg:w-5 min-h-full bg-brand-primary" />
 
         <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 gap-xxl max-width-center">
           {/* MEDIA */}
-          <div className="md:sticky md:top-4xl h-fit pb-sm">
+          <div className="md:sticky md:top-4xl h-fit p-1">
             <SingleSlideMediaCarousel
               media={product.images.map((img) => ({
                 src: img.src,
@@ -204,7 +204,7 @@ const ProductPage = (product: Product) => {
             </div>
 
             {/* ACTION BUTTONS */}
-            <div className="flex flex-col md:flex-row items-center gap-md">
+            <div className="flex flex-col sm:flex-row items-center gap-md">
               <Button
                 pill
                 disabled={product.variants[selectedVariant].quantity_available <= 0}
@@ -238,7 +238,7 @@ const ProductPage = (product: Product) => {
             </div>
 
             {/* MISCELLANEOUS INFO */}
-            <div className="pt-xl flex flex-col gap-lg">
+            <div className="pt-xl flex flex-col gap-xl">
               {MISCELLANEOUS_DETAIL.map(({ detail, description }) => (
                 <div
                   key={detail}
@@ -254,7 +254,7 @@ const ProductPage = (product: Product) => {
         </div>
 
         {/* RIGHT DECORATIVE BORDER */}
-        <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
+        <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-3 lg:w-5 min-h-full bg-brand-primary" />
       </div>
     </>
   );

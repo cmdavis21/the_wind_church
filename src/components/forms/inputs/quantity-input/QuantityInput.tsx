@@ -1,7 +1,8 @@
-import React from 'react';
-
 import Minus from '@/components/icons/minus';
 import Plus from '@/components/icons/plus';
+import { useTheme } from '@/data/providers/theme-mode-provider';
+import cn from 'classnames';
+import React from 'react';
 
 interface QuantityInputProps {
   maxQuantity: number;
@@ -18,6 +19,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
   increment,
   scaleDown,
 }) => {
+  const { darkMode } = useTheme();
   return (
     <div className="p-xs rounded-md flex items-center gap-sm">
       <button
@@ -28,9 +30,17 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             decrement(quantity - 1);
           }
         }}
-        className={`${quantity === 1 ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''} bg-light-neutral dark:bg-dark-neutral hover:opacity-75 rounded-sm h-full p-xs`}
+        className={cn(
+          'rounded-md h-full p-xs',
+          quantity === 1
+            ? 'pointer-events-none opacity-75 bg-transparent'
+            : 'bg-light-gray dark:bg-dark-gray hover:opacity-75'
+        )}
       >
-        <Minus className={`${scaleDown ? 'size-[12px]' : 'size-[15px]'}`} />
+        <Minus
+          fill={darkMode ? '#FFFFFFCC' : '#000000'}
+          className={`${scaleDown ? 'size-[12px]' : 'size-[15px]'}`}
+        />
       </button>
 
       <p className="font-normal leading-none body-large pointer-events-none">{quantity}</p>
@@ -43,9 +53,17 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             increment(quantity + 1);
           }
         }}
-        className={`${quantity === maxQuantity ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''} bg-light-neutral dark:bg-dark-neutral  hover:opacity-75 rounded-sm h-full p-xs`}
+        className={cn(
+          'rounded-md h-full p-xs',
+          quantity === maxQuantity
+            ? 'pointer-events-none opacity-50 bg-transparent'
+            : 'bg-light-gray dark:bg-dark-gray hover:opacity-75'
+        )}
       >
-        <Plus className={`${scaleDown ? 'size-[12px]' : 'size-[15px]'}`} />
+        <Plus
+          fill={darkMode ? '#FFFFFFCC' : '#000000'}
+          className={`${scaleDown ? 'size-[12px]' : 'size-[15px]'}`}
+        />
       </button>
     </div>
   );

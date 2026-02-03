@@ -84,7 +84,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         <div className="flex flex-col gap-xl md:gap-xxl">
           <SectionHeader title="Meet the Instructors" subtitle="Select Leaders to learn more" />
           {/* DESKTOP */}
-          <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+          <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-items-center">
             {deepDive.instructors.map((leader) => (
               <LeaderCard
                 key={`ministry-leader-desktop-${leader.first_name}-${leader.last_name}`}

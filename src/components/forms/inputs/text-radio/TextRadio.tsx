@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import React from 'react';
 
 interface TextRadioProps {
@@ -13,15 +14,16 @@ const TextRadio: React.FC<TextRadioProps> = ({ text, color, selected, disabled, 
     type="button"
     disabled={disabled}
     onClick={() => onSelect(text)}
-    className={`${disabled ? 'opacity-50' : ''} px-sm py-xs min-w-[45px] max-w-fit border-2 rounded-md ${selected ? 'border-brand-primary' : 'border-light-gray dark:border-dark-gray'}`}
+    className={cn(
+      disabled && 'opacity-50',
+      selected
+        ? 'bg-brand-light/10 border-brand-primary'
+        : 'border-light-gray dark:border-dark-charcoal hover:opacity-75',
+      'px-sm py-xs min-w-[45px] max-w-fit border rounded-md'
+    )}
   >
     <div className="flex items-center justify-center capitalize gap-[6px]">
-      {color && (
-        <div
-          style={{ backgroundColor: color }}
-          className={`size-5 rounded-sm border border-charcoal`}
-        />
-      )}
+      {color && <div style={{ backgroundColor: color }} className="size-4 rounded-full" />}
       <div>{text}</div>
     </div>
   </button>

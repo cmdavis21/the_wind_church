@@ -86,7 +86,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
       </button>
 
       {/* SUBMENU */}
-      <div className="h-0 pointer-events-none opacity-0 overflow-hidden group-hover:h-fit group-hover:pointer-events-auto group-hover:opacity-100 z-[9000] absolute pt-[15px] pb-2 w-fit left-1/2 -translate-x-1/2 transition-[opacity,height] duration-300">
+      <div className="h-0 pointer-events-none opacity-0 overflow-hidden group-hover:h-fit group-hover:pointer-events-auto group-hover:opacity-100 z-[9000] absolute pt-[25px] pb-2 w-fit left-1/2 -translate-x-1/2 transition-[opacity,height] duration-300">
         <div className="flex flex-col gap-xs">
           {Array.isArray(submenu) &&
             submenu.map((item) => (
@@ -99,7 +99,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
                   <div className="absolute inset-0 overflow-hidden rounded-full">
                     <div
                       className={cn(
-                        'h-full rounded-full bg-brand-primary dark:bg-brand-primary',
+                        'h-full rounded-full bg-brand-primary dark:bg-brand-dark',
                         'transition-[width] duration-500 ease-out',
                         'absolute right-0 origin-right',
                         pathname === item.link ? 'w-full' : 'w-0 group-hover/sub:w-full'

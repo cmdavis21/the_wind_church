@@ -96,10 +96,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
             : 'opacity-0 pointer-events-none'
         )}
       >
-        <div
-          ref={accordionDesc}
-          className="body-large text-light-secondaryText dark:text-dark-secondaryText"
-        >
+        <div ref={accordionDesc} className="body-large">
           {description}
         </div>
       </div>

@@ -56,7 +56,7 @@ const OrdersClient = () => {
           icon={User}
         >
           {customerData && customerData.profile && (
-            <div className="w-full mx-auto flex flex-col lg:flex-row gap-8 pt-5">
+            <div className="w-full mx-auto flex flex-col lg:flex-row gap-xl pt-5">
               <EmailUpdateForm
                 customer_id={customerData.profile.customer_id}
                 current_email={customerData.profile.default_email}

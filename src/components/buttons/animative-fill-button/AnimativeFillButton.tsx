@@ -38,7 +38,7 @@ const AnimativeFillButton: React.FC<AnimativeFillButtonProps> = ({
       <div className="absolute inset-0 overflow-hidden rounded-full">
         <div
           className={cn(
-            'h-full rounded-full bg-brand-primary dark:bg-dark-navy',
+            'h-full rounded-full bg-brand-primary dark:bg-light-navy',
             'transition-[width] duration-500 ease-out',
             'absolute right-0 origin-right',
             'w-0 group-hover:w-full'

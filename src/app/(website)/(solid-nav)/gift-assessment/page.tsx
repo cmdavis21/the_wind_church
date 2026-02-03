@@ -1,7 +1,7 @@
-import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import GiftAssessment from '@/components/forms/gift-assessment/GiftAssessment';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
+import { Button } from 'flowbite-react';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -33,9 +33,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const GiftAssessmentPage = () => (
   <div>
     {/* Decorative Border */}
-    <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
+    <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-3 lg:w-5 min-h-full bg-brand-primary" />
 
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       {/* Header */}
       <div className="text-center space-y-lg">
         <h1 className={`font-display md:text-[75px] leading-snug`}>Spiritual Gift Assessment</h1>
@@ -87,11 +87,11 @@ const GiftAssessmentPage = () => (
         <a
           target="_blank"
           download="Spiritual_Gift_Assessment.pdf"
-          href={`/spiritual-gifts-test.pdf`}
+          href="/spiritual-gifts-test.pdf"
         >
-          <AnimativeFillButton size="lg">
+          <Button color="secondary" pill size="lg">
             Optional: Download Blank PDF Assessment
-          </AnimativeFillButton>
+          </Button>
         </a>
       </div>
 
@@ -102,7 +102,7 @@ const GiftAssessmentPage = () => (
     </div>
 
     {/* Decorative Border */}
-    <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-[22px] lg:w-[32px] min-h-full bg-brand-primary" />
+    <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-3 lg:w-5 min-h-full bg-brand-primary" />
   </div>
 );
 

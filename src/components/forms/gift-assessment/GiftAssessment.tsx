@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   FullContact,
@@ -14,23 +14,21 @@ import { ACCORDION_TYPE } from '@/components/accordion/accordion-item/AccordionI
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import { GiftAssessmentDefinitions, GiftAssessmentQuestions } from '@/data/gift-assessment';
 import { useCreateGiftAssessment } from '@/data/services/sanity/mutations/gift-assessment';
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import { downloadPDF } from '@/data/utils';
 import { Button } from 'flowbite-react';
-import dynamic from 'next/dynamic';
 import GiftAssessmentContactForm from './gift-assessment-contact-form/GiftAssessmentContactForm';
 import GiftAssessmentQuiz from './gift-assessment-quiz/GiftAssessmentQuiz';
 import GiftAssessmentReflectionQuestionsForm from './gift-assessment-reflection-questions-form/GiftAssessmentReflectionQuestionsForm';
 
-const GiftAssessmentResultsPdf = dynamic(
-  () =>
-    import(
-      '@/components/forms/gift-assessment/gift-assessment-results-pdf/GiftAssessmentResultsPdf'
-    ),
-  { ssr: false }
-);
+// const GiftAssessmentResultsPdf = dynamic(
+//   () =>
+//     import('@/components/forms/gift-assessment/gift-assessment-results-pdf/GiftAssessmentResultsPdf'),
+//   { ssr: false }
+// );
 const PDF_FILE_NAME = 'The_Wind_Church_Spiritual_Gift_Assessment_Results.pdf';
 
 const GiftAssessment = () => {
+  const resultsRef = useRef<HTMLDivElement | null>(null);
   const [showResults, setShowResults] = useState(false);
 
   const [dominateGifts, setDominateGifts] = useState<GiftAssessmentDefinition[] | null>(null);
@@ -63,6 +61,18 @@ const GiftAssessment = () => {
     }
   };
 
+  useEffect(() => {
+    if (resultsRef.current) {
+      if (showResults && dominateGifts && subordinateGifts) {
+        window.scrollTo({
+          left: 0,
+          top: resultsRef.current.offsetTop - 100,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [showResults && dominateGifts && subordinateGifts]);
+
   return (
     <div className="flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl">
       <GiftAssessmentQuiz
@@ -78,7 +88,10 @@ const GiftAssessment = () => {
 
       {/* Results */}
       {showResults && dominateGifts && subordinateGifts && (
-        <div className="border border-light-gray  shadow-md p-md md:p-lg lg:p-xl rounded-xl flex flex-col gap-xxl">
+        <div
+          ref={resultsRef}
+          className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-xxl rounded-xl max-w-[1200px] mx-auto"
+        >
           {/* Gifts */}
           <div className="flex flex-col gap-md">
             <h3>Assessment Completed!</h3>
@@ -137,7 +150,7 @@ const GiftAssessment = () => {
           {/* Download and Submission */}
           {reflectionQuestions && (
             <>
-              <PDFDownloadLink
+              {/* <PDFDownloadLink
                 document={
                   <GiftAssessmentResultsPdf
                     dominateGifts={dominateGifts}
@@ -149,10 +162,31 @@ const GiftAssessment = () => {
                 }
                 fileName={PDF_FILE_NAME}
               >
-                <Button pill color="info" className="mx-auto max-md:!min-w-full md:w-fit">
+                <Button
+                  pill
+                  color="secondary"
+                  // onClick={() => downloadPdf(Date.now().toString())}
+                  className="mx-auto max-md:!min-w-full md:w-fit"
+                >
                   Download Results as PDF
                 </Button>
-              </PDFDownloadLink>
+              </PDFDownloadLink> */}
+              <Button
+                pill
+                color="secondary"
+                onClick={() =>
+                  downloadPDF({
+                    dominateGifts,
+                    subordinateGifts,
+                    ministriesInvolvedIn: reflectionQuestions.ministries_involved_in,
+                    changeInMinistry: reflectionQuestions.change_in_ministry,
+                    layOrClergy: reflectionQuestions.lay_or_clergy,
+                  })
+                }
+                className="mx-auto max-md:!min-w-full md:w-fit"
+              >
+                Download Results as PDF
+              </Button>
 
               <div className="flex flex-col gap-md">
                 <h3>Optional: Submit your results to the Wind!</h3>

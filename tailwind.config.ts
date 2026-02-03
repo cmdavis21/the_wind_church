@@ -54,12 +54,19 @@ const config: Config = {
       colors: {
         black: '#000000',
         white: '#FFFFFF',
-        /* ------------------------------------------------------
-         * LIGHT MODE
-         * ------------------------------------------------------ */
+        info: '#1976D2',
+        success: '#2E7D32',
+        warning: '#F9A825',
+        error: '#D32F2F',
+        brand: {
+          primary: '#fdd738',
+          light: '#f4e2b5',
+          dark: '#c3941d',
+        },
         light: {
           bg: '#FFFFFF',
-          navy: '#0A1A4A',
+          // navy: '#0A1A4A',
+          navy: '#051050',
           gray: '#E6E6E6',
           neutral: '#F2F2F2',
           charcoal: '#4A4A4A',
@@ -67,9 +74,6 @@ const config: Config = {
           primaryText: '#000000',
           secondaryText: '#605E5C',
         },
-        /* ------------------------------------------------------
-         * DARK MODE
-         * ------------------------------------------------------ */
         dark: {
           bg: '#2E2E2E',
           navy: '#334C91',
@@ -79,22 +83,6 @@ const config: Config = {
           primaryText: '#FFFFFFCC',
           secondaryText: '#605E5C',
         },
-        /* ------------------------------------------------------
-         * BRAND YELLOWS
-         * ------------------------------------------------------ */
-        brand: {
-          primary: '#fdd738',
-          // primary: '#f4c430',
-          light: '#f4e2b5',
-          dark: '#c3941d',
-        },
-        /* ------------------------------------------------------
-         * SEMANTIC TOKENS
-         * ------------------------------------------------------ */
-        success: '#2E7D32',
-        warning: '#F9A825',
-        info: '#1976D2',
-        error: '#D32F2F',
       },
     },
   },

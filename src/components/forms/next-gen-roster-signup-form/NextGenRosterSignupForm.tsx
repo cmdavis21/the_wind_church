@@ -130,14 +130,9 @@ const NextGenRosterSignupForm = () => {
   // const onSubmit = (values: NextGenRosterSignup) => submitInquiry(values);
 
   // useEffect(() => {
-  //   if (formRef.current) {
-  //     if (isSuccess || isError) {
-  //       window.scrollTo({
-  //         left: 0,
-  //         top: formRef.current.offsetTop - 100,
-  //         behavior: 'smooth',
-  //       });
-  //     }
+  //   if (!formRef.current) return;
+  //   if (isSuccess || isError) {
+  //     window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
   //   }
   // }, [isSuccess, isError]);
 

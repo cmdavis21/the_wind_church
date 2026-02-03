@@ -119,14 +119,9 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
   };
 
   useEffect(() => {
-    if (formRef.current) {
-      if (isSuccess || isError) {
-        window.scrollTo({
-          left: 0,
-          top: formRef.current.offsetTop - 100,
-          behavior: 'smooth',
-        });
-      }
+    if (!formRef.current) return;
+    if (isSuccess || isError) {
+      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
     }
   }, [isSuccess, isError]);
 

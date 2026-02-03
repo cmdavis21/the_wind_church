@@ -77,13 +77,13 @@ export const getCurrentCartQuery = async (cartId: string) => {
   });
 };
 
-export const getCurrentCart = async (context?: NextPageContext): Promise<Cart | undefined> => {
+export const getCurrentCart = async (context?: NextPageContext): Promise<Cart | null> => {
   const cartId = context ? nookies.get(context).WSWC_CART_ID : nookies.get().WSWC_CART_ID;
 
   if (cartId) {
     const { cart } = await getCurrentCartQuery(cartId);
 
-    if (!cart) return undefined;
+    if (!cart) return null;
 
     return {
       id: cart.id as string,
@@ -130,5 +130,5 @@ export const getCurrentCart = async (context?: NextPageContext): Promise<Cart | 
     };
   }
 
-  return undefined;
+  return null;
 };

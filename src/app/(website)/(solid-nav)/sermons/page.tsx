@@ -39,7 +39,7 @@ const Sermons = async () => {
   const liveStreams = await getPastLiveStreams();
   const otherVideos = await getPlaylistVideos();
   return (
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       <PageHeaderWithBackground
         media={{
           src: `${AWS_ASSET_BASE_URL}/placeholder-media/pastor_preaching.jpg`,

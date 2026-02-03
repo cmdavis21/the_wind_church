@@ -2,8 +2,7 @@
 
 import { MinistryConnection } from '@/data/types';
 import { yupResolver } from '@hookform/resolvers/yup';
-import cn from 'classnames';
-import { Button, Checkbox, Label } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -12,6 +11,7 @@ import { useCreateMinistryConnection } from '@/data/services/sanity/mutations/mi
 import { isValidEmail, isValidPhone } from '@/data/utils';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';
+import CheckboxGroup from '../inputs/checkbox-group/CheckboxGroup';
 import TextInput from '../inputs/text-input/TextInput';
 
 const schema = yup.object().shape({
@@ -47,6 +47,7 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
   const {
     register,
     setError,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<MinistryConnection>({
@@ -66,14 +67,9 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
   };
 
   useEffect(() => {
-    if (formRef.current) {
-      if (isSuccess || isError) {
-        window.scrollTo({
-          left: 0,
-          top: formRef.current.offsetTop - 100,
-          behavior: 'smooth',
-        });
-      }
+    if (!formRef.current) return;
+    if (isSuccess || isError) {
+      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
     }
   }, [isSuccess, isError]);
 
@@ -141,41 +137,14 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
       </div>
 
       {/* ministry interest */}
-      <div className="flex flex-col gap-xl">
-        <Label value="Select ministries you are interested in learning more about?*" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
-          {ministryNames.map((name) => (
-            <button
-              key={name}
-              onClick={(e) => {
-                e.preventDefault();
-                if (selections.includes(name)) {
-                  setSelections((prev) => prev.filter((n) => n !== name));
-                } else {
-                  setSelections((prev) => [...prev, name]);
-                }
-              }}
-              className={cn(
-                selections.includes(name)
-                  ? 'bg-brand-light/30'
-                  : 'hover:shadow-md shadow-brand-light',
-                'flex items-center gap-xs cursor-pointer rounded-sm p-sm w-fit'
-              )}
-            >
-              <Checkbox
-                value={name}
-                color="yellow"
-                checked={selections.includes(name)}
-                disabled={isPending || isSuccess}
-              />
-              <div className="body-large">{name}</div>
-            </button>
-          ))}
-        </div>
-        {errors.ministry_interests && (
-          <div className="text-error">{errors.ministry_interests.message}</div>
-        )}
-      </div>
+      <CheckboxGroup
+        name={'ministry_interest'}
+        disabled={isPending || isSuccess}
+        label="Select ministries you are interested in learning more about?*"
+        options={ministryNames.map((name) => ({ label: name, value: name }))}
+        onChange={(values) => setValue('ministry_interests', values)}
+        error={errors.ministry_interests?.message}
+      />
 
       <Button
         pill

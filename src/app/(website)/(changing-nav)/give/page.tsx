@@ -54,16 +54,19 @@ const Give = () => {
       description: (
         <>
           Give securely online through Pushpay using your debit card, credit card, or bank account.
-          <Button
-            pill
-            size="lg"
-            color="primary"
-            target="_blank"
-            href={PageRoutes.pushpay}
-            className="mt-6 mx-auto px-4 w-[165px]"
-          >
-            Give Online
-          </Button>
+          <div className="mt-6 mx-auto w-fit">
+            <Link href={PageRoutes.pushpay}>
+              <Button
+                pill
+                size="lg"
+                color="secondary"
+                target="_blank"
+                className="whitespace-nowrap px-4"
+              >
+                Give Online
+              </Button>
+            </Link>
+          </div>
         </>
       ),
     },

@@ -44,9 +44,15 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({ med
 
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
-      className={`${media.length === 1 ? 'hidden' : ''} absolute left-0 lg:px-lg top-[50%] -translate-y-[50%] w-full`}
-      leftArrowProps={{ onClick: () => previous() }}
-      rightArrowProps={{ onClick: () => next() }}
+      className={`${media.length === 1 ? 'hidden' : ''}`}
+      leftArrowProps={{
+        onClick: () => previous(),
+        buttonClassName: 'absolute top-[50%] -translate-y-[50%] left-3',
+      }}
+      rightArrowProps={{
+        onClick: () => next(),
+        buttonClassName: 'absolute top-[50%] -translate-y-[50%] right-3',
+      }}
     />
   );
 
@@ -56,23 +62,24 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({ med
         showDots
         infinite
         arrows={false}
-        renderDotsOutside
         responsive={responsive}
         renderButtonGroupOutside
         renderArrowsWhenDisabled
         customDot={<CustomDot />}
-        itemClass="w-full lg:h-full aspect-square border rounded-xl border-light-gray dark:border-dark-gray relative bg-white"
-        dotListClass="h-[60px] flex gap-xs justify-center items-center"
+        dotListClass="flex gap-xs justify-center !mb-2"
         customButtonGroup={<ButtonGroup />}
       >
         {media.map((slide) => (
-          <div key={`single-slide-media-carousel-${slide.src}`}>
+          <div
+            key={`single-slide-media-carousel-${slide.src}`}
+            className="pointer-events-none aspect-square border-2 rounded-xl border-light-gray dark:border-dark-gray relative bg-white"
+          >
             {findMediaType(slide.src) === MediaType.IMAGE ? (
               <Image
                 fill
                 src={slide.src}
                 alt={slide.alt}
-                className="object-contain object-center pointer-events-none w-full aspect-square rounded-xl"
+                className="object-contain object-center rounded-xl"
               />
             ) : (
               <video
@@ -81,7 +88,7 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({ med
                 autoPlay
                 playsInline
                 poster={slide.poster}
-                className="w-full aspect-square rounded-xl"
+                className="w-full rounded-xl"
               >
                 <source src={slide.src} type="video/mp4" />
               </video>

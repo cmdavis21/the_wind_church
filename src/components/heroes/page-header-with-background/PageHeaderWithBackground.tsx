@@ -51,11 +51,9 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/70 rounded-xl" />
     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 rounded-xl" />
 
-    <div className="relative">
-      <div className="w-full 2xl:max-w-[70%] text-white">
-        <div className={`font-display text-3xl md:text-[75px] leading-snug`}>{title}</div>
-        {subtitle && <h3>{subtitle}</h3>}
-      </div>
+    <div className="relative w-full md:max-w-[50%] text-white flex flex-col gap-xs md:gap-md">
+      <h2 className="font-display text-3xl sm:text-5xl md:text-7xl leading-snug">{title}</h2>
+      {subtitle && <h3>{subtitle}</h3>}
     </div>
   </div>
 );

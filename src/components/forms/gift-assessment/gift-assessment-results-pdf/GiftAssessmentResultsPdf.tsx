@@ -9,23 +9,44 @@ const styles = StyleSheet.create({
   page: {
     padding: 50,
     fontFamily: 'Times-Roman',
+    position: 'relative',
   },
+
+  // HEADER
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 25,
+  },
+  headerLeft: {
+    fontSize: 12,
+  },
+  headerCenter: {
+    fontSize: 18,
+    textAlign: 'center',
+    flexGrow: 1,
+  },
+  headerRight: {
+    fontSize: 12,
+    textAlign: 'right',
+  },
+
+  // LOGO + CONTACT
   logo: {
     width: 100,
     height: 50,
     margin: '0 auto',
-    marginBottom: 20,
+    marginBottom: 8,
   },
-  header: {
-    fontSize: 18,
+  contactBlock: {
     textAlign: 'center',
-    marginBottom: 10,
+    fontSize: 10,
+    marginBottom: 25,
+    lineHeight: 1.3,
   },
-  subHeader: {
-    fontSize: 14,
-    textAlign: 'center',
-    marginBottom: 30,
-  },
+
+  // CONTENT
   section: {
     marginBottom: 30,
   },
@@ -60,6 +81,24 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 30,
   },
+
+  // FOOTER
+  footer: {
+    position: 'absolute',
+    bottom: 30,
+    left: 50,
+    right: 50,
+    fontSize: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  copyright: {
+    fontSize: 10,
+  },
+  pageNumber: {
+    fontSize: 10,
+    textAlign: 'right',
+  },
 });
 
 interface GiftAssessmentResultsPdfProps {
@@ -79,74 +118,90 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
 }) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      {/* Header */}
-      <View style={styles.section}>
-        {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <Image src={`${AWS_ASSET_BASE_URL}/logos/logo.png`} style={styles.logo} />
-        <Text style={styles.header}>Spiritual Gift Assessment Results</Text>
-        <Text style={styles.subHeader}>Assessment Completed {formatDateMMMddyyyy(new Date())}</Text>
+      {/* HEADER BAR */}
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerLeft}>Gift Assessment</Text>
+        <Text style={styles.headerCenter}>Spiritual Gift Assessment Results</Text>
+        <Text style={styles.headerRight}>{formatDateMMMddyyyy(new Date())}</Text>
       </View>
 
-      {/* Dominate Gifts */}
+      {/* LOGO + CONTACT */}
+      <Image src={`${AWS_ASSET_BASE_URL}/logos/logo.png`} style={styles.logo} />
+      <View style={styles.contactBlock}>
+        <Text>6476 Streeter Avenue</Text>
+        <Text>Riverside, CA 92504</Text>
+        <Text>+1 (951) 359-0203</Text>
+        <Text>thewindchurch@outlook.com</Text>
+      </View>
+
+      {/* DOMINATE GIFTS */}
       <View style={styles.section}>
         <Text style={styles.label}>Your {dominateGifts.length} Dominate Gifts</Text>
-        <View>
-          {dominateGifts.map((gift, index) => (
-            <React.Fragment key={index}>
-              <Text style={styles.listItem}>
-                {index + 1}. {gift.gift}
-              </Text>
-              <Text style={styles.text}>{gift.definition}</Text>
-              <Text style={styles.text}>Scripture Reference:</Text>
-              <View style={styles.scriptureList}>
-                {gift.scriptures.map((scripture, sIndex) => (
-                  <Text key={sIndex} style={styles.scriptureText}>
-                    {scripture}
-                  </Text>
-                ))}
-              </View>
-            </React.Fragment>
-          ))}
-        </View>
+        {dominateGifts.map((gift, index) => (
+          <React.Fragment key={index}>
+            <Text style={styles.listItem}>
+              {index + 1}. {gift.gift}
+            </Text>
+            <Text style={styles.text}>{gift.definition}</Text>
+            <Text style={styles.text}>Scripture Reference:</Text>
+            <View style={styles.scriptureList}>
+              {gift.scriptures.map((scripture, sIndex) => (
+                <Text key={sIndex} style={styles.scriptureText}>
+                  {scripture}
+                </Text>
+              ))}
+            </View>
+          </React.Fragment>
+        ))}
       </View>
 
-      {/* Subordinate Gifts */}
+      {/* SUBORDINATE GIFTS */}
       <View style={styles.section}>
         <Text style={styles.label}>Your {subordinateGifts.length} Subordinate Gifts</Text>
-        <View>
-          {subordinateGifts.map((gift, index) => (
-            <React.Fragment key={index}>
-              <Text style={styles.listItem}>
-                {index + 1}. {gift.gift}
-              </Text>
-              <Text style={styles.text}>{gift.definition}</Text>
-              <Text style={styles.text}>Scripture Reference:</Text>
-              <View style={styles.scriptureList}>
-                {gift.scriptures.map((scripture, sIndex) => (
-                  <Text key={sIndex} style={styles.scriptureText}>
-                    {scripture}
-                  </Text>
-                ))}
-              </View>
-            </React.Fragment>
-          ))}
-        </View>
+        {subordinateGifts.map((gift, index) => (
+          <React.Fragment key={index}>
+            <Text style={styles.listItem}>
+              {index + 1}. {gift.gift}
+            </Text>
+            <Text style={styles.text}>{gift.definition}</Text>
+            <Text style={styles.text}>Scripture Reference:</Text>
+            <View style={styles.scriptureList}>
+              {gift.scriptures.map((scripture, sIndex) => (
+                <Text key={sIndex} style={styles.scriptureText}>
+                  {scripture}
+                </Text>
+              ))}
+            </View>
+          </React.Fragment>
+        ))}
       </View>
 
-      {/* Reflection Questions */}
+      {/* REFLECTION QUESTIONS */}
       <View style={styles.section}>
         <Text style={styles.label}>Reflection Questions</Text>
+
         <Text style={styles.questionText}>
           1. What ministries are you now performing (formally or informally) in the Body?
         </Text>
         <Text style={styles.questionAnswer}>{ministriesInvolvedIn}</Text>
+
         <Text style={styles.questionText}>
           2. Are there any of these ministries that you are not especially gifted for? God may be
           calling you to consider changes.
         </Text>
         <Text style={styles.questionAnswer}>{changeInMinistry}</Text>
+
         <Text style={styles.questionText}>3. Is your vocational status lay or clergy?</Text>
         <Text style={styles.questionAnswer}>{layOrClergy}</Text>
+      </View>
+
+      {/* FOOTER */}
+      <View style={styles.footer}>
+        <Text style={styles.copyright}>© {new Date().getFullYear()} The Wind Church</Text>
+        <Text
+          style={styles.pageNumber}
+          render={({ pageNumber, totalPages }) => `Page ${pageNumber} of ${totalPages}`}
+        />
       </View>
     </Page>
   </Document>

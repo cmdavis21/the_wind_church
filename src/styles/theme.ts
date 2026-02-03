@@ -51,8 +51,7 @@ export const theme = {
     color: {
       primary:
         'border border-brand-primary bg-brand-primary text-black hover:bg-brand-primary/80 hover:shadow-md',
-      secondary:
-        'border border-light-navy bg-light-navy text-white hover:bg-light-navy/80 dark:border-dark-navy dark:bg-dark-navy dark:text-white dark:hover:bg-light-navy',
+      secondary: 'border border-light-navy bg-light-navy text-white hover:bg-light-navy/75',
       info: 'border border-light-gray bg-transparent text-light-primaryText hover:bg-light-gray hover:text-black dark:border-dark-gray dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray dark:hover:text-white',
       teritiary:
         'border border-light-neutral bg-transparent text-white hover:bg-light-gray hover:text-light-primaryText dark:border-dark-neutral dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray',
@@ -85,12 +84,11 @@ export const theme = {
   },
   label: {
     root: {
-      base: 'text-sm font-medium',
+      base: 'text-base font-medium',
       disabled: 'opacity-50',
       colors: {
         default: 'text-light-primaryText dark:text-dark-primaryText',
         info: 'text-light-primaryText dark:text-dark-primaryText',
-        light: 'text-white',
         failure: 'text-error dark:text-error',
         warning: 'text-warning dark:text-warning',
         success: 'text-success dark:text-success',

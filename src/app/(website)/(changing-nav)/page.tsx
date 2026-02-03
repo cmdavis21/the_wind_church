@@ -267,7 +267,7 @@ const Home = async () => {
       </div>
 
       {/* TESTIMONIALS */}
-      <div className="flex flex-col gap-xl md:gap-xxl pt-3xl sm:pt-4xl">
+      <div className="flex flex-col gap-xl md:gap-xxl mt-3xl sm:mt-4xl py-4xl bg-gradient-to-br from-[#FDD738] via-[#F4E2B5] to-[#A57D19]">
         <div className="px-padding">
           <CenterTextSection
             title="Testimonials From The Wind Family"

@@ -30,658 +30,658 @@ export const GiftAssessmentQuestions: GiftAssessmentQuestion[] = [
       'Others have told me that I have helped them distinguish key and important facts of scripture.',
     gift: 'Knowledge',
   },
-  {
-    id: 6,
-    question: 'I have verbally encouraged the wavering, the troubled or the discouraged.',
-    gift: 'Exhortation',
-  },
-  {
-    id: 7,
-    question:
-      'Others in the church have noted that I was able to see through phoniness before it was evident to other people.',
-    gift: 'Discerning of Spirits',
-  },
-  {
-    id: 8,
-    question: "I find I manage money well in order to give liberally to the Lord's work.",
-    gift: 'Giving',
-  },
-  {
-    id: 9,
-    question: 'I have assisted Christian leaders to relieve them for their essential job.',
-    gift: 'Helps',
-  },
-  {
-    id: 10,
-    question:
-      'I have a desire to work with those who have physical or mental problems, to alleviate their suffering.',
-    gift: 'Mercy',
-  },
-  {
-    id: 11,
-    question:
-      'I feel comfortable relating to people of other cultural backgrounds, and they seem to accept me.',
-    gift: 'Missionary',
-  },
-  {
-    id: 12,
-    question: 'I have led others to a decision for salvation through faith in Christ.',
-    gift: 'Evangelist',
-  },
-  {
-    id: 13,
-    question: 'My home is always open to people passing through who need a place to stay.',
-    gift: 'Hospitality',
-  },
-  {
-    id: 14,
-    question: 'When in a group, I am often the one others often look to for vision and direction.',
-    gift: 'Faith',
-  },
-  {
-    id: 15,
-    question: 'When I speak people seem to listen and agree.',
-    gift: 'Leadership',
-  },
-  {
-    id: 16,
-    question: 'When a group I am in is lacking organization, I tend to step in and fill the gap.',
-    gift: 'Administration',
-  },
-  {
-    id: 17,
-    question:
-      'Others can point to specific instances where my prayers have resulted in visible miracles.',
-    gift: 'Miracles',
-  },
-  {
-    id: 18,
-    question: 'In the name of the Lord, I have been used in curing diseases instantaneously.',
-    gift: 'Healing',
-  },
-  {
-    id: 19,
-    question: 'I have spoken in tongues.',
-    gift: 'Tongues',
-  },
-  {
-    id: 20,
-    question: 'Sometimes when a person speaks in tongues, I get an idea about what God is saying.',
-    gift: 'Interpretation',
-  },
-  {
-    id: 21,
-    question: 'I could live more comfortably, but I choose not in order to live with the poor.',
-    gift: 'Voluntary Poverty',
-  },
-  {
-    id: 22,
-    question: 'I am single and enjoy it',
-    gift: 'Celibacy',
-  },
-  {
-    id: 23,
-    question: 'I spend at least an hour a day in prayer.',
-    gift: 'Intercession',
-  },
-  {
-    id: 24,
-    question: 'I have spoken to evil spirits and they have obeyed me.',
-    gift: 'Exorcism',
-  },
-  {
-    id: 25,
-    question: 'I enjoy being called upon to do special jobs around the church.',
-    gift: 'Service',
-  },
-  {
-    id: 26,
-    question: 'Through God, I have revealed specific things which will happen in the future.',
-    gift: 'Prophecy',
-  },
-  {
-    id: 27,
-    question:
-      'I have enjoyed assuming responsibility for the spiritual well-being of a particular group of Christians.',
-    gift: 'Pastor',
-  },
-  {
-    id: 28,
-    question:
-      'I feel I can explain the New Testament teaching about the health and ministry of the body of Christ in a relevant way.',
-    gift: 'Teaching',
-  },
-  {
-    id: 29,
-    question: 'I can intuitively arrive at solutions to fairly complicated problems.',
-    gift: 'Wisdom',
-  },
-  {
-    id: 30,
-    question:
-      'I have had insights into spiritual truth which others have said helped bring them closer to God.',
-    gift: 'Knowledge',
-  },
-  {
-    id: 31,
-    question: "I can effectively motivate people to get involved in ministry when it's needed.",
-    gift: 'Exhortation',
-  },
-  {
-    id: 32,
-    question: 'I can “see” the Spirit of God resting on certain people from time to time.',
-    gift: 'Discerning of Spirits',
-  },
-  {
-    id: 33,
-    question:
-      "My giving records show that I give considerably more than 10 percent of my income to the Lord's work.",
-    gift: 'Giving',
-  },
-  {
-    id: 34,
-    question:
-      'Other people have told me that I helped them become more effective in their ministries.',
-    gift: 'Helps',
-  },
-  {
-    id: 35,
-    question: 'I have cared for others when they have had material or physical needs.',
-    gift: 'Mercy',
-  },
-  {
-    id: 36,
-    question:
-      'I feel I could learn another language well in order to minister to those in a different culture.',
-    gift: 'Missionary',
-  },
-  {
-    id: 37,
-    question:
-      'I have shared joyfully how Christ has brought me to Himself in a way that is meaningful to non-believers.',
-    gift: 'Evangelist',
-  },
-  {
-    id: 38,
-    question: 'I enjoy taking charge of church suppers or social gatherings.',
-    gift: 'Hospitality',
-  },
-  {
-    id: 39,
-    question: 'I have believed God for the impossible and have seen it happen in a tangible way.',
-    gift: 'Faith',
-  },
-  {
-    id: 40,
-    question: 'Other Christians have followed my leadership because they believed in me.',
-    gift: 'Leadership',
-  },
-  {
-    id: 41,
-    question:
-      'I enjoy handling the details of organizing ides, people, resources, and time for more effective ministry.',
-    gift: 'Administration',
-  },
-  {
-    id: 42,
-    question: 'God has used me personally to perform supernatural signs and wonders.',
-    gift: 'Miracles',
-  },
-  {
-    id: 43,
-    question:
-      'I enjoy praying for sick people because I know that many of them will be healed as a result.',
-    gift: 'Healing',
-  },
-  {
-    id: 44,
-    question:
-      'I have spoken an immediate message of God to His people in a language that I have never learned.',
-    gift: 'Tongues',
-  },
-  {
-    id: 45,
-    question:
-      'I have interpreted tongues with the result that the body of Christ was edified, exhorted, or comforted.',
-    gift: 'Interpretation',
-  },
-  {
-    id: 46,
-    question: 'Living a simple lifestyle is an exciting challenege for me.',
-    gift: 'Voluntary Poverty',
-  },
-  {
-    id: 47,
-    question:
-      'Other people have noted that i feel more indifferent about not being married than most.',
-    gift: 'Celibacy',
-  },
-  {
-    id: 48,
-    question: 'When I hear a prayer request, I pray for that need for several days at least.',
-    gift: 'Intercession',
-  },
-  {
-    id: 49,
-    question: 'I have actually heard a demon speak in a loud voice.',
-    gift: 'Exorcism',
-  },
-  {
-    id: 50,
-    question: "I don't have many special skills, but I do what needs to be done around the church.",
-    gift: 'Service',
-  },
-  {
-    id: 51,
-    question:
-      'People have told me that I have communicated timely and urgent messages which have come directly from the Lord.',
-    gift: 'Prophecy',
-  },
-  {
-    id: 52,
-    question:
-      'I feel unafraid of giving spiritual guidance and direction to a group of Christians.',
-    gift: 'Pastor',
-  },
-  {
-    id: 53,
-    question:
-      'I can devote considerable time to learning new biblical truths in order to communicate them to others.',
-    gift: 'Teaching',
-  },
-  {
-    id: 54,
-    question:
-      'When a person has a problem I can frequently guide them to the best Biblical solution.',
-    gift: 'Wisdom',
-  },
-  {
-    id: 55,
-    question:
-      'Through study or experience, I have discerned major strategies or techniques God seems to use in furthering His kingdom.',
-    gift: 'Knowledge',
-  },
-  {
-    id: 56,
-    question:
-      'People come to me in their afflictions or suffering and have told me that they have been helped, relieved and healed.',
-    gift: 'Exhortation',
-  },
-  {
-    id: 57,
-    question:
-      'I can tell with a fairly high degree of assurance when a person is afflicted by an evil spirit.',
-    gift: 'Discerning of Spirits',
-  },
-  {
-    id: 58,
-    question:
-      "When I am moved by an appeal to give to God's work, I usually find the money that I need to do it.",
-    gift: 'Giving',
-  },
-  {
-    id: 59,
-    question: ' I have enjoyed doing routine tasks that led to more effective ministry by others.',
-    gift: 'Helps',
-  },
-  {
-    id: 60,
-    question:
-      'I enjoy visiting in hospitals and/or retirement homes, and feel I do well in such a ministry.',
-    gift: 'Mercy',
-  },
-  {
-    id: 61,
-    question:
-      'People of a different race or culture have been attracted to me, and we have related well.',
-    gift: 'Missionary',
-  },
-  {
-    id: 62,
-    question:
-      'Non-Christians have noted that they feel comfortable when they are around me, and that I have a positive effect on them toward developing a faith in Christ.',
-    gift: 'Evangelist',
-  },
-  {
-    id: 63,
-    question: 'When people come to our home, they indicate that they “feel at home” with us.',
-    gift: 'Hospitality',
-  },
-  {
-    id: 64,
-    question:
-      'Other people have told me that I had faith to accomplish what seemed impossible to them.',
-    gift: 'Faith',
-  },
-  {
-    id: 65,
-    question: 'When I set goals, others seem to accept them readily.',
-    gift: 'Leadership',
-  },
-  {
-    id: 66,
-    question:
-      'I have been able to make effective and efficient plans for accomplishing the goals of a group.',
-    gift: 'Administration',
-  },
-  {
-    id: 67,
-    question: 'God regularly seems to do impossible things through my life.',
-    gift: 'Miracles',
-  },
-  {
-    id: 68,
-    question:
-      'Others have told me that God healed them of an emotional problems when I ministered to them.',
-    gift: 'Healing',
-  },
-  {
-    id: 69,
-    question: 'I can speak to God in a language I have never learned.',
-    gift: 'Tongues',
-  },
-  {
-    id: 70,
-    question: 'I have prayed that I may interpret if someone begins speaking in tongues.',
-    gift: 'Interpretation',
-  },
-  {
-    id: 71,
-    question: 'I am not poor, but I can identify with poor people.',
-    gift: 'Voluntary Poverty',
-  },
-  {
-    id: 72,
-    question: 'I am glad I have more time to serve the Lord because I am single.',
-    gift: 'Celibacy',
-  },
-  {
-    id: 73,
-    question: 'Intercessory prayer is one of my favourite ways of spending time.',
-    gift: 'Intercession',
-  },
-  {
-    id: 74,
-    question: 'Others call on me when they suspect that someone is demonized.',
-    gift: 'Exorcism',
-  },
-  {
-    id: 75,
-    question: 'Others have mentioned that I seem to enjoy routine tasks and do well at them.',
-    gift: 'Service',
-  },
-  {
-    id: 76,
-    question:
-      'I sometimes have a strong sense of what God wants to say to people in response to a particular situation.',
-    gift: 'Prophecy',
-  },
-  {
-    id: 77,
-    question:
-      'I have helped fellow believers by guiding them to relevant portions of the Bible and praying with them.',
-    gift: 'Pastor',
-  },
-  {
-    id: 78,
-    question:
-      'I feel I can communicate Biblical truths to others and see resulting changes in knowledge, attitudes, values, or conduct.',
-    gift: 'Teaching',
-  },
-  {
-    id: 79,
-    question:
-      'Some people indicate that I have perceived and applied Biblical truth to the specified needs of fellow believers.',
-    gift: 'Wisdom',
-  },
-  {
-    id: 80,
-    question: 'I study and read quite a bit in order to learn new Biblical truths.',
-    gift: 'Knowledge',
-  },
-  {
-    id: 81,
-    question: 'I have a desire to effectively counsel the perplexed, the guilty or the addicted.',
-    gift: 'Exhortation',
-  },
-  {
-    id: 82,
-    question:
-      "I can recognize whether a person's teaching is from God, from Satan, or of human origin.",
-    gift: 'Discerning of Spirits',
-  },
-  {
-    id: 83,
-    question:
-      'I am so confident that God will meet my needs that I give to Him sacrificially and consistently.',
-    gift: 'Giving',
-  },
-  {
-    id: 84,
-    question: 'When I do things behind the scenes and others are helped, I am joyful.',
-    gift: 'Helps',
-  },
-  {
-    id: 85,
-    question: 'People call on me to help those who are less fortunate.',
-    gift: 'Mercy',
-  },
-  {
-    id: 86,
-    question:
-      'I would be willing to leave comfortable surroundings if it would enable me to share Christ with more people.',
-    gift: 'Missionary',
-  },
-  {
-    id: 87,
-    question:
-      "I get frustrated when others don't seem to share their faith with unbelievers as much as I do.",
-    gift: 'Evangelist',
-  },
-  {
-    id: 88,
-    question: 'Others have mentioned to me that I am a very hospitable person.',
-    gift: 'Hospitality',
-  },
-  {
-    id: 89,
-    question:
-      "There have been times when I have felt sure I knew God's specific will for the future growth of His work, even when others did not been so sure.",
-    gift: 'Faith',
-  },
-  {
-    id: 90,
-    question: 'When I join a group, others seem to back off and expect me to take the leadership.',
-    gift: 'Leadership',
-  },
-  {
-    id: 91,
-    question:
-      'I am able to give directions to others without using persuasion to get them to accomplish a task.',
-    gift: 'Administration',
-  },
-  {
-    id: 92,
-    question:
-      "People have told me that I was God's instrument which brought supernatural changes in lives or circumstances.",
-    gift: 'Miracles',
-  },
-  {
-    id: 93,
-    question: 'I have prayed for others and physical healing has actually occurred.',
-    gift: 'Healing',
-  },
-  {
-    id: 94,
-    question: 'When I give a public message in tongues, I expect it to be interpreted.',
-    gift: 'Tongues',
-  },
-  {
-    id: 95,
-    question: 'I have interpreted tongues in a way that seemed to bless others.',
-    gift: 'Interpretation',
-  },
-  {
-    id: 96,
-    question: 'Others tell me I sacrifice much materially in order to minister.',
-    gift: 'Voluntary Poverty',
-  },
-  {
-    id: 97,
-    question: 'I am single and have little difficulty controlling my sexual desires.',
-    gift: 'Celibacy',
-  },
-  {
-    id: 98,
-    question: 'Others have told me that my prayers for them have been answered in tangible ways.',
-    gift: 'Intercession',
-  },
-  {
-    id: 99,
-    question:
-      'Other people have been instantly delivered from demonic oppression when i have prayed.',
-    gift: 'Exorcism',
-  },
-  {
-    id: 100,
-    question:
-      'I prefer being active and doing something rather than just sitting around talking or reading or listening to a speaker.',
-    gift: 'Service',
-  },
-  {
-    id: 101,
-    question:
-      'I sometimes feel that I know exactly what God wants me to do in ministry at a specific point in time.',
-    gift: 'Prophecy',
-  },
-  {
-    id: 102,
-    question:
-      'People have told me that I have helped them to be restored to the Christian community.',
-    gift: 'Pastor',
-  },
-  {
-    id: 103,
-    question: 'Studying the Bible and sharing my insights with others is very satisfying for me.',
-    gift: 'Teaching',
-  },
-  {
-    id: 104,
-    question:
-      'I have felt an unusual presence of God and personal confidence when important decisions needed to be made.',
-    gift: 'Wisdom',
-  },
-  {
-    id: 105,
-    question:
-      'I have the ability to discover new truths for myself through reading or observing situations firsthand.',
-    gift: 'Knowledge',
-  },
-  {
-    id: 106,
-    question: 'I have urged others to seek a Biblical solution to their affliction or suffering.',
-    gift: 'Exhortation',
-  },
-  {
-    id: 107,
-    question: 'I can tell whether a person speaking in tongues is genuine.',
-    gift: 'Discerning of Spirits',
-  },
-  {
-    id: 108,
-    question:
-      "I have been willing to maintain a lower standard of living in order to benefit God's work.",
-    gift: 'Giving',
-  },
-  {
-    id: 109,
-    question: "When I serve the Lord, I really don't care who gets the credit.",
-    gift: 'Helps',
-  },
-  {
-    id: 110,
-    question: 'I would enjoy spending time with a lonely, shut-in person or someone in prison.',
-    gift: 'Mercy',
-  },
-  {
-    id: 111,
-    question:
-      'More than most, I have had a strong desire to see people of others countries won to the Lord.',
-    gift: 'Missionary',
-  },
-  {
-    id: 112,
-    question: 'I am attracted to non-believers because of my desire to win them to Christ.',
-    gift: 'Evangelist',
-  },
-  {
-    id: 113,
-    question:
-      "I have desired to make my home available to those in the Lord's service whenever needed.",
-    gift: 'Hospitality',
-  },
-  {
-    id: 114,
-    question: 'Others have told me that I am a person of unusual vision and I agree.',
-    gift: 'Faith',
-  },
-  {
-    id: 115,
-    question: 'When I am in charge, things seem to run smoothly.',
-    gift: 'Leadership',
-  },
-  {
-    id: 116,
-    question:
-      ' I have enjoyed bearing the responsibility for the success of a particular task within my church.',
-    gift: 'Administration',
-  },
-  {
-    id: 117,
-    question: 'In the name of the Lord, I have been able to recover sight to the blind.',
-    gift: 'Miracles',
-  },
-  {
-    id: 118,
-    question: 'When I pray for the sick, either I or they feel sensations of tingling or warmth.',
-    gift: 'Healing',
-  },
-  {
-    id: 119,
-    question: "When I speak in tongues, I believe it is edifying to the Lord's body.",
-    gift: 'Tongues',
-  },
-  {
-    id: 120,
-    question:
-      'I have interpreted tongues in such a way that the message appeared to be directly from God.',
-    gift: 'Interpretation',
-  },
-  {
-    id: 121,
-    question: 'Poor people accept me because I choose to live on their level.',
-    gift: 'Voluntary Poverty',
-  },
-  {
-    id: 122,
-    question: "I readily identify with Paul's desire for others to be single as he was.",
-    gift: 'Celibacy',
-  },
-  {
-    id: 123,
-    question: 'When I pray, God frequently speaks to me, and I recognize His voice.',
-    gift: 'Intercession',
-  },
-  {
-    id: 124,
-    question: "I cast out demons in Jesus' name.",
-    gift: 'Exorcism',
-  },
-  {
-    id: 125,
-    question: 'I respond cheerfully when asked to do a job, even if it seems menial.',
-    gift: 'Service',
-  },
+  // {
+  //   id: 6,
+  //   question: 'I have verbally encouraged the wavering, the troubled or the discouraged.',
+  //   gift: 'Exhortation',
+  // },
+  // {
+  //   id: 7,
+  //   question:
+  //     'Others in the church have noted that I was able to see through phoniness before it was evident to other people.',
+  //   gift: 'Discerning of Spirits',
+  // },
+  // {
+  //   id: 8,
+  //   question: "I find I manage money well in order to give liberally to the Lord's work.",
+  //   gift: 'Giving',
+  // },
+  // {
+  //   id: 9,
+  //   question: 'I have assisted Christian leaders to relieve them for their essential job.',
+  //   gift: 'Helps',
+  // },
+  // {
+  //   id: 10,
+  //   question:
+  //     'I have a desire to work with those who have physical or mental problems, to alleviate their suffering.',
+  //   gift: 'Mercy',
+  // },
+  // {
+  //   id: 11,
+  //   question:
+  //     'I feel comfortable relating to people of other cultural backgrounds, and they seem to accept me.',
+  //   gift: 'Missionary',
+  // },
+  // {
+  //   id: 12,
+  //   question: 'I have led others to a decision for salvation through faith in Christ.',
+  //   gift: 'Evangelist',
+  // },
+  // {
+  //   id: 13,
+  //   question: 'My home is always open to people passing through who need a place to stay.',
+  //   gift: 'Hospitality',
+  // },
+  // {
+  //   id: 14,
+  //   question: 'When in a group, I am often the one others often look to for vision and direction.',
+  //   gift: 'Faith',
+  // },
+  // {
+  //   id: 15,
+  //   question: 'When I speak people seem to listen and agree.',
+  //   gift: 'Leadership',
+  // },
+  // {
+  //   id: 16,
+  //   question: 'When a group I am in is lacking organization, I tend to step in and fill the gap.',
+  //   gift: 'Administration',
+  // },
+  // {
+  //   id: 17,
+  //   question:
+  //     'Others can point to specific instances where my prayers have resulted in visible miracles.',
+  //   gift: 'Miracles',
+  // },
+  // {
+  //   id: 18,
+  //   question: 'In the name of the Lord, I have been used in curing diseases instantaneously.',
+  //   gift: 'Healing',
+  // },
+  // {
+  //   id: 19,
+  //   question: 'I have spoken in tongues.',
+  //   gift: 'Tongues',
+  // },
+  // {
+  //   id: 20,
+  //   question: 'Sometimes when a person speaks in tongues, I get an idea about what God is saying.',
+  //   gift: 'Interpretation',
+  // },
+  // {
+  //   id: 21,
+  //   question: 'I could live more comfortably, but I choose not in order to live with the poor.',
+  //   gift: 'Voluntary Poverty',
+  // },
+  // {
+  //   id: 22,
+  //   question: 'I am single and enjoy it',
+  //   gift: 'Celibacy',
+  // },
+  // {
+  //   id: 23,
+  //   question: 'I spend at least an hour a day in prayer.',
+  //   gift: 'Intercession',
+  // },
+  // {
+  //   id: 24,
+  //   question: 'I have spoken to evil spirits and they have obeyed me.',
+  //   gift: 'Exorcism',
+  // },
+  // {
+  //   id: 25,
+  //   question: 'I enjoy being called upon to do special jobs around the church.',
+  //   gift: 'Service',
+  // },
+  // {
+  //   id: 26,
+  //   question: 'Through God, I have revealed specific things which will happen in the future.',
+  //   gift: 'Prophecy',
+  // },
+  // {
+  //   id: 27,
+  //   question:
+  //     'I have enjoyed assuming responsibility for the spiritual well-being of a particular group of Christians.',
+  //   gift: 'Pastor',
+  // },
+  // {
+  //   id: 28,
+  //   question:
+  //     'I feel I can explain the New Testament teaching about the health and ministry of the body of Christ in a relevant way.',
+  //   gift: 'Teaching',
+  // },
+  // {
+  //   id: 29,
+  //   question: 'I can intuitively arrive at solutions to fairly complicated problems.',
+  //   gift: 'Wisdom',
+  // },
+  // {
+  //   id: 30,
+  //   question:
+  //     'I have had insights into spiritual truth which others have said helped bring them closer to God.',
+  //   gift: 'Knowledge',
+  // },
+  // {
+  //   id: 31,
+  //   question: "I can effectively motivate people to get involved in ministry when it's needed.",
+  //   gift: 'Exhortation',
+  // },
+  // {
+  //   id: 32,
+  //   question: 'I can “see” the Spirit of God resting on certain people from time to time.',
+  //   gift: 'Discerning of Spirits',
+  // },
+  // {
+  //   id: 33,
+  //   question:
+  //     "My giving records show that I give considerably more than 10 percent of my income to the Lord's work.",
+  //   gift: 'Giving',
+  // },
+  // {
+  //   id: 34,
+  //   question:
+  //     'Other people have told me that I helped them become more effective in their ministries.',
+  //   gift: 'Helps',
+  // },
+  // {
+  //   id: 35,
+  //   question: 'I have cared for others when they have had material or physical needs.',
+  //   gift: 'Mercy',
+  // },
+  // {
+  //   id: 36,
+  //   question:
+  //     'I feel I could learn another language well in order to minister to those in a different culture.',
+  //   gift: 'Missionary',
+  // },
+  // {
+  //   id: 37,
+  //   question:
+  //     'I have shared joyfully how Christ has brought me to Himself in a way that is meaningful to non-believers.',
+  //   gift: 'Evangelist',
+  // },
+  // {
+  //   id: 38,
+  //   question: 'I enjoy taking charge of church suppers or social gatherings.',
+  //   gift: 'Hospitality',
+  // },
+  // {
+  //   id: 39,
+  //   question: 'I have believed God for the impossible and have seen it happen in a tangible way.',
+  //   gift: 'Faith',
+  // },
+  // {
+  //   id: 40,
+  //   question: 'Other Christians have followed my leadership because they believed in me.',
+  //   gift: 'Leadership',
+  // },
+  // {
+  //   id: 41,
+  //   question:
+  //     'I enjoy handling the details of organizing ides, people, resources, and time for more effective ministry.',
+  //   gift: 'Administration',
+  // },
+  // {
+  //   id: 42,
+  //   question: 'God has used me personally to perform supernatural signs and wonders.',
+  //   gift: 'Miracles',
+  // },
+  // {
+  //   id: 43,
+  //   question:
+  //     'I enjoy praying for sick people because I know that many of them will be healed as a result.',
+  //   gift: 'Healing',
+  // },
+  // {
+  //   id: 44,
+  //   question:
+  //     'I have spoken an immediate message of God to His people in a language that I have never learned.',
+  //   gift: 'Tongues',
+  // },
+  // {
+  //   id: 45,
+  //   question:
+  //     'I have interpreted tongues with the result that the body of Christ was edified, exhorted, or comforted.',
+  //   gift: 'Interpretation',
+  // },
+  // {
+  //   id: 46,
+  //   question: 'Living a simple lifestyle is an exciting challenege for me.',
+  //   gift: 'Voluntary Poverty',
+  // },
+  // {
+  //   id: 47,
+  //   question:
+  //     'Other people have noted that i feel more indifferent about not being married than most.',
+  //   gift: 'Celibacy',
+  // },
+  // {
+  //   id: 48,
+  //   question: 'When I hear a prayer request, I pray for that need for several days at least.',
+  //   gift: 'Intercession',
+  // },
+  // {
+  //   id: 49,
+  //   question: 'I have actually heard a demon speak in a loud voice.',
+  //   gift: 'Exorcism',
+  // },
+  // {
+  //   id: 50,
+  //   question: "I don't have many special skills, but I do what needs to be done around the church.",
+  //   gift: 'Service',
+  // },
+  // {
+  //   id: 51,
+  //   question:
+  //     'People have told me that I have communicated timely and urgent messages which have come directly from the Lord.',
+  //   gift: 'Prophecy',
+  // },
+  // {
+  //   id: 52,
+  //   question:
+  //     'I feel unafraid of giving spiritual guidance and direction to a group of Christians.',
+  //   gift: 'Pastor',
+  // },
+  // {
+  //   id: 53,
+  //   question:
+  //     'I can devote considerable time to learning new biblical truths in order to communicate them to others.',
+  //   gift: 'Teaching',
+  // },
+  // {
+  //   id: 54,
+  //   question:
+  //     'When a person has a problem I can frequently guide them to the best Biblical solution.',
+  //   gift: 'Wisdom',
+  // },
+  // {
+  //   id: 55,
+  //   question:
+  //     'Through study or experience, I have discerned major strategies or techniques God seems to use in furthering His kingdom.',
+  //   gift: 'Knowledge',
+  // },
+  // {
+  //   id: 56,
+  //   question:
+  //     'People come to me in their afflictions or suffering and have told me that they have been helped, relieved and healed.',
+  //   gift: 'Exhortation',
+  // },
+  // {
+  //   id: 57,
+  //   question:
+  //     'I can tell with a fairly high degree of assurance when a person is afflicted by an evil spirit.',
+  //   gift: 'Discerning of Spirits',
+  // },
+  // {
+  //   id: 58,
+  //   question:
+  //     "When I am moved by an appeal to give to God's work, I usually find the money that I need to do it.",
+  //   gift: 'Giving',
+  // },
+  // {
+  //   id: 59,
+  //   question: ' I have enjoyed doing routine tasks that led to more effective ministry by others.',
+  //   gift: 'Helps',
+  // },
+  // {
+  //   id: 60,
+  //   question:
+  //     'I enjoy visiting in hospitals and/or retirement homes, and feel I do well in such a ministry.',
+  //   gift: 'Mercy',
+  // },
+  // {
+  //   id: 61,
+  //   question:
+  //     'People of a different race or culture have been attracted to me, and we have related well.',
+  //   gift: 'Missionary',
+  // },
+  // {
+  //   id: 62,
+  //   question:
+  //     'Non-Christians have noted that they feel comfortable when they are around me, and that I have a positive effect on them toward developing a faith in Christ.',
+  //   gift: 'Evangelist',
+  // },
+  // {
+  //   id: 63,
+  //   question: 'When people come to our home, they indicate that they “feel at home” with us.',
+  //   gift: 'Hospitality',
+  // },
+  // {
+  //   id: 64,
+  //   question:
+  //     'Other people have told me that I had faith to accomplish what seemed impossible to them.',
+  //   gift: 'Faith',
+  // },
+  // {
+  //   id: 65,
+  //   question: 'When I set goals, others seem to accept them readily.',
+  //   gift: 'Leadership',
+  // },
+  // {
+  //   id: 66,
+  //   question:
+  //     'I have been able to make effective and efficient plans for accomplishing the goals of a group.',
+  //   gift: 'Administration',
+  // },
+  // {
+  //   id: 67,
+  //   question: 'God regularly seems to do impossible things through my life.',
+  //   gift: 'Miracles',
+  // },
+  // {
+  //   id: 68,
+  //   question:
+  //     'Others have told me that God healed them of an emotional problems when I ministered to them.',
+  //   gift: 'Healing',
+  // },
+  // {
+  //   id: 69,
+  //   question: 'I can speak to God in a language I have never learned.',
+  //   gift: 'Tongues',
+  // },
+  // {
+  //   id: 70,
+  //   question: 'I have prayed that I may interpret if someone begins speaking in tongues.',
+  //   gift: 'Interpretation',
+  // },
+  // {
+  //   id: 71,
+  //   question: 'I am not poor, but I can identify with poor people.',
+  //   gift: 'Voluntary Poverty',
+  // },
+  // {
+  //   id: 72,
+  //   question: 'I am glad I have more time to serve the Lord because I am single.',
+  //   gift: 'Celibacy',
+  // },
+  // {
+  //   id: 73,
+  //   question: 'Intercessory prayer is one of my favourite ways of spending time.',
+  //   gift: 'Intercession',
+  // },
+  // {
+  //   id: 74,
+  //   question: 'Others call on me when they suspect that someone is demonized.',
+  //   gift: 'Exorcism',
+  // },
+  // {
+  //   id: 75,
+  //   question: 'Others have mentioned that I seem to enjoy routine tasks and do well at them.',
+  //   gift: 'Service',
+  // },
+  // {
+  //   id: 76,
+  //   question:
+  //     'I sometimes have a strong sense of what God wants to say to people in response to a particular situation.',
+  //   gift: 'Prophecy',
+  // },
+  // {
+  //   id: 77,
+  //   question:
+  //     'I have helped fellow believers by guiding them to relevant portions of the Bible and praying with them.',
+  //   gift: 'Pastor',
+  // },
+  // {
+  //   id: 78,
+  //   question:
+  //     'I feel I can communicate Biblical truths to others and see resulting changes in knowledge, attitudes, values, or conduct.',
+  //   gift: 'Teaching',
+  // },
+  // {
+  //   id: 79,
+  //   question:
+  //     'Some people indicate that I have perceived and applied Biblical truth to the specified needs of fellow believers.',
+  //   gift: 'Wisdom',
+  // },
+  // {
+  //   id: 80,
+  //   question: 'I study and read quite a bit in order to learn new Biblical truths.',
+  //   gift: 'Knowledge',
+  // },
+  // {
+  //   id: 81,
+  //   question: 'I have a desire to effectively counsel the perplexed, the guilty or the addicted.',
+  //   gift: 'Exhortation',
+  // },
+  // {
+  //   id: 82,
+  //   question:
+  //     "I can recognize whether a person's teaching is from God, from Satan, or of human origin.",
+  //   gift: 'Discerning of Spirits',
+  // },
+  // {
+  //   id: 83,
+  //   question:
+  //     'I am so confident that God will meet my needs that I give to Him sacrificially and consistently.',
+  //   gift: 'Giving',
+  // },
+  // {
+  //   id: 84,
+  //   question: 'When I do things behind the scenes and others are helped, I am joyful.',
+  //   gift: 'Helps',
+  // },
+  // {
+  //   id: 85,
+  //   question: 'People call on me to help those who are less fortunate.',
+  //   gift: 'Mercy',
+  // },
+  // {
+  //   id: 86,
+  //   question:
+  //     'I would be willing to leave comfortable surroundings if it would enable me to share Christ with more people.',
+  //   gift: 'Missionary',
+  // },
+  // {
+  //   id: 87,
+  //   question:
+  //     "I get frustrated when others don't seem to share their faith with unbelievers as much as I do.",
+  //   gift: 'Evangelist',
+  // },
+  // {
+  //   id: 88,
+  //   question: 'Others have mentioned to me that I am a very hospitable person.',
+  //   gift: 'Hospitality',
+  // },
+  // {
+  //   id: 89,
+  //   question:
+  //     "There have been times when I have felt sure I knew God's specific will for the future growth of His work, even when others did not been so sure.",
+  //   gift: 'Faith',
+  // },
+  // {
+  //   id: 90,
+  //   question: 'When I join a group, others seem to back off and expect me to take the leadership.',
+  //   gift: 'Leadership',
+  // },
+  // {
+  //   id: 91,
+  //   question:
+  //     'I am able to give directions to others without using persuasion to get them to accomplish a task.',
+  //   gift: 'Administration',
+  // },
+  // {
+  //   id: 92,
+  //   question:
+  //     "People have told me that I was God's instrument which brought supernatural changes in lives or circumstances.",
+  //   gift: 'Miracles',
+  // },
+  // {
+  //   id: 93,
+  //   question: 'I have prayed for others and physical healing has actually occurred.',
+  //   gift: 'Healing',
+  // },
+  // {
+  //   id: 94,
+  //   question: 'When I give a public message in tongues, I expect it to be interpreted.',
+  //   gift: 'Tongues',
+  // },
+  // {
+  //   id: 95,
+  //   question: 'I have interpreted tongues in a way that seemed to bless others.',
+  //   gift: 'Interpretation',
+  // },
+  // {
+  //   id: 96,
+  //   question: 'Others tell me I sacrifice much materially in order to minister.',
+  //   gift: 'Voluntary Poverty',
+  // },
+  // {
+  //   id: 97,
+  //   question: 'I am single and have little difficulty controlling my sexual desires.',
+  //   gift: 'Celibacy',
+  // },
+  // {
+  //   id: 98,
+  //   question: 'Others have told me that my prayers for them have been answered in tangible ways.',
+  //   gift: 'Intercession',
+  // },
+  // {
+  //   id: 99,
+  //   question:
+  //     'Other people have been instantly delivered from demonic oppression when i have prayed.',
+  //   gift: 'Exorcism',
+  // },
+  // {
+  //   id: 100,
+  //   question:
+  //     'I prefer being active and doing something rather than just sitting around talking or reading or listening to a speaker.',
+  //   gift: 'Service',
+  // },
+  // {
+  //   id: 101,
+  //   question:
+  //     'I sometimes feel that I know exactly what God wants me to do in ministry at a specific point in time.',
+  //   gift: 'Prophecy',
+  // },
+  // {
+  //   id: 102,
+  //   question:
+  //     'People have told me that I have helped them to be restored to the Christian community.',
+  //   gift: 'Pastor',
+  // },
+  // {
+  //   id: 103,
+  //   question: 'Studying the Bible and sharing my insights with others is very satisfying for me.',
+  //   gift: 'Teaching',
+  // },
+  // {
+  //   id: 104,
+  //   question:
+  //     'I have felt an unusual presence of God and personal confidence when important decisions needed to be made.',
+  //   gift: 'Wisdom',
+  // },
+  // {
+  //   id: 105,
+  //   question:
+  //     'I have the ability to discover new truths for myself through reading or observing situations firsthand.',
+  //   gift: 'Knowledge',
+  // },
+  // {
+  //   id: 106,
+  //   question: 'I have urged others to seek a Biblical solution to their affliction or suffering.',
+  //   gift: 'Exhortation',
+  // },
+  // {
+  //   id: 107,
+  //   question: 'I can tell whether a person speaking in tongues is genuine.',
+  //   gift: 'Discerning of Spirits',
+  // },
+  // {
+  //   id: 108,
+  //   question:
+  //     "I have been willing to maintain a lower standard of living in order to benefit God's work.",
+  //   gift: 'Giving',
+  // },
+  // {
+  //   id: 109,
+  //   question: "When I serve the Lord, I really don't care who gets the credit.",
+  //   gift: 'Helps',
+  // },
+  // {
+  //   id: 110,
+  //   question: 'I would enjoy spending time with a lonely, shut-in person or someone in prison.',
+  //   gift: 'Mercy',
+  // },
+  // {
+  //   id: 111,
+  //   question:
+  //     'More than most, I have had a strong desire to see people of others countries won to the Lord.',
+  //   gift: 'Missionary',
+  // },
+  // {
+  //   id: 112,
+  //   question: 'I am attracted to non-believers because of my desire to win them to Christ.',
+  //   gift: 'Evangelist',
+  // },
+  // {
+  //   id: 113,
+  //   question:
+  //     "I have desired to make my home available to those in the Lord's service whenever needed.",
+  //   gift: 'Hospitality',
+  // },
+  // {
+  //   id: 114,
+  //   question: 'Others have told me that I am a person of unusual vision and I agree.',
+  //   gift: 'Faith',
+  // },
+  // {
+  //   id: 115,
+  //   question: 'When I am in charge, things seem to run smoothly.',
+  //   gift: 'Leadership',
+  // },
+  // {
+  //   id: 116,
+  //   question:
+  //     ' I have enjoyed bearing the responsibility for the success of a particular task within my church.',
+  //   gift: 'Administration',
+  // },
+  // {
+  //   id: 117,
+  //   question: 'In the name of the Lord, I have been able to recover sight to the blind.',
+  //   gift: 'Miracles',
+  // },
+  // {
+  //   id: 118,
+  //   question: 'When I pray for the sick, either I or they feel sensations of tingling or warmth.',
+  //   gift: 'Healing',
+  // },
+  // {
+  //   id: 119,
+  //   question: "When I speak in tongues, I believe it is edifying to the Lord's body.",
+  //   gift: 'Tongues',
+  // },
+  // {
+  //   id: 120,
+  //   question:
+  //     'I have interpreted tongues in such a way that the message appeared to be directly from God.',
+  //   gift: 'Interpretation',
+  // },
+  // {
+  //   id: 121,
+  //   question: 'Poor people accept me because I choose to live on their level.',
+  //   gift: 'Voluntary Poverty',
+  // },
+  // {
+  //   id: 122,
+  //   question: "I readily identify with Paul's desire for others to be single as he was.",
+  //   gift: 'Celibacy',
+  // },
+  // {
+  //   id: 123,
+  //   question: 'When I pray, God frequently speaks to me, and I recognize His voice.',
+  //   gift: 'Intercession',
+  // },
+  // {
+  //   id: 124,
+  //   question: "I cast out demons in Jesus' name.",
+  //   gift: 'Exorcism',
+  // },
+  // {
+  //   id: 125,
+  //   question: 'I respond cheerfully when asked to do a job, even if it seems menial.',
+  //   gift: 'Service',
+  // },
 ];
 
 export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [

@@ -12,11 +12,12 @@ export interface RadioGroupHandle {
   focus: () => void;
 }
 
-export interface RadioGroupProps
-  extends Omit<React.FieldsetHTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
+export interface RadioGroupProps extends Omit<
+  React.FieldsetHTMLAttributes<HTMLFieldSetElement>,
+  'onChange'
+> {
   name: string;
   label?: string;
-  labelColor?: string;
   options: Option[];
   value?: string; // controlled
   defaultValue?: string; // uncontrolled
@@ -30,7 +31,6 @@ const RadioGroup = forwardRef<RadioGroupHandle, RadioGroupProps>(
     {
       name,
       label,
-      labelColor = 'default',
       options,
       value: controlledValue,
       defaultValue,
@@ -67,7 +67,7 @@ const RadioGroup = forwardRef<RadioGroupHandle, RadioGroupProps>(
 
     return (
       <fieldset {...rest} className="flex flex-col gap-xs">
-        {label && <Label htmlFor={name} value={label} disabled={disabled} color={labelColor} />}
+        {label && <Label htmlFor={name} value={label} disabled={disabled} />}
 
         <div className="flex flex-wrap items-center gap-md">
           {options.map((opt, idx) => (

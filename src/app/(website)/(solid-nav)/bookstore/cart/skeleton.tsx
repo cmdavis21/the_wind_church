@@ -3,7 +3,7 @@ export const CartSkeleton = () => {
     <div className="w-full rounded-lg md:p-lg flex flex-col gap-lg">
       <div className="h-6 w-36 rounded-sm bg-light-neutral dark:bg-dark-neutral" />
 
-      <hr className="text-light-gray dark:text-light-grayDark" />
+      <hr className="text-light-gray dark:text-dark-gray" />
 
       {/* DESKTOP */}
       <div className="hidden md:block w-full">
@@ -177,7 +177,7 @@ export const CartSkeleton = () => {
         ))}
       </div> */}
 
-      <hr className="text-light-gray dark:text-light-grayDark" />
+      <hr className="text-light-gray dark:text-dark-gray" />
 
       {/* TOTAL + CHECKOUT */}
       {/* <div className="flex flex-col gap-md md:items-end text-left md:text-right">

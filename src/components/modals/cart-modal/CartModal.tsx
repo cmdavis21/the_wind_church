@@ -47,15 +47,18 @@ const CartModal: React.FC<CartModalProps> = ({
           </h5>
 
           {/* CART ITEMS */}
-          <div className="grow y-scrollbox max-h-[300px] lg:max-h-[500px] divide-y divide-light-gray dark:divide-dark-gray scrollbar-hide">
+          <div className="grow y-scrollbox max-h-[350px] sm:max-h-[500px] divide-y divide-light-gray dark:divide-dark-gray scrollbar-hide">
             {cartLines.map((line) => (
-              <div key={`single-product-page-mobile-${line.title}`} className="flex gap-md p-sm">
+              <div
+                key={`single-product-page-mobile-${line.title}`}
+                className="flex gap-md p-sm py-md"
+              >
                 <Image
                   width={60}
                   height={60}
                   src={line.image.src}
                   alt={line.image.alt}
-                  className="object-cover min-w-[60px] size-[60px] object-top rounded-md"
+                  className="object-cover min-w-[60px] size-[60px] object-top rounded-md border shadow border-light-gray dark:border-dark-gray"
                 />
                 <div className="flex flex-col">
                   <h6 className="font-bold">{line.title}</h6>
@@ -84,7 +87,7 @@ const CartModal: React.FC<CartModalProps> = ({
           </div>
 
           {/* ACTION BUTTONS */}
-          <div className="flex flex-col md:flex-row items-center gap-md">
+          <div className="flex flex-col sm:flex-row items-center gap-md">
             <Link href={PageRoutes.cart} className="w-full">
               <Button
                 pill

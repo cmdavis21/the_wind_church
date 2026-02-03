@@ -41,7 +41,7 @@ const Gallery = async () => {
   if (!gallery?.gallery) return <ErrorAlert reloadPage={false} />;
 
   return (
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       <PageHeader
         title="The Gallery"
         subtitle="View photos of great times spent together in the Wind family."
@@ -52,7 +52,7 @@ const Gallery = async () => {
           <SectionHeader title={category.title} subtitle="Select a photo and view the memories" />
 
           {/* Desktop */}
-          <div className="hidden md:flex flex-wrap gap-lg max-lg:justify-center 2xl:px-padding">
+          <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-[1800px]:grid-cols-5 gap-xl place-content-center">
             {category.urls.map((src) => (
               <ImageCard
                 key={`wind-gallery-${src}`}
@@ -65,7 +65,7 @@ const Gallery = async () => {
           {/* Mobile */}
           <SimpleCarousel
             showDots={false}
-            className="md:hidden"
+            className="sm:hidden"
             slides={category.urls.map((src) => (
               <ImageCard
                 key={`wind-gallery-mobile-${src}`}

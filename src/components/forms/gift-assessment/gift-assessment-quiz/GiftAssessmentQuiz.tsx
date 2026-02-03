@@ -184,7 +184,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
             errors.answers.some((s) => s.score) && (
               <AlertMessage
                 type="failure"
-                title={`Answer question${errors.answers.length > 1 && '(s)'}:`}
+                title={`Answer question${errors.answers.length > 1 ? '(s)' : ''}:`}
                 description={errors.answers
                   .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
                   .map((error) => {
@@ -271,7 +271,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
           errors.answers.some((s) => s.score) && (
             <AlertMessage
               type="failure"
-              title={`Answer question${errors.answers.length > 1 && '(s)'}:`}
+              title={`Answer question${errors.answers.length > 1 ? '(s)' : ''}:`}
               description={errors.answers
                 .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
                 .map((error) => {

@@ -63,13 +63,13 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
             {/* QUICK FACTS */}
             <div className="flex flex-col items-start">
               <h4 className="font-bold">Order {order.order_name}</h4>
-              <h6>{formatDateMMMddyyyy(order.created_date)}</h6>
-              <h6>
+              <h5>{formatDateMMMddyyyy(order.created_date)}</h5>
+              <h5>
                 {order.quantity} item{order.quantity > 1 ? 's' : ''}
-              </h6>
-              <h4 className="md:hidden text-right font-bold">
+              </h5>
+              <h5 className="md:hidden text-right font-bold">
                 Total: {formatPrice(order.total_price)}
-              </h4>
+              </h5>
             </div>
           </div>
 
@@ -186,7 +186,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                           height={70}
                           src={item.image.src}
                           alt={item.image.alt}
-                          className="size-[70px] min-w-[70px] max-h-[70px] object-cover rounded-md"
+                          className="size-[70px] min-w-[70px] max-h-[70px] object-cover rounded-md border shadow border-light-gray dark:border-dark-gray"
                         />
 
                         {/* QUICK FACTS */}

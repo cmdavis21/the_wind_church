@@ -17,7 +17,7 @@ const CartPage = () => {
   const [loadingItem, setLoadingItem] = useState<number | null>(null);
 
   return (
-    <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
+    <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       <PageHeader title="Your Cart" subtitle="" />
 
       {cartLoading && <div></div>}
@@ -34,16 +34,15 @@ const CartPage = () => {
       )}
 
       {!cartLoading && getCart && getCart?.lines.length > 0 && (
-        <div className="w-full rounded-lg md:p-lg flex flex-col gap-lg">
-          <h5>
-            You have{' '}
+        <div className="flex flex-col gap-xl md:gap-xxl">
+          <h4>
             <span className="font-bold">
               {getCart?.total_quantity} item{getCart?.total_quantity > 1 ? 's' : ''}
             </span>{' '}
             in the cart
-          </h5>
+          </h4>
 
-          <hr className="text-light-gray dark:text-light-grayDark" />
+          <hr className="text-light-gray dark:text-dark-gray" />
 
           {/* DESKTOP */}
           <div className="hidden md:block w-full">
@@ -72,18 +71,18 @@ const CartPage = () => {
                   .map((line, index) => (
                     <tr
                       key={`cart-page-desktop-${line.title}`}
-                      className={`${
+                      className={`!py-xl ${
                         loadingItem === index ? 'opacity-50 pointer-events-none animate-pulse' : ''
                       }`}
                     >
-                      <td className="py-lg">
+                      <td className="py-xl last-pb-0">
                         <div className="flex gap-md">
                           <Image
                             width={100}
                             height={100}
                             src={line.image.src}
                             alt={line.image.alt}
-                            className="object-cover min-w-4xl size-4xl object-top rounded-lg"
+                            className="object-cover min-w-4xl size-4xl object-center border shadow border-light-gray dark:border-dark-gray rounded-lg"
                           />
                           <div className="flex flex-col">
                             <h5 className="font-bold">{line.title}</h5>
@@ -99,11 +98,11 @@ const CartPage = () => {
                         </div>
                       </td>
 
-                      <td className="py-lg text-center body-large">
+                      <td className="py-xl last-pb-0 text-center body-large">
                         {formatPrice(line.variant.price)}
                       </td>
 
-                      <td className="py-lg">
+                      <td className="py-xl last-pb-0">
                         <div className="w-fit mx-auto">
                           <QuantityInput
                             maxQuantity={10}
@@ -124,11 +123,11 @@ const CartPage = () => {
                         </div>
                       </td>
 
-                      <td className="py-lg text-center body-large font-[500]">
+                      <td className="py-xl last-pb-0 text-center body-large font-[500]">
                         {formatPrice(line.subtotal_amount)}
                       </td>
 
-                      <td className="py-lg">
+                      <td className="py-xl last-pb-0">
                         <Button
                           pill
                           size="sm"
@@ -157,14 +156,14 @@ const CartPage = () => {
             {getCart?.lines.map((line, index) => (
               <div
                 key={`cart-page-mobile-${line.title}`}
-                className={`${loadingItem === index ? 'opacity-50 pointer-events-none animate-pulse' : ''} flex gap-md px-sm py-lg first:pt-0`}
+                className={`${loadingItem === index ? 'opacity-50 pointer-events-none animate-pulse' : ''} flex gap-md py-xl last:pb-0`}
               >
                 <Image
                   width={60}
                   height={60}
                   src={line.image.src}
                   alt={line.image.alt}
-                  className="object-cover min-w-[60px] size-[60px] object-top rounded-md"
+                  className="object-contain bg-white min-w-[60px] size-[60px] object-center border shadow border-light-gray dark:border-dark-gray rounded-md"
                 />
                 <div className="flex flex-col gap-xs">
                   <h6 className="font-bold">{line.title}</h6>
@@ -220,13 +219,13 @@ const CartPage = () => {
             ))}
           </div>
 
-          <hr className="text-light-gray dark:text-light-grayDark" />
+          <hr className="text-light-gray dark:text-dark-gray" />
 
           {/* TOTAL + CHECKOUT */}
           <div className="flex flex-col gap-md md:items-end text-left md:text-right">
             <h3>Subtotal: {formatPrice(getCart?.subtotal_amount)}</h3>
             <h6>Taxes and Delivery charges calculated at checkout</h6>
-            <div className="max-md:w-full flex flex-col md:flex-row gap-md">
+            <div className="flex flex-col sm:flex-row gap-md pt-xl md:pt-xxl">
               <Link href={PageRoutes.bookstore} className="w-full md:w-fit max-md:order-last">
                 <Button pill color="info" fullSized className="md:w-fit whitespace-nowrap">
                   Contine Shopping

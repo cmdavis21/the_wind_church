@@ -4,7 +4,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <div>
       <Navbar solidNav />
-      <div className="pt-5xl lg:pt-6xl pb-xxl sm:pb-3xl">{children}</div>
+      <div className="pt-5xl sm:pt-6xl pb-xxl sm:pb-3xl">{children}</div>
     </div>
   );
 }

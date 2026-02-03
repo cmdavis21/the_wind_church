@@ -8,12 +8,10 @@ import * as yup from 'yup';
 
 import { EventRentalInquiry, YesNo } from '@/data/types';
 
-import { useHoneyPot } from '@/data/hooks';
 import { useCreateEventRentalInquiry } from '@/data/services/sanity/mutations/event-rental-inquiry';
 import { isValidEmail, isValidPhone } from '@/data/utils';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';
-import { HoneyPotInput } from '../inputs/honey-pot-input/HoneyPotInput';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
@@ -47,7 +45,6 @@ const schema: yup.ObjectSchema<EventRentalInquiry> = yup.object().shape({
 });
 
 const EventRentalForm = () => {
-  const { isBot, setInputValue } = useHoneyPot();
   const formRef = useRef<HTMLFormElement | null>(null);
   const [showReference, setShowReference] = useState(false);
 
@@ -64,23 +61,12 @@ const EventRentalForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values: EventRentalInquiry) => {
-    if (isBot) {
-      setError('root', { message: 'Unsafe submission. Access Denied.' });
-      return;
-    }
-    // submitInquiry(values);
-  };
-  console.log(isBot);
+  const onSubmit = (values: EventRentalInquiry) => submitInquiry(values);
+
   useEffect(() => {
-    if (formRef.current) {
-      if (isSuccess || isError) {
-        window.scrollTo({
-          left: 0,
-          top: formRef.current.offsetTop - 100,
-          behavior: 'smooth',
-        });
-      }
+    if (!formRef.current) return;
+    if (isSuccess || isError) {
+      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
     }
   }, [isSuccess, isError]);
 
@@ -111,9 +97,6 @@ const EventRentalForm = () => {
             Please try again later, or call our office at +1 (951) 359-0203."
         />
       )}
-
-      {/* HONEY POT */}
-      <HoneyPotInput setValue={setInputValue} />
 
       {/* names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
