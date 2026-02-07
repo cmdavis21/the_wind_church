@@ -45,7 +45,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="group w-[300px] md:w-[350px] flex flex-col p-xs cursor-pointer"
+        className="group w-[300px] sm:w-[400px] flex flex-col p-xs cursor-pointer"
       >
         <div
           className={`relative w-full aspect-video rounded-md ${scale ? 'group-hover:scale-105 transition-scale duration-300' : ''} border border-light-gray dark:border-dark-gray`}

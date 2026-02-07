@@ -14,17 +14,13 @@ import { ACCORDION_TYPE } from '@/components/accordion/accordion-item/AccordionI
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import { GiftAssessmentDefinitions, GiftAssessmentQuestions } from '@/data/gift-assessment';
 import { useCreateGiftAssessment } from '@/data/services/sanity/mutations/gift-assessment';
-import { downloadPDF } from '@/data/utils';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from 'flowbite-react';
 import GiftAssessmentContactForm from './gift-assessment-contact-form/GiftAssessmentContactForm';
 import GiftAssessmentQuiz from './gift-assessment-quiz/GiftAssessmentQuiz';
 import GiftAssessmentReflectionQuestionsForm from './gift-assessment-reflection-questions-form/GiftAssessmentReflectionQuestionsForm';
+import GiftAssessmentResultsPdf from './gift-assessment-results-pdf/GiftAssessmentResultsPdf';
 
-// const GiftAssessmentResultsPdf = dynamic(
-//   () =>
-//     import('@/components/forms/gift-assessment/gift-assessment-results-pdf/GiftAssessmentResultsPdf'),
-//   { ssr: false }
-// );
 const PDF_FILE_NAME = 'The_Wind_Church_Spiritual_Gift_Assessment_Results.pdf';
 
 const GiftAssessment = () => {
@@ -150,43 +146,24 @@ const GiftAssessment = () => {
           {/* Download and Submission */}
           {reflectionQuestions && (
             <>
-              {/* <PDFDownloadLink
-                document={
-                  <GiftAssessmentResultsPdf
-                    dominateGifts={dominateGifts}
-                    subordinateGifts={subordinateGifts}
-                    ministriesInvolvedIn={reflectionQuestions.ministries_involved_in}
-                    changeInMinistry={reflectionQuestions.change_in_ministry}
-                    layOrClergy={reflectionQuestions.lay_or_clergy}
-                  />
-                }
-                fileName={PDF_FILE_NAME}
-              >
-                <Button
-                  pill
-                  color="secondary"
-                  // onClick={() => downloadPdf(Date.now().toString())}
-                  className="mx-auto max-md:!min-w-full md:w-fit"
+              {GiftAssessmentResultsPdf && (
+                <PDFDownloadLink
+                  fileName={PDF_FILE_NAME}
+                  document={
+                    <GiftAssessmentResultsPdf
+                      dominateGifts={dominateGifts}
+                      subordinateGifts={subordinateGifts}
+                      ministriesInvolvedIn={reflectionQuestions.ministries_involved_in}
+                      changeInMinistry={reflectionQuestions.change_in_ministry}
+                      layOrClergy={reflectionQuestions.lay_or_clergy}
+                    />
+                  }
                 >
-                  Download Results as PDF
-                </Button>
-              </PDFDownloadLink> */}
-              <Button
-                pill
-                color="secondary"
-                onClick={() =>
-                  downloadPDF({
-                    dominateGifts,
-                    subordinateGifts,
-                    ministriesInvolvedIn: reflectionQuestions.ministries_involved_in,
-                    changeInMinistry: reflectionQuestions.change_in_ministry,
-                    layOrClergy: reflectionQuestions.lay_or_clergy,
-                  })
-                }
-                className="mx-auto max-md:!min-w-full md:w-fit"
-              >
-                Download Results as PDF
-              </Button>
+                  <Button pill color="secondary" className="mx-auto max-md:!min-w-full md:w-fit">
+                    Download Results as PDF
+                  </Button>
+                </PDFDownloadLink>
+              )}
 
               <div className="flex flex-col gap-md">
                 <h3>Optional: Submit your results to the Wind!</h3>

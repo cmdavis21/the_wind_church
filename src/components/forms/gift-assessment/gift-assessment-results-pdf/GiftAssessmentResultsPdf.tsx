@@ -11,33 +11,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Times-Roman',
     position: 'relative',
   },
-
-  // HEADER
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 25,
-  },
-  headerLeft: {
-    fontSize: 12,
-  },
-  headerCenter: {
-    fontSize: 18,
-    textAlign: 'center',
-    flexGrow: 1,
-  },
-  headerRight: {
-    fontSize: 12,
-    textAlign: 'right',
-  },
-
-  // LOGO + CONTACT
   logo: {
     width: 100,
     height: 50,
-    margin: '0 auto',
     marginBottom: 8,
+    alignSelf: 'center',
   },
   contactBlock: {
     textAlign: 'center',
@@ -45,14 +23,23 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     lineHeight: 1.3,
   },
-
-  // CONTENT
+  titleBlock: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 5,
+  },
+  dateItem: {
+    fontSize: 12,
+    marginTop: 5,
+    marginBottom: 50,
+    textAlign: 'center',
+  },
   section: {
     marginBottom: 30,
   },
   label: {
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: 700,
     marginBottom: 15,
   },
   text: {
@@ -63,15 +50,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 5,
     marginBottom: 10,
-    fontWeight: 'bold',
+    fontWeight: 700,
+  },
+  scriptureContainer: {
+    flexDirection: 'row',
   },
   scriptureList: {
-    marginLeft: 20,
     marginBottom: 15,
+    flexDirection: 'row',
   },
   scriptureText: {
     fontSize: 12,
-    marginBottom: 5,
+    marginRight: 8,
   },
   questionText: {
     fontSize: 13,
@@ -80,24 +70,6 @@ const styles = StyleSheet.create({
   questionAnswer: {
     fontSize: 12,
     marginBottom: 30,
-  },
-
-  // FOOTER
-  footer: {
-    position: 'absolute',
-    bottom: 30,
-    left: 50,
-    right: 50,
-    fontSize: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  copyright: {
-    fontSize: 10,
-  },
-  pageNumber: {
-    fontSize: 10,
-    textAlign: 'right',
   },
 });
 
@@ -118,27 +90,21 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
 }) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      {/* HEADER BAR */}
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerLeft}>Gift Assessment</Text>
-        <Text style={styles.headerCenter}>Spiritual Gift Assessment Results</Text>
-        <Text style={styles.headerRight}>{formatDateMMMddyyyy(new Date())}</Text>
-      </View>
-
       {/* LOGO + CONTACT */}
       <Image src={`${AWS_ASSET_BASE_URL}/logos/logo.png`} style={styles.logo} />
       <View style={styles.contactBlock}>
-        <Text>6476 Streeter Avenue</Text>
-        <Text>Riverside, CA 92504</Text>
-        <Text>+1 (951) 359-0203</Text>
-        <Text>thewindchurch@outlook.com</Text>
+        <Text style={styles.text}>6476 Streeter Avenue, Riverside, CA 92504</Text>
+        <Text style={styles.text}>+1 (951) 359-0203 • thewindchurch@outlook.com</Text>
       </View>
+      <Text style={styles.titleBlock}>Wagner-Modified Houts</Text>
+      <Text style={styles.titleBlock}>Spiritual Gift Assessment Results</Text>
+      <Text style={styles.dateItem}>Date completed {formatDateMMMddyyyy(new Date())}</Text>
 
       {/* DOMINATE GIFTS */}
       <View style={styles.section}>
         <Text style={styles.label}>Your {dominateGifts.length} Dominate Gifts</Text>
         {dominateGifts.map((gift, index) => (
-          <React.Fragment key={index}>
+          <React.Fragment key={`pdf-dom-${index}`}>
             <Text style={styles.listItem}>
               {index + 1}. {gift.gift}
             </Text>
@@ -146,9 +112,12 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
             <Text style={styles.text}>Scripture Reference:</Text>
             <View style={styles.scriptureList}>
               {gift.scriptures.map((scripture, sIndex) => (
-                <Text key={sIndex} style={styles.scriptureText}>
-                  {scripture}
-                </Text>
+                <View key={`pdf-dom-list-${sIndex}`} style={styles.scriptureContainer}>
+                  <Text style={styles.scriptureText}>{scripture}</Text>
+                  <Text style={styles.scriptureText}>
+                    {sIndex < gift.scriptures.length - 1 ? '•' : ''}
+                  </Text>
+                </View>
               ))}
             </View>
           </React.Fragment>
@@ -159,7 +128,7 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
       <View style={styles.section}>
         <Text style={styles.label}>Your {subordinateGifts.length} Subordinate Gifts</Text>
         {subordinateGifts.map((gift, index) => (
-          <React.Fragment key={index}>
+          <React.Fragment key={`pdf-sub-${index}`}>
             <Text style={styles.listItem}>
               {index + 1}. {gift.gift}
             </Text>
@@ -167,9 +136,12 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
             <Text style={styles.text}>Scripture Reference:</Text>
             <View style={styles.scriptureList}>
               {gift.scriptures.map((scripture, sIndex) => (
-                <Text key={sIndex} style={styles.scriptureText}>
-                  {scripture}
-                </Text>
+                <View key={`pdf-sub-list-${sIndex}`} style={styles.scriptureContainer}>
+                  <Text style={styles.scriptureText}>{scripture}</Text>
+                  <Text style={styles.scriptureText}>
+                    {sIndex < gift.scriptures.length - 1 ? '•' : ''}
+                  </Text>
+                </View>
               ))}
             </View>
           </React.Fragment>
@@ -193,15 +165,6 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
 
         <Text style={styles.questionText}>3. Is your vocational status lay or clergy?</Text>
         <Text style={styles.questionAnswer}>{layOrClergy}</Text>
-      </View>
-
-      {/* FOOTER */}
-      <View style={styles.footer}>
-        <Text style={styles.copyright}>© {new Date().getFullYear()} The Wind Church</Text>
-        <Text
-          style={styles.pageNumber}
-          render={({ pageNumber, totalPages }) => `Page ${pageNumber} of ${totalPages}`}
-        />
       </View>
     </Page>
   </Document>

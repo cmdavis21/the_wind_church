@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const url = `${WEBSITE_BASE_URL}${PageRoutes.giftAssessment}`;
   const image = `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`;
   return {
+    metadataBase: new URL(WEBSITE_BASE_URL!),
     title,
     description,
     alternates: { canonical: url },

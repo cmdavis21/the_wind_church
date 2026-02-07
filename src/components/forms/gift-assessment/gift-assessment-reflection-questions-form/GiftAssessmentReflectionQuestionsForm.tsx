@@ -46,6 +46,7 @@ const GiftAssessmentReflectionQuestionsForm: React.FC<
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-lg">
       <TextareaInput
         label="1. What ministries are you now performing (formally or informally) in the Body?"
+        maxLength={750}
         disabled={disable}
         placeholder="Enter your answer here"
         {...register('ministries_involved_in')}
@@ -54,6 +55,7 @@ const GiftAssessmentReflectionQuestionsForm: React.FC<
 
       <TextareaInput
         label="2. Are there any of these ministries that you are not especially gifted for? God may be calling you to consider changes."
+        maxLength={750}
         disabled={disable}
         placeholder="Enter your answer here"
         {...register('change_in_ministry')}
