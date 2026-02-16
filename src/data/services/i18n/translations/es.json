@@ -19,7 +19,8 @@
       "label": "Acerca de",
       "submenu": [
         { "label": "Quiénes Somos", "link": "/about" },
-        { "label": "Líderes de Wind", "link": "/wind-leaders" }
+        { "label": "Líderes de Wind", "link": "/wind-leaders" },
+        { "label": "¿Qué es Foursquare?", "link": "/foursquare" }
       ]
     },
     "media": {
@@ -90,6 +91,10 @@
         {
           "label": "Líderes Wind",
           "link": "/wind-leaders"
+        },
+        {
+          "label": "¿Qué es Foursquare?",
+          "link": "/foursquare"
         }
       ]
     },
@@ -370,6 +375,16 @@
           "title": "La Segunda Venida de Cristo",
           "verse": "1 Tesalonicenses 4:16, 17",
           "description": "Creemos que la segunda venida de Cristo es personal e inminente"
+        },
+        "evangelism": {
+          "title": "Evangelismo",
+          "verse": "Marcos 16:15; Mateo 28:19-20",
+          "description": "Creemos que la responsabilidad principal de la iglesia es llevar el evangelio a todo el mundo y hacer discípulos"
+        },
+        "tithes": {
+          "title": "Diezmos y Ofrendas",
+          "verse": "Malaquías 3:10; 2 Corintios 9:7",
+          "description": "Creemos que Dios ha establecido los diezmos y las ofrendas como el método para sostener y expandir Su obra"
         }
       }
     },
@@ -399,6 +414,12 @@
     "metadata": {
       "title": "Comentarios de Visitantes",
       "description": "Gracias por visitar nuestra iglesia. Por favor comparte tus comentarios para ayudarnos a mejorar para el cuerpo de Cristo."
+    }
+  },
+  "Foursquare": {
+    "metadata": {
+      "title": "Learn About Foursquare",
+      "description": "Discover the history, beliefs, and global mission of the International Church of the Foursquare Gospel."
     }
   },
   "Give": {

@@ -33,6 +33,8 @@ import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { styleSelectedWords } from '@/data/utils';
+import { Button } from 'flowbite-react';
+import Link from 'next/link';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -200,7 +202,6 @@ const About = async () => {
         },
       ],
     },
-
     {
       image: `${AWS_ASSET_BASE_URL}/images/foursquare/dove.png`,
       title: t('foursquare.accordionItem2.title'),
@@ -237,7 +238,6 @@ const About = async () => {
         },
       ],
     },
-
     {
       image: `${AWS_ASSET_BASE_URL}/images/foursquare/cup.png`,
       title: t('foursquare.accordionItem3.title'),
@@ -274,7 +274,6 @@ const About = async () => {
         },
       ],
     },
-
     {
       image: `${AWS_ASSET_BASE_URL}/images/foursquare/crown.png`,
       title: t('foursquare.accordionItem4.title'),
@@ -432,6 +431,11 @@ const About = async () => {
         <div className="flex flex-col gap-lg max-width">
           <SectionHeader title={t('foursquare.title')} subtitle={t('foursquare.subtitle')} />
           <h5 className="lg:max-w-[60%]">{t('foursquare.description')}</h5>
+          <Link href={PageRoutes.foursquare}>
+            <Button pill color="secondary">
+              Learn more about Foursquare
+            </Button>
+          </Link>
         </div>
 
         <Accordion
@@ -439,15 +443,16 @@ const About = async () => {
             image: section.image,
             title: section.title,
             description: (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-5 place-items-start place-content-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-5">
                 {section.items.map((item, idx) => (
-                  <ScriptureWithIcon
-                    key={`about-page-foursquare-${item.title}-${idx}`}
-                    icon={item.icon}
-                    title={item.title}
-                    verse={item.verse}
-                    passage={item.passage}
-                  />
+                  <div key={`about-page-foursquare-${item.title}-${idx}`} className="mx-auto">
+                    <ScriptureWithIcon
+                      icon={item.icon}
+                      title={item.title}
+                      verse={item.verse}
+                      passage={item.passage}
+                    />
+                  </div>
                 ))}
               </div>
             ),

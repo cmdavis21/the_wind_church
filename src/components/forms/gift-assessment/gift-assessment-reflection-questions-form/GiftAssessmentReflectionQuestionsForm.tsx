@@ -12,9 +12,11 @@ import TextareaInput from '../../inputs/textarea-input/TextareaInput';
 const schema = yup.object().shape({
   ministries_involved_in: yup
     .string()
+    .max(750, 'Only up to 750 characters allowed')
     .required('Please answer the question to the best of your ability.'),
   change_in_ministry: yup
     .string()
+    .max(750, 'Only up to 750 characters allowed')
     .required('Please answer the question to the best of your ability.'),
   lay_or_clergy: yup
     .string()

@@ -37,7 +37,7 @@ const LatestSermonVideo: React.FC<LatestSermonVideoProps> = ({ ok, data }) => {
           playsInline
           muted={mute}
           poster={data.poster}
-          className="w-full h-full object-cover bg-black/90"
+          className="w-full h-full object-cover bg-black/90 pointer-events-none"
         >
           <source src={data.url} type="video/mp4" />
         </video>

@@ -102,7 +102,7 @@ const ProductPage = (product: Product) => {
 
       <div>
         {/* LEFT DECORATIVE BORDER */}
-        <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-3 lg:w-5 min-h-full bg-brand-primary" />
+        <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-3 min-h-full bg-brand-primary" />
 
         <div className="px-padding relative grid grid-cols-1 md:grid-cols-2 gap-xxl max-width-center">
           {/* MEDIA */}
@@ -254,7 +254,7 @@ const ProductPage = (product: Product) => {
         </div>
 
         {/* RIGHT DECORATIVE BORDER */}
-        <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-3 lg:w-5 min-h-full bg-brand-primary" />
+        <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-3 min-h-full bg-brand-primary" />
       </div>
     </>
   );

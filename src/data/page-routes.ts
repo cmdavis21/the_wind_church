@@ -8,6 +8,7 @@ export const PageRoutes = {
   deepDive: '/deep-dive',
   events: '/events',
   feedback: '/feedback',
+  foursquare: '/foursquare',
   gallery: '/gallery',
   giftAssessment: '/gift-assessment',
   give: '/give',

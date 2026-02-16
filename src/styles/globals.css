@@ -95,6 +95,12 @@ body {
   .max-width-center {
     @apply w-full max-w-[1800px] mx-auto;
   }
+  .blue-gradient {
+    @apply bg-gradient-to-br from-[#051050] via-[#0B2A8C] to-[#0A1A4A];
+  }
+  .yellow-gradient {
+    @apply bg-gradient-to-br from-[#FDD738] via-[#F4E2B5] to-[#FDD738];
+  }
 }
 
 /* remove ring border for all buttons */

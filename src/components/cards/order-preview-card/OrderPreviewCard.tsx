@@ -80,6 +80,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
             </h3>
             <div className="flex flex-row gap-2">
               <Button
+                pill
                 color="primary"
                 className="w-full md:w-fit"
                 onClick={() => {
@@ -93,7 +94,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
               >
                 {cartLoading ? <Spinner size="xs" /> : 'Reorder'}
               </Button>
-              <Button color="info" className="w-full md:w-fit" onClick={() => setOpen(!open)}>
+              <Button color="info" className="w-full md:w-fit" pill onClick={() => setOpen(!open)}>
                 {open ? 'Hide' : 'View'} Details
               </Button>
             </div>

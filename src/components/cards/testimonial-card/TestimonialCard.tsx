@@ -10,21 +10,21 @@ export interface TestimonialCardProps {
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ src, name, position, statement }) => {
   return (
-    <div className="text-left space-y-md max-w-[400px] h-full aspect-[1/1.1] p-lg md:p-md bg-light-bg border border-light-gray dark:bg-dark-gray dark:border-dark-gray rounded-lg text-light-primaryText dark:text-dark-primaryText shadow hover:shadow-lg transition-shadow duration-100 overflow-hidden">
-      <Image
-        width={65}
-        height={65}
-        src={src}
-        alt={`Image of ${name}`}
-        className="size-[65px] pointer-events-none object-cover rounded-full"
-      />
-      <div>
-        <h5 className="uppercase tracking-wide font-display text-dark-navy pointer-events-none">
-          {name}
-        </h5>
-        <h6 className="pointer-events-none">{position}</h6>
+    <div className="rounded-md border-2 border-x-0 border-t-0 border-dark-navy bg-white dark:bg-dark-gray p-xl h-full flex flex-col gap-lg hover:scale-105 hover:shadow-md transition=[scale,shadow] duration-300 max-w-[750px]">
+      <div className="relative flex flex-col sm:flex-row items-center gap-md">
+        <Image
+          src={src}
+          width={50}
+          height={50}
+          alt={`Image of ${name}`}
+          className="size-xxl sm:size-3xl object-cover rounded-full"
+        />
+        <div className="flex flex-col items-start">
+          <h4 className="font-display text-light-navy">{name}</h4>
+          <h5>{position}</h5>
+        </div>
       </div>
-      <h5 className="line-clamp-6 pointer-events-none">{statement}</h5>
+      <h4 className="line-clamp-4 text-center sm:text-left">{statement}</h4>
     </div>
   );
 };

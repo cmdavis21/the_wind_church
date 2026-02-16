@@ -2,10 +2,12 @@ import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
+import LatestSermonVideo from '@/components/latest-sermon-video/LatestSermonVideo';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
+import { getLatestSermon } from '@/data/services/youtube/playlists';
 import { styleSelectedWords } from '@/data/utils';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -36,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const Home = async () => {
-  // const result = await getLatestSermon();
+  const result = await getLatestSermon();
 
   const exploreOptions = [
     {
@@ -240,15 +242,14 @@ const Home = async () => {
           </h4>
 
           {/* SERVICE TIMES */}
-          <h3>
-            <span className="dark:text-brand-primary">Sundays 9AM</span> •{' '}
-            <span className="dark:text-brand-primary">Wednesdays 7PM</span>
+          <h3 className="dark:text-brand-primary">
+            Sundays 9AM <span className="dark:text-dark-primaryText">•</span> Wednesdays 7PM
           </h3>
         </div>
       </div>
 
       {/* LATEST SERMON */}
-      {/* <LatestSermonVideo ok={result.ok} data={result.data} /> */}
+      <LatestSermonVideo ok={result.ok} data={result.data} />
 
       {/* EXPLORE CTAs */}
       <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
@@ -267,7 +268,7 @@ const Home = async () => {
       </div>
 
       {/* TESTIMONIALS */}
-      <div className="flex flex-col gap-xl md:gap-xxl mt-3xl sm:mt-4xl py-4xl bg-gradient-to-br from-[#FDD738] via-[#F4E2B5] to-[#A57D19]">
+      <div className="flex flex-col gap-xl md:gap-xxl mt-3xl sm:mt-4xl py-4xl yellow-gradient">
         <div className="px-padding">
           <CenterTextSection
             title="Testimonials From The Wind Family"

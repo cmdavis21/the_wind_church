@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const GiftAssessmentPage = () => (
   <div>
     {/* Decorative Border */}
-    <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-3 lg:w-5 min-h-full bg-brand-primary" />
+    <div className="absolute top-0 left-0 bottom-0 w-[5px] md:w-3 min-h-full bg-brand-primary" />
 
     <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       {/* Header */}
@@ -103,7 +103,7 @@ const GiftAssessmentPage = () => (
     </div>
 
     {/* Decorative Border */}
-    <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-3 lg:w-5 min-h-full bg-brand-primary" />
+    <div className="absolute top-0 right-0 bottom-0 w-[5px] md:w-3 min-h-full bg-brand-primary" />
   </div>
 );
 

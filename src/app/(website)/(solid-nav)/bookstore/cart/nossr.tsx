@@ -34,13 +34,13 @@ const CartPage = () => {
       )}
 
       {!cartLoading && getCart && getCart?.lines.length > 0 && (
-        <div className="flex flex-col gap-xl md:gap-xxl">
-          <h4>
+        <div className="flex flex-col gap-lg">
+          <h5>
             <span className="font-bold">
               {getCart?.total_quantity} item{getCart?.total_quantity > 1 ? 's' : ''}
             </span>{' '}
             in the cart
-          </h4>
+          </h5>
 
           <hr className="text-light-gray dark:text-dark-gray" />
 
@@ -225,9 +225,9 @@ const CartPage = () => {
           <div className="flex flex-col gap-md md:items-end text-left md:text-right">
             <h3>Subtotal: {formatPrice(getCart?.subtotal_amount)}</h3>
             <h6>Taxes and Delivery charges calculated at checkout</h6>
-            <div className="flex flex-col sm:flex-row gap-md pt-xl md:pt-xxl">
+            <div className="flex flex-col sm:flex-row gap-md pt-lg">
               <Link href={PageRoutes.bookstore} className="w-full md:w-fit max-md:order-last">
-                <Button pill color="info" fullSized className="md:w-fit whitespace-nowrap">
+                <Button pill color="info" fullSized className="whitespace-nowrap">
                   Contine Shopping
                 </Button>
               </Link>

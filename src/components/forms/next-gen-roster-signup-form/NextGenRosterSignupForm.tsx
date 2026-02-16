@@ -143,7 +143,7 @@ const NextGenRosterSignupForm = () => {
       className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
     >
       <div className="flex items-center gap-sm">
-        <PencilPaper className="dark:fill-dark-primaryText" />
+        <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
         <h4>Next Gen Roster Signup</h4>
       </div>
 

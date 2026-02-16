@@ -120,21 +120,23 @@ const Salvation = () => (
       content={
         <div className="flex flex-col gap-xxl">
           <SectionHeader title="Prayer of Salvation" />
-          <h4>
-            Father in heaven, thank you for sending your Son, Jesus, to die on the cross for me, and
-            for His blood that was shed to redeem me and to cleanse me from my sins.
-          </h4>
-          <h4>
-            Lord, I am sorry and I repent of my sins. Forgive me. I understand that I must change
-            the course of my life. I am determined in my heart to follow you. I invite you to become
-            the Lord of my life from this point forward, forever.
-          </h4>
-          <h4>
-            I openly proclaim and confess that you are the Lord of my life. I believe in my heart
-            that You have been raised from the dead. Therefore I am saved. I am a new creature. The
-            old things have passed. All things have become new.
-          </h4>
-          <h4>I am a child of God. In the Name of Jesus, AMEN!</h4>
+          <div className="flex flex-col gap-xl">
+            <h4>
+              Father in heaven, thank you for sending your Son, Jesus, to die on the cross for me,
+              and for His blood that was shed to redeem me and to cleanse me from my sins.
+            </h4>
+            <h4>
+              Lord, I am sorry and I repent of my sins. Forgive me. I understand that I must change
+              the course of my life. I am determined in my heart to follow you. I invite you to
+              become the Lord of my life from this point forward, forever.
+            </h4>
+            <h4>
+              I openly proclaim and confess that you are the Lord of my life. I believe in my heart
+              that You have been raised from the dead. Therefore I am saved. I am a new creature.
+              The old things have passed. All things have become new.
+            </h4>
+            <h4>I am a child of God. In the Name of Jesus, AMEN!</h4>
+          </div>
         </div>
       }
     />

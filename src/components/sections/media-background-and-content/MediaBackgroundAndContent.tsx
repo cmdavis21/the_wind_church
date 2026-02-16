@@ -69,12 +69,8 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
         className={cn(
           !fullWidth && 'rounded-xl',
           background && 'bg-gradient-to-r from-black/70',
-          !background &&
-            color === ColorBackground.BLUE &&
-            'bg-gradient-to-br from-[#051050] via-[#0B2A8C] to-[#0A1A4A]',
-          !background &&
-            color === ColorBackground.YELLOW &&
-            'bg-gradient-to-br from-[#FDD738] via-[#F4E2B5] to-[#A57D19]',
+          !background && color === ColorBackground.BLUE && 'blue-gradient',
+          !background && color === ColorBackground.YELLOW && 'yellow-gradient',
           'absolute inset-0 backdrop-blur-[3px]'
         )}
       />

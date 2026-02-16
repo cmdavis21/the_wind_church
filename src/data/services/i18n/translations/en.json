@@ -19,7 +19,8 @@
       "label": "About",
       "submenu": [
         { "label": "Who We Are", "link": "/about" },
-        { "label": "Wind Leaders", "link": "/wind-leaders" }
+        { "label": "Wind Leaders", "link": "/wind-leaders" },
+        { "label": "What is Foursquare?", "link": "/foursquare" }
       ]
     },
     "media": {
@@ -90,6 +91,10 @@
         {
           "label": "Wind Leaders",
           "link": "/wind-leaders"
+        },
+        {
+          "label": "What is Foursquare?",
+          "link": "/foursquare"
         }
       ]
     },
@@ -370,6 +375,16 @@
           "title": "The Second Coming of Christ",
           "verse": "1 Thessalonians 4:16, 17",
           "description": "We believe that the second coming of Christ is personal and imminent"
+        },
+        "evangelism": {
+          "title": "Evangelism",
+          "verse": "Mark 16:15; Matthew 28:19-20",
+          "description": "We believe that the church's primary responsibility is to take the gospel to the entire world and make disciples"
+        },
+        "tithes": {
+          "title": "Tithes and Offerings",
+          "verse": "Malachi 3:10; 2 Corinthians 9:7",
+          "description": "We believe that God has ordained tithes and offerings as the method for supporting and advancing His work"
         }
       }
     },
@@ -399,6 +414,12 @@
     "metadata": {
       "title": "Visitor Feedback",
       "description": "Thank you for visiting our church. Please leave feedback on your experience so we can improve for the body of Christ."
+    }
+  },
+  "Foursquare": {
+    "metadata": {
+      "title": "Learn About Foursquare",
+      "description": "Discover the history, beliefs, and global mission of the International Church of the Foursquare Gospel."
     }
   },
   "Give": {

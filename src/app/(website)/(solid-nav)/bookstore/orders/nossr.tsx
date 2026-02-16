@@ -13,7 +13,6 @@ import { TabItem, Tabs } from 'flowbite-react';
 import { useState } from 'react';
 
 const OrdersClient = () => {
-  const [activeTab, setActiveTab] = useState(0);
   const [customerData, setCustomerData] = useState<CustomerData | undefined>(undefined);
   return (
     <div className="px-padding flex flex-col gap-xxl lg:gap-3xl max-width-center">
@@ -29,13 +28,7 @@ const OrdersClient = () => {
       />
 
       <Tabs variant="underline">
-        <TabItem
-          active={activeTab === 0}
-          onClick={() => setActiveTab(0)}
-          disabled={!customerData}
-          title="Orders"
-          icon={BoxOpen}
-        >
+        <TabItem disabled={!customerData} title="Orders" icon={BoxOpen}>
           {!customerData ? (
             <div className="max-w-[600px] w-full mx-auto pt-xxl">
               <OrderLookupForm returnValue={setCustomerData} />
@@ -48,13 +41,7 @@ const OrdersClient = () => {
             </div>
           )}
         </TabItem>
-        <TabItem
-          active={activeTab === 1}
-          onClick={() => setActiveTab(1)}
-          disabled={!customerData}
-          title="Profile"
-          icon={User}
-        >
+        <TabItem disabled={!customerData} title="Profile" icon={User}>
           {customerData && customerData.profile && (
             <div className="w-full mx-auto flex flex-col lg:flex-row gap-xl pt-5">
               <EmailUpdateForm
