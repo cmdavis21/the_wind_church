@@ -1,7 +1,7 @@
 'use client';
 
 import { NavbarColumnItem, NavbarItem } from '@/data/types';
-import cn from 'classNames';
+import cn from 'classnames';
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 
