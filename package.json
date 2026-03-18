@@ -39,11 +39,9 @@
     "react-hook-form": "^7.62.0",
     "react-multi-carousel": "^2.8.6",
     "sanity": "^4.0.1",
-    "storybook": "^10.1.11",
     "yup": "1.4.0"
   },
   "devDependencies": {
-    "@storybook/nextjs": "^10.1.11",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.4",
     "@types/react": "^18",
@@ -54,7 +52,6 @@
     "eslint-config-next": "14.2.30",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-storybook": "^10.1.11",
     "eslint-plugin-tailwindcss": "^3.18.2",
     "postcss": "^8",
     "prettier": "^3.6.2",

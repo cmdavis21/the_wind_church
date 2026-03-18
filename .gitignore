@@ -43,6 +43,3 @@ zeus-gen-*
 # setup
 dev.sh
 dev-*
-
-*storybook.log
-storybook-static
