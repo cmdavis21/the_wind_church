@@ -9,8 +9,8 @@ import {
   GiftAssessmentSubmission,
 } from '@/data/types';
 
-import Accordion from '@/components/accordion/Accordion';
-import { ACCORDION_TYPE } from '@/components/accordion/accordion-item/AccordionItem';
+import Accordion, { ACCORDION_TYPE } from '@/components/accordion/Accordion';
+
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import { GiftAssessmentDefinitions, GiftAssessmentQuestions } from '@/data/gift-assessment';
 import { useCreateGiftAssessment } from '@/data/services/sanity/mutations/gift-assessment';
