@@ -2,7 +2,7 @@ import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import LatestSermonVideo from '@/components/latest-sermon-video/LatestSermonVideo';
+import PreviewSermon from '@/components/preview-sermon/PreviewSermon';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
@@ -249,7 +249,7 @@ const Home = async () => {
       </div>
 
       {/* LATEST SERMON */}
-      <LatestSermonVideo ok={result.ok} data={result.data} />
+      <PreviewSermon ok={result.ok} data={result.data} />
 
       {/* EXPLORE CTAs */}
       <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">

@@ -9,12 +9,12 @@ import React, { useState } from 'react';
 import VolumeHigh from '../icons/volume-high';
 import VolumeXmark from '../icons/volume-xmark';
 
-interface LatestSermonVideoProps {
+interface PreviewSermonProps {
   ok: boolean;
   data?: YouTubeSermonSnippet | FallbackSermonSnippet;
 }
 
-const LatestSermonVideo: React.FC<LatestSermonVideoProps> = ({ ok, data }) => {
+const PreviewSermon: React.FC<PreviewSermonProps> = ({ ok, data }) => {
   if (!ok || !data) return null; // if no youtube and no s3, return nothing
 
   const isFallback = data.kind === 'fallback';
@@ -93,4 +93,4 @@ const LatestSermonVideo: React.FC<LatestSermonVideoProps> = ({ ok, data }) => {
   );
 };
 
-export default LatestSermonVideo;
+export default PreviewSermon;
