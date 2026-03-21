@@ -5,8 +5,10 @@ import PageHero from '@/components/heroes/page-hero/PageHero';
 import PreviewSermon from '@/components/preview-sermon/PreviewSermon';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
+
 import { PageRoutes } from '@/data/page-routes';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/services/env.client';
+
 import { getLatestSermon } from '@/data/services/youtube/playlists';
 import { styleSelectedWords } from '@/data/utils';
 import { getTranslations } from 'next-intl/server';

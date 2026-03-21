@@ -1,11 +1,8 @@
-import { SANITY_EDITOR_TOKEN, SANITY_GRAPHQL_ENDPOINT } from '@/data/constants';
+import { SANITY_EDITOR_TOKEN, SANITY_GRAPHQL_ENDPOINT } from '../env.client';
 import { Chain } from './zeus';
 
-const endpoint = SANITY_GRAPHQL_ENDPOINT;
-const editorToken = SANITY_EDITOR_TOKEN;
-
-const chain = Chain(endpoint, {
-  headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${editorToken}` },
+const chain = Chain(SANITY_GRAPHQL_ENDPOINT, {
+  headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${SANITY_EDITOR_TOKEN}` },
 });
 
 export const SanityQuery = chain('query');

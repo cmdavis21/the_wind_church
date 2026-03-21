@@ -1,5 +1,4 @@
-import { CONTACT_SIGNUP_KEY } from '@/data/constants';
-import { FullContact, PartialContact } from '@/data/types';
+import { CONTACT_SIGNUP_KEY, FullContact, PartialContact } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SanityClient } from '../client';
 import { getContactIdByEmailQuery } from '../queries/contacts';

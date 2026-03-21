@@ -1,6 +1,6 @@
-import { PRAYER_REQUEST_KEY, WEBSITE_BASE_URL } from '@/data/constants';
-import { FORM_TYPES, PrayerRequest } from '@/data/types';
+import { FORM_TYPES, PRAYER_REQUEST_KEY, PrayerRequest } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { WEBSITE_BASE_URL } from '../../env.client';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
 

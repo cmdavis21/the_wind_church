@@ -2,8 +2,9 @@ import FacebookIcon from '@/components/icons/facebook';
 import InstagramIcon from '@/components/icons/instagram';
 import YouTubeIcon from '@/components/icons/youtube';
 import ThemeModeLogo from '@/components/theme-mode/theme-mode-logo/ThemeModeLogo';
-import { FACEBOOK_PROFILE, INSTAGRAM_PROFILE, YOUTUBE_CHANNEL } from '@/data/constants';
+
 import { PageRoutes } from '@/data/page-routes';
+import { FACEBOOK_PROFILE, INSTAGRAM_PROFILE, YOUTUBE_CHANNEL } from '@/data/services/env.client';
 import Link from 'next/link';
 
 const FooterLogoAndSocials = () => (

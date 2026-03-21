@@ -11,8 +11,8 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
 import { getMinistryEvents } from '@/data/services/sanity/queries/events';
 import { getNextGenPage } from '@/data/services/sanity/queries/next-gen-page';
 import { Event } from '@/data/types';

@@ -1,5 +1,4 @@
-import { GET_ALL_MINISTRIES } from '@/data/constants';
-import { Ministry } from '@/data/types';
+import { GET_ALL_MINISTRIES, Ministry } from '@/data/types';
 import { useQuery } from '@tanstack/react-query';
 import { portableTextToString } from '../utils';
 import { SanityQuery } from '../zeus-chain';

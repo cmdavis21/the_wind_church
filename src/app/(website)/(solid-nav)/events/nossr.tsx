@@ -7,8 +7,8 @@ import TimelineItem from '@/components/cards/timeline-item/TimelineItem';
 import SelectInput from '@/components/forms/inputs/select-input/SelectInput';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import Filter from '@/components/icons/filter';
-import { EVENT_CATEGORIES } from '@/data/constants';
 import { useGetAllEvents } from '@/data/services/sanity/queries/events';
+import { SanityEventCategories } from '@/data/types';
 import { isAfter } from 'date-fns';
 import { useState } from 'react';
 
@@ -38,7 +38,7 @@ const EventsClient = () => {
               onChange={(e) => setFilter(e.target.value)}
               options={[
                 { label: 'All Events', value: '' },
-                ...EVENT_CATEGORIES.map((e) => ({ label: e, value: e })),
+                ...SanityEventCategories.map((e) => ({ label: e, value: e })),
               ]}
             />
           </div>

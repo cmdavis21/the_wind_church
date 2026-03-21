@@ -1,13 +1,10 @@
-import { SHOPIFY_STOREFRONT_API_ENDPOINT, SHOPIFY_STOREFRONT_ACCESS_TOKEN } from '@/data/constants';
+import { SHOPIFY_STOREFRONT_ACCESS_TOKEN, SHOPIFY_STOREFRONT_API_ENDPOINT } from '../env.client';
 import { Chain } from './zeus';
 
-const endpoint = SHOPIFY_STOREFRONT_API_ENDPOINT;
-const editorToken = SHOPIFY_STOREFRONT_ACCESS_TOKEN;
-
-const chain = Chain(endpoint, {
+const chain = Chain(SHOPIFY_STOREFRONT_API_ENDPOINT, {
   headers: {
     'Content-Type': 'application/json',
-    'X-Shopify-Storefront-Access-Token': `${editorToken}`,
+    'X-Shopify-Storefront-Access-Token': `${SHOPIFY_STOREFRONT_ACCESS_TOKEN}`,
   },
 });
 

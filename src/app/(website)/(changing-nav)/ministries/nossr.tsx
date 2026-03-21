@@ -9,7 +9,7 @@ import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
-import { AWS_ASSET_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
 import { useGetAllMinistries } from '@/data/services/sanity/queries/ministries';
 import React from 'react';
 

@@ -1,4 +1,4 @@
-import { EVENT_CATEGORIES } from '@/data/constants';
+import { SanityEventCategories } from '@/data/types';
 import { defineField } from 'sanity';
 
 export const EventSchema = {
@@ -50,7 +50,7 @@ export const EventSchema = {
           name: 'category',
           type: 'string',
           options: {
-            list: EVENT_CATEGORIES,
+            list: SanityEventCategories,
           },
         }),
       ],

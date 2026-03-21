@@ -5,7 +5,7 @@ import {
   DELETE_CART_ITEMS_KEY,
   GET_CART_KEY,
   UPDATE_CART_ITEMS_KEY,
-} from '@/data/constants';
+} from '@/data/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { cartLinesAdd, cartLinesRemove, cartLinesUpdate } from './mutations/cart';
 import { getCurrentCart } from './queries/cart';

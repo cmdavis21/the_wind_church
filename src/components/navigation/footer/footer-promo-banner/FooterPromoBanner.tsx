@@ -1,6 +1,6 @@
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import UpArrow from '@/components/icons/up-arrow';
-import { AWS_ASSET_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
 import { getPromoDetails } from '@/data/services/sanity/queries/promo-details';
 import cn from 'classnames';
 import { getTranslations } from 'next-intl/server';

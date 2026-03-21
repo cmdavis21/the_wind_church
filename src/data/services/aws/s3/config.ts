@@ -1,6 +1,6 @@
-import { AWS_IDENTITY_POOL_ID, AWS_REGION } from '@/data/constants';
 import { S3Client } from '@aws-sdk/client-s3';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
+import { AWS_IDENTITY_POOL_ID, AWS_REGION } from '../../env.client';
 
 export const s3Config = () => {
   const s3 = new S3Client({

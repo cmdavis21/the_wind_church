@@ -1,4 +1,4 @@
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
 
 import Accordion from '@/components/accordion/Accordion';
 import AlertMessage from '@/components/alerts/alert-message/AlertMessage';

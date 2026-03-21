@@ -1,4 +1,3 @@
-import { EVENT_CATEGORIES, LEADER_CATEGORIES } from './constants';
 import { Price } from './format-price';
 
 type Time = {
@@ -17,7 +16,7 @@ export type Leader = {
   first_name: string;
   last_name: string;
   position: string;
-  category: (typeof LEADER_CATEGORIES)[0];
+  category: (typeof SanityLeaderCategories)[0];
   description: string;
   image: string;
   video?: string;
@@ -58,7 +57,7 @@ export type Event = {
   ministry_event?: string;
   external_host?: string;
   cost?: string;
-  categories?: typeof EVENT_CATEGORIES;
+  categories?: typeof SanityEventCategories;
   how_to_signup?: string;
   additional_notes?: string;
   help_needed?: string[];
@@ -380,3 +379,72 @@ export interface CustomerData {
   profile: Customer | undefined;
   orders: Order[];
 }
+
+export const SanityEventCategories = [
+  'Worship Service',
+  'Prayer Meeting',
+  'Bible Study',
+  'Revival/Crusade',
+  'Fasting & Prayer',
+  'Church Fellowship',
+  'Potluck / Shared Meals',
+  'Game Night / Movie Night',
+  'Church Picnic',
+  'Small Group Gathering',
+  'Community Outreach',
+  'Evangelism',
+  'Food / Clothing Drive',
+  'Volunteer Service',
+  'Youth Ministry',
+  'Young Adults Fellowship',
+  "Children's Church",
+  'Leadership Training',
+  'Discipleship Class',
+  'New Members Class',
+  'Ministry Workshops',
+  'Sunday School',
+  'Holiday Celebration',
+  'Church Anniversary',
+  'Fundraiser',
+  'Guest Speaker / Concert',
+  'Baptism / Baby Dedication',
+  "Men's Ministry",
+  "Women's Ministry",
+  'Marriage / Couples Retreat',
+  'Family Day',
+];
+
+export const SanityLeaderCategories = [
+  'Pastoral Team',
+  'Church Staff',
+  'Church Council',
+  'Elders',
+  'Deacons and Deaconesses',
+  'Ministry Directors',
+  'Next Gen Educators',
+  'Hospitality & Guest Experience',
+  'Outreach & Evangelism',
+  'Production & Media',
+];
+
+// TANSTACK QUERY + MUTATION KEYS
+export const GET_ALL_EVENTS = 'SANITY QUERY GET ALL EVENTS';
+export const GET_ALL_LEADERS = 'SANITY QUERY GET ALL LEADERS';
+export const GET_ALL_MINISTRIES = 'SANITY QUERY GET ALL MINISTRIES';
+export const GET_ALL_DEEP_DIVES = 'SANITY QUERY GET ALL DEEP DIVES';
+export const GET_GALLERY_KEY = 'AWS QUERY GET GALLERY IMAGES';
+export const CONTACT_SIGNUP_KEY = 'SANITY MUTATION CREATE CONTACT';
+export const EVENT_RENTAL_KEY = 'SANITY MUTATION CREATE EVENT RENTAL INQUIRY';
+export const GIFT_ASSESSMENT_KEY = 'SANITY MUTATION CREATE GIFT ASSESSMENT';
+export const MINISTRY_CONNECT_KEY = 'SANITY MUTATION CREATE MINISTRY CONNECTION';
+export const PRAYER_REQUEST_KEY = 'SANITY MUTATION CREATE PRAYER REQUEST';
+export const VISITOR_FEEDBACK_KEY = 'SANITY MUTATION CREATE CONTACT';
+export const NEXT_GEN_GUARDIAN_KEY = 'SANITY MUTATION CREATE NEXT GEN GUARDIAN INQUIRY';
+export const GET_CART_KEY = 'SHOPIFY QUERY GET CART';
+export const GET_ADMIN_CUSTOMER_KEY = 'SHOPIFY QUERY GET ADMIN CUSTOMER';
+export const GET_STOREFRONT_COLLECTIONS_KEY = 'SHOPIFY QUERY GET ALL COLLECTIONS';
+export const GET_STOREFRONT_PRODUCTS_KEY = 'SHOPIFY QUERY GET ALL PRODUCTS';
+export const GET_STOREFRONT_PRODUCT_BY_HANDLE_KEY = 'SHOPIFY QUERY GET PRODUCT BY HANDLE';
+export const ADD_TO_CART_KEY = 'SHOPIFY MUTATION ADD TO CART';
+export const UPDATE_CART_ITEMS_KEY = 'SHOPIFY MUTATION UPDATE CART ITEMS';
+export const DELETE_CART_ITEMS_KEY = 'SHOPIFY MUTATION DELETE CART ITEMS';

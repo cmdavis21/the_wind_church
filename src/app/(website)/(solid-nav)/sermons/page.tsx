@@ -3,8 +3,9 @@ import VideoCard from '@/components/cards/video-card/VideoCard';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/constants';
+
 import { PageRoutes } from '@/data/page-routes';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/services/env.client';
 import { getPastLiveStreams, getPlaylistVideos } from '@/data/services/youtube/playlists';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';

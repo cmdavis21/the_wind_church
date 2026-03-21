@@ -1,8 +1,9 @@
 import {
   GET_STOREFRONT_PRODUCTS_KEY,
   GET_STOREFRONT_PRODUCT_BY_HANDLE_KEY,
-} from '@/data/constants';
-import { Product, ProductPreview } from '@/data/types';
+  Product,
+  ProductPreview,
+} from '@/data/types';
 import { useQuery } from '@tanstack/react-query';
 import { CropRegion, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';

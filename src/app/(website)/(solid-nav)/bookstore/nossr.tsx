@@ -9,7 +9,7 @@ import PageHeaderWithBackground from '@/components/heroes/page-header-with-backg
 import Filter from '@/components/icons/filter';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
-import { AWS_ASSET_BASE_URL } from '@/data/constants';
+import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
 import { useGetStorefrontCollections } from '@/data/services/shopify/queries/collections';
 import { useState } from 'react';
 

@@ -4,9 +4,9 @@ import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
 import { getGalleryImages } from '@/data/services/aws/s3/gallery';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

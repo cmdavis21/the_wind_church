@@ -1,6 +1,6 @@
-import { NEXT_GEN_GUARDIAN_KEY, WEBSITE_BASE_URL } from '@/data/constants';
-import { FORM_TYPES, NextGenGuardianInquiry } from '@/data/types';
+import { FORM_TYPES, NEXT_GEN_GUARDIAN_KEY, NextGenGuardianInquiry } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { WEBSITE_BASE_URL } from '../../env.client';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
 

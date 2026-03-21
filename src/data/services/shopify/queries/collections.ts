@@ -1,5 +1,4 @@
-import { GET_STOREFRONT_COLLECTIONS_KEY } from '@/data/constants';
-import { Collection } from '@/data/types';
+import { Collection, GET_STOREFRONT_COLLECTIONS_KEY } from '@/data/types';
 import { useQuery } from '@tanstack/react-query';
 import { CropRegion, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';

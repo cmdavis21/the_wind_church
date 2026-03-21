@@ -1,5 +1,5 @@
-import { SANITY_EDITOR_TOKEN } from '@/data/constants';
 import { createClient } from '@sanity/client';
+import { SANITY_EDITOR_TOKEN } from '../env.client';
 
 export const SanityClient = createClient({
   projectId: 'pyayajuh',

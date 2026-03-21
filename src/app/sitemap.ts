@@ -1,5 +1,5 @@
-import { WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
+import { WEBSITE_BASE_URL } from '@/data/services/env.client';
 import { SanityClient } from '@/data/services/sanity/client';
 import { getStorefrontProductHandles } from '@/data/services/shopify/queries/products';
 import { MetadataRoute } from 'next';

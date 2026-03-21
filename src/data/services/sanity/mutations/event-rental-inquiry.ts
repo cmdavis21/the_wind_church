@@ -1,6 +1,6 @@
-import { EVENT_RENTAL_KEY, WEBSITE_BASE_URL } from '@/data/constants';
-import { EventRentalInquiry, FORM_TYPES } from '@/data/types';
+import { EVENT_RENTAL_KEY, EventRentalInquiry, FORM_TYPES } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { WEBSITE_BASE_URL } from '../../env.client';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
 

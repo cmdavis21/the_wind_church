@@ -4,8 +4,8 @@ import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import FullscreenMediaWithTextFadeInOutCarousel from '@/components/carousels/fullscreen-media-with-text-fade-in-out-carousel/FullscreenMediaWithTextFadeInOutCarousel';
 import FullscreenMediaWithTextFadeInOutCarouselSkeleton from '@/components/carousels/fullscreen-media-with-text-fade-in-out-carousel/FullscreenMediaWithTextFadeInOutCarousel.skeleton';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
-import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
+import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
 import { useGetAllDeepDives } from '@/data/services/sanity/queries/deep-dives';
 import { combineNames } from '@/data/utils';
 

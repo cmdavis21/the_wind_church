@@ -2,8 +2,9 @@ import CenterModeMediaWithTextCarousel from '@/components/carousels/center-mode-
 import EventRentalForm from '@/components/forms/event-rental-form/EventRentalForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/constants';
 import { PageRoutes } from '@/data/page-routes';
+import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

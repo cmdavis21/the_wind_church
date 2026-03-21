@@ -1,5 +1,4 @@
-import { GET_ADMIN_CUSTOMER_KEY } from '@/data/constants';
-import { Address, Customer } from '@/data/types';
+import { Address, Customer, GET_ADMIN_CUSTOMER_KEY } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ShopifyAdminQuery } from '../zeus-chain';
 

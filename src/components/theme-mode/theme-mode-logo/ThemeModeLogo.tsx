@@ -3,8 +3,8 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React from 'react';
 
-import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import { useTheme } from '@/data/providers/theme-mode-provider';
+import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
 
 interface ThemeModeLogoProps {
   changeColor?: boolean;

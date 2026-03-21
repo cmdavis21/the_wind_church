@@ -1,5 +1,4 @@
-import { GET_ALL_LEADERS } from '@/data/constants';
-import { Leader } from '@/data/types';
+import { GET_ALL_LEADERS, Leader } from '@/data/types';
 import { useQuery } from '@tanstack/react-query';
 import { SanityQuery } from '../zeus-chain';
 

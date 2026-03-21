@@ -1,5 +1,4 @@
-import { GET_ALL_DEEP_DIVES } from '@/data/constants';
-import { DeepDive } from '@/data/types';
+import { DeepDive, GET_ALL_DEEP_DIVES } from '@/data/types';
 import { useQuery } from '@tanstack/react-query';
 import { portableTextToString } from '../utils';
 import { SanityQuery } from '../zeus-chain';

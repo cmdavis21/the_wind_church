@@ -1,8 +1,8 @@
 import { Document, Image, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 import React from 'react';
 
-import { AWS_ASSET_BASE_URL } from '@/data/constants';
 import { formatDateMMMddyyyy } from '@/data/format-date';
+import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
 import { GiftAssessmentDefinition } from '@/data/types';
 
 const styles = StyleSheet.create({

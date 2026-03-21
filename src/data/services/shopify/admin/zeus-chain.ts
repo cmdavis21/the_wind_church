@@ -1,12 +1,10 @@
+import { SHOPIFY_ADMIN_ACCESS_TOKEN, SHOPIFY_ADMIN_API_ENDPOINT } from '../../env.client';
 import { Chain } from './zeus';
 
-const endpoint = process.env.SHOPIFY_ADMIN_API_ENDPOINT ?? '';
-const editorToken = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
-
-const chain = Chain(endpoint, {
+const chain = Chain(SHOPIFY_ADMIN_API_ENDPOINT, {
   headers: {
     'Content-Type': 'application/json',
-    'X-Shopify-Access-Token': `${editorToken}`,
+    'X-Shopify-Access-Token': `${SHOPIFY_ADMIN_ACCESS_TOKEN}`,
   },
 });
 

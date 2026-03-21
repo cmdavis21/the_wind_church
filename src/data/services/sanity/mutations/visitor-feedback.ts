@@ -1,6 +1,6 @@
-import { VISITOR_FEEDBACK_KEY, WEBSITE_BASE_URL } from '@/data/constants';
-import { FORM_TYPES, VisitorFeedback } from '@/data/types';
+import { FORM_TYPES, VISITOR_FEEDBACK_KEY, VisitorFeedback } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { WEBSITE_BASE_URL } from '../../env.client';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
 

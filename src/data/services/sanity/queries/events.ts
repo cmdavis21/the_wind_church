@@ -1,4 +1,4 @@
-import { GET_ALL_EVENTS } from '@/data/constants';
+import { GET_ALL_EVENTS } from '@/data/types';
 import { useQuery } from '@tanstack/react-query';
 import { Event } from '../../../types';
 import { SanityQuery } from '../zeus-chain';

@@ -1,4 +1,4 @@
-import { LEADER_CATEGORIES } from '@/data/constants';
+import { SanityLeaderCategories } from '@/data/types';
 import { defineField } from 'sanity';
 
 export const LeaderSchema = {
@@ -26,7 +26,7 @@ export const LeaderSchema = {
       description:
         'Select a category this leader belongs to (if they fit more than one; select their primary role).',
       options: {
-        list: LEADER_CATEGORIES,
+        list: SanityLeaderCategories,
       },
       validation: (rule) => rule.required().error('You must select a category.'),
     }),

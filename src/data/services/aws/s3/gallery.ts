@@ -1,6 +1,5 @@
 import { ListObjectsCommand } from '@aws-sdk/client-s3';
-
-import { AWS_BUCKET_NAME, AWS_REGION } from '@/data/constants';
+import { AWS_BUCKET_NAME, AWS_REGION } from '../../env.client';
 import { s3Config } from './config';
 
 export const getGalleryImages = async (category?: string) => {

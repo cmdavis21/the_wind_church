@@ -1,12 +1,11 @@
-import { youTubeClient } from './config';
-
+import { FallbackSermonSnippet, YouTubeSermonSnippet, YouTubeSnippet } from '@/data/types';
+import { cache } from 'react';
 import {
   AWS_SERMON_FALLBACK_POSTER,
   AWS_SERMON_FALLBACK_VIDEO,
   YOUTUBE_CHANNEL_ID,
-} from '@/data/constants';
-import { FallbackSermonSnippet, YouTubeSermonSnippet, YouTubeSnippet } from '@/data/types';
-import { cache } from 'react';
+} from '../env.client';
+import { youTubeClient } from './config';
 
 export const getUploadPlaylistId = async () => {
   const res = await youTubeClient.channels.list({
