@@ -1,4 +1,4 @@
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 
 import Accordion from '@/components/accordion/Accordion';
 import AlertMessage from '@/components/alerts/alert-message/AlertMessage';
@@ -31,8 +31,8 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'DeepDive' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.deepDive}/${slug}`;
-  const image = `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`;
+  const url = `${WEBSITE_URL}${PageRoutes.deepDive}/${slug}`;
+  const image = `${AWS_ASSET_URL}/images/wind_church_building.webp`;
   return {
     title,
     description,
@@ -61,14 +61,10 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
       <MediaBackgroundAndContent
         centerContent
         background={{
-          src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+          src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
           alt: 'Image of The Wind Church building',
         }}
-        content={
-          <div className="py-xxl">
-            <ErrorAlert />
-          </div>
-        }
+        content={<ErrorAlert />}
       />
     );
   }
@@ -76,12 +72,12 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
   return (
     <div>
       <PageHero size="short" title={deepDive.name} media={{ src: deepDive.image.src }} />
-      <div className="flex flex-col gap-3xl sm:gap-4xl max-width-center pt-3xl sm:pt-4xl px-padding">
+      <div className="flex flex-col gap-3xl sm:gap-4xlr pt-3xl sm:pt-4xl">
         {/* DESCRIPTION */}
-        <h4>{deepDive.description}</h4>
+        <h4 className="px-padding max-width-center">{deepDive.description}</h4>
 
         {/* INSTRUCTORS */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <SectionHeader title="Meet the Instructors" subtitle="Select Leaders to learn more" />
           {/* DESKTOP */}
           <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-items-center">
@@ -106,7 +102,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* MISC DETAILS */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <SectionHeader title="The Details" subtitle="It’s the finer things..." />
 
           {/* ACCEPTING NEW STUDENTS */}
@@ -184,9 +180,8 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* WHAT IS A DEEP DIVE */}
         <MediaBackgroundAndContent
-          fullWidth={false}
           background={{
-            src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
+            src: `${AWS_ASSET_URL}/placeholder-media/church_prayer.jpg`,
           }}
           content={
             <div className="flex flex-col gap-md">
@@ -202,7 +197,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         />
 
         {/* FAQs */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <SectionHeader
             subtitle="Any more questions?"
             title="Find answers to your questions here"
@@ -239,7 +234,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* CTAs */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <CenterTextSection
             highlight={[[4, 5]]}
             title="Take your next steps with us!"
@@ -248,7 +243,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
             <ImageWithTitleDescriptionCard
               alt="People gathering for church service"
-              src={`${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`}
+              src={`${AWS_ASSET_URL}/placeholder-media/contro.webp`}
               title="Visit on Sunday or Wednesday"
               description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
               link={{
@@ -258,7 +253,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Group in Bible study session"
-              src={`${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`}
+              src={`${AWS_ASSET_URL}/placeholder-media/lxg_meet.webp`}
               title="Try our Deep Dive Sessions"
               description="Explore the Word in a deeper way. Our Deep Dive Sessions are small-group Bible studies where you can ask questions and grow in your faith."
               link={{
@@ -268,7 +263,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Children in a classroom during youth service"
-              src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_2.jpg`}
+              src={`${AWS_ASSET_URL}/placeholder-media/kids_classroom_2.jpg`}
               title="View our Youth Service"
               description="We offer engaging and age-appropriate services for kids and teens every week. It's a safe space for youth to learn, grow, and build friendships."
               link={{

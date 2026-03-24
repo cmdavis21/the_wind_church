@@ -1,5 +1,5 @@
 import { PageRoutes } from '@/data/page-routes';
-import { WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { WEBSITE_URL } from '@/data/services/env.server';
 import { SanityClient } from '@/data/services/sanity/client';
 import { getStorefrontProductHandles } from '@/data/services/shopify/queries/products';
 import { MetadataRoute } from 'next';
@@ -39,19 +39,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Convert dynamic content into sitemap entries
   const dynamicEntries = [
     ...deepDives.map((item: any) => ({
-      url: `${WEBSITE_BASE_URL}${PageRoutes.deepDive}/${item.slug}`,
+      url: `${WEBSITE_URL}${PageRoutes.deepDive}/${item.slug}`,
       lastModified: item._updatedAt,
       changeFrequency: 'monthly',
       priority: 0.8,
     })),
     ...ministries.map((item: any) => ({
-      url: `${WEBSITE_BASE_URL}${PageRoutes.ministries}/${item.slug}`,
+      url: `${WEBSITE_URL}${PageRoutes.ministries}/${item.slug}`,
       lastModified: item._updatedAt,
       changeFrequency: 'monthly',
       priority: 0.8,
     })),
     ...products.map((item: any) => ({
-      url: `${WEBSITE_BASE_URL}${PageRoutes.bookstore}/${item.handle}`,
+      url: `${WEBSITE_URL}${PageRoutes.bookstore}/${item.handle}`,
       lastModified: item.updatedAt,
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -62,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries = Object.values(PageRoutes)
     .filter((route) => !EXCLUDED.includes(route))
     .map((route) => ({
-      url: `${WEBSITE_BASE_URL}${route}`,
+      url: `${WEBSITE_URL}${route}`,
       lastModified: new Date(),
       changeFrequency: FREQUENCY_OVERRIDES[route] ?? 'yearly',
       priority: PRIORITY_OVERRIDES[route] ?? 0.5,

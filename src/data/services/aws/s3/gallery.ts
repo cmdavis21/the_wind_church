@@ -1,61 +1,111 @@
+import { GalleryCollection } from '@/data/types';
 import { ListObjectsCommand } from '@aws-sdk/client-s3';
-import { AWS_BUCKET_NAME, AWS_REGION } from '../../env.client';
-import { s3Config } from './config';
 
-export const getGalleryImages = async (category?: string) => {
+import { AWS_S3_BUCKET, AWS_S3_REGION, WEBSITE_URL } from '../../env.server';
+import { s3Client } from './client';
+
+export async function getGalleryImages(
+  category?: string,
+  subfolder?: string
+): Promise<GalleryCollection | GalleryCollection[]> {
   try {
-    const client = s3Config();
+    const prefix =
+      category && subfolder
+        ? `gallery/${category}/${subfolder}/`
+        : category
+          ? `gallery/${category}/`
+          : 'gallery/';
 
-    // List objects only in the gallery folder
     const command = new ListObjectsCommand({
-      Bucket: AWS_BUCKET_NAME,
-      Prefix: 'gallery/', // Filters objects within the "gallery" folder
+      Bucket: AWS_S3_BUCKET,
+      Prefix: prefix,
     });
 
-    const { Contents } = await client.send(command);
+    const { Contents } = await s3Client.send(command);
 
-    if (Contents) {
-      // Initialize a dictionary to store categories and their images
-      const galleryCategories: { [category: string]: string[] } = {};
-
-      Contents.filter((item) => item.Size && item.Size > 0) // Filter out empty folders
-        .forEach((item) => {
-          const imageUrl = `https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com/${item.Key}`;
-
-          // Extract the category from the second-to-last part of the path
-          const pathParts = item.Key?.split('/') ?? [];
-          const category =
-            pathParts.length > 2
-              ? pathParts[pathParts.length - 2].replace(/_/g, ' ')
-              : 'Uncategorized';
-
-          // Add the image URL under the appropriate category
-          if (!galleryCategories[category]) {
-            galleryCategories[category] = [];
-          }
-          galleryCategories[category].push(imageUrl);
-        });
-
-      // Convert the dictionary into an array of objects with title and urls
-      const categorizedImages = Object.entries(galleryCategories).map(([title, urls]) => ({
-        title,
-        urls,
-      }));
-
-      let selectGallery: string[] = [];
-
-      if (category) {
-        selectGallery =
-          categorizedImages.find((g) => g.title.toLowerCase().includes(category.toLowerCase()))
-            ?.urls ?? [];
-      }
-
-      return { gallery: categorizedImages, selectGallery };
+    if (!Contents || Contents.length === 0) {
+      return category && subfolder ? { title: subfolder, urls: [] } : category ? [] : [];
     }
 
-    return {};
-  } catch (e: unknown) {
-    console.error('Error fetching gallery contents', e);
+    const categories: Record<string, string[]> = {};
+
+    for (const item of Contents) {
+      if (!item.Key || !item.Size) continue;
+
+      const imageUrl = `https://${AWS_S3_BUCKET}.s3.${AWS_S3_REGION}.amazonaws.com/${item.Key}`;
+      const parts = item.Key.split('/');
+
+      let title: string;
+
+      if (category && subfolder) {
+        // Exact subfolder mode
+        title = subfolder.replace(/_/g, ' ');
+      } else if (category && !subfolder) {
+        // Category-only mode → group by subfolder
+        title =
+          parts.length > 3
+            ? parts[2].replace(/_/g, ' ') // gallery/category/<subfolder>/file
+            : 'Uncategorized';
+      } else {
+        // No category → group by category
+        title =
+          parts.length > 2
+            ? parts[1].replace(/_/g, ' ') // gallery/<category>/<subfolder>/file
+            : 'Uncategorized';
+      }
+
+      if (!categories[title]) categories[title] = [];
+      categories[title].push(imageUrl);
+    }
+
+    const result = Object.entries(categories).map(([title, urls]) => ({
+      title,
+      urls,
+    }));
+
+    return category && subfolder ? result[0] : result;
+  } catch (err) {
+    console.error('Error fetching gallery contents', err);
     throw new Error('AWS FETCH GALLERY CONTENTS ERROR');
   }
+}
+
+export const getGallery = async (): Promise<GalleryCollection[]> => {
+  const res = await fetch(`http://localhost:3000/api/gallery`, {
+    method: 'GET',
+    cache: 'no-store',
+  });
+
+  const { gallery } = await res.json();
+  return gallery;
+};
+
+export const getMinistryGallery = async (subfolder?: string): Promise<GalleryCollection> => {
+  const params = new URLSearchParams();
+
+  params.append('category', 'ministries');
+  if (subfolder) params.append('subfolder', subfolder);
+
+  const res = await fetch(`${WEBSITE_URL}/api/gallery?${params.toString()}`, {
+    method: 'GET',
+    cache: 'no-store',
+  });
+
+  const { gallery } = await res.json();
+  return gallery;
+};
+
+export const getNextGenGallery = async (): Promise<GalleryCollection> => {
+  const params = new URLSearchParams();
+
+  params.append('category', 'ministries');
+  params.append('subfolder', 'children_ministry');
+
+  const res = await fetch(`${WEBSITE_URL}/api/gallery?${params.toString()}`, {
+    method: 'GET',
+    cache: 'no-store',
+  });
+
+  const { gallery } = await res.json();
+  return gallery;
 };

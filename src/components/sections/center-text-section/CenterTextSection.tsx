@@ -20,7 +20,7 @@ const CenterTextSection: React.FC<CenterTextSectionProps> = ({ title, highlight,
         }}
       />
     ) : (
-      <h1>{title}</h1>
+      <h2>{title}</h2>
     )}
     {description && (
       <h4 className="text-light-charcoal dark:text-dark-primaryText">{description}</h4>

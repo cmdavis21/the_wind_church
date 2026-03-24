@@ -61,7 +61,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
           {/* BLUR */}
           <div
             style={{ height }}
-            className="absolute inset-0 backdrop-blur-[1px] rounded-lg bg-black/10"
+            className="absolute inset-0 backdrop-blur-[2px] rounded-lg bg-black/20"
           />
 
           {/* CONTENT */}
@@ -98,7 +98,6 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
               • {location}
             </h4>
             <hr />
-
             {how_to_signup && (
               <div>
                 <h5 className="font-semibold">How to signup</h5>

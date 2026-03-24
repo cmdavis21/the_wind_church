@@ -28,7 +28,7 @@ import Temperature from '@/components/icons/temperature';
 import ThumbsDown from '@/components/icons/thumbs-down';
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL } from '@/data/services/env.server';
 import { TabItem, Tabs } from 'flowbite-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -177,7 +177,7 @@ const FoursquareClient = () => {
       <PageHeaderWithBackground
         title="Foursquare Gospel Church"
         media={{
-          src: `${AWS_ASSET_BASE_URL}/images/foursquare/group-people.jpg`,
+          src: `${AWS_ASSET_URL}/images/foursquare/group-people.jpg`,
           alt: '',
           poster: '',
         }}
@@ -360,7 +360,7 @@ const FoursquareClient = () => {
               <div className="relative w-full h-full aspect-square">
                 <Image
                   fill
-                  src={`${AWS_ASSET_BASE_URL}/images/foursquare/logo.png`}
+                  src={`${AWS_ASSET_URL}/images/foursquare/logo.png`}
                   alt="Foursquare logo"
                 />
               </div>
@@ -372,7 +372,7 @@ const FoursquareClient = () => {
               <div className="relative w-full h-full aspect-square">
                 <Image
                   fill
-                  src={`${AWS_ASSET_BASE_URL}/images/foursquare/emblem.png`}
+                  src={`${AWS_ASSET_URL}/images/foursquare/emblem.png`}
                   alt="Foursquare emblem"
                 />
               </div>
@@ -447,7 +447,7 @@ const FoursquareClient = () => {
               <div className="relative w-full aspect-square">
                 <Image
                   fill
-                  src={`${AWS_ASSET_BASE_URL}/images/foursquare/flag.jpeg`}
+                  src={`${AWS_ASSET_URL}/images/foursquare/flag.jpeg`}
                   alt="Foursquare flag"
                   className="object-contain aspect-video mx-auto"
                 />

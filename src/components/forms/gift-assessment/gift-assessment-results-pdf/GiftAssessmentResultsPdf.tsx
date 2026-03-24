@@ -2,7 +2,7 @@ import { Document, Image, Page, StyleSheet, Text, View } from '@react-pdf/render
 import React from 'react';
 
 import { formatDateMMMddyyyy } from '@/data/format-date';
-import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL } from '@/data/services/env.server';
 import { GiftAssessmentDefinition } from '@/data/types';
 
 const styles = StyleSheet.create({
@@ -92,7 +92,7 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
   <Document>
     <Page size="A4" style={styles.page}>
       {/* LOGO + CONTACT */}
-      <Image src={`${AWS_ASSET_BASE_URL}/logos/logo.png`} style={styles.logo} />
+      <Image src={`${AWS_ASSET_URL}/logos/logo.png`} style={styles.logo} />
       <View style={styles.contactBlock}>
         <Text style={styles.text}>6476 Streeter Avenue, Riverside, CA 92504</Text>
         <Text style={styles.text}>+1 (951) 359-0203 • thewindchurch@outlook.com</Text>

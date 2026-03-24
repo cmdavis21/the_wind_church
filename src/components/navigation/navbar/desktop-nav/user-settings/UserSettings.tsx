@@ -11,6 +11,11 @@ interface UserSettingsProps {
 const UserSettings: React.FC<UserSettingsProps> = ({ changeColor }) => {
   return (
     <div className="relative inline-block group">
+      {/* BACKDROP OPACITY */}
+      {changeColor && (
+        <div className="fixed top-[97.5px] left-0 w-screen h-screen bg-black/25 dark:bg-black/40 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100" />
+      )}
+
       <button className="flex flex-col items-center justify-center gap-[2px] hover:cursor-pointer">
         <VerticalEllipsis
           className={cn(changeColor ? 'fill-black dark:fill-white' : 'fill-white', 'size-lg')}
@@ -28,7 +33,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ changeColor }) => {
       </button>
 
       {/* SUBMENU */}
-      <div className="h-0 pointer-events-none opacity-0 overflow-hidden group-hover:h-fit group-hover:pointer-events-auto group-hover:opacity-100 z-[9000] absolute pt-[15px] pb-2 w-fit left-1/2 -translate-x-1/2 transition-[opacity] duration-300">
+      <div className="h-0 pointer-events-none opacity-0 overflow-hidden group-hover:h-fit group-hover:pointer-events-auto group-hover:opacity-100 z-[9000] absolute pt-[25px] pb-2 w-fit left-1/2 -translate-x-1/2 transition-[opacity] duration-300">
         <div className="flex flex-col gap-xs">
           <div
             className={`relative group/sub border border-light-neutral dark:border-dark-gray shadow rounded-full py-xs px-md ${changeColor ? 'bg-[rgba(255,255,255,0.98)] dark:bg-dark-bg' : 'bg-light-bg dark:bg-dark-bg'}`}

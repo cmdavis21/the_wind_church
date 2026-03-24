@@ -7,9 +7,10 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL, YOUTUBE_CHANNEL } from '@/data/services/env.client';
-
+import { AWS_ASSET_URL, WEBSITE_URL, YOUTUBE } from '@/data/services/env.server';
+import { getAllTestimonies } from '@/data/services/sanity/queries/testimonials';
 import { getLatestSermon } from '@/data/services/youtube/playlists';
+
 import { styleSelectedWords } from '@/data/utils';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -19,8 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'Home' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}/`;
-  const image = `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`;
+  const url = `${WEBSITE_URL}/`;
+  const image = `${AWS_ASSET_URL}/images/wind_church_building.webp`;
   return {
     title,
     description,
@@ -41,12 +42,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const Home = async () => {
   const result = await getLatestSermon();
+  const testimonials = await getAllTestimonies();
 
   const exploreOptions = [
     {
       image: {
         alt: 'People gathering for church service',
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/pastor_preaching.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/pastor_preaching.jpg`,
       },
       title: 'Who we are',
       description: 'Learn our values, facts about our pastor, and more!',
@@ -55,7 +57,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`,
+        src: `${AWS_ASSET_URL}/placeholder-media/lxg_meet.webp`,
       },
       title: 'Try our Deep Dives',
       description: 'Explore the Word in a deeper way with small-group Bible studies.',
@@ -64,7 +66,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/outreach.png`,
+        src: `${AWS_ASSET_URL}/placeholder-media/outreach.png`,
       },
       title: 'Looking to minister?',
       description: 'We have ministries for every age and stage.',
@@ -73,7 +75,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Children in a classroom during youth service',
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/family.jpeg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/family.jpeg`,
       },
       title: 'Know your gifts!',
       description: 'Discover your spiritual gifts with our easy assessment!',
@@ -82,70 +84,11 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+        src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
       },
       title: 'Have an event?',
       description: 'Interested in renting our church? Get details and request your date today.',
       link: PageRoutes.churchRental,
-    },
-  ];
-
-  const testimonials = [
-    {
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/profile_3_poster.png`,
-      name: 'Maria Thompson',
-      position: 'Member',
-      statement:
-        'The Wind Church has completely transformed the way I experience community. Every service feels alive, welcoming, and full of purpose.',
-    },
-    {
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/jason-song.png`,
-      name: 'Derrick Lawson',
-      position: 'Elder',
-      statement:
-        'From the moment I walked in, I felt seen and supported. This church truly embodies love in action.',
-    },
-    {
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/jocelyn-ward.png`,
-      name: 'Elena Rodriguez',
-      position: 'Youth Ministry Teacher',
-      statement:
-        'The teaching is powerful, practical, and rooted in Scripture. My faith has grown so much since joining The Wind.',
-    },
-    {
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/tim-renning.png`,
-      name: 'James Whitaker',
-      position: 'Member',
-      statement:
-        'I’ve never been part of a church that feels this genuine. The people, the worship, the atmosphere—it all feels like home.',
-    },
-    {
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/sandra-brown.png`,
-      name: 'Tanya Brooks',
-      position: 'Administrator',
-      statement:
-        'The Wind Church has been a blessing to my family. We’ve found hope, healing, and a place where we can grow together.',
-    },
-    {
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/george-dim.png`,
-      name: 'Caleb Johnson',
-      position: 'Worship Team',
-      statement:
-        'Worship at The Wind has reignited my passion for Jesus. Every service feels like a fresh encounter with God’s presence.',
-    },
-    {
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/janice-lawrence.png`,
-      name: 'Sofia Martinez',
-      position: 'Volunteer',
-      statement:
-        'Serving here has changed my life. The love, unity, and purpose in this church make it a place where you truly belong.',
-    },
-    {
-      src: `${AWS_ASSET_BASE_URL}/placeholder-media/scott-mann.png`,
-      name: 'Michael Lee',
-      position: 'Member',
-      statement:
-        'The Wind Church helped me grow spiritually in ways I never expected. The teaching is clear, powerful, and rooted in Scripture.',
     },
   ];
 
@@ -202,8 +145,8 @@ const Home = async () => {
         highlightTitle={[[0, 2]]}
         subtitle="Jesus has a plan for your life. Join us and discover a church family ready to walk with you."
         media={{
-          src: `${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4`,
-          poster: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+          src: `${AWS_ASSET_URL}/placeholder-media/footer_video.mp4`,
+          poster: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
         }}
       />
 
@@ -234,7 +177,7 @@ const Home = async () => {
             </Link>{' '}
             or{' '}
             <Link
-              href={YOUTUBE_CHANNEL}
+              href={YOUTUBE}
               target="_blank"
               className="text-light-navy dark:text-brand-primary underline hover:scale-105"
             >
@@ -270,14 +213,12 @@ const Home = async () => {
       </div>
 
       {/* TESTIMONIALS */}
-      <div className="flex flex-col gap-xl md:gap-xxl mt-3xl sm:mt-4xl py-4xl yellow-gradient">
-        <div className="px-padding">
-          <CenterTextSection
-            title="Testimonials From The Wind Family"
-            description="A glimpse into the experiences and journeys of those who call The Wind Church home."
-          />
-        </div>
-        <TestimonialCarousel testimonials={testimonials} />
+      <div className="flex flex-col gap-xl md:gap-xxl mt-3xl sm:mt-4xl px-padding max-width-center">
+        <CenterTextSection
+          title="Testimonials From The Wind Family"
+          description="A glimpse into the experiences and journeys of those who call The Wind Church home."
+        />
+        <TestimonialCarousel slides={testimonials} />
       </div>
     </div>
   );

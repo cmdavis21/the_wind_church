@@ -9,7 +9,7 @@ import PageHeaderWithBackground from '@/components/heroes/page-header-with-backg
 import Filter from '@/components/icons/filter';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
-import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL } from '@/data/services/env.server';
 import { useGetStorefrontCollections } from '@/data/services/shopify/queries/collections';
 import { useState } from 'react';
 
@@ -23,7 +23,7 @@ const BookstoreClient = () => {
     <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       <PageHeaderWithBackground
         media={{
-          src: `${AWS_ASSET_BASE_URL}/placeholder-media/open_sign.webp`,
+          src: `${AWS_ASSET_URL}/placeholder-media/open_sign.webp`,
           alt: 'Decorative Background Image',
           poster: '',
         }}

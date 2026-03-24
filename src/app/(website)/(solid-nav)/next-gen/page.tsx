@@ -1,6 +1,7 @@
 import Accordion from '@/components/accordion/Accordion';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import EventCard from '@/components/cards/event-card/EventCard';
+import ImageCard from '@/components/cards/image-card/ImageCard';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
@@ -12,7 +13,8 @@ import MediaBackgroundAndContent from '@/components/sections/media-background-an
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { getNextGenGallery } from '@/data/services/aws/s3/gallery';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { getMinistryEvents } from '@/data/services/sanity/queries/events';
 import { getNextGenPage } from '@/data/services/sanity/queries/next-gen-page';
 import { Event } from '@/data/types';
@@ -26,8 +28,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'NextGen' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.nextGen}`;
-  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/kids_group.jpg`;
+  const url = `${WEBSITE_URL}${PageRoutes.nextGen}`;
+  const image = `${AWS_ASSET_URL}/placeholder-media/kids_group.jpg`;
   return {
     title,
     description,
@@ -48,22 +50,26 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const NextGen = async () => {
-  const nextGenPageInfo = await getNextGenPage();
+  const pageInfo = await getNextGenPage();
+  const gallery = await getNextGenGallery();
   const events = await getMinistryEvents('Next Gen');
+
   return (
-    <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
-      <PageHeaderWithBackground
-        media={{
-          src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_group.jpg`,
-          alt: 'decorative background image',
-          poster: '',
-        }}
-        title="Next Gen"
-        subtitle="Sunday Services provided for infants to High School children"
-      />
+    <div className="flex flex-col gap-3xl sm:gap-4xl">
+      <div className="px-padding max-width-center">
+        <PageHeaderWithBackground
+          media={{
+            src: `${AWS_ASSET_URL}/placeholder-media/kids_group.jpg`,
+            alt: 'decorative background image',
+            poster: '',
+          }}
+          title="Next Gen"
+          subtitle="Sunday Services provided for infants to High School children"
+        />
+      </div>
 
       {/* CORE PRINCIPLES */}
-      <div className="flex flex-col gap-xl md:gap-xxl">
+      <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
         <CenterTextSection
           highlight={[[0, 0]]}
           title="Core Principles"
@@ -72,28 +78,28 @@ const NextGen = async () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
           <ImageWithTitleDescriptionCard
             alt=""
-            src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_2.jpg`}
+            src={`${AWS_ASSET_URL}/placeholder-media/kids_classroom_2.jpg`}
             title="Christ-Centered Studies"
             description="We use interactive teaching, worship, and hands‑on learning to help students build a strong, lasting foundation in Christ."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src={`${AWS_ASSET_BASE_URL}/placeholder-media/kid_outside.jpg`}
+            src={`${AWS_ASSET_URL}/placeholder-media/kid_outside.jpg`}
             title="Creative Fun & Exploration"
             description="From crafts and games to outdoor play and team activities, we create fun, engaging spaces that spark curiosity and build friendships."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_1.jpg`}
+            src={`${AWS_ASSET_URL}/placeholder-media/kids_classroom_1.jpg`}
             title="Respect and Love"
             description="We model and teach kindness, empathy, and Christ‑like respect so students learn to care for others in everyday life."
           />
         </div>
 
-        {nextGenPageInfo && nextGenPageInfo.cirriculum_file && (
+        {pageInfo && pageInfo.cirriculum_file && (
           <a
             className="mx-auto"
-            href={nextGenPageInfo.cirriculum_file}
+            href={pageInfo.cirriculum_file}
             download="the_wind_church_youth_service_cirriculum.pdf"
           >
             <Button pill color="primary" size="lg">
@@ -103,14 +109,16 @@ const NextGen = async () => {
         )}
       </div>
 
-      <PassageQuote
-        passage="Let no one despise your youth, but set an example for the believers in speech, in conduct, in love, in faith, and in purity"
-        verse="1 Timothy 4:12"
-      />
+      <div className="px-padding max-width-center">
+        <PassageQuote
+          passage="Let no one despise your youth, but set an example for the believers in speech, in conduct, in love, in faith, and in purity"
+          verse="1 Timothy 4:12"
+        />
+      </div>
 
       {/* EDUCATORS */}
-      {nextGenPageInfo && nextGenPageInfo.educators && (
-        <div className="flex flex-col gap-xl md:gap-xxl">
+      {pageInfo && pageInfo.educators && (
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <SectionHeader
             title="Meet our Educators & Caretakers"
             subtitle="Select Leaders to learn more"
@@ -118,7 +126,7 @@ const NextGen = async () => {
           <div>
             {/* Desktop */}
             <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
-              {nextGenPageInfo.educators.map((educator) => (
+              {pageInfo.educators.map((educator) => (
                 <LeaderCard
                   key={`youth-service-educator-${educator.first_name}-${educator.last_name}`}
                   {...educator}
@@ -129,7 +137,7 @@ const NextGen = async () => {
             {/* Mobile */}
             <SimpleCarousel
               className="sm:hidden"
-              slides={nextGenPageInfo.educators.map((educator) => (
+              slides={pageInfo.educators.map((educator) => (
                 <LeaderCard
                   key={`mobile-youth-service-educator-${educator.first_name}-${educator.last_name}`}
                   {...educator}
@@ -141,7 +149,7 @@ const NextGen = async () => {
       )}
 
       {/* EVENTS */}
-      <div className="flex flex-col gap-xl md:gap-xxl">
+      <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
         <CenterTextSection
           title="Next Gen Events"
           description="Look out for fun, adventurous, and learning-focused events for the Wind youth!"
@@ -168,11 +176,41 @@ const NextGen = async () => {
         </div>
       </div>
 
+      {/* GALLERY */}
+      {gallery && gallery.urls.length > 0 && (
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
+          <SectionHeader title="Next Gen Gallery" subtitle="Select a photo to view the memories" />
+
+          {/* Desktop */}
+          <div className="hidden sm:grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
+            {gallery.urls.map((src) => (
+              <ImageCard
+                key={`wind-gallery-${src}`}
+                src={src}
+                alt="The Wind Church Gallery Image"
+              />
+            ))}
+          </div>
+
+          {/* Mobile */}
+          <SimpleCarousel
+            showDots={false}
+            className="sm:hidden"
+            slides={gallery.urls.map((src) => (
+              <ImageCard
+                key={`wind-gallery-mobile-${src}`}
+                src={src}
+                alt="The Wind Church Gallery Image"
+              />
+            ))}
+          />
+        </div>
+      )}
+
       {/* NURSERY CTA */}
       <MediaBackgroundAndContent
-        fullWidth={false}
         background={{
-          src: `${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_1.jpg`,
+          src: `${AWS_ASSET_URL}/placeholder-media/kids_classroom_1.jpg`,
         }}
         content={
           <div className="flex flex-col">
@@ -184,7 +222,7 @@ const NextGen = async () => {
       />
 
       {/* FAQs */}
-      <div className="flex flex-col gap-xl md:gap-xxl">
+      <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
         <SectionHeader
           title="Frequently Asked Questions"
           subtitle="Let us tell you more about The Wind Youth Services"
@@ -236,7 +274,7 @@ const NextGen = async () => {
       </div>
 
       {/* GUARDIAN INQUIRY */}
-      <div className="flex flex-col gap-xl md:gap-xxl">
+      <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
         <CenterTextSection
           title="Have more questions?"
           description="Submit an inquiry and a member of our team will contact you."

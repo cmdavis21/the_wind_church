@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { useTheme } from '@/data/providers/theme-mode-provider';
-import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL } from '@/data/services/env.server';
 
 interface ThemeModeLogoProps {
   changeColor?: boolean;
@@ -26,7 +26,7 @@ const ThemeModeLogo: React.FC<ThemeModeLogoProps> = ({ changeColor, noChangeColo
       }
     }
 
-    return `${AWS_ASSET_BASE_URL}${relativePath}`;
+    return `${AWS_ASSET_URL}${relativePath}`;
   };
 
   return (

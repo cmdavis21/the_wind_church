@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
+import NavbarButton from '@/components/buttons/navbar-button/NavbarButton';
 import ThemeModeLogo from '@/components/theme-mode/theme-mode-logo/ThemeModeLogo';
 import { PageRoutes } from '@/data/page-routes';
 import { useTheme } from '@/data/providers/theme-mode-provider';
 import { NavbarItem } from '@/data/types';
-
-import NavbarButton from '@/components/buttons/navbar-button/NavbarButton';
 import Link from 'next/link';
 import DesktopNavItemWithDropdown from './desktop-nav-item-with-dropdown/DesktopNavItemWithDropdown';
 import DesktopNavItem from './desktop-nav-item/DesktopNavItem';
@@ -20,6 +19,7 @@ interface DesktopNavProps {
 const DesktopNav: React.FC<DesktopNavProps> = ({ menuOptions, pathname, changeColor }) => {
   const { darkMode } = useTheme();
   const [openNav, setOpenNav] = useState<number | null>(null);
+
   return (
     <div
       className={`w-full hidden lg:block ${

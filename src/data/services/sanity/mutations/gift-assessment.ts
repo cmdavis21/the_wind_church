@@ -1,6 +1,6 @@
 import { FORM_TYPES, GIFT_ASSESSMENT_KEY, GiftAssessmentSubmission } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { WEBSITE_BASE_URL } from '../../env.client';
+import { WEBSITE_URL } from '../../env.server';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
 
@@ -40,7 +40,7 @@ export const useCreateGiftAssessment = () => {
           payload: {
             firstName: variables.first_name,
             lastName: `${variables.last_name.charAt(0)}.`,
-            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.GIFT_ASSESSMENT}`,
+            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.GIFT_ASSESSMENT}`,
           },
         }),
       });

@@ -3,7 +3,7 @@ import EventRentalForm from '@/components/forms/event-rental-form/EventRentalFor
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 
 import { getTranslations } from 'next-intl/server';
 
@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'ChurchRental' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.churchRental}`;
-  const image = `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`;
+  const url = `${WEBSITE_URL}${PageRoutes.churchRental}`;
+  const image = `${AWS_ASSET_URL}/images/wind_church_building.webp`;
   return {
     title,
     description,
@@ -38,7 +38,7 @@ const ChurchRental = () => (
     <PageHero
       size="short"
       title="Church Rental"
-      media={{ src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp` }}
+      media={{ src: `${AWS_ASSET_URL}/images/wind_church_building.webp` }}
     />
 
     <div className="max-width-center py-3xl sm:py-4xl px-padding">
@@ -53,7 +53,7 @@ const ChurchRental = () => (
       slides={[
         {
           media: {
-            src: `${AWS_ASSET_BASE_URL}/placeholder-media/fellowship_hall.jpeg`,
+            src: `${AWS_ASSET_URL}/placeholder-media/fellowship_hall.jpeg`,
             alt: 'decorative background image',
           },
           title: 'Fellowship Hall',
@@ -62,7 +62,7 @@ const ChurchRental = () => (
         },
         {
           media: {
-            src: `${AWS_ASSET_BASE_URL}/placeholder-media/kitchen.jpg`,
+            src: `${AWS_ASSET_URL}/placeholder-media/kitchen.jpg`,
             alt: 'decorative background image',
           },
           title: 'Kitchen',
@@ -71,7 +71,7 @@ const ChurchRental = () => (
         },
         {
           media: {
-            src: `${AWS_ASSET_BASE_URL}/placeholder-media/parking_lot.jpg`,
+            src: `${AWS_ASSET_URL}/placeholder-media/parking_lot.jpg`,
             alt: 'decorative background image',
           },
           title: 'Parking Lot',

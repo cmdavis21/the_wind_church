@@ -11,7 +11,7 @@ import MediaBackgroundAndContent, {
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { styleSelectedWords } from '@/data/utils';
 import { Button } from 'flowbite-react';
 import { getTranslations } from 'next-intl/server';
@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'Give' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.give}`;
-  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/praise_hands.jpg`;
+  const url = `${WEBSITE_URL}${PageRoutes.give}`;
+  const image = `${AWS_ASSET_URL}/placeholder-media/praise_hands.jpg`;
   return {
     title,
     description,
@@ -47,7 +47,7 @@ const Give = () => {
   const otherWaysToGiveArr = [
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/couple_credit_card.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/couple_credit_card.jpg`,
         alt: '',
       },
       title: 'Online Giving',
@@ -72,7 +72,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/offering.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/offering.jpg`,
         alt: '',
       },
       title: 'In‑Person Giving',
@@ -81,7 +81,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/mailbox.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/mailbox.jpg`,
         alt: '',
       },
       title: 'Mail‑In Giving',
@@ -95,7 +95,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/building.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/building.jpg`,
         alt: '',
       },
       title: 'Bank Bill Pay',
@@ -108,7 +108,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/garage.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/garage.jpg`,
         alt: '',
       },
       title: 'Non‑Cash Assets',
@@ -124,7 +124,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/support_hands.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/support_hands.jpg`,
         alt: '',
       },
       title: 'Serve & Volunteer',
@@ -140,7 +140,7 @@ const Give = () => {
         title="Giving"
         highlightTitle={[[0, 0]]}
         subtitle="Your contribution makes a difference."
-        media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/praise_hands.jpg` }}
+        media={{ src: `${AWS_ASSET_URL}/placeholder-media/praise_hands.jpg` }}
       />
 
       {/* WHY WE GIVE */}
@@ -296,45 +296,42 @@ const Give = () => {
       </div>
 
       {/* THANK YOU MESSAGE */}
-      <div className="px-padding">
-        <MediaBackgroundAndContent
-          centerContent
-          fullWidth={false}
-          color={ColorBackground.BLUE}
-          content={
-            <div className="flex flex-col gap-xl">
-              <h3 className="font-display text-brand-primary text-center">
-                Thank you for your support!
-              </h3>
-              <h4 className="text-center">
-                We are blessed to have supporters like you and we are honored
-                <br /> that you have chosen this Ministry as a place to sow your seed.
-              </h4>
-              <h4 className="text-center">
-                If you have any questions or concerns,
-                <br />
-                email{' '}
-                <Link
-                  href="mailto:thewindchurch@outlook.com"
-                  className="text-brand-primary hover:underline break-normal"
-                >
-                  thewindchurch@outlook.com
-                </Link>{' '}
-                <br />
-                or call{' '}
-                <Link href={'tel:9513590203'} className="text-brand-primary hover:underline">
-                  (951) 359-0203
-                </Link>
-                .
-              </h4>
-              <h3 className="text-center">
-                Your partners in Christ at{' '}
-                <span className="font-display text-brand-primary">The Wind</span>
-              </h3>
-            </div>
-          }
-        />
-      </div>
+      <MediaBackgroundAndContent
+        centerContent
+        color={ColorBackground.BLUE}
+        content={
+          <div className="flex flex-col gap-xl">
+            <h3 className="font-display text-brand-primary text-center">
+              Thank you for your support!
+            </h3>
+            <h4 className="text-center">
+              We are blessed to have supporters like you and we are honored
+              <br /> that you have chosen this Ministry as a place to sow your seed.
+            </h4>
+            <h4 className="text-center">
+              If you have any questions or concerns,
+              <br />
+              email{' '}
+              <Link
+                href="mailto:thewindchurch@outlook.com"
+                className="text-brand-primary hover:underline break-normal"
+              >
+                thewindchurch@outlook.com
+              </Link>{' '}
+              <br />
+              or call{' '}
+              <Link href={'tel:9513590203'} className="text-brand-primary hover:underline">
+                (951) 359-0203
+              </Link>
+              .
+            </h4>
+            <h3 className="text-center">
+              Your partners in Christ at{' '}
+              <span className="font-display text-brand-primary">The Wind</span>
+            </h3>
+          </div>
+        }
+      />
 
       {/* PAGE SCROLL-UP BUTTON */}
       <PageScrollUpButton />

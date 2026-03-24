@@ -10,8 +10,8 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { getGalleryImages } from '@/data/services/aws/s3/gallery';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { getMinistryGallery } from '@/data/services/aws/s3/gallery';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { getMinistryEvents } from '@/data/services/sanity/queries/events';
 import { getAllMinistries, getMinistryBySlug } from '@/data/services/sanity/queries/ministries';
 import { Event } from '@/data/types';
@@ -37,8 +37,8 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'Ministries' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.ministries}/${slug}`;
-  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`;
+  const url = `${WEBSITE_URL}${PageRoutes.ministries}/${slug}`;
+  const image = `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg`;
   return {
     title,
     description,
@@ -61,22 +61,18 @@ export async function generateMetadata({
 const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
   const ministry = await getMinistryBySlug(slug);
-  const { selectGallery } = await getGalleryImages(ministry?.name);
-  const events = await getMinistryEvents(ministry?.name ?? '');
+  const gallery = await getMinistryGallery(ministry?.name);
+  const events = await getMinistryEvents(ministry?.name);
 
   if (!ministry) {
     return (
       <MediaBackgroundAndContent
         centerContent
         background={{
-          src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+          src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
           alt: 'Image of The Wind Church building',
         }}
-        content={
-          <div className="py-xxl">
-            <ErrorAlert />
-          </div>
-        }
+        content={<ErrorAlert />}
       />
     );
   }
@@ -84,9 +80,9 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
   return (
     <div>
       <PageHero size="short" title={ministry.name} media={{ src: ministry.image.src }} />
-      <div className="flex flex-col gap-3xl sm:gap-4xl max-width-center pt-3xl sm:pt-4xl px-padding">
+      <div className="flex flex-col gap-4xl pt-3xl sm:pt-4xl">
         {/* DESCRIPTION */}
-        <div className="flex flex-col gap-lg">
+        <div className="flex flex-col gap-lg px-padding max-width-center">
           <h4 className="text-light-charcoal dark:text-dark-charcoal">
             {ministry.scripture.verse} - "{ministry.scripture.passage}"
           </h4>
@@ -94,7 +90,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* MINISTRY LEADER */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <SectionHeader title="Meet the Team" subtitle="Select members to learn more" />
           {/* DESKTOP */}
           <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
@@ -119,8 +115,8 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* GALLERY */}
-        {selectGallery && selectGallery.length > 0 && (
-          <div className="flex flex-col gap-xl md:gap-xxl">
+        {gallery && gallery.urls.length > 0 && (
+          <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
             <SectionHeader
               title="Ministry Gallery"
               subtitle="Select a photo to view the memories"
@@ -128,7 +124,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
 
             {/* Desktop */}
             <div className="hidden sm:grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
-              {selectGallery.map((src) => (
+              {gallery.urls.map((src) => (
                 <ImageCard
                   key={`wind-gallery-${src}`}
                   src={src}
@@ -141,7 +137,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             <SimpleCarousel
               showDots={false}
               className="sm:hidden"
-              slides={selectGallery.map((src) => (
+              slides={gallery.urls.map((src) => (
                 <ImageCard
                   key={`wind-gallery-mobile-${src}`}
                   src={src}
@@ -153,7 +149,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         )}
 
         {/* EVENTS */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <CenterTextSection
             title="Ministry Events"
             description="Look out for fun workshops, fellowships, and more at the Wind!"
@@ -182,9 +178,8 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* WHY JOIN A MINISTRY */}
         <MediaBackgroundAndContent
-          fullWidth={false}
           background={{
-            src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`,
+            src: `${AWS_ASSET_URL}/placeholder-media/church_prayer.jpg`,
             alt: 'Decorative Background Image',
           }}
           content={
@@ -200,7 +195,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         />
 
         {/* FAQS */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <SectionHeader subtitle="Frequently Asked Questions" title="Looking for more guidance?" />
           <Accordion
             content={[
@@ -244,7 +239,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* CTAs */}
-        <div className="flex flex-col gap-xl md:gap-xxl">
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <CenterTextSection
             highlight={[[4, 5]]}
             title="Take your next steps with us!"
@@ -253,7 +248,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
             <ImageWithTitleDescriptionCard
               alt="People gathering for church service"
-              src={`${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`}
+              src={`${AWS_ASSET_URL}/placeholder-media/contro.webp`}
               title="Visit on Sunday or Wednesday"
               description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
               link={{
@@ -263,7 +258,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Group in Bible study session"
-              src={`${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`}
+              src={`${AWS_ASSET_URL}/placeholder-media/lxg_meet.webp`}
               title="Try our Deep Dive Sessions"
               description="Explore the Word in a deeper way. Our Deep Dive Sessions are small-group Bible studies where you can ask questions and grow in your faith."
               link={{
@@ -273,7 +268,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Children in a classroom during youth service"
-              src={`${AWS_ASSET_BASE_URL}/placeholder-media/kids_classroom_2.jpg`}
+              src={`${AWS_ASSET_URL}/placeholder-media/kids_classroom_2.jpg`}
               title="View our Youth Service"
               description="We offer engaging and age-appropriate services for kids and teens every week. It's a safe space for youth to learn, grow, and build friendships."
               link={{

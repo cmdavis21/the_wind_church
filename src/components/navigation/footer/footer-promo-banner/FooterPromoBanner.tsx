@@ -1,6 +1,6 @@
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import UpArrow from '@/components/icons/up-arrow';
-import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL } from '@/data/services/env.server';
 import { getPromoDetails } from '@/data/services/sanity/queries/promo-details';
 import cn from 'classnames';
 import { getTranslations } from 'next-intl/server';
@@ -48,7 +48,7 @@ const FooterPromoBanner = async () => {
           <div className="relative w-full h-full">
             <Image
               fill
-              src={`${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`}
+              src={`${AWS_ASSET_URL}/images/wind_church_building.webp`}
               alt="Image of The Wind Church"
               className="object-cover pointer-events-none"
             />

@@ -31,7 +31,7 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { styleSelectedWords } from '@/data/utils';
 import { Button } from 'flowbite-react';
 import Link from 'next/link';
@@ -41,8 +41,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'About' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.about}`;
-  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/group_people.jpg`;
+  const url = `${WEBSITE_URL}${PageRoutes.about}`;
+  const image = `${AWS_ASSET_URL}/placeholder-media/group_people.jpg`;
   return {
     title,
     description,
@@ -68,7 +68,7 @@ const About = async () => {
   const aboutPastorArr = [
     {
       media: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/pastor.webp`,
+        src: `${AWS_ASSET_URL}/placeholder-media/pastor.webp`,
         alt: t('alt'),
       },
       title: t('aboutPastor.title'),
@@ -76,7 +76,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/contro.webp`,
+        src: `${AWS_ASSET_URL}/placeholder-media/contro.webp`,
         alt: t('alt'),
       },
       title: t('aboutPastor.history.title'),
@@ -84,7 +84,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/members.webp`,
+        src: `${AWS_ASSET_URL}/placeholder-media/members.webp`,
         alt: t('alt'),
       },
       title: t('aboutPastor.why.title'),
@@ -92,7 +92,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+        src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
         alt: t('alt'),
       },
       title: t('aboutPastor.goals.title'),
@@ -100,7 +100,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`,
+        src: `${AWS_ASSET_URL}/placeholder-media/lxg_meet.webp`,
         alt: t('alt'),
       },
       title: t('aboutPastor.fact.title'),
@@ -111,7 +111,7 @@ const About = async () => {
   const theWindCenterArr = [
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/people_hug.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/people_hug.jpg`,
         alt: t('alt'),
       },
       title: t('values.jesus.title'),
@@ -120,7 +120,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/praise_hands.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/praise_hands.jpg`,
         alt: t('alt'),
       },
       title: t('values.worship.title'),
@@ -129,7 +129,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/family.jpeg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/family.jpeg`,
         alt: t('alt'),
       },
       title: t('values.family.title'),
@@ -138,7 +138,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/outreach.png`,
+        src: `${AWS_ASSET_URL}/placeholder-media/outreach.png`,
         alt: t('alt'),
       },
       title: t('values.serve.title'),
@@ -147,7 +147,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/group_women.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/group_women.jpg`,
         alt: t('alt'),
       },
       title: t('values.love.title'),
@@ -156,7 +156,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`,
+        src: `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg`,
         alt: t('alt'),
       },
       title: t('values.transform.title'),
@@ -167,7 +167,7 @@ const About = async () => {
 
   const foursquareBeliefsArr = [
     {
-      image: `${AWS_ASSET_BASE_URL}/images/foursquare/cross.png`,
+      image: `${AWS_ASSET_URL}/images/foursquare/cross.png`,
       title: t('foursquare.accordionItem1.title'),
       items: [
         {
@@ -203,7 +203,7 @@ const About = async () => {
       ],
     },
     {
-      image: `${AWS_ASSET_BASE_URL}/images/foursquare/dove.png`,
+      image: `${AWS_ASSET_URL}/images/foursquare/dove.png`,
       title: t('foursquare.accordionItem2.title'),
       items: [
         {
@@ -239,7 +239,7 @@ const About = async () => {
       ],
     },
     {
-      image: `${AWS_ASSET_BASE_URL}/images/foursquare/cup.png`,
+      image: `${AWS_ASSET_URL}/images/foursquare/cup.png`,
       title: t('foursquare.accordionItem3.title'),
       items: [
         {
@@ -275,7 +275,7 @@ const About = async () => {
       ],
     },
     {
-      image: `${AWS_ASSET_BASE_URL}/images/foursquare/crown.png`,
+      image: `${AWS_ASSET_URL}/images/foursquare/crown.png`,
       title: t('foursquare.accordionItem4.title'),
       items: [
         {
@@ -318,7 +318,7 @@ const About = async () => {
         title={t('title')}
         subtitle={t('subtitle')}
         highlightTitle={[[0, 1]]}
-        media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/group_people.jpg` }}
+        media={{ src: `${AWS_ASSET_URL}/placeholder-media/group_people.jpg` }}
       />
 
       {/* Mission and Vision */}
@@ -471,21 +471,21 @@ const About = async () => {
           slides={[
             {
               media: {
-                src: `${AWS_ASSET_BASE_URL}/placeholder-media/old_church_photo_1.webp`,
+                src: `${AWS_ASSET_URL}/placeholder-media/old_church_photo_1.webp`,
                 alt: t('alt'),
               },
               description: t('history.carouselItem1'),
             },
             {
               media: {
-                src: `${AWS_ASSET_BASE_URL}/placeholder-media/members.webp`,
+                src: `${AWS_ASSET_URL}/placeholder-media/members.webp`,
                 alt: t('alt'),
               },
               description: t('history.carouselItem2'),
             },
             {
               media: {
-                src: `${AWS_ASSET_BASE_URL}/placeholder-media/lxg_meet.webp`,
+                src: `${AWS_ASSET_URL}/placeholder-media/lxg_meet.webp`,
                 alt: t('alt'),
               },
               description: t('history.carouselItem3'),

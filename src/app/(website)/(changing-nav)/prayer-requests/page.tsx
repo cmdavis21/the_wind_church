@@ -2,7 +2,7 @@ import PrayerRequestForm from '@/components/forms/prayer-request-form/PrayerRequ
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'PrayerRequests' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.prayerRequests}`;
-  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg`;
+  const url = `${WEBSITE_URL}${PageRoutes.prayerRequests}`;
+  const image = `${AWS_ASSET_URL}/placeholder-media/church_prayer.jpg`;
   return {
     title,
     description,
@@ -36,7 +36,7 @@ const PrayerRequests = () => (
     <PageHero
       size="short"
       title="Prayer Requests"
-      media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/church_prayer.jpg` }}
+      media={{ src: `${AWS_ASSET_URL}/placeholder-media/church_prayer.jpg` }}
     />
     <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
       <CenterTextSection

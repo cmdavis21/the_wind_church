@@ -105,7 +105,9 @@ export const getAllEvents = async (): Promise<Event[]> => {
     .sort((a, b) => new Date(a.date!).getTime() - new Date(b.date!).getTime());
 };
 
-export const getMinistryEvents = async (name: string): Promise<Event[]> => {
+export const getMinistryEvents = async (name?: string): Promise<Event[]> => {
+  if (!name) return [];
+
   const events = await getMinistryEventsQuery(name);
 
   if (!events) return [];

@@ -1,5 +1,5 @@
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { getTranslations } from 'next-intl/server';
 import MinistriesClient from './nossr';
 
@@ -8,8 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'Ministries' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.ministries}`;
-  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`;
+  const url = `${WEBSITE_URL}${PageRoutes.ministries}`;
+  const image = `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg`;
   return {
     title,
     description,

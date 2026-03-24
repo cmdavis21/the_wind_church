@@ -5,7 +5,7 @@ export const baseTemplate = `
 <head>
     <style>
         .email-container {
-            max-width: 600px;
+            max-width: 500px;
             margin: 20px auto;
             background-color: #ffffff;
             padding: 20px;
@@ -39,7 +39,7 @@ export const baseTemplate = `
         }
 
         .footer {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 12px;
             color: #999999;
             text-align: center;
@@ -49,13 +49,11 @@ export const baseTemplate = `
 
 <body>
     <div class="email-container">
-        <div class="header">
-            {{title}}
-        </div>
+        <div class="header">{{title}}</div>
         <div class="content">
             <p>A new document is available in Sanity.io!</p>
             <p>{{firstName}} {{lastName}} has made a submission.</p>
-            <a href={link} class="button">View Document in Sanity.io</a>
+            <a href={link} target='_blank' class="button">View Document in Sanity.io</a>
         </div>
         <div class="footer">
             &copy; 2025 Wind of the Spirit Worship Center. All rights reserved.

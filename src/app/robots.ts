@@ -1,4 +1,4 @@
-import { WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { WEBSITE_URL } from '@/data/services/env.client';
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
           allow: '/',
           disallow: ['/api/', '/studio/'],
         },
-        sitemap: `${WEBSITE_BASE_URL}/sitemap.xml`,
+        sitemap: `${WEBSITE_URL}/sitemap.xml`,
       }
     : {
         rules: {

@@ -23,7 +23,12 @@ const TextRadio: React.FC<TextRadioProps> = ({ text, color, selected, disabled, 
     )}
   >
     <div className="flex items-center justify-center capitalize gap-[6px]">
-      {color && <div style={{ backgroundColor: color }} className="size-4 rounded-full" />}
+      {color && (
+        <div
+          style={{ backgroundColor: color }}
+          className="size-4 rounded-full border border-light-gray dark:border-dark-charcoal"
+        />
+      )}
       <div>{text}</div>
     </div>
   </button>

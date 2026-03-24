@@ -1,6 +1,6 @@
 import { EVENT_RENTAL_KEY, EventRentalInquiry, FORM_TYPES } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { WEBSITE_BASE_URL } from '../../env.client';
+import { WEBSITE_URL } from '../../env.server';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
 
@@ -40,7 +40,7 @@ export const useCreateEventRentalInquiry = () => {
           payload: {
             firstName: variables.first_name,
             lastName: `${variables.last_name.charAt(0)}.`,
-            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.EVENT_RENTAL}`,
+            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.EVENT_RENTAL}`,
           },
         }),
       });

@@ -40,6 +40,11 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
 
   return (
     <div className="relative inline-block group">
+      {/* BACKDROP OPACITY */}
+      {changeColor && (
+        <div className="fixed top-[97.5px] left-0 w-screen h-screen bg-black/25 dark:bg-black/40 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100" />
+      )}
+
       {/* CART QTY COUNT */}
       {submenu.find((s) => s.link === PageRoutes.cart) && getCart && getCart.total_quantity > 0 && (
         <div className="absolute z-10 top-1 -right-4 group-hover:opacity-0 pointer-events-none transition-opacity duration-150">

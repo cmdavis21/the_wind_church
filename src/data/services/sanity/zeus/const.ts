@@ -47,6 +47,9 @@ export const AllTypesProps: Record<string,any> = {
 		PromoBanner:{
 
 		},
+		Testimonial:{
+
+		},
 		Document:{
 
 		},
@@ -109,6 +112,10 @@ export const AllTypesProps: Record<string,any> = {
 		allPromoBanner:{
 			where:"PromoBannerFilter",
 			sort:"PromoBannerSorting"
+		},
+		allTestimonial:{
+			where:"TestimonialFilter",
+			sort:"TestimonialSorting"
 		},
 		allDocument:{
 			where:"DocumentFilter",
@@ -802,6 +809,32 @@ export const AllTypesProps: Record<string,any> = {
 		internal_href:"SortOrder",
 		external_href:"SortOrder"
 	},
+	TestimonialFilter:{
+		_:"Sanity_DocumentFilter",
+		_id:"IDFilter",
+		_type:"StringFilter",
+		_createdAt:"DatetimeFilter",
+		_updatedAt:"DatetimeFilter",
+		_rev:"StringFilter",
+		_key:"StringFilter",
+		contact:"ContactFilter",
+		position:"StringFilter",
+		main_point:"StringFilter",
+		statement:"StringFilter",
+		image:"ImageFilter"
+	},
+	TestimonialSorting:{
+		_id:"SortOrder",
+		_type:"SortOrder",
+		_createdAt:"SortOrder",
+		_updatedAt:"SortOrder",
+		_rev:"SortOrder",
+		_key:"SortOrder",
+		position:"SortOrder",
+		main_point:"SortOrder",
+		statement:"SortOrder",
+		image:"ImageSorting"
+	},
 	DocumentFilter:{
 		_:"Sanity_DocumentFilter",
 		_id:"IDFilter",
@@ -880,6 +913,7 @@ export const ReturnTypes: Record<string,any> = {
 		Ministry:"Ministry",
 		NextGenPage:"NextGenPage",
 		PromoBanner:"PromoBanner",
+		Testimonial:"Testimonial",
 		Document:"Document",
 		allSanityImageAsset:"SanityImageAsset",
 		allSanityFileAsset:"SanityFileAsset",
@@ -896,6 +930,7 @@ export const ReturnTypes: Record<string,any> = {
 		allMinistry:"Ministry",
 		allNextGenPage:"NextGenPage",
 		allPromoBanner:"PromoBanner",
+		allTestimonial:"Testimonial",
 		allDocument:"Document"
 	},
 	SanityImageAsset:{
@@ -937,6 +972,7 @@ export const ReturnTypes: Record<string,any> = {
 		"...on DeepDive": "DeepDive",
 		"...on NextGenPage": "NextGenPage",
 		"...on PromoBanner": "PromoBanner",
+		"...on Testimonial": "Testimonial",
 		_id:"ID",
 		_type:"String",
 		_createdAt:"DateTime",
@@ -1263,6 +1299,19 @@ export const ReturnTypes: Record<string,any> = {
 		label:"String",
 		internal_href:"String",
 		external_href:"String"
+	},
+	Testimonial:{
+		_id:"ID",
+		_type:"String",
+		_createdAt:"DateTime",
+		_updatedAt:"DateTime",
+		_rev:"String",
+		_key:"String",
+		contact:"Contact",
+		position:"String",
+		main_point:"String",
+		statement:"String",
+		image:"Image"
 	},
 	Block:{
 		_key:"String",

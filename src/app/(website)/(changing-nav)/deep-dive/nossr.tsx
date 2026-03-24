@@ -5,26 +5,22 @@ import FullscreenMediaWithTextFadeInOutCarousel from '@/components/carousels/ful
 import FullscreenMediaWithTextFadeInOutCarouselSkeleton from '@/components/carousels/fullscreen-media-with-text-fade-in-out-carousel/FullscreenMediaWithTextFadeInOutCarousel.skeleton';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL } from '@/data/services/env.server';
 import { useGetAllDeepDives } from '@/data/services/sanity/queries/deep-dives';
 import { combineNames } from '@/data/utils';
 
 const DeepDivesClient = () => {
   const { deepDives, deepDivesLoading, deepDivesError } = useGetAllDeepDives();
 
-  if (deepDivesError) {
+  if (!deepDivesError) {
     return (
       <MediaBackgroundAndContent
         centerContent
         background={{
-          src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+          src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
           alt: 'Image of The Wind Church building',
         }}
-        content={
-          <div className="py-xxl">
-            <ErrorAlert />
-          </div>
-        }
+        content={<ErrorAlert />}
       />
     );
   }
@@ -48,8 +44,8 @@ const DeepDivesClient = () => {
               : [
                   {
                     media: {
-                      src: `${AWS_ASSET_BASE_URL}/placeholder-media/footer_video.mp4`,
-                      poster: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`,
+                      src: `${AWS_ASSET_URL}/placeholder-media/footer_video.mp4`,
+                      poster: `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg`,
                       alt: '',
                     },
                     header: 'Deep Dive Studies',

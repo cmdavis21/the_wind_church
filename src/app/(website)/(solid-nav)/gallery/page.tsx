@@ -5,8 +5,8 @@ import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarouse
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { getGalleryImages } from '@/data/services/aws/s3/gallery';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { getGallery } from '@/data/services/aws/s3/gallery';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'Gallery' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.gallery}`;
-  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg`;
+  const url = `${WEBSITE_URL}${PageRoutes.gallery}`;
+  const image = `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg`;
   return {
     title,
     description,
@@ -36,9 +36,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const Gallery = async () => {
-  const gallery = await getGalleryImages();
+  const gallery = await getGallery();
 
-  if (!gallery?.gallery) return <ErrorAlert reloadPage={false} />;
+  if (!gallery) return <ErrorAlert reloadPage={false} />;
 
   return (
     <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
@@ -47,7 +47,7 @@ const Gallery = async () => {
         subtitle="View photos of great times spent together in the Wind family."
       />
 
-      {gallery.gallery.map((category) => (
+      {gallery.map((category) => (
         <div key={`wind-gallery-${category.title}`} className="flex flex-col gap-xl md:gap-xxl">
           <SectionHeader title={category.title} subtitle="Select a photo and view the memories" />
 

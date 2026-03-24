@@ -1,6 +1,6 @@
 import { FORM_TYPES, PRAYER_REQUEST_KEY, PrayerRequest } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { WEBSITE_BASE_URL } from '../../env.client';
+import { WEBSITE_URL } from '../../env.server';
 import { SanityClient } from '../client';
 import { createContactClient } from './contact-signup';
 
@@ -40,7 +40,7 @@ export const useCreatePrayerRequest = () => {
           payload: {
             firstName: variables.first_name,
             lastName: `${variables.last_name.charAt(0)}.`,
-            link: `${WEBSITE_BASE_URL}/studio/structure/forms;${FORM_TYPES.PRAYER_REQUEST}`,
+            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.PRAYER_REQUEST}`,
           },
         }),
       });

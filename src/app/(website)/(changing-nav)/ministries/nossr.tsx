@@ -9,7 +9,7 @@ import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
-import { AWS_ASSET_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL } from '@/data/services/env.server';
 import { useGetAllMinistries } from '@/data/services/sanity/queries/ministries';
 import React from 'react';
 
@@ -49,14 +49,10 @@ const MinistriesClient = () => {
       <MediaBackgroundAndContent
         centerContent
         background={{
-          src: `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`,
+          src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
           alt: 'Image of The Wind Church building',
         }}
-        content={
-          <div className="py-xxl">
-            <ErrorAlert />
-          </div>
-        }
+        content={<ErrorAlert />}
       />
     );
   }
@@ -67,7 +63,7 @@ const MinistriesClient = () => {
         size="short"
         title="Ministries"
         subtitle="Grow in love and service by joining a ministry"
-        media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/food_bank.jpg` }}
+        media={{ src: `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg` }}
       />
 
       <div className="p-padding flex flex-col gap-3xl sm:gap-4xl lg:gap-5xl max-width-center">

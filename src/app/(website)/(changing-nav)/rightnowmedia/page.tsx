@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -9,8 +9,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'RightNowMedia' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.rightnowMedia}`;
-  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/rightnowmedia.png`;
+  const url = `${WEBSITE_URL}${PageRoutes.rightnowMedia}`;
+  const image = `${AWS_ASSET_URL}/placeholder-media/rightnowmedia.png`;
   return {
     title,
     description,
@@ -37,7 +37,7 @@ const Rightnowmedia = () => (
       <div className="relative w-full h-full pointer-events-none">
         <Image
           fill
-          src={`${AWS_ASSET_BASE_URL}/placeholder-media/rightnowmedia.png`}
+          src={`${AWS_ASSET_URL}/placeholder-media/rightnowmedia.png`}
           alt="decorative background image"
           className="object-cover"
         />

@@ -113,6 +113,15 @@ export interface PromoBannerDetails {
   video?: string;
 }
 
+export interface Testimonial {
+  first_name: Leader['first_name'];
+  last_name: Leader['last_name'];
+  position: Leader['position'];
+  main_point: string;
+  statement: string;
+  image: Image;
+}
+
 export interface NavbarItem {
   label: string;
   link?: string;
@@ -137,6 +146,11 @@ export type FooterColumnItem = {
     link?: string;
   }[];
 };
+
+export interface GalleryCollection {
+  title: string;
+  urls: string[];
+}
 
 export enum YesNo {
   YES = 'Y',

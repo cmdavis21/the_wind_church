@@ -72,7 +72,7 @@ const SingleSlideMediaCarousel: React.FC<SingleSlideMediaCarouselProps> = ({ med
         {media.map((slide) => (
           <div
             key={`single-slide-media-carousel-${slide.src}`}
-            className="pointer-events-none aspect-square border-2 rounded-xl border-light-gray dark:border-dark-gray relative bg-white"
+            className="pointer-events-none aspect-square border rounded-xl border-light-gray dark:border-dark-gray relative bg-white"
           >
             {findMediaType(slide.src) === MediaType.IMAGE ? (
               <Image

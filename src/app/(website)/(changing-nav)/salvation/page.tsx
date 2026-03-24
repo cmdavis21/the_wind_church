@@ -7,7 +7,7 @@ import MediaBackgroundAndContent, {
 } from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'Salvation' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.salvation}`;
-  const image = `${AWS_ASSET_BASE_URL}/placeholder-media/crosses.png`;
+  const url = `${WEBSITE_URL}${PageRoutes.salvation}`;
+  const image = `${AWS_ASSET_URL}/placeholder-media/crosses.png`;
   return {
     title,
     description,
@@ -63,7 +63,7 @@ const Salvation = () => (
       size="short"
       title="Salvation"
       subtitle="Jesus is here for you always"
-      media={{ src: `${AWS_ASSET_BASE_URL}/placeholder-media/crosses.png` }}
+      media={{ src: `${AWS_ASSET_URL}/placeholder-media/crosses.png` }}
     />
 
     {/* WHAT IS SALVATION */}
@@ -88,7 +88,7 @@ const Salvation = () => (
           <ImageWithTitleAndHiddenTextCard
             key={`salvation-question-${item.question}`}
             image={{
-              src: `${AWS_ASSET_BASE_URL}/placeholder-media/cross_on_mount.jpg`,
+              src: `${AWS_ASSET_URL}/placeholder-media/cross_on_mount.jpg`,
               alt: 'decorative background image',
             }}
             title={

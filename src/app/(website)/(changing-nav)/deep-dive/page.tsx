@@ -1,5 +1,5 @@
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_BASE_URL, WEBSITE_BASE_URL } from '@/data/services/env.client';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
 import { getTranslations } from 'next-intl/server';
 import DeepDivesClient from './nossr';
 
@@ -8,8 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'DeepDive' });
   const title = t('metadata.title');
   const description = t('metadata.description');
-  const url = `${WEBSITE_BASE_URL}${PageRoutes.deepDive}`;
-  const image = `${AWS_ASSET_BASE_URL}/images/wind_church_building.webp`;
+  const url = `${WEBSITE_URL}${PageRoutes.deepDive}`;
+  const image = `${AWS_ASSET_URL}/images/wind_church_building.webp`;
   return {
     title,
     description,
