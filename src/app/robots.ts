@@ -1,4 +1,4 @@
-import { WEBSITE_URL } from '@/data/services/env.client';
+import { WEBSITE_URL } from '@/data/services/env.server';
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
