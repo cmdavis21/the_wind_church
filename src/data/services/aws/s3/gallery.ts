@@ -70,7 +70,7 @@ export async function getGalleryImages(
 }
 
 export const getGallery = async (): Promise<GalleryCollection[]> => {
-  const res = await fetch(`http://localhost:3000/api/gallery`, {
+  const res = await fetch(`${WEBSITE_URL}/api/gallery`, {
     method: 'GET',
     cache: 'no-store',
   });
