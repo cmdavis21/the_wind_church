@@ -249,11 +249,17 @@ export enum FORM_TYPES {
   VISITOR_FEEDBACK = 'visitorFeedback',
 }
 
-export interface YouTubeSnippet {
+export interface YouTubeVideo {
   title: string;
   published_at: string;
   thumbnail: string;
   videoUrl: string;
+}
+
+export interface YouTubePlaylist {
+  id: string;
+  title: string;
+  videos: YouTubeVideo[];
 }
 
 export interface YouTubeSermonSnippet {

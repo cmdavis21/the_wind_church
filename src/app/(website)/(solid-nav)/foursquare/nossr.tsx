@@ -1,6 +1,7 @@
 'use client';
 
 import ScriptureWithIcon from '@/components/cards/scripture-with-icon/ScriptureWithIcon';
+import CarouselArrows from '@/components/carousels/carousel-arrows/CarouselArrows';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import Bible from '@/components/icons/bible';
 import Buidling from '@/components/icons/building';
@@ -29,13 +30,16 @@ import ThumbsDown from '@/components/icons/thumbs-down';
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { AWS_ASSET_URL } from '@/data/services/env.server';
-import { TabItem, Tabs } from 'flowbite-react';
+import { TabItem, Tabs, TabsRef } from 'flowbite-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef, useState } from 'react';
 
 const FoursquareClient = () => {
   const t = useTranslations('About');
+  const tabsRef = useRef<TabsRef>(null);
+  const [active, setActive] = useState(0);
 
   const foursquareBeliefsArr = [
     {
@@ -183,7 +187,7 @@ const FoursquareClient = () => {
         }}
         subtitle="An international Pentecostal Christian denomination founded in 1923"
       />
-      <Tabs variant="underline">
+      <Tabs variant="default" ref={tabsRef} onActiveTabChange={(tab) => setActive(tab)}>
         <TabItem title="Intro" icon={Location}>
           <div className="flex flex-col gap-xl p-lg">
             <h4 className="text-justify">
@@ -322,7 +326,7 @@ const FoursquareClient = () => {
           <div className="flex flex-col gap-xl p-lg">
             {/* LOGO SECTION */}
             <SectionHeader title="Logo" />
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
               <div className="sm:col-span-2 space-y-md">
                 <h4>The term “Foursquare” refers to the four-fold ministry of Jesus Christ.</h4>
 
@@ -368,7 +372,7 @@ const FoursquareClient = () => {
 
             {/* EMBLEM SECTION */}
             <SectionHeader title="Emblem" />
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
               <div className="relative w-full h-full aspect-square">
                 <Image
                   fill
@@ -410,7 +414,7 @@ const FoursquareClient = () => {
 
             {/* FLAG SECTION */}
             <SectionHeader title="Flag" />
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
               <div className="sm:col-span-2 space-y-md">
                 <h4>
                   Israel is a type of the Foursquare Gospel: a foursquare altar of the finest gold,
@@ -456,6 +460,25 @@ const FoursquareClient = () => {
           </div>
         </TabItem>
       </Tabs>
+      <div className="-mt-[15px] flex justify-end">
+        <CarouselArrows
+          className="w-fit"
+          leftArrowProps={{
+            disable: active === 0,
+            onClick: () => {
+              setActive(active - 1);
+              tabsRef.current?.setActiveTab(active - 1);
+            },
+          }}
+          rightArrowProps={{
+            disable: active >= 3,
+            onClick: () => {
+              setActive(active + 1);
+              tabsRef.current?.setActiveTab(active + 1);
+            },
+          }}
+        />
+      </div>
     </div>
   );
 };

@@ -152,28 +152,27 @@ const NextGen = async () => {
       <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
         <CenterTextSection
           title="Next Gen Events"
-          description="Look out for fun, adventurous, and learning-focused events for the Wind youth!"
+          description="Fun, adventurous, and learning-focused events for the Wind youth!"
         />
-        <div className="flex flex-col items-center gap-xl">
-          {events && events.length > 0 ? (
-            <div className="w-full flex flex-wrap justify-center gap-xxl">
-              {events.map((event: Event) => (
-                <EventCard
-                  key={`event-card-${event.name}`}
-                  event={event}
-                  scale={isAfter(event.date, new Date())}
-                />
-              ))}
-            </div>
-          ) : (
-            <h4 className="text-center">No events at this time</h4>
-          )}
-          <Link href={PageRoutes.events}>
-            <Button pill color="primary" size="lg">
-              View other Wind Events
-            </Button>
-          </Link>
-        </div>
+        {events && events.length > 0 ? (
+          <div className="w-full flex flex-wrap justify-center gap-xxl">
+            {events.slice(0, 3).map((event: Event) => (
+              <EventCard
+                key={`event-card-${event.name}`}
+                event={event}
+                scale={isAfter(event.date, new Date())}
+              />
+            ))}
+          </div>
+        ) : (
+          <h4 className="text-center">No events at this time</h4>
+        )}
+
+        <Link href={PageRoutes.events} className="mx-auto">
+          <Button pill color="primary" size="lg">
+            View other Wind Events
+          </Button>
+        </Link>
       </div>
 
       {/* GALLERY */}
@@ -182,8 +181,8 @@ const NextGen = async () => {
           <SectionHeader title="Next Gen Gallery" subtitle="Select a photo to view the memories" />
 
           {/* Desktop */}
-          <div className="hidden sm:grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
-            {gallery.urls.map((src) => (
+          <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+            {gallery.urls.slice(0, 4).map((src) => (
               <ImageCard
                 key={`wind-gallery-${src}`}
                 src={src}
@@ -196,7 +195,7 @@ const NextGen = async () => {
           <SimpleCarousel
             showDots={false}
             className="sm:hidden"
-            slides={gallery.urls.map((src) => (
+            slides={gallery.urls.slice(0, 4).map((src) => (
               <ImageCard
                 key={`wind-gallery-mobile-${src}`}
                 src={src}
@@ -204,6 +203,12 @@ const NextGen = async () => {
               />
             ))}
           />
+
+          <Link href={PageRoutes.gallery}>
+            <Button pill color="primary" size="lg">
+              See the full gallery
+            </Button>
+          </Link>
         </div>
       )}
 

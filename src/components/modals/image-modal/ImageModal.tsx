@@ -10,17 +10,12 @@ interface ImageModalProps {
 }
 
 const ImageModal: React.FC<ImageModalProps> = ({ src, alt, open, setOpen }) => (
-  <Modal size="6xl" dismissible show={open} onClose={() => setOpen(false)}>
+  <Modal size="5xl" dismissible show={open} onClose={() => setOpen(false)}>
     <Modal.Body className="p-0">
       <div className="relative rounded-lg">
         <CornerButton onClick={setOpen} className="absolute z-10 right-0 top-0" />
-        <div className="relative w-full aspect-video bg-black/80 rounded-lg">
-          <Image
-            fill
-            alt={alt}
-            src={src}
-            className="object-contain rounded-lg pointer-events-none"
-          />
+        <div className="relative w-full aspect-video rounded-lg">
+          <Image fill alt={alt} src={src} className="object-cover pointer-events-none rounded-lg" />
         </div>
       </div>
     </Modal.Body>

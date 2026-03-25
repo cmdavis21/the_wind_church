@@ -28,7 +28,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
   }, [activeSlide, slides.length]);
 
   return (
-    <div className="relative w-full md:h-[500px] overflow-hidden max-md:flex max-md:flex-col md:grid border rounded-2xl md:grid-cols-3">
+    <div className="relative w-full md:h-[500px] overflow-hidden max-md:flex max-md:flex-col md:grid border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg rounded-2xl md:grid-cols-3">
       {/* visual */}
       <div className="relative w-full h-full md:col-span-1 max-md:aspect-square">
         {slides.map((slide, index) => (
@@ -67,7 +67,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
           {slides.map((s, idx) => (
             <div
               key={`mini-profile-${s.first_name}`}
-              className={`rounded-full ${activeSlide === idx ? 'size-11' : 'size-9'} border relative transition-[size] duration-200`}
+              className={`rounded-full ${activeSlide === idx ? 'size-11' : 'size-9'} border border-light-gray dark:border-dark-gray relative transition-[size] duration-200`}
             >
               <Image
                 fill
@@ -81,7 +81,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
 
         {slides[activeSlide] && (
           <div className="flex flex-col gap-lg">
-            <h3 className="font-bold max-lg:text-lg line-clamp-4">
+            <h3 className="font-bold max-lg:text-lg line-clamp-4 text-light-navy dark:text-brand-primary">
               {slides[activeSlide].main_point}
             </h3>
             <h5 className="line-clamp-5">{slides[activeSlide].statement}</h5>
@@ -89,7 +89,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
         )}
 
         <div className="flex gap-5 justify-between items-center">
-          <h6>
+          <h6 className="text-light-charcoal dark:text-dark-neutral">
             {activeSlide + 1}/{slides.length}
           </h6>
 

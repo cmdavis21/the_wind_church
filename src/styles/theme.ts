@@ -50,8 +50,8 @@ export const theme = {
     fullSized: 'w-full',
     color: {
       primary:
-        'border border-brand-primary bg-brand-primary text-black hover:bg-brand-primary/80 hover:shadow-md',
-      secondary: 'border border-light-navy blue-gradient text-white hover:opacity-75',
+        '!border !border-brand-primary !bg-brand-primary text-black hover:!bg-brand-primary/80 hover:shadow-md',
+      secondary: '!border !border-light-navy !blue-gradient text-white hover:opacity-75',
       info: 'border border-light-gray bg-transparent text-light-primaryText hover:bg-light-gray hover:text-black dark:border-dark-gray dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray dark:hover:text-white',
       teritiary:
         'border border-light-neutral bg-transparent text-white hover:bg-light-gray hover:text-light-primaryText dark:border-dark-neutral dark:bg-transparent dark:text-dark-primaryText dark:hover:bg-dark-gray',
@@ -148,10 +148,10 @@ export const theme = {
         base: 'flex items-center justify-center rounded-t-lg p-4 text-sm font-medium first:ml-0 focus:outline-none disabled:cursor-not-allowed disabled:text-light-secondaryText disabled:dark:text-dark-secondaryText',
         variant: {
           default: {
-            base: 'rounded-t-lg',
+            base: 'rounded-t-lg text-md font-bold',
             active: {
-              on: 'bg-light-neutral text-light-primaryText dark:bg-dark-neutral dark:text-dark-primaryText',
-              off: 'text-light-charcoal hover:bg-light-gray/50 hover:text-light-charcoal dark:text-dark-charcoal dark:hover:bg-dark-gray/50 dark:hover:text-dark-charcoal',
+              on: 'bg-light-neutral text-light-primaryText dark:bg-dark-charcoal dark:text-dark-primaryText',
+              off: 'text-light-charcoal hover:bg-light-gray/50 hover:text-light-charcoal dark:text-dark-charcoal dark:hover:bg-dark-gray dark:hover:text-dark-primaryText',
             },
           },
           underline: {
@@ -176,7 +176,7 @@ export const theme = {
             },
           },
         },
-        icon: 'mr-2 h-5 w-5',
+        icon: 'mr-2 h-5 w-5 fill-light-primaryText dark:fill-dark-primaryText',
       },
     },
     tabitemcontainer: {

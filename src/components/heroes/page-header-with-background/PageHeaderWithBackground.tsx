@@ -48,8 +48,8 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
     </div>
 
     {/* color overlay */}
-    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/70 rounded-xl" />
-    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 rounded-xl" />
+    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/70 dark:from-black/50 rounded-xl" />
+    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 dark:from-black/50 rounded-xl" />
 
     <div className="relative w-full text-white flex flex-col gap-xs md:gap-md">
       <h2 className="font-display text-3xl sm:text-5xl md:text-6xl leading-snug md:max-w-[75%]">

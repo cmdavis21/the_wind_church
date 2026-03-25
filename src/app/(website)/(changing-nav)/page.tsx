@@ -151,7 +151,7 @@ const Home = async () => {
       />
 
       {/* OVERVIEW */}
-      <div id="overview" className="max-width-center py-3xl sm:py-4xl lg:px-4xl">
+      <div id="overview" className="max-width-center py-4xl lg:px-4xl sm:my-3xl">
         <div className="flex flex-col gap-lg px-padding">
           {/* WELCOME */}
           <div

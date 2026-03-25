@@ -114,6 +114,34 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
           />
         </div>
 
+        {/* EVENTS */}
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
+          <CenterTextSection
+            title="Ministry Events"
+            description="Look out for fun workshops, fellowships, and more at the Wind!"
+          />
+
+          {events && events.length > 0 ? (
+            <div className="w-full flex flex-wrap justify-center gap-xxl">
+              {events.slice(0, 3).map((event: Event) => (
+                <EventCard
+                  key={`event-card-${event.name}`}
+                  event={event}
+                  scale={isAfter(event.date, new Date())}
+                />
+              ))}
+            </div>
+          ) : (
+            <h4 className="text-center">No events at this time</h4>
+          )}
+
+          <Link href={PageRoutes.events} className="mx-auto">
+            <Button pill color="primary" size="lg">
+              View other Wind Events
+            </Button>
+          </Link>
+        </div>
+
         {/* GALLERY */}
         {gallery && gallery.urls.length > 0 && (
           <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
@@ -123,8 +151,8 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             />
 
             {/* Desktop */}
-            <div className="hidden sm:grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg 2xl:px-padding">
-              {gallery.urls.map((src) => (
+            <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+              {gallery.urls.slice(0, 4).map((src) => (
                 <ImageCard
                   key={`wind-gallery-${src}`}
                   src={src}
@@ -137,7 +165,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             <SimpleCarousel
               showDots={false}
               className="sm:hidden"
-              slides={gallery.urls.map((src) => (
+              slides={gallery.urls.slice(0, 4).map((src) => (
                 <ImageCard
                   key={`wind-gallery-mobile-${src}`}
                   src={src}
@@ -145,36 +173,14 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
                 />
               ))}
             />
-          </div>
-        )}
 
-        {/* EVENTS */}
-        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <CenterTextSection
-            title="Ministry Events"
-            description="Look out for fun workshops, fellowships, and more at the Wind!"
-          />
-          <div className="flex flex-col items-center gap-xl">
-            {events && events.length > 0 ? (
-              <div className="w-full flex flex-wrap justify-center gap-xxl">
-                {events.map((event: Event) => (
-                  <EventCard
-                    key={`event-card-${event.name}`}
-                    event={event}
-                    scale={isAfter(event.date, new Date())}
-                  />
-                ))}
-              </div>
-            ) : (
-              <h4 className="text-center">No events at this time</h4>
-            )}
-            <Link href={PageRoutes.events}>
+            <Link href={PageRoutes.gallery}>
               <Button pill color="primary" size="lg">
-                View other Wind Events
+                See the full gallery
               </Button>
             </Link>
           </div>
-        </div>
+        )}
 
         {/* WHY JOIN A MINISTRY */}
         <MediaBackgroundAndContent

@@ -1,4 +1,9 @@
-import { FallbackSermonSnippet, YouTubeSermonSnippet, YouTubeSnippet } from '@/data/types';
+import {
+  FallbackSermonSnippet,
+  YouTubePlaylist,
+  YouTubeSermonSnippet,
+  YouTubeVideo,
+} from '@/data/types';
 import { cache } from 'react';
 
 import {
@@ -8,52 +13,52 @@ import {
 } from '../env.server';
 import { youTubeClient } from './client';
 
-export const getUploadPlaylistId = async () => {
-  const res = await youTubeClient.channels.list({
-    part: ['contentDetails'],
-    id: [YOUTUBE_CHANNEL_ID],
+const getChannelPlaylists = async (): Promise<YouTubePlaylist[]> => {
+  const res = await youTubeClient.playlists.list({
+    part: ['snippet', 'contentDetails'],
+    channelId: YOUTUBE_CHANNEL_ID,
+    maxResults: 5,
   });
 
-  return res.data.items?.[0]?.contentDetails?.relatedPlaylists?.uploads ?? null;
+  if (!res.data.items) return [];
+
+  return res.data.items.map((pl) => ({
+    id: pl.id!,
+    title: pl.snippet?.title ?? '',
+    videos: [],
+  }));
 };
 
-export const getPlaylistVideos = async (): Promise<YouTubeSnippet[]> => {
-  const playlistId = await getUploadPlaylistId();
-
-  if (playlistId) {
-    const res = await youTubeClient.playlistItems.list({
-      part: ['snippet'],
-      playlistId,
-      maxResults: 8,
-    });
-    return res.data.items
-      ? res.data.items.map((item) => ({
-          title: item.snippet?.title ?? '',
-          published_at: item.snippet?.publishedAt ?? '',
-          thumbnail: item.snippet?.thumbnails?.medium?.url ?? '',
-          videoUrl: `https://www.youtube.com/watch?v=${item.snippet?.resourceId?.videoId}`,
-        }))
-      : [];
-  } else return [];
-};
-
-export const getPastLiveStreams = async (): Promise<YouTubeSnippet[]> => {
-  const res = await youTubeClient.search.list({
-    part: ['snippet'],
-    channelId: YOUTUBE_CHANNEL_ID,
-    eventType: 'completed',
-    type: ['video'],
+const getPlaylistVideos = async (playlistId: string): Promise<YouTubeVideo[]> => {
+  const res = await youTubeClient.playlistItems.list({
+    part: ['snippet', 'status'],
+    playlistId,
     maxResults: 8,
   });
 
+  if (!res.data.items) return [];
+
   return res.data.items
-    ? res.data.items.map((item) => ({
-        title: item.snippet?.title ?? '',
-        published_at: item.snippet?.publishedAt ?? '',
-        thumbnail: item.snippet?.thumbnails?.medium?.url ?? '',
-        videoUrl: `https://www.youtube.com/watch?v=${item.id?.videoId}`,
-      }))
-    : [];
+    .filter((item) => item.status?.privacyStatus === 'public')
+    .map((item) => ({
+      title: item.snippet?.title ?? '',
+      published_at: item.snippet?.publishedAt ?? '',
+      thumbnail: item.snippet?.thumbnails?.medium?.url ?? '',
+      videoUrl: `https://www.youtube.com/watch?v=${item.snippet?.resourceId?.videoId}`,
+    }));
+};
+
+export const getPlaylists = async (): Promise<YouTubePlaylist[]> => {
+  const playlists = await getChannelPlaylists();
+
+  const results = await Promise.all(
+    playlists.map(async (pl) => {
+      const videos = await getPlaylistVideos(pl.id);
+      return { ...pl, videos };
+    })
+  );
+
+  return results;
 };
 
 export const getLatestSermon = cache(

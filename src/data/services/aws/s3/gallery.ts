@@ -24,7 +24,7 @@ export async function getGalleryImages(
     const { Contents } = await s3Client.send(command);
 
     if (!Contents || Contents.length === 0) {
-      return category && subfolder ? { title: subfolder, urls: [] } : category ? [] : [];
+      return category && subfolder ? { title: subfolder, urls: [] } : [];
     }
 
     const categories: Record<string, string[]> = {};
@@ -40,18 +40,9 @@ export async function getGalleryImages(
       if (category && subfolder) {
         // Exact subfolder mode
         title = subfolder.replace(/_/g, ' ');
-      } else if (category && !subfolder) {
-        // Category-only mode → group by subfolder
-        title =
-          parts.length > 3
-            ? parts[2].replace(/_/g, ' ') // gallery/category/<subfolder>/file
-            : 'Uncategorized';
       } else {
-        // No category → group by category
-        title =
-          parts.length > 2
-            ? parts[1].replace(/_/g, ' ') // gallery/<category>/<subfolder>/file
-            : 'Uncategorized';
+        // Category-only OR no-category → always group by subfolder
+        title = parts.length > 3 ? parts[2].replace(/_/g, ' ') : 'Uncategorized';
       }
 
       if (!categories[title]) categories[title] = [];
@@ -60,7 +51,7 @@ export async function getGalleryImages(
 
     const result = Object.entries(categories).map(([title, urls]) => ({
       title,
-      urls,
+      urls: urls.slice(0, 15),
     }));
 
     return category && subfolder ? result[0] : result;

@@ -29,7 +29,7 @@ const PreviewSermon: React.FC<PreviewSermonProps> = ({ ok, data }) => {
   const isActuallyMuted = isFallback ? mute : isMuted;
 
   return (
-    <div className="relative w-full h-[600px] lg:h-screen">
+    <div className="relative w-full h-[600px] lg:h-screen bg-light-gray dark:bg-dark-gray">
       {isFallback ? (
         <video
           loop
@@ -48,7 +48,7 @@ const PreviewSermon: React.FC<PreviewSermonProps> = ({ ok, data }) => {
       )}
 
       {/* Content */}
-      <div className="absolute bottom-0 left-0 w-full px-padding py-xl lg:py-3xl text-center lg:text-left flex flex-col gap-lg lg:gap-xl bg-gradient-to-t from-black">
+      <div className="absolute bottom-0 left-0 max-width px-padding w-full px-padding py-xl lg:py-3xl text-center lg:text-left flex flex-col gap-lg lg:gap-xl bg-gradient-to-t from-black">
         <div className="flex gap-md items-center">
           <h6 className="text-white bg-white/20 rounded-full px-md py-xs">Latest Sermon</h6>
           <button

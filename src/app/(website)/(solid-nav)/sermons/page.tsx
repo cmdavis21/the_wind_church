@@ -6,7 +6,7 @@ import SectionHeader from '@/components/sections/section-header/SectionHeader';
 
 import { PageRoutes } from '@/data/page-routes';
 import { AWS_ASSET_URL, WEBSITE_URL, YOUTUBE } from '@/data/services/env.server';
-import { getPastLiveStreams, getPlaylistVideos } from '@/data/services/youtube/playlists';
+import { getPlaylists } from '@/data/services/youtube/playlists';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const Sermons = async () => {
-  const liveStreams = await getPastLiveStreams();
-  const otherVideos = await getPlaylistVideos();
+  const playlists = await getPlaylists();
+
   return (
     <div className="flex flex-col gap-3xl sm:gap-4xl">
       <div className="px-padding max-width-center">
@@ -54,42 +54,28 @@ const Sermons = async () => {
       </div>
 
       {/* Recent Sermons */}
-      <div className="flex flex-col gap-xl lg:gap-xxl px-padding max-width-center">
-        <SectionHeader
-          title="Past Live Streams"
-          subtitle="Guide your studies with these learning lessons"
-        />
-        <div className="grid gap-lg grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
-          {liveStreams.map((video) => (
-            <VideoCard
-              key={video.videoUrl}
-              poster={video.thumbnail}
-              title={video.title}
-              date={video.published_at}
-              link={video.videoUrl}
-            />
+      {playlists.length > 0 &&
+        playlists
+          .filter((l) => l.videos.length > 0)
+          .map((list) => (
+            <div
+              key={`youtube-playlist-${list.id}`}
+              className="flex flex-col gap-xl lg:gap-xxl px-padding max-width-center"
+            >
+              <SectionHeader title={list.title} />
+              <div className="grid gap-lg grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
+                {list.videos.map((video) => (
+                  <VideoCard
+                    key={video.videoUrl}
+                    poster={video.thumbnail}
+                    title={video.title}
+                    date={video.published_at}
+                    link={video.videoUrl}
+                  />
+                ))}
+              </div>
+            </div>
           ))}
-        </div>
-      </div>
-
-      {/* Other videos */}
-      <div className="flex flex-col gap-xl lg:gap-xxl px-padding max-width-center">
-        <SectionHeader
-          title="Other uploads"
-          subtitle="Guide your studies with these learning lessons"
-        />
-        <div className="grid gap-lg grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
-          {otherVideos.map((video) => (
-            <VideoCard
-              key={video.videoUrl}
-              poster={video.thumbnail}
-              title={video.title}
-              date={video.published_at}
-              link={video.videoUrl}
-            />
-          ))}
-        </div>
-      </div>
 
       {/* CTA to Youbtube Channel */}
       <MediaBackgroundAndContent
