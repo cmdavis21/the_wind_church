@@ -33,6 +33,8 @@ export async function getGalleryImages(
       const key = item.Key;
       if (!key) continue;
 
+      if (!item.Size || item.Size === 0) continue;
+
       const isImage =
         key.endsWith('.jpg') ||
         key.endsWith('.jpeg') ||
@@ -54,7 +56,6 @@ export async function getGalleryImages(
       urls: urls.slice(0, 15),
     }));
 
-    // Alphabetical sorting only when listing all subfolders
     if (!subfolder) {
       result = result.sort((a, b) =>
         a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
