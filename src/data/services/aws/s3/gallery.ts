@@ -4,6 +4,12 @@ import { ListObjectsCommand } from '@aws-sdk/client-s3';
 import { AWS_S3_BUCKET, AWS_S3_REGION, WEBSITE_URL } from '../../env.server';
 import { s3Client } from './client';
 
+const extractCategory = (key: string): string => {
+  const parts = key.split('/').filter(Boolean); // removes empty segments
+  if (parts.length < 2) return 'Uncategorized';
+  return parts[parts.length - 2].replace(/_/g, ' ');
+};
+
 export async function getGalleryImages(
   category?: string,
   subfolder?: string
@@ -30,10 +36,19 @@ export async function getGalleryImages(
     const categories: Record<string, string[]> = {};
 
     for (const item of Contents) {
-      if (!item.Key || !item.Size) continue;
+      const key = item.Key;
+      if (!key) continue;
 
-      const imageUrl = `https://${AWS_S3_BUCKET}.s3.${AWS_S3_REGION}.amazonaws.com/${item.Key}`;
-      const parts = item.Key.split('/');
+      // Skip folder markers and non-image files
+      const isImage =
+        key.endsWith('.jpg') ||
+        key.endsWith('.jpeg') ||
+        key.endsWith('.png') ||
+        key.endsWith('.webp');
+
+      if (!isImage) continue;
+
+      const imageUrl = `https://${AWS_S3_BUCKET}.s3.${AWS_S3_REGION}.amazonaws.com/${key}`;
 
       let title: string;
 
@@ -42,7 +57,7 @@ export async function getGalleryImages(
         title = subfolder.replace(/_/g, ' ');
       } else {
         // Category-only OR no-category → always group by subfolder
-        title = parts.length > 3 ? parts[2].replace(/_/g, ' ') : 'Uncategorized';
+        title = extractCategory(key);
       }
 
       if (!categories[title]) categories[title] = [];

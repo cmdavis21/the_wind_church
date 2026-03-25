@@ -52,8 +52,6 @@ const config: Config = {
         xxl: '24px',
       },
       colors: {
-        black: '#000000',
-        white: '#FFFFFF',
         info: '#1976D2',
         success: '#2E7D32',
         warning: '#F9A825',
@@ -86,6 +84,7 @@ const config: Config = {
       },
     },
   },
+  safelist: [{ pattern: /(bg|text|border)-(brand|light|dark|success|warning|info|error).*/ }],
   plugins: [flowbite.plugin()],
 };
 
