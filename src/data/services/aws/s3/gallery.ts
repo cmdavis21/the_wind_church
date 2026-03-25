@@ -4,23 +4,17 @@ import { ListObjectsCommand } from '@aws-sdk/client-s3';
 import { AWS_S3_BUCKET, AWS_S3_REGION, WEBSITE_URL } from '../../env.server';
 import { s3Client } from './client';
 
-const extractCategory = (key: string): string => {
-  const parts = key.split('/').filter(Boolean); // removes empty segments
+const extractSubfolder = (key: string): string => {
+  const parts = key.split('/').filter(Boolean);
   if (parts.length < 2) return 'Uncategorized';
   return parts[parts.length - 2].replace(/_/g, ' ');
 };
 
 export async function getGalleryImages(
-  category?: string,
   subfolder?: string
 ): Promise<GalleryCollection | GalleryCollection[]> {
   try {
-    const prefix =
-      category && subfolder
-        ? `gallery/${category}/${subfolder}/`
-        : category
-          ? `gallery/${category}/`
-          : 'gallery/';
+    const prefix = subfolder ? `gallery/${subfolder}/` : 'gallery/';
 
     const command = new ListObjectsCommand({
       Bucket: AWS_S3_BUCKET,
@@ -30,16 +24,15 @@ export async function getGalleryImages(
     const { Contents } = await s3Client.send(command);
 
     if (!Contents || Contents.length === 0) {
-      return category && subfolder ? { title: subfolder, urls: [] } : [];
+      return subfolder ? { title: subfolder, urls: [] } : [];
     }
 
-    const categories: Record<string, string[]> = {};
+    const groups: Record<string, string[]> = {};
 
     for (const item of Contents) {
       const key = item.Key;
       if (!key) continue;
 
-      // Skip folder markers and non-image files
       const isImage =
         key.endsWith('.jpg') ||
         key.endsWith('.jpeg') ||
@@ -48,28 +41,27 @@ export async function getGalleryImages(
 
       if (!isImage) continue;
 
-      const imageUrl = `https://${AWS_S3_BUCKET}.s3.${AWS_S3_REGION}.amazonaws.com/${key}`;
+      const url = `https://${AWS_S3_BUCKET}.s3.${AWS_S3_REGION}.amazonaws.com/${key}`;
 
-      let title: string;
+      const title = subfolder ? subfolder.replace(/_/g, ' ') : extractSubfolder(key);
 
-      if (category && subfolder) {
-        // Exact subfolder mode
-        title = subfolder.replace(/_/g, ' ');
-      } else {
-        // Category-only OR no-category → always group by subfolder
-        title = extractCategory(key);
-      }
-
-      if (!categories[title]) categories[title] = [];
-      categories[title].push(imageUrl);
+      if (!groups[title]) groups[title] = [];
+      groups[title].push(url);
     }
 
-    const result = Object.entries(categories).map(([title, urls]) => ({
+    let result = Object.entries(groups).map(([title, urls]) => ({
       title,
       urls: urls.slice(0, 15),
     }));
 
-    return category && subfolder ? result[0] : result;
+    // Alphabetical sorting only when listing all subfolders
+    if (!subfolder) {
+      result = result.sort((a, b) =>
+        a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
+      );
+    }
+
+    return subfolder ? result[0] : result;
   } catch (err) {
     console.error('Error fetching gallery contents', err);
     throw new Error('AWS FETCH GALLERY CONTENTS ERROR');
@@ -81,37 +73,28 @@ export const getGallery = async (): Promise<GalleryCollection[]> => {
     method: 'GET',
     cache: 'no-store',
   });
-
   const { gallery } = await res.json();
   return gallery;
 };
 
 export const getMinistryGallery = async (subfolder?: string): Promise<GalleryCollection> => {
   const params = new URLSearchParams();
-
-  params.append('category', 'ministries');
   if (subfolder) params.append('subfolder', subfolder);
-
   const res = await fetch(`${WEBSITE_URL}/api/gallery?${params.toString()}`, {
     method: 'GET',
     cache: 'no-store',
   });
-
   const { gallery } = await res.json();
   return gallery;
 };
 
 export const getNextGenGallery = async (): Promise<GalleryCollection> => {
   const params = new URLSearchParams();
-
-  params.append('category', 'ministries');
   params.append('subfolder', 'children_ministry');
-
   const res = await fetch(`${WEBSITE_URL}/api/gallery?${params.toString()}`, {
     method: 'GET',
     cache: 'no-store',
   });
-
   const { gallery } = await res.json();
   return gallery;
 };
