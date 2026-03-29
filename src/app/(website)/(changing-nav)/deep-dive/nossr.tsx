@@ -12,7 +12,7 @@ import { combineNames } from '@/data/utils';
 const DeepDivesClient = () => {
   const { deepDives, deepDivesLoading, deepDivesError } = useGetAllDeepDives();
 
-  if (!deepDivesError) {
+  if (deepDivesError) {
     return (
       <MediaBackgroundAndContent
         centerContent
