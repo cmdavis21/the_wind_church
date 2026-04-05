@@ -20,7 +20,7 @@
       "submenu": [
         { "label": "Quiénes Somos", "link": "/about" },
         { "label": "Líderes de Wind", "link": "/wind-leaders" },
-        { "label": "¿Qué es Foursquare?", "link": "/foursquare" }
+        { "label": "Evangelio Cuadrangular", "link": "/foursquare" }
       ]
     },
     "media": {
@@ -93,7 +93,7 @@
           "link": "/wind-leaders"
         },
         {
-          "label": "¿Qué es Foursquare?",
+          "label": "Evangelio Cuadrangular",
           "link": "/foursquare"
         }
       ]

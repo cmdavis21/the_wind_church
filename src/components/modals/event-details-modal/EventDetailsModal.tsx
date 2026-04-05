@@ -56,7 +56,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
-          className="relative rounded-lg p-md md:p-xl overflow-y-scroll scrollbar-hide max-h-[600px] md:max-h-[500px]"
+          className="relative rounded-lg p-md md:p-xl overflow-y-scroll scrollbar-hide overscroll-contain max-h-[600px] md:max-h-[500px]"
         >
           {/* BLUR */}
           <div

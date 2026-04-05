@@ -40,6 +40,17 @@ const FoursquareClient = () => {
   const t = useTranslations('About');
   const tabsRef = useRef<TabsRef>(null);
   const [active, setActive] = useState(0);
+  const anchorRef = useRef<HTMLDivElement>(null);
+
+  const scrollFunc = () => {
+    if (!window) return;
+    if (!anchorRef.current) return;
+    window.scrollTo({
+      left: 0,
+      behavior: 'smooth',
+      top: anchorRef.current.offsetTop - 100,
+    });
+  };
 
   const foursquareBeliefsArr = [
     {
@@ -187,6 +198,7 @@ const FoursquareClient = () => {
         }}
         subtitle="An international Pentecostal Christian denomination founded in 1923"
       />
+      <div ref={anchorRef} />
       <Tabs variant="default" ref={tabsRef} onActiveTabChange={(tab) => setActive(tab)}>
         <TabItem title="Intro" icon={Location}>
           <div className="flex flex-col gap-xl p-lg">
@@ -460,7 +472,7 @@ const FoursquareClient = () => {
           </div>
         </TabItem>
       </Tabs>
-      <div className="-mt-[15px] flex justify-end">
+      <div className="-mt-[15px] flex justify-end border-t p-md">
         <CarouselArrows
           className="w-fit"
           leftArrowProps={{
@@ -468,6 +480,7 @@ const FoursquareClient = () => {
             onClick: () => {
               setActive(active - 1);
               tabsRef.current?.setActiveTab(active - 1);
+              scrollFunc();
             },
           }}
           rightArrowProps={{
@@ -475,6 +488,7 @@ const FoursquareClient = () => {
             onClick: () => {
               setActive(active + 1);
               tabsRef.current?.setActiveTab(active + 1);
+              scrollFunc();
             },
           }}
         />

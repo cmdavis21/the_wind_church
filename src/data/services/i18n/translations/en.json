@@ -20,7 +20,7 @@
       "submenu": [
         { "label": "Who We Are", "link": "/about" },
         { "label": "Wind Leaders", "link": "/wind-leaders" },
-        { "label": "What is Foursquare?", "link": "/foursquare" }
+        { "label": "Foursquare Gospel", "link": "/foursquare" }
       ]
     },
     "media": {
@@ -93,7 +93,7 @@
           "link": "/wind-leaders"
         },
         {
-          "label": "What is Foursquare?",
+          "label": "Foursquare Gospel",
           "link": "/foursquare"
         }
       ]

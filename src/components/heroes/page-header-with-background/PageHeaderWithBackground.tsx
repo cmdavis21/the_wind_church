@@ -21,7 +21,7 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
 }) => (
   <div
     className={`relative ${
-      short ? 'h-[30vh] md:h-[45vh]' : 'h-[50vh] md:h-[65vh]'
+      short ? 'h-[30vh] md:h-[45vh] max-h-[500px]' : 'h-[50vh] md:h-[65vh] max-h-[600px]'
     } rounded-xl overflow-hidden pointer-events-none flex items-end p-lg sm:p-xxl lg:p-3xl`}
   >
     <div className="absolute inset-0">

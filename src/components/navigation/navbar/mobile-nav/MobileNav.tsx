@@ -1,7 +1,6 @@
+import { HamburgerButton } from '@/components/buttons/hamburger-button/HamburgerButton';
 import LanguageSelector from '@/components/buttons/language-selector/LanguageSelector';
 import NavbarButton from '@/components/buttons/navbar-button/NavbarButton';
-import Plus from '@/components/icons/plus';
-import VerticalEllipsis from '@/components/icons/vertical-ellipsis';
 import DarkThemeToggler from '@/components/theme-mode/dark-theme-toggler/DarkThemeToggler';
 import ThemeModeLogo from '@/components/theme-mode/theme-mode-logo/ThemeModeLogo';
 import { useWindowDimensions } from '@/data/hooks';
@@ -22,46 +21,34 @@ interface MobileNavProps {
 const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColor }) => {
   const { darkMode } = useTheme();
   const { height } = useWindowDimensions();
-
   const [openNav, setOpenNav] = useState(false);
-  const [openNavSettings, setOpenNavSettings] = useState(false);
-
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const settingsMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const main = document.getElementsByTagName('body');
     if (main && main[0]) {
-      if (openNav || openNavSettings) {
+      if (openNav) {
         main[0].style.overflow = 'hidden'; // stop body scroll on open nav
       } else {
         main[0].style.overflow = 'auto';
       }
     }
-  }, [openNav, openNavSettings]);
+  }, [openNav]);
 
   return (
     <div
-      className={`relative px-lg md:px-xxl ${
-        openNav || openNavSettings ? 'overflow-hidden' : 'rounded-b-lg'
-      } ${
+      className={`relative px-lg md:px-xxl ${openNav ? 'overflow-hidden' : 'rounded-b-lg'} ${
         changeColor
           ? `${darkMode ? 'bg-dark-bg' : 'bg-light-bg'} shadow-md`
           : `${
               darkMode
-                ? `${openNav || openNavSettings ? 'bg-dark-bg' : ''}`
-                : `${openNav || openNavSettings ? 'bg-dark-bg backdrop-blur-sm' : ''}`
+                ? `${openNav ? 'bg-dark-bg' : ''}`
+                : `${openNav ? 'bg-dark-bg backdrop-blur-sm' : ''}`
             }`
       } transition-colors duration-500 block lg:hidden max-w-screen-xl`}
     >
       <div className="py-3 flex items-end gap-lg justify-between">
-        <Link
-          href={PageRoutes.home}
-          onClick={() => {
-            setOpenNav(false);
-            setOpenNavSettings(false);
-          }}
-        >
+        <Link href={PageRoutes.home} onClick={() => setOpenNav(false)}>
           <ThemeModeLogo changeColor={changeColor} />
         </Link>
 
@@ -73,39 +60,11 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
             onClick={() => setOpenNav(false)}
             changeColor={changeColor}
           />
-
-          <button
-            type="button"
-            onClick={() => {
-              setOpenNavSettings(false);
-              setOpenNav(!openNav);
-            }}
-            className="ml-1 p-xs rounded-md"
-          >
-            <Plus
-              className={`size-[30px] ${openNav ? 'rotate-45' : ''} transition-[rotate,fill] duration-300 ${
-                changeColor
-                  ? `${openNav ? 'fill-brand-primary' : 'fill-black dark:fill-dark-neutral'}`
-                  : `${openNav ? 'fill-brand-primary dark:fill-brand-primary' : 'fill-dark-neutral'}`
-              }`}
-            />
-          </button>
-
-          <button
-            onClick={() => {
-              setOpenNav(false);
-              setOpenNavSettings(!openNavSettings);
-            }}
-            className="p-xs rounded-md"
-          >
-            <VerticalEllipsis
-              className={`size-[30px] transition-[fill] duration-300 ${
-                changeColor
-                  ? `${openNavSettings ? 'fill-brand-primary' : 'fill-black dark:fill-dark-neutral'}`
-                  : `${openNavSettings ? 'fill-brand-primary dark:fill-brand-primary' : 'fill-dark-neutral'}`
-              }`}
-            />
-          </button>
+          <HamburgerButton
+            isOpen={openNav}
+            onClick={() => setOpenNav(!openNav)}
+            changeColor={changeColor}
+          />
         </div>
       </div>
 
@@ -114,7 +73,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
         ref={menuRef}
         style={{ height: openNav ? `${height}px` : '0px' }}
         className={`${
-          openNav ? 'y-scrollbox ease-in scrollbar-hide' : 'ease-out overflow-hidden'
+          openNav ? 'overflow-y-scroll ease-in scrollbar-hide' : 'ease-out overflow-hidden'
         } transition-[height] duration-500 shadow-sm`}
       >
         <div className="pt-lg pb-5xl flex flex-col gap-lg">
@@ -142,40 +101,9 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
               )}
             </React.Fragment>
           ))}
-        </div>
-      </div>
 
-      {/* Settings Dropdown */}
-      <div
-        ref={settingsMenuRef}
-        style={{ height: openNavSettings ? `${height}px` : '0px' }}
-        className={`${
-          openNavSettings ? 'y-scrollbox scrollbar-hide' : 'overflow-hidden'
-        } ${openNav ? 'delay-300 duration-500 ease-out' : 'easie-in duration-500'} transition-[height]`}
-      >
-        <div className="pt-lg pb-5xl flex flex-col gap-lg">
-          <div className="flex justify-between gap-sm items-center">
-            <h5
-              className={`${
-                changeColor
-                  ? 'text-black dark:text-dark-primaryText'
-                  : 'text-white dark:text-dark-primaryText'
-              } whitespace-nowrap tracking-wider capitalize`}
-            >
-              Light/Dark Mode:
-            </h5>
+          <div className="flex flex-wrap px-sm justify-between gap-lg">
             <DarkThemeToggler changeColor={changeColor} />
-          </div>
-          <div className="flex justify-between gap-sm items-center">
-            <h5
-              className={`${
-                changeColor
-                  ? 'text-black dark:text-dark-primaryText'
-                  : 'text-white dark:text-dark-primaryText'
-              } whitespace-nowrap tracking-wider capitalize`}
-            >
-              Language:
-            </h5>
             <LanguageSelector changeColor={changeColor} />
           </div>
         </div>

@@ -29,6 +29,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ changeColor }) => {
     >
       {LOCALES.map((cur) => (
         <option key={cur} value={cur}>
+          <span>{cur === 'en' ? '🇺🇸' : '🇲🇽'}</span>
           {t('locale', { locale: cur })}
         </option>
       ))}
