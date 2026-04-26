@@ -7,7 +7,7 @@ import TimelineItem from '@/components/cards/timeline-item/TimelineItem';
 import SelectInput from '@/components/forms/inputs/select-input/SelectInput';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import Filter from '@/components/icons/filter';
-import { useGetAllEvents } from '@/data/services/sanity/queries/events';
+import { useGetAllEvents } from '@/data/client/sanity/events';
 import { SanityEventCategories } from '@/data/types';
 import { isAfter } from 'date-fns';
 import { useState } from 'react';

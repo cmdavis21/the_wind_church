@@ -1,7 +1,8 @@
 import { PageRoutes } from '@/data/page-routes';
-import { WEBSITE_URL } from '@/data/services/env.server';
-import { SanityClient } from '@/data/services/sanity/client';
-import { getStorefrontProductHandles } from '@/data/services/shopify/queries/products';
+import { WEBSITE_URL } from '@/data/server/env.server';
+import { SanityClient } from '@/data/server/sanity/client';
+import { getStorefrontProductHandles } from '@/data/server/shopify/queries/product';
+
 import { MetadataRoute } from 'next';
 
 // Exclude external or unwanted routes

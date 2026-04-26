@@ -1,5 +1,3 @@
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
-
 import Accordion from '@/components/accordion/Accordion';
 import AlertMessage from '@/components/alerts/alert-message/AlertMessage';
 import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
@@ -12,7 +10,9 @@ import MediaBackgroundAndContent from '@/components/sections/media-background-an
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { formatDateMMMddyyyy } from '@/data/format-date';
 import { PageRoutes } from '@/data/page-routes';
-import { getAllDeepDives, getDeepDiveBySlug } from '@/data/services/sanity/queries/deep-dives';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { getAllDeepDives, getDeepDiveBySlug } from '@/data/server/sanity/queries/deep-dives';
+
 import { getTranslations } from 'next-intl/server';
 
 export async function generateStaticParams() {

@@ -70,13 +70,13 @@ export const CartSkeleton = () => {
                         quantity={line.quantity}
                         decrement={() => {
                           setLoadingItem(index);
-                          updateCartItems([
+                          updateCart([
                             { quantity: line.quantity - 1, id: line.id as GraphQLTypes['ID'] },
                           ]).then(() => setLoadingItem(null));
                         }}
                         increment={() => {
                           setLoadingItem(index);
-                          updateCartItems([
+                          updateCart([
                             { quantity: line.quantity + 1, id: line.id as GraphQLTypes['ID'] },
                           ]).then(() => setLoadingItem(null));
                         }}
@@ -96,7 +96,7 @@ export const CartSkeleton = () => {
                       className="mx-auto"
                       onClick={() => {
                         setLoadingItem(index);
-                        deleteCartItems([line.id as GraphQLTypes['ID']]).then(() =>
+                        removeCartItems([line.id as GraphQLTypes['ID']]).then(() =>
                           setLoadingItem(null)
                         );
                       }}
@@ -144,13 +144,13 @@ export const CartSkeleton = () => {
                 quantity={line.quantity}
                 decrement={() => {
                   setLoadingItem(index);
-                  updateCartItems([
+                  updateCart([
                     { quantity: line.quantity - 1, id: line.id as GraphQLTypes['ID'] },
                   ]).then(() => setLoadingItem(null));
                 }}
                 increment={() => {
                   setLoadingItem(index);
-                  updateCartItems([
+                  updateCart([
                     { quantity: line.quantity + 1, id: line.id as GraphQLTypes['ID'] },
                   ]).then(() => setLoadingItem(null));
                 }}
@@ -165,7 +165,7 @@ export const CartSkeleton = () => {
                 color="danger"
                 onClick={() => {
                   setLoadingItem(index);
-                  deleteCartItems([line.id as GraphQLTypes['ID']]).then(() => setLoadingItem(null));
+                  removeCartItems([line.id as GraphQLTypes['ID']]).then(() => setLoadingItem(null));
                 }}
               >
                 <div className="flex items-center gap-xs text-xs">

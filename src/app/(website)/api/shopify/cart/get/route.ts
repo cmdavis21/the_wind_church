@@ -1,0 +1,16 @@
+import { NextResponse } from 'next/server';
+
+import { getCurrentCartQuery } from '@/data/server/shopify/queries/cart';
+import { cookies } from 'next/headers';
+
+export async function GET() {
+  const cartId = cookies().get('WSWC_CART_ID')?.value;
+
+  if (!cartId) {
+    return NextResponse.json({ cart: null });
+  }
+
+  const { cart } = await getCurrentCartQuery(cartId);
+
+  return NextResponse.json(cart);
+}

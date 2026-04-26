@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import {
   FullContact,
@@ -13,7 +13,9 @@ import Accordion, { ACCORDION_TYPE } from '@/components/accordion/Accordion';
 
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import { GiftAssessmentDefinitions, GiftAssessmentQuestions } from '@/data/gift-assessment';
-import { useCreateGiftAssessment } from '@/data/services/sanity/mutations/gift-assessment';
+
+import { useCreateGiftAssessment } from '@/data/client/sanity/gift-assessment';
+import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from 'flowbite-react';
 import GiftAssessmentContactForm from './gift-assessment-contact-form/GiftAssessmentContactForm';
@@ -24,8 +26,9 @@ import GiftAssessmentResultsPdf from './gift-assessment-results-pdf/GiftAssessme
 const PDF_FILE_NAME = 'The_Wind_Church_Spiritual_Gift_Assessment_Results.pdf';
 
 const GiftAssessment = () => {
-  const resultsRef = useRef<HTMLDivElement | null>(null);
   const [showResults, setShowResults] = useState(false);
+  const resultsRef = useRef<HTMLDivElement | null>(null);
+  useScrollToOnStatus(resultsRef, showResults);
 
   const [dominateGifts, setDominateGifts] = useState<GiftAssessmentDefinition[] | null>(null);
   const [subordinateGifts, setSubordinateGifts] = useState<GiftAssessmentDefinition[] | null>(null);
@@ -56,18 +59,6 @@ const GiftAssessment = () => {
       submitResults(submissionValues);
     }
   };
-
-  useEffect(() => {
-    if (resultsRef.current) {
-      if (showResults && dominateGifts && subordinateGifts) {
-        window.scrollTo({
-          left: 0,
-          top: resultsRef.current.offsetTop - 100,
-          behavior: 'smooth',
-        });
-      }
-    }
-  }, [showResults && dominateGifts && subordinateGifts]);
 
   return (
     <div className="flex flex-col gap-xxl lg:gap-4xl 2xl:gap-5xl">

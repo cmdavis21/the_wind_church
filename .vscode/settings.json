@@ -6,6 +6,12 @@
     "source.fixAll": "explicit",
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   }
   // "editor.defaultFormatter": null,
   // "editor.formatOnSave": false,

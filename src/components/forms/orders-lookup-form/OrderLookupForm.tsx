@@ -6,10 +6,9 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useLookupCustomer } from '@/data/services/shopify/admin/queries/customer';
-import { useLookupCustomerOrders } from '@/data/services/shopify/admin/queries/orders';
 import { CustomerData } from '@/data/types';
 
+import { useLookupCustomer, useLookupCustomerOrders } from '@/data/client/shopify/customer';
 import { isValidEmail } from '@/data/utils';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';

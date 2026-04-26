@@ -2,12 +2,13 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'flowbite-react';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import PencilPaper from '@/components/icons/pencilPaper';
-import { useUpdateCustomerEmail } from '@/data/services/shopify/admin/mutations/customer';
+import { useUpdateCustomerEmail } from '@/data/client/shopify/customer';
+import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import TextInput from '../inputs/text-input/TextInput';
 
@@ -21,8 +22,10 @@ interface EmailUpdateFormProps {
 }
 
 const EmailUpdateForm: React.FC<EmailUpdateFormProps> = ({ customer_id, current_email }) => {
-  const formRef = useRef<HTMLFormElement | null>(null);
   const { mutate: updateEmail, isPending, isSuccess, isError } = useUpdateCustomerEmail();
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+  useScrollToOnStatus(formRef, isSuccess, isError);
 
   const {
     watch,
@@ -45,13 +48,6 @@ const EmailUpdateForm: React.FC<EmailUpdateFormProps> = ({ customer_id, current_
       email: values.email,
     });
   };
-
-  useEffect(() => {
-    if (!formRef.current) return;
-    if (isSuccess || isError) {
-      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
-    }
-  }, [isSuccess, isError]);
 
   return (
     <form

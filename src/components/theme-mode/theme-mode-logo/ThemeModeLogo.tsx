@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { useTheme } from '@/data/providers/theme-mode-provider';
-import { AWS_ASSET_URL } from '@/data/services/env.server';
+import { AWS_ASSET_URL } from '@/data/server/env.server';
 
 interface ThemeModeLogoProps {
   changeColor?: boolean;

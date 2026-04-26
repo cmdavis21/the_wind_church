@@ -1,6 +1,6 @@
 import GiftAssessment from '@/components/forms/gift-assessment/GiftAssessment';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
 import { Button } from 'flowbite-react';
 import { getTranslations } from 'next-intl/server';
 

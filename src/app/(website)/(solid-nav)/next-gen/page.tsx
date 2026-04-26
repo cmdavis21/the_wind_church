@@ -13,10 +13,10 @@ import MediaBackgroundAndContent from '@/components/sections/media-background-an
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { getNextGenGallery } from '@/data/services/aws/s3/gallery';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
-import { getMinistryEvents } from '@/data/services/sanity/queries/events';
-import { getNextGenPage } from '@/data/services/sanity/queries/next-gen-page';
+import { getNextGenGallery } from '@/data/server/aws/s3/gallery';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { getMinistryEvents } from '@/data/server/sanity/queries/events';
+import { getNextGenPage } from '@/data/server/sanity/queries/next-gen-page';
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
 import { Button } from 'flowbite-react';

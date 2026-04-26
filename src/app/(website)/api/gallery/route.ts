@@ -1,4 +1,4 @@
-import { getGalleryImages } from '@/data/services/aws/s3/gallery';
+import { getGalleryImages } from '@/data/server/aws/s3/gallery';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {

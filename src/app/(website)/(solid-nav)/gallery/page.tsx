@@ -5,8 +5,8 @@ import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarouse
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { getGallery } from '@/data/services/aws/s3/gallery';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
+import { getGallery } from '@/data/server/aws/s3/gallery';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

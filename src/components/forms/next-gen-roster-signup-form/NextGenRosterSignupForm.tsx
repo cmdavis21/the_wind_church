@@ -82,9 +82,10 @@ const SCHOOL_GRADES = [
 ];
 
 const NextGenRosterSignupForm = () => {
-  const formRef = useRef<HTMLFormElement | null>(null);
-
   // const { mutate: submitInquiry, isPending, isSuccess, isError } = useNextGenRosterSignup();
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+  // useScrollToOnStatus(formRef, isSuccess, isError);
 
   const {
     control,
@@ -128,13 +129,6 @@ const NextGenRosterSignupForm = () => {
   });
 
   // const onSubmit = (values: NextGenRosterSignup) => submitInquiry(values);
-
-  // useEffect(() => {
-  //   if (!formRef.current) return;
-  //   if (isSuccess || isError) {
-  //     window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
-  //   }
-  // }, [isSuccess, isError]);
 
   return (
     <form

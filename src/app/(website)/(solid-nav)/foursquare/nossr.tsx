@@ -29,7 +29,7 @@ import Temperature from '@/components/icons/temperature';
 import ThumbsDown from '@/components/icons/thumbs-down';
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { AWS_ASSET_URL } from '@/data/services/env.server';
+import { AWS_ASSET_URL } from '@/data/client/env.client';
 import { TabItem, Tabs, TabsRef } from 'flowbite-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';

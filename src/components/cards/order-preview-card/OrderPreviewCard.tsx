@@ -1,10 +1,10 @@
 'use client';
 
 import CartModal from '@/components/modals/cart-modal/CartModal';
+import { useCart } from '@/data/client/shopify/use-cart';
 import { formatDateMMMddyyyy } from '@/data/format-date';
 import { formatPrice } from '@/data/format-price';
-import { GraphQLTypes } from '@/data/services/shopify/admin/zeus';
-import { useCartFunctions } from '@/data/services/shopify/cart-hook';
+
 import { Order } from '@/data/types';
 import { Button, Spinner } from 'flowbite-react';
 import Image from 'next/image';
@@ -17,7 +17,7 @@ interface OrderPreviewCardProps {
 const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
   const [open, setOpen] = useState(false);
   const subMenuDropdown = useRef<HTMLDivElement | null>(null);
-  const { getCart, cartLoading, addToCart } = useCartFunctions();
+  const { getCart, cartLoading, addToCart } = useCart();
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -87,7 +87,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                   addToCart(
                     order.line_items.map((item) => ({
                       quantity: item.quantity,
-                      merchandiseId: item.variant.id as GraphQLTypes['ID'],
+                      merchandiseId: item.variant.id as any,
                     }))
                   ).then(() => setShowModal(true));
                 }}

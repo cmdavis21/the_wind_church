@@ -1,5 +1,5 @@
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
 import { getTranslations } from 'next-intl/server';
 import FoursquareClient from './nossr';
 

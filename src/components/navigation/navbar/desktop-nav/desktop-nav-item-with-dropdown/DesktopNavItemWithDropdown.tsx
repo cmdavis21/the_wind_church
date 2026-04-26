@@ -1,9 +1,10 @@
 'use client';
 
 import BagIcon from '@/components/icons/bag';
+import { useCart } from '@/data/client/shopify/use-cart';
 import { PageRoutes } from '@/data/page-routes';
 import { useTheme } from '@/data/providers/theme-mode-provider';
-import { useCartFunctions } from '@/data/services/shopify/cart-hook';
+
 import { NavbarColumnItem } from '@/data/types';
 import cn from 'classnames';
 import Link from 'next/link';
@@ -27,7 +28,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
   setOpen,
 }) => {
   const { darkMode } = useTheme();
-  const { getCart } = useCartFunctions();
+  const { getCart } = useCart();
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {

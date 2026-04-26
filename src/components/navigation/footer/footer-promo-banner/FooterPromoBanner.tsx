@@ -1,7 +1,8 @@
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import UpArrow from '@/components/icons/up-arrow';
-import { AWS_ASSET_URL } from '@/data/services/env.server';
-import { getPromoDetails } from '@/data/services/sanity/queries/promo-details';
+import { AWS_ASSET_URL } from '@/data/server/env.server';
+import { getPromoDetails } from '@/data/server/sanity/queries/promo-details';
+
 import cn from 'classnames';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';

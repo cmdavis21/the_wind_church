@@ -1,4 +1,4 @@
-import { PUSHPAY_URL } from './services/env.server';
+import { PUSHPAY_URL } from './server/env.server';
 
 export const PageRoutes = {
   about: '/about',

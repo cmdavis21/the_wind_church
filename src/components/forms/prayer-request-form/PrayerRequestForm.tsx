@@ -2,7 +2,7 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'flowbite-react';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -10,7 +10,8 @@ import PencilPaper from '@/components/icons/pencilPaper';
 import { PrayerRequest, YesNo } from '@/data/types';
 
 import AlertMessage from '@/components/alerts/alert-message/AlertMessage';
-import { useCreatePrayerRequest } from '@/data/services/sanity/mutations/prayer-request';
+import { useCreatePrayerRequest } from '@/data/client/sanity/prayer-request';
+import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { isValidEmail } from '@/data/utils';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import TextInput from '../inputs/text-input/TextInput';
@@ -29,12 +30,12 @@ const schema = yup.object().shape({
 });
 
 const PrayerRequestForm = () => {
-  const formRef = useRef<HTMLFormElement | null>(null);
-
   const { mutate: submitRequest, isPending, isSuccess, isError } = useCreatePrayerRequest();
 
+  const formRef = useRef<HTMLFormElement | null>(null);
+  useScrollToOnStatus(formRef, isSuccess, isError);
+
   const {
-    reset,
     register,
     handleSubmit,
     setValue,
@@ -46,13 +47,6 @@ const PrayerRequestForm = () => {
   });
 
   const onSubmit = (values: PrayerRequest) => submitRequest(values);
-
-  useEffect(() => {
-    if (!formRef.current) return;
-    if (isSuccess || isError) {
-      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
-    }
-  }, [isSuccess, isError]);
 
   return (
     <form

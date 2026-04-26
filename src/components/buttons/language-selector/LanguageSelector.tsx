@@ -1,7 +1,7 @@
 'use client';
 
-import { setUserLocale } from '@/data/services/i18n/locale';
-import { LOCALES } from '@/data/services/i18n/utils';
+import { setUserLocale } from '@/data/i18n/locale';
+import { LOCALES } from '@/data/i18n/utils';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import LanguageSelectorSelect from './language-selector-select/LanguageSelectorSelect';
@@ -29,7 +29,6 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ changeColor }) => {
     >
       {LOCALES.map((cur) => (
         <option key={cur} value={cur}>
-          <span>{cur === 'en' ? '🇺🇸' : '🇲🇽'}</span>
           {t('locale', { locale: cur })}
         </option>
       ))}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useYouTubeSnippet } from '@/data/hooks';
+import { useYouTubeSnippet } from '@/data/client/use-youtube-snippet';
 import { PageRoutes } from '@/data/page-routes';
 import { FallbackSermonSnippet, YouTubeSermonSnippet } from '@/data/types';
 import { Button, Tooltip } from 'flowbite-react';

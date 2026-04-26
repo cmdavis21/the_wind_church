@@ -7,9 +7,9 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL, YOUTUBE } from '@/data/services/env.server';
-import { getAllTestimonies } from '@/data/services/sanity/queries/testimonials';
-import { getLatestSermon } from '@/data/services/youtube/playlists';
+import { AWS_ASSET_URL, WEBSITE_URL, YOUTUBE } from '@/data/server/env.server';
+import { getAllTestimonies } from '@/data/server/sanity/queries/testimonials';
+import { getLatestSermon } from '@/data/server/youtube/playlists';
 
 import { styleSelectedWords } from '@/data/utils';
 import { getTranslations } from 'next-intl/server';

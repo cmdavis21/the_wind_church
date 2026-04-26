@@ -10,10 +10,10 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { getMinistryGallery } from '@/data/services/aws/s3/gallery';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
-import { getMinistryEvents } from '@/data/services/sanity/queries/events';
-import { getAllMinistries, getMinistryBySlug } from '@/data/services/sanity/queries/ministries';
+import { getMinistryGallery } from '@/data/server/aws/s3/gallery';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { getMinistryEvents } from '@/data/server/sanity/queries/events';
+import { getAllMinistries, getMinistryBySlug } from '@/data/server/sanity/queries/ministries';
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
 import { Button } from 'flowbite-react';

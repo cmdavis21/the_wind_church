@@ -2,12 +2,14 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'flowbite-react';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import PencilPaper from '@/components/icons/pencilPaper';
-import { useUpdateCustomerAddress } from '@/data/services/shopify/admin/mutations/customer';
+
+import { useUpdateCustomerAddress } from '@/data/client/shopify/customer';
+import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { Address } from '@/data/types';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import SelectInput from '../inputs/select-input/SelectInput';
@@ -92,8 +94,10 @@ interface AddressUpdateFormProps {
 }
 
 const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, current_address }) => {
-  const formRef = useRef<HTMLFormElement | null>(null);
   const { mutate: updateAddress, isPending, isSuccess, isError } = useUpdateCustomerAddress();
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+  useScrollToOnStatus(formRef, isSuccess, isError);
 
   const {
     watch,
@@ -117,13 +121,6 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
       address: values,
     });
   };
-
-  useEffect(() => {
-    if (!formRef.current) return;
-    if (isSuccess || isError) {
-      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
-    }
-  }, [isSuccess, isError]);
 
   return (
     <form

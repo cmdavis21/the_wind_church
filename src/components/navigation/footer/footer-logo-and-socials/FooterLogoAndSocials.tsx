@@ -4,7 +4,7 @@ import YouTubeIcon from '@/components/icons/youtube';
 import ThemeModeLogo from '@/components/theme-mode/theme-mode-logo/ThemeModeLogo';
 
 import { PageRoutes } from '@/data/page-routes';
-import { FACEBOOK, INSTAGRAM, YOUTUBE } from '@/data/services/env.server';
+import { FACEBOOK, INSTAGRAM, YOUTUBE } from '@/data/server/env.server';
 
 import Link from 'next/link';
 

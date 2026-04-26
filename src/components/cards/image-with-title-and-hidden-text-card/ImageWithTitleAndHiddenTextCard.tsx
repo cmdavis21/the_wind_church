@@ -1,7 +1,7 @@
 'use client';
 
 import SquarePlus from '@/components/icons/square-plus';
-import { useWindowDimensions } from '@/data/hooks';
+import { useWindowDimensions } from '@/data/client/use-window-dimensions';
 import cn from 'classnames';
 import Image from 'next/image';
 import React, { ReactElement, useState } from 'react';

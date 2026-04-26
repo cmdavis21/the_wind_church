@@ -3,11 +3,12 @@
 import { MinistryConnection } from '@/data/types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'flowbite-react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useCreateMinistryConnection } from '@/data/services/sanity/mutations/ministry-connection';
+import { useCreateMinistryConnection } from '@/data/client/sanity/ministry-connection';
+import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { isValidEmail, isValidPhone } from '@/data/utils';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';
@@ -30,8 +31,8 @@ const schema = yup.object().shape({
     .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
   ministry_interests: yup
     .array(yup.string().default(''))
-    .min(1)
-    .required('Select at least one ministry you are instrested in learning more about.'),
+    .min(1, 'Select at least one ministry you are instrested in learning more about.')
+    .required('Select ministries you are instrested in.'),
 });
 
 interface MinistryConnectionFormProps {
@@ -39,39 +40,22 @@ interface MinistryConnectionFormProps {
 }
 
 const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministryNames }) => {
-  const formRef = useRef<HTMLFormElement | null>(null);
-  const [selections, setSelections] = useState<string[]>([]);
-
   const { mutate: submitIquiry, isPending, isSuccess, isError } = useCreateMinistryConnection();
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+  useScrollToOnStatus(formRef, isSuccess, isError);
 
   const {
     register,
-    setError,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<MinistryConnection>({
     mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values: MinistryConnection) => {
-    if (selections.length > 0) {
-      submitIquiry({ ...values, ministry_interests: selections });
-    } else {
-      setError('ministry_interests', {
-        type: 'manual',
-        message: 'Select at least one ministry you are instrested in learning more about.',
-      });
-    }
-  };
-
-  useEffect(() => {
-    if (!formRef.current) return;
-    if (isSuccess || isError) {
-      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
-    }
-  }, [isSuccess, isError]);
+  const onSubmit = (values: MinistryConnection) => submitIquiry(values);
 
   return (
     <form
@@ -151,7 +135,7 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
         size="lg"
         type="submit"
         color="primary"
-        disabled={isPending || isSuccess || isError}
+        disabled={!isValid || isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
         {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}

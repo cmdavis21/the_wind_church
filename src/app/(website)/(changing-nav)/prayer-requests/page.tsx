@@ -2,7 +2,7 @@ import PrayerRequestForm from '@/components/forms/prayer-request-form/PrayerRequ
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

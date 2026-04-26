@@ -2,13 +2,14 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'flowbite-react';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { EventRentalInquiry, YesNo } from '@/data/types';
 
-import { useCreateEventRentalInquiry } from '@/data/services/sanity/mutations/event-rental-inquiry';
+import { useCreateEventRentalInquiry } from '@/data/client/sanity/event-rental-inquiry';
+import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { isValidEmail, isValidPhone } from '@/data/utils';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';
@@ -45,15 +46,16 @@ const schema: yup.ObjectSchema<EventRentalInquiry> = yup.object().shape({
 });
 
 const EventRentalForm = () => {
-  const formRef = useRef<HTMLFormElement | null>(null);
   const [showReference, setShowReference] = useState(false);
 
   const { mutate: submitInquiry, isPending, isSuccess, isError } = useCreateEventRentalInquiry();
 
+  const formRef = useRef<HTMLFormElement | null>(null);
+  useScrollToOnStatus(formRef, isSuccess, isError);
+
   const {
     register,
     setValue,
-    setError,
     handleSubmit,
     formState: { errors },
   } = useForm<EventRentalInquiry>({
@@ -62,13 +64,6 @@ const EventRentalForm = () => {
   });
 
   const onSubmit = (values: EventRentalInquiry) => submitInquiry(values);
-
-  useEffect(() => {
-    if (!formRef.current) return;
-    if (isSuccess || isError) {
-      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
-    }
-  }, [isSuccess, isError]);
 
   return (
     <form

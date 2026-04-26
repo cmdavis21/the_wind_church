@@ -3,7 +3,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { PageRoutes } from '@/data/page-routes';
-import { useCartFunctions } from '@/data/services/shopify/cart-hook';
+
+import { useCart } from '@/data/client/shopify/use-cart';
 import { NavbarColumnItem } from '@/data/types';
 import cn from 'classnames';
 import Link from 'next/link';
@@ -26,7 +27,7 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
   navState,
   handleChange,
 }) => {
-  const { getCart } = useCartFunctions();
+  const { getCart } = useCart();
 
   const [open, setOpen] = useState(false);
   const subMenuDropdown = useRef<HTMLDivElement | null>(null);

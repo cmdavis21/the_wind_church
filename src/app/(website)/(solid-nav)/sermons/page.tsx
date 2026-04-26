@@ -5,8 +5,8 @@ import MediaBackgroundAndContent from '@/components/sections/media-background-an
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL, YOUTUBE } from '@/data/services/env.server';
-import { getPlaylists } from '@/data/services/youtube/playlists';
+import { AWS_ASSET_URL, WEBSITE_URL, YOUTUBE } from '@/data/server/env.server';
+import { getPlaylists } from '@/data/server/youtube/playlists';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 

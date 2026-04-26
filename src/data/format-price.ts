@@ -1,4 +1,4 @@
-import { CurrencyCode } from './services/shopify/zeus';
+import { CurrencyCode } from './server/shopify/zeus';
 
 export interface Price {
   amount: number | string;

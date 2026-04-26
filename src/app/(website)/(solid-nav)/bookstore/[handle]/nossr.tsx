@@ -4,10 +4,9 @@ import SingleSlideMediaCarousel from '@/components/carousels/single-slide-media-
 import QuantityInput from '@/components/forms/inputs/quantity-input/QuantityInput';
 import TextRadio from '@/components/forms/inputs/text-radio/TextRadio';
 import CartModal from '@/components/modals/cart-modal/CartModal';
+import { useCart } from '@/data/client/shopify/use-cart';
 import { formatPrice } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
-import { useCartFunctions } from '@/data/services/shopify/cart-hook';
-import { GraphQLTypes } from '@/data/services/shopify/zeus';
 import { Product } from '@/data/types';
 import { Badge, Button, Spinner } from 'flowbite-react';
 import Link from 'next/link';
@@ -32,7 +31,7 @@ const MISCELLANEOUS_DETAIL: { detail: string; description: string }[] = [
 ];
 
 const ProductPage = (product: Product) => {
-  const { getCart, addToCart, cartLoading } = useCartFunctions();
+  const { getCart, addToCart, cartLoading } = useCart();
 
   const [quantity, setQuantity] = useState(1);
   const [showModal, setShowModal] = useState(false);
@@ -213,7 +212,7 @@ const ProductPage = (product: Product) => {
                     addToCart([
                       {
                         quantity,
-                        merchandiseId: product.variants[selectedVariant].id as GraphQLTypes['ID'],
+                        merchandiseId: product.variants[selectedVariant].id as any,
                       },
                     ]).then(() => setShowModal(true));
                   }

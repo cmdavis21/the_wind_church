@@ -4,9 +4,10 @@ import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import FullscreenMediaWithTextFadeInOutCarousel from '@/components/carousels/fullscreen-media-with-text-fade-in-out-carousel/FullscreenMediaWithTextFadeInOutCarousel';
 import FullscreenMediaWithTextFadeInOutCarouselSkeleton from '@/components/carousels/fullscreen-media-with-text-fade-in-out-carousel/FullscreenMediaWithTextFadeInOutCarousel.skeleton';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
+import { AWS_ASSET_URL } from '@/data/client/env.client';
+import { useGetAllDeepDives } from '@/data/client/sanity/deep-dives';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL } from '@/data/services/env.server';
-import { useGetAllDeepDives } from '@/data/services/sanity/queries/deep-dives';
+
 import { combineNames } from '@/data/utils';
 
 const DeepDivesClient = () => {

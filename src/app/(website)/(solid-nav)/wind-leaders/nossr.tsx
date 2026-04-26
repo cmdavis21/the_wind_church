@@ -10,7 +10,7 @@ import PageHeader from '@/components/heroes/page-header/PageHeader';
 import Filter from '@/components/icons/filter';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
-import { useGetAllCategorizedLeaders } from '@/data/services/sanity/queries/leaders';
+import { useGetAllCategorizedLeaders } from '@/data/client/sanity/leaders';
 import { useEffect, useState } from 'react';
 
 const WindLeadersClient = () => {

@@ -11,7 +11,7 @@ import MediaBackgroundAndContent, {
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
 import { styleSelectedWords } from '@/data/utils';
 import { Button } from 'flowbite-react';
 import { getTranslations } from 'next-intl/server';

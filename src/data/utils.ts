@@ -70,7 +70,6 @@ export const styleSelectedWords = ({
   return finalText;
 };
 
-// Open Window with searh query
 export const openWindowWithQuery = (query: string) => {
   const newWindow = window.open('about:blank', '_blank');
   if (newWindow) {

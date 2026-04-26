@@ -3,7 +3,8 @@ import LanguageSelector from '@/components/buttons/language-selector/LanguageSel
 import NavbarButton from '@/components/buttons/navbar-button/NavbarButton';
 import DarkThemeToggler from '@/components/theme-mode/dark-theme-toggler/DarkThemeToggler';
 import ThemeModeLogo from '@/components/theme-mode/theme-mode-logo/ThemeModeLogo';
-import { useWindowDimensions } from '@/data/hooks';
+
+import { useWindowDimensions } from '@/data/client/use-window-dimensions';
 import { PageRoutes } from '@/data/page-routes';
 import { useTheme } from '@/data/providers/theme-mode-provider';
 import { NavbarItem } from '@/data/types';
@@ -52,7 +53,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
           <ThemeModeLogo changeColor={changeColor} />
         </Link>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-3">
           <NavbarButton
             forMobile
             label={menuOptions[menuOptions.length - 1].label}
@@ -102,7 +103,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ menuOptions, pathname, changeColo
             </React.Fragment>
           ))}
 
-          <div className="flex flex-wrap px-sm justify-between gap-lg">
+          <div className="flex flex-wrap px-sm justify-between gap-lg pt-4xl">
             <DarkThemeToggler changeColor={changeColor} />
             <LanguageSelector changeColor={changeColor} />
           </div>

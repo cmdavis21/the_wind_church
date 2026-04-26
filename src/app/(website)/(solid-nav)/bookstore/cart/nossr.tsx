@@ -3,17 +3,16 @@
 import QuantityInput from '@/components/forms/inputs/quantity-input/QuantityInput';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import Trash from '@/components/icons/trash';
+import { useCart } from '@/data/client/shopify/use-cart';
 import { formatPrice } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
-import { useCartFunctions } from '@/data/services/shopify/cart-hook';
-import { GraphQLTypes } from '@/data/services/shopify/zeus';
 import { Button } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
 const CartPage = () => {
-  const { getCart, cartLoading, updateCartItems, deleteCartItems } = useCartFunctions();
+  const { getCart, cartLoading, updateCart, removeCartItems } = useCart();
   const [loadingItem, setLoadingItem] = useState<number | null>(null);
 
   return (
@@ -109,14 +108,14 @@ const CartPage = () => {
                             quantity={line.quantity}
                             decrement={() => {
                               setLoadingItem(index);
-                              updateCartItems([
-                                { quantity: line.quantity - 1, id: line.id as GraphQLTypes['ID'] },
+                              updateCart([
+                                { quantity: line.quantity - 1, id: line.id as any },
                               ]).then(() => setLoadingItem(null));
                             }}
                             increment={() => {
                               setLoadingItem(index);
-                              updateCartItems([
-                                { quantity: line.quantity + 1, id: line.id as GraphQLTypes['ID'] },
+                              updateCart([
+                                { quantity: line.quantity + 1, id: line.id as any },
                               ]).then(() => setLoadingItem(null));
                             }}
                           />
@@ -135,9 +134,7 @@ const CartPage = () => {
                           className="mx-auto"
                           onClick={() => {
                             setLoadingItem(index);
-                            deleteCartItems([line.id as GraphQLTypes['ID']]).then(() =>
-                              setLoadingItem(null)
-                            );
+                            removeCartItems([line.id as any]).then(() => setLoadingItem(null));
                           }}
                         >
                           <div className="flex items-center gap-xs text-xs">
@@ -185,15 +182,15 @@ const CartPage = () => {
                     quantity={line.quantity}
                     decrement={() => {
                       setLoadingItem(index);
-                      updateCartItems([
-                        { quantity: line.quantity - 1, id: line.id as GraphQLTypes['ID'] },
-                      ]).then(() => setLoadingItem(null));
+                      updateCart([{ quantity: line.quantity - 1, id: line.id as any }]).then(() =>
+                        setLoadingItem(null)
+                      );
                     }}
                     increment={() => {
                       setLoadingItem(index);
-                      updateCartItems([
-                        { quantity: line.quantity + 1, id: line.id as GraphQLTypes['ID'] },
-                      ]).then(() => setLoadingItem(null));
+                      updateCart([{ quantity: line.quantity + 1, id: line.id as any }]).then(() =>
+                        setLoadingItem(null)
+                      );
                     }}
                   />
                   <p className="capitalize font-bold">
@@ -205,9 +202,7 @@ const CartPage = () => {
                     color="danger"
                     onClick={() => {
                       setLoadingItem(index);
-                      deleteCartItems([line.id as GraphQLTypes['ID']]).then(() =>
-                        setLoadingItem(null)
-                      );
+                      removeCartItems([line.id as any]).then(() => setLoadingItem(null));
                     }}
                   >
                     <div className="flex items-center gap-xxs text-xs">

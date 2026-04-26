@@ -1,7 +1,7 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -9,7 +9,8 @@ import { NextGenGuardianInquiry } from '@/data/types';
 
 import AlertMessage from '@/components/alerts/alert-message/AlertMessage';
 import PencilPaper from '@/components/icons/pencilPaper';
-import { useCreateNextGenGuardianInquiry } from '@/data/services/sanity/mutations/next-gen-guardian-inquiry';
+import { useCreateNextGenGuardianInquiry } from '@/data/client/sanity/next-gen-guardian-inquiry';
+import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { isValidEmail, isValidPhone } from '@/data/utils';
 import { Button } from 'flowbite-react';
 import TextInput from '../inputs/text-input/TextInput';
@@ -31,14 +32,15 @@ const schema = yup.object().shape({
 });
 
 const NextGenGuardianInquiryForm = () => {
-  const formRef = useRef<HTMLFormElement | null>(null);
-
   const {
     mutate: submitRequest,
     isPending,
     isSuccess,
     isError,
   } = useCreateNextGenGuardianInquiry();
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+  useScrollToOnStatus(formRef, isSuccess, isError);
 
   const {
     register,
@@ -52,13 +54,6 @@ const NextGenGuardianInquiryForm = () => {
   });
 
   const onSubmit = (values: NextGenGuardianInquiry) => submitRequest(values);
-
-  useEffect(() => {
-    if (!formRef.current) return;
-    if (isSuccess || isError) {
-      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
-    }
-  }, [isSuccess, isError]);
 
   return (
     <form

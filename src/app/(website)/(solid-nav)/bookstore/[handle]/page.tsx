@@ -1,10 +1,10 @@
 import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/services/env.server';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
 import {
   getStorefrontProductByHandle,
   getStorefrontProductHandles,
-} from '@/data/services/shopify/queries/products';
+} from '@/data/server/shopify/queries/product';
 import { getTranslations } from 'next-intl/server';
 import ProductPage from './nossr';
 

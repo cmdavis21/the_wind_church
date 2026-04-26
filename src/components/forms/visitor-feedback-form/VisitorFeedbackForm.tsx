@@ -1,12 +1,14 @@
 'use client';
 
 import PencilPaper from '@/components/icons/pencilPaper';
-import { useCreateVisitorFeedback } from '@/data/services/sanity/mutations/visitor-feedback';
+
+import { useCreateVisitorFeedback } from '@/data/client/sanity/visitor-feedback';
+import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { VisitorFeedback } from '@/data/types';
 import { isValidEmail, isValidPhone } from '@/data/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'flowbite-react';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
@@ -35,9 +37,10 @@ const schema: yup.ObjectSchema<VisitorFeedback> = yup.object().shape({
 });
 
 const VisitorFeedbackForm = () => {
-  const formRef = useRef<HTMLFormElement | null>(null);
-
   const { mutate: submitFeedback, isPending, isSuccess, isError } = useCreateVisitorFeedback();
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+  useScrollToOnStatus(formRef, isSuccess, isError);
 
   const {
     register,
@@ -49,13 +52,6 @@ const VisitorFeedbackForm = () => {
   });
 
   const onSubmit = (values: VisitorFeedback) => submitFeedback({ ...values });
-
-  useEffect(() => {
-    if (!formRef.current) return;
-    if (isSuccess || isError) {
-      window.scrollTo({ left: 0, top: formRef.current.offsetTop - 100, behavior: 'smooth' });
-    }
-  }, [isSuccess, isError]);
 
   return (
     <form

@@ -1,6 +1,6 @@
-import { mailer } from '@/data/services/aws/ses/mailer';
-import { baseTemplate, renderTemplate } from '@/data/services/aws/ses/utils';
-import { EMAIL_NO_REPLY, EMAIL_OFFICE } from '@/data/services/env.server';
+import { mailer } from '@/data/server/aws/ses/mailer';
+import { baseTemplate, renderTemplate } from '@/data/server/aws/ses/utils';
+import { EMAIL_NO_REPLY, EMAIL_OFFICE } from '@/data/server/env.server';
 import { FORM_TYPES } from '@/data/types';
 import { NextResponse } from 'next/server';
 

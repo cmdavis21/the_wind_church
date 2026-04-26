@@ -1,6 +1,6 @@
 import CornerButton from '@/components/buttons/corner-button/CornerButton';
+import { useWindowDimensions } from '@/data/client/use-window-dimensions';
 import { formatDateMMMddyyyy } from '@/data/format-date';
-import { useWindowDimensions } from '@/data/hooks';
 import { Event } from '@/data/types';
 import { Badge, Modal, ModalBody } from 'flowbite-react';
 import React, { useEffect, useRef, useState } from 'react';
