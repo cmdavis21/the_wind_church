@@ -1,16 +1,14 @@
 'use client';
 
-import { GET_ALL_EVENTS } from '@/data/types';
+import { Event, GET_ALL_EVENTS } from '@/data/types';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetAllEvents = () => {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError } = useQuery<Event[], Error>({
     queryKey: [GET_ALL_EVENTS],
     queryFn: async () => {
       const res = await fetch('/api/sanity/events');
-
-      if (!res.ok) throw new Error('Failed to fetch events');
-
+      if (!res.ok) throw new Error(`${GET_ALL_EVENTS} ERROR`);
       return res.json();
     },
   });

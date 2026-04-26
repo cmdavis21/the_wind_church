@@ -1,4 +1,5 @@
 import { getAllDeepDives } from '@/data/server/sanity/queries/deep-dives';
+import { GET_ALL_DEEP_DIVES } from '@/data/types';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -6,7 +7,7 @@ export async function GET() {
     const deepDives = await getAllDeepDives();
     return NextResponse.json(deepDives);
   } catch (err) {
-    console.error('Sanity deep dives error:', err);
-    return NextResponse.json({ error: 'Failed to fetch deep dives' }, { status: 500 });
+    console.error(`${GET_ALL_DEEP_DIVES} ERROR`, err);
+    return NextResponse.json({ error: `${GET_ALL_DEEP_DIVES} ERROR` }, { status: 500 });
   }
 }

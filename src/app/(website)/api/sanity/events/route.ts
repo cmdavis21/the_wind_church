@@ -1,4 +1,5 @@
 import { getAllEvents } from '@/data/server/sanity/queries/events';
+import { GET_ALL_EVENTS } from '@/data/types';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -6,7 +7,7 @@ export async function GET() {
     const events = await getAllEvents();
     return NextResponse.json(events);
   } catch (err) {
-    console.error('Sanity events error:', err);
-    return NextResponse.json({ error: 'Failed to fetch events' }, { status: 500 });
+    console.error(`${GET_ALL_EVENTS} ERROR`, err);
+    return NextResponse.json({ error: `${GET_ALL_EVENTS} ERROR` }, { status: 500 });
   }
 }

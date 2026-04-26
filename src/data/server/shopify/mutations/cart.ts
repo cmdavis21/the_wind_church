@@ -1,6 +1,4 @@
 import { Cart } from '@/data/types';
-import { NextPageContext } from 'next';
-import nookies from 'nookies';
 import { CropRegion, CurrencyCode, GraphQLTypes, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';
 
@@ -313,18 +311,20 @@ export const cartLinesRemoveMutation = async (cartId: string, lineIds: string[])
 export const cartCreate = async (input: GraphQLTypes['CartInput']): Promise<Cart | undefined> => {
   const { cartCreate } = await cartCreateMutation(input);
 
-  if (!cartCreate) return undefined;
+  if (!cartCreate?.cart) return undefined;
+
+  const cart = cartCreate.cart;
 
   return {
-    id: cartCreate.cart?.id as string,
-    checkout_url: (cartCreate.cart?.checkoutUrl as string) ?? '',
-    total_quantity: cartCreate.cart?.totalQuantity ?? 0,
+    id: cart.id as string,
+    checkout_url: (cart.checkoutUrl as string) ?? '',
+    total_quantity: cart.totalQuantity ?? 0,
     subtotal_amount: {
-      amount: (cartCreate.cart?.cost.subtotalAmount.amount as string) ?? 0,
-      currencyCode: cartCreate.cart?.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
+      amount: (cart.cost.subtotalAmount.amount as string) ?? 0,
+      currencyCode: cart.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
     },
     lines:
-      cartCreate.cart?.lines.nodes.map((line) => ({
+      cart.lines.nodes.map((line) => ({
         id: line.id as string,
         title: line.merchandise.product.title,
         image: {
@@ -355,188 +355,148 @@ export const cartCreate = async (input: GraphQLTypes['CartInput']): Promise<Cart
 };
 
 export const cartLinesAdd = async (
-  lines: GraphQLTypes['CartLineInput'][],
-  context?: NextPageContext
+  cartId: string,
+  lines: GraphQLTypes['CartLineInput'][]
 ): Promise<Cart | undefined> => {
-  const cartId = context ? nookies.get(context).WSWC_CART_ID : nookies.get().WSWC_CART_ID;
+  const { cartLinesAdd } = await cartLinesAddMutation(cartId, lines);
 
-  if (cartId) {
-    const { cartLinesAdd } = await cartLinesAddMutation(cartId, lines);
+  if (!cartLinesAdd?.cart) return undefined;
 
-    if (!cartLinesAdd) return undefined;
+  const cart = cartLinesAdd.cart;
 
-    return {
-      id: cartLinesAdd.cart?.id as string,
-      checkout_url: (cartLinesAdd.cart?.checkoutUrl as string) ?? '',
-      total_quantity: cartLinesAdd.cart?.totalQuantity ?? 0,
-      subtotal_amount: {
-        amount: (cartLinesAdd.cart?.cost.subtotalAmount.amount as string) ?? 0,
-        currencyCode: cartLinesAdd.cart?.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
-      },
-      lines:
-        cartLinesAdd.cart?.lines.nodes.map((line) => ({
-          id: line.id as string,
-          title: line.merchandise.product.title,
-          image: {
-            src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
-            alt: line.merchandise.product.images.nodes[0].altText ?? '',
+  return {
+    id: cart.id as string,
+    checkout_url: (cart.checkoutUrl as string) ?? '',
+    total_quantity: cart.totalQuantity ?? 0,
+    subtotal_amount: {
+      amount: (cart.cost.subtotalAmount.amount as string) ?? 0,
+      currencyCode: cart.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
+    },
+    lines:
+      cart.lines.nodes.map((line) => ({
+        id: line.id as string,
+        title: line.merchandise.product.title,
+        image: {
+          src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
+          alt: line.merchandise.product.images.nodes[0].altText ?? '',
+        },
+        subtotal_amount: {
+          amount: (line.cost.subtotalAmount.amount as string) ?? 0,
+          currencyCode: line.cost.subtotalAmount.currencyCode,
+        },
+        variant: {
+          id: line.merchandise.id as string,
+          price: {
+            amount: (line.merchandise.price.amount as string) ?? 0,
+            currencyCode: line.merchandise.price.currencyCode,
           },
-          subtotal_amount: {
-            amount: (line.cost.subtotalAmount.amount as string) ?? 0,
-            currencyCode: line.cost.subtotalAmount.currencyCode,
-          },
-          variant: {
-            id: line.merchandise.id as string,
-            price: {
-              amount: (line.merchandise.price.amount as string) ?? 0,
-              currencyCode: line.merchandise.price.currencyCode,
-            },
-            compare_price: line.merchandise.compareAtPrice
-              ? {
-                  amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
-                  currencyCode: line.merchandise.compareAtPrice.currencyCode,
-                }
-              : undefined,
-            selected_options: line.merchandise.selectedOptions,
-          },
-          quantity: line.quantity,
-        })) ?? [],
-    };
-  } else {
-    const input: GraphQLTypes['CartInput'] = {
-      lines: lines.map((line) => ({
-        merchandiseId: line.merchandiseId!,
+          compare_price: line.merchandise.compareAtPrice
+            ? {
+                amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
+                currencyCode: line.merchandise.compareAtPrice.currencyCode,
+              }
+            : undefined,
+          selected_options: line.merchandise.selectedOptions,
+        },
         quantity: line.quantity,
-      })),
-    };
-
-    const createCart = await cartCreate(input);
-
-    if (createCart?.id) {
-      nookies.set(context, 'WSWC_CART_ID', createCart.id, {
-        maxAge: 30 * 24 * 60 * 60,
-        path: '/',
-      });
-    }
-  }
+      })) ?? [],
+  };
 };
 
 export const cartLinesUpdate = async (
-  lines: GraphQLTypes['CartLineUpdateInput'][],
-  context?: NextPageContext
+  cartId: string,
+  lines: GraphQLTypes['CartLineUpdateInput'][]
 ): Promise<Cart | undefined> => {
-  const cartId = context ? nookies.get(context).WSWC_CART_ID : nookies.get().WSWC_CART_ID;
+  const { cartLinesUpdate } = await cartLinesUpdateMutation(cartId, lines);
 
-  if (cartId) {
-    const { cartLinesUpdate } = await cartLinesUpdateMutation(cartId, lines);
+  if (!cartLinesUpdate?.cart) return undefined;
 
-    if (!cartLinesUpdate) return undefined;
+  const cart = cartLinesUpdate.cart;
 
-    return {
-      id: cartLinesUpdate.cart?.id as string,
-      checkout_url: (cartLinesUpdate.cart?.checkoutUrl as string) ?? '',
-      total_quantity: cartLinesUpdate.cart?.totalQuantity ?? 0,
-      subtotal_amount: {
-        amount: (cartLinesUpdate.cart?.cost.subtotalAmount.amount as string) ?? 0,
-        currencyCode: cartLinesUpdate.cart?.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
-      },
-      lines:
-        cartLinesUpdate.cart?.lines.nodes.map((line) => ({
-          id: line.id as string,
-          title: line.merchandise.product.title,
-          image: {
-            src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
-            alt: line.merchandise.product.images.nodes[0].altText ?? '',
+  return {
+    id: cart.id as string,
+    checkout_url: (cart.checkoutUrl as string) ?? '',
+    total_quantity: cart.totalQuantity ?? 0,
+    subtotal_amount: {
+      amount: (cart.cost.subtotalAmount.amount as string) ?? 0,
+      currencyCode: cart.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
+    },
+    lines:
+      cart.lines.nodes.map((line) => ({
+        id: line.id as string,
+        title: line.merchandise.product.title,
+        image: {
+          src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
+          alt: line.merchandise.product.images.nodes[0].altText ?? '',
+        },
+        subtotal_amount: {
+          amount: (line.cost.subtotalAmount.amount as string) ?? 0,
+          currencyCode: line.cost.subtotalAmount.currencyCode,
+        },
+        variant: {
+          id: line.merchandise.id as string,
+          price: {
+            amount: (line.merchandise.price.amount as string) ?? 0,
+            currencyCode: line.merchandise.price.currencyCode,
           },
-          subtotal_amount: {
-            amount: (line.cost.subtotalAmount.amount as string) ?? 0,
-            currencyCode: line.cost.subtotalAmount.currencyCode,
-          },
-          variant: {
-            id: line.merchandise.id as string,
-            price: {
-              amount: (line.merchandise.price.amount as string) ?? 0,
-              currencyCode: line.merchandise.price.currencyCode,
-            },
-            compare_price: line.merchandise.compareAtPrice
-              ? {
-                  amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
-                  currencyCode: line.merchandise.compareAtPrice.currencyCode,
-                }
-              : undefined,
-            selected_options: line.merchandise.selectedOptions,
-          },
-          quantity: line.quantity,
-        })) ?? [],
-    };
-  } else {
-    const input: GraphQLTypes['CartInput'] = {
-      lines: lines.map((line) => ({
-        merchandiseId: line.merchandiseId!,
+          compare_price: line.merchandise.compareAtPrice
+            ? {
+                amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
+                currencyCode: line.merchandise.compareAtPrice.currencyCode,
+              }
+            : undefined,
+          selected_options: line.merchandise.selectedOptions,
+        },
         quantity: line.quantity,
-      })),
-    };
-
-    const createCart = await cartCreate(input);
-
-    if (createCart?.id) {
-      nookies.set(context, 'WSWC_CART_ID', createCart.id, {
-        maxAge: 30 * 24 * 60 * 60,
-        path: '/',
-      });
-    }
-  }
+      })) ?? [],
+  };
 };
 
 export const cartLinesRemove = async (
-  lineIds: string[],
-  context?: NextPageContext
+  cartId: string,
+  lineIds: string[]
 ): Promise<Cart | undefined> => {
-  const cartId = context ? nookies.get(context).WSWC_CART_ID : nookies.get().WSWC_CART_ID;
+  const { cartLinesRemove } = await cartLinesRemoveMutation(cartId, lineIds);
 
-  if (cartId) {
-    const { cartLinesRemove } = await cartLinesRemoveMutation(cartId, lineIds);
+  if (!cartLinesRemove?.cart) return undefined;
 
-    if (!cartLinesRemove) return undefined;
+  const cart = cartLinesRemove.cart;
 
-    return {
-      id: cartLinesRemove.cart?.id as string,
-      checkout_url: (cartLinesRemove.cart?.checkoutUrl as string) ?? '',
-      total_quantity: cartLinesRemove.cart?.totalQuantity ?? 0,
-      subtotal_amount: {
-        amount: (cartLinesRemove.cart?.cost.subtotalAmount.amount as string) ?? 0,
-        currencyCode: cartLinesRemove.cart?.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
-      },
-      lines:
-        cartLinesRemove.cart?.lines.nodes.map((line) => ({
-          id: line.id as string,
-          title: line.merchandise.product.title,
-          image: {
-            src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
-            alt: line.merchandise.product.images.nodes[0].altText ?? '',
+  return {
+    id: cart.id as string,
+    checkout_url: (cart.checkoutUrl as string) ?? '',
+    total_quantity: cart.totalQuantity ?? 0,
+    subtotal_amount: {
+      amount: (cart.cost.subtotalAmount.amount as string) ?? 0,
+      currencyCode: cart.cost.subtotalAmount.currencyCode ?? CurrencyCode.USD,
+    },
+    lines:
+      cart.lines.nodes.map((line) => ({
+        id: line.id as string,
+        title: line.merchandise.product.title,
+        image: {
+          src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
+          alt: line.merchandise.product.images.nodes[0].altText ?? '',
+        },
+        subtotal_amount: {
+          amount: (line.cost.subtotalAmount.amount as string) ?? 0,
+          currencyCode: line.cost.subtotalAmount.currencyCode,
+        },
+        variant: {
+          id: line.merchandise.id as string,
+          price: {
+            amount: (line.merchandise.price.amount as string) ?? 0,
+            currencyCode: line.merchandise.price.currencyCode,
           },
-          subtotal_amount: {
-            amount: (line.cost.subtotalAmount.amount as string) ?? 0,
-            currencyCode: line.cost.subtotalAmount.currencyCode,
-          },
-          variant: {
-            id: line.merchandise.id as string,
-            price: {
-              amount: (line.merchandise.price.amount as string) ?? 0,
-              currencyCode: line.merchandise.price.currencyCode,
-            },
-            compare_price: line.merchandise.compareAtPrice
-              ? {
-                  amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
-                  currencyCode: line.merchandise.compareAtPrice.currencyCode,
-                }
-              : undefined,
-            selected_options: line.merchandise.selectedOptions,
-          },
-          quantity: line.quantity,
-        })) ?? [],
-    };
-  }
-
-  return undefined;
+          compare_price: line.merchandise.compareAtPrice
+            ? {
+                amount: (line.merchandise.compareAtPrice.amount as string) ?? 0,
+                currencyCode: line.merchandise.compareAtPrice.currencyCode,
+              }
+            : undefined,
+          selected_options: line.merchandise.selectedOptions,
+        },
+        quantity: line.quantity,
+      })) ?? [],
+  };
 };

@@ -1,4 +1,5 @@
 import { getAllCategorizedLeaders } from '@/data/server/sanity/queries/leaders';
+import { GET_ALL_LEADERS } from '@/data/types';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -6,7 +7,7 @@ export async function GET() {
     const leaders = await getAllCategorizedLeaders();
     return NextResponse.json(leaders);
   } catch (err) {
-    console.error('Sanity leaders error:', err);
-    return NextResponse.json({ error: 'Failed to fetch leaders' }, { status: 500 });
+    console.error(`${GET_ALL_LEADERS} ERROR`, err);
+    return NextResponse.json({ error: `${GET_ALL_LEADERS} ERROR` }, { status: 500 });
   }
 }

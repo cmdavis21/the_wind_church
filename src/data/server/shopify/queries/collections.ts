@@ -69,69 +69,6 @@ const getStorefrontCollectionsQuery = () => {
   });
 };
 
-const getStorefrontCollectionByHandleQuery = (handle: string) => {
-  return ShopifyQuery.query({
-    collection: [
-      { handle },
-      {
-        title: true,
-        handle: true,
-        products: [
-          { first: 20 },
-          {
-            edges: {
-              node: {
-                title: true,
-                handle: true,
-                descriptionHtml: true,
-                featuredImage: {
-                  url: [
-                    {
-                      transform: {
-                        maxWidth: 1200,
-                        maxHeight: 1200,
-                        crop: CropRegion.CENTER,
-                        preferredContentType: ImageContentType.JPG,
-                      },
-                    },
-                    true,
-                  ],
-                  altText: true,
-                },
-                priceRange: {
-                  minVariantPrice: {
-                    amount: true,
-                    currencyCode: true,
-                  },
-                  maxVariantPrice: {
-                    amount: true,
-                    currencyCode: true,
-                  },
-                },
-                totalInventory: true,
-                options: [
-                  {
-                    first: 20,
-                  },
-                  {
-                    name: true,
-                    optionValues: {
-                      name: true,
-                      swatch: {
-                        color: true,
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ],
-  });
-};
-
 export const getStorefrontCollections = async (): Promise<Collection[]> => {
   const { collections } = await getStorefrontCollectionsQuery();
 
@@ -168,44 +105,4 @@ export const getStorefrontCollections = async (): Promise<Collection[]> => {
           : undefined,
     })),
   }));
-};
-
-export const getStorefrontCollectionByHandle = async (
-  handle: string
-): Promise<Collection | null> => {
-  const { collection } = await getStorefrontCollectionByHandleQuery(handle);
-
-  if (!collection) return null;
-
-  return {
-    title: collection.title,
-    handle: collection.handle,
-    products: collection.products.edges.map((item) => ({
-      title: item.node.title,
-      handle: item.node.handle,
-      minPrice: {
-        amount: (item.node.priceRange.minVariantPrice.amount as string) ?? '',
-        currencyCode: item.node.priceRange.minVariantPrice.currencyCode,
-      },
-      maxPrice: {
-        amount: (item.node.priceRange.maxVariantPrice.amount as string) ?? '',
-        currencyCode: item.node.priceRange.maxVariantPrice.currencyCode,
-      },
-      image: {
-        src: (item.node.featuredImage?.url as string) ?? '',
-        alt: item.node.featuredImage?.altText as string,
-      },
-      total_inventory: item.node.totalInventory ?? 0,
-      options:
-        item.node.options && item.node.options[0]?.name !== 'Title'
-          ? item.node.options.map((opt) => ({
-              name: opt.name,
-              values: opt.optionValues.map((v) => ({
-                name: v.name,
-                color: (v.swatch?.color as string) ?? undefined,
-              })),
-            }))
-          : undefined,
-    })),
-  };
 };

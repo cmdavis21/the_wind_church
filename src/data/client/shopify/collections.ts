@@ -1,30 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  getStorefrontCollectionByHandle,
-  getStorefrontCollections,
-} from '../../server/shopify/queries/collections';
-import { GET_STOREFRONT_COLLECTIONS_KEY } from '../../types';
+import { Collection, GET_STOREFRONT_COLLECTIONS_KEY } from '../../types';
 
 export const useGetStorefrontCollections = () => {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError } = useQuery<Collection[], Error>({
     queryKey: [GET_STOREFRONT_COLLECTIONS_KEY],
-    queryFn: getStorefrontCollections,
+    queryFn: async () => {
+      const res = await fetch('/api/shopify/collections');
+      if (!res.ok) throw new Error(`${GET_STOREFRONT_COLLECTIONS_KEY} ERROR`);
+      return res.json();
+    },
   });
+
   return {
-    collections: data,
+    collections: data ?? [],
     collectionsLoading: isLoading,
     collectionsError: isError,
-  };
-};
-
-export const useGetStorefrontCollectionByHandle = (handle: string) => {
-  const { data, isLoading, isError } = useQuery({
-    queryKey: [GET_STOREFRONT_COLLECTIONS_KEY, handle],
-    queryFn: () => getStorefrontCollectionByHandle(handle),
-  });
-  return {
-    collection: data,
-    collectionLoading: isLoading,
-    collectionError: isError,
   };
 };
