@@ -83,21 +83,21 @@ const ProductPage = (product: Product) => {
 
   return (
     <>
-      <CartModal
-        open={showModal}
-        setOpen={setShowModal}
-        cartQuantity={getCart?.total_quantity ?? quantity}
-        cartLines={
-          getCart?.lines.map((line) => ({
+      {getCart && (
+        <CartModal
+          open={showModal}
+          setOpen={setShowModal}
+          cartQuantity={getCart.total_quantity ?? quantity}
+          cartLines={getCart.lines.map((line) => ({
             image: line.image,
             title: line.title,
             price: line.variant.price,
             quantity: line.quantity,
             subtotal: line.subtotal_amount,
             selectedOptions: line.variant.selected_options.map((opt) => opt),
-          })) ?? []
-        }
-      />
+          }))}
+        />
+      )}
 
       <div>
         {/* LEFT DECORATIVE BORDER */}
@@ -191,9 +191,11 @@ const ProductPage = (product: Product) => {
                 />
                 <div className="text-light-charcoal dark:text-dark-primaryText body-small">
                   In the Bag (
-                  {getCart?.lines.find(
-                    (item) => item.variant.id === product.variants[selectedVariant].id
-                  )?.quantity ?? 0}
+                  {getCart
+                    ? (getCart?.lines.find(
+                        (item) => item.variant.id === product.variants[selectedVariant].id
+                      )?.quantity ?? 0)
+                    : 0}
                   )
                 </div>
               </div>

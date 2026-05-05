@@ -348,9 +348,10 @@ export interface Address {
   address1: string;
   address2?: string;
   city: string;
-  province: string;
+  state: string;
   country: string;
   zip: string;
+  phone: string;
 }
 
 export interface Customer {

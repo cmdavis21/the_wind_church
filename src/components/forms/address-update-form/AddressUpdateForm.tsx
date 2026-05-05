@@ -7,13 +7,18 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import PencilPaper from '@/components/icons/pencilPaper';
-
 import { useUpdateCustomerAddress } from '@/data/client/shopify/customer';
 import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
+import { CountryCode } from '@/data/server/shopify/zeus';
 import { Address } from '@/data/types';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
+
+const COUNTRY_OPTIONS = Object.values(CountryCode).map((code) => ({
+  label: code,
+  value: code,
+}));
 
 const STATES = [
   'Alabama',
@@ -83,9 +88,14 @@ const schema: yup.ObjectSchema<Partial<Address>> = yup.object().shape({
   address1: yup.string().optional(),
   address2: yup.string().optional(),
   city: yup.string().optional(),
-  province: yup.string().optional(),
-  country: yup.string().optional(),
+  state: yup.string().optional(),
+  country: yup
+    .mixed<CountryCode>()
+    .oneOf(Object.values(CountryCode) as CountryCode[], 'Invalid country')
+    .required('Country is required')
+    .oneOf([CountryCode.US], 'Shipping is only available in the United States'),
   zip: yup.string().optional(),
+  phone: yup.string().optional(),
 });
 
 interface AddressUpdateFormProps {
@@ -107,10 +117,14 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
   } = useForm<Partial<Address>>({
     mode: 'onSubmit',
     resolver: yupResolver(schema),
-    defaultValues: current_address,
+    defaultValues: {
+      ...current_address,
+      country: current_address.country || 'US',
+    },
   });
 
   const formValues = watch();
+  const isUS = watch('country') === 'US';
   const newValues = Object.entries(formValues).some(
     ([key, value]) => current_address[key as keyof Address] !== value
   );
@@ -138,114 +152,113 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
       </h5>
 
       {isSuccess && (
-        <AlertMessage
-          type="success"
-          title="Success!"
-          description="We will contact you shortly. Thank you."
-        />
+        <AlertMessage type="success" title="Success!" description="Address was updated." />
       )}
 
       {isError && (
         <AlertMessage
           type="failure"
           title="Oh no!"
-          description="There was an problem submitting your inquiry. Please try again later."
+          description="There was a problem. Please try again later."
         />
       )}
 
       {/* names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="First Name"
           type="text"
-          defaultValue={current_address.first_name}
+          label="First Name"
+          {...register('first_name')}
           error={errors.first_name?.message}
           disabled={isPending || isSuccess}
-          {...register('first_name')}
         />
         <TextInput
-          label="Last Name"
           type="text"
-          defaultValue={current_address.last_name}
+          label="Last Name"
+          {...register('last_name')}
           error={errors.last_name?.message}
           disabled={isPending || isSuccess}
-          {...register('last_name')}
         />
       </div>
 
       {/* address */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="Address"
           type="string"
-          defaultValue={current_address.address1}
+          label="Address"
+          {...register('address1')}
           error={errors.address1?.message}
           disabled={isPending || isSuccess}
-          {...register('address1')}
         />
         <TextInput
-          label="Address 2 (Optional)"
           type="string"
+          {...register('address2')}
+          label="Address 2 (Optional)"
           placeholder="Apt, Ste, Bld"
-          defaultValue={current_address.address2}
           error={errors.address2?.message}
           disabled={isPending || isSuccess}
-          {...register('address2')}
         />
       </div>
 
-      {/* state */}
+      {/* city + state */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
           label="City"
           type="string"
-          defaultValue={current_address.city}
+          {...register('city')}
           error={errors.city?.message}
           disabled={isPending || isSuccess}
-          {...register('city')}
         />
-        <SelectInput
-          label="State"
-          disabled={isPending || isSuccess}
-          {...register('province')}
-          defaultValue={current_address.province}
-          error={errors.province?.message}
-          options={[
-            { label: 'Select an option', value: '' },
-            ...STATES.map((state) => ({
-              label: state,
-              value: state,
-            })),
-          ]}
-        />
+
+        {isUS && (
+          <SelectInput
+            label="State"
+            {...register('state')}
+            disabled={isPending || isSuccess}
+            error={errors.state?.message}
+            options={[
+              { label: 'Select an option', value: '' },
+              ...STATES.map((state) => ({ label: state, value: state })),
+            ]}
+          />
+        )}
       </div>
 
-      {/* zip */}
+      {/* country + zip */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
-        <TextInput
+        <SelectInput
           label="Country"
-          type="string"
-          defaultValue={current_address.country}
-          error={errors.country?.message}
-          disabled
           {...register('country')}
-        />
-        <TextInput
-          label="Zip"
-          type="string"
-          defaultValue={current_address.zip}
-          error={errors.zip?.message}
+          error={errors.country?.message}
           disabled={isPending || isSuccess}
-          {...register('zip')}
+          options={[{ label: 'Select a country', value: '' }, ...COUNTRY_OPTIONS]}
         />
+
+        {isUS && (
+          <TextInput
+            label="Zip"
+            type="string"
+            {...register('zip')}
+            error={errors.zip?.message}
+            disabled={isPending || isSuccess}
+          />
+        )}
       </div>
+
+      <TextInput
+        label="Phone"
+        type="tel"
+        {...register('phone')}
+        error={errors.phone?.message}
+        disabled={isPending || isSuccess}
+      />
 
       <Button
         pill
         size="lg"
         type="submit"
         color="primary"
-        disabled={!newValues || isPending || isSuccess || isError}
+        disabled={!newValues || isPending || isSuccess}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
         {isPending ? 'Submitting...' : 'Update'}

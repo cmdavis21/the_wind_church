@@ -22,9 +22,9 @@ const CartPage = () => {
       {cartLoading && <div></div>}
 
       {!cartLoading && (!getCart || (getCart && getCart?.lines.length <= 0)) && (
-        <div className="flex flex-col gap-lg items-center justify-center">
+        <div className="flex flex-col gap-lg items-center justify-center h-[250px]">
           <h4 className="text-center">There are no products in your cart.</h4>
-          <Link href={PageRoutes.bookstore} className="w-full md:w-[calc(50%-8px)]">
+          <Link href={PageRoutes.bookstore} className="w-full max-w-[300px]">
             <Button pill fullSized color="primary" className="whitespace-nowrap">
               Contine Shopping
             </Button>

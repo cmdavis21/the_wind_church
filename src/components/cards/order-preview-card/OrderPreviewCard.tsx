@@ -22,24 +22,24 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
 
   return (
     <>
-      <CartModal
-        open={showModal}
-        setOpen={setShowModal}
-        hideSecondaryButton
-        cartQuantity={getCart?.total_quantity ?? 0}
-        cartLines={
-          getCart?.lines.map((line) => ({
+      {getCart && (
+        <CartModal
+          open={showModal}
+          hideSecondaryButton
+          setOpen={setShowModal}
+          cartQuantity={getCart.total_quantity ?? 0}
+          cartLines={getCart.lines.map((line) => ({
             image: line.image,
             title: line.title,
             price: line.variant.price,
             quantity: line.quantity,
             subtotal: line.subtotal_amount,
             selectedOptions: line.variant.selected_options.map((opt) => opt),
-          })) ?? []
-        }
-      />
+          }))}
+        />
+      )}
 
-      <div className="relative p-4 rounded-2xl border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm w-full">
+      <div className="relative p-6 rounded-2xl border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm w-full">
         {/* TOP LAYER */}
         <div className="w-full flex flex-col md:flex-row gap-5 justify-between">
           {/* INFO */}
@@ -126,9 +126,10 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                     {order.shipping_address.address2 && <h5>{order.shipping_address.address2}</h5>}
                     <h5>{order.shipping_address.city},</h5>
                     <h5>
-                      {order.shipping_address.province} {order.shipping_address.country}
+                      {order.shipping_address.state} {order.shipping_address.country}
                     </h5>
                     <h5>{order.shipping_address.zip}</h5>
+                    <h5>{order.shipping_address.phone}</h5>
                   </div>
                   {/* BILLING ADDRESS */}
                   <div>
@@ -140,9 +141,10 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                     {order.billing_address.address2 && <h5>{order.billing_address.address2}</h5>}
                     <h5>{order.billing_address.city},</h5>
                     <h5>
-                      {order.billing_address.province} {order.billing_address.country}
+                      {order.billing_address.state} {order.billing_address.country}
                     </h5>
                     <h5>{order.billing_address.zip}</h5>
+                    <h5>{order.billing_address.phone}</h5>
                   </div>
                   {/* PAYMENT DETAILS */}
                   <div>
@@ -205,7 +207,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                             {item.quantity}
                           </h6>
                           {item.variant.selected_options.length > 0 &&
-                            item.variant.selected_options.map((opt, index) => (
+                            item.variant.selected_options.map((opt) => (
                               <h6
                                 key={`order-preview-card-opt-${item.title}-${opt.value}`}
                                 className="font-normal"

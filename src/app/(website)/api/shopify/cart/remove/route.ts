@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   const cartId = cookieStore.get('WSWC_CART_ID')?.value;
 
   if (!cartId) {
-    return NextResponse.json({ cart: null });
+    return NextResponse.json(undefined);
   }
 
   const updatedCart = await cartLinesRemove(cartId, lineIds);
