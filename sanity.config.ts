@@ -1,19 +1,16 @@
-import { sanityStudioStructure } from '@/data/services/sanity/desk-structure';
-import { SanitySchema } from '@/data/services/sanity/schemas';
+import { SANITY_API_VERSION, SANITY_PROJECT_ID } from '@/data/server/env.server';
+import { sanityStudioStructure } from '@/data/server/sanity/desk-structure';
+import { SanitySchema } from '@/data/server/sanity/schemas';
 import { defineConfig, SchemaTypeDefinition } from 'sanity';
 import { structureTool } from 'sanity/structure';
 
 const sanityConfig = defineConfig({
-  projectId: 'pyayajuh',
+  projectId: SANITY_PROJECT_ID,
   dataset: 'production',
-  apiVersion: '2025-03-04',
+  apiVersion: SANITY_API_VERSION,
   title: 'The Wind Church',
   basePath: '/studio',
-  plugins: [
-    structureTool({
-      structure: sanityStudioStructure,
-    }),
-  ],
+  plugins: [structureTool({ structure: sanityStudioStructure })],
   schema: { types: SanitySchema as SchemaTypeDefinition[] },
 });
 

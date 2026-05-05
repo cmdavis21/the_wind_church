@@ -4,7 +4,7 @@ import { GET_ALL_LEADERS, Leader } from '@/data/types';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetAllCategorizedLeaders = () => {
-  const { data, isLoading, isError } = useQuery<Leader[], Error>({
+  const { data, isLoading, isError } = useQuery<Record<string, Leader[]>, Error>({
     queryKey: [GET_ALL_LEADERS],
     queryFn: async () => {
       const res = await fetch('/api/sanity/leaders');

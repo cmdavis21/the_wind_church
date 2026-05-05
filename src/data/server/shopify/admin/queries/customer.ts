@@ -28,6 +28,7 @@ const getAdminCustomerQuery = (email: string) => {
           province: true,
           country: true,
           zip: true,
+          phone: true,
         },
         numberOfOrders: true,
       },
@@ -52,9 +53,10 @@ export const getAdminCustomer = async (email: string): Promise<Customer | undefi
       address1: customer.defaultAddress?.address1 ?? '',
       address2: customer.defaultAddress?.address2 ?? '',
       city: customer.defaultAddress?.city ?? '',
-      province: customer.defaultAddress?.province ?? '',
+      state: customer.defaultAddress?.province ?? '',
       country: customer.defaultAddress?.country ?? '',
       zip: customer.defaultAddress?.zip ?? '',
+      phone: customer.defaultAddress?.phone ?? '',
     },
   };
 };

@@ -62,6 +62,7 @@ const getAdminOrdersQuery = (email: string) => {
               province: true,
               country: true,
               zip: true,
+              phone: true,
             },
             billingAddress: {
               firstName: true,
@@ -72,6 +73,7 @@ const getAdminOrdersQuery = (email: string) => {
               province: true,
               country: true,
               zip: true,
+              phone: true,
             },
             currentSubtotalLineItemsQuantity: true,
             lineItems: [
@@ -159,9 +161,10 @@ export const getAdminCustomerOrders = async (email: string): Promise<Order[]> =>
       address1: order.node.shippingAddress?.address1 ?? '',
       address2: order.node.shippingAddress?.address2 ?? '',
       city: order.node.shippingAddress?.city ?? '',
-      province: order.node.shippingAddress?.province ?? '',
+      state: order.node.shippingAddress?.province ?? '',
       country: order.node.shippingAddress?.country ?? '',
       zip: order.node.shippingAddress?.zip ?? '',
+      phone: order.node.shippingAddress?.phone ?? '',
     },
     billing_address: {
       first_name: order.node.billingAddress?.firstName ?? '',
@@ -169,9 +172,10 @@ export const getAdminCustomerOrders = async (email: string): Promise<Order[]> =>
       address1: order.node.billingAddress?.address1 ?? '',
       address2: order.node.billingAddress?.address2 ?? '',
       city: order.node.billingAddress?.city ?? '',
-      province: order.node.billingAddress?.province ?? '',
+      state: order.node.billingAddress?.province ?? '',
       country: order.node.billingAddress?.country ?? '',
       zip: order.node.billingAddress?.zip ?? '',
+      phone: order.node.billingAddress?.phone ?? '',
     },
     quantity: order.node.currentSubtotalLineItemsQuantity ?? 0,
     line_items: order.node.lineItems.edges.map((item) => ({
