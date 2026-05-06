@@ -1,19 +1,26 @@
-import { FORM_TYPES, PRAYER_REQUEST_KEY } from '@/data/types';
+import { FORM_TYPES, PRAYER_REQUEST_KEY, PrayerRequest } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { createPrayerRequestClient } from '@/data/server/sanity/mutations/prayer-request';
 import { WEBSITE_URL } from '../env.client';
 
 export const useCreatePrayerRequest = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createPrayerRequestClient,
-    mutationKey: [PRAYER_REQUEST_KEY],
-    onSettled: async (d, e, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: [PRAYER_REQUEST_KEY],
+    mutationFn: async (data: PrayerRequest) => {
+      const res = await fetch('/api/sanity/prayer-request', {
+        method: 'POST',
+        body: JSON.stringify(data),
       });
-      await fetch('/api/form-submission', {
+
+      if (!res.ok) throw new Error(`${PRAYER_REQUEST_KEY} ERROR`);
+
+      return res.json();
+    },
+    mutationKey: [PRAYER_REQUEST_KEY],
+    onSuccess: async (d, variables) => {
+      queryClient.invalidateQueries({ queryKey: [PRAYER_REQUEST_KEY] });
+
+      await fetch('/api/aws/email', {
         method: 'POST',
         body: JSON.stringify({
           formType: FORM_TYPES.PRAYER_REQUEST,

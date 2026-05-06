@@ -2,8 +2,6 @@
 export const WEBSITE_URL = process.env.WEBSITE_URL ?? '';
 
 // SANITY
-export const SANITY_API_VERSION = process.env.SANITY_API_VERSION ?? '';
-export const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID ?? '';
 export const SANITY_GRAPHQL_ENDPOINT = process.env.SANITY_GRAPHQL_API_ENDPOINT ?? '';
 export const SANITY_EDITOR_TOKEN = process.env.SANITY_EDITOR_TOKEN ?? '';
 export const SANITY_MUTATION_API_ENDPOINT = process.env.SANITY_MUTATION_API_ENDPOINT ?? '';

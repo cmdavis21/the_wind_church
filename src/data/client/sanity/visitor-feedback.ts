@@ -1,18 +1,25 @@
-import { createVisitorFeedbackClient } from '@/data/server/sanity/mutations/visitor-feedback';
-import { FORM_TYPES, VISITOR_FEEDBACK_KEY } from '@/data/types';
+import { FORM_TYPES, VISITOR_FEEDBACK_KEY, VisitorFeedback } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { WEBSITE_URL } from '../env.client';
 
 export const useCreateVisitorFeedback = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createVisitorFeedbackClient,
-    mutationKey: [VISITOR_FEEDBACK_KEY],
-    onSettled: async (d, e, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: [VISITOR_FEEDBACK_KEY],
+    mutationFn: async (data: VisitorFeedback) => {
+      const res = await fetch('/api/sanity/visitor-feedback', {
+        method: 'POST',
+        body: JSON.stringify(data),
       });
-      await fetch('/api/form-submission', {
+
+      if (!res.ok) throw new Error(`${VISITOR_FEEDBACK_KEY} ERROR`);
+
+      return res.json();
+    },
+    mutationKey: [VISITOR_FEEDBACK_KEY],
+    onSuccess: async (d, variables) => {
+      queryClient.invalidateQueries({ queryKey: [VISITOR_FEEDBACK_KEY] });
+
+      await fetch('/api/aws/email', {
         method: 'POST',
         body: JSON.stringify({
           formType: FORM_TYPES.VISITOR_FEEDBACK,

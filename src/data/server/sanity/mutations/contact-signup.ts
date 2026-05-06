@@ -10,10 +10,7 @@ export const createContactClient = async (data: FullContact | PartialContact): P
       const patchedContact = await SanityClient.patch(existingContact._id).set(data).commit();
       return patchedContact._id;
     } else {
-      const newContact = await SanityClient.create({
-        _type: 'contact',
-        ...data,
-      });
+      const newContact = await SanityClient.create({ _type: 'contact', ...data });
       return newContact._id;
     }
   } catch (err: any) {

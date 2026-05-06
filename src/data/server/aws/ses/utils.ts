@@ -1,7 +1,6 @@
 export const baseTemplate = `
 <!DOCTYPE html>
 <html>
-
 <head>
     <style>
         .email-container {
@@ -36,6 +35,11 @@ export const baseTemplate = `
             color: #000000;
             text-decoration: none;
             border-radius: 5px;
+            color: #000000;
+        }
+
+        .button:hover {
+            opacity: 0.75;
         }
 
         .footer {
@@ -53,14 +57,16 @@ export const baseTemplate = `
         <div class="content">
             <p>A new document is available in Sanity.io!</p>
             <p>{{firstName}} {{lastName}} has made a submission.</p>
-            <a href={link} target='_blank' class="button">View Document in Sanity.io</a>
+            <a href="{{link}}" target="_blank" class="button">
+                View Document in Sanity.io
+            </a>
         </div>
+
         <div class="footer">
             &copy; 2025 Wind of the Spirit Worship Center. All rights reserved.
         </div>
     </div>
 </body>
-
 </html>
 `;
 

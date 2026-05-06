@@ -1,18 +1,25 @@
-import { createGiftAssessmentClient } from '@/data/server/sanity/mutations/gift-assessment';
-import { FORM_TYPES, GIFT_ASSESSMENT_KEY } from '@/data/types';
+import { FORM_TYPES, GIFT_ASSESSMENT_KEY, GiftAssessmentSubmission } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { WEBSITE_URL } from '../env.client';
 
 export const useCreateGiftAssessment = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createGiftAssessmentClient,
-    mutationKey: [GIFT_ASSESSMENT_KEY],
-    onSettled: async (d, e, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: [GIFT_ASSESSMENT_KEY],
+    mutationFn: async (data: GiftAssessmentSubmission) => {
+      const res = await fetch('/api/sanity/gift-assessment', {
+        method: 'POST',
+        body: JSON.stringify(data),
       });
-      await fetch('/api/form-submission', {
+
+      if (!res.ok) throw new Error(`${GIFT_ASSESSMENT_KEY} ERROR`);
+
+      return res.json();
+    },
+    mutationKey: [GIFT_ASSESSMENT_KEY],
+    onSuccess: async (d, variables) => {
+      queryClient.invalidateQueries({ queryKey: [GIFT_ASSESSMENT_KEY] });
+
+      await fetch('/api/aws/email', {
         method: 'POST',
         body: JSON.stringify({
           formType: FORM_TYPES.GIFT_ASSESSMENT,

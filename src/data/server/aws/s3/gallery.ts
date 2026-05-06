@@ -70,7 +70,7 @@ export async function getGalleryImages(
 }
 
 export const getGallery = async (): Promise<GalleryCollection[]> => {
-  const res = await fetch(`${WEBSITE_URL}/api/gallery`, {
+  const res = await fetch(`${WEBSITE_URL}/api/aws/gallery`, {
     method: 'GET',
     cache: 'no-store',
   });
@@ -81,7 +81,7 @@ export const getGallery = async (): Promise<GalleryCollection[]> => {
 export const getMinistryGallery = async (subfolder?: string): Promise<GalleryCollection> => {
   const params = new URLSearchParams();
   if (subfolder) params.append('subfolder', subfolder);
-  const res = await fetch(`${WEBSITE_URL}/api/gallery?${params.toString()}`, {
+  const res = await fetch(`${WEBSITE_URL}/api/aws/gallery?${params.toString()}`, {
     method: 'GET',
     cache: 'no-store',
   });
@@ -92,7 +92,7 @@ export const getMinistryGallery = async (subfolder?: string): Promise<GalleryCol
 export const getNextGenGallery = async (): Promise<GalleryCollection> => {
   const params = new URLSearchParams();
   params.append('subfolder', 'children_ministry');
-  const res = await fetch(`${WEBSITE_URL}/api/gallery?${params.toString()}`, {
+  const res = await fetch(`${WEBSITE_URL}/api/aws/gallery?${params.toString()}`, {
     method: 'GET',
     cache: 'no-store',
   });

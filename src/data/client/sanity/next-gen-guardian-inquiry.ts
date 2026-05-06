@@ -1,19 +1,26 @@
-import { FORM_TYPES, NEXT_GEN_GUARDIAN_KEY } from '@/data/types';
+import { FORM_TYPES, NEXT_GEN_GUARDIAN_KEY, NextGenGuardianInquiry } from '@/data/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { createNextGenGuardianInquiryClient } from '@/data/server/sanity/mutations/next-gen-guardian-inquiry';
 import { WEBSITE_URL } from '../env.client';
 
 export const useCreateNextGenGuardianInquiry = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createNextGenGuardianInquiryClient,
-    mutationKey: [NEXT_GEN_GUARDIAN_KEY],
-    onSettled: async (d, e, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: [NEXT_GEN_GUARDIAN_KEY],
+    mutationFn: async (data: NextGenGuardianInquiry) => {
+      const res = await fetch('/api/sanity/next-gen-guardian-inquiry', {
+        method: 'POST',
+        body: JSON.stringify(data),
       });
-      await fetch('/api/form-submission', {
+
+      if (!res.ok) throw new Error(`${NEXT_GEN_GUARDIAN_KEY} ERROR`);
+
+      return res.json();
+    },
+    mutationKey: [NEXT_GEN_GUARDIAN_KEY],
+    onSuccess: async (d, variables) => {
+      queryClient.invalidateQueries({ queryKey: [NEXT_GEN_GUARDIAN_KEY] });
+
+      await fetch('/api/aws/email', {
         method: 'POST',
         body: JSON.stringify({
           formType: FORM_TYPES.NEXT_GEN_GUARDIAN_INQUIRY,

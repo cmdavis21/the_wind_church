@@ -51,7 +51,8 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<MinistryConnection>({
-    mode: 'onSubmit',
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     resolver: yupResolver(schema),
   });
 
