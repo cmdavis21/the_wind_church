@@ -16,7 +16,7 @@ export const useCreateVisitorFeedback = () => {
       return res.json();
     },
     mutationKey: [VISITOR_FEEDBACK_KEY],
-    onSuccess: async (d, variables) => {
+    onSuccess: async (d, v) => {
       queryClient.invalidateQueries({ queryKey: [VISITOR_FEEDBACK_KEY] });
 
       await fetch('/api/aws/email', {
@@ -24,9 +24,9 @@ export const useCreateVisitorFeedback = () => {
         body: JSON.stringify({
           formType: FORM_TYPES.VISITOR_FEEDBACK,
           payload: {
-            firstName: variables.first_name,
-            lastName: `${variables.last_name.charAt(0)}.`,
-            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.VISITOR_FEEDBACK}`,
+            firstName: v.first_name,
+            lastName: `${v.last_name.charAt(0)}.`,
+            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.VISITOR_FEEDBACK};${d._id}`,
           },
         }),
       });

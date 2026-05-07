@@ -39,7 +39,7 @@ export const baseTemplate = `
         }
 
         .button:hover {
-            opacity: 0.75;
+            opacity: 0.6;
         }
 
         .footer {

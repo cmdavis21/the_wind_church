@@ -16,7 +16,7 @@ export const useCreateMinistryConnection = () => {
       return res.json();
     },
     mutationKey: [MINISTRY_CONNECT_KEY],
-    onSuccess: async (d, variables) => {
+    onSuccess: async (d, v) => {
       queryClient.invalidateQueries({ queryKey: [MINISTRY_CONNECT_KEY] });
 
       await fetch('/api/aws/email', {
@@ -24,9 +24,9 @@ export const useCreateMinistryConnection = () => {
         body: JSON.stringify({
           formType: FORM_TYPES.MINISTRY_CONNECTION,
           payload: {
-            firstName: variables.first_name,
-            lastName: `${variables.last_name.charAt(0)}.`,
-            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.MINISTRY_CONNECTION}`,
+            firstName: v.first_name,
+            lastName: `${v.last_name.charAt(0)}.`,
+            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.MINISTRY_CONNECTION};${d._id}`,
           },
         }),
       });

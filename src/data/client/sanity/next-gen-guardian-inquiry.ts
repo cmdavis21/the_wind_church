@@ -17,7 +17,7 @@ export const useCreateNextGenGuardianInquiry = () => {
       return res.json();
     },
     mutationKey: [NEXT_GEN_GUARDIAN_KEY],
-    onSuccess: async (d, variables) => {
+    onSuccess: async (d, v) => {
       queryClient.invalidateQueries({ queryKey: [NEXT_GEN_GUARDIAN_KEY] });
 
       await fetch('/api/aws/email', {
@@ -25,9 +25,9 @@ export const useCreateNextGenGuardianInquiry = () => {
         body: JSON.stringify({
           formType: FORM_TYPES.NEXT_GEN_GUARDIAN_INQUIRY,
           payload: {
-            firstName: variables.first_name,
-            lastName: `${variables.last_name.charAt(0)}.`,
-            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.NEXT_GEN_GUARDIAN_INQUIRY}`,
+            firstName: v.first_name,
+            lastName: `${v.last_name.charAt(0)}.`,
+            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.NEXT_GEN_GUARDIAN_INQUIRY};${d._id}`,
           },
         }),
       });

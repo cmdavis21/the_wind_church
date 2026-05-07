@@ -16,7 +16,7 @@ export const useCreateEventRentalInquiry = () => {
       return res.json();
     },
     mutationKey: [EVENT_RENTAL_KEY],
-    onSuccess: async (d, variables) => {
+    onSuccess: async (d, v) => {
       queryClient.invalidateQueries({ queryKey: [EVENT_RENTAL_KEY] });
 
       await fetch('/api/aws/email', {
@@ -24,9 +24,9 @@ export const useCreateEventRentalInquiry = () => {
         body: JSON.stringify({
           formType: FORM_TYPES.EVENT_RENTAL,
           payload: {
-            firstName: variables.first_name,
-            lastName: `${variables.last_name.charAt(0)}.`,
-            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.EVENT_RENTAL}`,
+            firstName: v.first_name,
+            lastName: `${v.last_name.charAt(0)}.`,
+            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.EVENT_RENTAL};${d._id}`,
           },
         }),
       });

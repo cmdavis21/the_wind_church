@@ -17,7 +17,7 @@ export const useCreatePrayerRequest = () => {
       return res.json();
     },
     mutationKey: [PRAYER_REQUEST_KEY],
-    onSuccess: async (d, variables) => {
+    onSuccess: async (d, v) => {
       queryClient.invalidateQueries({ queryKey: [PRAYER_REQUEST_KEY] });
 
       await fetch('/api/aws/email', {
@@ -25,9 +25,9 @@ export const useCreatePrayerRequest = () => {
         body: JSON.stringify({
           formType: FORM_TYPES.PRAYER_REQUEST,
           payload: {
-            firstName: variables.first_name,
-            lastName: `${variables.last_name.charAt(0)}.`,
-            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.PRAYER_REQUEST}`,
+            firstName: v.first_name,
+            lastName: `${v.last_name.charAt(0)}.`,
+            link: `${WEBSITE_URL}/studio/structure/forms;${FORM_TYPES.PRAYER_REQUEST};${d._id}`,
           },
         }),
       });
