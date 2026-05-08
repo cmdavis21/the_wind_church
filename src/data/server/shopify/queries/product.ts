@@ -114,7 +114,7 @@ export const getStorefrontProductByHandle = async (handle: string): Promise<Prod
     title: product.title,
     description_html: (product.descriptionHtml as string) ?? '',
     images: product.images.nodes.map((img) => ({
-      src: (img.url as string) ?? '',
+      src: (img.url as string) ?? '/images/product-placeholder.webp',
       alt: img.altText ?? '',
     })),
     first_variant:
@@ -135,7 +135,7 @@ export const getStorefrontProductByHandle = async (handle: string): Promise<Prod
       id: variant.id as string,
       image: variant.image
         ? {
-            src: String(variant.image?.url) ?? '',
+            src: String(variant.image?.url) ?? '/images/product-placeholder.webp',
             alt: variant.image?.altText ?? '',
           }
         : undefined,

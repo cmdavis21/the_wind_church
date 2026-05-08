@@ -19,7 +19,7 @@ const OrdersClient = () => {
       <PageHeaderWithBackground
         short
         media={{
-          src: `${AWS_ASSET_URL}/placeholder-media/purchase.jpg`,
+          src: `${AWS_ASSET_URL}/images/boxes-stack.jpg`,
           alt: 'Decorative Background Image',
           poster: '',
         }}

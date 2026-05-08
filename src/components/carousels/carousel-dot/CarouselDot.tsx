@@ -5,14 +5,16 @@ interface CarouselDotProps {
   onClick: () => void;
   active: boolean;
   blueDot?: boolean;
+  smallDot?: boolean;
 }
 
-const CarouselDot: React.FC<CarouselDotProps> = ({ onClick, active, blueDot }) => (
+const CarouselDot: React.FC<CarouselDotProps> = ({ onClick, active, blueDot, smallDot }) => (
   <button
     type="button"
     onClick={() => onClick()}
     className={cn(
-      'size-2.5 sm:size-3.5 md:size-4 rounded-full border-2',
+      'rounded-full border-2',
+      smallDot ? 'size-2.5' : 'size-2.5 sm:size-3.5 md:size-4',
       active
         ? blueDot
           ? 'bg-light-navy/20 border-light-navy dark:bg-dark-navy/20 dark:border-dark-navy'

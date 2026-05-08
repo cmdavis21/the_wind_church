@@ -100,8 +100,6 @@ const config: Config = {
 
   safelist: [
     {
-      // Matches:
-      // bg-brand-primary, bg-light-bg, bg-dark-navy, text-light-primaryText, border-brand-dark, etc.
       pattern: /(bg|text|border)-(brand|light|dark|success|warning|info|error)-?.*/,
     },
   ],

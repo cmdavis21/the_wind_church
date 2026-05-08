@@ -23,7 +23,7 @@ const BookstoreClient = () => {
     <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       <PageHeaderWithBackground
         media={{
-          src: `${AWS_ASSET_URL}/placeholder-media/open_sign.webp`,
+          src: `${AWS_ASSET_URL}/images/open-sign.webp`,
           alt: 'Decorative Background Image',
           poster: '',
         }}
@@ -57,8 +57,7 @@ const BookstoreClient = () => {
             className="flex flex-col gap-xl md:gap-xxl"
           >
             <SectionHeaderSkeleton />
-
-            <div className="pt-lg grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
               {Array.from({ length: 6 }).map((_, idx) => (
                 <ProductCardSkeleton key={`bookstore-collections-skeleton-card-${index}`} />
               ))}
@@ -78,13 +77,13 @@ const BookstoreClient = () => {
               className="flex flex-col gap-xl md:gap-xxl"
             >
               <SectionHeader title={coll.title} />
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-[1800px]:grid-cols-5 gap-xl place-items-center">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
                 {coll.products
                   .sort((a, b) => a.title.localeCompare(b.title))
                   .map((prod) => (
                     <ProductCard
                       key={`bookstore-product-${prod.title}`}
-                      image={prod.image}
+                      images={prod.images}
                       title={prod.title}
                       minPrice={prod.minPrice}
                       maxPrice={prod.maxPrice}

@@ -168,7 +168,7 @@ const About = async () => {
 
   const foursquareBeliefsArr = [
     {
-      image: `${AWS_ASSET_URL}/images/foursquare/cross.png`,
+      image: `${AWS_ASSET_URL}/images/foursquare/corss.webp`,
       title: t('foursquare.accordionItem1.title'),
       items: [
         {
@@ -204,7 +204,7 @@ const About = async () => {
       ],
     },
     {
-      image: `${AWS_ASSET_URL}/images/foursquare/dove.png`,
+      image: `${AWS_ASSET_URL}/images/foursquare/dove.webp`,
       title: t('foursquare.accordionItem2.title'),
       items: [
         {
@@ -240,7 +240,7 @@ const About = async () => {
       ],
     },
     {
-      image: `${AWS_ASSET_URL}/images/foursquare/cup.png`,
+      image: `${AWS_ASSET_URL}/images/foursquare/cup.webp`,
       title: t('foursquare.accordionItem3.title'),
       items: [
         {
@@ -276,7 +276,7 @@ const About = async () => {
       ],
     },
     {
-      image: `${AWS_ASSET_URL}/images/foursquare/crown.png`,
+      image: `${AWS_ASSET_URL}/images/foursquare/crown.webp`,
       title: t('foursquare.accordionItem4.title'),
       items: [
         {

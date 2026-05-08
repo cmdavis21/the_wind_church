@@ -16,13 +16,13 @@ const ThemeModeLogo: React.FC<ThemeModeLogoProps> = ({ changeColor, noChangeColo
   const { darkMode } = useTheme();
 
   const determineLogoToRender = () => {
-    let relativePath = '/logos/logo.png';
+    let relativePath = '/images/logo/logo-black.webp';
 
     if (darkMode) {
-      relativePath = '/logos/logo_white.png';
+      relativePath = '/images/logo/logo-white.webp';
     } else {
       if (!changeColor) {
-        if (!noChangeColor) relativePath = '/logos/logo_white.png';
+        if (!noChangeColor) relativePath = '/images/logo/logo-white.webp';
       }
     }
 

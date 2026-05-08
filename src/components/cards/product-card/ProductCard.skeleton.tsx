@@ -1,14 +1,19 @@
+import UpArrow from '@/components/icons/up-arrow';
+
 const ProductCardSkeleton = () => {
   return (
-    <div className="animate-pulse flex flex-col items-center rounded-xl overflow-hidden border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg">
+    <div className="motion-safe:animate-pulse min-w-[300px] max-w-[350px] rounded-xl overflow-hidden bg-light-neutral dark:bg-dark-neutral">
       {/* Cover Image */}
-      <div className="w-full aspect-[3/4] bg-light-neutral dark:bg-dark-neutral" />
+      <div className="w-full aspect-square bg-light-gray/50 dark:bg-dark-gray/50" />
 
-      {/* Content */}
-      <div className="p-4 w-full h-full text-center flex flex-col items-between gap-2">
-        <div className="w-full h-6 rounded-sm bg-light-neutral dark:bg-dark-neutral" />
-        <div className="w-8 h-6 rounded-sm bg-light-neutral dark:bg-dark-neutral" />
-        <div className="w-full h-[45.6px] rounded-full bg-light-neutral dark:bg-dark-neutral" />
+      <div className="p-md flex flex-row items-end justify-between gap-2">
+        <div className="flex flex-col gap-xs w-full">
+          <div className="w-full h-[44px] rounded-full bg-light-gray/50 dark:bg-dark-gray/50"></div>
+          <div className="w-[55%] h-[32px] rounded-full bg-brand-primary/50"></div>
+        </div>
+        <div className="bg-light-gray/50 dark:bg-dark-gray rounded-full size-12 min-w-12 flex items-center justify-center">
+          <UpArrow className="size-[25px] fill-light-charcoal dark:fill-dark-charcoal rotate-45" />
+        </div>
       </div>
     </div>
   );

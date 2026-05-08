@@ -19,20 +19,25 @@ const getStorefrontCollectionsQuery = () => {
                     title: true,
                     handle: true,
                     descriptionHtml: true,
-                    featuredImage: {
-                      url: [
-                        {
-                          transform: {
-                            maxWidth: 1200,
-                            maxHeight: 1200,
-                            crop: CropRegion.CENTER,
-                            preferredContentType: ImageContentType.JPG,
-                          },
+                    images: [
+                      { first: 3 },
+                      {
+                        nodes: {
+                          url: [
+                            {
+                              transform: {
+                                maxWidth: 1200,
+                                maxHeight: 1200,
+                                crop: CropRegion.CENTER,
+                                preferredContentType: ImageContentType.JPG,
+                              },
+                            },
+                            true,
+                          ],
+                          altText: true,
                         },
-                        true,
-                      ],
-                      altText: true,
-                    },
+                      },
+                    ],
                     priceRange: {
                       minVariantPrice: {
                         amount: true,
@@ -88,10 +93,10 @@ export const getStorefrontCollections = async (): Promise<Collection[]> => {
         amount: (item.node.priceRange.maxVariantPrice.amount as string) ?? '0',
         currencyCode: item.node.priceRange.maxVariantPrice.currencyCode,
       },
-      image: {
-        src: (item.node.featuredImage?.url as string) ?? '/images/misc/shop-placeholder-image.jpg',
-        alt: item.node.featuredImage?.altText as string,
-      },
+      images: item.node.images.nodes.map((img) => ({
+        src: (img.url as string) ?? '/images/product-placeholder.webp',
+        alt: img.altText ?? '',
+      })),
       total_inventory: item.node.totalInventory ?? 0,
       options:
         item.node.options && item.node.options[0]?.name !== 'Title'

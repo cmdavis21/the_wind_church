@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.salvation}`;
-  const image = `${AWS_ASSET_URL}/placeholder-media/crosses.png`;
+  const image = `${AWS_ASSET_URL}/images/salvation/cross-on-mount.webp`;
   return {
     title,
     description,
@@ -36,21 +36,37 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const SALVATION_QUESTIONS: { question: string; verse: string }[] = [
+const SALVATION_QUESTIONS = [
   {
+    image: {
+      src: `${AWS_ASSET_URL}/images/salvation/forest.webp`,
+      alt: '',
+    },
     question: 'Do you want to be forgiven and saved?',
     verse: 'Acts 3:38; 1 John 1:8',
   },
   {
+    image: {
+      src: `${AWS_ASSET_URL}/images/salvation/dove.webp`,
+      alt: '',
+    },
     question: "Do you believe Jesus Christ, God's son, died for you?",
     verse: '1 John 1:7',
   },
   {
+    image: {
+      src: `${AWS_ASSET_URL}/images/salvation/olive-branch.webp`,
+      alt: '',
+    },
     question:
       'Are you willing to repent of sin and follow the Lord Jesus Christ for the rest of your life?',
     verse: 'Acts 2:21; 3:37-38, 16:31; 1 John 1:9',
   },
   {
+    image: {
+      src: `${AWS_ASSET_URL}/images/salvation/hand-and-water.webp`,
+      alt: '',
+    },
     question:
       'Do you believe in your heart and confess with your mouth that God does forgive you of your sins and that He does cleanse you from all unrighteousness?',
     verse: 'Romans 10:9-10; 1 John 1:9',
@@ -62,8 +78,8 @@ const Salvation = () => (
     <PageHero
       size="short"
       title="Salvation"
-      subtitle="Jesus is here for you always"
-      media={{ src: `${AWS_ASSET_URL}/placeholder-media/crosses.png` }}
+      subtitle="Jesus is here for you. Always."
+      media={{ src: `${AWS_ASSET_URL}/images/salvation/cross-on-mount.webp` }}
     />
 
     {/* WHAT IS SALVATION */}
@@ -87,10 +103,7 @@ const Salvation = () => (
         {SALVATION_QUESTIONS.map((item, index) => (
           <ImageWithTitleAndHiddenTextCard
             key={`salvation-question-${item.question}`}
-            image={{
-              src: `${AWS_ASSET_URL}/placeholder-media/cross_on_mount.jpg`,
-              alt: 'decorative background image',
-            }}
+            image={item.image}
             title={
               <span className={`font-display text-brand-primary text-[55px] lg:text-[65px]`}>
                 {index + 1}

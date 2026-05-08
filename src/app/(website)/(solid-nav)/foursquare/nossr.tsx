@@ -198,6 +198,7 @@ const FoursquareClient = () => {
         }}
         subtitle="An international Pentecostal Christian denomination founded in 1923"
       />
+
       <div ref={anchorRef} />
       <Tabs variant="default" ref={tabsRef} onActiveTabChange={(tab) => setActive(tab)}>
         <TabItem title="Intro" icon={Location}>
@@ -334,7 +335,7 @@ const FoursquareClient = () => {
             </div>
           </div>
         </TabItem>
-        <TabItem title="Insignias & Emblems" icon={Flag}>
+        <TabItem title="Symbols" icon={Flag}>
           <div className="flex flex-col gap-xl p-lg">
             {/* LOGO SECTION */}
             <SectionHeader title="Logo" />
@@ -376,7 +377,7 @@ const FoursquareClient = () => {
               <div className="relative w-full h-full aspect-square">
                 <Image
                   fill
-                  src={`${AWS_ASSET_URL}/images/foursquare/logo.png`}
+                  src={`${AWS_ASSET_URL}/images/foursquare/logo.webp`}
                   alt="Foursquare logo"
                 />
               </div>
@@ -388,7 +389,7 @@ const FoursquareClient = () => {
               <div className="relative w-full h-full aspect-square">
                 <Image
                   fill
-                  src={`${AWS_ASSET_URL}/images/foursquare/emblem.png`}
+                  src={`${AWS_ASSET_URL}/images/foursquare/emblem.webp`}
                   alt="Foursquare emblem"
                 />
               </div>
@@ -460,10 +461,10 @@ const FoursquareClient = () => {
                 </div>
               </div>
 
-              <div className="relative w-full aspect-square">
+              <div className="relative w-full h-full aspect-square">
                 <Image
                   fill
-                  src={`${AWS_ASSET_URL}/images/foursquare/flag.jpeg`}
+                  src={`${AWS_ASSET_URL}/images/foursquare/flag.webp`}
                   alt="Foursquare flag"
                   className="object-contain aspect-video mx-auto"
                 />
@@ -472,7 +473,8 @@ const FoursquareClient = () => {
           </div>
         </TabItem>
       </Tabs>
-      <div className="-mt-[15px] flex justify-end border-t p-md">
+
+      <div className="-mt-2 flex justify-end p-md">
         <CarouselArrows
           className="w-fit"
           leftArrowProps={{

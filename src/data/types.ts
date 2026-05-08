@@ -6,7 +6,7 @@ type Time = {
   time_of_day: string;
 };
 
-type Image = {
+export type Image = {
   src: string;
   alt: string;
 };
@@ -281,7 +281,7 @@ export interface ProductPreview {
   handle: string;
   minPrice: Price;
   maxPrice: Price;
-  image: Image;
+  images: Image[];
   total_inventory: number;
 }
 

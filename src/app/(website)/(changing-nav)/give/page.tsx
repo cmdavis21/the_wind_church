@@ -47,7 +47,16 @@ const Give = () => {
   const otherWaysToGiveArr = [
     {
       image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/couple_credit_card.jpg`,
+        src: `${AWS_ASSET_URL}/images/give/group-hands.webp`,
+        alt: '',
+      },
+      title: 'Serve & Volunteer',
+      description:
+        "Giving isn't only financial — serving with your time and gifts helps build God's house and strengthen our community.",
+    },
+    {
+      image: {
+        src: `${AWS_ASSET_URL}/images/give/couple.webp`,
         alt: '',
       },
       title: 'Online Giving',
@@ -72,7 +81,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/offering.jpg`,
+        src: `${AWS_ASSET_URL}/images/give/offering-box.webp`,
         alt: '',
       },
       title: 'In‑Person Giving',
@@ -81,7 +90,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/mailbox.jpg`,
+        src: `${AWS_ASSET_URL}/images/give/mailbox.webp`,
         alt: '',
       },
       title: 'Mail‑In Giving',
@@ -95,20 +104,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/building.jpg`,
-        alt: '',
-      },
-      title: 'Bank Bill Pay',
-      description: (
-        <>
-          Set up recurring giving through your bank’s bill‑pay service. This is a simple and
-          consistent way to support the ministry.
-        </>
-      ),
-    },
-    {
-      image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/garage.jpg`,
+        src: `${AWS_ASSET_URL}/images/give/garage.webp`,
         alt: '',
       },
       title: 'Non‑Cash Assets',
@@ -124,12 +120,12 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/support_hands.jpg`,
+        src: `${AWS_ASSET_URL}/images/give/person-with-box.webp`,
         alt: '',
       },
-      title: 'Serve & Volunteer',
+      title: 'One‑Time Donations',
       description:
-        "Giving isn't only financial — serving with your time and gifts helps build God's house and strengthen our community.",
+        'These are spontaneous gifts inspired by a sermon, event, or specific need. They help fund special projects, missions, or urgent needs.',
     },
   ];
 
@@ -140,7 +136,7 @@ const Give = () => {
         title="Giving"
         highlightTitle={[[0, 0]]}
         subtitle="Your contribution makes a difference."
-        media={{ src: `${AWS_ASSET_URL}/placeholder-media/praise_hands.jpg` }}
+        media={{ src: `${AWS_ASSET_URL}/images/worship.jpg` }}
       />
 
       {/* WHY WE GIVE */}

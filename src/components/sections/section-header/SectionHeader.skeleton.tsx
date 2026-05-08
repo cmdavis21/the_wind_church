@@ -1,22 +1,22 @@
 const SectionHeaderSkeleton = () => {
   return (
-    <div className="animate-pulse">
+    <div className="motion-safe:animate-pulse">
       {/* Desktop Skeleton */}
-      <div className="hidden md:block">
+      <div className="hidden sm:block">
         <div className="flex gap-3">
-          <div className="w-[3px] min-h-full bg-skeletonDarkGray rounded-md" />
+          <div className="w-[3px] min-h-full bg-brand-primary/50 rounded-full" />
           <div className="flex flex-col gap-2 w-full">
-            <div className="h-[18px] w-1/3 bg-light-neutral rounded self-start" />
-            <div className="h-[32px] w-2/3 bg-light-neutral roundedself-start" />
+            <div className="w-[300px] h-[24px] rounded-full bg-light-gray/50 dark:bg-dark-gray/50"></div>
+            <div className="w-ful md:w-[40%] h-[32px] rounded-full bg-light-gray/50 dark:bg-dark-gray/50"></div>
           </div>
         </div>
       </div>
 
       {/* Mobile Skeleton */}
-      <div className="md:hidden flex flex-col items-center justify-center gap-3">
-        <div className="h-[28px] w-2/3 bg-light-neutral rounded" />
-        <div className="w-10 h-[2px] bg-skeletonDarkGray rounded-md" />
-        <div className="h-[16px] w-1/2 bg-light-neutral rounded" />
+      <div className="sm:hidden flex flex-col items-center justify-center gap-3">
+        <div className="w-[75%] h-[28px] rounded-full bg-light-gray/50 dark:bg-dark-gray/50"></div>
+        <div className="w-10 h-[2px] bg-brand-primary/50 rounded-full" />
+        <div className="w-[50%] h-[24px] rounded-full bg-light-gray/50 dark:bg-dark-gray/50"></div>
       </div>
     </div>
   );
