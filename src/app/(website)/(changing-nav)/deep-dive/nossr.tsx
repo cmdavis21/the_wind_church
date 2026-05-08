@@ -33,7 +33,7 @@ const DeepDivesClient = () => {
       {!deepDivesLoading && deepDives && (
         <FullscreenMediaWithTextFadeInOutCarousel
           slides={
-            deepDives.length < 0
+            deepDives.length > 0
               ? deepDives.map((deepDive) => ({
                   media: deepDive.image,
                   header: 'Deep Dive Studies',
