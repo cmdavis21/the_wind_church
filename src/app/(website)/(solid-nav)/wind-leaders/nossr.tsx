@@ -11,22 +11,12 @@ import Filter from '@/components/icons/filter';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
 import { useGetAllCategorizedLeaders } from '@/data/client/sanity/leaders';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const WindLeadersClient = () => {
   const [filter, setFilter] = useState('');
-  const [count, setCount] = useState(0);
+  const [active, setActive] = useState<{ cat: string; index: number } | null>(null);
   const { leaders, leadersLoading, leadersError } = useGetAllCategorizedLeaders();
-
-  useEffect(() => {
-    if (!leaders) return;
-
-    const total = Object.entries(leaders)
-      .filter(([cat]) => filter === '' || cat === filter)
-      .reduce((sum, [, leaderList]) => sum + leaderList.length, 0);
-
-    setCount(total);
-  }, [leaders, filter]);
 
   if (leadersError) return <ErrorAlert />;
 
@@ -37,18 +27,16 @@ const WindLeadersClient = () => {
       {/* FILTERING */}
       {leaders && (
         <div className="w-full flex md:justify-end">
-          <div className="w-full md:w-fit">
-            <SelectInput
-              icon={Filter}
-              className="sm:w-fit"
-              disabled={leadersLoading || leadersError}
-              onChange={(e) => setFilter(e.target.value)}
-              options={[
-                { label: 'All Leaders', value: '' },
-                ...Object.entries(leaders).map(([k, _]) => ({ label: k, value: k })),
-              ]}
-            />
-          </div>
+          <SelectInput
+            icon={Filter}
+            className="sm:w-fit sm:self-end"
+            disabled={leadersLoading || leadersError}
+            onChange={(e) => setFilter(e.target.value)}
+            options={[
+              { label: 'All Leaders', value: '' },
+              ...Object.entries(leaders).map(([k, _]) => ({ label: k, value: k })),
+            ]}
+          />
         </div>
       )}
 
@@ -58,7 +46,7 @@ const WindLeadersClient = () => {
             <SectionHeaderSkeleton />
 
             {/* DESKTOP */}
-            <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+            <div className="hidden sm:flex flex-wrap gap-xl">
               {Array.from({ length: 5 }).map((_, idx) => (
                 <LeaderCardSkeleton key={`wind-leader-desktop-skeleton-${idx}`} />
               ))}
@@ -66,6 +54,7 @@ const WindLeadersClient = () => {
 
             {/* MOBILE */}
             <SimpleCarousel
+              disable
               className="sm:hidden"
               slides={Array.from({ length: 5 }).map((_, idx) => (
                 <LeaderCardSkeleton key={`wind-leader-mobile-skeleton-${idx}`} />
@@ -84,24 +73,40 @@ const WindLeadersClient = () => {
               <SectionHeader title={cat} subtitle="Select Leaders to learn more" />
 
               {/* DESKTOP */}
-              <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
-                {leaderList.map((leader) => (
-                  <LeaderCard
-                    key={`wind-leader-desktop-${leader.first_name}-${leader.last_name}`}
-                    {...leader}
-                  />
-                ))}
+              <div className="hidden sm:flex flex-wrap gap-xl">
+                {leaderList.map((leader, index) => {
+                  const isSelected = active?.cat === cat && active?.index === index;
+                  return (
+                    <LeaderCard
+                      key={`wind-leader-desktop-${leader.first_name}-${leader.last_name}`}
+                      onToggle={() => {
+                        if (isSelected) return setActive(null);
+                        setActive({ cat, index });
+                      }}
+                      isActive={isSelected}
+                      {...leader}
+                    />
+                  );
+                })}
               </div>
 
               {/* MOBILE */}
               <SimpleCarousel
                 className="sm:hidden"
-                slides={leaderList.map((leader) => (
-                  <LeaderCard
-                    key={`wind-leader-mobile-${leader.first_name}-${leader.last_name}`}
-                    {...leader}
-                  />
-                ))}
+                slides={leaderList.map((leader, index) => {
+                  const isSelected = active?.cat === cat && active?.index === index;
+                  return (
+                    <LeaderCard
+                      key={`wind-leader-mobile-${leader.first_name}-${leader.last_name}`}
+                      onToggle={() => {
+                        if (isSelected) return setActive(null);
+                        setActive({ cat, index });
+                      }}
+                      isActive={isSelected}
+                      {...leader}
+                    />
+                  );
+                })}
               />
             </div>
           ))}

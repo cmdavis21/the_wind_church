@@ -136,7 +136,7 @@ const Give = () => {
         title="Giving"
         highlightTitle={[[0, 0]]}
         subtitle="Your contribution makes a difference."
-        media={{ src: `${AWS_ASSET_URL}/images/worship.jpg` }}
+        media={{ src: `${AWS_ASSET_URL}/images/give/praising.jpg` }}
       />
 
       {/* WHY WE GIVE */}
@@ -194,7 +194,7 @@ const Give = () => {
 
           {/* DONATE CTA */}
           <Link href={PageRoutes.pushpay} className="max-sm:w-full">
-            <Button color="secondary" size="lg" pill className="font-semibold  max-sm:w-full">
+            <Button color="secondary" size="lg" pill className="font-semibold max-sm:w-full">
               Donate online with PushPay
             </Button>
           </Link>

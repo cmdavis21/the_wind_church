@@ -61,6 +61,7 @@ export const useCart = () => {
       });
 
       if (!res.ok) throw new Error(`${UPDATE_CART_ITEMS_KEY} ERROR`);
+      console.log(res);
       return res.json();
     },
     onSuccess: refetchCart,

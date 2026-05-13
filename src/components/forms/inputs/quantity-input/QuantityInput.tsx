@@ -5,24 +5,27 @@ import cn from 'classnames';
 import React from 'react';
 
 interface QuantityInputProps {
+  size?: 'sm' | 'md';
   maxQuantity: number;
   quantity: number;
   decrement: (quantity: number) => void;
   increment: (quantity: number) => void;
-  scaleDown?: boolean;
+  disabled?: boolean;
 }
 
 const QuantityInput: React.FC<QuantityInputProps> = ({
+  size = 'md',
   maxQuantity,
   quantity,
   decrement,
   increment,
-  scaleDown,
+  disabled,
 }) => {
   const { darkMode } = useTheme();
   return (
-    <div className="p-xs rounded-md flex items-center gap-sm">
+    <div className="p-xs rounded-sm flex items-center gap-md">
       <button
+        disabled={disabled}
         onClick={() => {
           if (quantity === 1) {
             decrement(1);
@@ -31,7 +34,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
           }
         }}
         className={cn(
-          'rounded-md h-full p-xs',
+          'rounded-sm h-full p-xs disabled:opacity-75',
           quantity === 1
             ? 'pointer-events-none opacity-75 bg-transparent'
             : 'bg-light-gray dark:bg-dark-gray hover:opacity-75'
@@ -39,13 +42,21 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
       >
         <Minus
           fill={darkMode ? '#FFFFFFCC' : '#000000'}
-          className={`${scaleDown ? 'size-[12px]' : 'size-[15px]'}`}
+          className={`${size === 'sm' ? 'size-[10px]' : 'size-[15px]'}`}
         />
       </button>
 
-      <p className="font-normal leading-none body-large pointer-events-none">{quantity}</p>
+      <p
+        className={cn(
+          size === 'sm' ? 'body-small' : 'body-large',
+          'font-normal leading-none pointer-events-none'
+        )}
+      >
+        {quantity}
+      </p>
 
       <button
+        disabled={disabled}
         onClick={() => {
           if (quantity === maxQuantity) {
             increment(maxQuantity);
@@ -54,7 +65,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
           }
         }}
         className={cn(
-          'rounded-md h-full p-xs',
+          'rounded-sm h-full p-xs disabled:opacity-75',
           quantity === maxQuantity
             ? 'pointer-events-none opacity-50 bg-transparent'
             : 'bg-light-gray dark:bg-dark-gray hover:opacity-75'
@@ -62,7 +73,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
       >
         <Plus
           fill={darkMode ? '#FFFFFFCC' : '#000000'}
-          className={`${scaleDown ? 'size-[12px]' : 'size-[15px]'}`}
+          className={`${size === 'sm' ? 'size-[10px]' : 'size-[15px]'}`}
         />
       </button>
     </div>

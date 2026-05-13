@@ -45,8 +45,8 @@ const DeepDivesClient = () => {
               : [
                   {
                     media: {
-                      src: `${AWS_ASSET_URL}/placeholder-media/footer_video.mp4`,
-                      poster: `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg`,
+                      src: `${AWS_ASSET_URL}/videos/friend-group.mp4`,
+                      poster: `${AWS_ASSET_URL}/images/friend-group.webp`,
                       alt: '',
                     },
                     header: 'Deep Dive Studies',

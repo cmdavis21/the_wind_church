@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.nextGen}`;
-  const image = `${AWS_ASSET_URL}/placeholder-media/kids_group.jpg`;
+  const image = `${AWS_ASSET_URL}/images/next-gen/kids-group.webp`;
   return {
     title,
     description,
@@ -59,7 +59,7 @@ const NextGen = async () => {
       <div className="px-padding max-width-center">
         <PageHeaderWithBackground
           media={{
-            src: `${AWS_ASSET_URL}/placeholder-media/kids_group.jpg`,
+            src: `${AWS_ASSET_URL}/images/next-gen/kids-group.webp`,
             alt: 'decorative background image',
             poster: '',
           }}
@@ -78,21 +78,21 @@ const NextGen = async () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
           <ImageWithTitleDescriptionCard
             alt=""
-            src={`${AWS_ASSET_URL}/placeholder-media/kids_classroom_2.jpg`}
+            src={`${AWS_ASSET_URL}/images/next-gen/kids-learning.webp`}
             title="Christ-Centered Studies"
             description="We use interactive teaching, worship, and hands‑on learning to help students build a strong, lasting foundation in Christ."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src={`${AWS_ASSET_URL}/placeholder-media/kid_outside.jpg`}
-            title="Creative Fun & Exploration"
-            description="From crafts and games to outdoor play and team activities, we create fun, engaging spaces that spark curiosity and build friendships."
+            src={`${AWS_ASSET_URL}/images/next-gen/kids-hugging.webp`}
+            title="Respect & Love"
+            description="We model and teach kindness, empathy, and Christ‑like respect so students learn to care for others in everyday life."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src={`${AWS_ASSET_URL}/placeholder-media/kids_classroom_1.jpg`}
-            title="Respect and Love"
-            description="We model and teach kindness, empathy, and Christ‑like respect so students learn to care for others in everyday life."
+            src={`${AWS_ASSET_URL}/images/next-gen/kids-drawing.webp`}
+            title="Creative Fun & Exploration"
+            description="From crafts and games to outdoor play and team activities, we create fun, engaging spaces that spark curiosity and build friendships."
           />
         </div>
 
@@ -125,7 +125,7 @@ const NextGen = async () => {
           />
           <div>
             {/* Desktop */}
-            <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+            <div className="hidden sm:flex flex-wrap gap-xl">
               {pageInfo.educators.map((educator) => (
                 <LeaderCard
                   key={`youth-service-educator-${educator.first_name}-${educator.last_name}`}
@@ -215,7 +215,7 @@ const NextGen = async () => {
       {/* NURSERY CTA */}
       <MediaBackgroundAndContent
         background={{
-          src: `${AWS_ASSET_URL}/placeholder-media/kids_classroom_1.jpg`,
+          src: `${AWS_ASSET_URL}/images/next-gen/kids-with-blocks.jpg`,
         }}
         content={
           <div className="flex flex-col">

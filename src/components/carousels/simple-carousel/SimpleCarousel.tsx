@@ -11,9 +11,15 @@ interface SimpleCarouselProps {
   slides: React.ReactElement[];
   className?: string;
   showDots?: boolean;
+  disable?: boolean;
 }
 
-const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ slides, className, showDots = true }) => {
+const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
+  slides,
+  className,
+  showDots = true,
+  disable = false,
+}) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 4000, min: 1024 },
@@ -49,8 +55,9 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ slides, className, show
     <div className={`${className ?? ''} relative`}>
       <Carousel
         infinite
-        swipeable
+        swipeable={!disable}
         arrows={false}
+        draggable={!disable}
         renderDotsOutside
         showDots={showDots}
         responsive={responsive}

@@ -1,4 +1,7 @@
 import CornerButton from '@/components/buttons/corner-button/CornerButton';
+import Calendar from '@/components/icons/calendar';
+import Clock from '@/components/icons/clock';
+import Location from '@/components/icons/location';
 import { useWindowDimensions } from '@/data/client/use-window-dimensions';
 import { formatDateMMMddyyyy } from '@/data/format-date';
 import { Event } from '@/data/types';
@@ -89,14 +92,23 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             </h5>
             <h2>{name}</h2>
             <h5>{description}</h5>
-            <h4>
-              {formatDateMMMddyyyy(date)} •{' '}
-              <span>
-                {time.hour}:{time.minute}
-                {time.time_of_day}
-              </span>{' '}
-              • {location}
-            </h4>
+            <div className="flex flex-col gap-md">
+              <h4 className="flex flex-row items-center gap-sm">
+                <Calendar className="fill-light-primaryText dark:fill-dark-primaryText" />
+                {formatDateMMMddyyyy(date)}
+              </h4>
+              <h4 className="flex flex-row items-center gap-sm">
+                <Clock className="fill-light-primaryText dark:fill-dark-primaryText" />
+                <span>
+                  {time.hour}:{time.minute}
+                  {time.time_of_day}
+                </span>
+              </h4>
+              <h4 className="flex flex-row items-center gap-sm">
+                <Location className="fill-light-primaryText dark:fill-dark-primaryText" />
+                {location}
+              </h4>
+            </div>
             <hr />
             {how_to_signup && (
               <div>

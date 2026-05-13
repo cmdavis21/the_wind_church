@@ -172,16 +172,18 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
         ))}
 
         {/* Dots */}
-        <div className="absolute bottom-5 left-[50%] -translate-y-[50%] flex items-center gap-xs">
-          {Array(slides.length)
-            .fill(slides.length)
-            .map((_, dotIndex) => (
-              <CarouselDot
-                key={`carousel-dot-${dotIndex}`}
-                onClick={() => setActiveSlide(dotIndex)}
-                active={activeSlide === dotIndex}
-              />
-            ))}
+        <div className="absolute bottom-5 w-full">
+          <div className="justify-center flex items-center gap-xs">
+            {Array(slides.length)
+              .fill(slides.length)
+              .map((_, dotIndex) => (
+                <CarouselDot
+                  key={`carousel-dot-${dotIndex}`}
+                  onClick={() => setActiveSlide(dotIndex)}
+                  active={activeSlide === dotIndex}
+                />
+              ))}
+          </div>
         </div>
 
         {/* Arrows */}

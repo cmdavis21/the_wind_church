@@ -57,7 +57,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_URL}/placeholder-media/lxg_meet.webp`,
+        src: `${AWS_ASSET_URL}/images/home/group-study.jpg`,
       },
       title: 'Try our Deep Dives',
       description: 'Explore the Word in a deeper way with small-group Bible studies.',
@@ -66,7 +66,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_URL}/placeholder-media/outreach.png`,
+        src: `${AWS_ASSET_URL}/images/home/friends.jpg`,
       },
       title: 'Looking to minister?',
       description: 'We have ministries for every age and stage.',
@@ -75,7 +75,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Children in a classroom during youth service',
-        src: `${AWS_ASSET_URL}/placeholder-media/family.jpeg`,
+        src: `${AWS_ASSET_URL}/images/home/speaking.jpg`,
       },
       title: 'Know your gifts!',
       description: 'Discover your spiritual gifts with our easy assessment!',
@@ -84,7 +84,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
+        src: `${AWS_ASSET_URL}/images/home/planning.jpg`,
       },
       title: 'Have an event?',
       description: 'Interested in renting our church? Get details and request your date today.',
@@ -145,8 +145,8 @@ const Home = async () => {
         highlightTitle={[[0, 2]]}
         subtitle="Jesus has a plan for your life. Join us and discover a church family ready to walk with you."
         media={{
-          src: `${AWS_ASSET_URL}/placeholder-media/footer_video.mp4`,
-          poster: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
+          src: `${AWS_ASSET_URL}/videos/friend-group.mp4`,
+          poster: `${AWS_ASSET_URL}/images/friend-group.webp`,
         }}
       />
 

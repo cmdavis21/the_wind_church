@@ -168,7 +168,7 @@ const About = async () => {
 
   const foursquareBeliefsArr = [
     {
-      image: `${AWS_ASSET_URL}/images/foursquare/corss.webp`,
+      image: `${AWS_ASSET_URL}/images/foursquare/cross.webp`,
       title: t('foursquare.accordionItem1.title'),
       items: [
         {

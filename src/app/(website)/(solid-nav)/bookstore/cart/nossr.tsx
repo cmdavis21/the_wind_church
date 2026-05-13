@@ -1,25 +1,22 @@
 'use client';
 
-import QuantityInput from '@/components/forms/inputs/quantity-input/QuantityInput';
+import LineItem from '@/components/cards/line-item/LineItem';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
-import Trash from '@/components/icons/trash';
 import { useCart } from '@/data/client/shopify/use-cart';
 import { formatPrice } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
 import { Button } from 'flowbite-react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { CartSkeleton } from './skeleton';
 
 const CartPage = () => {
-  const { getCart, cartLoading, updateCart, removeCartItems } = useCart();
-  const [loadingItem, setLoadingItem] = useState<number | null>(null);
+  const { getCart, cartLoading } = useCart();
 
   return (
     <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       <PageHeader title="Your Cart" subtitle="" />
 
-      {cartLoading && <div></div>}
+      {cartLoading && <CartSkeleton />}
 
       {!cartLoading && (!getCart || (getCart && getCart?.lines.length <= 0)) && (
         <div className="flex flex-col gap-lg items-center justify-center h-[250px]">
@@ -33,205 +30,58 @@ const CartPage = () => {
       )}
 
       {!cartLoading && getCart && getCart?.lines.length > 0 && (
-        <div className="flex flex-col gap-lg">
-          <h5>
-            <span className="font-bold">
-              {getCart?.total_quantity} item{getCart?.total_quantity > 1 ? 's' : ''}
-            </span>{' '}
-            in the cart
-          </h5>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-lg lg:gap-xl">
+          <div className="flex flex-col gap-lg lg:col-span-2">
+            <h5>
+              <span className="font-bold">
+                {getCart?.total_quantity} item{getCart?.total_quantity > 1 ? 's' : ''}
+              </span>{' '}
+              in the cart
+            </h5>
 
-          <hr className="text-light-gray dark:text-dark-gray" />
-
-          {/* DESKTOP */}
-          <div className="hidden md:block w-full">
-            <table className="w-full">
-              <thead>
-                <tr>
-                  <th className="w-[50%] pb-md text-left font-bold text-light-charcoalLight">
-                    Product
-                  </th>
-                  <th className="w-[12.5%] pb-md text-center font-bold text-light-charcoalLight">
-                    Price
-                  </th>
-                  <th className="w-[12.5%] pb-md text-center font-bold text-light-charcoalLight">
-                    Quantity
-                  </th>
-                  <th className="w-[12.5%] pb-md text-center font-bold text-light-charcoalLight">
-                    Subtotal
-                  </th>
-                  <th className="w-[12.5%] pb-md text-left font-bold text-light-charcoalLight"></th>
-                </tr>
-              </thead>
-
-              <tbody className="divide-y divide-light-gray dark:divide-dark-gray">
-                {getCart?.lines
-                  .sort((a, b) => a.title.localeCompare(b.title))
-                  .map((line, index) => (
-                    <tr
-                      key={`cart-page-desktop-${line.title}`}
-                      className={`!py-xl ${
-                        loadingItem === index ? 'opacity-50 pointer-events-none animate-pulse' : ''
-                      }`}
-                    >
-                      <td className="py-xl last-pb-0">
-                        <div className="flex gap-md">
-                          <Image
-                            width={100}
-                            height={100}
-                            src={line.image.src}
-                            alt={line.image.alt}
-                            className="object-cover min-w-4xl size-4xl object-center border shadow border-light-gray dark:border-dark-gray rounded-lg"
-                          />
-                          <div className="flex flex-col">
-                            <h5 className="font-bold">{line.title}</h5>
-                            {line.variant.selected_options.map((opt) => (
-                              <p key={opt.name} className="capitalize">
-                                <span className="text-light-charcoal dark:text-dark-charcoal">
-                                  {opt.name}:
-                                </span>{' '}
-                                {opt.value}
-                              </p>
-                            ))}
-                          </div>
-                        </div>
-                      </td>
-
-                      <td className="py-xl last-pb-0 text-center body-large">
-                        {formatPrice(line.variant.price)}
-                      </td>
-
-                      <td className="py-xl last-pb-0">
-                        <div className="w-fit mx-auto">
-                          <QuantityInput
-                            maxQuantity={10}
-                            quantity={line.quantity}
-                            decrement={() => {
-                              setLoadingItem(index);
-                              updateCart([
-                                { quantity: line.quantity - 1, id: line.id as any },
-                              ]).then(() => setLoadingItem(null));
-                            }}
-                            increment={() => {
-                              setLoadingItem(index);
-                              updateCart([
-                                { quantity: line.quantity + 1, id: line.id as any },
-                              ]).then(() => setLoadingItem(null));
-                            }}
-                          />
-                        </div>
-                      </td>
-
-                      <td className="py-xl last-pb-0 text-center body-large font-[500]">
-                        {formatPrice(line.subtotal_amount)}
-                      </td>
-
-                      <td className="py-xl last-pb-0">
-                        <Button
-                          pill
-                          size="sm"
-                          color="danger"
-                          className="mx-auto"
-                          onClick={() => {
-                            setLoadingItem(index);
-                            removeCartItems([line.id as any]).then(() => setLoadingItem(null));
-                          }}
-                        >
-                          <div className="flex items-center gap-xs text-xs">
-                            <Trash fill="white" className="size-[15px]" /> Remove
-                          </div>
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* MOBILE */}
-          <div className="md:hidden divide-y divide-light-gray dark:divide-dark-gray">
-            {getCart?.lines.map((line, index) => (
-              <div
-                key={`cart-page-mobile-${line.title}`}
-                className={`${loadingItem === index ? 'opacity-50 pointer-events-none animate-pulse' : ''} flex gap-md py-xl last:pb-0`}
-              >
-                <Image
-                  width={60}
-                  height={60}
-                  src={line.image.src}
-                  alt={line.image.alt}
-                  className="object-contain bg-white min-w-[60px] size-[60px] object-center border shadow border-light-gray dark:border-dark-gray rounded-md"
-                />
-                <div className="flex flex-col gap-xs">
-                  <h6 className="font-bold">{line.title}</h6>
-                  {line.variant.selected_options.map((opt) => (
-                    <p className="capitalize">
-                      <span className="text-light-charcoal dark:text-dark-charcoal">
-                        {opt.name}:
-                      </span>{' '}
-                      {opt.value}
-                    </p>
-                  ))}
-                  <p className="capitalize">
-                    <span className="text-light-charcoal dark:text-dark-charcoal">Price:</span>{' '}
-                    {formatPrice(line.variant.price)} {line.variant.price.currencyCode}
-                  </p>
-                  <QuantityInput
-                    scaleDown
-                    maxQuantity={10}
+            <div className="flex flex-col gap-lg">
+              {getCart?.lines
+                .sort((a, b) => a.title.localeCompare(b.title))
+                .map((line) => (
+                  <LineItem
+                    key={`cart-page-desktop-${line.title}`}
+                    id={line.variant.id}
+                    imageSrc={line.image.src}
+                    title={line.title}
+                    options={line.variant.selected_options}
                     quantity={line.quantity}
-                    decrement={() => {
-                      setLoadingItem(index);
-                      updateCart([{ quantity: line.quantity - 1, id: line.id as any }]).then(() =>
-                        setLoadingItem(null)
-                      );
-                    }}
-                    increment={() => {
-                      setLoadingItem(index);
-                      updateCart([{ quantity: line.quantity + 1, id: line.id as any }]).then(() =>
-                        setLoadingItem(null)
-                      );
-                    }}
+                    subtotal={line.subtotal_amount}
                   />
-                  <p className="capitalize font-bold">
-                    Total: {formatPrice(line.subtotal_amount)} {line.subtotal_amount.currencyCode}
-                  </p>
-                  <Button
-                    pill
-                    size="xs"
-                    color="danger"
-                    onClick={() => {
-                      setLoadingItem(index);
-                      removeCartItems([line.id as any]).then(() => setLoadingItem(null));
-                    }}
-                  >
-                    <div className="flex items-center gap-xxs text-xs">
-                      <Trash fill="white" className="size-[12px]" /> Remove
-                    </div>
-                  </Button>
-                </div>
-              </div>
-            ))}
+                ))}
+            </div>
           </div>
 
-          <hr className="text-light-gray dark:text-dark-gray" />
-
-          {/* TOTAL + CHECKOUT */}
-          <div className="flex flex-col gap-md md:items-end text-left md:text-right">
-            <h3>Subtotal: {formatPrice(getCart?.subtotal_amount)}</h3>
-            <h6>Taxes and Delivery charges calculated at checkout</h6>
-            <div className="flex flex-col sm:flex-row gap-md pt-lg">
-              <Link href={PageRoutes.bookstore} className="w-full md:w-fit max-md:order-last">
-                <Button pill color="info" fullSized className="whitespace-nowrap">
-                  Contine Shopping
-                </Button>
-              </Link>
-              <Link href={getCart?.checkout_url} className="w-full md:w-fit">
-                <Button pill color="primary" fullSized>
-                  Checkout
-                </Button>
-              </Link>
+          <div className="lg:sticky lg:top-5 rounded-lg w-full mt-12 bg-light-gray/20 h-fit dark:bg-dark-gray p-lg flex flex-col gap-sm">
+            <h2 className="font-bold">Summary</h2>
+            <div className="flex flex-row justify-between gap-sm pt-lg">
+              <h4 className="font-bold">Subtotal</h4>
+              <h4 className="font-bold">{formatPrice(getCart?.subtotal_amount)}</h4>
             </div>
+            <div className="flex flex-col gap-xs">
+              <div className="flex flex-row justify-between gap-sm">
+                <h5>Delivery</h5>
+                <h5>At checkout</h5>
+              </div>
+              <div className="flex flex-row justify-between gap-sm">
+                <h5>Taxes</h5>
+                <h5>At checkout</h5>
+              </div>
+            </div>
+            <hr className="text-light-gray dark:text-dark-gray" />
+            <div className="flex flex-row justify-between gap-sm pb-xl">
+              <h4 className="font-bold">Total</h4>
+              <h4 className="font-bold">{formatPrice(getCart?.subtotal_amount)}</h4>
+            </div>
+            <Link href={getCart?.checkout_url} className="w-full">
+              <Button pill color="primary" fullSized>
+                Checkout
+              </Button>
+            </Link>
           </div>
         </div>
       )}

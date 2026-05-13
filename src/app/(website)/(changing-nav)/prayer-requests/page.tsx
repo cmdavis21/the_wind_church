@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.prayerRequests}`;
-  const image = `${AWS_ASSET_URL}/images/worship.webp`;
+  const image = `${AWS_ASSET_URL}/images/praying-group.webp`;
   return {
     title,
     description,
@@ -36,7 +36,7 @@ const PrayerRequests = () => (
     <PageHero
       size="short"
       title="Prayer Requests"
-      media={{ src: `${AWS_ASSET_URL}/images/group-study.jpg` }}
+      media={{ src: `${AWS_ASSET_URL}/images/praying-group.webp` }}
     />
     <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
       <CenterTextSection

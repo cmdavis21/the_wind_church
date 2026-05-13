@@ -180,42 +180,42 @@ input[type='number'] {
 
 /* scroll box shadowing */
 .y-scrollbox {
-  overflow-y: scroll;
+  overflow-y: auto;
+  position: relative;
   padding-top: 15px;
   padding-bottom: 15px;
-  background:
-    /* Shadow covers */
-    linear-gradient(transparent 30%, transparent),
-    linear-gradient(transparent, transparent 70%) 0 100%,
-    /* Shadows */ radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.2), transparent),
-    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.2), transparent) 0 100%;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-size:
-    100% 40px,
-    100% 40px,
-    100% 14px,
-    100% 14px;
-  background-attachment: local, local, scroll, scroll;
 }
 
-.x-scrollbox {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  background:
-    /* Shadow covers */
-    linear-gradient(90deg, transparent 30%, transparent),
-    linear-gradient(90deg, transparent, transparent 70%) 100% 0,
-    /* Shadows */ radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.2), transparent),
-    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), transparent) 100% 0;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-size:
-    40px 100%,
-    40px 100%,
-    14px 100%,
-    14px 100%;
-  background-attachment: local, local, scroll, scroll;
+/* top shadow */
+.y-scrollbox.has-top-shadow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 20px;
+  pointer-events: none;
+  background: radial-gradient(
+    farthest-side at 50% 0,
+    rgba(0, 0, 0, 0.15),
+    transparent
+  );
+}
+
+/* bottom shadow */
+.y-scrollbox.has-bottom-shadow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20px;
+  pointer-events: none;
+  background: radial-gradient(
+    farthest-side at 50% 100%,
+    rgba(0, 0, 0, 0.15),
+    transparent
+  );
 }
 
 .scrollbar-hide {

@@ -34,18 +34,16 @@ const BookstoreClient = () => {
       {/* FILTERING */}
       {collections && (
         <div className="w-full flex md:justify-end">
-          <div className="w-full md:w-fit">
-            <SelectInput
-              icon={Filter}
-              className="sm:w-fit"
-              disabled={collectionsLoading || collectionsError}
-              onChange={(e) => setFilter(e.target.value)}
-              options={[
-                { label: 'All Products', value: '' },
-                ...collections.map((c) => ({ label: c.title, value: c.title })),
-              ]}
-            />
-          </div>
+          <SelectInput
+            icon={Filter}
+            className="sm:w-fit sm:self-end"
+            disabled={collectionsLoading || collectionsError}
+            onChange={(e) => setFilter(e.target.value)}
+            options={[
+              { label: 'All Products', value: '' },
+              ...collections.map((c) => ({ label: c.title, value: c.title })),
+            ]}
+          />
         </div>
       )}
 
