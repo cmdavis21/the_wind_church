@@ -1,4 +1,4 @@
-import { styleSelectedWords } from '@/data/utils';
+import Text from '@/components/forms/inputs/text/Text';
 import React from 'react';
 
 interface CenterTextSectionProps {
@@ -10,15 +10,9 @@ interface CenterTextSectionProps {
 const CenterTextSection: React.FC<CenterTextSectionProps> = ({ title, highlight, description }) => (
   <div className="flex flex-col gap-lg max-w-[1000px] font-light text-center mx-auto">
     {highlight && typeof title === 'string' ? (
-      <div
-        dangerouslySetInnerHTML={{
-          __html: styleSelectedWords({
-            text: title,
-            array: highlight,
-            htmlTag: 'h2',
-          }),
-        }}
-      />
+      <Text htmlTag="h2" highlight={highlight}>
+        {title}
+      </Text>
     ) : (
       <h2>{title}</h2>
     )}

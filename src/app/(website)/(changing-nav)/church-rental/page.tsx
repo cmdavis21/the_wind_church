@@ -53,7 +53,7 @@ const ChurchRental = () => (
       slides={[
         {
           media: {
-            src: `${AWS_ASSET_URL}/placeholder-media/fellowship_hall.jpeg`,
+            src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
             alt: 'decorative background image',
           },
           title: 'Fellowship Hall',
@@ -62,7 +62,7 @@ const ChurchRental = () => (
         },
         {
           media: {
-            src: `${AWS_ASSET_URL}/placeholder-media/kitchen.jpg`,
+            src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
             alt: 'decorative background image',
           },
           title: 'Kitchen',
@@ -71,7 +71,7 @@ const ChurchRental = () => (
         },
         {
           media: {
-            src: `${AWS_ASSET_URL}/placeholder-media/parking_lot.jpg`,
+            src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
             alt: 'decorative background image',
           },
           title: 'Parking Lot',

@@ -1,17 +1,16 @@
 import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
 import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
+import Text from '@/components/forms/inputs/text/Text';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import PreviewSermon from '@/components/preview-sermon/PreviewSermon';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-
 import { PageRoutes } from '@/data/page-routes';
 import { AWS_ASSET_URL, WEBSITE_URL, YOUTUBE } from '@/data/server/env.server';
 import { getAllTestimonies } from '@/data/server/sanity/queries/testimonials';
 import { getLatestSermon } from '@/data/server/youtube/playlists';
 
-import { styleSelectedWords } from '@/data/utils';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
@@ -48,7 +47,7 @@ const Home = async () => {
     {
       image: {
         alt: 'People gathering for church service',
-        src: `${AWS_ASSET_URL}/placeholder-media/pastor_preaching.jpg`,
+        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
       },
       title: 'Who we are',
       description: 'Learn our values, facts about our pastor, and more!',
@@ -57,7 +56,16 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_URL}/images/home/group-study.jpg`,
+        src: `${AWS_ASSET_URL}/images/home/group-selfie.webp`,
+      },
+      title: 'Step Into Ministry',
+      description: 'We have ministries for every age and stage.',
+      link: PageRoutes.ministries,
+    },
+    {
+      image: {
+        alt: 'Group in Bible study session',
+        src: `${AWS_ASSET_URL}/images/home/group-study.webp`,
       },
       title: 'Try our Deep Dives',
       description: 'Explore the Word in a deeper way with small-group Bible studies.',
@@ -65,17 +73,8 @@ const Home = async () => {
     },
     {
       image: {
-        alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_URL}/images/home/friends.jpg`,
-      },
-      title: 'Looking to minister?',
-      description: 'We have ministries for every age and stage.',
-      link: PageRoutes.ministries,
-    },
-    {
-      image: {
         alt: 'Children in a classroom during youth service',
-        src: `${AWS_ASSET_URL}/images/home/speaking.jpg`,
+        src: `${AWS_ASSET_URL}/images/home/girl-with-box.webp`,
       },
       title: 'Know your gifts!',
       description: 'Discover your spiritual gifts with our easy assessment!',
@@ -84,7 +83,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_URL}/images/home/planning.jpg`,
+        src: `${AWS_ASSET_URL}/images/home/planning.webp`,
       },
       title: 'Have an event?',
       description: 'Interested in renting our church? Get details and request your date today.',
@@ -154,15 +153,9 @@ const Home = async () => {
       <div id="overview" className="max-width-center py-4xl lg:px-4xl sm:my-3xl">
         <div className="flex flex-col gap-lg px-padding">
           {/* WELCOME */}
-          <div
-            dangerouslySetInnerHTML={{
-              __html: styleSelectedWords({
-                text: 'Welcome to The Wind Church',
-                array: [[0, 0]],
-                htmlTag: 'h2',
-              }),
-            }}
-          />
+          <Text htmlTag="h2" highlight={[[0, 0]]}>
+            Welcome to The Wind Church
+          </Text>
 
           {/* INTRO */}
           <h4>

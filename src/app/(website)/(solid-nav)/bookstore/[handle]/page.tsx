@@ -25,7 +25,7 @@ export async function generateMetadata({
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.bookstore}/${handle}`;
-  const image = `${AWS_ASSET_URL}/placeholder-media/open_sign.webp`;
+  const image = `${AWS_ASSET_URL}/images/open-sign.webp`;
   return {
     title,
     description,

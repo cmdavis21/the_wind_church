@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.sermons}`;
-  const image = `${AWS_ASSET_URL}/placeholder-media/pastor_preaching.jpg`;
+  const image = `${AWS_ASSET_URL}/images/product-placeholder.webp`;
   return {
     title,
     description,
@@ -44,7 +44,7 @@ const Sermons = async () => {
       <div className="px-padding max-width-center">
         <PageHeaderWithBackground
           media={{
-            src: `${AWS_ASSET_URL}/placeholder-media/pastor_preaching.jpg`,
+            src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
             alt: 'decorative background image',
             poster: '',
           }}
@@ -80,7 +80,7 @@ const Sermons = async () => {
       {/* CTA to Youbtube Channel */}
       <MediaBackgroundAndContent
         background={{
-          src: `${AWS_ASSET_URL}/placeholder-media/church_prayer.jpg`,
+          src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
         }}
         content={
           <div className="flex flex-col gap-xs">

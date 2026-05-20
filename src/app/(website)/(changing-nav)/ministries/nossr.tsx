@@ -64,7 +64,7 @@ const MinistriesClient = () => {
         size="short"
         title="Ministries"
         subtitle="Grow in love and service by joining a ministry"
-        media={{ src: `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg` }}
+        media={{ src: `${AWS_ASSET_URL}/images/product-placeholder.webp` }}
       />
 
       <div className="p-padding flex flex-col gap-3xl sm:gap-4xl lg:gap-5xl max-width-center">

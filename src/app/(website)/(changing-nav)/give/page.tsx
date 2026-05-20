@@ -2,8 +2,8 @@ import Accordion from '@/components/accordion/Accordion';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
+import Text from '@/components/forms/inputs/text/Text';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent, {
   ColorBackground,
@@ -12,7 +12,6 @@ import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
 import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
-import { styleSelectedWords } from '@/data/utils';
 import { Button } from 'flowbite-react';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -23,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.give}`;
-  const image = `${AWS_ASSET_URL}/placeholder-media/praise_hands.jpg`;
+  const image = `${AWS_ASSET_URL}/images/product-placeholder.webp`;
   return {
     title,
     description,
@@ -144,30 +143,18 @@ const Give = () => {
         <div className="flex flex-col gap-xxl px-padding">
           {/* REASON #1 */}
           <div className="flex flex-col gap-lg">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: 'Giving honors God as an act of worship,',
-                  array: [[0, 7]],
-                  htmlTag: 'h2',
-                }),
-              }}
-            />
+            <Text htmlTag="h2" highlight={[[0, 7]]}>
+              Giving honors God as an act of worship,
+            </Text>
             <h4>Acknowledging that all we have belongs to Him.</h4>
             <ScriptureList scriptures={['Proverbs 3:9', 'Psalm 24:1']} />
           </div>
 
           {/* REASON #2 */}
           <div className="flex flex-col gap-lg">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: 'When we give freely and joyfully,',
-                  array: [[0, 5]],
-                  htmlTag: 'h2',
-                }),
-              }}
-            />
+            <Text htmlTag="h2" highlight={[[0, 5]]}>
+              When we give freely and joyfully,
+            </Text>
             <h4>We imitate God&apos;s nature as a giver of eternal and temporal blessings.</h4>
             <ScriptureList
               scriptures={['John 3:16', '1 Corinthians 2:12', 'Deuteronomy 8:17-18', 'James 1:17']}
@@ -176,15 +163,9 @@ const Give = () => {
 
           {/* REASON #3 */}
           <div className="flex flex-col gap-lg">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: 'Giving reflects our heart',
-                  array: [[0, 3]],
-                  htmlTag: 'h2',
-                }),
-              }}
-            />
+            <Text htmlTag="h2" highlight={[[0, 3]]}>
+              Giving reflects our heart
+            </Text>
             <h4>
               And relationship with God, communicates our faith to the world, and brings personal
               blessings through wise investments.

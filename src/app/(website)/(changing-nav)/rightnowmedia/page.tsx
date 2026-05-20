@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.rightnowMedia}`;
-  const image = `${AWS_ASSET_URL}/placeholder-media/rightnowmedia.png`;
+  const image = `${AWS_ASSET_URL}/images/product-placeholder.webp`;
   return {
     title,
     description,
@@ -37,7 +37,7 @@ const Rightnowmedia = () => (
       <div className="relative w-full h-full pointer-events-none">
         <Image
           fill
-          src={`${AWS_ASSET_URL}/placeholder-media/rightnowmedia.png`}
+          src={`${AWS_ASSET_URL}/images/product-placeholder.webp`}
           alt="decorative background image"
           className="object-cover"
         />

@@ -9,6 +9,7 @@ import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarouse
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import Bible from '@/components/icons/bible';
 
+import Text from '@/components/forms/inputs/text/Text';
 import Buidling from '@/components/icons/building';
 import ClipboardList from '@/components/icons/clipboard-list';
 import ConciergeBell from '@/components/icons/concierge-bell';
@@ -31,9 +32,7 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-
 import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
-import { styleSelectedWords } from '@/data/utils';
 import { Button } from 'flowbite-react';
 import Link from 'next/link';
 
@@ -43,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.about}`;
-  const image = `${AWS_ASSET_URL}/placeholder-media/group_people.jpg`;
+  const image = `${AWS_ASSET_URL}/images/product-placeholder.webp`;
   return {
     title,
     description,
@@ -69,7 +68,7 @@ const About = async () => {
   const aboutPastorArr = [
     {
       media: {
-        src: `${AWS_ASSET_URL}/placeholder-media/pastor.webp`,
+        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
         alt: t('alt'),
       },
       title: t('aboutPastor.title'),
@@ -77,7 +76,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_URL}/placeholder-media/contro.webp`,
+        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
         alt: t('alt'),
       },
       title: t('aboutPastor.history.title'),
@@ -85,7 +84,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_URL}/placeholder-media/members.webp`,
+        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
         alt: t('alt'),
       },
       title: t('aboutPastor.why.title'),
@@ -101,7 +100,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_URL}/placeholder-media/lxg_meet.webp`,
+        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
         alt: t('alt'),
       },
       title: t('aboutPastor.fact.title'),
@@ -112,56 +111,50 @@ const About = async () => {
   const theWindCenterArr = [
     {
       image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/people_hug.jpg`,
+        src: `${AWS_ASSET_URL}/images/salvation/cross-on-mount.webp`,
         alt: t('alt'),
       },
       title: t('values.jesus.title'),
-      highlight: [[2, 2]],
       description: t('values.jesus.description'),
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/praise_hands.jpg`,
+        src: `${AWS_ASSET_URL}/images/about/man-worshipping.webp`,
         alt: t('alt'),
       },
       title: t('values.worship.title'),
-      highlight: [[1, 1]],
       description: t('values.worship.description'),
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/family.jpeg`,
-        alt: t('alt'),
-      },
-      title: t('values.family.title'),
-      highlight: [[1, 1]],
-      description: t('values.family.description'),
-    },
-    {
-      image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/outreach.png`,
-        alt: t('alt'),
-      },
-      title: t('values.serve.title'),
-      highlight: [[1, 1]],
-      description: t('values.serve.description'),
-    },
-    {
-      image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/group_women.jpg`,
+        src: `${AWS_ASSET_URL}/images/about/women-hugging.webp`,
         alt: t('alt'),
       },
       title: t('values.love.title'),
-      highlight: [[1, 1]],
       description: t('values.love.description'),
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg`,
+        src: `${AWS_ASSET_URL}/images/give/person-with-box.webp`,
+        alt: t('alt'),
+      },
+      title: t('values.serve.title'),
+      description: t('values.serve.description'),
+    },
+    {
+      image: {
+        src: `${AWS_ASSET_URL}/images/about/all-hands-in.webp`,
+        alt: t('alt'),
+      },
+      title: t('values.family.title'),
+      description: t('values.family.description'),
+    },
+    {
+      image: {
+        src: `${AWS_ASSET_URL}/images/about/young-adults-praying.webp`,
         alt: t('alt'),
       },
       title: t('values.transform.title'),
-      highlight: [[1, 1]],
       description: t('values.transform.description'),
     },
   ];
@@ -319,7 +312,7 @@ const About = async () => {
         title={t('title')}
         subtitle={t('subtitle')}
         highlightTitle={[[0, 1]]}
-        media={{ src: `${AWS_ASSET_URL}/placeholder-media/group_people.jpg` }}
+        media={{ src: `${AWS_ASSET_URL}/images/product-placeholder.webp` }}
       />
 
       {/* Mission and Vision */}
@@ -328,30 +321,18 @@ const About = async () => {
           {/* Mission */}
           <div className="flex flex-col gap-lg">
             <h1>{t('mission.title')}</h1>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: t('mission.subtitle'),
-                  array: [[0, 9]],
-                  htmlTag: 'h2',
-                }),
-              }}
-            />
+            <Text htmlTag="h2" highlight={[[0, 9]]}>
+              {t('mission.subtitle')}
+            </Text>
             <h4>{t('mission.description')}</h4>
           </div>
 
           {/* Vision */}
           <div className="flex flex-col gap-lg">
             <h1>{t('vision.title')}</h1>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: t('vision.subtitle'),
-                  array: [[0, 7]],
-                  htmlTag: 'h2',
-                }),
-              }}
-            />
+            <Text htmlTag="h2" highlight={[[0, 7]]}>
+              {t('vision.subtitle')}
+            </Text>
             <h4>{t('vision.description')}</h4>
             <ScriptureList
               scriptures={[
@@ -380,22 +361,16 @@ const About = async () => {
 
         {/* Tablet/Desktop */}
         <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
-          {theWindCenterArr.map((item) => (
+          {theWindCenterArr.map(({ title, image, description }) => (
             <ImageWithTitleAndHiddenTextCard
-              key={item.title}
-              image={item.image}
+              key={`desktop-${title}`}
+              image={image}
+              description={description}
               title={
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: styleSelectedWords({
-                      text: item.title,
-                      array: item.highlight,
-                      htmlTag: 'h2',
-                    }),
-                  }}
-                />
+                <Text htmlTag="h2" highlight={[[1, 1]]}>
+                  {title}
+                </Text>
               }
-              description={item.description}
             />
           ))}
         </div>
@@ -403,22 +378,16 @@ const About = async () => {
         {/* Mobile */}
         <SimpleCarousel
           className="sm:hidden"
-          slides={theWindCenterArr.map((item) => (
+          slides={theWindCenterArr.map(({ title, image, description }) => (
             <ImageWithTitleAndHiddenTextCard
-              key={item.title}
-              image={item.image}
+              key={`mobile-${title}`}
+              image={image}
+              description={description}
               title={
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: styleSelectedWords({
-                      text: item.title,
-                      array: item.highlight,
-                      htmlTag: 'h2',
-                    }),
-                  }}
-                />
+                <Text htmlTag="h2" highlight={[[1, 1]]}>
+                  {title}
+                </Text>
               }
-              description={item.description}
             />
           ))}
         />
@@ -472,21 +441,21 @@ const About = async () => {
           slides={[
             {
               media: {
-                src: `${AWS_ASSET_URL}/placeholder-media/old_church_photo_1.webp`,
+                src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
                 alt: t('alt'),
               },
               description: t('history.carouselItem1'),
             },
             {
               media: {
-                src: `${AWS_ASSET_URL}/placeholder-media/members.webp`,
+                src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
                 alt: t('alt'),
               },
               description: t('history.carouselItem2'),
             },
             {
               media: {
-                src: `${AWS_ASSET_URL}/placeholder-media/lxg_meet.webp`,
+                src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
                 alt: t('alt'),
               },
               description: t('history.carouselItem3'),

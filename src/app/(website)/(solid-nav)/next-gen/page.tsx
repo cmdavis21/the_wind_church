@@ -215,7 +215,7 @@ const NextGen = async () => {
       {/* NURSERY CTA */}
       <MediaBackgroundAndContent
         background={{
-          src: `${AWS_ASSET_URL}/images/next-gen/kids-with-blocks.jpg`,
+          src: `${AWS_ASSET_URL}/images/next-gen/baby-with-blocks.webp`,
         }}
         content={
           <div className="flex flex-col">

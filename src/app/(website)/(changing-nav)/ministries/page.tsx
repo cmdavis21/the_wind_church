@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.ministries}`;
-  const image = `${AWS_ASSET_URL}/placeholder-media/food_bank.jpg`;
+  const image = `${AWS_ASSET_URL}/images/product-placeholder.webp`;
   return {
     title,
     description,

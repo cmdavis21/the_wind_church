@@ -1,10 +1,10 @@
 'use client';
+import Text from '@/components/forms/inputs/text/Text';
+import ChevronLeft from '@/components/icons/chevron-left';
+import { findMediaType, MediaType, scrollToElem } from '@/data/utils';
 import cn from 'classnames';
 import Image from 'next/image';
 import React from 'react';
-
-import ChevronLeft from '@/components/icons/chevron-left';
-import { findMediaType, MediaType, scrollToElem, styleSelectedWords } from '@/data/utils';
 
 interface PageHeroProps {
   title: string;
@@ -77,17 +77,13 @@ const PageHero: React.FC<PageHeroProps> = ({
           className={`relative w-full h-full flex flex-col gap-lg items-center justify-end text-white`}
         >
           {highlightTitle ? (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: styleSelectedWords({
-                  text: title,
-                  array: highlightTitle,
-                  htmlTag: 'h1',
-                  className: 'leading-none text-center 2xl:text-[55px] mx-auto',
-                }),
-              }}
-              className="lg:max-w-[75%]"
-            />
+            <Text
+              htmlTag="h1"
+              highlight={highlightTitle}
+              className="leading-none text-center 2xl:text-[55px] mx-auto lg:max-w-[75%]"
+            >
+              {title}
+            </Text>
           ) : (
             <h1 className="leading-none text-center 2xl:text-[55px] mx-auto lg:max-w-[75%]">
               {title}

@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.cart}`;
-  const image = `${AWS_ASSET_URL}/placeholder-media/open_sign.webp`;
+  const image = `${AWS_ASSET_URL}/images/open-sign.webp`;
   return {
     title,
     description,
