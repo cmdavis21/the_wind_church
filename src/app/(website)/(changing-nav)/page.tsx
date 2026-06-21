@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}/`;
-  const image = `${AWS_ASSET_URL}/images/wind_church_building.webp`;
+  const image = '/images/wind_church_building.webp';
   return {
     title,
     description,
@@ -47,7 +47,7 @@ const Home = async () => {
     {
       image: {
         alt: 'People gathering for church service',
-        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+        src: '/images/product-placeholder.webp',
       },
       title: 'Who we are',
       description: 'Learn our values, facts about our pastor, and more!',
@@ -56,7 +56,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_URL}/images/home/group-selfie.webp`,
+        src: '/images/home/group-selfie.webp',
       },
       title: 'Step Into Ministry',
       description: 'We have ministries for every age and stage.',
@@ -65,7 +65,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_URL}/images/home/group-study.webp`,
+        src: '/images/home/group-study.webp',
       },
       title: 'Try our Deep Dives',
       description: 'Explore the Word in a deeper way with small-group Bible studies.',
@@ -74,7 +74,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Children in a classroom during youth service',
-        src: `${AWS_ASSET_URL}/images/home/girl-with-box.webp`,
+        src: '/images/home/girl-with-box.webp',
       },
       title: 'Know your gifts!',
       description: 'Discover your spiritual gifts with our easy assessment!',
@@ -83,7 +83,7 @@ const Home = async () => {
     {
       image: {
         alt: 'Group in Bible study session',
-        src: `${AWS_ASSET_URL}/images/home/planning.webp`,
+        src: '/images/home/planning.webp',
       },
       title: 'Have an event?',
       description: 'Interested in renting our church? Get details and request your date today.',
@@ -140,12 +140,16 @@ const Home = async () => {
       <PageHero
         size="full"
         scrollTo="overview"
-        title="Hope Lives Here"
-        highlightTitle={[[0, 2]]}
-        subtitle="Jesus has a plan for your life. Join us and discover a church family ready to walk with you."
+        title="Honor God. Love People. Serve This Generation."
+        highlightTitle={[
+          [0, 0],
+          [2, 2],
+          [4, 4],
+        ]}
+        subtitle="A Christ-centered, Spirit-filled church in Riverside, California that is  committed to discipleship, worship, community impact, and helping people grow in faith and purpose."
         media={{
-          src: `${AWS_ASSET_URL}/videos/friend-group.mp4`,
-          poster: `${AWS_ASSET_URL}/images/friend-group.webp`,
+          src: `${AWS_ASSET_URL}/friend-group.mp4`,
+          poster: '/images/friend-group.webp',
         }}
       />
 
@@ -187,7 +191,7 @@ const Home = async () => {
       </div>
 
       {/* LATEST SERMON */}
-      <PreviewSermon ok={result.ok} data={result.data} />
+      <PreviewSermon data={result.data} />
 
       {/* EXPLORE CTAs */}
       <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">

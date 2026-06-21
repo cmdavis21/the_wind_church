@@ -11,6 +11,6 @@ export async function GET() {
   }
 
   const cart = await getCurrentCart(cartId);
-
-  return NextResponse.json(cart);
+  console.log('HERE', cart);
+  // return NextResponse.json(cart);
 }

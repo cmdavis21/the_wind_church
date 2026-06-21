@@ -3,7 +3,7 @@ import EventRentalForm from '@/components/forms/event-rental-form/EventRentalFor
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 
 import { getTranslations } from 'next-intl/server';
 
@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.churchRental}`;
-  const image = `${AWS_ASSET_URL}/images/church-building.webp`;
+  const image = '/images/church-building.webp';
   return {
     title,
     description,
@@ -35,11 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const ChurchRental = () => (
   <div>
-    <PageHero
-      size="short"
-      title="Church Rental"
-      media={{ src: `${AWS_ASSET_URL}/images/church-building.webp` }}
-    />
+    <PageHero size="short" title="Church Rental" media={{ src: '/images/church-building.webp' }} />
 
     <div className="max-width-center py-3xl sm:py-4xl px-padding">
       <CenterTextSection
@@ -53,7 +49,7 @@ const ChurchRental = () => (
       slides={[
         {
           media: {
-            src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+            src: '/images/product-placeholder.webp',
             alt: 'decorative background image',
           },
           title: 'Fellowship Hall',
@@ -62,7 +58,7 @@ const ChurchRental = () => (
         },
         {
           media: {
-            src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+            src: '/images/product-placeholder.webp',
             alt: 'decorative background image',
           },
           title: 'Kitchen',
@@ -71,7 +67,7 @@ const ChurchRental = () => (
         },
         {
           media: {
-            src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+            src: '/images/product-placeholder.webp',
             alt: 'decorative background image',
           },
           title: 'Parking Lot',

@@ -9,7 +9,6 @@ import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
-import { AWS_ASSET_URL } from '@/data/client/env.client';
 import { useGetAllMinistries } from '@/data/client/sanity/ministries';
 
 import React from 'react';
@@ -50,7 +49,7 @@ const MinistriesClient = () => {
       <MediaBackgroundAndContent
         centerContent
         background={{
-          src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
+          src: '/images/wind_church_building.webp',
           alt: 'Image of The Wind Church building',
         }}
         content={<ErrorAlert />}
@@ -64,7 +63,7 @@ const MinistriesClient = () => {
         size="short"
         title="Ministries"
         subtitle="Grow in love and service by joining a ministry"
-        media={{ src: `${AWS_ASSET_URL}/images/product-placeholder.webp` }}
+        media={{ src: '/images/product-placeholder.webp' }}
       />
 
       <div className="p-padding flex flex-col gap-3xl sm:gap-4xl lg:gap-5xl max-width-center">

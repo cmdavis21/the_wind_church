@@ -6,7 +6,7 @@ import PageHeader from '@/components/heroes/page-header/PageHeader';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
 import { getGallery } from '@/data/server/aws/s3/gallery';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.gallery}`;
-  const image = `${AWS_ASSET_URL}/images/church-building.webp`;
+  const image = '/images/church-building.webp';
   return {
     title,
     description,

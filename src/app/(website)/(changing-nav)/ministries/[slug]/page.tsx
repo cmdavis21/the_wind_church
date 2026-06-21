@@ -11,7 +11,7 @@ import MediaBackgroundAndContent from '@/components/sections/media-background-an
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
 import { getMinistryGallery } from '@/data/server/aws/s3/gallery';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 import { getMinistryEvents } from '@/data/server/sanity/queries/events';
 import { getAllMinistries, getMinistryBySlug } from '@/data/server/sanity/queries/ministries';
 import { Event } from '@/data/types';
@@ -38,7 +38,7 @@ export async function generateMetadata({
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.ministries}/${slug}`;
-  const image = `${AWS_ASSET_URL}/images/product-placeholder.webp`;
+  const image = '/images/product-placeholder.webp';
   return {
     title,
     description,
@@ -69,7 +69,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
       <MediaBackgroundAndContent
         centerContent
         background={{
-          src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
+          src: '/images/wind_church_building.webp',
           alt: 'Image of The Wind Church building',
         }}
         content={<ErrorAlert />}
@@ -185,7 +185,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         {/* WHY JOIN A MINISTRY */}
         <MediaBackgroundAndContent
           background={{
-            src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+            src: '/images/product-placeholder.webp',
             alt: 'Decorative Background Image',
           }}
           content={
@@ -254,7 +254,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
             <ImageWithTitleDescriptionCard
               alt="People gathering for church service"
-              src={`${AWS_ASSET_URL}/images/product-placeholder.webp`}
+              src={'/images/product-placeholder.webp'}
               title="Visit on Sunday or Wednesday"
               description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
               link={{
@@ -264,7 +264,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Group in Bible study session"
-              src={`${AWS_ASSET_URL}/images/product-placeholder.webp`}
+              src={'/images/product-placeholder.webp'}
               title="Try our Deep Dive Sessions"
               description="Explore the Word in a deeper way. Our Deep Dive Sessions are small-group Bible studies where you can ask questions and grow in your faith."
               link={{
@@ -274,7 +274,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Children in a classroom during youth service"
-              src={`${AWS_ASSET_URL}/images/product-placeholder.webp`}
+              src={'/images/product-placeholder.webp'}
               title="View our Youth Service"
               description="We offer engaging and age-appropriate services for kids and teens every week. It's a safe space for youth to learn, grow, and build friendships."
               link={{

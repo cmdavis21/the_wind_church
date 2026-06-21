@@ -1,5 +1,5 @@
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 import { getTranslations } from 'next-intl/server';
 import EventsClient from './nossr';
 
@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.events}`;
-  const image = `${AWS_ASSET_URL}/images/church-building.webp`;
+  const image = '/images/church-building.webp';
   return {
     title,
     description,

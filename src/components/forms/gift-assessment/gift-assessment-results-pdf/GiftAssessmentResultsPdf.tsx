@@ -3,7 +3,6 @@ import React from 'react';
 
 import { formatDateMMMddyyyy } from '@/data/format-date';
 
-import { AWS_ASSET_URL } from '@/data/client/env.client';
 import { GiftAssessmentDefinition } from '@/data/types';
 
 const styles = StyleSheet.create({
@@ -93,7 +92,7 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
   <Document>
     <Page size="A4" style={styles.page}>
       {/* LOGO + CONTACT */}
-      <Image src={`${AWS_ASSET_URL}/images/logo/logo-black.webp`} style={styles.logo} />
+      <Image src="/images/logo/logo-black.webp" style={styles.logo} />
       <View style={styles.contactBlock}>
         <Text style={styles.text}>6476 Streeter Avenue, Riverside, CA 92504</Text>
         <Text style={styles.text}>+1 (951) 359-0203 • thewindchurch@outlook.com</Text>

@@ -7,7 +7,7 @@ import MediaBackgroundAndContent, {
 } from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.salvation}`;
-  const image = `${AWS_ASSET_URL}/images/salvation/cross-on-mount.webp`;
+  const image = '/images/salvation/cross-on-mount.webp';
   return {
     title,
     description,
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const SALVATION_QUESTIONS = [
   {
     image: {
-      src: `${AWS_ASSET_URL}/images/salvation/forest.webp`,
+      src: '/images/salvation/forest.webp',
       alt: '',
     },
     question: 'Do you want to be forgiven and saved?',
@@ -47,7 +47,7 @@ const SALVATION_QUESTIONS = [
   },
   {
     image: {
-      src: `${AWS_ASSET_URL}/images/salvation/dove.webp`,
+      src: '/images/salvation/dove.webp',
       alt: '',
     },
     question: "Do you believe Jesus Christ, God's son, died for you?",
@@ -55,7 +55,7 @@ const SALVATION_QUESTIONS = [
   },
   {
     image: {
-      src: `${AWS_ASSET_URL}/images/salvation/olive-branch.webp`,
+      src: '/images/salvation/olive-branch.webp',
       alt: '',
     },
     question:
@@ -64,7 +64,7 @@ const SALVATION_QUESTIONS = [
   },
   {
     image: {
-      src: `${AWS_ASSET_URL}/images/salvation/hand-and-water.webp`,
+      src: '/images/salvation/hand-and-water.webp',
       alt: '',
     },
     question:
@@ -79,7 +79,7 @@ const Salvation = () => (
       size="short"
       title="Salvation"
       subtitle="Jesus is here for you. Always."
-      media={{ src: `${AWS_ASSET_URL}/images/salvation/cross-on-mount.webp` }}
+      media={{ src: '/images/salvation/cross-on-mount.webp' }}
     />
 
     {/* WHAT IS SALVATION */}

@@ -17,7 +17,7 @@ export const AWS_S3_REGION = process.env.AWS_S3_REGION ?? '';
 export const AWS_SES_REGION = process.env.AWS_SES_REGION ?? '';
 
 export const AWS_S3_BUCKET = process.env.AWS_BUCKET ?? '';
-export const AWS_ASSET_URL = process.env.AWS_S3_WEBSITE_IMAGES_URL ?? '';
+export const AWS_ASSET_URL = process.env.AWS_S3_WEBSITE_VIDEOS_URL ?? '';
 
 export const AWS_SERMON_FALLBACK_VIDEO = process.env.AWS_SERMON_FALLBACK_VIDEO ?? '';
 export const AWS_SERMON_FALLBACK_POSTER = process.env.AWS_SERMON_FALLBACK_POSTER ?? '';
@@ -27,6 +27,7 @@ export const AWS_SECRET_KEY = process.env.AWS_SES_SECRET_ACCESS_KEY ?? '';
 
 // YOUTUBE
 export const YOUTUBE_CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID ?? '';
+export const YOUTUBE_UPLOADS_PLAYLIST_ID = process.env.YOUTUBE_UPLOADS_PLAYLIST_ID ?? '';
 export const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY ?? '';
 
 // EMAILS

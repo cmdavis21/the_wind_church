@@ -9,13 +9,12 @@ import React, { useState } from 'react';
 import VolumeHigh from '../icons/volume-high';
 import VolumeXmark from '../icons/volume-xmark';
 
-interface PreviewSermonProps {
-  ok: boolean;
+export interface PreviewSermonProps {
   data?: YouTubeSermonSnippet | FallbackSermonSnippet;
 }
 
-const PreviewSermon: React.FC<PreviewSermonProps> = ({ ok, data }) => {
-  if (!ok || !data) return null; // if no youtube and no s3, return nothing
+const PreviewSermon: React.FC<PreviewSermonProps> = ({ data }) => {
+  if (!data) return null; // if no youtube and no s3, return nothing
 
   const isFallback = data.kind === 'fallback';
 

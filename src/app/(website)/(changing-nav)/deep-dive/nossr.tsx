@@ -18,7 +18,7 @@ const DeepDivesClient = () => {
       <MediaBackgroundAndContent
         centerContent
         background={{
-          src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
+          src: '/images/wind_church_building.webp',
           alt: 'Image of The Wind Church building',
         }}
         content={<ErrorAlert />}
@@ -45,8 +45,8 @@ const DeepDivesClient = () => {
               : [
                   {
                     media: {
-                      src: `${AWS_ASSET_URL}/videos/friend-group.mp4`,
-                      poster: `${AWS_ASSET_URL}/images/friend-group.webp`,
+                      src: `${AWS_ASSET_URL}/friend-group.mp4`,
+                      poster: '/images/friend-group.webp',
                       alt: '',
                     },
                     header: 'Deep Dive Studies',

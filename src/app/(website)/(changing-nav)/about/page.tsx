@@ -32,7 +32,7 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 import { Button } from 'flowbite-react';
 import Link from 'next/link';
 
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.about}`;
-  const image = `${AWS_ASSET_URL}/images/product-placeholder.webp`;
+  const image = '/images/product-placeholder.webp';
   return {
     title,
     description,
@@ -68,7 +68,7 @@ const About = async () => {
   const aboutPastorArr = [
     {
       media: {
-        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+        src: '/images/product-placeholder.webp',
         alt: t('alt'),
       },
       title: t('aboutPastor.title'),
@@ -76,7 +76,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+        src: '/images/product-placeholder.webp',
         alt: t('alt'),
       },
       title: t('aboutPastor.history.title'),
@@ -84,7 +84,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+        src: '/images/product-placeholder.webp',
         alt: t('alt'),
       },
       title: t('aboutPastor.why.title'),
@@ -92,7 +92,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_URL}/images/wind_church_building.webp`,
+        src: '/images/wind_church_building.webp',
         alt: t('alt'),
       },
       title: t('aboutPastor.goals.title'),
@@ -100,7 +100,7 @@ const About = async () => {
     },
     {
       media: {
-        src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+        src: '/images/product-placeholder.webp',
         alt: t('alt'),
       },
       title: t('aboutPastor.fact.title'),
@@ -111,7 +111,7 @@ const About = async () => {
   const theWindCenterArr = [
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/salvation/cross-on-mount.webp`,
+        src: '/images/salvation/cross-on-mount.webp',
         alt: t('alt'),
       },
       title: t('values.jesus.title'),
@@ -119,7 +119,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/about/man-worshipping.webp`,
+        src: '/images/about/man-worshipping.webp',
         alt: t('alt'),
       },
       title: t('values.worship.title'),
@@ -127,7 +127,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/about/women-hugging.webp`,
+        src: '/images/about/women-hugging.webp',
         alt: t('alt'),
       },
       title: t('values.love.title'),
@@ -135,7 +135,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/give/person-with-box.webp`,
+        src: '/images/give/person-with-box.webp',
         alt: t('alt'),
       },
       title: t('values.serve.title'),
@@ -143,7 +143,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/about/all-hands-in.webp`,
+        src: '/images/about/all-hands-in.webp',
         alt: t('alt'),
       },
       title: t('values.family.title'),
@@ -151,7 +151,7 @@ const About = async () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/about/young-adults-praying.webp`,
+        src: '/images/about/young-adults-praying.webp',
         alt: t('alt'),
       },
       title: t('values.transform.title'),
@@ -161,7 +161,7 @@ const About = async () => {
 
   const foursquareBeliefsArr = [
     {
-      image: `${AWS_ASSET_URL}/images/foursquare/cross.webp`,
+      image: '/images/foursquare/cross.webp',
       title: t('foursquare.accordionItem1.title'),
       items: [
         {
@@ -197,7 +197,7 @@ const About = async () => {
       ],
     },
     {
-      image: `${AWS_ASSET_URL}/images/foursquare/dove.webp`,
+      image: '/images/foursquare/dove.webp',
       title: t('foursquare.accordionItem2.title'),
       items: [
         {
@@ -233,7 +233,7 @@ const About = async () => {
       ],
     },
     {
-      image: `${AWS_ASSET_URL}/images/foursquare/cup.webp`,
+      image: '/images/foursquare/cup.webp',
       title: t('foursquare.accordionItem3.title'),
       items: [
         {
@@ -269,7 +269,7 @@ const About = async () => {
       ],
     },
     {
-      image: `${AWS_ASSET_URL}/images/foursquare/crown.webp`,
+      image: '/images/foursquare/crown.webp',
       title: t('foursquare.accordionItem4.title'),
       items: [
         {
@@ -312,7 +312,7 @@ const About = async () => {
         title={t('title')}
         subtitle={t('subtitle')}
         highlightTitle={[[0, 1]]}
-        media={{ src: `${AWS_ASSET_URL}/images/product-placeholder.webp` }}
+        media={{ src: '/images/product-placeholder.webp' }}
       />
 
       {/* Mission and Vision */}
@@ -441,21 +441,21 @@ const About = async () => {
           slides={[
             {
               media: {
-                src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+                src: '/images/product-placeholder.webp',
                 alt: t('alt'),
               },
               description: t('history.carouselItem1'),
             },
             {
               media: {
-                src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+                src: '/images/product-placeholder.webp',
                 alt: t('alt'),
               },
               description: t('history.carouselItem2'),
             },
             {
               media: {
-                src: `${AWS_ASSET_URL}/images/product-placeholder.webp`,
+                src: '/images/product-placeholder.webp',
                 alt: t('alt'),
               },
               description: t('history.carouselItem3'),

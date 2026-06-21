@@ -2,7 +2,7 @@ import VisitorFeedbackForm from '@/components/forms/visitor-feedback-form/Visito
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.feedback}`;
-  const image = `${AWS_ASSET_URL}/images/feedback.webp`;
+  const image = '/images/feedback.webp';
   return {
     title,
     description,
@@ -33,11 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const VisitorFeedback = () => (
   <div>
-    <PageHero
-      size="short"
-      title="Visitor Feedback"
-      media={{ src: `${AWS_ASSET_URL}/images/feedback.webp` }}
-    />
+    <PageHero size="short" title="Visitor Feedback" media={{ src: '/images/feedback.webp' }} />
     <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
       <CenterTextSection
         highlight={[[2, 2]]}

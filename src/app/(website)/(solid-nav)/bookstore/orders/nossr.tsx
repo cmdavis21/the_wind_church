@@ -7,7 +7,6 @@ import OrderLookupForm from '@/components/forms/orders-lookup-form/OrderLookupFo
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import BoxOpen from '@/components/icons/box-open';
 import User from '@/components/icons/user';
-import { AWS_ASSET_URL } from '@/data/client/env.client';
 import { CustomerData } from '@/data/types';
 import { TabItem, Tabs } from 'flowbite-react';
 import { useState } from 'react';
@@ -19,7 +18,7 @@ const OrdersClient = () => {
       <PageHeaderWithBackground
         short
         media={{
-          src: `${AWS_ASSET_URL}/images/boxes-stack.webp`,
+          src: '/images/boxes-stack.webp',
           alt: 'Decorative Background Image',
           poster: '',
         }}

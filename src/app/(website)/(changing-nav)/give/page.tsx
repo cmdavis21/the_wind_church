@@ -11,7 +11,7 @@ import MediaBackgroundAndContent, {
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 import { Button } from 'flowbite-react';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.give}`;
-  const image = `${AWS_ASSET_URL}/images/product-placeholder.webp`;
+  const image = '/images/product-placeholder.webp';
   return {
     title,
     description,
@@ -46,7 +46,7 @@ const Give = () => {
   const otherWaysToGiveArr = [
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/give/group-hands.webp`,
+        src: '/images/give/group-hands.webp',
         alt: '',
       },
       title: 'Serve & Volunteer',
@@ -55,7 +55,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/give/couple.webp`,
+        src: '/images/give/couple.webp',
         alt: '',
       },
       title: 'Online Giving',
@@ -80,7 +80,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/give/offering-box.webp`,
+        src: '/images/give/offering-box.webp',
         alt: '',
       },
       title: 'In‑Person Giving',
@@ -89,7 +89,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/give/mailbox.webp`,
+        src: '/images/give/mailbox.webp',
         alt: '',
       },
       title: 'Mail‑In Giving',
@@ -103,7 +103,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/give/garage.webp`,
+        src: '/images/give/garage.webp',
         alt: '',
       },
       title: 'Non‑Cash Assets',
@@ -119,7 +119,7 @@ const Give = () => {
     },
     {
       image: {
-        src: `${AWS_ASSET_URL}/images/give/person-with-box.webp`,
+        src: '/images/give/person-with-box.webp',
         alt: '',
       },
       title: 'One‑Time Donations',
@@ -135,7 +135,7 @@ const Give = () => {
         title="Giving"
         highlightTitle={[[0, 0]]}
         subtitle="Your contribution makes a difference."
-        media={{ src: `${AWS_ASSET_URL}/images/give/praising.jpg` }}
+        media={{ src: '/images/give/praising.jpg' }}
       />
 
       {/* WHY WE GIVE */}

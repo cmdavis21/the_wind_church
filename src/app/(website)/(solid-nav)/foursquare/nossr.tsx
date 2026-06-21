@@ -29,7 +29,6 @@ import Temperature from '@/components/icons/temperature';
 import ThumbsDown from '@/components/icons/thumbs-down';
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { AWS_ASSET_URL } from '@/data/client/env.client';
 import { TabItem, Tabs, TabsRef } from 'flowbite-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -192,7 +191,7 @@ const FoursquareClient = () => {
       <PageHeaderWithBackground
         title="Foursquare Gospel Church"
         media={{
-          src: `${AWS_ASSET_URL}/images/foursquare/group-people.jpg`,
+          src: '/images/foursquare/group-people.jpg',
           alt: '',
           poster: '',
         }}
@@ -375,11 +374,7 @@ const FoursquareClient = () => {
               </div>
 
               <div className="relative w-full h-full aspect-square">
-                <Image
-                  fill
-                  src={`${AWS_ASSET_URL}/images/foursquare/logo.webp`}
-                  alt="Foursquare logo"
-                />
+                <Image fill src={'/images/foursquare/logo.webp'} alt="Foursquare logo" />
               </div>
             </div>
 
@@ -387,11 +382,7 @@ const FoursquareClient = () => {
             <SectionHeader title="Emblem" />
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
               <div className="relative w-full h-full aspect-square">
-                <Image
-                  fill
-                  src={`${AWS_ASSET_URL}/images/foursquare/emblem.webp`}
-                  alt="Foursquare emblem"
-                />
+                <Image fill src={'/images/foursquare/emblem.webp'} alt="Foursquare emblem" />
               </div>
 
               <div className="sm:col-span-2 space-y-md">
@@ -464,7 +455,7 @@ const FoursquareClient = () => {
               <div className="relative w-full h-full aspect-square">
                 <Image
                   fill
-                  src={`${AWS_ASSET_URL}/images/foursquare/flag.webp`}
+                  src={'/images/foursquare/flag.webp'}
                   alt="Foursquare flag"
                   className="object-contain aspect-video mx-auto"
                 />

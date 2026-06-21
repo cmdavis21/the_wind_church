@@ -1,15 +1,12 @@
-import {
-  FallbackSermonSnippet,
-  YouTubePlaylist,
-  YouTubeSermonSnippet,
-  YouTubeVideo,
-} from '@/data/types';
+import { YouTubePlaylist, YouTubeVideo } from '@/data/types';
 import { cache } from 'react';
 
+import { PreviewSermonProps } from '@/components/preview-sermon/PreviewSermon';
 import {
   AWS_SERMON_FALLBACK_POSTER,
   AWS_SERMON_FALLBACK_VIDEO,
   YOUTUBE_CHANNEL_ID,
+  YOUTUBE_UPLOADS_PLAYLIST_ID,
 } from '../env.server';
 import { youTubeClient } from './client';
 
@@ -61,64 +58,61 @@ export const getPlaylists = async (): Promise<YouTubePlaylist[]> => {
   return results;
 };
 
-export const getLatestSermon = cache(
-  async (): Promise<{ ok: boolean; data?: YouTubeSermonSnippet | FallbackSermonSnippet }> => {
-    try {
-      // Get Latest video
-      const searchRes = await youTubeClient.search.list(
-        {
-          channelId: YOUTUBE_CHANNEL_ID,
-          part: ['snippet'],
-          order: 'date',
-          maxResults: 1,
-        },
-        { next: { revalidate: 3600 } }
-      );
-
-      const videoId = searchRes.data.items?.[0]?.id?.videoId;
-      if (!videoId) throw new Error('no-video');
-
-      // 2. Duration
-      const detailsRes = await youTubeClient.videos.list({
-        id: [videoId],
-        part: ['contentDetails'],
-      });
-
-      const isoDuration = detailsRes.data.items?.[0]?.contentDetails?.duration;
-      if (!isoDuration) throw new Error('no-duration');
-
-      const duration = convertISO8601ToSeconds(isoDuration);
-
-      return {
-        ok: true,
-        data: {
-          kind: 'youtube',
-          videoId,
-          duration,
-          title: searchRes.data.items?.[0]?.snippet?.title ?? '',
-          link: `https://www.youtube.com/watch?v=${videoId}`,
-        },
-      };
-    } catch (err: any) {
-      // Fallback to S3 clip
-      if (AWS_SERMON_FALLBACK_VIDEO !== '' && AWS_SERMON_FALLBACK_POSTER !== '') {
-        return {
-          ok: true,
-          data: {
-            kind: 'fallback',
-            url: AWS_SERMON_FALLBACK_VIDEO,
-            poster: AWS_SERMON_FALLBACK_POSTER,
-          },
-        };
-      }
-
-      return {
-        ok: false,
-        data: undefined,
-      };
-    }
+const getFallbackSermonResults = () => {
+  if (AWS_SERMON_FALLBACK_VIDEO === '' || AWS_SERMON_FALLBACK_POSTER === '') {
+    return { data: undefined };
   }
-);
+
+  return {
+    kind: 'fallback',
+    url: AWS_SERMON_FALLBACK_VIDEO,
+    poster: AWS_SERMON_FALLBACK_POSTER,
+  };
+};
+
+export const getLatestSermon = cache(async (): Promise<PreviewSermonProps> => {
+  try {
+    if (YOUTUBE_UPLOADS_PLAYLIST_ID === '') return getFallbackSermonResults();
+
+    const playlistRes = await youTubeClient.playlistItems.list(
+      {
+        playlistId: YOUTUBE_UPLOADS_PLAYLIST_ID,
+        part: ['snippet'],
+        maxResults: 1,
+      },
+      {
+        next: { revalidate: 43200 },
+      }
+    );
+
+    const videoId = playlistRes.data.items?.[0]?.snippet?.resourceId?.videoId;
+
+    if (!videoId) {
+      console.error('YOUTUBE FETCH LATEST SERMON - No Video ID');
+      return getFallbackSermonResults();
+    }
+
+    const detailsRes = await youTubeClient.videos.list({
+      id: [videoId],
+      part: ['contentDetails'],
+    });
+
+    const duration = detailsRes.data.items?.[0]?.contentDetails?.duration;
+
+    return {
+      data: {
+        kind: 'youtube',
+        videoId,
+        duration: convertISO8601ToSeconds(duration ?? ''),
+        title: playlistRes.data.items?.[0]?.snippet?.title ?? '',
+        link: `https://www.youtube.com/watch?v=${videoId}`,
+      },
+    };
+  } catch (error) {
+    console.error('YOUTUBE FETCH LATEST SERMON', error);
+    return getFallbackSermonResults();
+  }
+});
 
 function convertISO8601ToSeconds(iso: string) {
   const match = iso.match(/PT(\d+H)?(\d+M)?(\d+S)?/);

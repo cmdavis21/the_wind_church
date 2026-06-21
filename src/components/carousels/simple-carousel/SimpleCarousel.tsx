@@ -38,6 +38,8 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
     },
   };
 
+  // const isDisabled = disable !== undefined ? disable
+
   const CustomDot = ({ onClick, ...rest }: any) => {
     const { active } = rest;
     return <CarouselDot onClick={onClick} active={active} />;
@@ -65,7 +67,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
         customDot={<CustomDot />}
         customButtonGroup={<ButtonGroup />}
         containerClass="pb-xl"
-        dotListClass="flex gap-xs !justify-start items-center"
+        dotListClass={`flex gap-xs ${slides.length <= 1 ? '!justify-center' : '!justify-start'} items-center`}
       >
         {slides.map((slide, index) => (
           <div key={index} className="flex justify-center px-[1px]">

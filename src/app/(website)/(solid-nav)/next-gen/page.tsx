@@ -14,7 +14,7 @@ import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
 import { getNextGenGallery } from '@/data/server/aws/s3/gallery';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 import { getMinistryEvents } from '@/data/server/sanity/queries/events';
 import { getNextGenPage } from '@/data/server/sanity/queries/next-gen-page';
 import { Event } from '@/data/types';
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.nextGen}`;
-  const image = `${AWS_ASSET_URL}/images/next-gen/kids-group.webp`;
+  const image = '/images/next-gen/kids-group.webp';
   return {
     title,
     description,
@@ -59,7 +59,7 @@ const NextGen = async () => {
       <div className="px-padding max-width-center">
         <PageHeaderWithBackground
           media={{
-            src: `${AWS_ASSET_URL}/images/next-gen/kids-group.webp`,
+            src: '/images/next-gen/kids-group.webp',
             alt: 'decorative background image',
             poster: '',
           }}
@@ -78,19 +78,19 @@ const NextGen = async () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
           <ImageWithTitleDescriptionCard
             alt=""
-            src={`${AWS_ASSET_URL}/images/next-gen/kids-learning.webp`}
+            src={'/images/next-gen/kids-learning.webp'}
             title="Christ-Centered Studies"
             description="We use interactive teaching, worship, and hands‑on learning to help students build a strong, lasting foundation in Christ."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src={`${AWS_ASSET_URL}/images/next-gen/kids-hugging.webp`}
+            src={'/images/next-gen/kids-hugging.webp'}
             title="Respect & Love"
             description="We model and teach kindness, empathy, and Christ‑like respect so students learn to care for others in everyday life."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src={`${AWS_ASSET_URL}/images/next-gen/kids-drawing.webp`}
+            src={'/images/next-gen/kids-drawing.webp'}
             title="Creative Fun & Exploration"
             description="From crafts and games to outdoor play and team activities, we create fun, engaging spaces that spark curiosity and build friendships."
           />
@@ -215,7 +215,7 @@ const NextGen = async () => {
       {/* NURSERY CTA */}
       <MediaBackgroundAndContent
         background={{
-          src: `${AWS_ASSET_URL}/images/next-gen/baby-with-blocks.webp`,
+          src: '/images/next-gen/baby-with-blocks.webp',
         }}
         content={
           <div className="flex flex-col">

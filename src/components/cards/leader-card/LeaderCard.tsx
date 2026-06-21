@@ -84,31 +84,38 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
         />
 
         {/* CONTENT */}
-        <div
-          className={cn(
-            selected ? 'top-7' : 'top-[285px]',
-            'absolute left-6 right-6 bottom-6 flex flex-col transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]'
-          )}
-        >
-          <div className="">
-            <h4 className={selected ? 'line-clamp-none mr-[45px]' : 'line-clamp-1'}>
-              {first_name} {last_name}
-            </h4>
-            <h5
-              className={cn('font-bold', selected ? 'line-clamp-none mr-[45px]' : 'line-clamp-1')}
-            >
-              {position}
-            </h5>
-          </div>
-          <div className="w-[45px] h-[2px] bg-brand-primary rounded-full mt-4" />
-          <p
+        <div className="absolute inset-0 flex flex-col justify-end p-6">
+          <div
             className={cn(
-              'text-light-secondaryText dark:text-dark-primaryText body-large flex-1',
-              selected ? 'line-clamp-none scrollbar-hide y-scrollbox' : 'line-clamp-2 mt-4'
+              'transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
+              selected ? 'translate-y-0' : 'translate-y-6'
             )}
           >
-            {description}
-          </p>
+            <div className={`transition-all duration-700 ${selected ? 'pr-14' : ''}`}>
+              <h4 className={cn(selected ? 'line-clamp-none mr-[45px]' : 'line-clamp-1')}>
+                {first_name} {last_name}
+              </h4>
+
+              <h5
+                className={cn('font-bold', selected ? 'line-clamp-none mr-[45px]' : 'line-clamp-1')}
+              >
+                {position}
+              </h5>
+            </div>
+
+            <div className="w-[45px] h-[2px] bg-brand-primary rounded-full mt-4" />
+
+            <p
+              className={cn(
+                'text-light-secondaryText dark:text-dark-primaryText body-large overflow-hidden transition-all duration-700',
+                selected
+                  ? 'max-h-[300px] overflow-y-auto scrollbar-hide mt-4'
+                  : 'max-h-[3.2rem] line-clamp-2 mt-4'
+              )}
+            >
+              {description}
+            </p>
+          </div>
         </div>
       </button>
     </div>

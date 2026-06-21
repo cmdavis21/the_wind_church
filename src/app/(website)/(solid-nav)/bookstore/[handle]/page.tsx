@@ -1,6 +1,6 @@
 import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
+import { WEBSITE_URL } from '@/data/server/env.server';
 import {
   getStorefrontProductByHandle,
   getStorefrontProductHandles,
@@ -25,7 +25,7 @@ export async function generateMetadata({
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.bookstore}/${handle}`;
-  const image = `${AWS_ASSET_URL}/images/open-sign.webp`;
+  const image = '/images/open-sign.webp';
   return {
     title,
     description,
