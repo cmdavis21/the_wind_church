@@ -309,10 +309,10 @@ export const cartLinesRemoveMutation = async (cartId: string, lineIds: string[])
   });
 };
 
-export const cartCreate = async (input: GraphQLTypes['CartInput']): Promise<Cart | undefined> => {
+export const cartCreate = async (input: GraphQLTypes['CartInput']): Promise<Cart | null> => {
   const { cartCreate } = await cartCreateMutation(input);
 
-  if (!cartCreate?.cart) return undefined;
+  if (!cartCreate?.cart) return null;
 
   const cart = cartCreate.cart;
 
@@ -358,10 +358,10 @@ export const cartCreate = async (input: GraphQLTypes['CartInput']): Promise<Cart
 export const cartLinesAdd = async (
   cartId: string,
   lines: GraphQLTypes['CartLineInput'][]
-): Promise<Cart | undefined> => {
+): Promise<Cart | null> => {
   const { cartLinesAdd } = await cartLinesAddMutation(cartId, lines);
 
-  if (!cartLinesAdd?.cart) return undefined;
+  if (!cartLinesAdd?.cart) return null;
 
   const cart = cartLinesAdd.cart;
 
@@ -407,10 +407,10 @@ export const cartLinesAdd = async (
 export const cartLinesUpdate = async (
   cartId: string,
   lines: GraphQLTypes['CartLineUpdateInput'][]
-): Promise<Cart | undefined> => {
+): Promise<Cart | null> => {
   const { cartLinesUpdate } = await cartLinesUpdateMutation(cartId, lines);
 
-  if (!cartLinesUpdate?.cart) return undefined;
+  if (!cartLinesUpdate?.cart) return null;
 
   const cart = cartLinesUpdate.cart;
 
@@ -453,13 +453,10 @@ export const cartLinesUpdate = async (
   };
 };
 
-export const cartLinesRemove = async (
-  cartId: string,
-  lineIds: string[]
-): Promise<Cart | undefined> => {
+export const cartLinesRemove = async (cartId: string, lineIds: string[]): Promise<Cart | null> => {
   const { cartLinesRemove } = await cartLinesRemoveMutation(cartId, lineIds);
 
-  if (!cartLinesRemove?.cart) return undefined;
+  if (!cartLinesRemove?.cart) return null;
 
   const cart = cartLinesRemove.cart;
 

@@ -75,11 +75,11 @@ export const getCurrentCartQuery = async (cartId: string) => {
   });
 };
 
-export const getCurrentCart = async (cartId: string): Promise<Cart | undefined> => {
-  if (!cartId) return undefined;
+export const getCurrentCart = async (cartId: string): Promise<Cart | null> => {
+  if (!cartId) return null;
 
   const { cart } = await getCurrentCartQuery(cartId);
-  if (!cart) return undefined;
+  if (!cart) return null;
 
   return {
     id: cart.id as string,

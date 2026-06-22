@@ -7,10 +7,10 @@ export async function GET() {
   const cartId = cookies().get('WSWC_CART_ID')?.value;
 
   if (!cartId) {
-    return NextResponse.json(undefined);
+    return NextResponse.json(null);
   }
 
   const cart = await getCurrentCart(cartId);
-  console.log('HERE', cart);
-  // return NextResponse.json(cart);
+
+  return NextResponse.json(cart);
 }

@@ -3,12 +3,12 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
-  const { lines } = await req.json();
   const cookieStore = cookies();
+
+  const { lines } = await req.json();
 
   let cartId = cookieStore.get('WSWC_CART_ID')?.value;
 
-  // If no cart exists, create one first
   if (!cartId) {
     const newCart = await cartCreate({
       lines: lines.map((line: any) => ({
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     return NextResponse.json(newCart);
   }
 
-  // Update existing cart
   const updatedCart = await cartLinesUpdate(cartId, lines);
+
   return NextResponse.json(updatedCart);
 }
