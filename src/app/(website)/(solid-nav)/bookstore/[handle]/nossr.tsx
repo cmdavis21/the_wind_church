@@ -167,7 +167,7 @@ const ProductPage = (product: Product) => {
                         );
                         return (
                           <TextRadio
-                            key={subOpt.name}
+                            key={subOpt.color}
                             text={subOpt.name}
                             color={subOpt.color}
                             selected={!!found}
