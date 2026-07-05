@@ -94,7 +94,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
           {/* Badge */}
           {totalInventory <= 20 && (
-            <Badge color="red" size="xs" className="top-1 left-1">
+            <Badge color="red" size="xs" className="top-1 left-1 rouned-l-none!">
               {totalInventory <= 0 ? 'Out of Stock' : `Only ${totalInventory} left!`}
             </Badge>
           )}
