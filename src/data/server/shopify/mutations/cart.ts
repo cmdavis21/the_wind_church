@@ -46,6 +46,7 @@ export const cartCreateMutation = async (input: GraphQLTypes['CartInput']) => {
                     },
                     product: {
                       title: true,
+                      tags: true,
                       images: [
                         { first: 1 },
                         {
@@ -124,6 +125,7 @@ export const cartLinesAddMutation = async (
                     },
                     product: {
                       title: true,
+                      tags: true,
                       images: [
                         { first: 1 },
                         {
@@ -202,6 +204,7 @@ export const cartLinesUpdateMutation = async (
                     },
                     product: {
                       title: true,
+                      tags: true,
                       images: [
                         { first: 1 },
                         {
@@ -277,6 +280,7 @@ export const cartLinesRemoveMutation = async (cartId: string, lineIds: string[])
                     },
                     product: {
                       title: true,
+                      tags: true,
                       images: [
                         { first: 1 },
                         {
@@ -331,6 +335,7 @@ export const cartCreate = async (input: GraphQLTypes['CartInput']): Promise<Cart
           src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
           alt: line.merchandise.product.images.nodes[0].altText ?? '',
         },
+        pickup_only: line.merchandise.product.tags.includes('Pickup-only') ?? false,
         subtotal_amount: {
           amount: (line.cost.subtotalAmount.amount as string) ?? 0,
           currencyCode: line.cost.subtotalAmount.currencyCode,
@@ -380,6 +385,7 @@ export const cartLinesAdd = async (
           src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
           alt: line.merchandise.product.images.nodes[0].altText ?? '',
         },
+        pickup_only: line.merchandise.product.tags.includes('Pickup-only') ?? false,
         subtotal_amount: {
           amount: (line.cost.subtotalAmount.amount as string) ?? 0,
           currencyCode: line.cost.subtotalAmount.currencyCode,
@@ -429,6 +435,7 @@ export const cartLinesUpdate = async (
           src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
           alt: line.merchandise.product.images.nodes[0].altText ?? '',
         },
+        pickup_only: line.merchandise.product.tags.includes('Pickup-only') ?? false,
         subtotal_amount: {
           amount: (line.cost.subtotalAmount.amount as string) ?? 0,
           currencyCode: line.cost.subtotalAmount.currencyCode,
@@ -475,6 +482,7 @@ export const cartLinesRemove = async (cartId: string, lineIds: string[]): Promis
           src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
           alt: line.merchandise.product.images.nodes[0].altText ?? '',
         },
+        pickup_only: line.merchandise.product.tags.includes('Pickup-only') ?? false,
         subtotal_amount: {
           amount: (line.cost.subtotalAmount.amount as string) ?? 0,
           currencyCode: line.cost.subtotalAmount.currencyCode,

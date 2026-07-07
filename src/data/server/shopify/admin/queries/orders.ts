@@ -54,6 +54,7 @@ const getAdminOrdersQuery = (email: string) => {
               },
             ],
             shippingAddress: {
+              id: true,
               firstName: true,
               lastName: true,
               address1: true,
@@ -65,6 +66,7 @@ const getAdminOrdersQuery = (email: string) => {
               phone: true,
             },
             billingAddress: {
+              id: true,
               firstName: true,
               lastName: true,
               address1: true,
@@ -156,6 +158,7 @@ export const getAdminCustomerOrders = async (email: string): Promise<Order[]> =>
       expiration_month: order.node.transactions[0].paymentDetails?.expirationMonth as string,
     },
     shipping_address: {
+      address_id: (order.node.shippingAddress?.id as string) ?? '',
       first_name: order.node.shippingAddress?.firstName ?? '',
       last_name: order.node.shippingAddress?.lastName ?? '',
       address1: order.node.shippingAddress?.address1 ?? '',
@@ -167,6 +170,7 @@ export const getAdminCustomerOrders = async (email: string): Promise<Order[]> =>
       phone: order.node.shippingAddress?.phone ?? '',
     },
     billing_address: {
+      address_id: (order.node.billingAddress?.id as string) ?? '',
       first_name: order.node.billingAddress?.firstName ?? '',
       last_name: order.node.billingAddress?.lastName ?? '',
       address1: order.node.billingAddress?.address1 ?? '',
