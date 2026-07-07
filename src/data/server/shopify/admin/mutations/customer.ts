@@ -20,6 +20,7 @@ export const updateCustomerEmailMutation = (id: string, email: string) => {
             emailAddress: true,
           },
           defaultAddress: {
+            id: true,
             firstName: true,
             lastName: true,
             address1: true,
@@ -36,7 +37,11 @@ export const updateCustomerEmailMutation = (id: string, email: string) => {
   });
 };
 
-export const updateCustomerAddressMutation = (id: string, address: Partial<Address>) => {
+export const updateCustomerAddressMutation = (
+  customer_id: string,
+  address_id: string,
+  address: Partial<Address>
+) => {
   return ShopifyAdminQuery.mutation({
     customerAddressUpdate: [
       {
@@ -51,12 +56,13 @@ export const updateCustomerAddressMutation = (id: string, address: Partial<Addre
           zip: address.zip,
           phone: address.phone,
         },
-        addressId: id,
-        customerId: id,
+        addressId: address_id,
+        customerId: customer_id,
         setAsDefault: true,
       },
       {
         address: {
+          id: true,
           firstName: true,
           lastName: true,
           address1: true,
@@ -90,6 +96,7 @@ export const updateCustomerEmail = async ({
     default_email: customer.customer?.defaultEmailAddress?.emailAddress ?? '',
     default_phone: customer.customer?.defaultPhoneNumber?.phoneNumber ?? '',
     default_address: {
+      address_id: (customer.customer?.defaultAddress?.id as string) ?? '',
       first_name: customer.customer?.defaultAddress?.firstName ?? '',
       last_name: customer.customer?.defaultAddress?.lastName ?? '',
       address1: customer.customer?.defaultAddress?.address1 ?? '',
@@ -104,17 +111,24 @@ export const updateCustomerEmail = async ({
 };
 
 export const updateCustomerAddress = async ({
-  id,
+  customer_id,
+  address_id,
   address,
 }: {
-  id: string;
+  customer_id: string;
+  address_id: string;
   address: Partial<Address>;
 }): Promise<Address | undefined> => {
-  const { customerAddressUpdate: newAddress } = await updateCustomerAddressMutation(id, address);
+  const { customerAddressUpdate: newAddress } = await updateCustomerAddressMutation(
+    customer_id,
+    address_id,
+    address
+  );
 
   if (!newAddress) return undefined;
 
   return {
+    address_id: (newAddress.address?.id as string) ?? '',
     first_name: newAddress.address?.firstName ?? '',
     last_name: newAddress.address?.lastName ?? '',
     address1: newAddress.address?.address1 ?? '',

@@ -83,6 +83,7 @@ const STATES = [
 ];
 
 const schema: yup.ObjectSchema<Partial<Address>> = yup.object().shape({
+  address_id: yup.string().optional(),
   first_name: yup.string().optional(),
   last_name: yup.string().optional(),
   address1: yup.string().optional(),
@@ -119,6 +120,7 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
     resolver: yupResolver(schema),
     defaultValues: {
       ...current_address,
+      address_id: current_address.address_id,
       country: current_address.country || 'US',
     },
   });
@@ -131,7 +133,8 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
 
   const onSubmit = (values: Partial<Address>) => {
     updateAddress({
-      id: customer_id,
+      customer_id,
+      address_id: current_address.address_id,
       address: values,
     });
   };

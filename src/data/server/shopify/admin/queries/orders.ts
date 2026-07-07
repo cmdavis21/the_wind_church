@@ -181,7 +181,10 @@ export const getAdminCustomerOrders = async (email: string): Promise<Order[]> =>
     line_items: order.node.lineItems.edges.map((item) => ({
       title: item.node.title ?? '',
       image: {
-        src: (item.node.image?.url as string) ?? '',
+        src:
+          !item.node.image?.url || (item.node.image?.url as string) === ''
+            ? '/images/product-placeholder.webp'
+            : (item.node.image?.url as string),
         alt: item.node.image?.altText ?? '',
       },
       total_price: {
@@ -192,7 +195,10 @@ export const getAdminCustomerOrders = async (email: string): Promise<Order[]> =>
       variant: {
         id: (item.node.variant?.id as string) ?? '',
         price: {
-          amount: item.node.variant?.price as string,
+          amount: !item.node.variant?.price
+            ? +(item.node.originalTotalSet.presentmentMoney.amount as string) /
+              (item.node.currentQuantity ?? 0)
+            : (item.node.variant?.price as string),
           currencyCode: item.node.originalTotalSet.presentmentMoney.currencyCode as CurrencyCode,
         },
         selected_options:

@@ -38,6 +38,7 @@ const getStorefrontCollectionsQuery = () => {
                         },
                       },
                     ],
+                    tags: true,
                     priceRange: {
                       minVariantPrice: {
                         amount: true,
@@ -95,9 +96,10 @@ export const getStorefrontCollections = async (): Promise<Collection[]> => {
       },
       images: item.node.images.nodes.map((img) => ({
         src: (img.url as string) ?? '/images/product-placeholder.webp',
-        alt: img.altText ?? '',
+        alt: img.altText ?? `Image of ${item.node.title}`,
       })),
       total_inventory: item.node.totalInventory ?? 0,
+      pickup_only: item.node.tags.includes('Pickup-only') ?? false,
       options:
         item.node.options && item.node.options[0]?.name !== 'Title'
           ? item.node.options.map((opt) => ({

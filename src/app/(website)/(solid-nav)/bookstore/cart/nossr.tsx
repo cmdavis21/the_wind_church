@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { CartSkeleton } from './skeleton';
 
 const CartPage = () => {
-  const { getCart, cartLoading } = useCart();
+  const { cart, cartLoading } = useCart();
 
   return (
     <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
@@ -18,7 +18,7 @@ const CartPage = () => {
 
       {cartLoading && <CartSkeleton />}
 
-      {!cartLoading && (!getCart || (getCart && getCart?.lines.length <= 0)) && (
+      {!cartLoading && (!cart || (cart && cart?.lines.length <= 0)) && (
         <div className="flex flex-col gap-lg items-center justify-center h-[250px]">
           <h4 className="text-center">There are no products in your cart.</h4>
           <Link href={PageRoutes.bookstore} className="w-full max-w-[300px]">
@@ -29,60 +29,43 @@ const CartPage = () => {
         </div>
       )}
 
-      {!cartLoading && getCart && getCart?.lines.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-lg lg:gap-xl">
-          <div className="flex flex-col gap-lg lg:col-span-2">
-            <h5>
-              <span className="font-bold">
-                {getCart?.total_quantity} item{getCart?.total_quantity > 1 ? 's' : ''}
-              </span>{' '}
-              in the cart
-            </h5>
+      {!cartLoading && cart && cart?.lines.length > 0 && (
+        <div className="flex flex-col gap-lg max-w-[800px] mx-auto w-full">
+          {/* CART COUNT */}
+          <h5>
+            <span className="font-bold">
+              {cart?.total_quantity} item{cart?.total_quantity > 1 ? 's' : ''}
+            </span>{' '}
+            in the cart
+          </h5>
 
-            <div className="flex flex-col gap-lg">
-              {getCart?.lines
-                .sort((a, b) => a.title.localeCompare(b.title))
-                .map((line) => (
-                  <LineItem
-                    key={`cart-page-desktop-${line.title}`}
-                    id={line.variant.id}
-                    imageSrc={line.image.src}
-                    title={line.title}
-                    options={line.variant.selected_options}
-                    quantity={line.quantity}
-                    subtotal={line.subtotal_amount}
-                  />
-                ))}
+          {/* SUBTOTAL + CHECKOUT */}
+          <div className="flex flex-col md:flex-row gap-lg items-center justify-between">
+            <div className="flex flex-col gap-sm">
+              <h4 className="font-bold">Subtotal {formatPrice(cart?.subtotal_amount)}</h4>
+              <h5 className="italic">Taxes and delivery determined at checkout</h5>
             </div>
-          </div>
-
-          <div className="lg:sticky lg:top-5 rounded-lg w-full mt-12 bg-light-gray/20 h-fit dark:bg-dark-gray p-lg flex flex-col gap-sm">
-            <h2 className="font-bold">Summary</h2>
-            <div className="flex flex-row justify-between gap-sm pt-lg">
-              <h4 className="font-bold">Subtotal</h4>
-              <h4 className="font-bold">{formatPrice(getCart?.subtotal_amount)}</h4>
-            </div>
-            <div className="flex flex-col gap-xs">
-              <div className="flex flex-row justify-between gap-sm">
-                <h5>Delivery</h5>
-                <h5>At checkout</h5>
-              </div>
-              <div className="flex flex-row justify-between gap-sm">
-                <h5>Taxes</h5>
-                <h5>At checkout</h5>
-              </div>
-            </div>
-            <hr className="text-light-gray dark:text-dark-gray" />
-            <div className="flex flex-row justify-between gap-sm pb-xl">
-              <h4 className="font-bold">Total</h4>
-              <h4 className="font-bold">{formatPrice(getCart?.subtotal_amount)}</h4>
-            </div>
-            <Link href={getCart?.checkout_url} className="w-full">
-              <Button pill color="primary" fullSized>
+            <Link href={cart?.checkout_url} className="w-full md:w-fit">
+              <Button pill color="primary" className="w-full md:w-fit min-w-[200px]">
                 Checkout
               </Button>
             </Link>
           </div>
+
+          {cart?.lines
+            .sort((a, b) => a.title.localeCompare(b.title))
+            .map((line) => (
+              <LineItem
+                key={`cart-page-desktop-${line.title}`}
+                title={line.title}
+                cartLineId={line.id}
+                quantity={line.quantity}
+                imageSrc={line.image.src}
+                pickupOnly={line.pickup_only}
+                subtotal={line.subtotal_amount}
+                options={line.variant.selected_options}
+              />
+            ))}
         </div>
       )}
     </div>

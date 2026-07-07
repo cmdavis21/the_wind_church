@@ -27,7 +27,7 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
   navState,
   handleChange,
 }) => {
-  const { getCart } = useCart();
+  const { cart } = useCart();
 
   const [open, setOpen] = useState(false);
   const subMenuDropdown = useRef<HTMLDivElement | null>(null);
@@ -91,9 +91,9 @@ const MobileNavItemWithDropdown: React.FC<MobileNavItemWithDropdownProps> = ({
                   }`}
                 >
                   {item.label}
-                  {item.link === PageRoutes.cart && getCart && getCart.total_quantity > 0 && (
+                  {item.link === PageRoutes.cart && cart && cart.total_quantity > 0 && (
                     <span className="ml-1.5 body-small font-bold">
-                      ({getCart.total_quantity} items)
+                      ({cart.total_quantity} items)
                     </span>
                   )}
                 </div>

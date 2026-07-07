@@ -74,18 +74,19 @@ const BookstoreClient = () => {
               className="flex flex-col gap-xl md:gap-xxl"
             >
               <SectionHeader title={coll.title} />
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg">
                 {coll.products
                   .sort((a, b) => a.title.localeCompare(b.title))
                   .map((prod) => (
                     <ProductCard
                       key={`bookstore-product-${prod.title}`}
-                      images={prod.images}
                       title={prod.title}
+                      handle={prod.handle}
+                      images={prod.images}
                       minPrice={prod.minPrice}
                       maxPrice={prod.maxPrice}
+                      pickupOnly={prod.pickup_only}
                       totalInventory={prod.total_inventory}
-                      handle={prod.handle}
                     />
                   ))}
               </div>

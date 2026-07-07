@@ -20,6 +20,7 @@ const getAdminCustomerQuery = (email: string) => {
           emailAddress: true,
         },
         defaultAddress: {
+          id: true,
           firstName: true,
           lastName: true,
           address1: true,
@@ -48,6 +49,7 @@ export const getAdminCustomer = async (email: string): Promise<Customer | undefi
     default_email: customer.defaultEmailAddress?.emailAddress ?? '',
     default_phone: customer.defaultPhoneNumber?.phoneNumber ?? '',
     default_address: {
+      address_id: (customer.defaultAddress?.id as string) ?? '',
       first_name: customer.defaultAddress?.firstName ?? '',
       last_name: customer.defaultAddress?.lastName ?? '',
       address1: customer.defaultAddress?.address1 ?? '',

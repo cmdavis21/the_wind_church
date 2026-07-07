@@ -2,32 +2,35 @@ import QuantityInput from '@/components/forms/inputs/quantity-input/QuantityInpu
 import Trash from '@/components/icons/trash';
 import { useCart } from '@/data/client/shopify/use-cart';
 import { formatPrice, Price } from '@/data/format-price';
+import { Badge } from 'flowbite-react';
 import Image from 'next/image';
 
 interface LineItemProps {
-  id?: string;
+  cartLineId?: string;
   imageSrc: string;
   title: string;
   options: { name: string; value: string }[];
   quantity: number;
   subtotal: Price;
+  pickupOnly: boolean;
 }
 
 const LineItem: React.FC<LineItemProps> = ({
-  id,
+  cartLineId,
   imageSrc,
   title,
   options,
   quantity,
   subtotal,
+  pickupOnly,
 }) => {
-  const { cartLoading, updateCart, removeCartItems } = useCart();
+  const { cartLoading, updateCartItems, removeCartItems } = useCart();
 
   return (
-    <div className="flex flex-col sm:flex-row gap-lg justify-between p-md rounded-lg border border-light-gray dark:bg-dark-gray dark:border-dark-gray">
+    <div className="rounded-xl border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col sm:flex-row gap-lg justify-between p-md">
       <div className="relative flex gap-lg">
         <div className="relative">
-          {!id && quantity > 1 && (
+          {!cartLineId && quantity > 1 && (
             <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-10 flex flex-row items-center justify-center rounded-lg">
               <h4 className="text-white font-bold">+{quantity}</h4>
             </div>
@@ -52,10 +55,15 @@ const LineItem: React.FC<LineItemProps> = ({
                 {opt.name}: {opt.value}
               </p>
             ))}
+          {pickupOnly && (
+            <Badge color="warning" size="sm" className="mt-xs">
+              Pickup required
+            </Badge>
+          )}
         </div>
       </div>
 
-      {id && (
+      {cartLineId && (
         <div className="flex flex-col justify-between gap-sm">
           <h4 className="text-right font-bold">{formatPrice(subtotal)}</h4>
           <div className="flex flex-row items-center gap-sm">
@@ -64,10 +72,10 @@ const LineItem: React.FC<LineItemProps> = ({
               maxQuantity={10}
               quantity={quantity}
               disabled={cartLoading}
-              decrement={() => updateCart([{ quantity: quantity - 1, id: id as any }])}
-              increment={() => updateCart([{ quantity: quantity + 1, id: id as any }])}
+              decrement={() => updateCartItems([{ quantity: quantity - 1, id: cartLineId as any }])}
+              increment={() => updateCartItems([{ quantity: quantity + 1, id: cartLineId as any }])}
             />
-            <button disabled={cartLoading} onClick={() => removeCartItems([id as any])}>
+            <button disabled={cartLoading} onClick={() => removeCartItems([cartLineId as any])}>
               <Trash fill="#D32F2F" className="size-[20px] hover:opacity-75" />
             </button>
           </div>

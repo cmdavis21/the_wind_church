@@ -17,29 +17,31 @@ interface OrderPreviewCardProps {
 const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
   const [open, setOpen] = useState(false);
   const subMenuDropdown = useRef<HTMLDivElement | null>(null);
-  const { getCart, cartLoading, addToCart } = useCart();
+  const { cart, cartLoading, addCartItems } = useCart();
   const [showModal, setShowModal] = useState(false);
+  const canReorder = order.line_items.some((ln) => ln.variant.id !== '');
 
   return (
     <>
-      {getCart && (
+      {cart && (
         <CartModal
           open={showModal}
           hideSecondaryButton
           setOpen={setShowModal}
-          cartQuantity={getCart.total_quantity ?? 0}
-          cartLines={getCart.lines.map((line) => ({
+          cartQuantity={cart.total_quantity ?? 0}
+          cartLines={cart.lines.map((line) => ({
             image: line.image,
             title: line.title,
-            price: line.variant.price,
             quantity: line.quantity,
+            price: line.variant.price,
+            pickupOnly: line.pickup_only,
             subtotal: line.subtotal_amount,
             selectedOptions: line.variant.selected_options.map((opt) => opt),
           }))}
         />
       )}
 
-      <div className="relative p-6 rounded-2xl border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm w-full">
+      <div className="relative p-6 rounded-2xl w-full overflow-hidden border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm hover:shadow-md transition-shadow duration-200">
         {/* TOP LAYER */}
         <div className="w-full flex flex-col md:flex-row gap-5 justify-between">
           {/* INFO */}
@@ -56,7 +58,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                 height={100}
                 src={order.line_items[0].image.src}
                 alt={order.line_items[0].image.alt}
-                className="size-4xl min-w-4xl max-h-4xl object-cover rounded-lg"
+                className="size-4xl min-w-4xl max-h-4xl object-cover rounded-lg border shadow border-light-gray dark:border-dark-gray"
               />
             </div>
 
@@ -79,21 +81,23 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
               {formatPrice(order.total_price)}
             </h3>
             <div className="flex flex-row gap-2">
-              <Button
-                pill
-                color="primary"
-                className="w-full md:w-fit"
-                onClick={() => {
-                  addToCart(
-                    order.line_items.map((item) => ({
-                      quantity: item.quantity,
-                      merchandiseId: item.variant.id as any,
-                    }))
-                  ).then(() => setShowModal(true));
-                }}
-              >
-                {cartLoading ? <Spinner size="xs" /> : 'Reorder'}
-              </Button>
+              {canReorder && (
+                <Button
+                  pill
+                  color="primary"
+                  className="w-full md:w-fit"
+                  onClick={() => {
+                    addCartItems(
+                      order.line_items.map((item) => ({
+                        quantity: item.quantity,
+                        merchandiseId: item.variant.id as any,
+                      }))
+                    ).then(() => setShowModal(true));
+                  }}
+                >
+                  {cartLoading ? <Spinner size="xs" /> : 'Reorder'}
+                </Button>
+              )}
               <Button color="info" className="w-full md:w-fit" pill onClick={() => setOpen(!open)}>
                 {open ? 'Hide' : 'View'} Details
               </Button>
@@ -177,7 +181,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
               <div className="flex flex-col gap-3 w-full">
                 {order.line_items.map((item) => (
                   <div
-                    key={`order-preview-card-line-item-${item.variant.id}`}
+                    key={`order-preview-card-line-item-${item.title}-${item.variant.id}-${item.quantity}`}
                     className="pb-5 last:pb-0 w-full flex flex-row gap-5 justify-between border border-x-0 border-t-0 last:border-b-0 border-skeletonGray dark:border-skeletonDarkGray"
                   >
                     <div className="w-full flex flex-col gap-3">

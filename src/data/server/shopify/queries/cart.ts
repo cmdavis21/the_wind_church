@@ -45,6 +45,7 @@ export const getCurrentCartQuery = async (cartId: string) => {
                   },
                   product: {
                     title: true,
+                    tags: true,
                     images: [
                       { first: 1 },
                       {
@@ -92,9 +93,14 @@ export const getCurrentCart = async (cartId: string): Promise<Cart | null> => {
     lines: cart.lines.nodes.map((line) => ({
       id: line.id as string,
       title: line.merchandise.product.title,
+      pickup_only: line.merchandise.product.tags.includes('Pickup-only') ?? false,
       image: {
-        src: (line.merchandise.product.images.nodes[0].url as string) ?? '',
-        alt: line.merchandise.product.images.nodes[0].altText ?? '',
+        src:
+          (line.merchandise.product.images.nodes[0].url as string) ??
+          '/images/product-placeholder.webp',
+        alt:
+          line.merchandise.product.images.nodes[0].altText ??
+          `Image of ${line.merchandise.product.title}`,
       },
       subtotal_amount: {
         amount: (line.cost.subtotalAmount.amount as string) ?? 0,

@@ -28,7 +28,7 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
   setOpen,
 }) => {
   const { darkMode } = useTheme();
-  const { getCart } = useCart();
+  const { cart } = useCart();
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -47,12 +47,12 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
       )}
 
       {/* CART QTY COUNT */}
-      {submenu.find((s) => s.link === PageRoutes.cart) && getCart && getCart.total_quantity > 0 && (
+      {submenu.find((s) => s.link === PageRoutes.cart) && cart && cart.total_quantity > 0 && (
         <div className="absolute z-10 top-1 -right-4 group-hover:opacity-0 pointer-events-none transition-opacity duration-150">
           <BagIcon
             width={15}
             height={15}
-            count={getCart.total_quantity > 5 ? '5+' : getCart.total_quantity}
+            count={cart.total_quantity > 5 ? '5+' : cart.total_quantity}
             fill={
               changeColor
                 ? `${darkMode ? '#FFFFFFCC' : '#000000'}`
@@ -115,9 +115,9 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
 
                   <div className="relative py-xs px-lg body-large capitalize whitespace-nowrap flex items-center">
                     {item.label}
-                    {item.link === PageRoutes.cart && getCart && getCart.total_quantity > 0 && (
+                    {item.link === PageRoutes.cart && cart && cart.total_quantity > 0 && (
                       <span className="ml-1.5 body-small font-bold">
-                        ({getCart.total_quantity} items)
+                        ({cart.total_quantity} items)
                       </span>
                     )}
                   </div>

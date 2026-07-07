@@ -14,7 +14,7 @@ export const useCart = () => {
   const queryClient = useQueryClient();
 
   // GET CART
-  const { data: getCart, isLoading: cartLoading } = useQuery<Cart | null, Error>({
+  const { data: cart, isLoading: cartLoading } = useQuery<Cart | null, Error>({
     queryKey: [GET_CART_KEY],
     queryFn: async () => {
       const res = await fetch('/api/shopify/cart/get');
@@ -27,8 +27,8 @@ export const useCart = () => {
     queryClient.invalidateQueries({ queryKey: [GET_CART_KEY] });
   };
 
-  // ADD TO CART
-  const addToCartMutation = useMutation<Cart | null, Error, GraphQLTypes['CartLineInput'][]>({
+  // ADD CART ITEMS
+  const addCartItemsMutation = useMutation<Cart | null, Error, GraphQLTypes['CartLineInput'][]>({
     mutationKey: [ADD_TO_CART_KEY],
     mutationFn: async (lines: GraphQLTypes['CartLineInput'][]) => {
       const res = await fetch('/api/shopify/cart/add', {
@@ -43,30 +43,31 @@ export const useCart = () => {
     onSuccess: refetchCart,
   });
 
-  const addToCart = (lines: GraphQLTypes['CartLineInput'][]) =>
-    addToCartMutation.mutateAsync(lines);
+  const addCartItems = (lines: GraphQLTypes['CartLineInput'][]) =>
+    addCartItemsMutation.mutateAsync(lines);
 
-  // UPDATE CART
-  const updateCartMutation = useMutation<Cart | null, Error, GraphQLTypes['CartLineUpdateInput'][]>(
-    {
-      mutationKey: [UPDATE_CART_ITEMS_KEY],
-      mutationFn: async (lines: GraphQLTypes['CartLineUpdateInput'][]) => {
-        const res = await fetch('/api/shopify/cart/update', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ lines }),
-        });
+  // UPDATE CART ITEMS
+  const updateCartItemsMutation = useMutation<
+    Cart | null,
+    Error,
+    GraphQLTypes['CartLineUpdateInput'][]
+  >({
+    mutationKey: [UPDATE_CART_ITEMS_KEY],
+    mutationFn: async (lines: GraphQLTypes['CartLineUpdateInput'][]) => {
+      const res = await fetch('/api/shopify/cart/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lines }),
+      });
 
-        if (!res.ok) throw new Error(`${UPDATE_CART_ITEMS_KEY} ERROR`);
-        console.log(res);
-        return res.json();
-      },
-      onSuccess: refetchCart,
-    }
-  );
+      if (!res.ok) throw new Error(`${UPDATE_CART_ITEMS_KEY} ERROR`);
+      return res.json();
+    },
+    onSuccess: refetchCart,
+  });
 
-  const updateCart = (lines: GraphQLTypes['CartLineUpdateInput'][]) =>
-    updateCartMutation.mutateAsync(lines);
+  const updateCartItems = (lines: GraphQLTypes['CartLineUpdateInput'][]) =>
+    updateCartItemsMutation.mutateAsync(lines);
 
   // REMOVE CART ITEMS
   const removeCartItemsMutation = useMutation<Cart | null, Error, string[]>({
@@ -86,5 +87,5 @@ export const useCart = () => {
 
   const removeCartItems = (lineIds: string[]) => removeCartItemsMutation.mutateAsync(lineIds);
 
-  return { getCart, cartLoading, addToCart, updateCart, removeCartItems };
+  return { cart, cartLoading, addCartItems, updateCartItems, removeCartItems };
 };

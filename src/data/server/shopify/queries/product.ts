@@ -9,6 +9,7 @@ const getStorefrontProductByHandleQuery = (handle: string) => {
       {
         title: true,
         descriptionHtml: true,
+        tags: true,
         images: [
           { first: 10 },
           {
@@ -39,7 +40,7 @@ const getStorefrontProductByHandleQuery = (handle: string) => {
         ],
         options: [
           {
-            first: 20,
+            first: 10,
           },
           {
             name: true,
@@ -52,7 +53,7 @@ const getStorefrontProductByHandleQuery = (handle: string) => {
           },
         ],
         variants: [
-          { first: 25 },
+          { first: 50 },
           {
             nodes: {
               id: true,
@@ -113,9 +114,10 @@ export const getStorefrontProductByHandle = async (handle: string): Promise<Prod
   return {
     title: product.title,
     description_html: (product.descriptionHtml as string) ?? '',
+    pickup_only: product.tags.includes('Pickup-only') ?? false,
     images: product.images.nodes.map((img) => ({
       src: (img.url as string) ?? '/images/product-placeholder.webp',
-      alt: img.altText ?? '',
+      alt: img.altText ?? `Image of ${product.title}`,
     })),
     first_variant:
       product.selectedOrFirstAvailableVariant?.selectedOptions[0].name !== 'Title'
@@ -133,12 +135,10 @@ export const getStorefrontProductByHandle = async (handle: string): Promise<Prod
         : undefined,
     variants: product.variants.nodes.map((variant) => ({
       id: variant.id as string,
-      image: variant.image
-        ? {
-            src: String(variant.image?.url) ?? '/images/product-placeholder.webp',
-            alt: variant.image?.altText ?? '',
-          }
-        : undefined,
+      image: {
+        src: String(variant.image?.url) ?? '/images/product-placeholder.webp',
+        alt: variant.image?.altText ?? `Image of ${product.title}`,
+      },
       price: {
         amount: (variant.price.amount as string) ?? 0,
         currencyCode: variant.price.currencyCode,

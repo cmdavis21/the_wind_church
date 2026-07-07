@@ -24,6 +24,7 @@ interface CartModalProps {
       name: string;
       value: string;
     }[];
+    pickupOnly: boolean;
   }[];
 }
 
@@ -61,11 +62,12 @@ const CartModal: React.FC<CartModalProps> = ({
               {cartLines.map((line) => (
                 <LineItem
                   key={`cart-page-desktop-${line.title}`}
-                  imageSrc={line.image.src}
                   title={line.title}
-                  options={line.selectedOptions}
-                  quantity={line.quantity}
                   subtotal={line.subtotal}
+                  quantity={line.quantity}
+                  imageSrc={line.image.src}
+                  pickupOnly={line.pickupOnly}
+                  options={line.selectedOptions}
                 />
               ))}
             </div>

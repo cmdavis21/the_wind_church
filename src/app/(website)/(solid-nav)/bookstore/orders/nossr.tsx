@@ -35,7 +35,7 @@ const OrdersClient = () => {
           ) : (
             <div className="flex flex-col gap-8 pt-5">
               {customerData?.orders.map((order) => (
-                <OrderPreviewCard order={order} />
+                <OrderPreviewCard key={`customer-order-${order.order_name}`} order={order} />
               ))}
             </div>
           )}

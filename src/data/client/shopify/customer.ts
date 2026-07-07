@@ -66,16 +66,24 @@ export const useUpdateCustomerEmail = (
 };
 
 export const useUpdateCustomerAddress = (
-  options?: UseMutationOptions<Address, Error, { id: string; address: Partial<Address> }>
+  options?: UseMutationOptions<
+    Address,
+    Error,
+    { customer_id: string; address_id: string; address: Partial<Address> }
+  >
 ) => {
   const queryClient = useQueryClient();
 
-  return useMutation<Address, Error, { id: string; address: Partial<Address> }>({
-    mutationFn: async ({ id, address }) => {
+  return useMutation<
+    Address,
+    Error,
+    { customer_id: string; address_id: string; address: Partial<Address> }
+  >({
+    mutationFn: async ({ customer_id, address_id, address }) => {
       const res = await fetch('/api/shopify/customer/address', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, address }),
+        body: JSON.stringify({ customer_id, address_id, address }),
       });
 
       if (!res.ok) throw new Error('No Customer Found');

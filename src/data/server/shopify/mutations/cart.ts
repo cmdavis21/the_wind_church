@@ -159,7 +159,6 @@ export const cartLinesUpdateMutation = async (
   cartId: string,
   lines: GraphQLTypes['CartLineUpdateInput'][]
 ) => {
-  console.log(cartId, lines);
   return await ShopifyQuery.mutation({
     cartLinesUpdate: [
       { cartId, lines },

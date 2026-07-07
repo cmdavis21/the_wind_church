@@ -19,6 +19,7 @@ interface ProductCardProps {
   maxPrice: Price;
   totalInventory: number;
   handle: string;
+  pickupOnly: boolean;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -28,6 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   maxPrice,
   totalInventory,
   handle,
+  pickupOnly,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -55,26 +57,23 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <Link
-      href={`${PageRoutes.bookstore}/${handle}`}
-      className="group w-full h-fit min-w-[300px] max-w-[350px]"
-    >
+    <Link href={`${PageRoutes.bookstore}/${handle}`} className="group h-full w-[300px]">
       <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="h-full rounded-xl overflow-hidden border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm hover:shadow-md transition-shadow duration-200"
+        className="h-full flex flex-col rounded-xl overflow-hidden border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm hover:shadow-md transition-shadow duration-200"
       >
         {/* Cover Image */}
         <div className="relative">
           <Carousel
             infinite
             arrows={false}
-            autoPlaySpeed={2000}
+            autoPlaySpeed={1000}
             responsive={responsive}
             customDot={<CustomDot />}
+            itemClass="p-xs rounded-xl"
             showDots={images.length > 1}
             autoPlay={isHovered && images.length > 1}
-            itemClass="p-xs rounded-xl"
             dotListClass="flex gap-xs !justify-center items-center !pb-md"
           >
             {images.map((img) => (
@@ -93,16 +92,23 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </Carousel>
 
           {/* Badge */}
-          {totalInventory <= 20 && (
-            <Badge color="red" size="xs" className="top-1 left-1 rouned-l-none!">
-              {totalInventory <= 0 ? 'Out of Stock' : `Only ${totalInventory} left!`}
-            </Badge>
-          )}
+          <div className="absolute top-4 left-4 flex flex-col gap-1">
+            {totalInventory <= 20 && (
+              <Badge color="red" size="xs">
+                {totalInventory <= 0 ? 'Out of Stock' : `Only ${totalInventory} left!`}
+              </Badge>
+            )}
+            {pickupOnly && (
+              <Badge color="warning" size="xs">
+                Pickup-only
+              </Badge>
+            )}
+          </div>
         </div>
 
         {/* Content */}
-        <div className="p-md pt-xs flex flex-row items-end justify-between gap-2">
-          <div>
+        <div className="p-md pt-xs flex flex-row items-end justify-between h-full gap-2">
+          <div className="flex flex-col h-full justify-between">
             <h5 className="line-clamp-2 font-semibold leading-tight pb-1">{title}</h5>
             <h3 className="font-medium font-display text-brand-primary">
               {minPrice.amount !== maxPrice.amount

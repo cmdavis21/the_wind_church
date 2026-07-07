@@ -283,12 +283,14 @@ export interface ProductPreview {
   maxPrice: Price;
   images: Image[];
   total_inventory: number;
+  pickup_only: boolean;
 }
 
 export interface Product {
   title: string;
   description_html: string;
   images: Image[];
+  pickup_only: boolean;
   first_variant?: {
     name: string;
     value: string;
@@ -302,7 +304,7 @@ export interface Product {
   }[];
   variants: {
     id: string;
-    image?: Image;
+    image: Image;
     price: Price;
     compare_price?: Price;
     quantity_available: number;
@@ -328,6 +330,7 @@ export interface Cart {
     id: string;
     title: string;
     image: Image;
+    pickup_only: boolean;
     subtotal_amount: Price;
     variant: {
       id: string;
@@ -343,6 +346,7 @@ export interface Cart {
 }
 
 export interface Address {
+  address_id: string;
   first_name: string;
   last_name: string;
   address1: string;
