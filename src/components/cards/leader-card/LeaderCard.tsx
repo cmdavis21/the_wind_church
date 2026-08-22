@@ -1,11 +1,10 @@
 'use client';
 
-import { useRewindLoop } from '@/data/client/use-rewind-loop';
 import { useScrollShadows } from '@/data/client/use-scroll-shadows';
 import cn from 'classnames';
 import { Kbd } from 'flowbite-react';
 import Image from 'next/image';
-import { useId, useRef, useState } from 'react';
+import { useId, useState } from 'react';
 
 type LeaderCardProps = {
   first_name: string;
@@ -30,9 +29,6 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
 }) => {
   useScrollShadows();
   const descId = useId();
-  const videoRef = useRef<HTMLVideoElement>(null);
-  useRewindLoop(videoRef, { rewindSpeed: 2.5 });
-
   const [flipped, setFlipped] = useState(isActive ?? false);
   const selected = isActive ?? flipped;
 
