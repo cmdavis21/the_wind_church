@@ -83,6 +83,12 @@ export const theme = {
         'border-transparent bg-current bg-dash-icon dark:border-transparent dark:bg-current',
     },
   },
+  kbd: {
+    root: {
+      base: 'rounded-md border border-light-gray bg-light-neutral px-2 py-1 text-[10px] font-semibold text-light-charcoal dark:border-dark-gray dark:bg-dark-neutral dark:text-dark-charcoal',
+      icon: 'inline-block',
+    },
+  },
   label: {
     root: {
       base: 'text-base font-medium',

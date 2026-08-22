@@ -51,6 +51,8 @@ const FoursquareClient = () => {
     });
   };
 
+  const titles = ['Intro', 'History', 'Beliefs', 'Symbols'];
+
   const foursquareBeliefsArr = [
     {
       icon: ClipboardList,
@@ -200,7 +202,7 @@ const FoursquareClient = () => {
 
       <div ref={anchorRef} />
       <Tabs variant="default" ref={tabsRef} onActiveTabChange={(tab) => setActive(tab)}>
-        <TabItem title="Intro" icon={Location}>
+        <TabItem title={titles[0]} icon={Location}>
           <div className="flex flex-col gap-xl p-lg">
             <h4 className="text-justify">
               The Wind Church (dba Wind of the Spirit) is part of a worldwide movement called the
@@ -213,7 +215,7 @@ const FoursquareClient = () => {
             </h4>
           </div>
         </TabItem>
-        <TabItem title="History" icon={PersonWithChalkboard}>
+        <TabItem title={titles[1]} icon={PersonWithChalkboard}>
           <div className="flex flex-col gap-xl p-lg">
             <div className="py-lg">
               <SectionHeader title="Foursquare History" subtitle="How it all began..." />
@@ -317,7 +319,7 @@ const FoursquareClient = () => {
             </h4>
           </div>
         </TabItem>
-        <TabItem title="Beliefs" icon={Cross}>
+        <TabItem title={titles[2]} icon={Cross}>
           <div className="flex flex-col gap-xl p-lg">
             <SectionHeader title="Foursquare Believes" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
@@ -334,7 +336,7 @@ const FoursquareClient = () => {
             </div>
           </div>
         </TabItem>
-        <TabItem title="Symbols" icon={Flag}>
+        <TabItem title={titles[3]} icon={Flag}>
           <div className="flex flex-col gap-xl p-lg">
             {/* LOGO SECTION */}
             <SectionHeader title="Logo" />
@@ -465,26 +467,34 @@ const FoursquareClient = () => {
         </TabItem>
       </Tabs>
 
-      <div className="-mt-2 flex justify-end p-md">
+      <div className="-mt-2 flex justify-end items-center gap-md p-md">
+        <p className="italic font-light text-light-charcoal text-dark-charcoal">
+          {titles[active === 0 ? titles.length - 1 : active - 1]}
+        </p>
         <CarouselArrows
           className="w-fit"
           leftArrowProps={{
-            disable: active === 0,
             onClick: () => {
-              setActive(active - 1);
+              if (active === 0) {
+                setActive(titles.length - 1);
+              } else setActive(active - 1);
               tabsRef.current?.setActiveTab(active - 1);
               scrollFunc();
             },
           }}
           rightArrowProps={{
-            disable: active >= 3,
             onClick: () => {
-              setActive(active + 1);
+              if (active === titles.length) {
+                setActive(0);
+              } else setActive(active + 1);
               tabsRef.current?.setActiveTab(active + 1);
               scrollFunc();
             },
           }}
         />
+        <p className="italic font-light text-light-charcoal text-dark-charcoal">
+          {titles[active === titles.length ? 0 : active + 1]}
+        </p>
       </div>
     </div>
   );

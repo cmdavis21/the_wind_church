@@ -62,7 +62,7 @@ const MinistriesClient = () => {
       <PageHero
         size="short"
         title="Ministries"
-        subtitle="Grow in love and service by joining a ministry"
+        description="Grow in love and service by joining a ministry"
         media={{ src: '/images/product-placeholder.webp' }}
       />
 

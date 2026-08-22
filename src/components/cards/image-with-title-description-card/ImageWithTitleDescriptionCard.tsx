@@ -2,7 +2,6 @@ import Image from 'next/image';
 import React from 'react';
 
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
-import UpArrow from '@/components/icons/up-arrow';
 import Link from 'next/link';
 
 interface ImageWithTitleDescriptionCardProps {
@@ -23,9 +22,9 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
   description,
   link,
 }) => (
-  <div className="min-w-7xl max-w-[325px] flex flex-col gap-lg">
-    <div className="relative aspect-square">
-      <Image fill src={src} alt={alt} className="pointer-events-none object-cover rounded-lg" />
+  <div className="w-[325px] flex flex-col gap-lg">
+    <div className="relative aspect-square border rounded-lg overflow-hidden">
+      <Image fill src={src} alt={alt} className="pointer-events-none object-cover" />
     </div>
     <div className="flex flex-col gap-md dark:text-dark-primaryText justify-between">
       <div className="flex flex-col gap-md">
@@ -34,12 +33,7 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
       </div>
       {link && (
         <Link href={link.href}>
-          <AnimativeFillButton>
-            <div className="flex items-center gap-xxs group">
-              {link.label}{' '}
-              <UpArrow className="size-[18px] dark:fill-dark-primaryText rotate-45 group-hover:rotate-90 transition-all duration-300" />
-            </div>
-          </AnimativeFillButton>
+          <AnimativeFillButton>{link.label}</AnimativeFillButton>
         </Link>
       )}
     </div>

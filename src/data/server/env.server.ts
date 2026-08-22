@@ -2,9 +2,12 @@
 export const WEBSITE_URL = process.env.WEBSITE_URL ?? '';
 
 // SANITY
-export const SANITY_GRAPHQL_ENDPOINT = process.env.SANITY_GRAPHQL_API_ENDPOINT ?? '';
 export const SANITY_EDITOR_TOKEN = process.env.SANITY_EDITOR_TOKEN ?? '';
+export const SANITY_GRAPHQL_ENDPOINT = process.env.SANITY_GRAPHQL_API_ENDPOINT ?? '';
 export const SANITY_MUTATION_API_ENDPOINT = process.env.SANITY_MUTATION_API_ENDPOINT ?? '';
+
+export const SANITY_WEBHOOK_REVALIDATION_TOKEN =
+  process.env.SANITY_WEBHOOK_REVALIDATION_TOKEN ?? '';
 
 // SHOPIFY
 export const SHOPIFY_ADMIN_API_ENDPOINT = process.env.SHOPIFY_ADMIN_API_ENDPOINT ?? '';

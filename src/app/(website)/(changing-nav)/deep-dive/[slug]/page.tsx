@@ -244,7 +244,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             <ImageWithTitleDescriptionCard
               alt="People gathering for church service"
               src={'/images/product-placeholder.webp'}
-              title="Visit on Sunday or Wednesday"
+              title="Visit The Wind"
               description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
               link={{
                 label: 'Learn about the Wind',
@@ -254,7 +254,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             <ImageWithTitleDescriptionCard
               alt="Group in Bible study session"
               src={'/images/product-placeholder.webp'}
-              title="Try our Deep Dive Sessions"
+              title="Try our Deep Dives"
               description="Explore the Word in a deeper way. Our Deep Dive Sessions are small-group Bible studies where you can ask questions and grow in your faith."
               link={{
                 label: 'Go to Deep Dive',
@@ -264,7 +264,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             <ImageWithTitleDescriptionCard
               alt="Children in a classroom during youth service"
               src={'/images/product-placeholder.webp'}
-              title="View our Youth Service"
+              title="Learn about Next Gen"
               description="We offer engaging and age-appropriate services for kids and teens every week. It's a safe space for youth to learn, grow, and build friendships."
               link={{
                 label: 'Go to Youth Service',

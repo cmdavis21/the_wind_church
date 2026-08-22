@@ -9,6 +9,7 @@ import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarouse
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import Bible from '@/components/icons/bible';
 
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import Text from '@/components/forms/inputs/text/Text';
 import Buidling from '@/components/icons/building';
 import ClipboardList from '@/components/icons/clipboard-list';
@@ -33,7 +34,6 @@ import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
-import { Button } from 'flowbite-react';
 import Link from 'next/link';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -310,13 +310,17 @@ const About = async () => {
     <div>
       <PageHero
         title={t('title')}
-        subtitle={t('subtitle')}
-        highlightTitle={[[0, 1]]}
+        description={t('subtitle')}
         media={{ src: '/images/product-placeholder.webp' }}
+        stats={[
+          { value: '1996', label: 'Founded' },
+          { value: '250+', label: 'Sermons' },
+          { value: '24/7', label: 'Prayer Support' },
+        ]}
       />
 
       {/* Mission and Vision */}
-      <div id={t('mission.id')} className="max-width-center py-3xl sm:py-4xl lg:px-4xl">
+      <div id={t('mission.id')} className="max-width-center py-3xl sm:py-4xl">
         <div className="flex flex-col gap-xxl px-padding">
           {/* Mission */}
           <div className="flex flex-col gap-lg">
@@ -324,7 +328,7 @@ const About = async () => {
             <Text htmlTag="h2" highlight={[[0, 9]]}>
               {t('mission.subtitle')}
             </Text>
-            <h4>{t('mission.description')}</h4>
+            <h4 className="lg:max-w-[75%]">{t('mission.description')}</h4>
           </div>
 
           {/* Vision */}
@@ -333,7 +337,7 @@ const About = async () => {
             <Text htmlTag="h2" highlight={[[0, 7]]}>
               {t('vision.subtitle')}
             </Text>
-            <h4>{t('vision.description')}</h4>
+            <h4 className="lg:max-w-[75%]">{t('vision.description')}</h4>
             <ScriptureList
               scriptures={[
                 t('vision.verse1'),
@@ -398,13 +402,13 @@ const About = async () => {
         id={t('foursquare.id')}
         className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding"
       >
-        <div className="flex flex-col gap-lg max-width">
+        <div className="flex flex-col gap-lg">
           <SectionHeader title={t('foursquare.title')} subtitle={t('foursquare.subtitle')} />
-          <h5 className="lg:max-w-[60%]">{t('foursquare.description')}</h5>
+          <h5 className="lg:max-w-[75%]">{t('foursquare.description')}</h5>
           <Link href={PageRoutes.foursquare}>
-            <Button pill color="secondary">
+            <AnimativeFillButton variant="secondary">
               Learn more about Foursquare
-            </Button>
+            </AnimativeFillButton>
           </Link>
         </div>
 
@@ -432,9 +436,9 @@ const About = async () => {
 
       {/* History */}
       <div id={t('history.id')} className="flex flex-col gap-xl md:gap-xxl pt-3xl sm:pt-4xl">
-        <div className="px-padding flex flex-col gap-lg max-width">
+        <div className="px-padding flex flex-col gap-lg max-width-center">
           <SectionHeader title={t('history.title')} subtitle={t('history.subtitle')} />
-          <h5 className="lg:max-w-[60%]">{t('history.description')}</h5>
+          <h5 className="lg:max-w-[75%]">{t('history.description')}</h5>
         </div>
 
         <CenterModeMediaWithTextCarousel

@@ -139,22 +139,29 @@ const Home = async () => {
     <div>
       <PageHero
         size="full"
-        scrollTo="overview"
-        title="Honor God. Love People. Serve This Generation."
+        title="Honor God. Love People."
         highlightTitle={[
           [0, 0],
           [2, 2],
           [4, 4],
         ]}
-        subtitle="A Christ-centered, Spirit-filled church in Riverside, California that is  committed to discipleship, worship, community impact, and helping people grow in faith and purpose."
+        italicSubtitle="Serve this generation."
+        description="Committed to discipleship, worship, community impact, and helping people grow in faith and purpose."
         media={{
           src: `${AWS_ASSET_URL}/friend-group.mp4`,
           poster: '/images/friend-group.webp',
         }}
+        ctas={[{ label: 'Learn more', href: PageRoutes.about }]}
+        scrollTo={{ label: 'Explore', href: 'overview', variant: 'teritiary' }}
+        stats={[
+          { value: 'Christ', label: 'Centered' },
+          { value: '24/7', label: 'Prayer Support' },
+          { value: '1996', label: 'Founded' },
+        ]}
       />
 
       {/* OVERVIEW */}
-      <div id="overview" className="max-width-center py-4xl lg:px-4xl sm:my-3xl">
+      <div id="overview" className="max-width-center py-4xl sm:my-3xl">
         <div className="flex flex-col gap-lg px-padding">
           {/* WELCOME */}
           <Text htmlTag="h2" highlight={[[0, 0]]}>
@@ -162,7 +169,7 @@ const Home = async () => {
           </Text>
 
           {/* INTRO */}
-          <h4>
+          <h4 className="lg:max-w-[75%]">
             A Christ-focused community where lives are transformed and hope is restored. We gather
             to worship, grow, and walk out our faith together. Whether you join us{' '}
             <Link

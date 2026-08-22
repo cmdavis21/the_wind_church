@@ -3,9 +3,10 @@
 import { useYouTubeSnippet } from '@/data/client/use-youtube-snippet';
 import { PageRoutes } from '@/data/page-routes';
 import { FallbackSermonSnippet, YouTubeSermonSnippet } from '@/data/types';
-import { Button, Tooltip } from 'flowbite-react';
+import { Tooltip } from 'flowbite-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import AnimativeFillButton from '../buttons/animative-fill-button/AnimativeFillButton';
 import VolumeHigh from '../icons/volume-high';
 import VolumeXmark from '../icons/volume-xmark';
 
@@ -76,15 +77,13 @@ const PreviewSermon: React.FC<PreviewSermonProps> = ({ data }) => {
         <div className="flex flex-col sm:flex-row gap-md sm:gap-lg items-center">
           {!isFallback && (
             <Link href={data.link} target="_blank" className="w-full sm:w-fit">
-              <Button pill color="primary" className="w-full sm:w-fit">
-                <h5>Watch Full Video</h5>
-              </Button>
+              <AnimativeFillButton size="lg">Watch Full Video</AnimativeFillButton>
             </Link>
           )}
           <Link href={PageRoutes.sermons} className="w-full sm:w-fit">
-            <Button pill color="secondary" className="w-full sm:w-fit">
-              <h5>View Sermons</h5>
-            </Button>
+            <AnimativeFillButton size="lg" variant="teritiary">
+              View Sermons
+            </AnimativeFillButton>
           </Link>
         </div>
       </div>

@@ -49,7 +49,7 @@ const Rightnowmedia = () => (
     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/90" />
 
     <div className="relative w-full min-h-screen flex items-center p-padding">
-      <div className="pt-4xl lg:max-w-[60%] flex flex-col gap-xl text-white">
+      <div className="pt-2xl lg:max-w-[60%] flex flex-col gap-xl text-white">
         <h2>
           <span className="text-brand-primary">RightNow Media</span>: Free. Unlimited. For Every
           Member.

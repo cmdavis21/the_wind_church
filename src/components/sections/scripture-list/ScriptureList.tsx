@@ -6,7 +6,7 @@ interface ScriptureListProps {
 
 const ScriptureList: React.FC<ScriptureListProps> = ({ scriptures }) => {
   return (
-    <div className="body-large flex flex-wrap gap-sm items-center">
+    <div className="body-large flex flex-wrap gap-sm items-center text-light-charcoal dark:text-dark-charcoal">
       {scriptures.map((verse, index) => (
         <React.Fragment key={`scriptures-list-${verse}`}>
           {verse}

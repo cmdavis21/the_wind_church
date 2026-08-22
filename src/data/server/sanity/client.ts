@@ -5,6 +5,6 @@ export const SanityClient = createClient({
   projectId: 'pyayajuh',
   dataset: 'production',
   apiVersion: '2025-03-04',
-  useCdn: false,
   token: SANITY_EDITOR_TOKEN,
+  useCdn: false, // Always fetch fresh data
 });

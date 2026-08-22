@@ -1,9 +1,11 @@
 'use client';
 
+import { useRewindLoop } from '@/data/client/use-rewind-loop';
 import { useScrollShadows } from '@/data/client/use-scroll-shadows';
 import cn from 'classnames';
+import { Kbd } from 'flowbite-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useId, useRef, useState } from 'react';
 
 type LeaderCardProps = {
   first_name: string;
@@ -27,36 +29,39 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
   onToggle,
 }) => {
   useScrollShadows();
-  const [expand, setExapnd] = useState(isActive ?? false);
-  const selected = isActive ?? expand;
+  const descId = useId();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useRewindLoop(videoRef, { rewindSpeed: 2.5 });
+
+  const [flipped, setFlipped] = useState(isActive ?? false);
+  const selected = isActive ?? flipped;
 
   return (
-    <div className="h-[450px] w-[300px]">
+    <div className="h-[400px] w-[300px] [perspective:1200px]">
       <button
-        onClick={() => {
-          if (onToggle) return onToggle();
-          setExapnd((p) => !p);
-        }}
+        aria-controls={descId}
+        aria-expanded={selected}
+        aria-label={`${first_name} ${last_name}, ${position}. ${
+          selected ? 'Currently showing bio, press to show photo' : 'Press to read bio'
+        }`}
+        onClick={() => (onToggle ? onToggle() : setFlipped((p) => !p))}
         className={cn(
-          selected ? 'border-light-gray dark:border-dark-gray' : 'border-transparent',
-          'relative h-[450px] w-[300px] overflow-hidden rounded-lg border dark:bg-dark-gray shadow-lg text-left group'
+          'group relative h-full w-full rounded-lg text-left shadow-lg',
+          'transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [transform-style:preserve-3d]',
+          'motion-reduce:transition-none',
+          'focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-primary focus-visible:outline-offset-2',
+          selected && '[transform:rotateY(180deg)]'
         )}
       >
-        {/* MEDIA */}
-        <div
-          className={cn(
-            selected
-              ? 'top-6 right-6 h-10 w-10 rounded-full'
-              : 'top-0 right-0 h-full w-full rounded-lg',
-            'absolute overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]'
-          )}
-        >
+        {/* FRONT */}
+        <div className="absolute inset-0 overflow-hidden rounded-lg border-[1.5px] border-light-gray dark:border-dark-gray dark:bg-dark-gray [backface-visibility:hidden]">
           {video ? (
             <video
               loop
               muted
               autoPlay
               playsInline
+              preload="auto"
               poster={image}
               className="h-full w-full object-cover transition-transform duration-300 will-change-transform group-hover:scale-110"
             >
@@ -64,58 +69,98 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
             </video>
           ) : (
             <Image
-              width={300}
-              height={450}
               src={image}
-              alt={first_name}
+              width={300}
+              height={400}
+              alt={`Profile picture of ${first_name} ${last_name}`}
               className="h-full w-full object-cover transition-transform duration-300 will-change-transform group-hover:scale-110"
             />
           )}
-        </div>
 
-        {/* OVERLAY */}
-        <div
-          className={cn(
-            'absolute inset-0 transition-all duration-700',
-            selected
-              ? 'bg-white/5'
-              : 'bg-gradient-to-t from-light-bg dark:from-dark-bg via-light-bg/10 dark:via-dark-bg/10 via-50%'
-          )}
-        />
-
-        {/* CONTENT */}
-        <div className="absolute inset-0 flex flex-col justify-end p-6">
+          {/* BLUR */}
           <div
             className={cn(
-              'transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
-              selected ? 'translate-y-0' : 'translate-y-6'
+              'backdrop-blur-sm',
+              'pointer-events-none absolute inset-x-0 bottom-0 h-[60%]',
+              '[mask-image:linear-gradient(to_top,black_0%,black_15%,rgba(0,0,0,0.8)_40%,transparent_100%)]',
+              '[-webkit-mask-image:linear-gradient(to_top,black_0%,black_15%,rgba(0,0,0,0.8)_40%,transparent_100%)]'
             )}
-          >
-            <div className={`transition-all duration-700 ${selected ? 'pr-14' : ''}`}>
-              <h4 className={cn(selected ? 'line-clamp-none mr-[45px]' : 'line-clamp-1')}>
-                {first_name} {last_name}
-              </h4>
+          />
 
-              <h5
-                className={cn('font-bold', selected ? 'line-clamp-none mr-[45px]' : 'line-clamp-1')}
-              >
-                {position}
-              </h5>
-            </div>
+          {/* GRADIENT */}
+          <div
+            className={cn(
+              'pointer-events-none absolute inset-0',
+              'bg-gradient-to-t from-black/90 via-30% via-black/20 to-75% to-black/10'
+            )}
+          />
 
-            <div className="w-[45px] h-[2px] bg-brand-primary rounded-full mt-4" />
-
+          <div className="absolute inset-0 flex flex-col justify-end p-5 pb-2 text-light-gray dark:bg-dark-gray">
+            <h5 className="font-bold text-white">
+              {first_name} {last_name}
+            </h5>
+            <h6 className="font-normal">{position}</h6>
             <p
+              aria-hidden="true"
               className={cn(
-                'text-light-secondaryText dark:text-dark-primaryText body-large overflow-hidden transition-all duration-700',
-                selected
-                  ? 'max-h-[300px] overflow-y-auto scrollbar-hide mt-4'
-                  : 'max-h-[3.2rem] line-clamp-2 mt-4'
+                'peek line-clamp-2',
+                'mt-0 max-h-0 opacity-0 translate-y-2 overflow-hidden overscroll-contain',
+                'transition-all duration-300 ease-out motion-reduce:transition-none',
+                '[.group:focus-visible_&]:mt-3 [.group:focus-visible_&]:max-h-16 [.group:focus-visible_&]:opacity-100 [.group:focus-visible_&]:translate-y-0'
               )}
             >
               {description}
             </p>
+            <span
+              className={cn(
+                'text-xs uppercase tracking-wide text-brand-primary',
+                'opacity-0 transition-opacity duration-300 motion-reduce:transition-none',
+                '[.group:focus-visible_&]:opacity-100 [.group:focus-visible_&]:mb-5 [.group:focus-visible_&]:mt-3'
+              )}
+            >
+              <Kbd>Enter</Kbd> to read full bio
+            </span>
           </div>
+        </div>
+
+        {/* BACK */}
+        <div
+          id={descId}
+          className="absolute inset-0 overflow-hidden rounded-lg border-[1.5px] border-light-gray dark:border-dark-gray bg-white dark:bg-dark-gray p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col justify-between"
+        >
+          <div className="flex items-center gap-3">
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
+              <Image
+                width={48}
+                height={48}
+                src={image}
+                alt={`Profile picture of ${first_name} ${last_name}`}
+                className="h-full w-full object-cover"
+              />
+            </div>
+
+            <div>
+              <h5 className="font-bold">
+                {first_name} {last_name}
+              </h5>
+              <h6 className="font-normal">{position}</h6>
+            </div>
+          </div>
+
+          <p className="mt-3 text-light-secondaryText dark:text-dark-primaryText overflow-y-auto scrollbar-hide max-h-[300px] y-scrollbox overscroll-contain">
+            {description}
+          </p>
+
+          <span
+            aria-hidden="true"
+            className={cn(
+              'text-xs uppercase tracking-wide text-light-secondaryText dark:text-dark-primaryText',
+              'opacity-0 transition-opacity duration-300 motion-reduce:transition-none',
+              '[.group:focus-visible_&]:opacity-100 [.group:focus-visible_&]:mt-3'
+            )}
+          >
+            <Kbd>Enter</Kbd> to go back
+          </span>
         </div>
       </button>
     </div>

@@ -8,33 +8,15 @@ interface SectionHeaderProps {
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({ id, title, subtitle }) => (
   <div id={id} className="relative">
-    {/* Desktop */}
-    <div className="hidden sm:block">
-      <div className="flex gap-3">
-        <div className="w-[3px] min-h-full bg-brand-primary rounded-full" />
-        <div className="flex flex-col gap-2 w-full">
-          {subtitle && (
-            <h5
-              className={`font-light text-light-navy dark:text-dark-navy tracking-wider uppercase`}
-            >
-              {subtitle}
-            </h5>
-          )}
-          <h2 className="capitalize">{title}</h2>
-        </div>
-      </div>
-    </div>
-
-    {/* Mobile */}
-    <div className="sm:hidden flex flex-col items-center justify-center gap-3">
-      <h2 className="text-center capitalize">{title}</h2>
-      <div className="w-10 h-[2px] bg-brand-primary rounded-full" />
+    <div className="flex flex-col gap-3 w-fit">
+      <h2 className="capitalize leading-none">{title}</h2>
       {subtitle && (
-        <h5
-          className={`font-light text-light-navy dark:text-brand-primary text-center tracking-wider uppercase`}
-        >
-          {subtitle}
-        </h5>
+        <>
+          <h5 className="font-light text-light-navy dark:text-dark-navy tracking-wider uppercase">
+            {subtitle}
+          </h5>
+          <div className="w-[15%] h-[2px] bg-brand-primary rounded-full" />
+        </>
       )}
     </div>
   </div>

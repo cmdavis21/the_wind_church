@@ -1,5 +1,4 @@
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
-import UpArrow from '@/components/icons/up-arrow';
 import { getPromoDetails } from '@/data/server/sanity/queries/promo-details';
 import cn from 'classnames';
 import { getTranslations } from 'next-intl/server';
@@ -66,12 +65,7 @@ const FooterPromoBanner = async () => {
           <h5>{promoDetails.description}</h5>
           {promoDetails.link && (
             <Link href={promoDetails.link.href} className="mt-md">
-              <AnimativeFillButton>
-                <div className="flex items-center gap-xxs group">
-                  {promoDetails.link.label}{' '}
-                  <UpArrow className="size-[18px] dark:fill-dark-primaryText rotate-45 group-hover:rotate-90 transition-all duration-300" />
-                </div>
-              </AnimativeFillButton>
+              <AnimativeFillButton>{promoDetails.link.label}</AnimativeFillButton>
             </Link>
           )}
         </div>

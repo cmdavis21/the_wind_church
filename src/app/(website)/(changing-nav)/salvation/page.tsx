@@ -78,7 +78,7 @@ const Salvation = () => (
     <PageHero
       size="short"
       title="Salvation"
-      subtitle="Jesus is here for you. Always."
+      description="Jesus is here for you. Always."
       media={{ src: '/images/salvation/cross-on-mount.webp' }}
     />
 

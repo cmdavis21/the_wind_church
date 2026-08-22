@@ -137,7 +137,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
           {slides.map((slide) => (
             <div
               key={`media-with-side-text-${slide.title}`}
-              className="w-full 2xl:max-w-[70%] h-[95vh] px-6xl pb-6xl flex flex-col gap-md justify-end text-white dark:text-dark-primaryText"
+              className="max-width-center h-[95vh] pb-6xl px-padding flex flex-col gap-md justify-end text-white dark:text-dark-primaryText"
             >
               <h5 className="max-w-[75%]">{slide.description}</h5>
               <div className="w-4xl h-px bg-brand-primary rounded-sm" />

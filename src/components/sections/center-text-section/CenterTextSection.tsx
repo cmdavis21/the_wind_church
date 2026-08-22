@@ -8,7 +8,7 @@ interface CenterTextSectionProps {
 }
 
 const CenterTextSection: React.FC<CenterTextSectionProps> = ({ title, highlight, description }) => (
-  <div className="flex flex-col gap-lg max-w-[1000px] font-light text-center mx-auto">
+  <div className="flex flex-col gap-lg max-w-[700px] font-light text-center mx-auto">
     {highlight && typeof title === 'string' ? (
       <Text htmlTag="h2" highlight={highlight}>
         {title}
