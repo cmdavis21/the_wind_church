@@ -104,10 +104,7 @@ const Home = async () => {
           During worship, kids will sit in the designated area. For service, kids will be lead to
           our classrooms where they can be taught at a level for them. We also provide a nursery for
           infants and toddlers. You can learn more about your kid&apos;s cirriculum{' '}
-          <Link
-            href={PageRoutes.nextGen}
-            className="hover:underline text-light-navy dark:text-dark-navy"
-          >
+          <Link href={PageRoutes.nextGen} className="text-link underline">
             here
           </Link>
         </>
@@ -175,16 +172,12 @@ const Home = async () => {
             <Link
               href="https://www.google.com/search?q=wind+of+the+spirit+worship+center"
               target="_blank"
-              className="text-light-navy dark:text-brand-primary underline hover:scale-105"
+              className="text-link underline"
             >
               in person
             </Link>{' '}
             or{' '}
-            <Link
-              href={YOUTUBE}
-              target="_blank"
-              className="text-light-navy dark:text-brand-primary underline hover:scale-105"
-            >
+            <Link href={YOUTUBE} target="_blank" className="text-link underline">
               online,
             </Link>{' '}
             we&apos;d love to meet you and help you take your next step with Jesus.

@@ -299,7 +299,7 @@ const NextGenRosterSignupForm = () => {
               ],
             })
           }
-          className="w-fit flex items-center gap-1 body-large hover:underline text-light-navy dark:text-dark-navy"
+          className="w-fit flex items-center gap-1 body-large hover:underline text-link"
         >
           <CirclePlus className="size-[16px] fill-light-navy dark:fill-dark-navy" />
           Add another child

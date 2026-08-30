@@ -45,9 +45,9 @@ const ResourceCenterClient = () => {
       {resourcesLoading &&
         Array.from({ length: 2 }).map((_, index) => (
           <div key={`resource-cat-skeleton-${index}`} className="flex flex-col gap-xl md:gap-xxl">
-            <SectionHeaderSkeleton />
+            <SectionHeaderSkeleton subtitle={false} />
 
-            <div className="hidden sm:flex flex-wrap gap-xl">
+            <div className="flex flex-wrap gap-xl">
               {Array.from({ length: 5 }).map((_, idx) => (
                 <ResourceCardSkeleton key={`resource-skeleton-${idx}`} />
               ))}
@@ -66,7 +66,7 @@ const ResourceCenterClient = () => {
             <div key={`resource-cat-${cat}`} className="flex flex-col gap-xl md:gap-xxl">
               <SectionHeader title={cat} />
 
-              <div className="hidden sm:flex flex-wrap gap-xl">
+              <div className="flex flex-wrap gap-xl">
                 {resourceList.map((resource) => (
                   <ResourceCard key={`resource-${resource.title}`} {...resource} />
                 ))}

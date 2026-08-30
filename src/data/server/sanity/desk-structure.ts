@@ -6,15 +6,14 @@ import ChildReaching from '@/components/icons/child-reaching';
 
 import PencilPaper from '@/components/icons/pencilPaper';
 
+import Bible from '@/components/icons/bible';
 import FileIcon from '@/components/icons/file';
 import Gift from '@/components/icons/gift';
 import Globe from '@/components/icons/globe';
 import Handshake from '@/components/icons/handshake';
 import PeopleGroup from '@/components/icons/people-group';
 import PersonPraying from '@/components/icons/person-praying';
-import PersonWithChalkboard from '@/components/icons/person-with-chalkboard';
 import Question from '@/components/icons/question';
-import Quote from '@/components/icons/quote';
 import User from '@/components/icons/user';
 
 type docAttributes = {
@@ -32,8 +31,8 @@ const websiteDocsWithIcons: docAttributes[] = [
   { id: 'event', title: 'Events', icon: Calendar },
   { id: 'ministry', title: 'Ministries', icon: PeopleGroup },
   { id: 'leader', title: 'Leaders', icon: User },
-  { id: 'deepDive', title: 'Deep Dives', icon: PersonWithChalkboard },
-  { id: 'testimonial', title: 'Testimonials', icon: Quote },
+  { id: 'deepDive', title: 'Deep Dives', icon: Bible },
+  { id: 'testimonial', title: 'Testimonials', icon: Bullhorn },
   { id: 'resource', title: 'Resource Center', icon: FileIcon },
 ];
 

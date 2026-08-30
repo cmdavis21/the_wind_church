@@ -127,7 +127,7 @@ const Give = () => {
       description: (
         <>
           You can donate anything that will go to support our community. Email{' '}
-          <Link href="mailto:thewindchurch@outlook.com" className="underline text-brand-primary">
+          <Link href="mailto:thewindchurch@outlook.com" className="text-link underline">
             thewindchurch@outlook.com
           </Link>{' '}
           for more information.
@@ -285,13 +285,13 @@ const Give = () => {
               email{' '}
               <Link
                 href="mailto:thewindchurch@outlook.com"
-                className="text-brand-primary hover:underline break-normal"
+                className="text-link underline break-normal"
               >
                 thewindchurch@outlook.com
               </Link>{' '}
               <br />
               or call{' '}
-              <Link href={'tel:9513590203'} className="text-brand-primary hover:underline">
+              <Link href={'tel:9513590203'} className="text-link underline">
                 (951) 359-0203
               </Link>
               .

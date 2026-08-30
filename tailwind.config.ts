@@ -68,6 +68,7 @@ const config: Config = {
         success: '#2E7D32',
         warning: '#F9A825',
         error: '#D32F2F',
+        link: '#0067C0',
 
         brand: {
           primary: '#fdd738',

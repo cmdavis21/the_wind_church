@@ -20,6 +20,7 @@ import Dove from '@/components/icons/dove';
 import Fire from '@/components/icons/fire';
 import FlagCheckered from '@/components/icons/flag-checkered';
 import Gift from '@/components/icons/gift';
+import Handshake from '@/components/icons/handshake';
 import LifeRing from '@/components/icons/life-ring';
 import Paintbrush from '@/components/icons/paintbursh';
 import PeopleGroup from '@/components/icons/people-group';
@@ -201,7 +202,7 @@ const About = async () => {
       title: t('foursquare.accordionItem2.title'),
       items: [
         {
-          icon: PeopleGroup,
+          icon: Handshake,
           title: t('foursquare.accordionItem2.relationship.title'),
           verse: t('foursquare.accordionItem2.relationship.verse'),
           passage: t('foursquare.accordionItem2.relationship.description'),

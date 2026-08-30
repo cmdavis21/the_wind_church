@@ -15,6 +15,7 @@ import Flag from '@/components/icons/flag';
 import FlagCheckered from '@/components/icons/flag-checkered';
 import Gift from '@/components/icons/gift';
 import HandHoldingHeart from '@/components/icons/hand-holding-heart';
+import Handshake from '@/components/icons/handshake';
 import LifeRing from '@/components/icons/life-ring';
 import Location from '@/components/icons/location';
 import Paintbrush from '@/components/icons/paintbursh';
@@ -22,7 +23,6 @@ import PeopleGroup from '@/components/icons/people-group';
 import PersonFalling from '@/components/icons/person-falling';
 import PersonPraying from '@/components/icons/person-praying';
 import PersonWalking from '@/components/icons/person-walking';
-import PersonWithChalkboard from '@/components/icons/person-with-chalkboard';
 import Seedling from '@/components/icons/seedling';
 import SunWithClouds from '@/components/icons/sun-with-clouds';
 import Temperature from '@/components/icons/temperature';
@@ -52,6 +52,8 @@ const FoursquareClient = () => {
   };
 
   const titles = ['Intro', 'History', 'Beliefs', 'Symbols'];
+
+  const lastIndex = titles.length - 1;
 
   const foursquareBeliefsArr = [
     {
@@ -85,7 +87,7 @@ const FoursquareClient = () => {
       passage: t('foursquare.accordionItem1.fall.description'),
     },
     {
-      icon: PeopleGroup,
+      icon: Handshake,
       title: t('foursquare.accordionItem2.relationship.title'),
       verse: t('foursquare.accordionItem2.relationship.verse'),
       passage: t('foursquare.accordionItem2.relationship.description'),
@@ -215,7 +217,7 @@ const FoursquareClient = () => {
             </h4>
           </div>
         </TabItem>
-        <TabItem title={titles[1]} icon={PersonWithChalkboard}>
+        <TabItem title={titles[1]} icon={Buidling}>
           <div className="flex flex-col gap-xl p-lg">
             <div className="py-lg">
               <SectionHeader title="Foursquare History" subtitle="How it all began..." />
@@ -313,7 +315,7 @@ const FoursquareClient = () => {
             <h4 className="text-justify">
               For more information about the International Church of the Foursquare Gospel (ICFG),
               visit{' '}
-              <Link href="www.foursquare.org." className="text-blue-500 underline" target="_blank">
+              <Link href="www.foursquare.org." className="text-link underline" target="_blank">
                 www.foursquare.org.
               </Link>
             </h4>
@@ -468,32 +470,34 @@ const FoursquareClient = () => {
       </Tabs>
 
       <div className="-mt-2 flex justify-end items-center gap-md p-md">
+        {/* Previous label */}
         <p className="italic font-light text-light-charcoal text-dark-charcoal">
-          {titles[active === 0 ? titles.length - 1 : active - 1]}
+          {titles[active === 0 ? lastIndex : active - 1]}
         </p>
+
         <CarouselArrows
           className="w-fit"
           leftArrowProps={{
             onClick: () => {
-              if (active === 0) {
-                setActive(titles.length - 1);
-              } else setActive(active - 1);
-              tabsRef.current?.setActiveTab(active - 1);
+              const newIndex = active === 0 ? lastIndex : active - 1;
+              setActive(newIndex);
+              tabsRef.current?.setActiveTab(newIndex);
               scrollFunc();
             },
           }}
           rightArrowProps={{
             onClick: () => {
-              if (active === titles.length) {
-                setActive(0);
-              } else setActive(active + 1);
-              tabsRef.current?.setActiveTab(active + 1);
+              const newIndex = active === lastIndex ? 0 : active + 1;
+              setActive(newIndex);
+              tabsRef.current?.setActiveTab(newIndex);
               scrollFunc();
             },
           }}
         />
+
+        {/* Next label */}
         <p className="italic font-light text-light-charcoal text-dark-charcoal">
-          {titles[active === titles.length ? 0 : active + 1]}
+          {titles[active === lastIndex ? 0 : active + 1]}
         </p>
       </div>
     </div>
