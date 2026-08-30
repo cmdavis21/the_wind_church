@@ -124,6 +124,10 @@
         {
           "label": "Sermons",
           "link": "/sermons"
+        },
+        {
+          "label": "Resource Center",
+          "link": "/resource-center"
         }
       ]
     },
@@ -506,10 +510,10 @@
       "description": "Watch or listen to recent sermons from The Wind Church and grow in your faith anytime, anywhere."
     }
   },
-  "WindLeaders": {
+  "resources": {
     "metadata": {
-      "title": "WIND Leaders",
-      "description": "Meet the dedicated leaders who serve and guide our church community with wisdom and compassion."
+      "title": "Resource Center",
+      "description": "Access important documents, forms, and resources shared within The Wind Church. Download files directly from this page whenever you need them."
     }
   }
 }

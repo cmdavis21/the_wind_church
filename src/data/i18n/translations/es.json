@@ -124,6 +124,10 @@
         {
           "label": "Sermones",
           "link": "/sermons"
+        },
+        {
+          "label": "Centro de Recursos",
+          "link": "/resource-center"
         }
       ]
     },
@@ -509,6 +513,12 @@
     "metadata": {
       "title": "Líderes WIND",
       "description": "Conoce a los líderes dedicados que sirven y guían a nuestra comunidad con sabiduría y compasión."
+    }
+  },
+  "resourceCenter": {
+    "metadata": {
+      "title": "Centro de Recursos",
+      "description": "Accede a documentos, formularios y recursos importantes compartidos dentro de The Wind Church. Descarga los archivos directamente desde esta página cuando los necesites."
     }
   }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import { AllTypesProps, ReturnTypes, Ops } from './const';
-export const HOST = "https://pyayajuh.api.sanity.io/v2023-08-01/graphql/production/default"
+export const HOST = "https://pyayajuh.api.sanity.io/v2025-03-04/graphql/production/default"
 
 
 export const HEADERS = {}
@@ -1113,6 +1113,8 @@ PromoBanner?: [{	/** PromoBanner document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["PromoBanner"]],
 Testimonial?: [{	/** Testimonial document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["Testimonial"]],
+Resource?: [{	/** Resource document ID */
+	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["Resource"]],
 Document?: [{	/** Document document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["Document"]],
 allSanityImageAsset?: [{	where?: ValueTypes["SanityImageAssetFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["SanityImageAssetSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
@@ -1163,6 +1165,9 @@ allPromoBanner?: [{	where?: ValueTypes["PromoBannerFilter"] | undefined | null |
 allTestimonial?: [{	where?: ValueTypes["TestimonialFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["TestimonialSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Testimonial"]],
+allResource?: [{	where?: ValueTypes["ResourceFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["ResourceSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
+	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
+	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Resource"]],
 allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DocumentSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Document"]],
@@ -1227,6 +1232,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 		['...on NextGenPage']?: Omit<ValueTypes["NextGenPage"],keyof ValueTypes["Document"]>;
 		['...on PromoBanner']?: Omit<ValueTypes["PromoBanner"],keyof ValueTypes["Document"]>;
 		['...on Testimonial']?: Omit<ValueTypes["Testimonial"],keyof ValueTypes["Document"]>;
+		['...on Resource']?: Omit<ValueTypes["Resource"],keyof ValueTypes["Document"]>;
 		__typename?: boolean | `@${string}`
 }>;
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
@@ -1724,6 +1730,35 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	image?:ValueTypes["Image"],
 		__typename?: boolean | `@${string}`,
 	['...on Testimonial']?: Omit<ValueTypes["Testimonial"], "...on Testimonial">
+}>;
+	["Resource"]: AliasType<{
+	/** Document ID */
+	_id?:boolean | `@${string}`,
+	/** Document type */
+	_type?:boolean | `@${string}`,
+	/** Date the document was created */
+	_createdAt?:boolean | `@${string}`,
+	/** Date the document was last modified */
+	_updatedAt?:boolean | `@${string}`,
+	/** Current document revision */
+	_rev?:boolean | `@${string}`,
+	_key?:boolean | `@${string}`,
+	title?:boolean | `@${string}`,
+	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
+	type?:boolean | `@${string}`,
+	/** A one sentence explanation of what this resource is or how it should be used. */
+	description?:boolean | `@${string}`,
+	/** Choose the group this resource belongs to. */
+	category?:boolean | `@${string}`,
+	file?:ValueTypes["File"],
+	/** Add the file size or format (e.g., “PDF – 497 KB”). */
+	file_size?:boolean | `@${string}`,
+	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
+	url?:boolean | `@${string}`,
+	/** Toggle to hide the resource from the website without deleting it. */
+	is_active?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`,
+	['...on Resource']?: Omit<ValueTypes["Resource"], "...on Resource">
 }>;
 	["SanityImageAssetFilter"]: {
 	/** Apply filters on document level */
@@ -2504,6 +2539,40 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	statement?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>
 };
+	["ResourceFilter"]: {
+	/** Apply filters on document level */
+	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
+	_id?: ValueTypes["IDFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_createdAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
+	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
+	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	title?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	category?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	file?: ValueTypes["FileFilter"] | undefined | null | Variable<any, string>,
+	file_size?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	url?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	is_active?: ValueTypes["BooleanFilter"] | undefined | null | Variable<any, string>
+};
+	["ResourceSorting"]: {
+	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_createdAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	title?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	category?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	file?: ValueTypes["FileSorting"] | undefined | null | Variable<any, string>,
+	file_size?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	url?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	is_active?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+};
 	["DocumentFilter"]: {
 	/** Apply filters on document level */
 	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
@@ -2635,6 +2704,8 @@ PromoBanner?: [{	/** PromoBanner document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["PromoBanner"]],
 Testimonial?: [{	/** Testimonial document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["Testimonial"]],
+Resource?: [{	/** Resource document ID */
+	id: ResolverInputTypes["ID"]},ResolverInputTypes["Resource"]],
 Document?: [{	/** Document document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["Document"]],
 allSanityImageAsset?: [{	where?: ResolverInputTypes["SanityImageAssetFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["SanityImageAssetSorting"]> | undefined | null,	/** Max documents to return */
@@ -2685,6 +2756,9 @@ allPromoBanner?: [{	where?: ResolverInputTypes["PromoBannerFilter"] | undefined 
 allTestimonial?: [{	where?: ResolverInputTypes["TestimonialFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["TestimonialSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["Testimonial"]],
+allResource?: [{	where?: ResolverInputTypes["ResourceFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["ResourceSorting"]> | undefined | null,	/** Max documents to return */
+	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
+	offset?: number | undefined | null},ResolverInputTypes["Resource"]],
 allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["DocumentSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["Document"]],
@@ -2747,6 +2821,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 		['...on NextGenPage']?: Omit<ResolverInputTypes["NextGenPage"],keyof ResolverInputTypes["Document"]>;
 		['...on PromoBanner']?: Omit<ResolverInputTypes["PromoBanner"],keyof ResolverInputTypes["Document"]>;
 		['...on Testimonial']?: Omit<ResolverInputTypes["Testimonial"],keyof ResolverInputTypes["Document"]>;
+		['...on Resource']?: Omit<ResolverInputTypes["Resource"],keyof ResolverInputTypes["Document"]>;
 		__typename?: boolean | `@${string}`
 }>;
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
@@ -3212,6 +3287,34 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	/** The person's statement (1-3 sentences). */
 	statement?:boolean | `@${string}`,
 	image?:ResolverInputTypes["Image"],
+		__typename?: boolean | `@${string}`
+}>;
+	["Resource"]: AliasType<{
+	/** Document ID */
+	_id?:boolean | `@${string}`,
+	/** Document type */
+	_type?:boolean | `@${string}`,
+	/** Date the document was created */
+	_createdAt?:boolean | `@${string}`,
+	/** Date the document was last modified */
+	_updatedAt?:boolean | `@${string}`,
+	/** Current document revision */
+	_rev?:boolean | `@${string}`,
+	_key?:boolean | `@${string}`,
+	title?:boolean | `@${string}`,
+	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
+	type?:boolean | `@${string}`,
+	/** A one sentence explanation of what this resource is or how it should be used. */
+	description?:boolean | `@${string}`,
+	/** Choose the group this resource belongs to. */
+	category?:boolean | `@${string}`,
+	file?:ResolverInputTypes["File"],
+	/** Add the file size or format (e.g., “PDF – 497 KB”). */
+	file_size?:boolean | `@${string}`,
+	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
+	url?:boolean | `@${string}`,
+	/** Toggle to hide the resource from the website without deleting it. */
+	is_active?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["SanityImageAssetFilter"]: {
@@ -3993,6 +4096,40 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	statement?: ResolverInputTypes["SortOrder"] | undefined | null,
 	image?: ResolverInputTypes["ImageSorting"] | undefined | null
 };
+	["ResourceFilter"]: {
+	/** Apply filters on document level */
+	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
+	_id?: ResolverInputTypes["IDFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_createdAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
+	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
+	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	title?: ResolverInputTypes["StringFilter"] | undefined | null,
+	type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	description?: ResolverInputTypes["StringFilter"] | undefined | null,
+	category?: ResolverInputTypes["StringFilter"] | undefined | null,
+	file?: ResolverInputTypes["FileFilter"] | undefined | null,
+	file_size?: ResolverInputTypes["StringFilter"] | undefined | null,
+	url?: ResolverInputTypes["StringFilter"] | undefined | null,
+	is_active?: ResolverInputTypes["BooleanFilter"] | undefined | null
+};
+	["ResourceSorting"]: {
+	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_createdAt?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
+	title?: ResolverInputTypes["SortOrder"] | undefined | null,
+	type?: ResolverInputTypes["SortOrder"] | undefined | null,
+	description?: ResolverInputTypes["SortOrder"] | undefined | null,
+	category?: ResolverInputTypes["SortOrder"] | undefined | null,
+	file?: ResolverInputTypes["FileSorting"] | undefined | null,
+	file_size?: ResolverInputTypes["SortOrder"] | undefined | null,
+	url?: ResolverInputTypes["SortOrder"] | undefined | null,
+	is_active?: ResolverInputTypes["SortOrder"] | undefined | null
+};
 	["DocumentFilter"]: {
 	/** Apply filters on document level */
 	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -4104,6 +4241,7 @@ export type ModelTypes = {
 	NextGenPage?: ModelTypes["NextGenPage"] | undefined | null,
 	PromoBanner?: ModelTypes["PromoBanner"] | undefined | null,
 	Testimonial?: ModelTypes["Testimonial"] | undefined | null,
+	Resource?: ModelTypes["Resource"] | undefined | null,
 	Document?: ModelTypes["Document"] | undefined | null,
 	allSanityImageAsset: Array<ModelTypes["SanityImageAsset"]>,
 	allSanityFileAsset: Array<ModelTypes["SanityFileAsset"]>,
@@ -4121,6 +4259,7 @@ export type ModelTypes = {
 	allNextGenPage: Array<ModelTypes["NextGenPage"]>,
 	allPromoBanner: Array<ModelTypes["PromoBanner"]>,
 	allTestimonial: Array<ModelTypes["Testimonial"]>,
+	allResource: Array<ModelTypes["Resource"]>,
 	allDocument: Array<ModelTypes["Document"]>
 };
 	["SanityImageAsset"]: {
@@ -4152,7 +4291,7 @@ export type ModelTypes = {
 	source?: ModelTypes["SanityAssetSourceData"] | undefined | null
 };
 	/** A Sanity document */
-["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenGuardianInquiry"] | ModelTypes["Event"] | ModelTypes["Ministry"] | ModelTypes["Leader"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["PromoBanner"] | ModelTypes["Testimonial"];
+["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenGuardianInquiry"] | ModelTypes["Event"] | ModelTypes["Ministry"] | ModelTypes["Leader"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["PromoBanner"] | ModelTypes["Testimonial"] | ModelTypes["Resource"];
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["DateTime"]:any;
 	["SanityImageMetadata"]: {
@@ -4586,6 +4725,33 @@ export type ModelTypes = {
 	/** The person's statement (1-3 sentences). */
 	statement?: string | undefined | null,
 	image?: ModelTypes["Image"] | undefined | null
+};
+	["Resource"]: {
+		/** Document ID */
+	_id?: ModelTypes["ID"] | undefined | null,
+	/** Document type */
+	_type?: string | undefined | null,
+	/** Date the document was created */
+	_createdAt?: ModelTypes["DateTime"] | undefined | null,
+	/** Date the document was last modified */
+	_updatedAt?: ModelTypes["DateTime"] | undefined | null,
+	/** Current document revision */
+	_rev?: string | undefined | null,
+	_key?: string | undefined | null,
+	title?: string | undefined | null,
+	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
+	type?: string | undefined | null,
+	/** A one sentence explanation of what this resource is or how it should be used. */
+	description?: string | undefined | null,
+	/** Choose the group this resource belongs to. */
+	category?: string | undefined | null,
+	file?: ModelTypes["File"] | undefined | null,
+	/** Add the file size or format (e.g., “PDF – 497 KB”). */
+	file_size?: string | undefined | null,
+	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
+	url?: string | undefined | null,
+	/** Toggle to hide the resource from the website without deleting it. */
+	is_active?: boolean | undefined | null
 };
 	["SanityImageAssetFilter"]: {
 	/** Apply filters on document level */
@@ -5366,6 +5532,40 @@ export type ModelTypes = {
 	statement?: ModelTypes["SortOrder"] | undefined | null,
 	image?: ModelTypes["ImageSorting"] | undefined | null
 };
+	["ResourceFilter"]: {
+	/** Apply filters on document level */
+	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
+	_id?: ModelTypes["IDFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null,
+	_createdAt?: ModelTypes["DatetimeFilter"] | undefined | null,
+	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
+	_rev?: ModelTypes["StringFilter"] | undefined | null,
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	title?: ModelTypes["StringFilter"] | undefined | null,
+	type?: ModelTypes["StringFilter"] | undefined | null,
+	description?: ModelTypes["StringFilter"] | undefined | null,
+	category?: ModelTypes["StringFilter"] | undefined | null,
+	file?: ModelTypes["FileFilter"] | undefined | null,
+	file_size?: ModelTypes["StringFilter"] | undefined | null,
+	url?: ModelTypes["StringFilter"] | undefined | null,
+	is_active?: ModelTypes["BooleanFilter"] | undefined | null
+};
+	["ResourceSorting"]: {
+	_id?: ModelTypes["SortOrder"] | undefined | null,
+	_type?: ModelTypes["SortOrder"] | undefined | null,
+	_createdAt?: ModelTypes["SortOrder"] | undefined | null,
+	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
+	_rev?: ModelTypes["SortOrder"] | undefined | null,
+	_key?: ModelTypes["SortOrder"] | undefined | null,
+	title?: ModelTypes["SortOrder"] | undefined | null,
+	type?: ModelTypes["SortOrder"] | undefined | null,
+	description?: ModelTypes["SortOrder"] | undefined | null,
+	category?: ModelTypes["SortOrder"] | undefined | null,
+	file?: ModelTypes["FileSorting"] | undefined | null,
+	file_size?: ModelTypes["SortOrder"] | undefined | null,
+	url?: ModelTypes["SortOrder"] | undefined | null,
+	is_active?: ModelTypes["SortOrder"] | undefined | null
+};
 	["DocumentFilter"]: {
 	/** Apply filters on document level */
 	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -5472,6 +5672,7 @@ export type GraphQLTypes = {
 	NextGenPage?: GraphQLTypes["NextGenPage"] | undefined | null,
 	PromoBanner?: GraphQLTypes["PromoBanner"] | undefined | null,
 	Testimonial?: GraphQLTypes["Testimonial"] | undefined | null,
+	Resource?: GraphQLTypes["Resource"] | undefined | null,
 	Document?: GraphQLTypes["Document"] | undefined | null,
 	allSanityImageAsset: Array<GraphQLTypes["SanityImageAsset"]>,
 	allSanityFileAsset: Array<GraphQLTypes["SanityFileAsset"]>,
@@ -5489,6 +5690,7 @@ export type GraphQLTypes = {
 	allNextGenPage: Array<GraphQLTypes["NextGenPage"]>,
 	allPromoBanner: Array<GraphQLTypes["PromoBanner"]>,
 	allTestimonial: Array<GraphQLTypes["Testimonial"]>,
+	allResource: Array<GraphQLTypes["Resource"]>,
 	allDocument: Array<GraphQLTypes["Document"]>,
 	['...on RootQuery']: Omit<GraphQLTypes["RootQuery"], "...on RootQuery">
 };
@@ -5524,7 +5726,7 @@ export type GraphQLTypes = {
 };
 	/** A Sanity document */
 ["Document"]: {
-	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenGuardianInquiry" | "Event" | "Ministry" | "Leader" | "DeepDive" | "NextGenPage" | "PromoBanner" | "Testimonial",
+	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenGuardianInquiry" | "Event" | "Ministry" | "Leader" | "DeepDive" | "NextGenPage" | "PromoBanner" | "Testimonial" | "Resource",
 	/** Document ID */
 	_id?: GraphQLTypes["ID"] | undefined | null,
 	/** Document type */
@@ -5551,6 +5753,7 @@ export type GraphQLTypes = {
 	['...on NextGenPage']: '__union' & GraphQLTypes["NextGenPage"];
 	['...on PromoBanner']: '__union' & GraphQLTypes["PromoBanner"];
 	['...on Testimonial']: '__union' & GraphQLTypes["Testimonial"];
+	['...on Resource']: '__union' & GraphQLTypes["Resource"];
 };
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["DateTime"]: "scalar" & { name: "DateTime" };
@@ -6047,6 +6250,35 @@ export type GraphQLTypes = {
 	statement?: string | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
 	['...on Testimonial']: Omit<GraphQLTypes["Testimonial"], "...on Testimonial">
+};
+	["Resource"]: {
+	__typename: "Resource",
+	/** Document ID */
+	_id?: GraphQLTypes["ID"] | undefined | null,
+	/** Document type */
+	_type?: string | undefined | null,
+	/** Date the document was created */
+	_createdAt?: GraphQLTypes["DateTime"] | undefined | null,
+	/** Date the document was last modified */
+	_updatedAt?: GraphQLTypes["DateTime"] | undefined | null,
+	/** Current document revision */
+	_rev?: string | undefined | null,
+	_key?: string | undefined | null,
+	title?: string | undefined | null,
+	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
+	type?: string | undefined | null,
+	/** A one sentence explanation of what this resource is or how it should be used. */
+	description?: string | undefined | null,
+	/** Choose the group this resource belongs to. */
+	category?: string | undefined | null,
+	file?: GraphQLTypes["File"] | undefined | null,
+	/** Add the file size or format (e.g., “PDF – 497 KB”). */
+	file_size?: string | undefined | null,
+	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
+	url?: string | undefined | null,
+	/** Toggle to hide the resource from the website without deleting it. */
+	is_active?: boolean | undefined | null,
+	['...on Resource']: Omit<GraphQLTypes["Resource"], "...on Resource">
 };
 	["SanityImageAssetFilter"]: {
 		/** Apply filters on document level */
@@ -6827,6 +7059,40 @@ export type GraphQLTypes = {
 	statement?: GraphQLTypes["SortOrder"] | undefined | null,
 	image?: GraphQLTypes["ImageSorting"] | undefined | null
 };
+	["ResourceFilter"]: {
+		/** Apply filters on document level */
+	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
+	_id?: GraphQLTypes["IDFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null,
+	_createdAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
+	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
+	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
+	_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	title?: GraphQLTypes["StringFilter"] | undefined | null,
+	type?: GraphQLTypes["StringFilter"] | undefined | null,
+	description?: GraphQLTypes["StringFilter"] | undefined | null,
+	category?: GraphQLTypes["StringFilter"] | undefined | null,
+	file?: GraphQLTypes["FileFilter"] | undefined | null,
+	file_size?: GraphQLTypes["StringFilter"] | undefined | null,
+	url?: GraphQLTypes["StringFilter"] | undefined | null,
+	is_active?: GraphQLTypes["BooleanFilter"] | undefined | null
+};
+	["ResourceSorting"]: {
+		_id?: GraphQLTypes["SortOrder"] | undefined | null,
+	_type?: GraphQLTypes["SortOrder"] | undefined | null,
+	_createdAt?: GraphQLTypes["SortOrder"] | undefined | null,
+	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
+	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
+	_key?: GraphQLTypes["SortOrder"] | undefined | null,
+	title?: GraphQLTypes["SortOrder"] | undefined | null,
+	type?: GraphQLTypes["SortOrder"] | undefined | null,
+	description?: GraphQLTypes["SortOrder"] | undefined | null,
+	category?: GraphQLTypes["SortOrder"] | undefined | null,
+	file?: GraphQLTypes["FileSorting"] | undefined | null,
+	file_size?: GraphQLTypes["SortOrder"] | undefined | null,
+	url?: GraphQLTypes["SortOrder"] | undefined | null,
+	is_active?: GraphQLTypes["SortOrder"] | undefined | null
+};
 	["DocumentFilter"]: {
 		/** Apply filters on document level */
 	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -6998,6 +7264,8 @@ type ZEUS_VARIABLES = {
 	["LinkSorting"]: ValueTypes["LinkSorting"];
 	["TestimonialFilter"]: ValueTypes["TestimonialFilter"];
 	["TestimonialSorting"]: ValueTypes["TestimonialSorting"];
+	["ResourceFilter"]: ValueTypes["ResourceFilter"];
+	["ResourceSorting"]: ValueTypes["ResourceSorting"];
 	["DocumentFilter"]: ValueTypes["DocumentFilter"];
 	["DocumentSorting"]: ValueTypes["DocumentSorting"];
 	["IntFilter"]: ValueTypes["IntFilter"];

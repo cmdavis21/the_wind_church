@@ -50,6 +50,9 @@ export const AllTypesProps: Record<string,any> = {
 		Testimonial:{
 
 		},
+		Resource:{
+
+		},
 		Document:{
 
 		},
@@ -116,6 +119,10 @@ export const AllTypesProps: Record<string,any> = {
 		allTestimonial:{
 			where:"TestimonialFilter",
 			sort:"TestimonialSorting"
+		},
+		allResource:{
+			where:"ResourceFilter",
+			sort:"ResourceSorting"
 		},
 		allDocument:{
 			where:"DocumentFilter",
@@ -835,6 +842,39 @@ export const AllTypesProps: Record<string,any> = {
 		statement:"SortOrder",
 		image:"ImageSorting"
 	},
+	ResourceFilter:{
+		_:"Sanity_DocumentFilter",
+		_id:"IDFilter",
+		_type:"StringFilter",
+		_createdAt:"DatetimeFilter",
+		_updatedAt:"DatetimeFilter",
+		_rev:"StringFilter",
+		_key:"StringFilter",
+		title:"StringFilter",
+		type:"StringFilter",
+		description:"StringFilter",
+		category:"StringFilter",
+		file:"FileFilter",
+		file_size:"StringFilter",
+		url:"StringFilter",
+		is_active:"BooleanFilter"
+	},
+	ResourceSorting:{
+		_id:"SortOrder",
+		_type:"SortOrder",
+		_createdAt:"SortOrder",
+		_updatedAt:"SortOrder",
+		_rev:"SortOrder",
+		_key:"SortOrder",
+		title:"SortOrder",
+		type:"SortOrder",
+		description:"SortOrder",
+		category:"SortOrder",
+		file:"FileSorting",
+		file_size:"SortOrder",
+		url:"SortOrder",
+		is_active:"SortOrder"
+	},
 	DocumentFilter:{
 		_:"Sanity_DocumentFilter",
 		_id:"IDFilter",
@@ -914,6 +954,7 @@ export const ReturnTypes: Record<string,any> = {
 		NextGenPage:"NextGenPage",
 		PromoBanner:"PromoBanner",
 		Testimonial:"Testimonial",
+		Resource:"Resource",
 		Document:"Document",
 		allSanityImageAsset:"SanityImageAsset",
 		allSanityFileAsset:"SanityFileAsset",
@@ -931,6 +972,7 @@ export const ReturnTypes: Record<string,any> = {
 		allNextGenPage:"NextGenPage",
 		allPromoBanner:"PromoBanner",
 		allTestimonial:"Testimonial",
+		allResource:"Resource",
 		allDocument:"Document"
 	},
 	SanityImageAsset:{
@@ -973,6 +1015,7 @@ export const ReturnTypes: Record<string,any> = {
 		"...on NextGenPage": "NextGenPage",
 		"...on PromoBanner": "PromoBanner",
 		"...on Testimonial": "Testimonial",
+		"...on Resource": "Resource",
 		_id:"ID",
 		_type:"String",
 		_createdAt:"DateTime",
@@ -1312,6 +1355,22 @@ export const ReturnTypes: Record<string,any> = {
 		main_point:"String",
 		statement:"String",
 		image:"Image"
+	},
+	Resource:{
+		_id:"ID",
+		_type:"String",
+		_createdAt:"DateTime",
+		_updatedAt:"DateTime",
+		_rev:"String",
+		_key:"String",
+		title:"String",
+		type:"String",
+		description:"String",
+		category:"String",
+		file:"File",
+		file_size:"String",
+		url:"String",
+		is_active:"Boolean"
 	},
 	Block:{
 		_key:"String",

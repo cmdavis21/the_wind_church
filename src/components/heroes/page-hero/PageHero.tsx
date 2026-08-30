@@ -285,7 +285,7 @@ const PageHero: React.FC<PageHeroProps> = ({
               }}
             >
               {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
+                <div key={stat.label} className="text-right">
                   <dt className="sr-only">{stat.label}</dt>
                   <dd className="font-serif text-2xl sm:text-4xl text-white">{stat.value}</dd>
                   <dd className="mt-1 text-xs uppercase tracking-wide text-white/60">

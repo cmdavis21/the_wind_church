@@ -61,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="h-full flex flex-col rounded-xl overflow-hidden border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm hover:shadow-md transition-shadow duration-200"
+        className="h-full flex flex-col rounded-xl overflow-hidden border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-sm hover:shadow-md transition-shadow duration-200"
       >
         {/* Cover Image */}
         <div className="relative">

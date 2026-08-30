@@ -18,6 +18,7 @@ export const PageRoutes = {
   orders: '/bookstore/orders',
   prayerRequests: '/prayer-requests',
   pushpay: PUSHPAY_URL,
+  resourceCenter: '/resource-center',
   rightnowMedia: '/rightnowmedia',
   salvation: '/salvation',
   sermons: '/sermons',

@@ -10,6 +10,6 @@ export const formatPrice = ({ amount, currencyCode, locales }: Price): string =>
   return new Intl.NumberFormat(locales, {
     style: 'currency',
     currency: currencyCode,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2,
   }).format(Number(amount));
 };

@@ -10,6 +10,7 @@ import { NextGenGuardianInquirySchema } from './next-gen-guardian-inquiry';
 import { NextGenPageSchema } from './next-gen-page';
 import { PrayerRequestSchema } from './prayer-request';
 import { PromoBannerSchema } from './promo-banner';
+import { ResourceSchema } from './resource';
 import { TestimonialSchema } from './testimonial';
 import { LinkSchema } from './types/link';
 import { MeetingDetailsSchema } from './types/meeting-details';
@@ -34,6 +35,7 @@ export const SanitySchema = [
   NextGenPageSchema,
   PromoBannerSchema,
   TestimonialSchema,
+  ResourceSchema,
   // Misc Schemas
   LinkSchema,
   TimeSchema,

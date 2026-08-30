@@ -6,7 +6,7 @@ import ChildReaching from '@/components/icons/child-reaching';
 
 import PencilPaper from '@/components/icons/pencilPaper';
 
-import AddressCard from '@/components/icons/address-card';
+import FileIcon from '@/components/icons/file';
 import Gift from '@/components/icons/gift';
 import Globe from '@/components/icons/globe';
 import Handshake from '@/components/icons/handshake';
@@ -34,6 +34,7 @@ const websiteDocsWithIcons: docAttributes[] = [
   { id: 'leader', title: 'Leaders', icon: User },
   { id: 'deepDive', title: 'Deep Dives', icon: PersonWithChalkboard },
   { id: 'testimonial', title: 'Testimonials', icon: Quote },
+  { id: 'resource', title: 'Resource Center', icon: FileIcon },
 ];
 
 const formsDocsWithIcons: docAttributes[] = [
@@ -52,7 +53,7 @@ export const sanityStudioStructure: StructureResolver = (S) =>
       // CONTACTS
       S.listItem()
         .title('Contacts')
-        .icon(AddressCard)
+        .icon(User)
         .child(S.documentTypeList('contact').title('Contacts')),
 
       // WEBSITE CM

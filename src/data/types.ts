@@ -122,6 +122,16 @@ export interface Testimonial {
   image: Image;
 }
 
+export interface ResourceItem {
+  title: string;
+  type: (typeof SanityResourceTypes)[0];
+  description?: string;
+  file?: string;
+  file_size?: string;
+  url?: string;
+  updated_at: Date;
+}
+
 export interface NavbarItem {
   label: string;
   link?: string;
@@ -452,9 +462,21 @@ export const SanityLeaderCategories = [
   'Production & Media',
 ];
 
+export const SanityResourceTypes = ['File', 'Link', 'Video'];
+
+export const SanityResourceCategories = [
+  'Visitor Resources',
+  'Member Resources',
+  'Leader Resources',
+  'General Resources',
+  'Teaching Materials',
+  'Announcements',
+];
+
 // TANSTACK QUERY + MUTATION KEYS
 export const GET_ALL_EVENTS = 'SANITY QUERY GET ALL EVENTS';
 export const GET_ALL_LEADERS = 'SANITY QUERY GET ALL LEADERS';
+export const GET_ALL_RESOURCES = 'SANITY QUERY GET ALL RESOURCES';
 export const GET_ALL_MINISTRIES = 'SANITY QUERY GET ALL MINISTRIES';
 export const GET_ALL_DEEP_DIVES = 'SANITY QUERY GET ALL DEEP DIVES';
 export const EVENT_RENTAL_KEY = 'SANITY MUTATION CREATE EVENT RENTAL INQUIRY';
