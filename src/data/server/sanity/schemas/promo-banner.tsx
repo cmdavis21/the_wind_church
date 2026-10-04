@@ -24,7 +24,7 @@ export const PromoBannerSchema = {
       name: 'description',
       title: 'Description',
       description: 'What is the description of this promotion?',
-      type: 'string',
+      type: 'text',
       validation: (rule) =>
         rule
           .required()

@@ -4,6 +4,7 @@ type Time = {
   hour: string;
   minute: string;
   time_of_day: string;
+  time_zone: string;
 };
 
 export type Image = {
@@ -39,7 +40,7 @@ export type DeepDive = {
   meeting_details: {
     day: string;
     time: Time;
-    location: string;
+    attendance_type: string;
   }[];
   start_date: Date;
   end_date: Date;
@@ -53,9 +54,16 @@ export type Event = {
   date: Date;
   time: Time;
   description: string;
-  location: string;
-  ministry_event?: string;
-  external_host?: string;
+  location: {
+    name: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    sublocation?: string;
+  };
+  associated_ministry?: string;
+  external_organizer?: string;
   cost?: string;
   categories?: typeof SanityEventCategories;
   how_to_signup?: string;

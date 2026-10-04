@@ -1,6 +1,6 @@
-import { defineField } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
-export const ScriptureSchema = {
+export const ScriptureSchema = defineType({
   name: 'scripture',
   title: 'Scripture',
   type: 'object',
@@ -8,7 +8,7 @@ export const ScriptureSchema = {
     defineField({
       name: 'passage',
       title: 'Pasage',
-      type: 'string',
+      type: 'text',
     }),
     defineField({
       name: 'verse',
@@ -16,4 +16,4 @@ export const ScriptureSchema = {
       type: 'string',
     }),
   ],
-};
+});

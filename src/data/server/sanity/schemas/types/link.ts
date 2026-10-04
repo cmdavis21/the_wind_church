@@ -31,6 +31,7 @@ export const LinkSchema = defineType({
           { title: 'Next Gen', value: PageRoutes.nextGen },
           { title: 'Prayer Requests', value: PageRoutes.prayerRequests },
           { title: 'PushPay', value: PageRoutes.pushpay },
+          { title: 'Resource Center', value: PageRoutes.resourceCenter },
           { title: 'RightNow Media', value: PageRoutes.rightnowMedia },
           { title: 'Salvation', value: PageRoutes.salvation },
           { title: 'Sermons', value: PageRoutes.sermons },

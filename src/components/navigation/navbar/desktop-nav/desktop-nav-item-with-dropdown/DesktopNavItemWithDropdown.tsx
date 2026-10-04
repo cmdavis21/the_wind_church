@@ -75,17 +75,17 @@ const DesktopNavItemWithDropdown: React.FC<DesktopNavItemWithDropdownProps> = ({
         </h5>
 
         {/* Decorative underline */}
-        <div className="flex justify-center items-center h-fit w-full px-sm">
+        <div className="flex justify-center items-center w-full px-sm">
           <div
             className={cn(
               isActive || open ? 'scale-x-100' : 'group-hover:scale-x-100',
-              'h-[2px] bg-brand-primary w-1/2 transform origin-right scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 rounded-l-full'
+              'min-h-[1.5px] h-[1.5px] bg-brand-primary w-1/2 transform origin-right scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 rounded-l-full'
             )}
           ></div>
           <div
             className={cn(
               isActive || open ? 'scale-x-100' : 'group-hover:scale-x-100',
-              'h-[2px] bg-brand-primary w-1/2 transform origin-left scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 rounded-r-full'
+              'min-h-[1.5px] h-[1.5px] bg-brand-primary w-1/2 transform origin-left scale-x-0 transition-[transform, scale] duration-500 group-focus:scale-x-100 rounded-r-full'
             )}
           ></div>
         </div>

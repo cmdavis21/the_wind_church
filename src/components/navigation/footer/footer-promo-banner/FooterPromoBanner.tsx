@@ -60,7 +60,7 @@ const FooterPromoBanner = async () => {
       {promoDetails ? (
         <div className="relative flex flex-col gap-sm px-[25px] md:px-[50px] min-[1800px]:pr-[100px] py-lg text-white">
           <h6 className="uppercase tracking-wider font-light">{promoDetails.header}</h6>
-          <div className="w-10 h-px rounded-sm bg-brand-primary" />
+          <div className="w-10 min-h-px h-px rounded-sm bg-brand-primary" />
           <h3 className="pt-sm text-xl font-semibold leading-tight">{promoDetails.title}</h3>
           <h5>{promoDetails.description}</h5>
           {promoDetails.link && (

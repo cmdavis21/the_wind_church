@@ -11,17 +11,15 @@ interface AlertMessageProps {
 const AlertMessage: React.FC<AlertMessageProps> = ({ type = 'success', title, description }) => {
   return (
     <Alert color={type} withBorderAccent>
-      <span className="flex flex-row gap-1">
+      <div className="flex gap-1 items-center">
         {type === 'success' ? (
           <CircleCheck className="fill-success" />
         ) : (
           <SolidCircleX className="fill-error" />
         )}
-        <span className="flex flex-col">
-          <span className="font-bold">{title}</span>
-          <span>{description}</span>
-        </span>
-      </span>
+        <span className="font-bold">{title}</span>
+      </div>
+      <p className="ml-5">{description}</p>
     </Alert>
   );
 };

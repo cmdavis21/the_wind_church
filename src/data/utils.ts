@@ -51,3 +51,20 @@ export const combineNames = (names: { first_name: string; last_name: string }[])
   if (!names || names.length === 0) return '';
   return names.map((n) => `${n.first_name} ${n.last_name}`).join(' & ');
 };
+
+export function darkenRgb(rgb: string, amount: number): string {
+  const match = rgb.match(/\d+/g);
+  if (!match) return rgb;
+  const [r, g, b] = match.map(Number);
+  const dr = Math.round(r * (1 - amount));
+  const dg = Math.round(g * (1 - amount));
+  const db = Math.round(b * (1 - amount));
+  return `rgb(${dr}, ${dg}, ${db})`;
+}
+
+export function rgbToRgba(rgb: string, alpha: number): string {
+  const match = rgb.match(/\d+/g);
+  if (!match) return rgb;
+  const [r, g, b] = match;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}

@@ -5,6 +5,10 @@ import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-d
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
+import CircleCheck from '@/components/icons/circle-check';
+import Location from '@/components/icons/location';
+import PeopleGroup from '@/components/icons/people-group';
+import Video from '@/components/icons/video';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
@@ -12,8 +16,19 @@ import { formatDateMMMddyyyy } from '@/data/format-date';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
 import { getAllDeepDives, getDeepDiveBySlug } from '@/data/server/sanity/queries/deep-dives';
+import { differenceInCalendarWeeks } from 'date-fns';
 
 import { getTranslations } from 'next-intl/server';
+
+const resolveAttendance = (type: string) => {
+  const t = type.toLowerCase();
+  const online = t.includes('online');
+  const inPerson = t.includes('person');
+  if (online && inPerson) return { label: 'In-person + online options', Icon: PeopleGroup };
+  if (online) return { label: 'Online', Icon: Video };
+  if (inPerson) return { label: 'In-person', Icon: Location };
+  return { label: type, Icon: null };
+};
 
 export async function generateStaticParams() {
   const deepDives = await getAllDeepDives();
@@ -69,10 +84,14 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
     );
   }
 
+  const start = new Date(deepDive.start_date);
+  const end = new Date(deepDive.end_date);
+  const weeks = Math.max(1, differenceInCalendarWeeks(end, start));
+
   return (
     <div>
       <PageHero size="short" title={deepDive.name} media={{ src: deepDive.image.src }} />
-      <div className="flex flex-col gap-3xl sm:gap-4xlr pt-3xl sm:pt-4xl">
+      <div className="flex flex-col gap-3xl sm:gap-4xl pt-3xl sm:pt-4xl">
         {/* DESCRIPTION */}
         <h4 className="px-padding max-width-center">{deepDive.description}</h4>
 
@@ -110,71 +129,121 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             <AlertMessage
               type="success"
               title="Accepting New Students!"
-              description="Don't wait, join and grow your connection to Jesus ands strive to be spirit-filled and spirit-led!"
+              description="Join us and grow deeper in your walk with Jesus. This Deep Dive is a powerful space to learn, connect, and be led by the Spirit."
             />
           ) : (
             <AlertMessage
               type="failure"
-              title="Not accepting new students"
-              description="Due to time-sensitive structure and flow of the deep dive and in respect to student learning, this deep
-                dive cannot accept new students."
+              title="Not Accepting New Students"
+              description="This Deep Dive is already in progress. To honor the flow of teaching and support the students currently enrolled, we cannot accept new participants at this time."
             />
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md justify-between">
-            {/* START / END DATE */}
-            <div className="flex flex-col gap-sm">
-              <div className="flex flex-col gap-xs">
-                <p className="body-small font-bold text-light-charcoal dark:text-dark-charcoal">
-                  Start date:
-                </p>
-                <div className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center">
-                  {formatDateMMMddyyyy(deepDive.start_date)}
+          <div
+            className="grid gap-md"
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))' }}
+          >
+            {/* SCHEDULE */}
+            <section
+              aria-label="schedule"
+              className="rounded-2xl border bg-light-bg border-light-gray dark:bg-dark-gray dark:border-dark-gray p-lg shadow-sm"
+            >
+              <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-brand-dark dark:text-brand-primary mb-md">
+                Schedule
+              </h3>
+
+              <dl className="flex items-start justify-between gap-md">
+                <div>
+                  <dt className="text-xs text-light-secondaryText dark:text-dark-primaryText/70">
+                    Starts
+                  </dt>
+                  <dd className="font-semibold">
+                    <time dateTime={start.toISOString()}>{formatDateMMMddyyyy(start)}</time>
+                  </dd>
                 </div>
-              </div>
-              <div className="flex flex-col gap-xs">
-                <p className="body-small font-bold text-light-charcoal dark:text-dark-charcoal">
-                  End date:
-                </p>
-                <div className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center">
-                  {formatDateMMMddyyyy(deepDive.end_date)}
+
+                <div className="text-right">
+                  <dt className="text-xs text-light-secondaryText dark:text-dark-primaryText/70">
+                    Ends
+                  </dt>
+                  <dd className="font-semibold">
+                    <time dateTime={end.toISOString()}>{formatDateMMMddyyyy(end)}</time>
+                  </dd>
                 </div>
+              </dl>
+
+              {/* Decorative Timeline */}
+              <div aria-hidden="true" className="relative mt-lg flex items-center">
+                <span className="h-2.5 w-2.5 rounded-full bg-brand-primary" />
+                <span className="h-px flex-1 bg-brand-primary/40 origin-left" />
+                <span className="h-2.5 w-2.5 rounded-full border-2 border-brand-primary bg-light-bg dark:bg-dark-bg" />
+                <span className="absolute left-1/2 -translate-x-1/2 rounded-full border border-light-gray dark:border-dark-gray bg-light-bg dark:bg-dark-bg px-3 py-0.5 text-xs font-medium">
+                  {weeks} {weeks === 1 ? 'week' : 'weeks'}
+                </span>
               </div>
-            </div>
+              <p className="sr-only">
+                Runs for {weeks} {weeks === 1 ? 'week' : 'weeks'}.
+              </p>
+            </section>
 
             {/* MEETING TIMES */}
-            <div className="flex flex-col gap-xs">
-              <p className="body-small font-bold text-light-charcoal dark:text-dark-charcoal">
-                Meeting times:
-              </p>
-              {deepDive.meeting_details.map((meet) => (
-                <div
-                  key={`deep-dive-meeting-detail-${meet.day}-${meet.time.hour}`}
-                  className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center"
-                >
-                  {`${meet.day.slice(0, 3)} • ${meet.time.hour}:${meet.time.minute} ${meet.time.time_of_day} • ${meet.location}`}
-                </div>
-              ))}
-            </div>
+            {deepDive.meeting_details && deepDive.meeting_details.length > 0 && (
+              <section
+                aria-label="meets"
+                className="rounded-2xl border bg-light-bg border-light-gray dark:bg-dark-gray dark:border-dark-gray p-lg shadow-sm"
+              >
+                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-brand-dark dark:text-brand-primary mb-md">
+                  Meets
+                </h3>
+
+                <ul className="flex flex-col gap-md">
+                  {deepDive.meeting_details.map(({ day, time, attendance_type }) => {
+                    const { label, Icon } = resolveAttendance(attendance_type);
+                    return (
+                      <li
+                        key={`${day}-${time.hour}:${time.minute}-${attendance_type}`}
+                        className="flex flex-wrap items-center justify-between gap-x-md gap-y-1"
+                      >
+                        <p className="font-semibold">
+                          {day}&nbsp;&nbsp;
+                          {time.hour}:{time.minute}
+                          {time.time_of_day}
+                          <span className="ml-1 text-xs font-normal text-light-secondaryText dark:text-dark-primaryText/70">
+                            {time.time_zone}
+                          </span>
+                        </p>
+
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-medium text-brand-dark dark:text-brand-primary">
+                          {Icon && <Icon className="fill-brand-primary" />}
+                          {label}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            )}
 
             {/* REQUIRED MATERIALS */}
-            <div className="flex flex-col gap-xs">
-              <p className="body-small font-bold text-light-charcoal dark:text-dark-charcoal">
-                Required materials:
-              </p>
-              {deepDive.required_materials?.map((mat) => (
-                <div
-                  key={`deep-dive-required-material-${mat}`}
-                  className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center"
-                >
-                  {mat}
-                </div>
-              )) ?? (
-                <div className="p-sm rounded-md border border-light-gray dark:border-dark-gray dark:bg-dark-gray shadow body-large text-center">
-                  Just bring yourself!
-                </div>
-              )}
-            </div>
+            {deepDive.required_materials && deepDive.required_materials.length > 0 && (
+              <section
+                aria-label="bring"
+                className="rounded-2xl border bg-light-bg border-light-gray dark:bg-dark-gray dark:border-dark-gray p-lg shadow-sm"
+              >
+                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-brand-dark dark:text-brand-primary mb-md">
+                  Bring
+                </h3>
+
+                <ul className="flex flex-col gap-sm">
+                  {deepDive.required_materials.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <CircleCheck className="mt-0.5" fill="#fdd738 " />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
         </div>
 
@@ -240,10 +309,10 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             title="Take your next steps with us!"
             description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
+          <div className="flex flex-wrap justify-center gap-xxl">
             <ImageWithTitleDescriptionCard
               alt="People gathering for church service"
-              src={'/images/product-placeholder.webp'}
+              src="/images/product-placeholder.webp"
               title="Visit The Wind"
               description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
               link={{
@@ -253,7 +322,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Group in Bible study session"
-              src={'/images/product-placeholder.webp'}
+              src="/images/product-placeholder.webp"
               title="Try our Deep Dives"
               description="Explore the Word in a deeper way. Our Deep Dive Sessions are small-group Bible studies where you can ask questions and grow in your faith."
               link={{
@@ -263,7 +332,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Children in a classroom during youth service"
-              src={'/images/product-placeholder.webp'}
+              src="/images/product-placeholder.webp"
               title="Learn about Next Gen"
               description="We offer engaging and age-appropriate services for kids and teens every week. It's a safe space for youth to learn, grow, and build friendships."
               link={{

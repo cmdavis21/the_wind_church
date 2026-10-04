@@ -1484,14 +1484,13 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	time?:ValueTypes["TimeType"],
 	categories?:boolean | `@${string}`,
 	image?:ValueTypes["Image"],
-	/** Where is the event happening. */
-	location?:boolean | `@${string}`,
+	location?:ValueTypes["Location"],
 	/** Instructions for how to join/participate in this event. */
 	how_to_signup?:boolean | `@${string}`,
-	/** Select if a Ministry is the organizer for this event. */
-	ministry_event?:ValueTypes["Ministry"],
+	/** Select if a Ministry is associated with this event. */
+	associated_ministry?:ValueTypes["Ministry"],
 	/** Is there an external organization for this event? */
-	external_host?:boolean | `@${string}`,
+	external_organizer?:boolean | `@${string}`,
 	help_needed?:boolean | `@${string}`,
 	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
 	cost?:boolean | `@${string}`,
@@ -1508,6 +1507,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	hour?:boolean | `@${string}`,
 	minute?:boolean | `@${string}`,
 	time_of_day?:boolean | `@${string}`,
+	time_zone?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`,
 	['...on TimeType']?: Omit<ValueTypes["TimeType"], "...on TimeType">
 }>;
@@ -1548,6 +1548,19 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	right?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`,
 	['...on SanityImageCrop']?: Omit<ValueTypes["SanityImageCrop"], "...on SanityImageCrop">
+}>;
+	["Location"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	address?:boolean | `@${string}`,
+	city?:boolean | `@${string}`,
+	state?:boolean | `@${string}`,
+	zip?:boolean | `@${string}`,
+	/** e.g., "Room 204", "Fellowship Hall", "Building B, 2nd floor" */
+	sublocation?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`,
+	['...on Location']?: Omit<ValueTypes["Location"], "...on Location">
 }>;
 	["Ministry"]: AliasType<{
 	/** Document ID */
@@ -1642,20 +1655,20 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	start_date?:boolean | `@${string}`,
 	end_date?:boolean | `@${string}`,
 	required_materials?:boolean | `@${string}`,
-	meeting_details?:ValueTypes["MeetingDetailsType"],
+	meeting_details?:ValueTypes["MeetingDetails"],
 	/** Is this deep dive actively accepting new Students? */
 	accepting_new_students?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`,
 	['...on DeepDive']?: Omit<ValueTypes["DeepDive"], "...on DeepDive">
 }>;
-	["MeetingDetailsType"]: AliasType<{
+	["MeetingDetails"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	day?:boolean | `@${string}`,
 	time?:ValueTypes["TimeType"],
-	location?:boolean | `@${string}`,
+	attendance_type?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`,
-	['...on MeetingDetailsType']?: Omit<ValueTypes["MeetingDetailsType"], "...on MeetingDetailsType">
+	['...on MeetingDetails']?: Omit<ValueTypes["MeetingDetails"], "...on MeetingDetails">
 }>;
 	["NextGenPage"]: AliasType<{
 	/** Document ID */
@@ -2213,10 +2226,10 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	date?: ValueTypes["DateFilter"] | undefined | null | Variable<any, string>,
 	time?: ValueTypes["TimeTypeFilter"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
-	location?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	location?: ValueTypes["LocationFilter"] | undefined | null | Variable<any, string>,
 	how_to_signup?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	ministry_event?: ValueTypes["MinistryFilter"] | undefined | null | Variable<any, string>,
-	external_host?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	associated_ministry?: ValueTypes["MinistryFilter"] | undefined | null | Variable<any, string>,
+	external_organizer?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	cost?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	additional_notes?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
@@ -2241,7 +2254,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	hour?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	minute?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	time_of_day?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+	time_of_day?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	time_zone?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
 	["ImageFilter"]: {
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
@@ -2272,6 +2286,16 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	bottom?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>,
 	left?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>,
 	right?: ValueTypes["FloatFilter"] | undefined | null | Variable<any, string>
+};
+	["LocationFilter"]: {
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	address?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	city?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	state?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	zip?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	sublocation?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
 	["MinistryFilter"]: {
 	/** Apply filters on document level */
@@ -2334,9 +2358,9 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	date?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	time?: ValueTypes["TimeTypeSorting"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>,
-	location?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	location?: ValueTypes["LocationSorting"] | undefined | null | Variable<any, string>,
 	how_to_signup?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	external_host?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	external_organizer?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	cost?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	additional_notes?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
@@ -2345,7 +2369,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	hour?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	minute?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	time_of_day?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+	time_of_day?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	time_zone?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["ImageSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2375,6 +2400,16 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	bottom?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	left?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	right?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+};
+	["LocationSorting"]: {
+	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	address?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	city?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	state?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	zip?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	sublocation?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["LeaderSorting"]: {
 	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2641,12 +2676,12 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_dataset?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_projectId?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
-	["MeetingDetailsTypeFilter"]: {
+	["MeetingDetailsFilter"]: {
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	day?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	time?: ValueTypes["TimeTypeFilter"] | undefined | null | Variable<any, string>,
-	location?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+	attendance_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
 	["CrossDatasetReferenceSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2656,12 +2691,12 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_dataset?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_projectId?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
-	["MeetingDetailsTypeSorting"]: {
+	["MeetingDetailsSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	day?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	time?: ValueTypes["TimeTypeSorting"] | undefined | null | Variable<any, string>,
-	location?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+	attendance_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["ID"]:unknown
   }
@@ -3059,14 +3094,13 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	time?:ResolverInputTypes["TimeType"],
 	categories?:boolean | `@${string}`,
 	image?:ResolverInputTypes["Image"],
-	/** Where is the event happening. */
-	location?:boolean | `@${string}`,
+	location?:ResolverInputTypes["Location"],
 	/** Instructions for how to join/participate in this event. */
 	how_to_signup?:boolean | `@${string}`,
-	/** Select if a Ministry is the organizer for this event. */
-	ministry_event?:ResolverInputTypes["Ministry"],
+	/** Select if a Ministry is associated with this event. */
+	associated_ministry?:ResolverInputTypes["Ministry"],
 	/** Is there an external organization for this event? */
-	external_host?:boolean | `@${string}`,
+	external_organizer?:boolean | `@${string}`,
 	help_needed?:boolean | `@${string}`,
 	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
 	cost?:boolean | `@${string}`,
@@ -3082,6 +3116,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	hour?:boolean | `@${string}`,
 	minute?:boolean | `@${string}`,
 	time_of_day?:boolean | `@${string}`,
+	time_zone?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["Image"]: AliasType<{
@@ -3116,6 +3151,18 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	bottom?:boolean | `@${string}`,
 	left?:boolean | `@${string}`,
 	right?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["Location"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	address?:boolean | `@${string}`,
+	city?:boolean | `@${string}`,
+	state?:boolean | `@${string}`,
+	zip?:boolean | `@${string}`,
+	/** e.g., "Room 204", "Fellowship Hall", "Building B, 2nd floor" */
+	sublocation?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["Ministry"]: AliasType<{
@@ -3206,17 +3253,17 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	start_date?:boolean | `@${string}`,
 	end_date?:boolean | `@${string}`,
 	required_materials?:boolean | `@${string}`,
-	meeting_details?:ResolverInputTypes["MeetingDetailsType"],
+	meeting_details?:ResolverInputTypes["MeetingDetails"],
 	/** Is this deep dive actively accepting new Students? */
 	accepting_new_students?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["MeetingDetailsType"]: AliasType<{
+	["MeetingDetails"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	day?:boolean | `@${string}`,
 	time?:ResolverInputTypes["TimeType"],
-	location?:boolean | `@${string}`,
+	attendance_type?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["NextGenPage"]: AliasType<{
@@ -3770,10 +3817,10 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	date?: ResolverInputTypes["DateFilter"] | undefined | null,
 	time?: ResolverInputTypes["TimeTypeFilter"] | undefined | null,
 	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
-	location?: ResolverInputTypes["StringFilter"] | undefined | null,
+	location?: ResolverInputTypes["LocationFilter"] | undefined | null,
 	how_to_signup?: ResolverInputTypes["StringFilter"] | undefined | null,
-	ministry_event?: ResolverInputTypes["MinistryFilter"] | undefined | null,
-	external_host?: ResolverInputTypes["StringFilter"] | undefined | null,
+	associated_ministry?: ResolverInputTypes["MinistryFilter"] | undefined | null,
+	external_organizer?: ResolverInputTypes["StringFilter"] | undefined | null,
 	cost?: ResolverInputTypes["StringFilter"] | undefined | null,
 	additional_notes?: ResolverInputTypes["StringFilter"] | undefined | null
 };
@@ -3798,7 +3845,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
 	hour?: ResolverInputTypes["StringFilter"] | undefined | null,
 	minute?: ResolverInputTypes["StringFilter"] | undefined | null,
-	time_of_day?: ResolverInputTypes["StringFilter"] | undefined | null
+	time_of_day?: ResolverInputTypes["StringFilter"] | undefined | null,
+	time_zone?: ResolverInputTypes["StringFilter"] | undefined | null
 };
 	["ImageFilter"]: {
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
@@ -3829,6 +3877,16 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	bottom?: ResolverInputTypes["FloatFilter"] | undefined | null,
 	left?: ResolverInputTypes["FloatFilter"] | undefined | null,
 	right?: ResolverInputTypes["FloatFilter"] | undefined | null
+};
+	["LocationFilter"]: {
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	name?: ResolverInputTypes["StringFilter"] | undefined | null,
+	address?: ResolverInputTypes["StringFilter"] | undefined | null,
+	city?: ResolverInputTypes["StringFilter"] | undefined | null,
+	state?: ResolverInputTypes["StringFilter"] | undefined | null,
+	zip?: ResolverInputTypes["StringFilter"] | undefined | null,
+	sublocation?: ResolverInputTypes["StringFilter"] | undefined | null
 };
 	["MinistryFilter"]: {
 	/** Apply filters on document level */
@@ -3891,9 +3949,9 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	date?: ResolverInputTypes["SortOrder"] | undefined | null,
 	time?: ResolverInputTypes["TimeTypeSorting"] | undefined | null,
 	image?: ResolverInputTypes["ImageSorting"] | undefined | null,
-	location?: ResolverInputTypes["SortOrder"] | undefined | null,
+	location?: ResolverInputTypes["LocationSorting"] | undefined | null,
 	how_to_signup?: ResolverInputTypes["SortOrder"] | undefined | null,
-	external_host?: ResolverInputTypes["SortOrder"] | undefined | null,
+	external_organizer?: ResolverInputTypes["SortOrder"] | undefined | null,
 	cost?: ResolverInputTypes["SortOrder"] | undefined | null,
 	additional_notes?: ResolverInputTypes["SortOrder"] | undefined | null
 };
@@ -3902,7 +3960,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
 	hour?: ResolverInputTypes["SortOrder"] | undefined | null,
 	minute?: ResolverInputTypes["SortOrder"] | undefined | null,
-	time_of_day?: ResolverInputTypes["SortOrder"] | undefined | null
+	time_of_day?: ResolverInputTypes["SortOrder"] | undefined | null,
+	time_zone?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["ImageSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -3932,6 +3991,16 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	bottom?: ResolverInputTypes["SortOrder"] | undefined | null,
 	left?: ResolverInputTypes["SortOrder"] | undefined | null,
 	right?: ResolverInputTypes["SortOrder"] | undefined | null
+};
+	["LocationSorting"]: {
+	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
+	name?: ResolverInputTypes["SortOrder"] | undefined | null,
+	address?: ResolverInputTypes["SortOrder"] | undefined | null,
+	city?: ResolverInputTypes["SortOrder"] | undefined | null,
+	state?: ResolverInputTypes["SortOrder"] | undefined | null,
+	zip?: ResolverInputTypes["SortOrder"] | undefined | null,
+	sublocation?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["LeaderSorting"]: {
 	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -4195,12 +4264,12 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_dataset?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_projectId?: ResolverInputTypes["StringFilter"] | undefined | null
 };
-	["MeetingDetailsTypeFilter"]: {
+	["MeetingDetailsFilter"]: {
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
 	day?: ResolverInputTypes["StringFilter"] | undefined | null,
 	time?: ResolverInputTypes["TimeTypeFilter"] | undefined | null,
-	location?: ResolverInputTypes["StringFilter"] | undefined | null
+	attendance_type?: ResolverInputTypes["StringFilter"] | undefined | null
 };
 	["CrossDatasetReferenceSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -4210,12 +4279,12 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_dataset?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_projectId?: ResolverInputTypes["SortOrder"] | undefined | null
 };
-	["MeetingDetailsTypeSorting"]: {
+	["MeetingDetailsSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
 	day?: ResolverInputTypes["SortOrder"] | undefined | null,
 	time?: ResolverInputTypes["TimeTypeSorting"] | undefined | null,
-	location?: ResolverInputTypes["SortOrder"] | undefined | null
+	attendance_type?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["ID"]:unknown
   }
@@ -4513,14 +4582,13 @@ export type ModelTypes = {
 	time?: ModelTypes["TimeType"] | undefined | null,
 	categories?: Array<string | undefined | null> | undefined | null,
 	image?: ModelTypes["Image"] | undefined | null,
-	/** Where is the event happening. */
-	location?: string | undefined | null,
+	location?: ModelTypes["Location"] | undefined | null,
 	/** Instructions for how to join/participate in this event. */
 	how_to_signup?: string | undefined | null,
-	/** Select if a Ministry is the organizer for this event. */
-	ministry_event?: ModelTypes["Ministry"] | undefined | null,
+	/** Select if a Ministry is associated with this event. */
+	associated_ministry?: ModelTypes["Ministry"] | undefined | null,
 	/** Is there an external organization for this event? */
-	external_host?: string | undefined | null,
+	external_organizer?: string | undefined | null,
 	help_needed?: Array<string | undefined | null> | undefined | null,
 	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
 	cost?: string | undefined | null,
@@ -4534,7 +4602,8 @@ export type ModelTypes = {
 	_type?: string | undefined | null,
 	hour?: string | undefined | null,
 	minute?: string | undefined | null,
-	time_of_day?: string | undefined | null
+	time_of_day?: string | undefined | null,
+	time_zone?: string | undefined | null
 };
 	["Image"]: {
 		_key?: string | undefined | null,
@@ -4565,6 +4634,17 @@ export type ModelTypes = {
 	bottom?: number | undefined | null,
 	left?: number | undefined | null,
 	right?: number | undefined | null
+};
+	["Location"]: {
+		_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	name?: string | undefined | null,
+	address?: string | undefined | null,
+	city?: string | undefined | null,
+	state?: string | undefined | null,
+	zip?: string | undefined | null,
+	/** e.g., "Room 204", "Fellowship Hall", "Building B, 2nd floor" */
+	sublocation?: string | undefined | null
 };
 	["Ministry"]: {
 		/** Document ID */
@@ -4649,16 +4729,16 @@ export type ModelTypes = {
 	start_date?: ModelTypes["Date"] | undefined | null,
 	end_date?: ModelTypes["Date"] | undefined | null,
 	required_materials?: Array<string | undefined | null> | undefined | null,
-	meeting_details?: Array<ModelTypes["MeetingDetailsType"] | undefined | null> | undefined | null,
+	meeting_details?: Array<ModelTypes["MeetingDetails"] | undefined | null> | undefined | null,
 	/** Is this deep dive actively accepting new Students? */
 	accepting_new_students?: boolean | undefined | null
 };
-	["MeetingDetailsType"]: {
+	["MeetingDetails"]: {
 		_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	day?: string | undefined | null,
 	time?: ModelTypes["TimeType"] | undefined | null,
-	location?: string | undefined | null
+	attendance_type?: string | undefined | null
 };
 	["NextGenPage"]: {
 		/** Document ID */
@@ -5206,10 +5286,10 @@ export type ModelTypes = {
 	date?: ModelTypes["DateFilter"] | undefined | null,
 	time?: ModelTypes["TimeTypeFilter"] | undefined | null,
 	image?: ModelTypes["ImageFilter"] | undefined | null,
-	location?: ModelTypes["StringFilter"] | undefined | null,
+	location?: ModelTypes["LocationFilter"] | undefined | null,
 	how_to_signup?: ModelTypes["StringFilter"] | undefined | null,
-	ministry_event?: ModelTypes["MinistryFilter"] | undefined | null,
-	external_host?: ModelTypes["StringFilter"] | undefined | null,
+	associated_ministry?: ModelTypes["MinistryFilter"] | undefined | null,
+	external_organizer?: ModelTypes["StringFilter"] | undefined | null,
 	cost?: ModelTypes["StringFilter"] | undefined | null,
 	additional_notes?: ModelTypes["StringFilter"] | undefined | null
 };
@@ -5234,7 +5314,8 @@ export type ModelTypes = {
 	_type?: ModelTypes["StringFilter"] | undefined | null,
 	hour?: ModelTypes["StringFilter"] | undefined | null,
 	minute?: ModelTypes["StringFilter"] | undefined | null,
-	time_of_day?: ModelTypes["StringFilter"] | undefined | null
+	time_of_day?: ModelTypes["StringFilter"] | undefined | null,
+	time_zone?: ModelTypes["StringFilter"] | undefined | null
 };
 	["ImageFilter"]: {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
@@ -5265,6 +5346,16 @@ export type ModelTypes = {
 	bottom?: ModelTypes["FloatFilter"] | undefined | null,
 	left?: ModelTypes["FloatFilter"] | undefined | null,
 	right?: ModelTypes["FloatFilter"] | undefined | null
+};
+	["LocationFilter"]: {
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null,
+	name?: ModelTypes["StringFilter"] | undefined | null,
+	address?: ModelTypes["StringFilter"] | undefined | null,
+	city?: ModelTypes["StringFilter"] | undefined | null,
+	state?: ModelTypes["StringFilter"] | undefined | null,
+	zip?: ModelTypes["StringFilter"] | undefined | null,
+	sublocation?: ModelTypes["StringFilter"] | undefined | null
 };
 	["MinistryFilter"]: {
 	/** Apply filters on document level */
@@ -5327,9 +5418,9 @@ export type ModelTypes = {
 	date?: ModelTypes["SortOrder"] | undefined | null,
 	time?: ModelTypes["TimeTypeSorting"] | undefined | null,
 	image?: ModelTypes["ImageSorting"] | undefined | null,
-	location?: ModelTypes["SortOrder"] | undefined | null,
+	location?: ModelTypes["LocationSorting"] | undefined | null,
 	how_to_signup?: ModelTypes["SortOrder"] | undefined | null,
-	external_host?: ModelTypes["SortOrder"] | undefined | null,
+	external_organizer?: ModelTypes["SortOrder"] | undefined | null,
 	cost?: ModelTypes["SortOrder"] | undefined | null,
 	additional_notes?: ModelTypes["SortOrder"] | undefined | null
 };
@@ -5338,7 +5429,8 @@ export type ModelTypes = {
 	_type?: ModelTypes["SortOrder"] | undefined | null,
 	hour?: ModelTypes["SortOrder"] | undefined | null,
 	minute?: ModelTypes["SortOrder"] | undefined | null,
-	time_of_day?: ModelTypes["SortOrder"] | undefined | null
+	time_of_day?: ModelTypes["SortOrder"] | undefined | null,
+	time_zone?: ModelTypes["SortOrder"] | undefined | null
 };
 	["ImageSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
@@ -5368,6 +5460,16 @@ export type ModelTypes = {
 	bottom?: ModelTypes["SortOrder"] | undefined | null,
 	left?: ModelTypes["SortOrder"] | undefined | null,
 	right?: ModelTypes["SortOrder"] | undefined | null
+};
+	["LocationSorting"]: {
+	_key?: ModelTypes["SortOrder"] | undefined | null,
+	_type?: ModelTypes["SortOrder"] | undefined | null,
+	name?: ModelTypes["SortOrder"] | undefined | null,
+	address?: ModelTypes["SortOrder"] | undefined | null,
+	city?: ModelTypes["SortOrder"] | undefined | null,
+	state?: ModelTypes["SortOrder"] | undefined | null,
+	zip?: ModelTypes["SortOrder"] | undefined | null,
+	sublocation?: ModelTypes["SortOrder"] | undefined | null
 };
 	["LeaderSorting"]: {
 	_id?: ModelTypes["SortOrder"] | undefined | null,
@@ -5628,12 +5730,12 @@ export type ModelTypes = {
 	_dataset?: ModelTypes["StringFilter"] | undefined | null,
 	_projectId?: ModelTypes["StringFilter"] | undefined | null
 };
-	["MeetingDetailsTypeFilter"]: {
+	["MeetingDetailsFilter"]: {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	_type?: ModelTypes["StringFilter"] | undefined | null,
 	day?: ModelTypes["StringFilter"] | undefined | null,
 	time?: ModelTypes["TimeTypeFilter"] | undefined | null,
-	location?: ModelTypes["StringFilter"] | undefined | null
+	attendance_type?: ModelTypes["StringFilter"] | undefined | null
 };
 	["CrossDatasetReferenceSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
@@ -5643,12 +5745,12 @@ export type ModelTypes = {
 	_dataset?: ModelTypes["SortOrder"] | undefined | null,
 	_projectId?: ModelTypes["SortOrder"] | undefined | null
 };
-	["MeetingDetailsTypeSorting"]: {
+	["MeetingDetailsSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
 	day?: ModelTypes["SortOrder"] | undefined | null,
 	time?: ModelTypes["TimeTypeSorting"] | undefined | null,
-	location?: ModelTypes["SortOrder"] | undefined | null
+	attendance_type?: ModelTypes["SortOrder"] | undefined | null
 };
 	["ID"]:any
     }
@@ -6005,14 +6107,13 @@ export type GraphQLTypes = {
 	time?: GraphQLTypes["TimeType"] | undefined | null,
 	categories?: Array<string | undefined | null> | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
-	/** Where is the event happening. */
-	location?: string | undefined | null,
+	location?: GraphQLTypes["Location"] | undefined | null,
 	/** Instructions for how to join/participate in this event. */
 	how_to_signup?: string | undefined | null,
-	/** Select if a Ministry is the organizer for this event. */
-	ministry_event?: GraphQLTypes["Ministry"] | undefined | null,
+	/** Select if a Ministry is associated with this event. */
+	associated_ministry?: GraphQLTypes["Ministry"] | undefined | null,
 	/** Is there an external organization for this event? */
-	external_host?: string | undefined | null,
+	external_organizer?: string | undefined | null,
 	help_needed?: Array<string | undefined | null> | undefined | null,
 	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
 	cost?: string | undefined | null,
@@ -6029,6 +6130,7 @@ export type GraphQLTypes = {
 	hour?: string | undefined | null,
 	minute?: string | undefined | null,
 	time_of_day?: string | undefined | null,
+	time_zone?: string | undefined | null,
 	['...on TimeType']: Omit<GraphQLTypes["TimeType"], "...on TimeType">
 };
 	["Image"]: {
@@ -6068,6 +6170,19 @@ export type GraphQLTypes = {
 	left?: number | undefined | null,
 	right?: number | undefined | null,
 	['...on SanityImageCrop']: Omit<GraphQLTypes["SanityImageCrop"], "...on SanityImageCrop">
+};
+	["Location"]: {
+	__typename: "Location",
+	_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	name?: string | undefined | null,
+	address?: string | undefined | null,
+	city?: string | undefined | null,
+	state?: string | undefined | null,
+	zip?: string | undefined | null,
+	/** e.g., "Room 204", "Fellowship Hall", "Building B, 2nd floor" */
+	sublocation?: string | undefined | null,
+	['...on Location']: Omit<GraphQLTypes["Location"], "...on Location">
 };
 	["Ministry"]: {
 	__typename: "Ministry",
@@ -6163,19 +6278,19 @@ export type GraphQLTypes = {
 	start_date?: GraphQLTypes["Date"] | undefined | null,
 	end_date?: GraphQLTypes["Date"] | undefined | null,
 	required_materials?: Array<string | undefined | null> | undefined | null,
-	meeting_details?: Array<GraphQLTypes["MeetingDetailsType"] | undefined | null> | undefined | null,
+	meeting_details?: Array<GraphQLTypes["MeetingDetails"] | undefined | null> | undefined | null,
 	/** Is this deep dive actively accepting new Students? */
 	accepting_new_students?: boolean | undefined | null,
 	['...on DeepDive']: Omit<GraphQLTypes["DeepDive"], "...on DeepDive">
 };
-	["MeetingDetailsType"]: {
-	__typename: "MeetingDetailsType",
+	["MeetingDetails"]: {
+	__typename: "MeetingDetails",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	day?: string | undefined | null,
 	time?: GraphQLTypes["TimeType"] | undefined | null,
-	location?: string | undefined | null,
-	['...on MeetingDetailsType']: Omit<GraphQLTypes["MeetingDetailsType"], "...on MeetingDetailsType">
+	attendance_type?: string | undefined | null,
+	['...on MeetingDetails']: Omit<GraphQLTypes["MeetingDetails"], "...on MeetingDetails">
 };
 	["NextGenPage"]: {
 	__typename: "NextGenPage",
@@ -6733,10 +6848,10 @@ export type GraphQLTypes = {
 	date?: GraphQLTypes["DateFilter"] | undefined | null,
 	time?: GraphQLTypes["TimeTypeFilter"] | undefined | null,
 	image?: GraphQLTypes["ImageFilter"] | undefined | null,
-	location?: GraphQLTypes["StringFilter"] | undefined | null,
+	location?: GraphQLTypes["LocationFilter"] | undefined | null,
 	how_to_signup?: GraphQLTypes["StringFilter"] | undefined | null,
-	ministry_event?: GraphQLTypes["MinistryFilter"] | undefined | null,
-	external_host?: GraphQLTypes["StringFilter"] | undefined | null,
+	associated_ministry?: GraphQLTypes["MinistryFilter"] | undefined | null,
+	external_organizer?: GraphQLTypes["StringFilter"] | undefined | null,
 	cost?: GraphQLTypes["StringFilter"] | undefined | null,
 	additional_notes?: GraphQLTypes["StringFilter"] | undefined | null
 };
@@ -6761,7 +6876,8 @@ export type GraphQLTypes = {
 	_type?: GraphQLTypes["StringFilter"] | undefined | null,
 	hour?: GraphQLTypes["StringFilter"] | undefined | null,
 	minute?: GraphQLTypes["StringFilter"] | undefined | null,
-	time_of_day?: GraphQLTypes["StringFilter"] | undefined | null
+	time_of_day?: GraphQLTypes["StringFilter"] | undefined | null,
+	time_zone?: GraphQLTypes["StringFilter"] | undefined | null
 };
 	["ImageFilter"]: {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
@@ -6792,6 +6908,16 @@ export type GraphQLTypes = {
 	bottom?: GraphQLTypes["FloatFilter"] | undefined | null,
 	left?: GraphQLTypes["FloatFilter"] | undefined | null,
 	right?: GraphQLTypes["FloatFilter"] | undefined | null
+};
+	["LocationFilter"]: {
+		_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null,
+	name?: GraphQLTypes["StringFilter"] | undefined | null,
+	address?: GraphQLTypes["StringFilter"] | undefined | null,
+	city?: GraphQLTypes["StringFilter"] | undefined | null,
+	state?: GraphQLTypes["StringFilter"] | undefined | null,
+	zip?: GraphQLTypes["StringFilter"] | undefined | null,
+	sublocation?: GraphQLTypes["StringFilter"] | undefined | null
 };
 	["MinistryFilter"]: {
 		/** Apply filters on document level */
@@ -6854,9 +6980,9 @@ export type GraphQLTypes = {
 	date?: GraphQLTypes["SortOrder"] | undefined | null,
 	time?: GraphQLTypes["TimeTypeSorting"] | undefined | null,
 	image?: GraphQLTypes["ImageSorting"] | undefined | null,
-	location?: GraphQLTypes["SortOrder"] | undefined | null,
+	location?: GraphQLTypes["LocationSorting"] | undefined | null,
 	how_to_signup?: GraphQLTypes["SortOrder"] | undefined | null,
-	external_host?: GraphQLTypes["SortOrder"] | undefined | null,
+	external_organizer?: GraphQLTypes["SortOrder"] | undefined | null,
 	cost?: GraphQLTypes["SortOrder"] | undefined | null,
 	additional_notes?: GraphQLTypes["SortOrder"] | undefined | null
 };
@@ -6865,7 +6991,8 @@ export type GraphQLTypes = {
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
 	hour?: GraphQLTypes["SortOrder"] | undefined | null,
 	minute?: GraphQLTypes["SortOrder"] | undefined | null,
-	time_of_day?: GraphQLTypes["SortOrder"] | undefined | null
+	time_of_day?: GraphQLTypes["SortOrder"] | undefined | null,
+	time_zone?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["ImageSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -6895,6 +7022,16 @@ export type GraphQLTypes = {
 	bottom?: GraphQLTypes["SortOrder"] | undefined | null,
 	left?: GraphQLTypes["SortOrder"] | undefined | null,
 	right?: GraphQLTypes["SortOrder"] | undefined | null
+};
+	["LocationSorting"]: {
+		_key?: GraphQLTypes["SortOrder"] | undefined | null,
+	_type?: GraphQLTypes["SortOrder"] | undefined | null,
+	name?: GraphQLTypes["SortOrder"] | undefined | null,
+	address?: GraphQLTypes["SortOrder"] | undefined | null,
+	city?: GraphQLTypes["SortOrder"] | undefined | null,
+	state?: GraphQLTypes["SortOrder"] | undefined | null,
+	zip?: GraphQLTypes["SortOrder"] | undefined | null,
+	sublocation?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["LeaderSorting"]: {
 		_id?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -7161,12 +7298,12 @@ export type GraphQLTypes = {
 	_dataset?: GraphQLTypes["StringFilter"] | undefined | null,
 	_projectId?: GraphQLTypes["StringFilter"] | undefined | null
 };
-	["MeetingDetailsTypeFilter"]: {
+	["MeetingDetailsFilter"]: {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	_type?: GraphQLTypes["StringFilter"] | undefined | null,
 	day?: GraphQLTypes["StringFilter"] | undefined | null,
 	time?: GraphQLTypes["TimeTypeFilter"] | undefined | null,
-	location?: GraphQLTypes["StringFilter"] | undefined | null
+	attendance_type?: GraphQLTypes["StringFilter"] | undefined | null
 };
 	["CrossDatasetReferenceSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -7176,12 +7313,12 @@ export type GraphQLTypes = {
 	_dataset?: GraphQLTypes["SortOrder"] | undefined | null,
 	_projectId?: GraphQLTypes["SortOrder"] | undefined | null
 };
-	["MeetingDetailsTypeSorting"]: {
+	["MeetingDetailsSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
 	day?: GraphQLTypes["SortOrder"] | undefined | null,
 	time?: GraphQLTypes["TimeTypeSorting"] | undefined | null,
-	location?: GraphQLTypes["SortOrder"] | undefined | null
+	attendance_type?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["ID"]: "scalar" & { name: "ID" }
     }
@@ -7238,6 +7375,7 @@ type ZEUS_VARIABLES = {
 	["GlobalDocumentReferenceFilter"]: ValueTypes["GlobalDocumentReferenceFilter"];
 	["SanityImageHotspotFilter"]: ValueTypes["SanityImageHotspotFilter"];
 	["SanityImageCropFilter"]: ValueTypes["SanityImageCropFilter"];
+	["LocationFilter"]: ValueTypes["LocationFilter"];
 	["MinistryFilter"]: ValueTypes["MinistryFilter"];
 	["SlugFilter"]: ValueTypes["SlugFilter"];
 	["ScriptureFilter"]: ValueTypes["ScriptureFilter"];
@@ -7249,6 +7387,7 @@ type ZEUS_VARIABLES = {
 	["GlobalDocumentReferenceSorting"]: ValueTypes["GlobalDocumentReferenceSorting"];
 	["SanityImageHotspotSorting"]: ValueTypes["SanityImageHotspotSorting"];
 	["SanityImageCropSorting"]: ValueTypes["SanityImageCropSorting"];
+	["LocationSorting"]: ValueTypes["LocationSorting"];
 	["LeaderSorting"]: ValueTypes["LeaderSorting"];
 	["FileSorting"]: ValueTypes["FileSorting"];
 	["DeepDiveFilter"]: ValueTypes["DeepDiveFilter"];
@@ -7270,8 +7409,8 @@ type ZEUS_VARIABLES = {
 	["DocumentSorting"]: ValueTypes["DocumentSorting"];
 	["IntFilter"]: ValueTypes["IntFilter"];
 	["CrossDatasetReferenceFilter"]: ValueTypes["CrossDatasetReferenceFilter"];
-	["MeetingDetailsTypeFilter"]: ValueTypes["MeetingDetailsTypeFilter"];
+	["MeetingDetailsFilter"]: ValueTypes["MeetingDetailsFilter"];
 	["CrossDatasetReferenceSorting"]: ValueTypes["CrossDatasetReferenceSorting"];
-	["MeetingDetailsTypeSorting"]: ValueTypes["MeetingDetailsTypeSorting"];
+	["MeetingDetailsSorting"]: ValueTypes["MeetingDetailsSorting"];
 	["ID"]: ValueTypes["ID"];
 }

@@ -530,10 +530,10 @@ export const AllTypesProps: Record<string,any> = {
 		date:"DateFilter",
 		time:"TimeTypeFilter",
 		image:"ImageFilter",
-		location:"StringFilter",
+		location:"LocationFilter",
 		how_to_signup:"StringFilter",
-		ministry_event:"MinistryFilter",
-		external_host:"StringFilter",
+		associated_ministry:"MinistryFilter",
+		external_organizer:"StringFilter",
 		cost:"StringFilter",
 		additional_notes:"StringFilter"
 	},
@@ -550,7 +550,8 @@ export const AllTypesProps: Record<string,any> = {
 		_type:"StringFilter",
 		hour:"StringFilter",
 		minute:"StringFilter",
-		time_of_day:"StringFilter"
+		time_of_day:"StringFilter",
+		time_zone:"StringFilter"
 	},
 	ImageFilter:{
 		_key:"StringFilter",
@@ -581,6 +582,16 @@ export const AllTypesProps: Record<string,any> = {
 		bottom:"FloatFilter",
 		left:"FloatFilter",
 		right:"FloatFilter"
+	},
+	LocationFilter:{
+		_key:"StringFilter",
+		_type:"StringFilter",
+		name:"StringFilter",
+		address:"StringFilter",
+		city:"StringFilter",
+		state:"StringFilter",
+		zip:"StringFilter",
+		sublocation:"StringFilter"
 	},
 	MinistryFilter:{
 		_:"Sanity_DocumentFilter",
@@ -641,9 +652,9 @@ export const AllTypesProps: Record<string,any> = {
 		date:"SortOrder",
 		time:"TimeTypeSorting",
 		image:"ImageSorting",
-		location:"SortOrder",
+		location:"LocationSorting",
 		how_to_signup:"SortOrder",
-		external_host:"SortOrder",
+		external_organizer:"SortOrder",
 		cost:"SortOrder",
 		additional_notes:"SortOrder"
 	},
@@ -652,7 +663,8 @@ export const AllTypesProps: Record<string,any> = {
 		_type:"SortOrder",
 		hour:"SortOrder",
 		minute:"SortOrder",
-		time_of_day:"SortOrder"
+		time_of_day:"SortOrder",
+		time_zone:"SortOrder"
 	},
 	ImageSorting:{
 		_key:"SortOrder",
@@ -682,6 +694,16 @@ export const AllTypesProps: Record<string,any> = {
 		bottom:"SortOrder",
 		left:"SortOrder",
 		right:"SortOrder"
+	},
+	LocationSorting:{
+		_key:"SortOrder",
+		_type:"SortOrder",
+		name:"SortOrder",
+		address:"SortOrder",
+		city:"SortOrder",
+		state:"SortOrder",
+		zip:"SortOrder",
+		sublocation:"SortOrder"
 	},
 	LeaderSorting:{
 		_id:"SortOrder",
@@ -901,12 +923,12 @@ export const AllTypesProps: Record<string,any> = {
 		_dataset:"StringFilter",
 		_projectId:"StringFilter"
 	},
-	MeetingDetailsTypeFilter:{
+	MeetingDetailsFilter:{
 		_key:"StringFilter",
 		_type:"StringFilter",
 		day:"StringFilter",
 		time:"TimeTypeFilter",
-		location:"StringFilter"
+		attendance_type:"StringFilter"
 	},
 	CrossDatasetReferenceSorting:{
 		_key:"SortOrder",
@@ -916,12 +938,12 @@ export const AllTypesProps: Record<string,any> = {
 		_dataset:"SortOrder",
 		_projectId:"SortOrder"
 	},
-	MeetingDetailsTypeSorting:{
+	MeetingDetailsSorting:{
 		_key:"SortOrder",
 		_type:"SortOrder",
 		day:"SortOrder",
 		time:"TimeTypeSorting",
-		location:"SortOrder"
+		attendance_type:"SortOrder"
 	},
 	ID: `scalar.ID` as const
 }
@@ -1193,10 +1215,10 @@ export const ReturnTypes: Record<string,any> = {
 		time:"TimeType",
 		categories:"String",
 		image:"Image",
-		location:"String",
+		location:"Location",
 		how_to_signup:"String",
-		ministry_event:"Ministry",
-		external_host:"String",
+		associated_ministry:"Ministry",
+		external_organizer:"String",
 		help_needed:"String",
 		cost:"String",
 		additional_notes:"String"
@@ -1207,7 +1229,8 @@ export const ReturnTypes: Record<string,any> = {
 		_type:"String",
 		hour:"String",
 		minute:"String",
-		time_of_day:"String"
+		time_of_day:"String",
+		time_zone:"String"
 	},
 	Image:{
 		_key:"String",
@@ -1238,6 +1261,16 @@ export const ReturnTypes: Record<string,any> = {
 		bottom:"Float",
 		left:"Float",
 		right:"Float"
+	},
+	Location:{
+		_key:"String",
+		_type:"String",
+		name:"String",
+		address:"String",
+		city:"String",
+		state:"String",
+		zip:"String",
+		sublocation:"String"
 	},
 	Ministry:{
 		_id:"ID",
@@ -1302,15 +1335,15 @@ export const ReturnTypes: Record<string,any> = {
 		start_date:"Date",
 		end_date:"Date",
 		required_materials:"String",
-		meeting_details:"MeetingDetailsType",
+		meeting_details:"MeetingDetails",
 		accepting_new_students:"Boolean"
 	},
-	MeetingDetailsType:{
+	MeetingDetails:{
 		_key:"String",
 		_type:"String",
 		day:"String",
 		time:"TimeType",
-		location:"String"
+		attendance_type:"String"
 	},
 	NextGenPage:{
 		_id:"ID",

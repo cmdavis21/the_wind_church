@@ -6,13 +6,18 @@ interface PassageQuoteProps {
 }
 
 const PassageQuote: React.FC<PassageQuoteProps> = ({ passage, verse }) => (
-  <div className="flex flex-col items-center justify-center gap-xl max-w-[1000px] mx-auto">
-    <div className="w-[75%] h-[0.5px] bg-light-gray dark:bg-dark-gray rounded-sm" />
-    <h4 className="text-light-navy dark:text-dark-navy text-center font-light leading-loose tracking-wide">
-      {passage}
-    </h4>
-    <div className="w-[25%] h-[0.5px] bg-light-gray dark:bg-dark-gray rounded-sm" />
-    <h4 className="font-light text-light-charcoal dark:text-dark-primaryText">{verse}</h4>
+  <div className="max-w-[900px] mx-auto flex flex-col items-center gap-xl py-2xl">
+    <div className="relative w-full">
+      <span className="absolute -top-6 left-0 text-7xl text-light-navy/20 dark:text-dark-navy/20">
+        “
+      </span>
+      <p className="text-center text-[1.5rem] leading-loose font-light tracking-wide text-light-navy dark:text-dark-navy px-md">
+        {passage}
+      </p>
+    </div>
+    <p className="text-sm tracking-widest uppercase text-light-charcoal dark:text-dark-primaryText">
+      {verse}
+    </p>
   </div>
 );
 

@@ -22,7 +22,7 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
   description,
   link,
 }) => (
-  <div className="w-[325px] flex flex-col gap-lg">
+  <div className="w-full min-w-[300px] max-w-[325px] flex flex-col gap-lg">
     <div className="relative aspect-square border rounded-lg overflow-hidden">
       <Image fill src={src} alt={alt} className="pointer-events-none object-cover" />
     </div>

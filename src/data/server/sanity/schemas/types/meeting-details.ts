@@ -1,7 +1,7 @@
-import { defineField } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
-export const MeetingDetailsSchema = {
-  name: 'meetingDetailsType',
+export const MeetingDetailsSchema = defineType({
+  name: 'meetingDetails',
   title: 'Meeting Details',
   type: 'object',
   fields: [
@@ -27,8 +27,8 @@ export const MeetingDetailsSchema = {
       type: 'timeType',
     }),
     defineField({
-      name: 'location',
-      title: 'Location',
+      name: 'attendance_type',
+      title: 'Attendance Type',
       type: 'string',
       options: {
         list: [
@@ -42,4 +42,4 @@ export const MeetingDetailsSchema = {
       },
     }),
   ],
-};
+});

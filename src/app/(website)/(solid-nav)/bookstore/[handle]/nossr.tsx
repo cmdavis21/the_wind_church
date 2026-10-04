@@ -187,7 +187,7 @@ const ProductPage = (product: Product) => {
                 <button
                   type="button"
                   onClick={() => setShowDescription(!showDescription)}
-                  className="py-sm pb-0 border border-light-gray hover:opacity-75 dark:border-dark-gray border-x-0 border-b-0 flex items-center gap-xs text-light-charcoal dark:text-dark-primaryText"
+                  className="pt-sm border border-light-gray hover:opacity-75 dark:border-dark-gray border-x-0 border-b-0 flex items-center gap-xs text-light-charcoal dark:text-dark-primaryText"
                 >
                   Read {showDescription ? 'Less' : 'More'}
                 </button>
@@ -285,8 +285,9 @@ const ProductPage = (product: Product) => {
                   className="flex flex-col gap-sm text-light-charcoal dark:text-dark-primaryText"
                 >
                   <h5>{detail}</h5>
-                  <hr className="text-light-gray" />
-                  <p>{description}</p>
+                  <p className="pt-sm border border-light-gray dark:border-dark-gray border-x-0 border-b-0">
+                    {description}
+                  </p>
                 </div>
               ))}
             </div>

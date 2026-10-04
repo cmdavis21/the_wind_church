@@ -8,6 +8,7 @@ import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarouse
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
+import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { PageRoutes } from '@/data/page-routes';
 import { getMinistryGallery } from '@/data/server/aws/s3/gallery';
@@ -81,13 +82,11 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
     <div>
       <PageHero size="short" title={ministry.name} media={{ src: ministry.image.src }} />
       <div className="flex flex-col gap-4xl pt-3xl sm:pt-4xl">
+        {/* VERSE */}
+        <PassageQuote passage={ministry.scripture.passage} verse={ministry.scripture.verse} />
+
         {/* DESCRIPTION */}
-        <div className="flex flex-col gap-lg px-padding max-width-center">
-          <h4 className="text-light-charcoal dark:text-dark-charcoal">
-            {ministry.scripture.verse} - "{ministry.scripture.passage}"
-          </h4>
-          <h4>{ministry.description}</h4>
-        </div>
+        <h4 className="px-padding max-width-center">{ministry.description}</h4>
 
         {/* MINISTRY LEADER */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
@@ -251,10 +250,10 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             title="Take your next steps with us!"
             description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
+          <div className="flex flex-wrap justify-center gap-xxl">
             <ImageWithTitleDescriptionCard
               alt="People gathering for church service"
-              src={'/images/product-placeholder.webp'}
+              src="/images/product-placeholder.webp"
               title="Visit The Wind"
               description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
               link={{
@@ -264,7 +263,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Group in Bible study session"
-              src={'/images/product-placeholder.webp'}
+              src="/images/product-placeholder.webp"
               title="Try our Deep Dives"
               description="Explore the Word in a deeper way. Our Deep Dive Sessions are small-group Bible studies where you can ask questions and grow in your faith."
               link={{
@@ -274,7 +273,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
             />
             <ImageWithTitleDescriptionCard
               alt="Children in a classroom during youth service"
-              src={'/images/product-placeholder.webp'}
+              src="/images/product-placeholder.webp"
               title="Learn about Next Gen"
               description="We offer engaging and age-appropriate services for kids and teens every week. It's a safe space for youth to learn, grow, and build friendships."
               link={{

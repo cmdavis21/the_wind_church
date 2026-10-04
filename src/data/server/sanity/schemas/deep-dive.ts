@@ -76,7 +76,7 @@ export const DeepDiveSchema = {
       type: 'array',
       description: 'Include one or more meeting days, times, and locations.',
       validation: (rule) => rule.min(1).error('At least one meeting is required.'),
-      of: [{ type: 'meetingDetailsType' }],
+      of: [{ type: 'meetingDetails' }],
     }),
     defineField({
       name: 'accepting_new_students',

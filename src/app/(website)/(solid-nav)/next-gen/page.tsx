@@ -75,22 +75,22 @@ const NextGen = async () => {
           title="Core Principles"
           description="We believe every child is uniquely created by God and deserving of intentional care, discipleship, and joyful community. Our Next Gen ministry helps young hearts grow in faith, character, and confidence as they discover who they are in Christ."
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-xl">
+        <div className="flex flex-wrap justify-center gap-xxl">
           <ImageWithTitleDescriptionCard
             alt=""
-            src={'/images/next-gen/kids-learning.webp'}
+            src="/images/next-gen/kids-learning.webp"
             title="Christ-Centered Studies"
             description="We use interactive teaching, worship, and hands‑on learning to help students build a strong, lasting foundation in Christ."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src={'/images/next-gen/kids-hugging.webp'}
+            src="/images/next-gen/kids-hugging.webp"
             title="Respect & Love"
             description="We model and teach kindness, empathy, and Christ‑like respect so students learn to care for others in everyday life."
           />
           <ImageWithTitleDescriptionCard
             alt=""
-            src={'/images/next-gen/kids-drawing.webp'}
+            src="/images/next-gen/kids-drawing.webp"
             title="Creative Fun & Exploration"
             description="From crafts and games to outdoor play and team activities, we create fun, engaging spaces that spark curiosity and build friendships."
           />

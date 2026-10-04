@@ -49,55 +49,55 @@ const Rightnowmedia = () => (
     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/90" />
 
     <div className="relative w-full min-h-screen flex items-center p-padding">
-      <div className="pt-2xl lg:max-w-[60%] flex flex-col gap-xl text-white">
-        <h2>
+      <div className="pt-20 lg:max-w-[60%] flex flex-col gap-xl text-white">
+        <h3>
           <span className="text-brand-primary">RightNow Media</span>: Free. Unlimited. For Every
           Member.
-        </h2>
+        </h3>
 
-        <h4>
+        <h5>
           A faith-based streaming service packed with Bible studies, devotionals, kids&apos; shows,
           and practical resources for everyday life.
-        </h4>
+        </h5>
 
         <div className="flex flex-col gap-md">
-          <h5 className="font-semibold text-white">What you&apos;ll find inside:</h5>
+          <p className="font-semibold text-white">What you&apos;ll find inside:</p>
 
-          <ul className="space-y-md">
+          <ul className="space-y-sm">
             <li className="flex items-start gap-md">
               <span className="text-brand-primary text-xl">📚</span>
-              <h5>Thousands of Bible studies from trusted pastors and teachers.</h5>
+              <p>Thousands of Bible studies from trusted pastors and teachers.</p>
             </li>
 
             <li className="flex items-start gap-md">
               <span className="text-brand-primary text-xl">🎥</span>
-              <h5>Video series for personal growth, marriage, parenting, and leadership.</h5>
+              <p>Video series for personal growth, marriage, parenting, and leadership.</p>
             </li>
 
             <li className="flex items-start gap-md">
               <span className="text-brand-primary text-xl">👧🧒</span>
-              <h5>Wholesome, Christ-centered kids&apos; shows your family will love.</h5>
+              <p>Wholesome, Christ-centered kids&apos; shows your family will love.</p>
             </li>
 
             <li className="flex items-start gap-md">
               <span className="text-brand-primary text-xl">📱</span>
-              <h5>Watch anywhere — phone, tablet, computer, or TV.</h5>
+              <p>Watch anywhere — phone, tablet, computer, or TV.</p>
             </li>
           </ul>
         </div>
 
-        <h4>
+        <h5>
           As part of our commitment to equip and encourage our church family, Wind Church members
           receive
           <span className="text-brand-primary font-semibold"> FREE access</span> to the entire
           RightNow Media library. Becoming a member unlocks your personal account and gives you
           unlimited streaming anytime you need encouragement or teaching.
-        </h4>
+        </h5>
 
-        <h4 className="font-semibold text-white">
+        <h5 className="font-semibold text-white">
           Want to get connected or learn more about membership? Contact our front office — we&apos;d
           love to help you get started.
-        </h4>
+        </h5>
       </div>
     </div>
   </div>

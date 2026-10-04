@@ -47,7 +47,7 @@ const formsDocsWithIcons: docAttributes[] = [
 
 export const sanityStudioStructure: StructureResolver = (S) =>
   S.list()
-    .title('Sanity.io Content')
+    .title('Website Content Management')
     .items([
       // CONTACTS
       S.listItem()
@@ -95,7 +95,7 @@ export const sanityStudioStructure: StructureResolver = (S) =>
           ![
             'contact',
             ...websiteDocsWithIcons.map((w) => w.id),
-            ...singleUseDocsWithIcons.map((w) => w.id),
+            ...singleUseDocsWithIcons.map((s) => s.id),
             ...formsDocsWithIcons.map((f) => f.id),
           ].includes(item.getId()!)
       ),

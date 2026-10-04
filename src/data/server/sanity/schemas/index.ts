@@ -13,6 +13,7 @@ import { PromoBannerSchema } from './promo-banner';
 import { ResourceSchema } from './resource';
 import { TestimonialSchema } from './testimonial';
 import { LinkSchema } from './types/link';
+import { LocationSchema } from './types/location';
 import { MeetingDetailsSchema } from './types/meeting-details';
 import { ScriptureSchema } from './types/scripture';
 import { TimeSchema } from './types/time';
@@ -39,6 +40,7 @@ export const SanitySchema = [
   // Misc Schemas
   LinkSchema,
   TimeSchema,
+  LocationSchema,
   ScriptureSchema,
   MeetingDetailsSchema,
 ];

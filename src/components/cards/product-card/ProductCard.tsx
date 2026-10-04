@@ -109,15 +109,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {/* Content */}
         <div className="p-md pt-xs flex flex-row items-end justify-between h-full gap-2">
           <div className="flex flex-col h-full justify-between">
-            <h5 className="line-clamp-2 font-semibold leading-tight pb-1">{title}</h5>
-            <h3 className="font-medium font-display text-brand-primary">
+            <h5 className="line-clamp-2 leading-tight pb-1">{title}</h5>
+            <h5 className="font-semibold text-light-charcoal dark:text-dark-neutral">
               {minPrice.amount !== maxPrice.amount
                 ? `${formatPrice(minPrice)} – ${formatPrice(maxPrice)}`
                 : formatPrice(minPrice)}
-            </h3>
+            </h5>
           </div>
-          <div className="bg-light-gray/50 dark:bg-dark-gray group-hover:bg-transparent rounded-full size-12 min-w-12 flex items-center justify-center transition-colors duration-200">
-            <UpArrow className="size-[25px] fill-light-charcoal dark:fill-dark-charcoal rotate-45 group-hover:rotate-90 transition-all duration-300" />
+          <div className="bg-brand-primary/20 group-hover:bg-transparent rounded-full size-10 min-w-10 flex items-center justify-center transition-colors duration-200">
+            <UpArrow className="fill-brand-dark dark:fill-brand-primary rotate-45 group-hover:rotate-90 transition-all duration-300" />
           </div>
         </div>
       </div>

@@ -19,6 +19,10 @@ const ResourceCenterClient = () => {
 
   if (resourcesError) return <ErrorAlert />;
 
+  const sortedResources = Object.entries(resources).sort(([a], [b]) => {
+    return SanityResourceCategories.indexOf(a) - SanityResourceCategories.indexOf(b);
+  });
+
   return (
     <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
       <PageHeader
@@ -36,7 +40,7 @@ const ResourceCenterClient = () => {
             onChange={(e) => setFilter(e.target.value)}
             options={[
               { label: 'All resources', value: '' },
-              ...Object.entries(resources).map(([k, _]) => ({ label: k, value: k })),
+              ...sortedResources.map(([k, _]) => ({ label: k, value: k })),
             ]}
           />
         </div>
@@ -57,10 +61,7 @@ const ResourceCenterClient = () => {
 
       {!resourcesLoading &&
         resources &&
-        Object.entries(resources)
-          .sort(([a], [b]) => {
-            return SanityResourceCategories.indexOf(a) - SanityResourceCategories.indexOf(b);
-          })
+        sortedResources
           .filter(([cat]) => filter === '' || cat === filter)
           .map(([cat, resourceList]) => (
             <div key={`resource-cat-${cat}`} className="flex flex-col gap-xl md:gap-xxl">
