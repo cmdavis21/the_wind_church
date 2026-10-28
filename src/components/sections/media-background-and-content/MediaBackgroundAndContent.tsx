@@ -71,7 +71,7 @@ const MediaBackgroundAndContent: React.FC<MediaBackgroundAndContentProps> = ({
         )}
       />
 
-      {/* CONTENT */}
+      {/* Content */}
       <div className={cn('relative py-[50px] md:py-[75px] max-width')}>{content}</div>
     </div>
   );

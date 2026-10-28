@@ -25,6 +25,7 @@ export interface CheckboxGroupProps extends Omit<
   error?: string;
   onChange?: (values: string[]) => void;
   disabled?: boolean;
+  required?: boolean;
 }
 
 const CheckboxGroup = forwardRef<CheckboxGroupHandle, CheckboxGroupProps>(
@@ -72,9 +73,17 @@ const CheckboxGroup = forwardRef<CheckboxGroupHandle, CheckboxGroupProps>(
       [values, isControlled, onChange]
     );
 
+    const isRequired = rest.required;
+
     return (
       <fieldset {...rest} className="w-full flex flex-col gap-xs">
-        {label && <Label htmlFor={name} value={label} disabled={disabled} />}
+        {label && (
+          <Label htmlFor={name} disabled={disabled}>
+            {label}
+            {isRequired && <span className="text-error">*</span>}
+          </Label>
+        )}
+
         <div className="flex flex-wrap gap-lg">
           {options.map((opt, idx) => {
             const checked = values.includes(opt.value);
@@ -108,6 +117,7 @@ const CheckboxGroup = forwardRef<CheckboxGroupHandle, CheckboxGroupProps>(
             );
           })}
         </div>
+
         {error && <div className="text-error">{error}</div>}
       </fieldset>
     );

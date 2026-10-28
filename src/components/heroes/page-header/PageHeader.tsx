@@ -6,7 +6,7 @@ interface PageHeaderProps {
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle }) => (
-  <div className="flex flex-col gap-xs md:gap-md text-center">
+  <div className="flex flex-col gap-xs md:gap-md text-center max-w-[950px] mx-auto">
     <h2 className="font-display text-3xl sm:text-5xl md:text-7xl leading-snug">{title}</h2>
     <h3>{subtitle}</h3>
   </div>

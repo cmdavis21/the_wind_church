@@ -715,6 +715,7 @@ export const GiftAssessmentQuestions: GiftAssessmentQuestion[] = [
 export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   {
     gift: Gifts.PROPHECY,
+    label: 'Prophecy',
     definition:
       'The gift of prophecy is the special ability that God gives to certain members of the body of Christ to receive and communicate an immediate message of God to His people through a divinely-anointed utterance.',
     scriptures: [
@@ -728,12 +729,14 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.PASTOR,
+    label: '',
     definition:
       'The gift of the pastor is the special ability that God gives to certain members of the body of Christ to assume long-term personal responsibility for the spiritual welfare of a group of believers.',
     scriptures: ['Eph. 4:11 - 14', '1 Timothy 3:1 - 7', 'John 10:1 - 18', '1 Peter 5:1 - 3'],
   },
   {
     gift: Gifts.TEACHING,
+    label: '',
     definition:
       'The gift of teaching is the special ability that God gives to certain members of the body of Christ to communicate information relevant to the health and ministry of the body and its members in such a way that others will learn.',
     scriptures: [
@@ -746,6 +749,7 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.WISDOM,
+    label: '',
     definition:
       'The gift of wisdom is the special ability that God gives to certain members of the body of Christ to know the mind of the Holy Spirit in such a way as to receive insight into how given knowledge may best be applied to specific needs arising in the body of Christ. Some groups refer to a “Word of Wisdom”, this idea is about a prophetic insight that can only come through God. This may relate more to gifts of Prophecy, or leadership.',
     scriptures: [
@@ -758,18 +762,21 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.KNOWLEDGE,
+    label: '',
     definition:
       'The gift of knowledge is the special ability that God gives to certain members of the body of Christ to discover, accumulate, analyze, and clarify information and ideas which are pertinent to the well being of the body. Some groups refer to a “Word of Knowledge”, this idea is about Spiritual Gifts Test 14 a prophetic knowledge, or information given that can only come from God. See Prophecy for more information on this idea.',
     scriptures: ['1 Cor. 2:14', '1 Cor. 12:8', 'Acts 5:1 - 11', 'Col. 2:2 - 3', '2 Cor. 11:6'],
   },
   {
     gift: Gifts.EXHORTATION,
+    label: '',
     definition:
       'The gift of exhortation is the special ability that God gives to certain members of the body of Christ to minister words of comfort, consolation, encouragement, and counsel to other members of the body in such a way that they feel helped and healed.',
     scriptures: ['Romans 12:8', '1 Timothy 4:13', 'Hebrews 10:25', 'Acts 14:22'],
   },
   {
     gift: Gifts.DISCERNING_OF_SPIRITS,
+    label: '',
     definition:
       'The gift of discerning of spirits is the special ability that God gives to certain members of the body of Christ to know with assurance whether certain behaviour purported to be of God is in reality divine, human, or satanic.',
     scriptures: [
@@ -782,12 +789,14 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.GIVING,
+    label: '',
     definition:
       'The gift of giving is the special ability that God gives to certain members of the body of Christ to contribute their material resources to the work of the Lord with liberality and cheerfulness.',
     scriptures: ['Romans 12:8', '2 Cor. 8:1 - 7', '2 Cor. 9:2 - 8', 'Mark 12:41 - 44'],
   },
   {
     gift: Gifts.HELPS,
+    label: '',
     definition:
       'The gift of helps is the special ability that God gives to certain members of the body of Christ to invest the talents they have in the life and ministry of other members of the body, with thus enabling those others to increase the effectiveness of their own spiritual gifts.',
     scriptures: [
@@ -800,6 +809,7 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.MERCY,
+    label: '',
     definition:
       "The gift of mercy is the special ability that God gives to certain members of the body of Christ to feel genuine empathy and compassion for individuals (both Christian & non - Christian) who suffer distressing physical, mental, or emotional problems, and to translate that compassion into cheerfully done deeds which reflect Christ's love and alleviate the suffering.",
     scriptures: [
@@ -814,12 +824,14 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.MISSIONARY,
+    label: '',
     definition:
       'The gift of missionary is the special ability that God gives to certain members of the body of Christ to minister whatever other spiritual gifts they have in a second culture.',
     scriptures: ['1 Cor. 9:19 - 23', 'Acts 8:4', 'Acts 13:2 - 3', 'Acts 22:21', 'Romans 10:15'],
   },
   {
     gift: Gifts.EVANGELIST,
+    label: '',
     definition:
       "The gift of evangelist is the special ability that God gives to certain members of the body of Christ to share the gospel with unbelievers in such a way that men and women become Jesus' disciples and responsible members of the body of Christ.",
     scriptures: [
@@ -833,6 +845,7 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.HOSPITALITY,
+    label: '',
     definition:
       'The gift of hospitality is the special ability that God gives to certain members of the body of Christ to provide an open house and a warm welcome to those in need of food and lodging.',
     scriptures: [
@@ -845,6 +858,7 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.FAITH,
+    label: '',
     definition:
       'The gift of faith is the special ability that God gives to certain members of the body of Christ to discern with extraordinary confidence the will and purposes of God for His work.',
     scriptures: [
@@ -857,6 +871,7 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.LEADERSHIP,
+    label: '',
     definition:
       "The gift of leadership is the special ability that God gives to certain members of the body of Christ to set goals in accordance with God's purpose for the future and to communicate these goals to others in such a way that they voluntarily and harmoniously work together to accomplish these goals for the glory of God.",
     scriptures: [
@@ -870,12 +885,14 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.ADMINISTRATION,
+    label: '',
     definition:
       'The gift of administration is the special ability that God gives to certain members of the body of Christ to understand clearly the immediate and long range goals of a particular unit of the body of Christ and to devise and execute effective plans for the accomplishment of those goals.',
     scriptures: ['1 Cor. 12:28', 'Acts 6:1 - 7', 'Acts 27:11', 'Luke 14:28 - 30', 'Titus 1:5'],
   },
   {
     gift: Gifts.MIRACLES,
+    label: '',
     definition:
       'The gift of miracles is the special ability that God gives to certain members of the body of Christ to serve as human intermediaries through whom it pleases God to perform such powerful acts that are perceived by observers to have altered the ordinary course of nature.',
     scriptures: [
@@ -889,6 +906,7 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.HEALING,
+    label: '',
     definition:
       'The gift of healing is the special ability that God gives to certain members of the body of Christ to serve as human intermediaries through whom it pleases God to cure illness and restore health apart from the use of natural means.',
     scriptures: [
@@ -901,6 +919,7 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.TONGUES,
+    label: '',
     definition:
       'The gift of tongues is the special ability that God gives to certain members of the body of Christ (a) to speak to God in a language they have never learned and/or (b) to receive and communicate an immediate message of God to His people through a divinely - anointed utterance in a language they have never learned.',
     scriptures: [
@@ -914,12 +933,14 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.INTERPRETATION,
+    label: '',
     definition:
       'The gift of interpretation is the special ability that God gives to certain members of the body of Christ to make known in a vernacular the message of one who Spiritual Gifts Test 16 speaks in tongues.',
     scriptures: ['I Cor. 12:10, 30', 'I Cor. 14:13', 'I Cor. 14:26 - 28'],
   },
   {
     gift: Gifts.VOLUNTARY_POVERTY,
+    label: '',
     definition:
       'The gift of voluntary poverty is the special ability that God gives to certain members of the body of Christ to renounce material comfort and luxury and adopt a personal lifestyle equivalent to those living at the poverty level in a given society in order to serve God more effectively.',
     scriptures: [
@@ -932,12 +953,14 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.CELIBACY,
+    label: '',
     definition:
       'The gift of celibacy is the special ability that God gives to certain members of the body of Christ to remain single and enjoy it; to be unmarried and not suffer undue sexual temptations.',
     scriptures: ['1 Cor. 7:7 - 8', 'Matt. 19:10 - 12'],
   },
   {
     gift: Gifts.INTERCESSION,
+    label: '',
     definition:
       'The gift of Intercession is the special ability that God gives to certain members of the body of Christ to pray for extended periods of time on a regular basis and see frequent and specific answers to their prayers, to a degree much greater than that which is expected of the average Christian.',
     scriptures: [
@@ -951,12 +974,14 @@ export const GiftAssessmentDefinitions: GiftAssessmentDefinition[] = [
   },
   {
     gift: Gifts.EXORCISM,
+    label: '',
     definition:
       'The gift of exorcism is the special ability God gives to members of the body of Christ to cast out demons and evil spirits.',
     scriptures: ['Matt. 12:22 - 32', 'Luke 10:12 - 20', 'Acts 8:5 - 8', 'Acts 16:16 - 18'],
   },
   {
     gift: Gifts.SERVICE,
+    label: '',
     definition:
       "The gift of service is the special ability that God gives to certain members of the body of Christ to identify the unmet needs involved in a task related to God's work, and to make use of available resources to meet those needs and to help accomplish the desired results.",
     scriptures: ['2 Tim. 1:16 - 18', 'Romans 12:7', 'Acts 6:1 - 7', 'Titus 3:14', 'Gal. 6:2, 10'],

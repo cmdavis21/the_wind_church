@@ -34,7 +34,7 @@ const ImageWithTitleDescriptionLinkCard: React.FC<ImageWithTitleDescriptionLinkC
           className="pointer-events-none object-cover rounded-lg group-hover:scale-110 transition-all duration-300"
         />
 
-        {/* Color Overlay */}
+        {/* Color Gradient Overlay */}
         <div className="absolute w-full h-full rounded-lg bg-gradient-to-b from-black/60 via-30% to-black/20 to-90%" />
 
         <div className="relative w-full h-full rounded-lg flex flex-col justify-between px-lg py-xl text-white dark:text-dark-primaryText">

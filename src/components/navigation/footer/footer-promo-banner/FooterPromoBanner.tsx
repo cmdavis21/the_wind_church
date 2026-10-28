@@ -56,7 +56,7 @@ const FooterPromoBanner = async () => {
       {/* OVERLAY */}
       <div className="absolute inset-0 bg-gradient-to-r from-light-navy/50 to-brand-primary/20 md:rounded-xl pointer-events-none" />
 
-      {/* CONTENT */}
+      {/* Content */}
       {promoDetails ? (
         <div className="relative flex flex-col gap-sm px-[25px] md:px-[50px] min-[1800px]:pr-[100px] py-lg text-white">
           <h6 className="uppercase tracking-wider font-light">{promoDetails.header}</h6>

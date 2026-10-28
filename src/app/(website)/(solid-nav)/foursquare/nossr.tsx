@@ -36,7 +36,8 @@ import Link from 'next/link';
 import { useRef, useState } from 'react';
 
 const FoursquareClient = () => {
-  const t = useTranslations('About');
+  const t = useTranslations('Foursquare');
+
   const tabsRef = useRef<TabsRef>(null);
   const [active, setActive] = useState(0);
   const anchorRef = useRef<HTMLDivElement>(null);
@@ -51,279 +52,215 @@ const FoursquareClient = () => {
     });
   };
 
-  const titles = ['Intro', 'History', 'Beliefs', 'Symbols'];
+  const titles = [t('tabTitles.0'), t('tabTitles.1'), t('tabTitles.2'), t('tabTitles.3')];
 
   const lastIndex = titles.length - 1;
 
   const foursquareBeliefsArr = [
     {
       icon: ClipboardList,
-      title: t('foursquare.accordionItem1.plan.title'),
-      verse: t('foursquare.accordionItem1.plan.verse'),
-      passage: t('foursquare.accordionItem1.plan.description'),
+      title: t('tabContent.2.accordionItem1.plan.title'),
+      verse: t('tabContent.2.accordionItem1.plan.verse'),
+      passage: t('tabContent.2.accordionItem1.plan.description'),
     },
     {
       icon: LifeRing,
-      title: t('foursquare.accordionItem1.salvation.title'),
-      verse: t('foursquare.accordionItem1.salvation.verse'),
-      passage: t('foursquare.accordionItem1.salvation.description'),
+      title: t('tabContent.2.accordionItem1.salvation.title'),
+      verse: t('tabContent.2.accordionItem1.salvation.verse'),
+      passage: t('tabContent.2.accordionItem1.salvation.description'),
     },
     {
       icon: Bible,
-      title: t('foursquare.accordionItem1.scriptures.title'),
-      verse: t('foursquare.accordionItem1.scriptures.verse'),
-      passage: t('foursquare.accordionItem1.scriptures.description'),
+      title: t('tabContent.2.accordionItem1.scriptures.title'),
+      verse: t('tabContent.2.accordionItem1.scriptures.verse'),
+      passage: t('tabContent.2.accordionItem1.scriptures.description'),
     },
     {
       icon: PeopleGroup,
-      title: t('foursquare.accordionItem1.eternal.title'),
-      verse: t('foursquare.accordionItem1.eternal.verse'),
-      passage: t('foursquare.accordionItem1.eternal.description'),
+      title: t('tabContent.2.accordionItem1.eternal.title'),
+      verse: t('tabContent.2.accordionItem1.eternal.verse'),
+      passage: t('tabContent.2.accordionItem1.eternal.description'),
     },
     {
       icon: PersonFalling,
-      title: t('foursquare.accordionItem1.fall.title'),
-      verse: t('foursquare.accordionItem1.fall.verse'),
-      passage: t('foursquare.accordionItem1.fall.description'),
+      title: t('tabContent.2.accordionItem1.fall.title'),
+      verse: t('tabContent.2.accordionItem1.fall.verse'),
+      passage: t('tabContent.2.accordionItem1.fall.description'),
     },
     {
       icon: Handshake,
-      title: t('foursquare.accordionItem2.relationship.title'),
-      verse: t('foursquare.accordionItem2.relationship.verse'),
-      passage: t('foursquare.accordionItem2.relationship.description'),
+      title: t('tabContent.2.accordionItem2.relationship.title'),
+      verse: t('tabContent.2.accordionItem2.relationship.verse'),
+      passage: t('tabContent.2.accordionItem2.relationship.description'),
     },
     {
       icon: Buidling,
-      title: t('foursquare.accordionItem2.civil.title'),
-      verse: t('foursquare.accordionItem2.civil.verse'),
-      passage: t('foursquare.accordionItem2.civil.description'),
+      title: t('tabContent.2.accordionItem2.civil.title'),
+      verse: t('tabContent.2.accordionItem2.civil.verse'),
+      passage: t('tabContent.2.accordionItem2.civil.description'),
     },
     {
       icon: FlagCheckered,
-      title: t('foursquare.accordionItem2.final.title'),
-      verse: t('foursquare.accordionItem2.final.verse'),
-      passage: t('foursquare.accordionItem2.final.description'),
+      title: t('tabContent.2.accordionItem2.final.title'),
+      verse: t('tabContent.2.accordionItem2.final.verse'),
+      passage: t('tabContent.2.accordionItem2.final.description'),
     },
     {
       icon: SunWithClouds,
-      title: t('foursquare.accordionItem2.heaven.title'),
-      verse: t('foursquare.accordionItem2.heaven.verse'),
-      passage: t('foursquare.accordionItem2.heaven.description'),
+      title: t('tabContent.2.accordionItem2.heaven.title'),
+      verse: t('tabContent.2.accordionItem2.heaven.verse'),
+      passage: t('tabContent.2.accordionItem2.heaven.description'),
     },
     {
       icon: ThumbsDown,
-      title: t('foursquare.accordionItem2.hell.title'),
-      verse: t('foursquare.accordionItem2.hell.verse'),
-      passage: t('foursquare.accordionItem2.hell.description'),
+      title: t('tabContent.2.accordionItem2.hell.title'),
+      verse: t('tabContent.2.accordionItem2.hell.verse'),
+      passage: t('tabContent.2.accordionItem2.hell.description'),
     },
     {
       icon: PersonPraying,
-      title: t('foursquare.accordionItem3.repent.title'),
-      verse: t('foursquare.accordionItem3.repent.verse'),
-      passage: t('foursquare.accordionItem3.repent.description'),
+      title: t('tabContent.2.accordionItem3.repent.title'),
+      verse: t('tabContent.2.accordionItem3.repent.verse'),
+      passage: t('tabContent.2.accordionItem3.repent.description'),
     },
     {
       icon: Fire,
-      title: t('foursquare.accordionItem3.new.title'),
-      verse: t('foursquare.accordionItem3.new.verse'),
-      passage: t('foursquare.accordionItem3.new.description'),
+      title: t('tabContent.2.accordionItem3.new.title'),
+      verse: t('tabContent.2.accordionItem3.new.verse'),
+      passage: t('tabContent.2.accordionItem3.new.description'),
     },
     {
       icon: PersonWalking,
-      title: t('foursquare.accordionItem3.daily.title'),
-      verse: t('foursquare.accordionItem3.daily.verse'),
-      passage: t('foursquare.accordionItem3.daily.description'),
+      title: t('tabContent.2.accordionItem3.daily.title'),
+      verse: t('tabContent.2.accordionItem3.daily.verse'),
+      passage: t('tabContent.2.accordionItem3.daily.description'),
     },
     {
       icon: ConciergeBell,
-      title: t('foursquare.accordionItem3.supper.title'),
-      verse: t('foursquare.accordionItem3.supper.verse'),
-      passage: t('foursquare.accordionItem3.supper.description'),
+      title: t('tabContent.2.accordionItem3.supper.title'),
+      verse: t('tabContent.2.accordionItem3.supper.verse'),
+      passage: t('tabContent.2.accordionItem3.supper.description'),
     },
     {
       icon: Dove,
-      title: t('foursquare.accordionItem3.spirit.title'),
-      verse: t('foursquare.accordionItem3.spirit.verse'),
-      passage: t('foursquare.accordionItem3.spirit.description'),
+      title: t('tabContent.2.accordionItem3.spirit.title'),
+      verse: t('tabContent.2.accordionItem3.spirit.verse'),
+      passage: t('tabContent.2.accordionItem3.spirit.description'),
     },
     {
       icon: Paintbrush,
-      title: t('foursquare.accordionItem4.life.title'),
-      verse: t('foursquare.accordionItem4.life.verse'),
-      passage: t('foursquare.accordionItem4.life.description'),
+      title: t('tabContent.2.accordionItem4.life.title'),
+      verse: t('tabContent.2.accordionItem4.life.verse'),
+      passage: t('tabContent.2.accordionItem4.life.description'),
     },
     {
       icon: Gift,
-      title: t('foursquare.accordionItem4.gifts.title'),
-      verse: t('foursquare.accordionItem4.gifts.verse'),
-      passage: t('foursquare.accordionItem4.gifts.description'),
+      title: t('tabContent.2.accordionItem4.gifts.title'),
+      verse: t('tabContent.2.accordionItem4.gifts.verse'),
+      passage: t('tabContent.2.accordionItem4.gifts.description'),
     },
     {
       icon: Temperature,
-      title: t('foursquare.accordionItem4.moderation.title'),
-      verse: t('foursquare.accordionItem4.moderation.verse'),
-      passage: t('foursquare.accordionItem4.moderation.description'),
+      title: t('tabContent.2.accordionItem4.moderation.title'),
+      verse: t('tabContent.2.accordionItem4.moderation.verse'),
+      passage: t('tabContent.2.accordionItem4.moderation.description'),
     },
     {
       icon: Cross,
-      title: t('foursquare.accordionItem4.divine.title'),
-      verse: t('foursquare.accordionItem4.divine.verse'),
-      passage: t('foursquare.accordionItem4.divine.description'),
+      title: t('tabContent.2.accordionItem4.divine.title'),
+      verse: t('tabContent.2.accordionItem4.divine.verse'),
+      passage: t('tabContent.2.accordionItem4.divine.description'),
     },
     {
       icon: Crown,
-      title: t('foursquare.accordionItem4.coming.title'),
-      verse: t('foursquare.accordionItem4.coming.verse'),
-      passage: t('foursquare.accordionItem4.coming.description'),
+      title: t('tabContent.2.accordionItem4.coming.title'),
+      verse: t('tabContent.2.accordionItem4.coming.verse'),
+      passage: t('tabContent.2.accordionItem4.coming.description'),
     },
     {
       icon: Seedling,
-      title: t('foursquare.accordionItem4.evangelism.title'),
-      verse: t('foursquare.accordionItem4.evangelism.verse'),
-      passage: t('foursquare.accordionItem4.evangelism.description'),
+      title: t('tabContent.2.accordionItem4.evangelism.title'),
+      verse: t('tabContent.2.accordionItem4.evangelism.verse'),
+      passage: t('tabContent.2.accordionItem4.evangelism.description'),
     },
     {
       icon: HandHoldingHeart,
-      title: t('foursquare.accordionItem4.tithes.title'),
-      verse: t('foursquare.accordionItem4.tithes.verse'),
-      passage: t('foursquare.accordionItem4.tithes.description'),
+      title: t('tabContent.2.accordionItem4.tithes.title'),
+      verse: t('tabContent.2.accordionItem4.tithes.verse'),
+      passage: t('tabContent.2.accordionItem4.tithes.description'),
     },
   ];
 
   return (
     <div className="px-padding flex flex-col gap-xxl lg:gap-3xl max-width-center">
       <PageHeaderWithBackground
-        title="Foursquare Gospel Church"
-        media={{
-          src: '/images/foursquare/group-people.jpg',
-          alt: '',
-          poster: '',
-        }}
-        subtitle="An international Pentecostal Christian denomination founded in 1923"
+        title={t('title')}
+        subtitle={t('subtitle')}
+        media={{ src: '/images/foursquare/group-people.jpg', alt: t('alt') }}
       />
 
       <div ref={anchorRef} />
       <Tabs variant="default" ref={tabsRef} onActiveTabChange={(tab) => setActive(tab)}>
         <TabItem title={titles[0]} icon={Location}>
           <div className="flex flex-col gap-xl p-lg">
-            <h4 className="text-justify">
-              The Wind Church (dba Wind of the Spirit) is part of a worldwide movement called the
-              International Church of the Foursquare Gospel, with more than 1,700 churches in the
-              United States and over 68,500 churches across more than 150 nations.
-            </h4>
-            <h4 className="text-justify">
-              Every week, more than 12,000 men, women, boys, and girls accept Jesus Christ through
-              the preaching of the gospel in Foursquare churches around the world.
-            </h4>
+            <h5 className="text-justify">{t('tabContent.0.descriptions.0')}</h5>
+            <h5 className="text-justify">{t('tabContent.0.descriptions.1')}</h5>
           </div>
         </TabItem>
         <TabItem title={titles[1]} icon={Buidling}>
           <div className="flex flex-col gap-xl p-lg">
-            <div className="py-lg">
-              <SectionHeader title="Foursquare History" subtitle="How it all began..." />
-            </div>
-            <h4 className="text-justify">
-              The name “Foursquare” is unique compared to most church names. It was born out of an
-              extraordinary move of God during the early 20th century—a period marked by
-              revolutionary changes throughout the world.
-            </h4>
-            <h4 className="text-justify">
-              A great revival swept across the Western world as the 1900s began. Its impact grew as
-              believers in various places were filled with the Holy Spirit, experiencing something
-              similar to the events of Acts 2 on the Day of Pentecost. This movement became known as
-              the “Pentecostal Movement.”
-            </h4>
-            <h4 className="text-justify">
-              By the 1920s, some felt that Pentecostals were becoming extreme in their beliefs. A
-              divide began forming between older denominations and the new groups emerging from
-              revival meetings. Into this unusual moment stepped a woman evangelist, Aimee Semple
-              McPherson, who began preaching the “Foursquare Gospel.” Born in Ingersoll, Ontario,
-              Canada, she came to faith at age 17. Shortly after, she married Robert Semple—the
-              young preacher whose message led to her conversion. The couple soon left for China,
-              where Robert gave his life in service to God. Aimee returned to America as a widow
-              with her young daughter and eventually remarried. Yet the call to preach continued to
-              stir in her heart. She resisted it, longing for a “normal life,” but restlessness
-              grew. When sickness brought her near death, she sensed God asking, “Will you go and
-              preach?” Her surrender—“Yes, Lord, I will go”—became the beginning of a lifelong
-              ministry.
-            </h4>
-            <h4 className="text-justify">
-              Her worldwide ministry led to countless lives being redeemed, miraculously healed,
-              baptized in water, and filled with the Holy Spirit. Thousands from every
-              denomination—and many with no church background at all—attended her meetings. Those
-              whose lives were transformed came to feel like part of the Foursquare family.
-            </h4>
-            <h4 className="text-justify">
-              On September 27, 1944, God called His handmaiden home. The night before, she preached
-              a message in Oakland, California—the very city where she first received the vision of
-              the Foursquare Gospel. A cycle had come full circle, and a divine assignment had been
-              completed.
-            </h4>
-            <h4 className="text-justify">
-              Foursquare International continues to reflect the heart of our founder and the Great
-              Commission given by our Lord: to go into all the world and preach the gospel to
-              everyone. Evangelism and world missions remain the very heartbeat of the Foursquare
-              Church.
-            </h4>
-            <h4 className="text-justify">Just a few of the ministries of the Foursquare Church:</h4>
+            <SectionHeader
+              title={t('tabContent.1.header.title')}
+              subtitle={t('tabContent.1.header.subtitle')}
+            />
+
+            <h5 className="text-justify">{t('tabContent.1.descriptions.0')}</h5>
+            <h5 className="text-justify">{t('tabContent.1.descriptions.1')}</h5>
+            <h5 className="text-justify">{t('tabContent.1.descriptions.2')}</h5>
+            <h5 className="text-justify">{t('tabContent.1.descriptions.3')}</h5>
+            <h5 className="text-justify">{t('tabContent.1.descriptions.4')}</h5>
+            <h5 className="text-justify">{t('tabContent.1.descriptions.5')}</h5>
+            <h5 className="text-justify">{t('tabContent.1.descriptions.6')}</h5>
             <ul className="list-disc list-outside ml-5 sm:ml-8 space-y-sm">
               <li>
-                <h4>
-                  Foursquare Missionary Press distributes more than 3,000,000 pieces of evangelistic
-                  literature each year.
-                </h4>
+                <h5>{t('tabContent.1.descriptions.7')}</h5>
               </li>
               <li>
-                <h4>National Youth Ministry.</h4>
+                <h5>{t('tabContent.1.descriptions.8')}</h5>
               </li>
               <li>
-                <h4>
-                  L.I.F.E. Pacific Colleges are accredited Bible colleges located in San Dimas,
-                  California; Christiansburg, Virginia; and Burnaby, British Columbia. Many
-                  additional Bible institutes operate in partnership with local Foursquare churches
-                  around the world. Foursquare Women International is a service organization made up
-                  of more than 10,000 members.
-                </h4>
+                <h5>{t('tabContent.1.descriptions.9')}</h5>
               </li>
               <li>
-                <h4>Christian Education.</h4>
+                <h5>{t('tabContent.1.descriptions.10')}</h5>
               </li>
               <li>
-                <h4>
-                  Foursquare World Advance — a bimonthly magazine highlighting the global Foursquare
-                  family.
-                </h4>
+                <h5>{t('tabContent.1.descriptions.11')}</h5>
               </li>
               <li>
-                <h4>Eight camping facilities.</h4>
+                <h5>{t('tabContent.1.descriptions.12')}</h5>
               </li>
               <li>
-                <h4>And much more.</h4>
+                <h5>{t('tabContent.1.descriptions.13')}</h5>
               </li>
             </ul>
-            <h4 className="text-justify">
-              The Foursquare community has no desire to compete or compare. We rejoice with every
-              body of believers which lifts the blodstained banner of Jesus Christ. The foursqaure
-              Church is a memeber of the Nartional Association of Evangelicals (NAE) and, as a
-              Pentecostal Church, is affliated with the Pentecoastal-Charismatic Churches of (North
-              America 9PCCNA) and the Penetecoastl World Fellowship.
-            </h4>
-            <h4 className="text-justify">
-              You may request a free subscription by writing to Foursquare World Advance, P.O. Box
-              26902, 1910 W. Sunset Blvd., Suite 200, Los Angeles, California 90026-0176.
-            </h4>
-            <h4 className="text-justify">
-              For more information about the International Church of the Foursquare Gospel (ICFG),
-              visit{' '}
-              <Link href="www.foursquare.org." className="text-link underline" target="_blank">
-                www.foursquare.org.
-              </Link>
-            </h4>
+            <h5 className="text-justify">{t('tabContent.1.descriptions.14')}</h5>
+            <h5 className="text-justify">{t('tabContent.1.descriptions.15')}</h5>
+            <h5 className="text-justify">
+              {t.rich('tabContent.1.descriptions.16', {
+                link: (chunks) => (
+                  <Link href="www.foursquare.org" target="_blank" className="text-link underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </h5>
           </div>
         </TabItem>
         <TabItem title={titles[2]} icon={Cross}>
           <div className="flex flex-col gap-xl p-lg">
-            <SectionHeader title="Foursquare Believes" />
+            <SectionHeader title={t('tabContent.2.header.title')} />
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
               {foursquareBeliefsArr.map((item, idx) => (
                 <div key={`learn-page-foursquare-${item.title}-${idx}`} className="mx-auto">
@@ -341,126 +278,137 @@ const FoursquareClient = () => {
         <TabItem title={titles[3]} icon={Flag}>
           <div className="flex flex-col gap-xl p-lg">
             {/* LOGO SECTION */}
-            <SectionHeader title="Logo" />
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
               <div className="sm:col-span-2 space-y-md">
-                <h4>The term “Foursquare” refers to the four-fold ministry of Jesus Christ.</h4>
+                <SectionHeader title={t('tabContent.3.section1.header')} />
 
-                <h4>
-                  <strong>Crown</strong> — Symbolic of Jesus Christ, the Soon-Coming King
-                </h4>
-                <h4>
-                  <strong>Cross</strong> — Symbolic of Jesus Christ, our Savior
-                </h4>
-                <h4>
-                  <strong>Cup</strong> — Symbolic of Jesus Christ, the Great Physician (Healer)
-                </h4>
-                <h4>
-                  <strong>Dove</strong> — Symbolic of Jesus Christ, the Baptizer with the Holy
-                  Spirit
-                </h4>
+                <h5>{t('tabContent.3.section1.descriptions.0')}</h5>
 
-                <div className="flex flex-col gap-xs pt-sm">
-                  <p className="font-bold">Refer to:</p>
-                  <ScriptureList
-                    scriptures={[
-                      'Matthew 8:17',
-                      'Matthew 1:21',
-                      '1 Thessalonians 4:16-18',
-                      'Matthew 3:11',
-                      'Matthew 4:23',
-                      'John 3:16',
-                      'Matthew 24:30-31',
-                      'John 1:33-34',
-                    ]}
-                  />
-                </div>
-              </div>
+                <h5>
+                  {t.rich('tabContent.3.section1.descriptions.1', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+                <h5>
+                  {t.rich('tabContent.3.section1.descriptions.2', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+                <h5>
+                  {t.rich('tabContent.3.section1.descriptions.3', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+                <h5>
+                  {t.rich('tabContent.3.section1.descriptions.4', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
 
-              <div className="relative w-full h-full aspect-square">
-                <Image fill src={'/images/foursquare/logo.webp'} alt="Foursquare logo" />
-              </div>
-            </div>
-
-            {/* EMBLEM SECTION */}
-            <SectionHeader title="Emblem" />
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
-              <div className="relative w-full h-full aspect-square">
-                <Image fill src={'/images/foursquare/emblem.webp'} alt="Foursquare emblem" />
-              </div>
-
-              <div className="sm:col-span-2 space-y-md">
-                <h4>
-                  The concept of “Foursquare” appears both implicitly and explicitly throughout the
-                  Old and New Testaments. One of the clearest examples is found in Ezekiel’s vision
-                  (Ezekiel 1:10): “Each of the four had the face of a man, the face of a lion on the
-                  right side, the face of an ox on the left side, and each also had the face of an
-                  eagle.”
-                </h4>
-
-                <h4>
-                  <strong>Face of an Eagle</strong> — Symbolic of Jesus Christ, the Coming King
-                </h4>
-                <h4>
-                  <strong>Face of an Ox</strong> — Symbolic of Jesus Christ, the Burden-Bearer
-                </h4>
-                <h4>
-                  <strong>Face of a Man</strong> — Symbolic of Jesus Christ, who shared in human
-                  suffering
-                </h4>
-                <h4>
-                  <strong>Face of a Lion</strong> — Symbolic of Jesus Christ, the Lion of Judah, the
-                  All-Powerful One
-                </h4>
-
-                <div className="flex flex-col gap-xs pt-sm">
-                  <p className="font-bold">Refer to:</p>
-                  <ScriptureList scriptures={['Ezekiel 1:1-28', 'Revelation 4:7']} />
-                </div>
-              </div>
-            </div>
-
-            {/* FLAG SECTION */}
-            <SectionHeader title="Flag" />
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
-              <div className="sm:col-span-2 space-y-md">
-                <h4>
-                  Israel is a type of the Foursquare Gospel: a foursquare altar of the finest gold,
-                  attended by a priest wearing a foursquare breastplate embroidered in scarlet,
-                  gold, blue, and purple.
-                </h4>
-
-                <h4>
-                  <strong>Scarlet</strong> — Represents the first cardinal doctrine: Jesus Christ
-                  the Savior. Its emblem is the face of a man.
-                </h4>
-
-                <h4>
-                  <strong>Gold</strong> — Represents the second cardinal doctrine: Jesus Christ the
-                  Baptizer with the Holy Spirit. Its emblem is the face of a lion.
-                </h4>
-
-                <h4>
-                  <strong>Blue</strong> — Represents the third cardinal doctrine: Jesus Christ the
-                  Great Physician. Its emblem is the face of an ox.
-                </h4>
-
-                <h4>
-                  <strong>Purple</strong> — Represents the fourth cardinal doctrine: Jesus Christ
-                  the Coming King. Its emblem is the face of an eagle.
-                </h4>
-
-                <div className="flex flex-col gap-xs pt-sm">
-                  <p className="font-bold">Refer to:</p>
-                  <ScriptureList scriptures={['Exodus 28:15-16']} />
-                </div>
+                <ScriptureList
+                  scriptures={[
+                    t('tabContent.3.section1.descriptions.5'),
+                    t('tabContent.3.section1.descriptions.6'),
+                    t('tabContent.3.section1.descriptions.7'),
+                    t('tabContent.3.section1.descriptions.8'),
+                    t('tabContent.3.section1.descriptions.9'),
+                    t('tabContent.3.section1.descriptions.10'),
+                    t('tabContent.3.section1.descriptions.11'),
+                    t('tabContent.3.section1.descriptions.12'),
+                  ]}
+                />
               </div>
 
               <div className="relative w-full h-full aspect-square">
                 <Image
                   fill
-                  src={'/images/foursquare/flag.webp'}
-                  alt="Foursquare flag"
+                  src="/images/foursquare/logo.webp"
+                  alt={t('tabContent.3.section1.logoAlt')}
+                />
+              </div>
+            </div>
+
+            {/* EMBLEM SECTION */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
+              <div className="relative w-full h-full aspect-square">
+                <Image
+                  fill
+                  src={'/images/foursquare/emblem.webp'}
+                  alt={t('tabContent.3.section2.logoAlt')}
+                />
+              </div>
+
+              <div className="sm:col-span-2 space-y-md">
+                <SectionHeader title={t('tabContent.3.section2.header')} />
+
+                <h5>{t('tabContent.3.section2.descriptions.0')}</h5>
+
+                <h5>
+                  {t.rich('tabContent.3.section2.descriptions.1', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+                <h5>
+                  {t.rich('tabContent.3.section2.descriptions.2', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+                <h5>
+                  {t.rich('tabContent.3.section2.descriptions.3', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+                <h5>
+                  {t.rich('tabContent.3.section2.descriptions.4', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+
+                <ScriptureList
+                  scriptures={[
+                    t('tabContent.3.section2.descriptions.5'),
+                    t('tabContent.3.section2.descriptions.6'),
+                  ]}
+                />
+              </div>
+            </div>
+
+            {/* FLAG SECTION */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
+              <div className="sm:col-span-2 space-y-md">
+                <SectionHeader title={t('tabContent.3.section3.header')} />
+
+                <h5>{t('tabContent.3.section3.descriptions.0')}</h5>
+
+                <h5>
+                  {t.rich('tabContent.3.section3.descriptions.1', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+                <h5>
+                  {t.rich('tabContent.3.section3.descriptions.2', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+                <h5>
+                  {t.rich('tabContent.3.section3.descriptions.3', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+                <h5>
+                  {t.rich('tabContent.3.section3.descriptions.4', {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                  })}
+                </h5>
+
+                <ScriptureList scriptures={[t('tabContent.3.section3.descriptions.5')]} />
+              </div>
+
+              <div className="relative w-full h-full aspect-square">
+                <Image
+                  fill
+                  src="/images/foursquare/flag.webp"
+                  alt={t('tabContent.3.section3.logoAlt')}
                   className="object-contain aspect-video mx-auto"
                 />
               </div>
@@ -471,7 +419,7 @@ const FoursquareClient = () => {
 
       <div className="-mt-2 flex justify-end items-center gap-md p-md">
         {/* Previous label */}
-        <p className="italic font-light text-light-charcoal text-dark-charcoal">
+        <p className="italic font-light text-light-charcoal dark:text-dark-charcoal">
           {titles[active === 0 ? lastIndex : active - 1]}
         </p>
 
@@ -496,7 +444,7 @@ const FoursquareClient = () => {
         />
 
         {/* Next label */}
-        <p className="italic font-light text-light-charcoal text-dark-charcoal">
+        <p className="italic font-light text-light-charcoal dark:text-dark-charcoal">
           {titles[active === lastIndex ? 0 : active + 1]}
         </p>
       </div>

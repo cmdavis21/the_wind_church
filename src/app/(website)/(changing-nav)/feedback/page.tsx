@@ -31,18 +31,24 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const VisitorFeedback = () => (
-  <div>
-    <PageHero size="short" title="Visitor Feedback" media={{ src: '/images/feedback.webp' }} />
-    <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
-      <CenterTextSection
-        highlight={[[2, 2]]}
-        title="Let us know how we did!"
-        description="We'd love to hear about your experience visiting our church—your feedback helps us grow and better serve every guest who walks through our doors."
+const VisitorFeedback = async () => {
+  const t = await getTranslations('Feedback');
+
+  return (
+    <div>
+      <PageHero
+        size="short"
+        title={t('title')}
+        media={{ src: '/images/feedback.webp', alt: t('alt') }}
       />
-      <VisitorFeedbackForm />
+
+      <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
+        <CenterTextSection title={t('form.header.title')} description={t('form.header.subtitle')} />
+
+        <VisitorFeedbackForm />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default VisitorFeedback;

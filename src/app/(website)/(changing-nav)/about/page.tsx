@@ -66,7 +66,29 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const About = async () => {
   const t = await getTranslations('About');
 
-  const aboutPastorArr = [
+  const missionVision = [
+    {
+      title: t('mission.title'),
+      subtitle: t('mission.subtitle'),
+      highlight: [[0, 9]],
+      description: t('mission.description'),
+    },
+    {
+      title: t('vision.title'),
+      subtitle: t('vision.subtitle'),
+      highlight: [[0, 7]],
+      description: t('vision.description'),
+      scriptureList: [
+        t('vision.verse1'),
+        t('vision.verse2'),
+        t('vision.verse3'),
+        t('vision.verse4'),
+        t('vision.verse5'),
+      ],
+    },
+  ];
+
+  const aboutPastor = [
     {
       media: {
         src: '/images/product-placeholder.webp',
@@ -109,7 +131,7 @@ const About = async () => {
     },
   ];
 
-  const theWindCenterArr = [
+  const windValues = [
     {
       image: {
         src: '/images/salvation/cross-on-mount.webp',
@@ -160,7 +182,7 @@ const About = async () => {
     },
   ];
 
-  const foursquareBeliefsArr = [
+  const foursquareBeliefs = [
     {
       image: '/images/foursquare/cross.webp',
       title: t('foursquare.accordionItem1.title'),
@@ -321,40 +343,24 @@ const About = async () => {
       />
 
       {/* Mission and Vision */}
-      <div id={t('mission.id')} className="max-width-center py-3xl sm:py-4xl">
+      <div id={t('mission.id')} className="max-width-center pt-3xl sm:pt-4xl">
         <div className="flex flex-col gap-xxl px-padding">
-          {/* Mission */}
-          <div className="flex flex-col gap-lg">
-            <h1>{t('mission.title')}</h1>
-            <Text htmlTag="h2" highlight={[[0, 9]]}>
-              {t('mission.subtitle')}
-            </Text>
-            <h4 className="lg:max-w-[75%]">{t('mission.description')}</h4>
-          </div>
-
-          {/* Vision */}
-          <div className="flex flex-col gap-lg">
-            <h1>{t('vision.title')}</h1>
-            <Text htmlTag="h2" highlight={[[0, 7]]}>
-              {t('vision.subtitle')}
-            </Text>
-            <h4 className="lg:max-w-[75%]">{t('vision.description')}</h4>
-            <ScriptureList
-              scriptures={[
-                t('vision.verse1'),
-                t('vision.verse2'),
-                t('vision.verse3'),
-                t('vision.verse4'),
-                t('vision.verse5'),
-              ]}
-            />
-          </div>
+          {missionVision.map((mv) => (
+            <div key={`mission-and-vision-${mv.title}`} className="flex flex-col gap-sm">
+              <h1>{mv.title}</h1>
+              <Text htmlTag="h2" highlight={mv.highlight as any}>
+                {mv.subtitle}
+              </Text>
+              <h4 className="lg:max-w-[75%]">{mv.description}</h4>
+              {mv.scriptureList && <ScriptureList scriptures={mv.scriptureList} />}
+            </div>
+          ))}
         </div>
       </div>
 
       {/* About Pastor */}
-      <div id={t('aboutPastor.id')}>
-        <FullscreenMediaWithSideTextCarousel slides={aboutPastorArr} />
+      <div id={t('aboutPastor.id')} className="pt-3xl sm:pt-4xl">
+        <FullscreenMediaWithSideTextCarousel slides={aboutPastor} />
       </div>
 
       {/* The Wind Center */}
@@ -366,7 +372,7 @@ const About = async () => {
 
         {/* Tablet/Desktop */}
         <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
-          {theWindCenterArr.map(({ title, image, description }) => (
+          {windValues.map(({ title, image, description }) => (
             <ImageWithTitleAndHiddenTextCard
               key={`desktop-${title}`}
               image={image}
@@ -383,7 +389,7 @@ const About = async () => {
         {/* Mobile */}
         <SimpleCarousel
           className="sm:hidden"
-          slides={theWindCenterArr.map(({ title, image, description }) => (
+          slides={windValues.map(({ title, image, description }) => (
             <ImageWithTitleAndHiddenTextCard
               key={`mobile-${title}`}
               image={image}
@@ -414,7 +420,7 @@ const About = async () => {
         </div>
 
         <Accordion
-          content={foursquareBeliefsArr.map((section) => ({
+          content={foursquareBeliefs.map((section) => ({
             image: section.image,
             title: section.title,
             description: (

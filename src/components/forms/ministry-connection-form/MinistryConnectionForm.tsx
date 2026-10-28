@@ -10,29 +10,28 @@ import * as yup from 'yup';
 import { useCreateMinistryConnection } from '@/data/client/sanity/ministry-connection';
 import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { isValidEmail, isValidPhone } from '@/data/utils';
+import { useTranslations } from 'next-intl';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';
 import CheckboxGroup from '../inputs/checkbox-group/CheckboxGroup';
 import TextInput from '../inputs/text-input/TextInput';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required('Enter your first name'),
-  last_name: yup.string().required('Enter your last name'),
-  phone: yup
-    .string()
-    .min(10)
-    .max(11)
-    .required('Enter your phone number')
-    .test('Include 10 to 11 digit valid phone number', (val) => isValidPhone(val)),
+  first_name: yup.string().required('first.message'),
+  last_name: yup.string().required('last.message'),
   email: yup
     .string()
     .email()
-    .required('Enter your email')
-    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
+    .required('email.message')
+    .test('email.test', (value) => isValidEmail(value)),
+  phone: yup
+    .string()
+    .required('phone.message')
+    .test('phone.test', (val) => isValidPhone(val)),
   ministry_interests: yup
     .array(yup.string().default(''))
-    .min(1, 'Select at least one ministry you are instrested in learning more about.')
-    .required('Select ministries you are instrested in.'),
+    .min(1, 'form.interests.test')
+    .required('form.interests.message'),
 });
 
 interface MinistryConnectionFormProps {
@@ -40,6 +39,9 @@ interface MinistryConnectionFormProps {
 }
 
 const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministryNames }) => {
+  const c = useTranslations('FormCommon');
+  const t = useTranslations('Ministries');
+
   const { mutate: submitIquiry, isPending, isSuccess, isError } = useCreateMinistryConnection();
 
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -59,76 +61,77 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
   const onSubmit = (values: MinistryConnection) => submitIquiry(values);
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
-    >
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="form-container-style">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
-        <h4>Ministry Connection</h4>
+        <h4>{t('form.title')}</h4>
       </div>
 
       {isSuccess && (
         <AlertMessage
           type="success"
-          title="Success!"
-          description="We will contact you shortly. Thank you."
+          title={c('success.title')}
+          description={c('success.description')}
         />
       )}
 
       {isError && (
         <AlertMessage
           type="failure"
-          title="Oh no!"
-          description="There was an problem submitting your inquiry. Please try again later."
+          title={c('error.title')}
+          description={c('error.description')}
         />
       )}
 
-      {/* names */}
+      {/* Names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="First Name*"
+          required
           type="text"
-          error={errors.first_name?.message}
-          disabled={isPending || isSuccess}
+          label={c('first.label')}
           {...register('first_name')}
+          disabled={isPending || isSuccess}
+          error={errors.first_name ? c(errors.first_name.message!) : undefined}
         />
         <TextInput
-          label="Last Name*"
+          required
           type="text"
-          error={errors.last_name?.message}
-          disabled={isPending || isSuccess}
+          label={c('last.label')}
           {...register('last_name')}
+          disabled={isPending || isSuccess}
+          error={errors.last_name ? c(errors.last_name.message!) : undefined}
         />
       </div>
 
-      {/* contact */}
+      {/* Contact */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="Phone*"
+          required
           type="tel"
-          error={errors.phone?.message}
-          disabled={isPending || isSuccess}
           {...register('phone')}
+          label={c('phone.label')}
+          disabled={isPending || isSuccess}
+          error={errors.phone ? c(errors.phone.message!) : undefined}
         />
         <TextInput
-          label="Email*"
+          required
           type="email"
-          error={errors.email?.message}
-          disabled={isPending || isSuccess}
           {...register('email')}
+          label={c('email.label')}
+          disabled={isPending || isSuccess}
+          error={errors.email ? c(errors.email.message!) : undefined}
         />
       </div>
 
       {/* ministry interest */}
       <CheckboxGroup
-        name={'ministry_interest'}
+        required
+        name="ministry_interest"
+        label={t('form.interests.label')}
         disabled={isPending || isSuccess}
-        label="Select ministries you are interested in learning more about?*"
-        options={ministryNames.map((name) => ({ label: name, value: name }))}
         onChange={(values) => setValue('ministry_interests', values)}
-        error={errors.ministry_interests?.message}
+        options={ministryNames.map((name) => ({ label: name, value: name }))}
+        error={errors.ministry_interests ? t(errors.ministry_interests.message!) : undefined}
       />
 
       <Button
@@ -136,10 +139,14 @@ const MinistryConnectionForm: React.FC<MinistryConnectionFormProps> = ({ ministr
         size="lg"
         type="submit"
         color="primary"
-        disabled={!isValid || isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
+        disabled={!isValid || isPending || isSuccess || isError}
       >
-        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
+        {isPending
+          ? c('submit.pending')
+          : isSuccess || isError
+            ? c('submit.sent')
+            : c('submit.label')}
       </Button>
     </form>
   );

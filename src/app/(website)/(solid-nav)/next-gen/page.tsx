@@ -50,6 +50,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const NextGen = async () => {
+  const t = await getTranslations('NextGen');
+
   const pageInfo = await getNextGenPage();
   const gallery = await getNextGenGallery();
   const events = await getMinistryEvents('Next Gen');
@@ -58,41 +60,34 @@ const NextGen = async () => {
     <div className="flex flex-col gap-3xl sm:gap-4xl">
       <div className="px-padding max-width-center">
         <PageHeaderWithBackground
-          media={{
-            src: '/images/next-gen/kids-group.webp',
-            alt: 'decorative background image',
-            poster: '',
-          }}
-          title="Next Gen"
-          subtitle="Sunday Services provided for infants to High School children"
+          title={t('title')}
+          subtitle={t('subtitle')}
+          media={{ src: '/images/next-gen/kids-group.webp', alt: t('alt') }}
         />
       </div>
 
       {/* CORE PRINCIPLES */}
       <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-        <CenterTextSection
-          highlight={[[0, 0]]}
-          title="Core Principles"
-          description="We believe every child is uniquely created by God and deserving of intentional care, discipleship, and joyful community. Our Next Gen ministry helps young hearts grow in faith, character, and confidence as they discover who they are in Christ."
-        />
+        <CenterTextSection title={t('principles.title')} description={t('principles.subtitle')} />
+
         <div className="flex flex-wrap justify-center gap-xxl">
           <ImageWithTitleDescriptionCard
-            alt=""
             src="/images/next-gen/kids-learning.webp"
-            title="Christ-Centered Studies"
-            description="We use interactive teaching, worship, and hands‑on learning to help students build a strong, lasting foundation in Christ."
+            alt={t('principles.items.0.alt')}
+            title={t('principles.items.0.title')}
+            description={t('principles.items.0.subtitle')}
           />
           <ImageWithTitleDescriptionCard
-            alt=""
             src="/images/next-gen/kids-hugging.webp"
-            title="Respect & Love"
-            description="We model and teach kindness, empathy, and Christ‑like respect so students learn to care for others in everyday life."
+            alt={t('principles.items.1.alt')}
+            title={t('principles.items.1.title')}
+            description={t('principles.items.1.subtitle')}
           />
           <ImageWithTitleDescriptionCard
-            alt=""
             src="/images/next-gen/kids-drawing.webp"
-            title="Creative Fun & Exploration"
-            description="From crafts and games to outdoor play and team activities, we create fun, engaging spaces that spark curiosity and build friendships."
+            alt={t('principles.items.2.alt')}
+            title={t('principles.items.2.title')}
+            description={t('principles.items.2.subtitle')}
           />
         </div>
 
@@ -103,26 +98,21 @@ const NextGen = async () => {
             download="the_wind_church_youth_service_cirriculum.pdf"
           >
             <Button pill color="primary" size="lg">
-              Download Cirriculum
+              {t('download')}
             </Button>
           </a>
         )}
       </div>
 
       <div className="px-padding max-width-center">
-        <PassageQuote
-          passage="Let no one despise your youth, but set an example for the believers in speech, in conduct, in love, in faith, and in purity"
-          verse="1 Timothy 4:12"
-        />
+        <PassageQuote passage={t('scripture.passage')} verse={t('scripture.verse')} />
       </div>
 
       {/* EDUCATORS */}
       {pageInfo && pageInfo.educators && (
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <SectionHeader
-            title="Meet our Educators & Caretakers"
-            subtitle="Select Leaders to learn more"
-          />
+          <SectionHeader title={t('educators.title')} subtitle={t('educators.subtitle')} />
+
           <div>
             {/* Desktop */}
             <div className="hidden sm:flex flex-wrap gap-xl">
@@ -150,10 +140,8 @@ const NextGen = async () => {
 
       {/* EVENTS */}
       <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-        <CenterTextSection
-          title="Next Gen Events"
-          description="Fun, adventurous, and learning-focused events for the Wind youth!"
-        />
+        <CenterTextSection title={t('events.title')} description={t('events.subtitle')} />
+
         {events && events.length > 0 ? (
           <div className="w-full flex flex-wrap justify-center gap-xxl">
             {events.slice(0, 3).map((event: Event) => (
@@ -165,12 +153,12 @@ const NextGen = async () => {
             ))}
           </div>
         ) : (
-          <h4 className="text-center">No events at this time</h4>
+          <h4 className="text-center">{t('events.empty')}</h4>
         )}
 
         <Link href={PageRoutes.events} className="mx-auto">
           <Button pill color="primary" size="lg">
-            View other Wind Events
+            {t('events.cta')}
           </Button>
         </Link>
       </div>
@@ -178,16 +166,12 @@ const NextGen = async () => {
       {/* GALLERY */}
       {gallery && gallery.urls.length > 0 && (
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <SectionHeader title="Next Gen Gallery" subtitle="Select a photo to view the memories" />
+          <SectionHeader title={t('gallery.title')} subtitle={t('gallery.subtitle')} />
 
           {/* Desktop */}
           <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
             {gallery.urls.slice(0, 4).map((src) => (
-              <ImageCard
-                key={`wind-gallery-${src}`}
-                src={src}
-                alt="The Wind Church Gallery Image"
-              />
+              <ImageCard key={`wind-gallery-${src}`} src={src} alt={t('gallery.photoAlt')} />
             ))}
           </div>
 
@@ -196,17 +180,13 @@ const NextGen = async () => {
             showDots={false}
             className="sm:hidden"
             slides={gallery.urls.slice(0, 4).map((src) => (
-              <ImageCard
-                key={`wind-gallery-mobile-${src}`}
-                src={src}
-                alt="The Wind Church Gallery Image"
-              />
+              <ImageCard key={`wind-gallery-mobile-${src}`} src={src} alt={t('gallery.photoAlt')} />
             ))}
           />
 
           <Link href={PageRoutes.gallery}>
             <Button pill color="primary" size="lg">
-              See the full gallery
+              {t('gallery.cta')}
             </Button>
           </Link>
         </div>
@@ -214,65 +194,49 @@ const NextGen = async () => {
 
       {/* NURSERY CTA */}
       <MediaBackgroundAndContent
-        background={{
-          src: '/images/next-gen/baby-with-blocks.webp',
-        }}
+        background={{ src: '/images/next-gen/baby-with-blocks.webp', alt: t('nursery.alt') }}
         content={
           <div className="flex flex-col">
             <Baby className="size-[60px] fill-white" />
-            <h3 className="pt-sm">Nursery for Infants & Toddlers</h3>
-            <h3>is available during service!</h3>
+            <h3 className="pt-sm">{t('nursery.title')}</h3>
+            <h3>{t('nursery.subtitle')}</h3>
           </div>
         }
       />
 
       {/* FAQs */}
       <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-        <SectionHeader
-          title="Frequently Asked Questions"
-          subtitle="Let us tell you more about The Wind Youth Services"
-        />
+        <SectionHeader title={t('faqs.title')} subtitle={t('faqs.subtitle')} />
+
         <Accordion
           content={[
             {
-              title: 'What is the purpose of the Youth Service?',
-              description:
-                "Our Youth Service is designed to help young people encounter God, grow in their faith, and build strong relationships with peers. It's a dynamic and engaging environment where students can worship, learn biblical truths, and develop a Christ-centered foundation for life.",
+              title: t('faqs.items.0.question'),
+              description: t('faqs.items.0.answer'),
             },
             {
-              title: 'What age group is the Youth Service for?',
-              description:
-                'The Youth Service is open to students from toddler to high school. We tailor our messages, activities, and small groups to be relevant and impactful for each age group.',
+              title: t('faqs.items.1.question'),
+              description: t('faqs.items.1.answer'),
             },
             {
-              title: 'Is the teaching in Youth Service appropriate for my child?',
-              description:
-                'Absolutely! Our messages are biblically sound, age-appropriate, and designed to help students navigate real-life challenges through a faith-based perspective. We focus on topics like identity in Christ, friendships, purpose, and making wise choices.',
+              title: t('faqs.items.2.question'),
+              description: t('faqs.items.2.answer'),
             },
             {
-              title: 'Will my child be safe during Youth Service?',
-              description:
-                'Yes! The safety of your child is our top priority. All youth leaders and volunteers undergo background checks and training to create a secure and welcoming environment. We also have clear safety policies in place for check-in and check-out.',
+              title: t('faqs.items.3.question'),
+              description: t('faqs.items.3.answer'),
             },
             {
-              title: 'What if my child is nervous about attending?',
-              description:
-                "That's completely understandable! Many students feel unsure when trying something new. Our youth team is welcoming, and we'll make sure your child feels comfortable and included from the moment they arrive.",
+              title: t('faqs.items.4.question'),
+              description: t('faqs.items.4.answer'),
             },
             {
-              title: 'What can my child expect during a Youth Service?',
-              description:
-                'A typical service includes live worship, an engaging message, small group discussions, and interactive activities. We aim to create a fun and faith-filled atmosphere where students can grow spiritually and make new friends.',
+              title: t('faqs.items.5.question'),
+              description: t('faqs.items.5.answer'),
             },
             {
-              title: 'Do I need to register my child beforehand?',
-              description:
-                'We recommend registering online or at the check-in desk when you arrive. This helps us ensure a smooth experience and connect your child with the right group based on their age and grade level.',
-            },
-            {
-              title: 'How can I stay involved as a parent?',
-              description:
-                "We encourage parents to stay connected by attending parent meetings, signing up for youth service updates, and talking with their child about what they're learning. You're also welcome to volunteer or participate in special events throughout the year!",
+              title: t('faqs.items.6.question'),
+              description: t('faqs.items.6.answer'),
             },
           ]}
         />
@@ -280,10 +244,7 @@ const NextGen = async () => {
 
       {/* GUARDIAN INQUIRY */}
       <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-        <CenterTextSection
-          title="Have more questions?"
-          description="Submit an inquiry and a member of our team will contact you."
-        />
+        <CenterTextSection title={t('form.header.title')} description={t('form.header.subtitle')} />
         <NextGenGuardianInquiryForm />
       </div>
 

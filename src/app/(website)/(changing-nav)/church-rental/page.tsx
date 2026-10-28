@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.churchRental}`;
-  const image = '/images/church-building.webp';
+  const image = '/images/rental/church-building.webp';
   return {
     title,
     description,
@@ -33,59 +33,75 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const ChurchRental = () => (
-  <div>
-    <PageHero size="short" title="Church Rental" media={{ src: '/images/church-building.webp' }} />
+const ChurchRental = async () => {
+  const t = await getTranslations('ChurchRental');
 
-    <div className="max-width-center py-3xl sm:py-4xl px-padding">
-      <CenterTextSection
-        highlight={[[4, 5]]}
-        title="Looking for your next event space?"
-        description="We offer rentals of the parking lot, Fellowship Hall and the Sanctuary. Ideal for weddings, expos, family celebrations and more."
+  return (
+    <div>
+      <PageHero
+        size="short"
+        title={t('title')}
+        media={{ src: '/images/rental/church-building.webp', alt: t('alt') }}
       />
-    </div>
 
-    <CenterModeMediaWithTextCarousel
-      slides={[
-        {
-          media: {
-            src: '/images/product-placeholder.webp',
-            alt: 'decorative background image',
-          },
-          title: 'Fellowship Hall',
-          description:
-            'This hall is great for hosting a large quantity of guests. Featuring a kitchen for events involving cooking and a projector screen and speaking podium for lecturing sessions.',
-        },
-        {
-          media: {
-            src: '/images/product-placeholder.webp',
-            alt: 'decorative background image',
-          },
-          title: 'Kitchen',
-          description:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.',
-        },
-        {
-          media: {
-            src: '/images/product-placeholder.webp',
-            alt: 'decorative background image',
-          },
-          title: 'Parking Lot',
-          description:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet reprehenderit error explicabo velit repudiandae? Perferendis reiciendis velit esse deleniti maiores et minima aperiam odit.',
-        },
-      ]}
-    />
+      <div className="max-width-center py-3xl sm:py-4xl px-padding">
+        <CenterTextSection title={t('header.title')} description={t('header.description')} />
+      </div>
 
-    <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
-      <CenterTextSection
-        highlight={[[0, 0]]}
-        title="Tailored solutions for your needs"
-        description="We offer rentals of the parking lot, Fellowship Hall and the Sanctuary. Ideal for weddings, expos, family celebrations and more."
+      <CenterModeMediaWithTextCarousel
+        slides={[
+          {
+            media: {
+              src: '/images/rental/lobby.webp',
+              alt: t('lobby.alt'),
+            },
+            title: t('lobby.title'),
+            description: t('lobby.description'),
+          },
+          {
+            media: {
+              src: '/images/rental/sanctuary.webp',
+              alt: t('sanctuary.alt'),
+            },
+            title: t('sanctuary.title'),
+            description: t('sanctuary.description'),
+          },
+          {
+            media: {
+              src: '/images/rental/fellowship-hall.webp',
+              alt: t('fellowshipHall.alt'),
+            },
+            title: t('fellowshipHall.title'),
+            description: t('fellowshipHall.description'),
+          },
+          {
+            media: {
+              src: '/images/rental/kitchen.webp',
+              alt: t('kitchen.alt'),
+            },
+            title: t('kitchen.title'),
+            description: t('kitchen.description'),
+          },
+          {
+            media: {
+              src: '/images/rental/parking-lot.webp',
+              alt: t('parkingLot.alt'),
+            },
+            title: t('parkingLot.title'),
+            description: t('parkingLot.description'),
+          },
+        ]}
       />
-      <EventRentalForm />
+
+      <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
+        <CenterTextSection
+          title={t('form.header.title')}
+          description={t('form.header.description')}
+        />
+        <EventRentalForm />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ChurchRental;

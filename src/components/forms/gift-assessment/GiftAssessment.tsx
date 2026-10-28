@@ -84,7 +84,7 @@ const GiftAssessment = () => {
             <h3>Assessment Completed!</h3>
             <h5>
               Thank you for taking the time to complete the assessment. You are one-step closer to
-              undertsanding the purpose God had outlined in your life.
+              undertsanding the purpose God has outlined in your life.
             </h5>
             <div className="pt-lg flex flex-col gap-lg">
               {[

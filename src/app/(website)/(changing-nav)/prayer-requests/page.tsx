@@ -31,18 +31,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const PrayerRequests = () => (
-  <div>
-    <PageHero size="short" title="Prayer Requests" media={{ src: '/images/praying-group.webp' }} />
-    <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
-      <CenterTextSection
-        highlight={[[2, 2]]}
-        title="We're a family going through life together"
-        description="We love to celebrate the Lord's blessings and support each other through difficult times. We're here for one another and for you."
+const PrayerRequests = async () => {
+  const t = await getTranslations('PrayerRequests');
+
+  return (
+    <div>
+      <PageHero
+        size="short"
+        title={t('title')}
+        media={{ src: '/images/praying-group.webp', alt: t('alt') }}
       />
-      <PrayerRequestForm />
+
+      <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
+        <CenterTextSection title={t('form.header.title')} description={t('form.header.subtitle')} />
+        <PrayerRequestForm />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default PrayerRequests;

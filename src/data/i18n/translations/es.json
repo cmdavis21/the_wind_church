@@ -3,6 +3,49 @@
     "label": "Cambiar idioma",
     "locale": "{locale, select, en {🇺🇸 ING} es {🇲🇽 ESP} other {N/A}}"
   },
+  "FormCommon": {
+    "success": {
+      "title": "¡Éxito!",
+      "description": "Nos comunicaremos contigo pronto. Gracias."
+    },
+    "error": {
+      "title": "¡Error!",
+      "description": "Hubo un problema al enviar tu solicitud. Por favor intenta nuevamente más tarde, o llama a nuestra oficina al +1 (951) 359-0203."
+    },
+    "first": {
+      "label": "Nombre",
+      "message": "Ingresa tu nombre"
+    },
+    "last": {
+      "label": "Apellido",
+      "message": "Ingresa tu apellido"
+    },
+    "phone": {
+      "label": "Teléfono",
+      "message": "Ingresa tu número de teléfono",
+      "test": "Ingresa un número válido de 10 a 11 dígitos"
+    },
+    "email": {
+      "label": "Correo electrónico",
+      "message": "Ingresa tu correo electrónico",
+      "test": "Ingresa una dirección de correo válida"
+    },
+    "submit": {
+      "label": "¡Enviar!",
+      "pending": "Enviando...",
+      "sent": "Enviado"
+    },
+    "yes": "Sí",
+    "no": "No",
+    "select": "Selecciona una opción"
+  },
+  "ErrorAlert": {
+    "header": "Error",
+    "title": "We encountered a problem!",
+    "subtitle": "Please check back later.",
+    "home": "Go to Home",
+    "refresh": "Try refreshing"
+  },
   "NotFound": {
     "metadata": {
       "title": "Página No Encontrada",
@@ -406,6 +449,71 @@
     "metadata": {
       "title": "Alquiler de la Iglesia",
       "description": "¿Interesado en alquilar nuestras instalaciones? Obtén más detalles y solicita tu fecha hoy mismo."
+    },
+    "title": "Alquiler de iglesia",
+    "header": {
+      "title": "¿Buscas el espacio ideal para tu próximo evento?",
+      "description": "Nuestro Santuario, Salón de Compañerismo, cocina comercial y amplio estacionamiento son perfectos para bodas, exposiciones, celebraciones familiares y más."
+    },
+    "lobby": {
+      "title": "Vestíbulo",
+      "description": "Un espacio de entrada acogedor y de concepto abierto, ideal para el registro de invitados, saludos, oportunidades para fotos y reuniones antes del evento. El vestíbulo ofrece mucho espacio para el flujo de mucha gente, lo que lo hace perfecto para conferencias, ceremonias y grandes eventos sociales.",
+      "alt": "Área de asientos espaciosa con sofás, una mesa de café, sillas decorativas, plantas interiores y otras decoraciones de mesa."
+    },
+    "sanctuary": {
+      "title": "Santuario",
+      "description": "Un espacio amplio y multiusos diseñado para acomodar a grandes multitudes cómodamente. El santuario es perfecto para bodas, conciertos, conferencias, homenajes, graduaciones y eventos comunitarios. Con asientos flexibles y un escenario listo, se adapta fácilmente tanto a reuniones formales como creativas.",
+      "alt": "Espacio grande para eventos con escenario iluminado y filas de asientos frente al escenario."
+    },
+    "fellowshipHall": {
+      "title": "Salón de reuniones",
+      "description": "Un salón versátil y abierto, adecuado para recepciones, banquetes, talleres, fiestas y celebraciones comunitarias. Su amplio espacio permite diseños personalizados: mesas redondas, largas mesas de banquete, estaciones de trabajo o espacio abierto para actividades, lo que lo hace ideal para eventos de todos los tamaños.",
+      "alt": "Una sala con filas de mesas redondas con seis sillas en cada mesa. Hay un café-bar al final de la sala con el cartel 'He-brews Cafe'."
+    },
+    "kitchen": {
+      "title": "Cocina",
+      "description": "Una cocina comercial completamente equipada diseñada para apoyar a equipos de catering, preparación de comidas y servicios de alimentos a gran escala. Ya sea que estés organizando un banquete, una recepción o un evento comunitario, la cocina proporciona las herramientas profesionales necesarias para un funcionamiento fluido y eficiente.",
+      "alt": "Cocina comercial grande con congeladores, horno, fregadero y espacio de almacenamiento."
+    },
+    "parkingLot": {
+      "title": "Estacionamiento",
+      "description": "Un estacionamiento grande y de fácil acceso capaz de acomodar eventos de alta capacidad con facilidad. Perfecto para reuniones que atraen a grandes multitudes, el estacionamiento permite una llegada sin problemas, un flujo de tráfico organizado y espacio suficiente para voluntarios, vendedores y estacionamiento de invitados.",
+      "alt": "Estacionamiento al aire libre con algunos autos estacionados. Un parque infantil cercado a la izquierda."
+    },
+    "formHeader": {
+      "title": "Soluciones personalizadas para cada ocasión",
+      "description": "Cuéntanos sobre tu evento y te ayudaremos a crear el ambiente ideal. Nuestros espacios flexibles pueden adaptarse a reuniones de cualquier tamaño."
+    },
+    "form": {
+      "title": "Solicitud de Alquiler",
+      "company": {
+        "name": "Nombre de la Empresa",
+        "phone": "Teléfono de la Empresa"
+      },
+      "purpose": {
+        "label": "Propósito del alquiler",
+        "message": "Selecciona una opción",
+        "wedding": "Boda",
+        "family": "Celebraciones Familiares",
+        "birthday": "Cumpleaños",
+        "funeral": "Funeral",
+        "outreach": "Evento de Alcance",
+        "other": "Otro"
+      },
+      "describe": {
+        "label": "Describe tu evento",
+        "message": "Comparte más detalles de tu evento para entender mejor cómo podemos acomodarte."
+      },
+      "referred": {
+        "label": "¿Alguien te recomendó The Wind Church?"
+      },
+      "source": {
+        "label": "Fuente de Referencia",
+        "member": "Miembro de Wind",
+        "spouse": "Esposo/Esposa",
+        "family": "Familia",
+        "friend": "Amigo"
+      }
     }
   },
   "DeepDive": {
@@ -416,44 +524,577 @@
   },
   "Feedback": {
     "metadata": {
-      "title": "Comentarios de Visitantes",
-      "description": "Gracias por visitar nuestra iglesia. Por favor comparte tus comentarios para ayudarnos a mejorar para el cuerpo de Cristo."
+      "title": "Comentarios de los Visitantes",
+      "description": "Gracias por visitar nuestra iglesia. Por favor, comparta sus comentarios sobre su experiencia para que podamos mejorar para el cuerpo de Cristo."
+    },
+    "alt": "Cuatro personas sosteniendo globos de pensamiento de colores para representar comentarios.",
+    "title": "Comentarios de los Visitantes",
+    "form": {
+      "header": {
+        "title": "¡Cuéntenos cómo lo hicimos!",
+        "subtitle": "Nos encantaría conocer su experiencia al visitar nuestra iglesia. Sus comentarios nos ayudan a crecer y a servir mejor a cada invitado que cruza nuestras puertas."
+      },
+      "success": {
+        "label": "¡Gracias!",
+        "message": "Agradecemos sus comentarios."
+      },
+      "feedback": {
+        "label": "Comentarios",
+        "placeholder": "Ingrese sus comentarios aquí...",
+        "message": "Comparta sus comentarios"
+      }
     }
   },
   "Foursquare": {
     "metadata": {
-      "title": "Learn About Foursquare",
-      "description": "Discover the history, beliefs, and global mission of the International Church of the Foursquare Gospel."
-    }
+      "title": "Conozca la Iglesia Cuadrangular",
+      "description": "Descubra la historia, las creencias y la misión mundial de la Iglesia Internacional del Evangelio Cuadrangular."
+    },
+    "alt": "",
+    "title": "Iglesia del Evangelio Cuadrangular",
+    "subtitle": "Una denominación cristiana pentecostal internacional fundada en 1923.",
+    "tabTitles": ["Introducción", "Historia", "Creencias", "Símbolos"],
+    "tabContent": [
+      {
+        "descriptions": [
+          "The Wind Church (dba Wind of the Spirit) forma parte de un movimiento mundial llamado la Iglesia Internacional del Evangelio Cuadrangular, con más de 1,700 iglesias en los Estados Unidos y más de 68,500 iglesias en más de 150 naciones.",
+          "Cada semana, más de 12,000 hombres, mujeres, niños y niñas aceptan a Jesucristo mediante la predicación del evangelio en iglesias Cuadrangulares de todo el mundo."
+        ]
+      },
+      {
+        "header": {
+          "title": "Historia Cuadrangular",
+          "subtitle": "Cómo comenzó todo..."
+        },
+        "descriptions": [
+          "El nombre «Cuadrangular» es único en comparación con la mayoría de los nombres de iglesias. Nació de un extraordinario mover de Dios durante los primeros años del siglo XX, un período marcado por cambios revolucionarios en todo el mundo.",
+          "Un gran avivamiento recorrió el mundo occidental al comenzar el siglo XX. Su impacto creció a medida que creyentes en diversos lugares fueron llenos del Espíritu Santo, experimentando algo similar a los acontecimientos de Hechos 2 en el Día de Pentecostés. Este movimiento llegó a conocerse como el «Movimiento Pentecostal».",
+          "Para la década de 1920, algunos sentían que los pentecostales se estaban volviendo extremos en sus creencias. Comenzó a formarse una división entre las denominaciones más antiguas y los nuevos grupos que surgían de las reuniones de avivamiento. En medio de este momento inusual apareció una evangelista llamada Aimee Semple McPherson, quien comenzó a predicar el «Evangelio Cuadrangular». Nacida en Ingersoll, Ontario, Canadá, llegó a la fe a los 17 años. Poco después se casó con Robert Semple, el joven predicador cuyo mensaje llevó a su conversión. La pareja partió hacia China, donde Robert entregó su vida al servicio de Dios. Aimee regresó a Estados Unidos como viuda junto a su pequeña hija y eventualmente volvió a casarse. Sin embargo, el llamado a predicar continuó ardiendo en su corazón. Ella lo resistió porque deseaba una vida «normal», pero su inquietud fue creciendo. Cuando una enfermedad la llevó al borde de la muerte, sintió que Dios le preguntaba: «¿Irás y predicarás?» Su respuesta de rendición, «Sí, Señor, iré», marcó el comienzo de un ministerio para toda la vida.",
+          "Su ministerio mundial llevó a innumerables personas a la redención, a recibir sanidad milagrosa, a ser bautizadas en agua y llenas del Espíritu Santo. Miles de personas de todas las denominaciones, así como muchas sin ningún trasfondo religioso, asistieron a sus reuniones. Aquellos cuyas vidas fueron transformadas llegaron a sentirse parte de la familia Cuadrangular.",
+          "El 27 de septiembre de 1944, Dios llamó a Su sierva al hogar celestial. La noche anterior predicó un mensaje en Oakland, California, la misma ciudad donde recibió por primera vez la visión del Evangelio Cuadrangular. Un ciclo había llegado a su fin y una asignación divina había sido completada.",
+          "La Iglesia Cuadrangular Internacional continúa reflejando el corazón de nuestra fundadora y la Gran Comisión dada por nuestro Señor: ir por todo el mundo y predicar el evangelio a toda criatura. El evangelismo y las misiones mundiales siguen siendo el corazón mismo de la Iglesia Cuadrangular.",
+          "Solo algunos de los ministerios de la Iglesia Cuadrangular:",
+          "La Prensa Misionera Cuadrangular distribuye más de 3,000,000 de piezas de literatura evangelística cada año.",
+          "Ministerio Nacional de la Juventud.",
+          "Los Colegios LIFE Pacific son institutos bíblicos acreditados ubicados en San Dimas, California; Christiansburg, Virginia; y Burnaby, Columbia Británica. Además, muchos otros institutos bíblicos operan en asociación con iglesias Cuadrangulares locales alrededor del mundo. Mujeres Cuadrangulares Internacional es una organización de servicio formada por más de 10,000 miembros.",
+          "Educación Cristiana.",
+          "Foursquare World Advance, una revista bimensual que destaca a la familia Cuadrangular global.",
+          "Ocho instalaciones para campamentos.",
+          "Y mucho más.",
+          "La comunidad Cuadrangular no tiene ningún deseo de competir ni compararse. Nos regocijamos con todo grupo de creyentes que enaltece el estandarte ensangrentado de Jesucristo. La Iglesia Cuadrangular es miembro de la Asociación Nacional de Evangélicos (NAE) y, como iglesia pentecostal, está afiliada al Pentecostal/Charismatic Churches of North America (PCCNA) y a la Confraternidad Pentecostal Mundial.",
+          "Puede solicitar una suscripción gratuita escribiendo a Foursquare World Advance, P.O. Box 26902, 1910 W. Sunset Blvd., Suite 200, Los Ángeles, California 90026-0176.",
+          "Para obtener más información sobre la Iglesia Internacional del Evangelio Cuadrangular (ICFG), visite <link>www.foursquare.org</link>."
+        ]
+      },
+      {
+        "header": {
+          "title": "Creencias de la Iglesia Foursquare"
+        },
+        "accordionItem1": {
+          "title": "Jesucristo el Salvador",
+          "plan": {
+            "title": "El Plan de Salvación",
+            "verse": "Juan 3:16; Romanos 5:8",
+            "description": "Creemos que, aunque éramos pecadores, Cristo murió por nosotros, firmando el perdón de todos los que creen en Él. Salvación por Gracia"
+          },
+          "salvation": {
+            "title": "Salvación por Gracia",
+            "verse": "Efesios 2:8",
+            "description": "Creemos que no tenemos justicia propia y debemos acudir a Dios apelando a la justicia de Cristo"
+          },
+          "scriptures": {
+            "title": "Las Sagradas Escrituras",
+            "verse": "2 Timoteo 3:16, 17",
+            "description": "Creemos que la Biblia es inspirada por Dios"
+          },
+          "eternal": {
+            "title": "La Deidad Eterna",
+            "verse": "2 Corintios 13:14",
+            "description": "Creemos que Dios es Trino: Padre, Hijo y Espíritu Santo"
+          },
+          "fall": {
+            "title": "La Caída del Hombre",
+            "verse": "Romanos 5:12",
+            "description": "Creemos que el hombre fue creado a imagen de Dios, pero que por desobediencia voluntaria cayó de la perfección"
+          }
+        },
+        "accordionItem2": {
+          "title": "Jesucristo el Bautizador con el Espíritu Santo",
+          "relationship": {
+            "title": "Relación con la Iglesia",
+            "verse": "Hechos 16:5; Hebreos 10:25",
+            "description": "Creemos que es nuestro deber sagrado identificarnos con el Cuerpo visible de Cristo"
+          },
+          "civil": {
+            "title": "Gobierno Civil",
+            "verse": "Romanos 13:1-5",
+            "description": "Creemos que los gobernantes deben ser respetados en todo momento, excepto en aquello que se oponga a la voluntad de Dios"
+          },
+          "final": {
+            "title": "El Juicio Final",
+            "verse": "2 Corintios 5:10",
+            "description": "Creemos que todos comparecerán un día ante el tribunal de Dios, y allí recibirán vida eterna o muerte"
+          },
+          "heaven": {
+            "title": "Cielo",
+            "verse": "Juan 14:1-3; Apocalipsis 7:15-17",
+            "description": "Creemos que el Cielo es el glorioso hogar eterno de los creyentes nacidos de nuevo"
+          },
+          "hell": {
+            "title": "Infierno",
+            "verse": "Apocalipsis 20:10,15",
+            "description": "Creemos que el infierno es el lugar de tormento eterno para todos los que rechazan a Cristo como Salvador"
+          }
+        },
+        "accordionItem3": {
+          "title": "Jesucristo el Sanador",
+          "repent": {
+            "title": "Arrepentimiento y Aceptación",
+            "verse": "1 Juan 1:9",
+            "description": "Creemos que, con un arrepentimiento sincero y una aceptación total de Cristo, somos justificados ante Dios"
+          },
+          "new": {
+            "title": "El Nuevo Nacimiento",
+            "verse": "2 Corintios 5:17; Gálatas 2:20",
+            "description": "Creemos que el cambio que ocurre en el corazón y la vida en la conversión es real"
+          },
+          "daily": {
+            "title": "Vida Cristiana Diaria",
+            "verse": "Hebreos 6:1",
+            "description": "Creemos que es la voluntad de Dios que seamos santificados diariamente, creciendo constantemente en la fe"
+          },
+          "supper": {
+            "title": "Bautismo y la Cena del Señor",
+            "verse": "Mateo 28:19; 1 Corintios 11:24, 25",
+            "description": "Creemos que el bautismo por inmersión es una señal externa de una obra interna. Creemos en la conmemoración de la Cena del Señor mediante el uso simbólico del pan y el jugo de la vid"
+          },
+          "spirit": {
+            "title": "Bautismo con el Espíritu Santo",
+            "verse": "Hechos 2:4",
+            "description": "Creemos que el Bautismo con el Espíritu Santo capacita al creyente con poder; y que su manifestación ocurre de la misma manera que en los tiempos bíblicos"
+          }
+        },
+        "accordionItem4": {
+          "title": "Jesucristo el Rey que Viene Pronto",
+          "life": {
+            "title": "La Vida Llena del Espíritu",
+            "verse": "Efesios 4:30-32",
+            "description": "Creemos que es la voluntad de Dios que caminemos en el Espíritu diariamente"
+          },
+          "gifts": {
+            "title": "Los Dones y Frutos del Espíritu",
+            "verse": "1 Corintios 12:1-11; Gálatas 5:22",
+            "description": "Creemos que el Espíritu Santo tiene dones para otorgar al cristiano; y que debemos mostrar fruto espiritual como evidencia de una vida llena del Espíritu"
+          },
+          "moderation": {
+            "title": "Moderación",
+            "verse": "Filipenses 4:5",
+            "description": "Creemos que la experiencia y el caminar diario del creyente nunca deben llevarlo a extremos de fanatismo"
+          },
+          "divine": {
+            "title": "Sanidad Divina",
+            "verse": "Santiago 5:14-16",
+            "description": "Creemos que la sanidad divina es el poder de Cristo para sanar a los enfermos en respuesta a la oración de fe"
+          },
+          "coming": {
+            "title": "La Segunda Venida de Cristo",
+            "verse": "1 Tesalonicenses 4:16, 17",
+            "description": "Creemos que la segunda venida de Cristo es personal e inminente"
+          },
+          "evangelism": {
+            "title": "Evangelismo",
+            "verse": "Marcos 16:15; Mateo 28:19-20",
+            "description": "Creemos que la responsabilidad principal de la iglesia es llevar el evangelio a todo el mundo y hacer discípulos"
+          },
+          "tithes": {
+            "title": "Diezmos y Ofrendas",
+            "verse": "Malaquías 3:10; 2 Corintios 9:7",
+            "description": "Creemos que Dios ha establecido los diezmos y las ofrendas como el método para sostener y expandir Su obra"
+          }
+        }
+      },
+      {
+        "section1": {
+          "header": "Logo",
+          "descriptions": [
+            "El término 'Foursquare' se refiere al ministerio cuádruple de Jesucristo.",
+            "<bold>Corona</bold> — Simbólica de Jesucristo, el Rey que viene pronto",
+            "<bold>Cruz</bold> — Simbólica de Jesucristo, nuestro Salvador",
+            "<bold>Copa</bold> — Simbólica de Jesucristo, el Gran Médico (Sanador)",
+            "<bold>Paloma</bold> — Simbólica de Jesucristo, el Bautizador con el Espíritu Santo",
+            "Mateo 8:17",
+            "Mateo 1:21",
+            "1 Tesalonicenses 4:16-18",
+            "Mateo 3:11",
+            "Mateo 4:23",
+            "Juan 3:16",
+            "Mateo 24:30-31",
+            "Juan 1:33-34"
+          ],
+          "logoAlt": "Logo de la Iglesia Foursquare"
+        },
+        "section2": {
+          "header": "Emblema",
+          "descriptions": [
+            "El concepto de ‘Cuadrangular’ aparece tanto de manera implícita como explícita a lo largo del Antiguo y Nuevo Testamento. Uno de los ejemplos más claros se encuentra en la visión de Ezequiel (Ezequiel 1:10): ‘Cada uno de los cuatro tenía rostro de hombre, rostro de león a la derecha, rostro de buey a la izquierda, y cada uno también tenía rostro de águila.’",
+            "<bold>Rostro de Águila</bold> — Simbólico de Jesucristo, el Rey venidero",
+            "<bold>Rostro de Buey</bold> — Simbólico de Jesucristo, el que carga con las cargas",
+            "<bold>Rostro de Hombre</bold> — Simbólico de Jesucristo, quien compartió el sufrimiento humano",
+            "<bold>Rostro de León</bold> — Simbólico de Jesucristo, el León de Judá, el Todopoderoso",
+            "Ezequiel 1:1-28",
+            "Apocalipsis 4:7"
+          ],
+          "logoAlt": "Emblema de la Iglesia Cuadrangular"
+        },
+        "section3": {
+          "header": "Bandera",
+          "descriptions": [
+            "Israel es un tipo del Evangelio Cuadrangular: un altar cuadrangular de oro fino, atendido por un sacerdote que lleva un pectoral cuadrangular bordado en escarlata, oro, azul y púrpura.",
+            "<bold>Escarlata</bold> — Representa la primera doctrina cardinal: Jesucristo el Salvador. Su emblema es la cara de un hombre.",
+            "<bold>Oro</bold> — Representa la segunda doctrina cardinal: Jesucristo el Bautizador con el Espíritu Santo. Su emblema es la cara de un león.",
+            "<bold>Azul</bold> — Representa la tercera doctrina cardinal: Jesucristo el Gran Médico. Su emblema es la cara de un buey.",
+            "<bold>Púrpura</bold> — Representa la cuarta doctrina cardinal: Jesucristo el Rey Venidero. Su emblema es la cara de un águila.",
+            "Éxodo 28:15-16"
+          ],
+          "logoAlt": "Bandera de la Iglesia Cuadrangular"
+        }
+      }
+    ]
   },
   "Give": {
     "metadata": {
       "title": "Dar",
       "description": "Apoya la misión de The Wind Church dando en línea. Tu generosidad marca la diferencia."
+    },
+    "alt": "Personas adorando con las manos levantadas.",
+    "title": "Dando",
+    "subtitle": "Tu contribución hace la diferencia.",
+    "reasons": [
+      {
+        "title": "Dar honra a Dios como un acto de adoración",
+        "description": "Reconociendo que todo lo que tenemos le pertenece a Él.",
+        "scripture1": "Proverbios 3:9",
+        "scripture2": "Salmo 24:1"
+      },
+      {
+        "title": "Cuando damos libremente y con gozo",
+        "description": "Imitamos la naturaleza de Dios como dador de bendiciones eternas y temporales.",
+        "scripture1": "Juan 3:16",
+        "scripture2": "1 Corintios 2:12",
+        "scripture3": "Deuteronomio 8:17-18",
+        "scripture4": "Santiago 1:17"
+      },
+      {
+        "title": "Dar refleja nuestro corazón",
+        "description": "Y nuestra relación con Dios, comunica nuestra fe al mundo y trae bendiciones personales mediante inversiones sabias.",
+        "scripture1": "2 Corintios 9:12-15",
+        "scripture2": "Hechos 20:35",
+        "scripture3": "Lucas 12:33"
+      }
+    ],
+    "waysToGive": {
+      "title": "Maneras de Dar",
+      "subtitle": "Descubre formas significativas de apoyar la misión y fortalecer nuestra comunidad.",
+      "items": [
+        {
+          "title": "Servir y Voluntariado",
+          "alt": "Grupo de personas con las manos juntas en un montón.",
+          "description": "Dar no es solo financiero — servir con tu tiempo y dones ayuda a edificar la casa de Dios y fortalecer nuestra comunidad."
+        },
+        {
+          "title": "Donaciones en Línea",
+          "alt": "Un hombre usando su teléfono móvil.",
+          "description": "Da de manera segura en línea a través de Pushpay usando tu tarjeta de débito, crédito o cuenta bancaria."
+        },
+        {
+          "title": "Donaciones en Persona",
+          "alt": "Una persona colocando una tarjeta de ofrenda de la iglesia dentro de un buzón de diezmos con una cruz en el frente.",
+          "description": "Puedes dar durante cualquier servicio usando efectivo o cheque. Las cajas de donación están ubicadas en ambas salidas del santuario. Haz los cheques a nombre de Wind of the Spirit Worship Center."
+        },
+        {
+          "title": "Donaciones por Correo",
+          "alt": "Un buzón negro con la bandera roja levantada.",
+          "description": "Puedes enviar tu donación por correo a:\nWind of the Spirit Worship Center\n6476 Streeter Avenue, Riverside, CA 92504"
+        },
+        {
+          "title": "Activos No Monetarios",
+          "alt": "Un garaje en casa lleno de cajas y artículos de almacenamiento varios.",
+          "description": "Puedes donar cualquier cosa que apoye a nuestra comunidad. Envía un correo a thewindchurch@outlook.com para más información."
+        },
+        {
+          "title": "Donaciones Únicas",
+          "alt": "Una mujer con un suéter amarillo llevando una caja llena de verduras.",
+          "description": "Estas son ofrendas espontáneas inspiradas por un sermón, evento o necesidad específica. Ayudan a financiar proyectos especiales, misiones o necesidades urgentes."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes  ",
+      "subtitle": "Respuestas útiles sobre PushPay, opciones de donación y asignación de ofrendas.",
+      "items": [
+        {
+          "title": "¿Cómo puedo donar en línea a través de PushPay?",
+          "description": "¡Donar en línea es sencillo! Solo visita nuestra página de Donaciones, selecciona la cantidad que deseas dar, elige un fondo y completa tu transacción segura mediante PushPay. Puedes hacer una donación única o configurar donaciones recurrentes para un apoyo constante."
+        },
+        {
+          "title": "¿Es seguro dar a través de PushPay?",
+          "description": "¡Sí! PushPay utiliza cifrado y medidas de seguridad de nivel industrial para proteger tu información financiera. Tu donación en línea se procesa de manera segura, asegurando que tus contribuciones se manejen con el mayor cuidado."
+        },
+        {
+          "title": "¿Puedo asignar mi donación a un ministerio o fondo específico?",
+          "description": "¡Por supuesto! Cuando das en línea o en persona, puedes elegir a dónde va tu donación—ya sea diezmos generales, misiones, programas de jóvenes, alcance u otro ministerio específico. Simplemente selecciona el fondo designado al dar."
+        },
+        {
+          "title": "¿Puedo configurar donaciones automáticas recurrentes?",
+          "description": "¡Sí! PushPay te permite programar donaciones recurrentes semanalmente, cada dos semanas o mensualmente. Esto asegura un apoyo constante para la iglesia y hace que dar sea muy fácil."
+        },
+        {
+          "title": "¿Cómo puedo dar una donación en persona o por correo?",
+          "description": "Puedes dar durante cualquiera de nuestros servicios colocando tu donación en la canasta de ofrendas o en el buzón.\n\nSi prefieres enviar un cheque por correo, envíalo a:\n\nThe Wind Church\n6476 Streeter Avenue\nRiverside, CA 92504"
+        },
+        {
+          "title": "¿Recibiré un recibo por mi donación?",
+          "description": "¡Sí! Cuando das a través de PushPay, recibirás una confirmación por correo electrónico de inmediato. Para todas las donaciones—ya sea en línea, en persona o por correo—también recibirás un estado anual de donaciones para fines de impuestos."
+        },
+        {
+          "title": "¿Puedo actualizar o cancelar una donación recurrente?",
+          "description": "¡Claro! Puedes iniciar sesión en tu cuenta de PushPay en cualquier momento para actualizar el monto de tu donación, cambiar la frecuencia o cancelar una donación recurrente."
+        },
+        {
+          "title": "¿A quién puedo contactar si tengo más preguntas sobre las donaciones?",
+          "description": "Si tienes preguntas sobre donaciones, asignaciones o estados de donación, comunícate con nuestro equipo de finanzas al +1 (951) 359-0203. ¡Con gusto te ayudaremos!"
+        }
+      ]
+    },
+    "donate": "Dona en línea con PushPay",
+    "thanks": {
+      "thankYou": "Gracias por tu apoyo",
+      "blessing": "Somos bendecidos por tener personas como tú, y es un honor que hayas elegido este Ministerio como un lugar para sembrar tu semilla.",
+      "contact": "Si tienes alguna pregunta o inquietud, envía un correo a <email>thewindchurch@outlook.com</email> o llama al <phone>(951) 359-0203</phone>.",
+      "partners": "Tus compañeros en Cristo en The Wind."
     }
   },
   "Ministries": {
     "metadata": {
       "title": "Ministerios",
       "description": "Explora los ministerios de The Wind Church para cada etapa y edad. Únete a nosotros para crecer juntos en Cristo."
+    },
+    "alt": "Mujer sosteniendo una camiseta sobre una caja de almacenamiento mientras se organiza junto a un hombre que la ayuda.",
+    "title": "Ministerios",
+    "subtitle": "Encuentra un lugar para crecer en la fe, construir relaciones significativas y usar los dones que Dios te dio para servir a los demás.",
+    "scriptures": [
+      {
+        "passage": "Así que Cristo mismo dio a los apóstoles, a los profetas, a los evangelistas, a los pastores y maestros, para capacitar a su pueblo para obras de servicio, para que el cuerpo de Cristo sea edificado.",
+        "verse": "Efesios 4:11-12"
+      },
+      {
+        "passage": "Cada uno de ustedes debe usar el don que ha recibido para servir a los demás, como buenos administradores de la gracia de Dios en sus diversas formas.",
+        "verse": "1 Pedro 4:10"
+      },
+      {
+        "passage": "Predica la palabra; estate preparado a tiempo y fuera de tiempo; corrige, reprende y da ánimo, con gran paciencia y enseñanza cuidadosa.",
+        "verse": "2 Timoteo 4:2"
+      },
+      {
+        "passage": "Hagan lo que hagan, trabájenlo de todo corazón, como para el Señor y no para los hombres, sabiendo que del Señor recibirán la recompensa de la herencia. ¡Es al Señor Cristo a quien están sirviendo!",
+        "verse": "Colosenses 3:23-24"
+      },
+      {
+        "passage": "Porque ni siquiera el Hijo del Hombre vino para ser servido, sino para servir y para dar su vida en rescate por muchos.",
+        "verse": "Marcos 10:45"
+      },
+      {
+        "passage": "Ustedes, hermanos y hermanas, fueron llamados a ser libres. Pero no usen su libertad para satisfacer la carne; más bien, sírvanse unos a otros con humildad y amor.",
+        "verse": "Gálatas 5:13"
+      },
+      {
+        "passage": "Todo esto proviene de Dios, quien nos reconcilió consigo mismo por medio de Cristo y nos dio el ministerio de la reconciliación.",
+        "verse": "2 Corintios 5:18"
+      },
+      {
+        "passage": "La religión que Dios nuestro Padre acepta como pura e intachable es esta: cuidar de los huérfanos y las viudas en sus dificultades y mantenerse sin contaminarse del mundo.",
+        "verse": "Santiago 1:27"
+      },
+      {
+        "passage": "Porque así como cada uno de nosotros tiene un cuerpo con muchos miembros, y estos miembros no tienen todos la misma función, así en Cristo, aunque somos muchos, formamos un solo cuerpo, y cada miembro es de todos los demás.",
+        "verse": "Romanos 12:4-5"
+      },
+      {
+        "passage": "Por eso anímense unos a otros y edifíquense mutuamente, tal como de hecho lo están haciendo.",
+        "verse": "1 Tesalonicenses 5:11"
+      },
+      {
+        "passage": "Y las cosas que me has oído decir en presencia de muchos testigos, encomiéndalas a personas confiables que también estén capacitadas para enseñar a otros.",
+        "verse": "2 Timoteo 2:2"
+      },
+      {
+        "passage": "Así como el Hijo del Hombre no vino para ser servido, sino para servir y para dar su vida como rescate por muchos.",
+        "verse": "Mateo 20:28"
+      },
+      {
+        "passage": "El Rey responderá: 'De cierto os digo, que todo lo que hicisteis por uno de estos mis hermanos más pequeños, a mí me lo hicisteis.'",
+        "verse": "Mateo 25:40"
+      },
+      {
+        "passage": "Todas estas son obras de un mismo Espíritu, y él las reparte a cada uno en particular, como a él le parece.",
+        "verse": "1 Corintios 12:11"
+      },
+      {
+        "passage": "Porque somos hechura de Dios, creados en Cristo Jesús para hacer buenas obras, las cuales Dios dispuso de antemano para que las practicáramos.",
+        "verse": "Efesios 2:10"
+      }
+    ],
+    "card": {
+      "label": "Aprende más",
+      "alt": "imagen del ministerio {ministryName}"
+    },
+    "form": {
+      "header": {
+        "title": "¿Buscas el lugar adecuado?",
+        "subtitle": "Comparte tus intereses con nosotros y te ayudaremos a encontrar un ministerio donde puedas conectarte, crecer y marcar la diferencia."
+      },
+      "title": "Conexión con Ministerios",
+      "interests": {
+        "label": "Selecciona los ministerios sobre los que te gustaría aprender más",
+        "message": "Selecciona los ministerios que te interesan",
+        "test": "Selecciona al menos un ministerio"
+      }
     }
   },
   "PrayerRequests": {
     "metadata": {
       "title": "Peticiones de Oración",
       "description": "Permítenos orar contigo. Envía tus peticiones de oración y nuestro equipo se unirá contigo en fe."
+    },
+    "alt": "Tres pares de manos unidas en oración.",
+    "title": "Peticiones de Oración",
+    "form": {
+      "header": {
+        "title": "Somos una familia que camina junta por la vida",
+        "subtitle": "Celebramos las bendiciones del Señor y nos apoyamos mutuamente en cada temporada. No estás solo — estamos aquí para ti."
+      }
     }
   },
   "RightNowMedia": {
     "metadata": {
       "title": "RightNow Media",
       "description": "Accede a miles de videos de discipulado para niños, jóvenes y adultos a través de nuestra asociación con RightNow Media."
+    },
+    "alt": "Imagen de fondo decorativa",
+    "title": "<bold>RightNow Media</bold>: Gratis. Ilimitado. Para cada miembro.",
+    "descriptions": [
+      "Un servicio de streaming basado en la fe repleto de estudios bíblicos, devocionales, programas infantiles y recursos prácticos para la vida cotidiana.",
+      "Como parte de nuestro compromiso de equipar y animar a nuestra familia de la iglesia, los miembros de Wind Church reciben <bold>acceso GRATUITO</bold> a toda la biblioteca de RightNow Media. Hacerse miembro desbloquea tu cuenta personal y te ofrece streaming ilimitado siempre que necesites ánimo o enseñanza.",
+      "¿Quieres ponerte en contacto o saber más sobre la membresía? <link>Contáctanos</link> — nos encantaría ayudarte a empezar."
+    ],
+    "included": {
+      "label": "Lo que encontrarás dentro:",
+      "items": [
+        "📚  Miles de estudios bíblicos de pastores y maestros de confianza.",
+        "🎥  Series de videos para crecimiento personal, matrimonio, crianza y liderazgo.",
+        "👧🧒  Programas infantiles sanos y centrados en Cristo que a tu familia le encantarán.",
+        "📱  Mira en cualquier lugar: teléfono, tablet, computadora o TV."
+      ]
     }
   },
   "Salvation": {
     "metadata": {
       "title": "Salvación",
-      "description": "Conoce el mensaje de salvación por medio de Jesucristo y cómo puedes comenzar una nueva vida en Él hoy."
+      "description": "Aprende sobre el mensaje de salvación a través de Jesucristo y cómo puedes comenzar una nueva vida en Él hoy."
+    },
+    "alt": "Cruz santa colocada sobre una montaña; nubes y el sol en el fondo.",
+    "title": "Salvación",
+    "subtitle": "Jesús está aquí para ti. Siempre.",
+    "what": {
+      "title": "¿Qué es la Salvación?",
+      "description": "La salvación es el plan de Dios para darle al ser humano una salida de las consecuencias del pecado. Ser salvo o nacer de nuevo es la experiencia más importante de tu vida (Juan 3:3, 15, 16). Cuando confiesas a Jesús como Señor y Salvador, experimentas el nuevo nacimiento. Cada bendición abundante que Él tiene para nosotros está disponible gratuitamente en la salvación (Romanos 10:9-10). La palabra salvación proviene del griego soteria, que significa salvado, sanado, liberado, perdonado, rescatado, protegido, preservado, hecho completo, curado, puesto en libertad y restaurado."
+    },
+    "how": {
+      "title": "¿Cómo recibes la Salvación?",
+      "descriptions": [
+        "Dios lo ha hecho realmente sencillo. Responde estas cuatro preguntas:",
+        "Si respondiste <bold>Sí</bold>, estás listo para orar. Recuerda que Dios te ama. Él quiere que seas completo y pleno — salvo espiritual, emocional, física, mental, financiera y socialmente (3 Juan 2). Ora esta oración, créela, y serás salvo, justo donde estás sentado."
+      ],
+      "questions": [
+        {
+          "count": "1",
+          "question": "¿Quieres ser perdonado y salvo?",
+          "verses": "(Hechos 3:38; 1 Juan 1:8)",
+          "alt": "Bosque de árboles con césped verde cubierto de musgo y rocas dispersas."
+        },
+        {
+          "count": "2",
+          "question": "¿Crees que Jesucristo, el Hijo de Dios, murió por ti?",
+          "verses": "(1 Juan 1:7)",
+          "alt": "Una paloma batiendo sus alas, preparándose para aterrizar."
+        },
+        {
+          "count": "3",
+          "question": "¿Estás dispuesto a arrepentirte del pecado y seguir al Señor Jesucristo por el resto de tu vida?",
+          "verses": "(Hechos 2:21; 3:37-38, 16:31; 1 Juan 1:9)",
+          "alt": "Aceitunas verdes en una rama de un olivo."
+        },
+        {
+          "count": "4",
+          "question": "¿Crees en tu corazón y confiesas con tu boca que Dios te perdona tus pecados y que Él te limpia de toda injusticia?",
+          "verses": "(Romanos 10:9-10; 1 Juan 1:9)",
+          "alt": "Una mano tocando suavemente un río de agua causando ondas."
+        }
+      ]
+    },
+    "prayer": {
+      "title": "Oración de Salvación",
+      "descriptions": [
+        "Padre celestial, gracias por enviar a tu Hijo Jesús a morir en la cruz por mí, y por Su sangre que fue derramada para redimirme y limpiarme de mis pecados.",
+        "Señor, lo siento y me arrepiento de mis pecados. Perdóname. Entiendo que debo cambiar el rumbo de mi vida. Estoy decidido en mi corazón a seguirte. Te invito a ser el Señor de mi vida desde este momento y para siempre.",
+        "Proclamo y confieso abiertamente que tú eres el Señor de mi vida. Creo en mi corazón que has resucitado de los muertos. Por lo tanto, soy salvo. Soy una nueva criatura. Las cosas viejas pasaron. Todas las cosas han sido hechas nuevas.",
+        "Soy un hijo de Dios. En el Nombre de Jesús, ¡AMÉN!"
+      ]
+    },
+    "congrats": {
+      "title": "¡Felicidades!",
+      "items": [
+        {
+          "count": "1",
+          "title": "Tus pecados han sido perdonados",
+          "verses": "(1 Juan 1:9; Juan 3:16)"
+        },
+        {
+          "count": "2",
+          "title": "Eres miembro de la familia de Dios",
+          "verses": "(Juan 1:12; Juan 3:2)"
+        },
+        {
+          "count": "3",
+          "title": "Tienes paz con Dios y acceso a Él",
+          "verses": "(Romanos 5:1-2; Efesios 2:6-7)"
+        },
+        {
+          "count": "4",
+          "title": "El Espíritu Santo mora dentro de ti",
+          "verses": "(Romanos 8:9-11; 1 Juan 4:4)"
+        }
+      ],
+      "description": "<bold>Recuerda</bold>, los sentimientos no tienen nada que ver con la salvación. Puedes sentir que estás flotando en una nube o tan simple como un pomo de puerta. No importa. Confiar en la Palabra de Dios es lo que cuenta."
+    },
+    "form": {
+      "header": {
+        "title": "¡Queremos apoyarte!",
+        "subtitle": "Oramos por ti mientras comienzas tu nuevo caminar con Cristo. Envía una petición de oración y comparte tu historia."
+      },
+      "title": "Peticiones de Oración",
+      "success": {
+        "label": "¡Gracias!",
+        "message": "Te mantendremos en nuestras oraciones, y si solicitaste una respuesta por correo electrónico, te escribiremos pronto."
+      },
+      "response": {
+        "label": "¿Te gustaría que te respondamos por correo electrónico?"
+      },
+      "request": {
+        "label": "Petición",
+        "placeholder": "Ingresa tu oración aquí...",
+        "message": "Comparte tu oración"
+      }
     }
   },
   "Home": {
@@ -488,37 +1129,362 @@
   "Gallery": {
     "metadata": {
       "title": "Galería",
-      "description": "Explora nuestra galería de fotos y revive los momentos especiales de eventos y reuniones recientes."
-    }
+      "description": "Explore nuestra galería de fotos y reviva los momentos especiales de eventos y reuniones recientes de la iglesia."
+    },
+    "title": "La Galería",
+    "subtitle": "Explore momentos memorables de servicios de adoración, eventos y compañerismo compartidos por la familia Wind.",
+    "sectionSubtitle": "Selecciona una foto para revivir un momento especial",
+    "photoAlt": "Una imagen de la galería de The Wind Church"
   },
   "GiftAssessment": {
     "metadata": {
       "title": "Evaluación de Dones",
       "description": "Descubre tus dones espirituales con nuestra evaluación sencilla y aprende cómo puedes servir en el Reino de Dios."
+    },
+    "title": "Spiritual Gift Assessment",
+    "subtitle": "Wagner-Modified Houts Questionnarie",
+    "descriptions": [
+      "Complete the assessment in one setting. <bold>Answers will be lost if abandoned midway.</bold>",
+      "Aproximate time to complete assessment is 30 minutes."
+    ],
+    "summary": "The Modified Houts Questionnaire is a tool designed to help identify your spiritual gifts. Originally created by Richard F. Houts, a Professor of Christian Education at Ontario Bible College (published in Eternity, May 1976, pp. 18-21), it was later revised by C. Peter Wagner of the Charles E. Fuller Institute of Evangelism and Church Growth.",
+    "instructions": {
+      "title": "Instructions:",
+      "items": [
+        {
+          "count": "1",
+          "label": "Review the 125 statements in the questionnaire."
+        },
+        {
+          "count": "2",
+          "label": "Select how true each statement is for your life: MUCH, SOME, LITTLE, or NOT AT ALL."
+        },
+        {
+          "count": "3",
+          "label": "Upon completing the assessment, your top three dominant and subordinate gifts will be determined."
+        },
+        {
+          "count": "4",
+          "label": "Answer a few follow-up questions about your ministry and download your results."
+        }
+      ]
+    },
+    "note": {
+      "title": "Note:",
+      "description": "This questionnaire is a starting point for discovering the spiritual gifts God has given you. However, do not consider the results to be definitive or final. Some gifts you possess may not show strongly here. Use this tool as a source of insight, but let your discernment and God's guidance shape your understanding of your gifts."
+    },
+    "optional": "Optional: Download Blank PDF Assessment",
+    "form": {
+      "header": {
+        "title": "Questions",
+        "items": [
+          {
+            "count": "3",
+            "label": "Much"
+          },
+          {
+            "count": "2",
+            "label": "Some"
+          },
+          {
+            "count": "1",
+            "label": "Little"
+          },
+          {
+            "count": "0",
+            "label": "Not at all"
+          }
+        ]
+      },
+      "items": [
+        "I have a desire to speak direct messages from God that edify, exhort, or comfort others.",
+        "I have enjoyed relating to a certain group of people over a long period of time, sharing personally in their successes and failures.",
+        "People have told me that I have helped them learn some biblical truth in a meaningful way.",
+        "I have applied spiritual truth effectively to situations in my own life.",
+        "Others have told me that I have helped them distinguish key and important facts of scripture.",
+        "I have verbally encouraged the wavering, the troubled or the discouraged.",
+        "Others in the church have noted that I was able to see through phoniness before it was evident to other people.",
+        "I find I manage money well in order to give liberally to the Lord's work.",
+        "I have assisted Christian leaders to relieve them for their essential job.",
+        "I have a desire to work with those who have physical or mental problems, to alleviate their suffering.",
+        "I feel comfortable relating to people of other cultural backgrounds, and they seem to accept me.",
+        "I have led others to a decision for salvation through faith in Christ.",
+        "My home is always open to people passing through who need a place to stay.",
+        "When in a group, I am often the one others often look to for vision and direction.",
+        "When I speak people seem to listen and agree.",
+        "When a group I am in is lacking organization, I tend to step in and fill the gap.",
+        "Others can point to specific instances where my prayers have resulted in visible miracles.",
+        "In the name of the Lord, I have been used in curing diseases instantaneously.",
+        "I have spoken in tongues.",
+        "Sometimes when a person speaks in tongues, I get an idea about what God is saying.",
+        "I could live more comfortably, but I choose not in order to live with the poor.",
+        "I am single and enjoy it.",
+        "I spend at least an hour a day in prayer.",
+        "I have spoken to evil spirits and they have obeyed me.",
+        "I enjoy being called upon to do special jobs around the church.",
+        "Through God, I have revealed specific things which will happen in the future.",
+        "I have enjoyed assuming responsibility for the spiritual well-being of a particular group of Christians.",
+        "I feel I can explain the New Testament teaching about the health and ministry of the body of Christ in a relevant way.",
+        "I can intuitively arrive at solutions to fairly complicated problems.",
+        "I have had insights into spiritual truth which others have said helped bring them closer to God.",
+        "I can effectively motivate people to get involved in ministry when it's needed.",
+        "I can “see” the Spirit of God resting on certain people from time to time.",
+        "My giving records show that I give considerably more than 10 percent of my income to the Lord's work.",
+        "Other people have told me that I helped them become more effective in their ministries.",
+        "I have cared for others when they have had material or physical needs.",
+        "I feel I could learn another language well in order to minister to those in a different culture.",
+        "I have shared joyfully how Christ has brought me to Himself in a way that is meaningful to non-believers.",
+        "I enjoy taking charge of church suppers or social gatherings.",
+        "I have believed God for the impossible and have seen it happen in a tangible way.",
+        "Other Christians have followed my leadership because they believed in me.",
+        "I enjoy handling the details of organizing ideas, people, resources, and time for more effective ministry.",
+        "God has used me personally to perform supernatural signs and wonders.",
+        "I enjoy praying for sick people because I know that many of them will be healed as a result.",
+        "I have spoken an immediate message of God to His people in a language that I have never learned.",
+        "I have interpreted tongues with the result that the body of Christ was edified, exhorted, or comforted.",
+        "Living a simple lifestyle is an exciting challenge for me.",
+        "Other people have noted that I feel more indifferent about not being married than most.",
+        "When I hear a prayer request, I pray for that need for several days at least.",
+        "I have actually heard a demon speak in a loud voice.",
+        "I don't have many special skills, but I do what needs to be done around the church.",
+        "People have told me that I have communicated timely and urgent messages which have come directly from the Lord.",
+        "I feel unafraid of giving spiritual guidance and direction to a group of Christians.",
+        "I can devote considerable time to learning new biblical truths in order to communicate them to others.",
+        "When a person has a problem I can frequently guide them to the best Biblical solution.",
+        "Through study or experience, I have discerned major strategies or techniques God seems to use in furthering His kingdom.",
+        "People come to me in their afflictions or suffering and have told me that they have been helped, relieved and healed.",
+        "I can tell with a fairly high degree of assurance when a person is afflicted by an evil spirit.",
+        "When I am moved by an appeal to give to God's work, I usually find the money that I need to do it.",
+        "I have enjoyed doing routine tasks that led to more effective ministry by others.",
+        "I enjoy visiting in hospitals and/or retirement homes, and feel I do well in such a ministry.",
+        "People of a different race or culture have been attracted to me, and we have related well.",
+        "Non-Christians have noted that they feel comfortable when they are around me, and that I have a positive effect on them toward developing a faith in Christ.",
+        "When people come to our home, they indicate that they feel at home with us.",
+        "Other people have told me that I had faith to accomplish what seemed impossible to them.",
+        "When I set goals, others seem to accept them readily.",
+        "I have been able to make effective and efficient plans for accomplishing the goals of a group.",
+        "God regularly seems to do impossible things through my life.",
+        "Others have told me that God healed them of emotional problems when I ministered to them.",
+        "I can speak to God in a language I have never learned.",
+        "I have prayed that I may interpret if someone begins speaking in tongues.",
+        "I am not poor, but I can identify with poor people.",
+        "I am glad I have more time to serve the Lord because I am single.",
+        "Intercessory prayer is one of my favorite ways of spending time.",
+        "Others call on me when they suspect that someone is demonized.",
+        "Others have mentioned that I seem to enjoy routine tasks and do well at them.",
+        "I sometimes have a strong sense of what God wants to say to people in response to a particular situation.",
+        "I have helped fellow believers by guiding them to relevant portions of the Bible and praying with them.",
+        "I feel I can communicate Biblical truths to others and see resulting changes in knowledge, attitudes, values, or conduct.",
+        "Some people indicate that I have perceived and applied Biblical truth to the specified needs of fellow believers.",
+        "I study and read quite a bit in order to learn new Biblical truths.",
+        "I have a desire to effectively counsel the perplexed, the guilty or the addicted.",
+        "I can recognize whether a person's teaching is from God, from Satan, or of human origin.",
+        "I am so confident that God will meet my needs that I give to Him sacrificially and consistently.",
+        "When I do things behind the scenes and others are helped, I am joyful.",
+        "People call on me to help those who are less fortunate.",
+        "I would be willing to leave comfortable surroundings if it would enable me to share Christ with more people.",
+        "I get frustrated when others don't seem to share their faith with unbelievers as much as I do.",
+        "Others have mentioned to me that I am a very hospitable person.",
+        "There have been times when I have felt sure I knew God's specific will for the future growth of His work, even when others were not so sure.",
+        "When I join a group, others seem to back off and expect me to take the leadership.",
+        "I am able to give directions to others without using persuasion to get them to accomplish a task.",
+        "People have told me that I was God's instrument which brought supernatural changes in lives or circumstances.",
+        "I have prayed for others and physical healing has actually occurred.",
+        "When I give a public message in tongues, I expect it to be interpreted.",
+        "I have interpreted tongues in a way that seemed to bless others.",
+        "Others tell me I sacrifice much materially in order to minister.",
+        "I am single and have little difficulty controlling my sexual desires.",
+        "Others have told me that my prayers for them have been answered in tangible ways.",
+        "Other people have been instantly delivered from demonic oppression when I have prayed.",
+        "I prefer being active and doing something rather than just sitting around talking or reading or listening to a speaker.",
+        "I sometimes feel that I know exactly what God wants me to do in ministry at a specific point in time.",
+        "People have told me that I have helped them to be restored to the Christian community.",
+        "Studying the Bible and sharing my insights with others is very satisfying for me.",
+        "I have felt an unusual presence of God and personal confidence when important decisions needed to be made.",
+        "I have the ability to discover new truths for myself through reading or observing situations firsthand.",
+        "I have urged others to seek a Biblical solution to their affliction or suffering.",
+        "I can tell whether a person speaking in tongues is genuine.",
+        "I have been willing to maintain a lower standard of living in order to benefit God's work.",
+        "When I serve the Lord, I really don't care who gets the credit.",
+        "I would enjoy spending time with a lonely, shut-in person or someone in prison.",
+        "More than most, I have had a strong desire to see people of other countries won to the Lord.",
+        "I am attracted to non-believers because of my desire to win them to Christ.",
+        "I have desired to make my home available to those in the Lord's service whenever needed.",
+        "Others have told me that I am a person of unusual vision and I agree.",
+        "When I am in charge, things seem to run smoothly.",
+        "I have enjoyed bearing the responsibility for the success of a particular task within my church.",
+        "In the name of the Lord, I have been able to recover sight to the blind.",
+        "When I pray for the sick, either I or they feel sensations of tingling or warmth.",
+        "When I speak in tongues, I believe it is edifying to the Lord's body.",
+        "I have interpreted tongues in such a way that the message appeared to be directly from God.",
+        "Poor people accept me because I choose to live on their level.",
+        "I readily identify with Paul's desire for others to be single as he was.",
+        "When I pray, God frequently speaks to me, and I recognize His voice.",
+        "I cast out demons in Jesus' name.",
+        "I respond cheerfully when asked to do a job, even if it seems menial."
+      ],
+      "select": "Select an answer for the question",
+      "submit": {
+        "pending": "Analyzing your answers...",
+        "submit": "Submit Quiz"
+      }
+    },
+    "results": {
+      "completed": "Assessment Completed!",
+      "description": "Thank you for taking the time to complete the assessment. You are one-step closer to undertsanding the purpose God has outlined in your life.",
+      "domGiftsTitle": "Your {{count}} Dominate Gifts",
+      "subGiftsTitle": "Your {{count}} Subordinate Gifts",
+      "download": "Download Results as PDF"
+    },
+    "reflection": {
+      "title": "Reflection Questions",
+      "descriptions": [
+        "Please answer the following relection questions of your assessment.",
+        "Once completed you will have the option to download your assessment results and/or submit your results to the Wind Church where an administrator can work with you on better undertanding your results and Godly purpose."
+      ]
+    },
+    "submission": {
+      "title": "Optional: Submit your results to The Wind!",
+      "description": "Please complete by adding your information. An administrator will connect with you to discuss your results and help you undertand your Godly purpose!"
     }
   },
   "NextGen": {
     "metadata": {
       "title": "Next Gen",
-      "description": "Nuestros servicios para jóvenes empoderan a la próxima generación a conocer a Jesús y darlo a conocer mediante reuniones llenas de fe y diversión."
+      "description": "Nuestros servicios para jóvenes capacitan a la próxima generación para conocer a Jesús y darlo a conocer a través de reuniones llenas de fe y diversión."
+    },
+    "alt": "Cuatro niños de distintas edades sonriendo y mirando a lo lejos.",
+    "title": "Next Gen",
+    "subtitle": "Servicios dominicales disponibles para niños desde la infancia hasta la preparatoria",
+    "principles": {
+      "title": "Principios Fundamentales",
+      "subtitle": "Creemos que cada niño y joven es llamado por Dios con un propósito único. Nuestro ministerio Next Gen existe para ayudar a la próxima generación a conocer a Jesús, crecer en su fe y vivir con confianza en la identidad que Dios les ha dado.",
+      "items": [
+        {
+          "alt": "Niños en un escritorio estudiando.",
+          "title": "Conocer a Jesús",
+          "subtitle": "A través de enseñanzas bíblicas, adoración y oración, ayudamos a los estudiantes a desarrollar una relación personal y duradera con Jesucristo."
+        },
+        {
+          "alt": "Dos niños abrazándose y sonriendo.",
+          "title": "Crecer en Comunidad",
+          "subtitle": "Fomentamos amistades saludables y conexiones significativas donde cada estudiante puede sentirse valorado, apoyado y parte de la familia de Dios."
+        },
+        {
+          "alt": "Niña coloreando en un banco del parque con amigos.",
+          "title": "Vivir con Propósito",
+          "subtitle": "Animamos a los jóvenes a descubrir sus dones, servir a los demás y compartir el amor de Cristo en su vida diaria."
+        }
+      ]
+    },
+    "download": "Descargar Plan de Estudios",
+    "scripture": {
+      "verse": "1 Timoteo 4:12",
+      "passage": "Ninguno tenga en poco tu juventud, sino sé ejemplo de los creyentes en palabra, conducta, amor, fe y pureza."
+    },
+    "educators": {
+      "title": "Conozca a Nuestros Educadores y Cuidadores",
+      "subtitle": "Seleccione un líder para obtener más información"
+    },
+    "events": {
+      "title": "Eventos Next Gen",
+      "subtitle": "¡Eventos divertidos, emocionantes y enfocados en el aprendizaje para la juventud de Wind!",
+      "empty": "No hay eventos de Next Gen programados en este momento.",
+      "cta": "Ver otros eventos de Wind"
+    },
+    "gallery": {
+      "title": "Galería Next Gen",
+      "subtitle": "Seleccione una foto para revivir un momento especial",
+      "photoAlt": "Una imagen de la galería de The Wind Church",
+      "cta": "Ver la galería completa"
+    },
+    "nursery": {
+      "alt": "Bebé jugando con bloques de colores.",
+      "title": "Guardería para Bebés y Niños Pequeños",
+      "subtitle": "¡Disponible durante el servicio!"
+    },
+    "faqs": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Permítanos contarle más sobre los servicios juveniles de The Wind",
+      "items": [
+        {
+          "question": "¿Cuál es el propósito del Servicio Juvenil?",
+          "answer": "Nuestro Servicio Juvenil está diseñado para ayudar a los jóvenes a tener un encuentro con Dios, crecer en su fe y desarrollar relaciones sólidas con otros jóvenes. Es un ambiente dinámico y atractivo donde pueden adorar, aprender verdades bíblicas y desarrollar una base centrada en Cristo para sus vidas."
+        },
+        {
+          "question": "¿Para qué grupo de edad es el Servicio Juvenil?",
+          "answer": "El Servicio Juvenil está disponible para estudiantes desde la edad preescolar hasta la preparatoria. Adaptamos nuestros mensajes, actividades y grupos pequeños para que sean relevantes e impactantes para cada grupo de edad."
+        },
+        {
+          "question": "¿La enseñanza del Servicio Juvenil es apropiada para mi hijo?",
+          "answer": "¡Por supuesto! Nuestros mensajes están fundamentados en la Biblia, son apropiados para cada edad y están diseñados para ayudar a los estudiantes a enfrentar los desafíos de la vida desde una perspectiva basada en la fe. Nos enfocamos en temas como la identidad en Cristo, las amistades, el propósito y la toma de decisiones sabias."
+        },
+        {
+          "question": "¿Mi hijo estará seguro durante el Servicio Juvenil?",
+          "answer": "¡Sí! La seguridad de su hijo es nuestra máxima prioridad. Todos nuestros líderes y voluntarios pasan por verificaciones de antecedentes y capacitación para crear un ambiente seguro y acogedor. También contamos con políticas claras para el registro y la entrega de los niños."
+        },
+        {
+          "question": "¿Qué sucede si mi hijo está nervioso por asistir?",
+          "answer": "¡Eso es completamente normal! Muchos estudiantes se sienten inseguros al probar algo nuevo. Nuestro equipo juvenil es acogedor y se asegurará de que su hijo se sienta cómodo e incluido desde el momento en que llegue."
+        },
+        {
+          "question": "¿Qué puede esperar mi hijo durante un Servicio Juvenil?",
+          "answer": "Un servicio típico incluye adoración en vivo, un mensaje relevante, discusiones en grupos pequeños y actividades interactivas. Nuestro objetivo es crear un ambiente divertido y lleno de fe donde los estudiantes puedan crecer espiritualmente y hacer nuevas amistades."
+        },
+        {
+          "question": "¿Cómo puedo participar como padre o tutor?",
+          "answer": "Animamos a los padres y tutores a mantenerse conectados asistiendo a reuniones para padres, inscribiéndose para recibir actualizaciones del ministerio juvenil y conversando con sus hijos sobre lo que están aprendiendo. También puede servir como voluntario o participar en eventos especiales durante el año."
+        }
+      ]
+    },
+    "form": {
+      "header": {
+        "title": "¿Tiene más preguntas?",
+        "subtitle": "Envíe una consulta y un miembro de nuestro equipo se pondrá en contacto con usted."
+      },
+      "title": "Consulta para Padres o Tutores de Next Gen",
+      "success": {
+        "description": "Por favor, permita hasta 3 días hábiles para que un miembro de nuestro equipo se comunique con usted."
+      },
+      "questions": {
+        "label": "Preguntas",
+        "placeholder": "Ingrese cualquier pregunta que tenga para que nuestro equipo pueda atenderle de la mejor manera...",
+        "message": "Comparta sus preguntas"
+      }
     }
   },
   "Sermons": {
     "metadata": {
-      "title": "Predicaciones",
-      "description": "Mira o escucha las predicaciones recientes de The Wind Church y crece en tu fe en cualquier momento y lugar."
+      "title": "Sermones",
+      "description": "Vea o escuche sermones recientes de The Wind Church y fortalezca su fe en cualquier momento y lugar."
+    },
+    "alt": "El Pastor Singletary de The Wind Church predicando a la congregación.",
+    "title": "Sermones",
+    "subtitle": "Vea al Pastor Singletary y más.",
+    "section": {
+      "alt": "El Pastor Singletary de The Wind Church predicando a la congregación.",
+      "header": "Más excelentes videos",
+      "subheader": "¡disponibles en YouTube!",
+      "cta": "Ir a Nuestro Canal"
     }
   },
   "WindLeaders": {
     "metadata": {
       "title": "Líderes WIND",
-      "description": "Conoce a los líderes dedicados que sirven y guían a nuestra comunidad con sabiduría y compasión."
-    }
+      "description": "Conozca a los líderes dedicados que sirven y guían a nuestra comunidad con sabiduría y compasión."
+    },
+    "title": "Los Líderes",
+    "subtitle": "Conoce a los líderes fieles que ayudan a guiar nuestra iglesia en la fe, el servicio y la comunidad.",
+    "filterDefault": "Todos los Líderes",
+    "sectionSubtitle": "Seleccione un Líder para obtener más información"
   },
-  "resourceCenter": {
+  "ResourceCenter": {
     "metadata": {
       "title": "Centro de Recursos",
-      "description": "Accede a documentos, formularios y recursos importantes compartidos dentro de The Wind Church. Descarga los archivos directamente desde esta página cuando los necesites."
-    }
+      "description": "Acceda a documentos importantes, formularios y recursos compartidos dentro de The Wind Church. Descargue archivos directamente desde esta página cuando los necesite."
+    },
+    "title": "Centro de Recursos",
+    "subtitle": "Acceda a documentos importantes, formularios y recursos compartidos dentro de The Wind Church.",
+    "filterDefault": "Todos los recursos"
   }
 }

@@ -37,7 +37,7 @@ const ImageWithTitleAndHiddenTextCard: React.FC<ImageWithTitleAndHiddenTextCardP
         className="pointer-events-none object-cover rounded-lg"
       />
 
-      {/* Color Overlay */}
+      {/* Color Gradient Overlay */}
       <div className="absolute w-full h-full rounded-lg bg-gradient-to-t from-brand-primary/40 from-5% via-black/30 via-30% to-black/60 to-90%" />
 
       {/* First Layer */}

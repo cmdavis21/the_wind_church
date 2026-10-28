@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.sermons}`;
-  const image = '/images/product-placeholder.webp';
+  const image = '/images/sermons/pastor-preaching.webp';
   return {
     title,
     description,
@@ -37,23 +37,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const Sermons = async () => {
+  const t = await getTranslations('Sermons');
   const playlists = await getPlaylists();
 
   return (
     <div className="flex flex-col gap-3xl sm:gap-4xl">
       <div className="px-padding max-width-center">
         <PageHeaderWithBackground
-          media={{
-            src: '/images/product-placeholder.webp',
-            alt: 'decorative background image',
-            poster: '',
-          }}
-          title="Sermons"
-          subtitle="Watch Pastor Singletary, catch-up on deep dive sessions, and more."
+          media={{ src: '/images/sermons/pastor-preaching.webp', alt: t('alt') }}
+          title={t('title')}
+          subtitle={t('subtitle')}
         />
       </div>
 
-      {/* Recent Sermons */}
       {playlists.length > 0 &&
         playlists
           .filter((l) => l.videos.length > 0)
@@ -77,17 +73,14 @@ const Sermons = async () => {
             </div>
           ))}
 
-      {/* CTA to Youbtube Channel */}
       <MediaBackgroundAndContent
-        background={{
-          src: '/images/product-placeholder.webp',
-        }}
+        background={{ src: '/images/sermons/pastor-preaching-afar.webp', alt: t('section.alt') }}
         content={
           <div className="flex flex-col gap-xs">
-            <h2>More great videos</h2>
-            <h2 className="pb-lg">available on YouTube!</h2>
+            <h2>{t('section.header')}</h2>
+            <h2 className="pb-lg">{t('section.subheader')}</h2>
             <Link href={YOUTUBE}>
-              <AnimativeFillButton size="lg">Go to our Channel</AnimativeFillButton>
+              <AnimativeFillButton size="lg">{t('section.cta')}</AnimativeFillButton>
             </Link>
           </div>
         }

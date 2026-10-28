@@ -5,11 +5,11 @@ import ResourceCenterClient from './nossr';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'resources' });
+  const t = await getTranslations({ locale, namespace: 'ResourceCenter' });
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.resourceCenter}`;
-  const image = '/images/church-building.webp';
+  const image = '/images/rental/church-building.webp';
   return {
     title,
     description,

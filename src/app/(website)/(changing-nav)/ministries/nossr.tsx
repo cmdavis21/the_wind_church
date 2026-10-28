@@ -10,60 +10,50 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import { useGetAllMinistries } from '@/data/client/sanity/ministries';
+import { useTranslations } from 'next-intl';
 
 import React from 'react';
 
-const BIBLICAL_VERSES: { passage: string; verse: string }[] = [
-  {
-    passage:
-      'So Christ himself gave the apostles, the prophets, the evangelists, the pastors and teachers, to equip his people for works of service, so that the body of Christ may be built up.',
-    verse: 'Ephesians 4:11-12',
-  },
-  {
-    passage:
-      'Each of you should use whatever gift you have received to serve others, as faithful stewards of God’s grace in its various forms.',
-    verse: '1 Peter 4:10',
-  },
-  {
-    passage:
-      'Preach the word; be prepared in season and out of season; correct, rebuke and encourage—with great patience and careful instruction.',
-    verse: '2 Timothy 4:2',
-  },
-  {
-    passage:
-      'Preach the word; be prepared in season and out of season; correct, rebuke and encourage—with great patience and careful instruction.',
-    verse: '2 Timothy 4:2',
-  },
-  {
-    passage:
-      'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know that you will receive an inheritance from the Lord as a reward. It is the Lord Christ you are serving.',
-    verse: 'Colossians 3:23-24',
-  },
-];
-
 const MinistriesClient = () => {
+  const t = useTranslations('Ministries');
+
   const { ministries, ministriesLoading, ministriesError } = useGetAllMinistries();
 
   if (ministriesError) {
     return (
       <MediaBackgroundAndContent
         centerContent
-        background={{
-          src: '/images/wind_church_building.webp',
-          alt: 'Image of The Wind Church building',
-        }}
         content={<ErrorAlert />}
+        background={{ src: '/images/people-serving.webp', alt: t('alt') }}
       />
     );
   }
+
+  const bibleVerses: { passage: string; verse: string }[] = [
+    { passage: t('scriptures.0.passage'), verse: t('scriptures.0.verse') },
+    { passage: t('scriptures.1.passage'), verse: t('scriptures.1.verse') },
+    { passage: t('scriptures.2.passage'), verse: t('scriptures.2.verse') },
+    { passage: t('scriptures.3.passage'), verse: t('scriptures.3.verse') },
+    { passage: t('scriptures.4.passage'), verse: t('scriptures.4.verse') },
+    { passage: t('scriptures.5.passage'), verse: t('scriptures.5.verse') },
+    { passage: t('scriptures.6.passage'), verse: t('scriptures.6.verse') },
+    { passage: t('scriptures.7.passage'), verse: t('scriptures.7.verse') },
+    { passage: t('scriptures.8.passage'), verse: t('scriptures.8.verse') },
+    { passage: t('scriptures.9.passage'), verse: t('scriptures.9.verse') },
+    { passage: t('scriptures.10.passage'), verse: t('scriptures.10.verse') },
+    { passage: t('scriptures.11.passage'), verse: t('scriptures.11.verse') },
+    { passage: t('scriptures.12.passage'), verse: t('scriptures.12.verse') },
+    { passage: t('scriptures.13.passage'), verse: t('scriptures.13.verse') },
+    { passage: t('scriptures.14.passage'), verse: t('scriptures.14.verse') },
+  ];
 
   return (
     <div>
       <PageHero
         size="short"
-        title="Ministries"
-        description="Grow in love and service by joining a ministry"
-        media={{ src: '/images/product-placeholder.webp' }}
+        title={t('title')}
+        description={t('subtitle')}
+        media={{ src: '/images/people-serving.webp', alt: t('alt') }}
       />
 
       <div className="p-padding flex flex-col gap-3xl sm:gap-4xl lg:gap-5xl max-width-center">
@@ -75,8 +65,8 @@ const MinistriesClient = () => {
 
               {index % 2 === 0 && (
                 <PassageQuote
-                  passage={BIBLICAL_VERSES[index]?.passage}
-                  verse={BIBLICAL_VERSES[index]?.verse}
+                  passage={bibleVerses[index]?.passage}
+                  verse={bibleVerses[index]?.verse}
                 />
               )}
             </React.Fragment>
@@ -90,8 +80,8 @@ const MinistriesClient = () => {
 
                 {index % 2 === 0 && (
                   <PassageQuote
-                    passage={BIBLICAL_VERSES[index]?.passage}
-                    verse={BIBLICAL_VERSES[index]?.verse}
+                    passage={bibleVerses[index]?.passage}
+                    verse={bibleVerses[index]?.verse}
                   />
                 )}
               </React.Fragment>
@@ -99,8 +89,8 @@ const MinistriesClient = () => {
 
             <div className="flex flex-col gap-xxl">
               <CenterTextSection
-                title="Not sure where to start?"
-                description="Tell us what you're interested in, and we’ll help you get connected."
+                title={t('form.header.title')}
+                description={t('form.header.subtitle')}
               />
               <MinistryConnectionForm
                 ministryNames={ministries.map((i) => i.name).sort((a, b) => a.localeCompare(b))}

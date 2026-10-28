@@ -8,6 +8,7 @@ import { VisitorFeedback } from '@/data/types';
 import { isValidEmail, isValidPhone } from '@/data/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -16,27 +17,23 @@ import TextInput from '../inputs/text-input/TextInput';
 import TextareaInput from '../inputs/textarea-input/TextareaInput';
 
 const schema: yup.ObjectSchema<VisitorFeedback> = yup.object().shape({
-  first_name: yup.string().required('Enter your first name'),
-  last_name: yup.string().required('Enter your last name'),
-  phone: yup
-    .string()
-    .min(10)
-    .max(11)
-    .optional()
-    .test('Include 10 to 11 digit valid phone number', (val) => {
-      if (val) {
-        return isValidPhone(val);
-      }
-    }),
+  first_name: yup.string().required('first.message'),
+  last_name: yup.string().required('last.message'),
+  phone: yup.string().test('phone.test', (val) => {
+    if (val) isValidPhone(val);
+  }),
   email: yup
     .string()
     .email()
-    .required('Enter your email')
-    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
-  feedback: yup.string().required('Share your feedback'),
+    .required('email.message')
+    .test('email.test', (value) => isValidEmail(value)),
+  feedback: yup.string().required('form.feedback.message'),
 });
 
 const VisitorFeedbackForm = () => {
+  const c = useTranslations('FormCommon');
+  const t = useTranslations('Feedback');
+
   const { mutate: submitFeedback, isPending, isSuccess, isError } = useCreateVisitorFeedback();
 
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -54,75 +51,75 @@ const VisitorFeedbackForm = () => {
   const onSubmit = (values: VisitorFeedback) => submitFeedback({ ...values });
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
-    >
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="form-container-style">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
-        <h4>Visitor Feedback</h4>
+        <h4>{t('title')}</h4>
       </div>
 
       {isSuccess && (
         <AlertMessage
           type="success"
-          title="Success!"
-          description="We appreciate your feedback. Thank you."
+          title={t('form.success.title')}
+          description={t('form.success.description')}
         />
       )}
 
       {isError && (
         <AlertMessage
           type="failure"
-          title="Oh no!"
-          description="There was an problem submitting your feedback. Please try again later."
+          title={c('error.title')}
+          description={c('error.description')}
         />
       )}
 
-      {/* names */}
+      {/* Names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
+          required
           type="text"
-          label="First Name*"
+          label={c('first.label')}
           {...register('first_name')}
-          error={errors.first_name?.message}
           disabled={isPending || isSuccess}
+          error={errors.first_name ? c(errors.first_name.message!) : undefined}
         />
         <TextInput
+          required
           type="text"
-          label="Last Name*"
+          label={c('last.label')}
           {...register('last_name')}
-          error={errors.last_name?.message}
           disabled={isPending || isSuccess}
+          error={errors.last_name ? c(errors.last_name.message!) : undefined}
         />
       </div>
 
-      {/* contact */}
+      {/* Contact */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
           type="tel"
-          label="Phone"
           {...register('phone')}
-          error={errors.phone?.message}
+          label={c('phone.label')}
           disabled={isPending || isSuccess}
+          error={errors.phone ? c(errors.phone.message!) : undefined}
         />
         <TextInput
+          required
           type="email"
-          label="Email*"
           {...register('email')}
-          error={errors.email?.message}
+          label={c('email.label')}
           disabled={isPending || isSuccess}
+          error={errors.email ? c(errors.email.message!) : undefined}
         />
       </div>
 
       {/* feedback */}
       <TextareaInput
-        label="Your Feedback*"
+        required
         {...register('feedback')}
-        error={errors.feedback?.message}
+        label={t('form.feedback.label')}
         disabled={isPending || isSuccess}
-        placeholder="Enter your comments here..."
+        placeholder={t('form.feedback.placeholder')}
+        error={errors.feedback ? t(errors.feedback.message!) : undefined}
       />
 
       <Button
@@ -133,7 +130,11 @@ const VisitorFeedbackForm = () => {
         disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
+        {isPending
+          ? c('submit.pending')
+          : isSuccess || isError
+            ? c('submit.sent')
+            : c('submit.label')}
       </Button>
     </form>
   );

@@ -134,7 +134,7 @@ const NextGenRosterSignupForm = () => {
     <form
       ref={formRef}
       // onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
+      className="form-container-style"
     >
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
@@ -314,7 +314,11 @@ const NextGenRosterSignupForm = () => {
         // disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {/* {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'} */}
+        {/* {isPending
+          ? c('submit.pending')
+          : isSuccess || isError
+            ? c('submit.sent')
+            : c('submit.label')} */}
       </Button>
     </form>
   );

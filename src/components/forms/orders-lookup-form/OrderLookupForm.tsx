@@ -18,8 +18,8 @@ const schema = yup.object().shape({
   email: yup
     .string()
     .email()
-    .required('Enter your email')
-    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
+    .required('email.message')
+    .test('email.test', (value) => isValidEmail(value)),
 });
 
 interface OrderLookupFormProps {
@@ -75,10 +75,7 @@ const OrderLookupForm: React.FC<OrderLookupFormProps> = ({ returnValue }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="form-container-style">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
         <h4>Email Required</h4>

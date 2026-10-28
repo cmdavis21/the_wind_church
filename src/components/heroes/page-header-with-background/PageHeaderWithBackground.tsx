@@ -5,8 +5,8 @@ import React from 'react';
 interface PageHeaderWithBackgroundProps {
   media: {
     src: string;
-    alt: string;
-    poster: string;
+    alt?: string;
+    poster?: string;
   };
   title: string;
   subtitle?: string;
@@ -28,9 +28,9 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
       {findMediaType(media.src) === MediaType.IMAGE ? (
         <div className="relative w-full h-full">
           <Image
-            src={media.src}
-            alt={media.alt}
             fill
+            src={media.src}
+            alt={media.alt ?? ''}
             className="object-cover object-center rounded-xl"
           />
         </div>
@@ -47,7 +47,7 @@ const PageHeaderWithBackground: React.FC<PageHeaderWithBackgroundProps> = ({
       )}
     </div>
 
-    {/* color overlay */}
+    {/* Color Gradient Overlay */}
     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/70 dark:from-black/50 rounded-xl" />
     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 dark:from-black/50 rounded-xl" />
 

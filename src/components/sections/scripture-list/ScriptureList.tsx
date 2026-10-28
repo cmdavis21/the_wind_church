@@ -6,12 +6,12 @@ interface ScriptureListProps {
 
 const ScriptureList: React.FC<ScriptureListProps> = ({ scriptures }) => {
   return (
-    <div className="body-large flex flex-wrap gap-sm items-center text-light-charcoal dark:text-dark-charcoal">
+    <div className="max:width-[500px] flex flex-wrap gap-xs items-center text-lg font-light text-light-navy dark:text-brand-light">
       {scriptures.map((verse, index) => (
         <React.Fragment key={`scriptures-list-${verse}`}>
           {verse}
           {index !== scriptures.length - 1 && (
-            <div className="rounded-full size-[5px] bg-light-charcoal dark:bg-dark-charcoal" />
+            <div className="rounded-full size-[5px] bg-brand-dark dark:bg-brand-primary" />
           )}
         </React.Fragment>
       ))}

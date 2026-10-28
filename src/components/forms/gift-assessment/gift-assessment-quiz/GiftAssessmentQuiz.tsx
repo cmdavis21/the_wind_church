@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Radio } from 'flowbite-react';
 import React, { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, FieldErrors, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { GiftAssessmentDefinition, GiftAssessmentQuestion } from '@/data/types';
 
+import { useTranslations } from 'next-intl';
 import AlertMessage from '../../../alerts/alert-message/AlertMessage';
 
 const schema = yup.object().shape({
@@ -26,6 +27,56 @@ const scoreWithText: { score: number; text: string }[] = [
   { score: 1, text: 'Little' },
   { score: 0, text: 'Not at all' },
 ];
+
+const FormErrorMessage = (
+  errors: FieldErrors<{
+    answers: {
+      questionId: number;
+      score: number;
+    }[];
+  }>,
+  t: any
+) => {
+  return (
+    Array.isArray(errors.answers) &&
+    errors.answers.length > 0 &&
+    errors.answers.some((s) => s.score) && (
+      <AlertMessage
+        type="failure"
+        title={`Answer question${errors.answers.length > 1 ? '(s)' : ''}:`}
+        description={errors.answers
+          .filter((err) => err.score && err.questionId?.message) // Filter errors with both score and questionId.message
+          .map((err) => {
+            //Extract number inside brackets using regex
+            const match = err.questionId.message.match(/\[(\d+)\]/); //Match the number inside brackets
+            if (match) {
+              const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
+              return questionNumber;
+            }
+            return 'Unknown'; // Fallback if no match is found
+          })
+          .join(', ')}
+      />
+    )
+  );
+};
+
+const FormSubmitButton = (disable: boolean, isLoading: boolean, t: any) => {
+  return (
+    <div className="pt-xl flex flex-col gap-lg">
+      <Button
+        pill
+        size="lg"
+        type="submit"
+        color="primary"
+        disabled={disable || isLoading}
+        className="w-full md:max-w-[35%] mx-auto mt-md"
+      >
+        {isLoading ? 'Analyzing your answers...' : 'Submit Quiz'}
+      </Button>
+    </div>
+  );
+};
 
 interface GiftAssessmentQuizProps {
   questions: GiftAssessmentQuestion[];
@@ -54,7 +105,10 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
   showQuizResults,
   disable,
 }) => {
+  const t = useTranslations('GiftAssessment');
+
   const [isLoading, setIsLoading] = useState(false);
+
   const {
     control,
     setValue,
@@ -65,13 +119,14 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
     answers: { questionId: number; score: number }[];
   }>({ resolver: yupResolver(schema) });
 
-  const concatGiftNames = (arr: { gift: string; score: number }[]) =>
-    arr
+  const concatGiftNames = (arr: { gift: string; score: number }[]) => {
+    return arr
       .map((g) => g.gift)
       .toString()
       .replace("'", '')
       .split(',')
       .join(', ');
+  };
 
   const onSubmit = () => {
     if (Array.isArray(errors.answers) && errors.answers.some((error) => error.score)) {
@@ -148,6 +203,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
                   <h5 className="font-bold">{q.id}.</h5>
                   <h5>{q.question}</h5>
                 </div>
+
                 {scoreWithText.map((mark) => (
                   <Controller
                     key={`spiritual-gift-assessment-desktop-score-${q.id}-${mark.score}`}
@@ -179,46 +235,18 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
             </React.Fragment>
           ))}
 
-          {Array.isArray(errors.answers) &&
-            errors.answers.length > 0 &&
-            errors.answers.some((s) => s.score) && (
-              <AlertMessage
-                type="failure"
-                title={`Answer question${errors.answers.length > 1 ? '(s)' : ''}:`}
-                description={errors.answers
-                  .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
-                  .map((error) => {
-                    //Extract number inside brackets using regex
-                    const match = error.questionId.message.match(/\[(\d+)\]/); //Match the number inside brackets
-                    if (match) {
-                      const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
-                      return questionNumber;
-                    }
-                    return 'Unknown'; // Fallback if no match is found
-                  })
-                  .join(', ')}
-              />
-            )}
+          {FormErrorMessage(errors, t)}
 
-          <div className="pt-xl flex flex-col gap-lg">
-            <Button
-              pill
-              size="lg"
-              type="submit"
-              color="primary"
-              disabled={disable || isLoading}
-              className="w-full md:max-w-[35%] mx-auto mt-md"
-            >
-              {isLoading ? 'Analyzing your answers...' : 'Submit Quiz'}
-            </Button>
-          </div>
+          {FormSubmitButton(disable, isLoading, t)}
         </form>
       </div>
 
       {/* Mobile */}
       <form onSubmit={handleSubmit(onSubmit)} className="lg:hidden w-full flex flex-col gap-lg">
         <h3 className="font-bold">Questions</h3>
+
         <div className="h-[0.4px] w-full bg-light-neutral" />
+
         {questions.map((q, index) => (
           <div
             key={`spiritual-gift-assessment-mobile-question-${q.id}`}
@@ -266,39 +294,9 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
           </div>
         ))}
 
-        {Array.isArray(errors.answers) &&
-          errors.answers.length > 0 &&
-          errors.answers.some((s) => s.score) && (
-            <AlertMessage
-              type="failure"
-              title={`Answer question${errors.answers.length > 1 ? '(s)' : ''}:`}
-              description={errors.answers
-                .filter((error) => error.score && error.questionId?.message) // Filter errors with both score and questionId.message
-                .map((error) => {
-                  //Extract number inside brackets using regex
-                  const match = error.questionId.message.match(/\[(\d+)\]/); //Match the number inside brackets
-                  if (match) {
-                    const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
-                    return questionNumber;
-                  }
-                  return 'Unknown'; // Fallback if no match is found
-                })
-                .join(', ')}
-            />
-          )}
+        {FormErrorMessage(errors, t)}
 
-        <div className="pt-xl flex flex-col gap-lg">
-          <Button
-            pill
-            size="lg"
-            type="submit"
-            color="primary"
-            disabled={disable || isLoading}
-            className="w-full md:max-w-[35%] mx-auto mt-md"
-          >
-            {isLoading ? 'Analyzing your answers...' : 'Submit Quiz'}
-          </Button>
-        </div>
+        {FormSubmitButton(disable, isLoading, t)}
       </form>
     </>
   );

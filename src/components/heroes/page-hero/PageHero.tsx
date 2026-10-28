@@ -1,117 +1,5 @@
-// 'use client';
-// import Text from '@/components/forms/inputs/text/Text';
-// import ChevronLeft from '@/components/icons/chevron-left';
-// import { findMediaType, MediaType, scrollToElem } from '@/data/utils';
-// import cn from 'classnames';
-// import Image from 'next/image';
-// import React from 'react';
-
-// interface PageHeroProps {
-//   title: string;
-//   highlightTitle?: number[][];
-//   subtitle?: string;
-//   size?: 'short' | 'reg' | 'full';
-//   media: {
-//     src: string;
-//     poster?: string;
-//   };
-//   scrollTo?: string;
-// }
-
-// const PageHero: React.FC<PageHeroProps> = ({
-//   title,
-//   highlightTitle,
-//   subtitle,
-//   size = 'reg',
-//   media,
-//   scrollTo,
-// }) => {
-//   return (
-//     <div
-//       className={cn(
-//         size === 'short' && 'h-[60vh] xl:h-[75vh]',
-//         size === 'reg' && 'h-[80vh]',
-//         size === 'full' && 'h-[90vh] lg:h-[100vh]',
-//         'relative w-full overflow-hidden'
-//       )}
-//     >
-//       {/* BACKGROUND IMAGE */}
-//       {findMediaType(media.src) === MediaType.IMAGE && (
-//         <Image
-//           fill
-//           src={media.src}
-//           alt="Decorative Background Image"
-//           className="absolute top-0 left-0 w-full h-full object-cover object-center z-0"
-//         />
-//       )}
-
-//       {/* BACKGROUND VIDEO */}
-//       {findMediaType(media.src) === MediaType.VIDEO && (
-//         <video
-//           loop
-//           muted
-//           autoPlay
-//           playsInline
-//           src={media.src}
-//           poster={media.poster}
-//           className="absolute top-0 left-0 w-full h-full object-cover object-center z-10"
-//         ></video>
-//       )}
-
-//       {/* GRADIENTS */}
-//       {['t', 'b', 'l', 'r'].map((area) => (
-//         <div
-//           key={`page-hero-gradient-${area}`}
-//           className={cn(
-//             `absolute w-full h-full bg-gradient-to-${area} z-20`,
-//             scrollTo
-//               ? 'from-black/50 from-5% via-black/20 via-35% to-black/5 to-95%'
-//               : 'from-black/50 from-5% via-black/10 via-30% to-transparent to-90%'
-//           )}
-//         />
-//       ))}
-
-//       {/* CONTENT */}
-//       <div className="absolute w-full h-full p-xxl 2xl:p-4xl z-30">
-//         <div
-//           className={`relative w-full h-full flex flex-col gap-lg items-center justify-end text-white`}
-//         >
-//           {highlightTitle ? (
-//             <Text
-//               htmlTag="h1"
-//               highlight={highlightTitle}
-//               className="leading-none text-center 2xl:text-[55px] mx-auto lg:max-w-[75%]"
-//             >
-//               {title}
-//             </Text>
-//           ) : (
-//             <h1 className="leading-none text-center 2xl:text-[55px] mx-auto lg:max-w-[75%]">
-//               {title}
-//             </h1>
-//           )}
-
-//           {subtitle && <h3 className="text-center mx-auto lg:max-w-[60%]">{subtitle}</h3>}
-
-//           {scrollTo && (
-//             <button
-//               type="button"
-//               className="mt-[25vh]"
-//               onClick={() => scrollTo && scrollToElem(scrollTo)}
-//             >
-//               <div className="animate-bounce motion-safe:animate-bounce">
-//                 <ChevronLeft fill="#FFF" className="-rotate-90 size-10" />
-//               </div>
-//             </button>
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PageHero;
-
 'use client';
+
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import { findMediaType, MediaType, scrollToElem } from '@/data/utils';
 import cn from 'classnames';
@@ -136,7 +24,7 @@ interface PageHeroProps {
   highlightTitle?: number[][];
   description?: string;
   size?: 'short' | 'reg' | 'full';
-  media: { src: string; poster?: string };
+  media: { src: string; alt?: string; poster?: string };
   ctas?: HeroCta[];
   stats?: HeroStat[];
   scrollTo?: HeroCta;
@@ -171,7 +59,7 @@ const PageHero: React.FC<PageHeroProps> = ({
           fill
           priority
           src={media.src}
-          alt=""
+          alt={media.alt ?? ''}
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-center z-0 motion-safe:animate-[heroZoom_20s_ease-out_forwards]"
         />
@@ -193,7 +81,7 @@ const PageHero: React.FC<PageHeroProps> = ({
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
 
-      {/* CONTENT */}
+      {/* Content */}
       <div
         className={cn(
           'relative z-20 w-full h-full flex flex-col justify-end',

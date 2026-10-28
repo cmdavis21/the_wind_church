@@ -86,6 +86,9 @@ body {
   .yellow-gradient {
     @apply bg-gradient-to-br from-[#FDD738] via-[#F4E2B5] to-[#FDD738];
   }
+  .form-container-style {
+    @apply relative w-full max-w-[1200px] mx-auto border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg
+  }
 }
 
 /* remove ring border for all buttons */

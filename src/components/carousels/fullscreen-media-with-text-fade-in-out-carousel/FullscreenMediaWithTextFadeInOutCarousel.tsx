@@ -139,11 +139,11 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
           </div>
         ))}
 
-        {/* color overlay */}
+        {/* Color Gradient Overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/70" />
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70" />
 
-        {/* content */}
+        {/* Content */}
         {slides.map((slide, index) => (
           <div
             key={`carousel-content-${slide.title}`}
@@ -242,7 +242,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
           </div>
         ))}
 
-        {/* color overlay */}
+        {/* Color Gradient Overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/10 via-black/80 to-black/10" />
 
         <Carousel

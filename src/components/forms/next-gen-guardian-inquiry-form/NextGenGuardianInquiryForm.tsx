@@ -13,25 +13,29 @@ import { useCreateNextGenGuardianInquiry } from '@/data/client/sanity/next-gen-g
 import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { isValidEmail, isValidPhone } from '@/data/utils';
 import { Button } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import TextInput from '../inputs/text-input/TextInput';
 import TextareaInput from '../inputs/textarea-input/TextareaInput';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required('Enter your first name'),
-  last_name: yup.string().required('Enter your last name'),
+  first_name: yup.string().required('first.message'),
+  last_name: yup.string().required('last.message'),
   email: yup
     .string()
     .email()
-    .required('Enter your email')
-    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
+    .required('email.message')
+    .test('email.test', (value) => isValidEmail(value)),
   phone: yup
     .string()
-    .required('Enter your phone number')
-    .test('Include 10 to 11 digit valid phone number', (val) => isValidPhone(val)),
-  questions: yup.string().required('Share your questions'),
+    .required('phone.message')
+    .test('phone.test', (val) => isValidPhone(val)),
+  questions: yup.string().required('form.questions.message'),
 });
 
 const NextGenGuardianInquiryForm = () => {
+  const c = useTranslations('FormCommon');
+  const t = useTranslations('NextGen');
+
   const {
     mutate: submitRequest,
     isPending,
@@ -56,75 +60,75 @@ const NextGenGuardianInquiryForm = () => {
   const onSubmit = (values: NextGenGuardianInquiry) => submitRequest(values);
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
-    >
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="form-container-style">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
-        <h4>Next Gen Guardian Inquiry</h4>
+        <h4>{t('form.title')}</h4>
       </div>
 
       {isSuccess && (
         <AlertMessage
           type="success"
-          title="Success!"
-          description="Please allow up to 3 business
-            days for a member of our team to reach out to you."
+          title={c('success.title')}
+          description={t('form.success.description')}
         />
       )}
 
       {isError && (
         <AlertMessage
           type="failure"
-          title="Oh no!"
-          description="There was an problem submitting your request. Please try again later."
+          title={c('error.title')}
+          description={c('error.description')}
         />
       )}
 
-      {/* names */}
+      {/* Names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="First Name*"
+          required
           type="text"
-          error={errors.first_name?.message}
-          disabled={isPending || isSuccess}
+          label={c('first.label')}
           {...register('first_name')}
+          disabled={isPending || isSuccess}
+          error={errors.first_name ? c(errors.first_name.message!) : undefined}
         />
         <TextInput
-          label="Last Name*"
+          required
           type="text"
-          error={errors.last_name?.message}
-          disabled={isPending || isSuccess}
+          label={c('last.label')}
           {...register('last_name')}
+          disabled={isPending || isSuccess}
+          error={errors.last_name ? c(errors.last_name.message!) : undefined}
         />
       </div>
 
-      {/* contact */}
+      {/* Contact */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
+          required
           type="tel"
-          label="Phone*"
           {...register('phone')}
-          error={errors.phone?.message}
+          label={c('phone.label')}
           disabled={isPending || isSuccess}
+          error={errors.phone ? c(errors.phone.message!) : undefined}
         />
         <TextInput
+          required
           type="email"
-          label="Email*"
           {...register('email')}
-          error={errors.email?.message}
+          label={c('email.label')}
           disabled={isPending || isSuccess}
+          error={errors.email ? c(errors.email.message!) : undefined}
         />
       </div>
 
       {/* inquriy */}
       <TextareaInput
-        label="Questions*"
-        error={errors.questions?.message}
+        required
+        label={t('form.questions.label')}
         disabled={isPending || isSuccess}
-        placeholder="Enter any questions you may have so our member can prepare for you."
+        placeholder={t('form.questions.placeholder')}
+        error={errors.questions ? t(errors.questions.message!) : undefined}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
           setValue('questions', e.target.value);
           if (e.target.value !== '') clearErrors('questions');
@@ -139,7 +143,11 @@ const NextGenGuardianInquiryForm = () => {
         disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
+        {isPending
+          ? c('submit.pending')
+          : isSuccess || isError
+            ? c('submit.sent')
+            : c('submit.label')}
       </Button>
     </form>
   );

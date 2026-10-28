@@ -11,9 +11,12 @@ import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
 import { useGetAllCategorizedResources } from '@/data/client/sanity/resources';
 import { SanityResourceCategories } from '@/data/types';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 const ResourceCenterClient = () => {
+  const t = useTranslations('ResourceCenter');
+
   const [filter, setFilter] = useState('');
   const { resources, resourcesLoading, resourcesError } = useGetAllCategorizedResources();
 
@@ -25,10 +28,7 @@ const ResourceCenterClient = () => {
 
   return (
     <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
-      <PageHeader
-        title="Resource Center"
-        subtitle="Access important documents, forms, and resources shared within The Wind Church."
-      />
+      <PageHeader title={t('title')} subtitle={t('subtitle')} />
 
       {/* FILTERING */}
       {resources && (
@@ -39,7 +39,7 @@ const ResourceCenterClient = () => {
             disabled={resourcesLoading || resourcesError}
             onChange={(e) => setFilter(e.target.value)}
             options={[
-              { label: 'All resources', value: '' },
+              { label: t('filterDefault'), value: '' },
               ...sortedResources.map(([k, _]) => ({ label: k, value: k })),
             ]}
           />

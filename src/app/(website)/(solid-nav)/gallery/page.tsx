@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.gallery}`;
-  const image = '/images/church-building.webp';
+  const image = '/images/rental/church-building.webp';
   return {
     title,
     description,
@@ -36,29 +36,24 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const Gallery = async () => {
+  const t = await getTranslations('Gallery');
+
   const gallery = await getGallery();
 
   if (!gallery) return <ErrorAlert reloadPage={false} />;
 
   return (
     <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
-      <PageHeader
-        title="The Gallery"
-        subtitle="View photos of great times spent together in the Wind family."
-      />
+      <PageHeader title={t('title')} subtitle={t('subtitle')} />
 
       {gallery.map((category) => (
         <div key={`wind-gallery-${category.title}`} className="flex flex-col gap-xl md:gap-xxl">
-          <SectionHeader title={category.title} subtitle="Select a photo and view the memories" />
+          <SectionHeader title={category.title} subtitle={t('sectionSubtitle')} />
 
           {/* Desktop */}
           <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-[1800px]:grid-cols-5 gap-xl place-content-center">
             {category.urls.map((src) => (
-              <ImageCard
-                key={`wind-gallery-${src}`}
-                src={src}
-                alt="The Wind Church Gallery Image"
-              />
+              <ImageCard key={`wind-gallery-${src}`} src={src} alt={t('photoAlt')} />
             ))}
           </div>
 
@@ -67,11 +62,7 @@ const Gallery = async () => {
             showDots={false}
             className="sm:hidden"
             slides={category.urls.map((src) => (
-              <ImageCard
-                key={`wind-gallery-mobile-${src}`}
-                src={src}
-                alt="The Wind Church Gallery Image"
-              />
+              <ImageCard key={`wind-gallery-mobile-${src}`} src={src} alt={t('photoAlt')} />
             ))}
           />
         </div>

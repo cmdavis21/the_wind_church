@@ -50,11 +50,7 @@ const EmailUpdateForm: React.FC<EmailUpdateFormProps> = ({ customer_id, current_
   };
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full h-fit border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
-    >
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="form-container-style h-fit">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
         <h4>Email update</h4>

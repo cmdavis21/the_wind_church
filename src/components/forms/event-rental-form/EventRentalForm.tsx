@@ -11,41 +11,48 @@ import { EventRentalInquiry, YesNo } from '@/data/types';
 import { useCreateEventRentalInquiry } from '@/data/client/sanity/event-rental-inquiry';
 import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { isValidEmail, isValidPhone } from '@/data/utils';
+import { useTranslations } from 'next-intl';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
+import TextareaInput from '../inputs/textarea-input/TextareaInput';
 
 const schema: yup.ObjectSchema<EventRentalInquiry> = yup.object().shape({
-  first_name: yup.string().required('Enter your first name'),
-  last_name: yup.string().required('Enter your last name'),
+  first_name: yup.string().required('first.message'),
+  last_name: yup.string().required('last.message'),
   email: yup
     .string()
     .email()
-    .required('Enter your email')
-    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
+    .required('email.message')
+    .test('email.test', (value) => isValidEmail(value)),
   phone: yup
     .string()
-    .required('Enter your phone number')
-    .test('Include 10 to 11 digit valid phone number', (val) => isValidPhone(val)),
+    .required('phone.message')
+    .test('phone.test', (val) => isValidPhone(val)),
   company_name: yup.string().optional(),
   company_phone: yup
     .string()
     .optional()
-    .test('Include 10 to 11 digit valid phone number', (val) => {
-      if (val) {
-        return isValidPhone(val);
-      }
+    .test('phone.test', (val) => {
+      if (val) return isValidPhone(val);
       return true;
     }),
-  purpose_for_rental: yup.string().required('Select an option'),
-  describe_your_event: yup.string().required('Supply more details of your event'),
-  referred: yup.mixed<YesNo>().oneOf([YesNo.YES, YesNo.NO]).default(YesNo.NO).required(),
+  purpose_for_rental: yup.string().required('form.purpose.message'),
+  describe_your_event: yup.string().required('form.describe.message'),
+  referred: yup
+    .mixed<YesNo>()
+    .oneOf([YesNo.YES, YesNo.NO])
+    .default(YesNo.NO)
+    .required('form.purpose.message'),
   referred_by: yup.string().optional(),
 });
 
 const EventRentalForm = () => {
+  const c = useTranslations('FormCommon');
+  const t = useTranslations('ChurchRental');
+
   const [showReference, setShowReference] = useState(false);
 
   const { mutate: submitInquiry, isPending, isSuccess, isError } = useCreateEventRentalInquiry();
@@ -66,122 +73,112 @@ const EventRentalForm = () => {
   const onSubmit = (values: EventRentalInquiry) => submitInquiry(values);
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
-    >
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="form-container-style">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
-        <h4>Rental Inquiry</h4>
+        <h4>{t('form.title')}</h4>
       </div>
 
       {isSuccess && (
         <AlertMessage
           type="success"
-          title="Success!"
-          description="We will contact you shortly. Thank you."
+          title={c('success.title')}
+          description={c('success.description')}
         />
       )}
 
       {isError && (
         <AlertMessage
           type="failure"
-          title="Oh no!"
-          description="There was an problem submitting your inquiry.
-            Please try again later, or call our office at +1 (951) 359-0203."
+          title={c('error.title')}
+          description={c('error.description')}
         />
       )}
 
-      {/* names */}
+      {/* Names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
+          required
           type="text"
-          label="First Name*"
+          label={c('first.label')}
           {...register('first_name')}
           disabled={isPending || isSuccess}
-          error={errors.first_name?.message}
+          error={errors.first_name ? c(errors.first_name.message!) : undefined}
         />
         <TextInput
+          required
           type="text"
-          label="Last Name*"
+          label={c('last.label')}
           {...register('last_name')}
           disabled={isPending || isSuccess}
-          error={errors.last_name?.message}
+          error={errors.last_name ? c(errors.last_name.message!) : undefined}
         />
       </div>
 
-      {/* contact */}
+      {/* Contact */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
+          required
           type="tel"
-          label="Phone*"
           {...register('phone')}
-          error={errors.phone?.message}
+          label={c('phone.label')}
           disabled={isPending || isSuccess}
+          error={errors.phone ? c(errors.phone.message!) : undefined}
         />
         <TextInput
+          required
           type="email"
-          label="Email*"
           {...register('email')}
-          error={errors.email?.message}
+          label={c('email.label')}
           disabled={isPending || isSuccess}
+          error={errors.email ? c(errors.email.message!) : undefined}
         />
       </div>
 
-      {/* Company Information */}
+      {/* company information */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
           type="text"
-          label="Company Name"
           {...register('company_name')}
+          label={t('form.company.name')}
           disabled={isPending || isSuccess}
-          error={errors.company_name?.message}
         />
         <TextInput
           type="tel"
-          label="Company Phone"
           {...register('company_phone')}
+          label={t('form.company.phone')}
           disabled={isPending || isSuccess}
-          error={errors.company_phone?.message}
+          error={errors.company_phone ? t(errors.company_phone.message!) : undefined}
         />
       </div>
 
-      {/* purpose for rental */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
+      {/* purpose for rental + referral */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
         <SelectInput
-          label="Purpose for your rental?"
+          required
+          label={t('form.purpose.label')}
           disabled={isPending || isSuccess}
           {...register('purpose_for_rental')}
-          error={errors.purpose_for_rental?.message}
+          error={errors.purpose_for_rental ? t(errors.purpose_for_rental.message!) : undefined}
           options={[
-            { label: 'Select an option', value: '' },
-            { label: 'Wedding', value: 'Wedding' },
-            { label: 'Family Celebrations', value: 'Family Celebrations' },
-            { label: 'Birthday', value: 'Birthday' },
-            { label: 'Funeral', value: 'Funeral' },
-            { label: 'Outreach Event', value: 'Outreach Event' },
-            { label: 'Other', value: 'Other' },
+            { label: t('form.purpose.message'), value: '' },
+            { label: t('form.purpose.wedding'), value: 'Wedding' },
+            { label: t('form.purpose.family'), value: 'Family Celebrations' },
+            { label: t('form.purpose.birthday'), value: 'Birthday' },
+            { label: t('form.purpose.funeral'), value: 'Funeral' },
+            { label: t('form.purpose.outreach'), value: 'Outreach Event' },
+            { label: t('form.purpose.other'), value: 'Other' },
           ]}
         />
-        <TextInput
-          label="Describe your event"
-          type="text"
-          error={errors.describe_your_event?.message}
-          disabled={isPending || isSuccess}
-          {...register('describe_your_event')}
-        />
-      </div>
-
-      {/* referral */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <RadioGroup
+          required
           name="referred"
+          label={t('form.referred.label')}
           disabled={isPending || isSuccess}
-          label="Was you referred by someone to the Wind church?"
+          error={errors.referred ? t(errors.referred.message!) : undefined}
           options={[
-            { value: YesNo.NO, label: YesNo.NO },
-            { value: YesNo.YES, label: YesNo.YES },
+            { label: c('yes'), value: YesNo.YES },
+            { label: c('no'), value: YesNo.NO },
           ]}
           onChange={(val) => {
             if (val === YesNo.YES) {
@@ -189,23 +186,30 @@ const EventRentalForm = () => {
             } else setShowReference(false);
             setValue('referred', val as YesNo);
           }}
-          error={errors.referred?.message}
         />
         <SelectInput
-          label="Referral Source"
+          label={t('form.source.label')}
           {...register('referred_by')}
-          error={errors.referred_by?.message}
           disabled={!showReference || isPending || isSuccess}
           options={[
-            { label: 'Select an option', value: '' },
-            { label: 'Wind Member', value: 'Wind Member' },
-            { label: 'Spouse', value: 'Spouse' },
-            { label: 'Family', value: 'Family' },
-            { label: 'Friend', value: 'Friend' },
-            { label: 'Other', value: 'Other' },
+            { label: t('form.purpose.message'), value: '' },
+            { label: t('form.source.member'), value: 'Wind Member' },
+            { label: t('form.source.spouse'), value: 'Spouse' },
+            { label: t('form.source.family'), value: 'Family' },
+            { label: t('form.source.friend'), value: 'Friend' },
+            { label: t('form.purpose.other'), value: 'Other' },
           ]}
         />
       </div>
+
+      {/* event description */}
+      <TextareaInput
+        required
+        label={t('form.describe.label')}
+        disabled={isPending || isSuccess}
+        {...register('describe_your_event')}
+        error={errors.describe_your_event ? t(errors.describe_your_event.message!) : undefined}
+      />
 
       <Button
         pill
@@ -215,7 +219,11 @@ const EventRentalForm = () => {
         disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
+        {isPending
+          ? c('submit.pending')
+          : isSuccess || isError
+            ? c('submit.sent')
+            : c('submit.label')}
       </Button>
     </form>
   );

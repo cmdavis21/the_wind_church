@@ -3,6 +3,42 @@
     "label": "Change language",
     "locale": "{locale, select, en {🇺🇸 ENG} es {🇲🇽 SPA} other {N/A}}"
   },
+  "FormCommon": {
+    "success": {
+      "title": "Success!",
+      "description": "We will contact you shortly. Thank you."
+    },
+    "error": {
+      "title": "Error!",
+      "description": "There was an problem submitting your inquiry. Please try again later, or call our office at +1 (951) 359-0203."
+    },
+    "first": {
+      "label": "First Name",
+      "message": "Enter your first name"
+    },
+    "last": {
+      "label": "Last Name",
+      "message": "Enter your last name"
+    },
+    "phone": {
+      "label": "Phone",
+      "message": "Enter your phone number",
+      "test": "Input a valid 10 to 11 digit phone number"
+    },
+    "email": {
+      "label": "Email",
+      "message": "Enter your email",
+      "test": "Input a valid email address"
+    },
+    "submit": {
+      "label": "Submit!",
+      "pending": "Sending...",
+      "sent": "Submitted"
+    },
+    "yes": "Yes",
+    "no": "No",
+    "select": "Select an option"
+  },
   "NotFound": {
     "metadata": {
       "title": "Page Not Found",
@@ -406,6 +442,71 @@
     "metadata": {
       "title": "Church Rental",
       "description": "Interested in renting our church facilities? Get details and request your date today."
+    },
+    "title": "Church Rental",
+    "header": {
+      "title": "Looking for the perfect space for your next event",
+      "description": "Our Sanctuary, Fellowship Hall, commercial kitchen, and spacious parking lot are ideal for weddings, expos, family celebrations, and more."
+    },
+    "lobby": {
+      "title": "Lobby",
+      "description": "A welcoming, open-concept entry space ideal for guest check-ins, meet-and-greets, photo opportunities, and pre-event gatherings. The lobby offers plenty of room for high-traffic flow, making it perfect for conferences, ceremonies, and large social events.",
+      "alt": "Spacious seating area with counches, a coffee table, decorative chairs, indoor planting and other table decorations."
+    },
+    "sanctuary": {
+      "title": "Sanctuary",
+      "description": "A spacious, multi-purpose venue designed to accommodate large crowds comfortably. The sanctuary is perfect for weddings, concerts, conferences, memorials, graduations, and community events. With flexible seating arrangements and a stage-ready layout, it easily adapts to both formal and creative gatherings.",
+      "alt": "Large event space with lit stage and rows of seating before the stage."
+    },
+    "fellowshipHall": {
+      "title": "Fellowship Hall",
+      "description": "A versatile, open hall suited for receptions, banquets, workshops, parties, and community celebrations. Its generous floor space allows for custom layouts—round tables, long banquet setups, breakout stations, or open activity space—making it ideal for events of all sizes.",
+      "alt": "A room with rows of round tables with six chairs at each table. A cafe bar is at the end of the room with the lable 'He-brews Cafe'."
+    },
+    "kitchen": {
+      "title": "Kitchen",
+      "description": "A fully equipped commercial kitchen built to support catering teams, meal prep, and large-scale food service. Whether you're hosting a banquet, reception, or community outreach event, the kitchen provides the professional tools needed for smooth, efficient operations.",
+      "alt": "Large commercial kitchen with freezers, oven, sink, and storage."
+    },
+    "parkingLot": {
+      "title": "Parking Lot",
+      "description": "A large, easily accessible parking lot capable of accommodating high-capacity events with ease. Perfect for gatherings that draw big crowds, the lot supports smooth arrival, organized traffic flow, and ample space for volunteers, vendors, and guest parking.",
+      "alt": "Outdoor parking lot with a few cars parked. A children's play ground fenced to the left."
+    },
+    "form": {
+      "header": {
+        "title": "Tailored event solutions for every occasion",
+        "description": "Share your event details and we'll help you create the right setup. Our flexible spaces can accommodate gatherings of all sizes."
+      },
+      "title": "Rental Inquiry",
+      "company": {
+        "name": "Company Name",
+        "phone": "Company Phone"
+      },
+      "purpose": {
+        "label": "Purpose for rental",
+        "message": "Select an option",
+        "wedding": "Wedding",
+        "family": "Family Celebrations",
+        "birthday": "Birthday",
+        "funeral": "Funeral",
+        "outreach": "Outreach Event",
+        "other": "Other"
+      },
+      "describe": {
+        "label": "Describe your event",
+        "message": "Share more details of your event so we can undertsand how to accommodate you best."
+      },
+      "referred": {
+        "label": "Were you recommended to The Wind Church?"
+      },
+      "source": {
+        "label": "Referral Source",
+        "member": "Wind Member",
+        "spouse": "Spouse",
+        "family": "Family",
+        "friend": "Friend"
+      }
     }
   },
   "DeepDive": {
@@ -418,42 +519,575 @@
     "metadata": {
       "title": "Visitor Feedback",
       "description": "Thank you for visiting our church. Please leave feedback on your experience so we can improve for the body of Christ."
+    },
+    "alt": "Four individuals holding up colored thought bubbles to represent comments.",
+    "title": "Visitor Feedback",
+    "form": {
+      "header": {
+        "title": "Let us know how we did!",
+        "subtitle": "We'd love to hear about your experience visiting our church—your feedback helps us grow and better serve every guest who walks through our doors."
+      },
+      "success": {
+        "label": "Thank you!",
+        "message": "We appreciate your feedback."
+      },
+      "feedback": {
+        "label": "Feedback",
+        "placeholder": "Enter your comments here...",
+        "message": "Share your feedback"
+      }
     }
   },
   "Foursquare": {
     "metadata": {
       "title": "Learn About Foursquare",
       "description": "Discover the history, beliefs, and global mission of the International Church of the Foursquare Gospel."
-    }
+    },
+    "alt": "",
+    "title": "Foursquare Gospel Church",
+    "subtitle": "An international Pentecostal Christian denomination founded in 1923.",
+    "tabTitles": ["Intro", "History", "Beliefs", "Symbols"],
+    "tabContent": [
+      {
+        "descriptions": [
+          "The Wind Church (dba Wind of the Spirit) is part of a worldwide movement called the International Church of the Foursquare Gospel, with more than 1,700 churches in the United States and over 68,500 churches across more than 150 nations.",
+          "Every week, more than 12,000 men, women, boys, and girls accept Jesus Christ through the preaching of the gospel in Foursquare churches around the world."
+        ]
+      },
+      {
+        "header": {
+          "title": "Foursquare History",
+          "subtitle": "How it all began..."
+        },
+        "descriptions": [
+          "The name “Foursquare” is unique compared to most church names. It was born out of an extraordinary move of God during the early 20th century—a period marked by revolutionary changes throughout the world.",
+          "A great revival swept across the Western world as the 1900s began. Its impact grew as believers in various places were filled with the Holy Spirit, experiencing something similar to the events of Acts 2 on the Day of Pentecost. This movement became known as the “Pentecostal Movement.”",
+          "By the 1920s, some felt that Pentecostals were becoming extreme in their beliefs. A divide began forming between older denominations and the new groups emerging from revival meetings. Into this unusual moment stepped a woman evangelist, Aimee Semple McPherson, who began preaching the “Foursquare Gospel.” Born in Ingersoll, Ontario, Canada, she came to faith at age 17. Shortly after, she married Robert Semple—the young preacher whose message led to her conversion. The couple soon left for China, where Robert gave his life in service to God. Aimee returned to America as a widow with her young daughter and eventually remarried. Yet the call to preach continued to stir in her heart. She resisted it, longing for a “normal life,” but restlessness grew. When sickness brought her near death, she sensed God asking, “Will you go and preach?” Her surrender—“Yes, Lord, I will go”—became the beginning of a lifelong ministry.",
+          "Her worldwide ministry led to countless lives being redeemed, miraculously healed, baptized in water, and filled with the Holy Spirit. Thousands from every denomination—and many with no church background at all—attended her meetings. Those whose lives were transformed came to feel like part of the Foursquare family.",
+          "On September 27, 1944, God called His handmaiden home. The night before, she preached a message in Oakland, California—the very city where she first received the vision of the Foursquare Gospel. A cycle had come full circle, and a divine assignment had been completed.",
+          "Foursquare International continues to reflect the heart of our founder and the Great Commission given by our Lord: to go into all the world and preach the gospel to everyone. Evangelism and world missions remain the very heartbeat of the Foursquare Church.",
+          "Just a few of the ministries of the Foursquare Church:",
+          "Foursquare Missionary Press distributes more than 3,000,000 pieces of evangelistic literature each year.",
+          "National Youth Ministry.",
+          "L.I.F.E. Pacific Colleges are accredited Bible colleges located in San Dimas, California; Christiansburg, Virginia; and Burnaby, British Columbia. Many additional Bible institutes operate in partnership with local Foursquare churches around the world. Foursquare Women International is a service organization made up of more than 10,000 members.",
+          "Christian Education.",
+          "Foursquare World Advance — a bimonthly magazine highlighting the global Foursquare family.",
+          "Eight camping facilities.",
+          "And much more.",
+          "The Foursquare community has no desire to compete or compare. We rejoice with every body of believers which lifts the blodstained banner of Jesus Christ. The foursqaure Church is a memeber of the Nartional Association of Evangelicals (NAE) and, as a Pentecostal Church, is affliated with the Pentecoastal-Charismatic Churches of (North America 9PCCNA) and the Penetecoastl World Fellowship.",
+          "You may request a free subscription by writing to Foursquare World Advance, P.O. Box 26902, 1910 W. Sunset Blvd., Suite 200, Los Angeles, California 90026-0176.",
+          "For more information about the International Church of the Foursquare Gospel (ICFG), visit <link>www.foursquare.org</link>."
+        ]
+      },
+      {
+        "header": {
+          "title": "Foursquare Believes"
+        },
+        "accordionItem1": {
+          "title": "Jesus Christ the Savior",
+          "plan": {
+            "title": "The Plan of Salvation",
+            "verse": "John 3:16; Romans 5:8",
+            "description": "We believe that while we were yet sinners Christ died for us, signing the pardon of all who believe on Him Salvation Through Grace"
+          },
+          "salvation": {
+            "title": "Salvation Through Grace",
+            "verse": "Ephesians 2:8",
+            "description": "We believe that we have no righteousness and must come to God pleading the righteousness of Christ"
+          },
+          "scriptures": {
+            "title": "The Holy Scriptures",
+            "verse": "2 Timothy 3:16, 17",
+            "description": "We believe the Bible is God-inspired"
+          },
+          "eternal": {
+            "title": "The Eternal Godhead",
+            "verse": "2 Corinthians 13:14",
+            "description": "We believe God is Triun: Father, Son & Holy Spirit"
+          },
+          "fall": {
+            "title": "The Fall of Man",
+            "verse": "Romans 5:12",
+            "description": "We believe that man was created in the image of God, but that by voluntary disobedience he fell from perfection"
+          }
+        },
+        "accordionItem2": {
+          "title": "Jesus Christ the Baptizer with the Holy Spirit",
+          "relationship": {
+            "title": "Church Relationship",
+            "verse": "Acts 16:5; Hebrews 10:25",
+            "description": "We believe it is our sacred duty to identify ourselves with the visible Body of Christ"
+          },
+          "civil": {
+            "title": "Civil Government",
+            "verse": "Romans 13:1-5",
+            "description": "We believe that rulers should be upheld at all times, except in things opposed to the will of God"
+          },
+          "final": {
+            "title": "The Final Judgement",
+            "verse": "2 Corinthians 5:10",
+            "description": "We believe that all shall stand some day before the judgement seat of God, and there receive eternal life or death"
+          },
+          "heaven": {
+            "title": "Heaven",
+            "verse": "John 14:1-3; Revelation 7:15-17",
+            "description": "We believe that Heaven is the glorious eternal home of born-again believers"
+          },
+          "hell": {
+            "title": "Hell",
+            "verse": "Revelation 20:10,15",
+            "description": "We believe that hell is the place of eternal torment for all who reject Christ as the Savior"
+          }
+        },
+        "accordionItem3": {
+          "title": "Jesus Christ the Healer",
+          "repent": {
+            "title": "Repentance & Acceptance",
+            "verse": "1 John 1:9",
+            "description": "We believe that upon sincere repentance and a whole-hearted acceptance of Christ, we are justified before God"
+          },
+          "new": {
+            "title": "The New Birth",
+            "verse": "2 Corinthians 5:17; Galatians 2:20",
+            "description": "We believe that the change which takes place in the heart and life at conversion is a very real one"
+          },
+          "daily": {
+            "title": "Daily Christian Living",
+            "verse": "Hebrews 6:1",
+            "description": "We believe that it is the will of God that we be sanctified daily, growing constantly in the faith"
+          },
+          "supper": {
+            "title": "Baptism & The Lord's Supper",
+            "verse": "Matthew 28:19; 1 Corinthians 11:24, 25",
+            "description": "We believe that baptism by immersion is an outward sign of an inward work. We believe in the commemoration of the Lord's Supper by the symbolic use of the bread and juice of the vine"
+          },
+          "spirit": {
+            "title": "Baptism with the Holy Spirit",
+            "verse": "Acts 2:4",
+            "description": "We believe that the Baptism with the Holy Spirit is to endue the believer with power; and that His incoming is after the same manner as in Bible days"
+          }
+        },
+        "accordionItem4": {
+          "title": "Jesus Christ the Soon-Coming King",
+          "life": {
+            "title": "The Spirit-Filled Life",
+            "verse": "Ephesians 4:30-32",
+            "description": "We believe that it is the will of God that we walk in the Spirit daily"
+          },
+          "gifts": {
+            "title": "The Gifts & Fruits of the Spirit",
+            "verse": "1 Corinthians 12:1-11; Galatians 5:22",
+            "description": "We believe that the Holy Spirit has gifts to bestow upon the Christian; and that we should show spiritual fruit as evidence of a Spirit-filled life"
+          },
+          "moderation": {
+            "title": "Moderation",
+            "verse": "Philippians 4:5",
+            "description": "We believe that the experience and daily walk of the believer should never lead him into extremes of fanaticism"
+          },
+          "divine": {
+            "title": "Divine Healing",
+            "verse": "James 5:14-16",
+            "description": "We believe that divine healing is the power of Christ to heal the physically sick in answer to the prayer of faith"
+          },
+          "coming": {
+            "title": "The Second Coming of Christ",
+            "verse": "1 Thessalonians 4:16, 17",
+            "description": "We believe that the second coming of Christ is personal and imminent"
+          },
+          "evangelism": {
+            "title": "Evangelism",
+            "verse": "Mark 16:15; Matthew 28:19-20",
+            "description": "We believe that the church's primary responsibility is to take the gospel to the entire world and make disciples"
+          },
+          "tithes": {
+            "title": "Tithes and Offerings",
+            "verse": "Malachi 3:10; 2 Corinthians 9:7",
+            "description": "We believe that God has ordained tithes and offerings as the method for supporting and advancing His work"
+          }
+        }
+      },
+      {
+        "section1": {
+          "header": "Logo",
+          "descriptions": [
+            "The term “Foursquare” refers to the four-fold ministry of Jesus Christ.",
+            "<bold>Crown</bold> — Symbolic of Jesus Christ, the Soon-Coming King",
+            "<bold>Cross</bold> — Symbolic of Jesus Christ, our Savior",
+            "<bold>Cup</bold> — Symbolic of Jesus Christ, the Great Physician (Healer)",
+            "<bold>Dove</bold> — Symbolic of Jesus Christ, the Baptizer with the Holy Spirit",
+            "Matthew 8:17",
+            "Matthew 1:21",
+            "1 Thessalonians 4:16-18",
+            "Matthew 3:11",
+            "Matthew 4:23",
+            "John 3:16",
+            "Matthew 24:30-31",
+            "John 1:33-34"
+          ],
+          "logoAlt": "Foursquare Church logo"
+        },
+        "section2": {
+          "header": "Emblem",
+          "descriptions": [
+            "The concept of “Foursquare” appears both implicitly and explicitly throughout the Old and New Testaments. One of the clearest examples is found in Ezekiel's vision (Ezekiel 1:10): “Each of the four had the face of a man, the face of a lion on the right side, the face of an ox on the left side, and each also had the face of an eagle.”",
+            "<bold>Face of an Eagle</bold> — Symbolic of Jesus Christ, the Coming King",
+            "<bold>Face of an Ox</bold> — Symbolic of Jesus Christ, the Burden-Bearer",
+            "<bold>Face of a Man</bold> — Symbolic of Jesus Christ, who shared in human suffering",
+            "<bold>Face of a Lion</bold> — Symbolic of Jesus Christ, the Lion of Judah, the All-Powerful One",
+            "Ezekiel 1:1-28",
+            "Revelation 4:7"
+          ],
+          "logoAlt": "Foursquare Church emblem"
+        },
+        "section3": {
+          "header": "Flag",
+          "descriptions": [
+            "Israel is a type of the Foursquare Gospel: a foursquare altar of the finest gold, attended by a priest wearing a foursquare breastplate embroidered in scarlet, gold, blue, and purple.",
+            "<bold>Scarlet</bold> — Represents the first cardinal doctrine: Jesus Christ the Savior. Its emblem is the face of a man.",
+            "<bold>Gold</bold> — Represents the second cardinal doctrine: Jesus Christ the Baptizer with the Holy Spirit. Its emblem is the face of a lion.",
+            "<bold>Blue</bold> — Represents the third cardinal doctrine: Jesus Christ the Great Physician. Its emblem is the face of an ox.",
+            "<bold>Purple</bold> — Represents the fourth cardinal doctrine: Jesus Christ the Coming King. Its emblem is the face of an eagle.",
+            "Exodus 28:15-16"
+          ],
+          "logoAlt": "Foursquare Church flag"
+        }
+      }
+    ]
   },
   "Give": {
     "metadata": {
       "title": "Give",
       "description": "Support the mission of The Wind Church by giving online. Your generosity makes a difference."
+    },
+    "alt": "People worshipping with their hands raised.",
+    "title": "Giving",
+    "subtitle": "Your contribution makes a difference.",
+    "reasons": [
+      {
+        "title": "Giving honors God as an act of worship",
+        "description": "Acknowledging that all we have belongs to Him.",
+        "scripture1": "Proverbs 3:9",
+        "scripture2": "Psalm 24:1"
+      },
+      {
+        "title": "When we give freely and joyfully",
+        "description": "We imitate God's nature as a giver of eternal and temporal blessings.",
+        "scripture1": "John 3:16",
+        "scripture2": "1 Corinthians 2:12",
+        "scripture3": "Deuteronomy 8:17-18",
+        "scripture4": "James 1:17"
+      },
+      {
+        "title": "Giving reflects our heart",
+        "description": "And relationship with God, communicates our faith to the world, and brings personal blessings through wise investments.",
+        "scripture1": "2 Corinthians 9:12-15",
+        "scripture2": "Acts 20:35",
+        "scripture3": "Luke 12:33"
+      }
+    ],
+    "waysToGive": {
+      "title": "Ways to Give",
+      "subtitle": "Discover meaningful ways to support the mission and strengthen our community.",
+      "items": [
+        {
+          "title": "Serve & Volunteer",
+          "alt": "Group of people with their hands together in a pile.",
+          "description": "Giving isn't only financial — serving with your time and gifts helps build God's house and strengthen our community."
+        },
+        {
+          "title": "Online Giving",
+          "alt": "A man using his mobile phone.",
+          "description": "Give securely online through Pushpay using your debit card, credit card, or bank account."
+        },
+        {
+          "title": "In-Person Giving",
+          "alt": "A person placing a church offering card inside a tithing box with a cross on the front.",
+          "description": "You can give during any service using cash or check. Donation boxes are located at both exits of the sanctuary. Make checks payable to Wind of the Spirit Worship Center."
+        },
+        {
+          "title": "Mail-In Giving",
+          "alt": "A black mailbox with the red flag raised.",
+          "description": "You can mail your gift to:\nWind of the Spirit Worship Center\n6476 Streeter Avenue, Riverside, CA 92504"
+        },
+        {
+          "title": "Non-Cash Assets",
+          "alt": "A home garage filled with boxes and miscellaneous storage items.",
+          "description": "You can donate anything that will support our community. Email thewindchurch@outlook.com for more information."
+        },
+        {
+          "title": "One-Time Donations",
+          "alt": "A woman in a yellow sweater carrying a crate filled with vegetables.",
+          "description": "These are spontaneous gifts inspired by a sermon, event, or specific need. They help fund special projects, missions, or urgent needs."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Helpful answers about PushPay, giving options, and donation allocation.",
+      "items": [
+        {
+          "title": "How can I donate online through PushPay?",
+          "description": "Donating online is simple! Just visit our Give page, select the amount you'd like to give, choose a fund, and complete your secure transaction through PushPay. You can give a one-time gift or set up recurring donations for consistent support."
+        },
+        {
+          "title": "Is giving through PushPay secure?",
+          "description": "Yes! PushPay uses industry-leading encryption and security measures to protect your financial information. Your online donation is processed safely, ensuring your contributions are handled with the utmost care."
+        },
+        {
+          "title": "Can I allocate my donation to a specific ministry or fund?",
+          "description": "Absolutely! When you give online or in person, you can choose where your donation goes—whether it's general tithes, missions, youth programs, outreach, or another specific ministry. Simply select the designated fund when giving."
+        },
+        {
+          "title": "Can I set up automatic recurring donations?",
+          "description": "Yes! PushPay allows you to schedule recurring donations on a weekly, bi-weekly, or monthly basis. This ensures consistent support for the church and makes giving effortless."
+        },
+        {
+          "title": "How do I give a donation in person or by mail?",
+          "description": "You can give during any of our services by placing your donation in the offering basket or drop box.\n\nIf you would prefer to mail a check, please send it to:\n\nThe Wind Church\n6476 Streeter Avenue\nRiverside, CA 92504"
+        },
+        {
+          "title": "Will I receive a receipt for my donation?",
+          "description": "Yes! When you give through PushPay, you'll receive an email confirmation immediately. For all donations—whether online, in person, or by mail—you will also receive an annual giving statement for tax purposes."
+        },
+        {
+          "title": "Can I update or cancel a recurring donation?",
+          "description": "Of course! You can log into your PushPay account at any time to update your donation amount, change the frequency, or cancel a recurring gift."
+        },
+        {
+          "title": "Who can I contact if I have more questions about giving?",
+          "description": "If you have any questions about donations, allocations, or giving statements, feel free to contact our finance team at +1 (951) 359-0203. We're happy to help!"
+        }
+      ]
+    },
+    "donate": "Donate online with PushPay",
+    "thanks": {
+      "thankYou": "Thank you for your support",
+      "blessing": "We are blessed to have supporters like you and we are honored that you have chosen this Ministry as a place to sow your seed.",
+      "contact": "If you have any questions or concerns, email <email>thewindchurch@outlook.com</email> or call <phone>(951) 359-0203</phone>.",
+      "partners": "Your partners in Christ at The Wind."
     }
   },
   "Ministries": {
     "metadata": {
       "title": "Ministries",
       "description": "Explore ministries at The Wind Church for every age and stage—join us in growing together in Christ."
+    },
+    "alt": "Woman holding t-shirt over storage bin as she is organizing alonside a man helping her.",
+    "title": "Ministries",
+    "subtitle": "Find a place to grow in faith, build meaningful relationships, and use your God-given gifts to serve others.",
+    "scriptures": [
+      {
+        "passage": "So Christ himself gave the apostles, the prophets, the evangelists, the pastors and teachers, to equip his people for works of service, so that the body of Christ may be built up.",
+        "verse": "Ephesians 4:11-12"
+      },
+      {
+        "passage": "Each of you should use whatever gift you have received to serve others, as faithful stewards of God's grace in its various forms.",
+        "verse": "1 Peter 4:10"
+      },
+      {
+        "passage": "Preach the word; be prepared in season and out of season; correct, rebuke and encourage—with great patience and careful instruction.",
+        "verse": "2 Timothy 4:2"
+      },
+      {
+        "passage": "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know that you will receive an inheritance from the Lord as a reward. It is the Lord Christ you are serving.",
+        "verse": "Colossians 3:23-24"
+      },
+      {
+        "passage": "For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.",
+        "verse": "Mark 10:45"
+      },
+      {
+        "passage": "You, my brothers and sisters, were called to be free. But do not use your freedom to indulge the flesh; rather, serve one another humbly in love",
+        "verse": "Galatians 5:13"
+      },
+      {
+        "passage": "All this is from God, who reconciled us to himself through Christ and gave us the ministry of reconciliation.",
+        "verse": "2 Corinthians 5:18"
+      },
+      {
+        "passage": "Religion that God our Father accepts as pure and faultless is this: to look after orphans and widows in their distress and to keep oneself from being polluted by the world.",
+        "verse": "James 1:27"
+      },
+      {
+        "passage": "For just as each of us has one body with many members, and these members do not all have the same function, so in Christ we, though many, form one body, and each member belongs to all the others.",
+        "verse": "Romans 12:4-5"
+      },
+      {
+        "passage": "Therefore encourage one another and build each other up, just as in fact you are doing.",
+        "verse": "1 Thessalonians 5:11"
+      },
+      {
+        "passage": "And the things you have heard me say in the presence of many witnesses entrust to reliable people who will also be qualified to teach others.",
+        "verse": "2 Timothy 2:2"
+      },
+      {
+        "passage": "Just as the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.",
+        "verse": "Matthew 20:28"
+      },
+      {
+        "passage": "The King will reply, 'Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me.",
+        "verse": "Matthew 25:40"
+      },
+      {
+        "passage": "All these are the work of one and the same Spirit, and he distributes them to each one, just as he determines.",
+        "verse": "1 Corinthians 12:11"
+      },
+      {
+        "passage": "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+        "verse": "Ephesians 2:10"
+      }
+    ],
+    "card": {
+      "label": "Learn More",
+      "alt": "{ministryName} ministry image"
+    },
+    "form": {
+      "header": {
+        "title": "Looking for the right fit?",
+        "subtitle": "Share your interests with us, and we'll help you find a ministry where you can connect, grow, and make a difference."
+      },
+      "title": "Ministry Connection",
+      "interests": {
+        "label": "Select ministries you are interested in learning more about",
+        "message": "Select ministries you are instrested in",
+        "test": "Select at least one ministry"
+      }
     }
   },
   "PrayerRequests": {
     "metadata": {
       "title": "Prayer Requests",
       "description": "Let us pray with you. Submit your prayer requests and our team will stand with you in faith."
+    },
+    "alt": "Three sets of hands joined together in prayer.",
+    "title": "Prayer Requests",
+    "form": {
+      "header": {
+        "title": "We're a family walking through life together",
+        "subtitle": "We celebrate God's blessings and support one another through every season. You're not alone — we're here for you."
+      }
     }
   },
   "RightNowMedia": {
     "metadata": {
       "title": "RightNow Media",
       "description": "Access thousands of discipleship videos for kids, youth, and adults with our RightNow Media partnership."
+    },
+    "alt": "Decorative Background Image",
+    "title": "<bold>RightNow Media</bold>: Free. Unlimited. For Every Member.",
+    "descriptions": [
+      "A faith-based streaming service packed with Bible studies, devotionals, kids' shows, and practical resources for everyday life.",
+      "As part of our commitment to equip and encourage our church family, Wind Church members receive <bold>FREE access</bold> to the entire RightNow Media library. Becoming a member unlocks your personal account and gives you unlimited streaming anytime you need encouragement or teaching.",
+      "Want to get connected or learn more about membership? <link>Contact us</link> — we'd love to help you get started."
+    ],
+    "included": {
+      "label": "What you'll find inside:",
+      "items": [
+        "📚   Thousands of Bible studies from trusted pastors and teachers.",
+        "🎥   Video series for personal growth, marriage, parenting, and leadership.",
+        "👧🧒   Wholesome, Christ-centered kids' shows your family will love.",
+        "📱   Watch anywhere — phone, tablet, computer, or TV."
+      ]
     }
   },
   "Salvation": {
     "metadata": {
       "title": "Salvation",
       "description": "Learn about the message of salvation through Jesus Christ and how you can begin a new life in Him today."
+    },
+    "alt": "Holy cross placed on top of mountain; clouds and the sun in the background.",
+    "title": "Salvation",
+    "subtitle": "Jesus is here for you. Always.",
+    "what": {
+      "title": "What is Salvation?",
+      "description": "Salvation is God's plan to provide man an escape from the consequences of sin. Being saved or born again is the most important experience in your life (John 3:3, 15, 16). When you confess Jesus as Lord and Savior, you experience the new birth. Every abundant blessing He has for us in freely available in salvation (Romans 10:9-10). The word salvation comes from the Greek word soteria, which means saved, healed, delivered, pardoned, rescued, protected, preserved, made whole, cured, set free, and restored."
+    },
+    "how": {
+      "title": "How do you receive Salvation?",
+      "descriptions": [
+        "God has made it really simple. Answer these four questions:",
+        "If you answered <bold>Yes</bold>, you are ready to pray. Remember God loves you. He wants you to be whole and complete or saved - spiritually, emotionally, physically, mentally, financially, and socially (3 John 2). Pray this prayer, mean it, and you will be saved, right where you are sitting."
+      ],
+      "questions": [
+        {
+          "count": "1",
+          "question": "Do you want to be forgiven and saved?",
+          "verses": "(Acts 3:38; 1 John 1:8)",
+          "alt": "forest of tress with green mossy grass below and scattered rocks."
+        },
+        {
+          "count": "2",
+          "question": "Do you believe Jesus Christ, God's son, died for you?",
+          "verses": "(1 John 1:7)",
+          "alt": "A dove flapping it's wings, preparing to land."
+        },
+        {
+          "count": "3",
+          "question": "Are you willing to repent of sin and follow the Lord Jesus Christ for the rest of your life?",
+          "verses": "(Acts 2:21; 3:37-38, 16:31; 1 John 1:9)",
+          "alt": "Green olives on a branch attached to an olive tree."
+        },
+        {
+          "count": "4",
+          "question": "Do you believe in your heart and confess with your mouth that God does forgive you of your sins and that He does cleanse you from all unrighteousness?",
+          "verses": "(Romans 10:9-10; 1 John 1:9)",
+          "alt": "A hand gently touching a river of water causing ripples."
+        }
+      ]
+    },
+    "prayer": {
+      "title": "Prayer of Salvation",
+      "descriptions": [
+        "Father in heaven, thank you for sending your Son, Jesus, to die on the cross for me, and for His blood that was shed to redeem me and to cleanse me from my sins.",
+        "Lord, I am sorry and I repent of my sins. Forgive me. I understand that I must change the course of my life. I am determined in my heart to follow you. I invite you to become the Lord of my life from this point forward, forever.",
+        "I openly proclaim and confess that you are the Lord of my life. I believe in my heart that You have been raised from the dead. Therefore I am saved. I am a new creature. The old things have passed. All things have become new.",
+        "I am a child of God. In the Name of Jesus, AMEN!"
+      ]
+    },
+    "congrats": {
+      "title": "Congratulations!",
+      "items": [
+        {
+          "count": "1",
+          "title": "Your sins are forgiven",
+          "verses": "(1 John 1:9; John 3:16)"
+        },
+        {
+          "count": "2",
+          "title": "You are a member of God's family",
+          "verses": "(John 1:12; John 3:2)"
+        },
+        {
+          "count": "3",
+          "title": "You have peace with God and access to Him",
+          "verses": "(Romans 5:1-2, Ephesians 2:6-7)"
+        },
+        {
+          "count": "4",
+          "title": "The Holy Spirit dwells within you",
+          "verses": "(Romans 8:9-11; 1 John 4:4)"
+        }
+      ],
+      "description": "<bold>Remember</bold>, feelings have nothing to do with salvation. You may feel like you are floating on a cloud, or as dull as a doorknob. It makes no difference. Trusting God's Word is what counts."
+    },
+    "form": {
+      "header": {
+        "title": "We want to support you!",
+        "subtitle": "We will pray for you as you embark on your new walk with Christ. Submit a prayer request and share your story."
+      },
+      "title": "Prayer Requests",
+      "success": {
+        "label": "Thank you!",
+        "message": "We will keep you in our prayers, and if you requested an email back, we will email you shortly."
+      },
+      "response": {
+        "label": "Would you like us to respond to you by email?"
+      },
+      "request": {
+        "label": "Request",
+        "placeholder": "Enter your prayer here...",
+        "message": "Share your prayer"
+      }
     }
   },
   "Home": {
@@ -490,7 +1124,11 @@
     "metadata": {
       "title": "Gallery",
       "description": "Browse our church photo gallery and relive the special moments from recent events and gatherings."
-    }
+    },
+    "title": "The Gallery",
+    "subtitle": "Explore cherished moments from worship services, events, and fellowship shared throughout the Wind family.",
+    "sectionSubtitle": "Select a photo to revisit a special moment",
+    "photoAlt": "A Wind Church Gallery Image"
   },
   "GiftAssessment": {
     "metadata": {
@@ -502,18 +1140,139 @@
     "metadata": {
       "title": "Next Gen",
       "description": "Our Youth Services empower the next generation to know Jesus and make Him known through fun and faith-filled gatherings."
+    },
+    "alt": "Four mix aged kids smiling and looking in the distance.",
+    "title": "Next Gen",
+    "subtitle": "Sunday Services provided for infants to High School children",
+    "principles": {
+      "title": "Core Principles",
+      "subtitle": "We believe every child is uniquely created by God and deserving of intentional care, discipleship, and joyful community. Our Next Gen ministry helps young hearts grow in faith, character, and confidence as they discover who they are in Christ.",
+      "items": [
+        {
+          "alt": "Children at a desk studying.",
+          "title": "Getting to know Jesus",
+          "subtitle": "Through biblical teachings, worship, and prayer, we help students develop a personal and lasting relationship with Jesus Christ."
+        },
+        {
+          "alt": "Two children hugging and smiling.",
+          "title": "Growing Up in Community",
+          "subtitle": "We encourage healthy friendships and meaningful connections where every student can feel valued, supported, and part of God's family."
+        },
+        {
+          "alt": "Girl coloring at a bench in the park with friends.",
+          "title": "Living with Purpose",
+          "subtitle": "We encourage young people to discover their gifts, serve others, and share Christ's love in their daily lives."
+        }
+      ]
+    },
+    "download": "Download Cirriculum",
+    "scripture": {
+      "verse": "1 Timothy 4:12",
+      "passage": "Let no one despise your youth, but set an example for the believers in speech, in conduct, in love, in faith, and in purity"
+    },
+    "educators": {
+      "title": "Meet our Educators & Caretakers",
+      "subtitle": "Select a Leader to learn more"
+    },
+    "events": {
+      "title": "Next Gen Events",
+      "subtitle": "Fun, adventurous, and learning-focused events for the Wind youth!",
+      "empty": "No Next Gen events happening at this time.",
+      "cta": "View other Wind events"
+    },
+    "gallery": {
+      "title": "Next Gen Gallery",
+      "subtitle": "Select a photo to revisit a special moment",
+      "photoAlt": "A Wind Church Gallery Image",
+      "cta": "See the full gallery"
+    },
+    "nursery": {
+      "alt": "Baby playing with colored blocks.",
+      "title": "Nursery for Infants & Toddlers",
+      "subtitle": "is available during service!"
+    },
+    "faqs": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Let us tell you more about The Wind Youth services",
+      "items": [
+        {
+          "question": "What is the purpose of the Youth Service?",
+          "answer": "Our Youth Service is designed to help young people encounter God, grow in their faith, and build strong relationships with peers. It's a dynamic and engaging environment where students can worship, learn biblical truths, and develop a Christ-centered foundation for life."
+        },
+        {
+          "question": "What age group is the Youth Service for?",
+          "answer": "The Youth Service is open to students from toddler to high school. We tailor our messages, activities, and small groups to be relevant and impactful for each age group."
+        },
+        {
+          "question": "Is the teaching in Youth Service appropriate for my child?",
+          "answer": "Absolutely! Our messages are biblically sound, age-appropriate, and designed to help students navigate real-life challenges through a faith-based perspective. We focus on topics like identity in Christ, friendships, purpose, and making wise choices."
+        },
+        {
+          "question": "Will my child be safe during Youth Service?",
+          "answer": "Yes! The safety of your child is our top priority. All youth leaders and volunteers undergo background checks and training to create a secure and welcoming environment. We also have clear safety policies in place for check-in and check-out."
+        },
+        {
+          "question": "What if my child is nervous about attending?",
+          "answer": "That's completely understandable! Many students feel unsure when trying something new. Our youth team is welcoming, and we'll make sure your child feels comfortable and included from the moment they arrive."
+        },
+        {
+          "question": "What can my child expect during a Youth Service?",
+          "answer": "A typical service includes live worship, an engaging message, small group discussions, and interactive activities. We aim to create a fun and faith-filled atmosphere where students can grow spiritually and make new friends."
+        },
+        {
+          "question": "How can I stay involved as a parent?",
+          "answer": "We encourage parents to stay connected by attending parent meetings, signing up for youth service updates, and talking with their child about what they're learning. You're also welcome to volunteer or participate in special events throughout the year!"
+        }
+      ]
+    },
+    "form": {
+      "header": {
+        "title": "Have more questions?",
+        "subtitle": "Submit an inquiry and a member of our team will contact you."
+      },
+      "title": "Next Gen Guardian Inquiry",
+      "success": {
+        "description": "Please allow up to 3 business days for a member of our team to reach out to you."
+      },
+      "questions": {
+        "label": "Questions",
+        "placeholder": "Enter any questions you may have so our team can best accomodate you...",
+        "message": "Share your questions"
+      }
     }
   },
   "Sermons": {
     "metadata": {
       "title": "Sermons",
       "description": "Watch or listen to recent sermons from The Wind Church and grow in your faith anytime, anywhere."
+    },
+    "alt": "Pastor Singletary of the Wind Church preaching to congregation.",
+    "title": "Sermons",
+    "subtitle": "Watch Pastor Singletary and more.",
+    "section": {
+      "alt": "Pastor Singletary of the Wind Church preaching to congregation.",
+      "header": "More great videos",
+      "subheader": "available on YouTube!",
+      "cta": "Go to our Channel"
     }
   },
-  "resources": {
+  "WindLeaders": {
+    "metadata": {
+      "title": "WIND Leaders",
+      "description": "Meet the dedicated leaders who serve and guide our community with wisdom and compassion."
+    },
+    "title": "The Leaders",
+    "subtitle": "Get to know the faithful leaders who help guide our church in faith, service, and community.",
+    "filterDefault": "All Leaders",
+    "sectionSubtitle": "Select a Leader to learn more"
+  },
+  "ResourceCenter": {
     "metadata": {
       "title": "Resource Center",
       "description": "Access important documents, forms, and resources shared within The Wind Church. Download files directly from this page whenever you need them."
-    }
+    },
+    "title": "Resource Center",
+    "subtitle": "Access important documents, forms, and resources shared within The Wind Church.",
+    "filterDefault": "All resources"
   }
 }

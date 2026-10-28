@@ -12,19 +12,33 @@ const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>(
   ({ label, options, error, ...rest }, ref) => {
     const inputRef = useRef<HTMLSelectElement>(null);
 
-    // Forward the internal inputRef to the parent ref
     useImperativeHandle(ref, () => inputRef.current as HTMLSelectElement);
+
+    const isRequired = rest.required;
 
     return (
       <div className="w-full flex flex-col gap-xs">
-        {label && <Label htmlFor="select" value={label} disabled={rest.disabled} />}
-        <Select ref={inputRef} name="select" icon={rest.icon} {...rest}>
+        {label && (
+          <Label htmlFor={rest.name || 'select'} disabled={rest.disabled}>
+            {label}
+            {isRequired && <span className="text-error">*</span>}
+          </Label>
+        )}
+
+        <Select
+          ref={inputRef}
+          {...rest}
+          icon={rest.icon}
+          required={undefined}
+          name={rest.name || 'select'}
+        >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
         </Select>
+
         {error && <div className="text-error">{error}</div>}
       </div>
     );

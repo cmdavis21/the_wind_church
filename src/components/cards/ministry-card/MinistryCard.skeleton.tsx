@@ -1,7 +1,7 @@
 const MinistryCardSkeleton = ({ flip }: { flip?: boolean }) => {
   return (
     <div className="motion-safe:animate-pulse bg-light-neutral dark:bg-dark-neutral relative sm:aspect-[3/1] rounded-xl p-lg sm:p-xxl">
-      {/* color overlay */}
+      {/* Color Gradient Overlay */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/70 rounded-xl" />
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 rounded-xl" />
 

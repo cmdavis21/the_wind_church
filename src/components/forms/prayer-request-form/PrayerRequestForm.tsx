@@ -13,23 +13,31 @@ import AlertMessage from '@/components/alerts/alert-message/AlertMessage';
 import { useCreatePrayerRequest } from '@/data/client/sanity/prayer-request';
 import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { isValidEmail } from '@/data/utils';
+import { useTranslations } from 'next-intl';
 import RadioGroup from '../inputs/radio-group/RadioGroup';
 import TextInput from '../inputs/text-input/TextInput';
 import TextareaInput from '../inputs/textarea-input/TextareaInput';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required('Enter your first name'),
-  last_name: yup.string().required('Enter your last name'),
-  request_email_back: yup.string().oneOf([YesNo.YES, YesNo.NO]).default(YesNo.YES).required(),
+  first_name: yup.string().required('first.message'),
+  last_name: yup.string().required('last.message'),
+  request_email_back: yup
+    .string()
+    .oneOf([YesNo.YES, YesNo.NO])
+    .default(YesNo.YES)
+    .required('select'),
   email: yup
     .string()
     .email()
-    .required('Enter your email')
-    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
-  request: yup.string().required('Share your prayer'),
+    .required('email.message')
+    .test('email.test', (value) => isValidEmail(value)),
+  request: yup.string().required('form.request.message'),
 });
 
 const PrayerRequestForm = () => {
+  const c = useTranslations('FormCommon');
+  const t = useTranslations('Salvation');
+
   const { mutate: submitRequest, isPending, isSuccess, isError } = useCreatePrayerRequest();
 
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -49,80 +57,80 @@ const PrayerRequestForm = () => {
   const onSubmit = (values: PrayerRequest) => submitRequest(values);
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
-    >
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="form-container-style">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
-        <h4>Prayer Requests</h4>
+        <h4>{t('form.title')}</h4>
       </div>
 
       {isSuccess && (
         <AlertMessage
           type="success"
-          title="Thank you!"
-          description="We will keep you in our prayers, and if you
-            requested an email back, we will email you shortly."
+          title={t('form.success.title')}
+          description={t('form.success.description')}
         />
       )}
 
       {isError && (
         <AlertMessage
           type="failure"
-          title="Oh no!"
-          description="There was an problem submitting your feedback. Please try again later."
+          title={c('error.title')}
+          description={c('error.description')}
         />
       )}
 
-      {/* names */}
+      {/* Names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="First Name*"
+          required
           type="text"
-          error={errors.first_name?.message}
-          disabled={isPending || isSuccess}
+          label={c('first.label')}
           {...register('first_name')}
+          disabled={isPending || isSuccess}
+          error={errors.first_name ? c(errors.first_name.message!) : undefined}
         />
         <TextInput
-          label="Last Name*"
+          required
           type="text"
-          error={errors.last_name?.message}
-          disabled={isPending || isSuccess}
+          label={c('last.label')}
           {...register('last_name')}
+          disabled={isPending || isSuccess}
+          error={errors.last_name ? c(errors.last_name.message!) : undefined}
         />
       </div>
 
-      {/* contact */}
+      {/* Contact */}
       <TextInput
-        label="Email*"
+        required
         type="email"
-        error={errors.email?.message}
-        disabled={isPending || isSuccess}
         {...register('email')}
+        label={c('email.label')}
+        disabled={isPending || isSuccess}
+        error={errors.email ? c(errors.email.message!) : undefined}
       />
 
       {/* request email back */}
       <RadioGroup
+        required
         name="request_email_back"
         defaultValue={YesNo.YES}
         disabled={isPending || isSuccess}
-        label="Would you like us to respond to you by email?"
+        label={t('form.response.label')}
         onChange={(val) => setValue('request_email_back', val as YesNo)}
         options={[
-          { value: YesNo.YES, label: 'Yes' },
-          { value: YesNo.NO, label: 'No' },
+          { label: c('yes'), value: YesNo.YES },
+          { label: c('no'), value: YesNo.NO },
         ]}
-        error={errors.request_email_back?.message}
+        error={errors.request_email_back ? c(errors.request_email_back.message!) : undefined}
       />
 
       {/* request */}
       <TextareaInput
-        label="Prayer Request*"
-        error={errors.request?.message}
+        required
+        label={t('form.request.label')}
         disabled={isPending || isSuccess}
-        placeholder="Enter your prayer here..."
+        placeholder={t('form.request.placeholder')}
+        error={errors.request ? t(errors.request.message!) : undefined}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
           setValue('request', e.target.value);
           if (e.target.value !== '') clearErrors('request');
@@ -137,7 +145,11 @@ const PrayerRequestForm = () => {
         disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
+        {isPending
+          ? c('submit.pending')
+          : isSuccess || isError
+            ? c('submit.sent')
+            : c('submit.label')}
       </Button>
     </form>
   );

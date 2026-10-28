@@ -15,15 +15,13 @@ const schema = yup.object().shape({
   last_name: yup.string().required('Enter your last name'),
   phone: yup
     .string()
-    .min(10)
-    .max(11)
-    .required('Enter your phone number')
-    .test('Include 10 to 11 digit valid phone number', (val) => isValidPhone(val)),
+    .required('phone.message')
+    .test('phone.test', (val) => isValidPhone(val)),
   email: yup
     .string()
     .email()
-    .required('Enter your email')
-    .test('Needs to be formatted like an email', (value) => isValidEmail(value)),
+    .required('email.message')
+    .test('email.test', (value) => isValidEmail(value)),
 });
 
 interface GiftAssessmentContactFormProps {
@@ -69,7 +67,7 @@ const GiftAssessmentContactForm: React.FC<GiftAssessmentContactFormProps> = ({
         />
       )}
 
-      {/* names */}
+      {/* Names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
           type="text"
@@ -87,7 +85,7 @@ const GiftAssessmentContactForm: React.FC<GiftAssessmentContactFormProps> = ({
         />
       </div>
 
-      {/* contact */}
+      {/* Contact */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
           type="tel"
@@ -113,7 +111,11 @@ const GiftAssessmentContactForm: React.FC<GiftAssessmentContactFormProps> = ({
         disabled={isPending || isSuccess || isError}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : isSuccess || isError ? 'Submitted' : 'Submit!'}
+        {isPending
+          ? c('submit.pending')
+          : isSuccess || isError
+            ? c('submit.sent')
+            : c('submit.label')}
       </Button>
     </form>
   );

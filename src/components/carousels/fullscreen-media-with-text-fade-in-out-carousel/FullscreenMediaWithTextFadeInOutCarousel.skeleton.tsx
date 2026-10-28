@@ -9,11 +9,11 @@ const FullscreenMediaWithTextFadeInOutCarouselSkeleton = () => {
         {/* visual */}
         <div className="absolute top-0 left-0 w-full h-full"></div>
 
-        {/* color overlay */}
+        {/* Color Gradient Overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/70" />
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70" />
 
-        {/* content */}
+        {/* Content */}
         <div className="w-full lg:max-w-[45%] lg:pl-6xl min-[1800px]:pl-[250px] h-full absolute top-0 left-0 transition-opacity duration-300 flex items-center">
           <div className="flex w-full flex-col gap-md">
             <div className="w-[100px] h-[24px] rounded-full bg-light-gray/50 dark:bg-dark-gray/50"></div>
@@ -56,7 +56,7 @@ const FullscreenMediaWithTextFadeInOutCarouselSkeleton = () => {
         {/* visual */}
         <div className="absolute top-0 left-0 w-full h-full"></div>
 
-        {/* color overlay */}
+        {/* Color Gradient Overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/10 via-black/80 to-black/10" />
 
         <div className="relative flex flex-col h-full w-full items-center justify-center text-center text-white dark:text-dark-primaryText gap-sm">

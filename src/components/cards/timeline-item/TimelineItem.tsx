@@ -64,7 +64,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical = true }) =
           className={`relative min-w-3 size-3 aspect-square ${pastEvent ? 'bg-light-gray dark:bg-dark-gray' : 'bg-brand-primary'} rounded-full`}
         />
 
-        {/* content */}
+        {/* Content */}
         <div
           className={`relative max-w-[90%] flex flex-col gap-xs p-2 ${
             vertical ? '-mt-3 pb-16' : 'max-md:-mt-2 md:-ml-2'

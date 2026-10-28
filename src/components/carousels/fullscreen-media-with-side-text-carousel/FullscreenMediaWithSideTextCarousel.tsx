@@ -116,7 +116,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
           </div>
         ))}
 
-        {/* color overlay */}
+        {/* Color Gradient Overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/80" />
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/80" />
 
@@ -174,7 +174,7 @@ const FullscreenMediaWithSideTextCarousel: React.FC<FullscreenMediaWithSideTextC
           </div>
         ))}
 
-        {/* color overlay */}
+        {/* Color Gradient Overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-black/70" />
 
         <Carousel

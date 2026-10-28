@@ -24,6 +24,7 @@ export interface RadioGroupProps extends Omit<
   error?: string;
   onChange?: (value: string) => void;
   disabled?: boolean;
+  required?: boolean;
 }
 
 const RadioGroup = forwardRef<RadioGroupHandle, RadioGroupProps>(
@@ -65,9 +66,16 @@ const RadioGroup = forwardRef<RadioGroupHandle, RadioGroupProps>(
       [value, isControlled, onChange]
     );
 
+    const isRequired = rest.required;
+
     return (
       <fieldset {...rest} className="flex flex-col gap-xs">
-        {label && <Label htmlFor={name} value={label} disabled={disabled} />}
+        {label && (
+          <Label htmlFor={name} disabled={disabled}>
+            {label}
+            {isRequired && <span className="text-error">*</span>}
+          </Label>
+        )}
 
         <div className="flex flex-wrap items-center gap-md">
           {options.map((opt, idx) => (

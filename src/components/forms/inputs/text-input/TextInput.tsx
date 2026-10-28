@@ -10,13 +10,26 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   ({ label, error, ...rest }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // Forward the internal inputRef to the parent ref
     useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
+
+    const isRequired = rest.required;
 
     return (
       <div className="w-full flex flex-col gap-xs">
-        {label && <Label htmlFor="input" value={label} disabled={rest.disabled} />}
-        <FlowbiteTextInput ref={inputRef} name="input" {...rest} />
+        {label && (
+          <Label htmlFor={rest.name || 'input'} disabled={rest.disabled}>
+            {label}
+            {isRequired && <span className="text-error">*</span>}
+          </Label>
+        )}
+
+        <FlowbiteTextInput
+          ref={inputRef}
+          {...rest}
+          required={undefined}
+          name={rest.name || 'input'}
+        />
+
         {error && <div className="text-error">{error}</div>}
       </div>
     );

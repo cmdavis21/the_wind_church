@@ -61,7 +61,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
         )}
       </div>
 
-      {/* content */}
+      {/* Content */}
       <div className="flex flex-col justify-between p-md md:px-xxl xl:px-4xl md:py-3xl gap-5 md:col-span-2">
         <div className="hidden lg:flex flex-wrap items-end gap-2">
           {slides.map((s, idx) => (

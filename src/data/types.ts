@@ -254,6 +254,7 @@ export interface GiftAssessmentQuestion {
 
 export interface GiftAssessmentDefinition {
   gift: string;
+  label: string;
   definition: string;
   scriptures: string[];
 }

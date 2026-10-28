@@ -11,6 +11,7 @@ import { useUpdateCustomerAddress } from '@/data/client/shopify/customer';
 import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { CountryCode } from '@/data/server/shopify/zeus';
 import { Address } from '@/data/types';
+import { isValidPhone } from '@/data/utils';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
@@ -96,7 +97,12 @@ const schema: yup.ObjectSchema<Partial<Address>> = yup.object().shape({
     .required('Country is required')
     .oneOf([CountryCode.US], 'Shipping is only available in the United States'),
   zip: yup.string().optional(),
-  phone: yup.string().optional(),
+  phone: yup
+    .string()
+    .optional()
+    .test('phone.test', (val) => {
+      if (val) isValidPhone(val);
+    }),
 });
 
 interface AddressUpdateFormProps {
@@ -140,11 +146,7 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
   };
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg max-w-[1200px] mx-auto"
-    >
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="form-container-style">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
         <h4>Shipping Address Update</h4>

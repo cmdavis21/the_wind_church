@@ -148,7 +148,7 @@ const ProductPage = (product: Product) => {
             />
           </div>
 
-          {/* CONTENT */}
+          {/* Content */}
           <div className="flex flex-col gap-xl">
             <h3>{product.title}</h3>
 

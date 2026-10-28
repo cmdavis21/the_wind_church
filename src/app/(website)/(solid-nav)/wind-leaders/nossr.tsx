@@ -11,9 +11,12 @@ import Filter from '@/components/icons/filter';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
 import { useGetAllCategorizedLeaders } from '@/data/client/sanity/leaders';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 const WindLeadersClient = () => {
+  const t = useTranslations('WindLeaders');
+
   const [filter, setFilter] = useState('');
   const [active, setActive] = useState<{ cat: string; index: number } | null>(null);
   const { leaders, leadersLoading, leadersError } = useGetAllCategorizedLeaders();
@@ -22,7 +25,7 @@ const WindLeadersClient = () => {
 
   return (
     <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
-      <PageHeader title="The Leaders" subtitle="Get to know your leaders in the church." />
+      <PageHeader title={t('title')} subtitle={t('subtitle')} />
 
       {/* FILTERING */}
       {leaders && (
@@ -33,7 +36,7 @@ const WindLeadersClient = () => {
             disabled={leadersLoading || leadersError}
             onChange={(e) => setFilter(e.target.value)}
             options={[
-              { label: 'All Leaders', value: '' },
+              { label: t('filterDefault'), value: '' },
               ...Object.entries(leaders).map(([k, _]) => ({ label: k, value: k })),
             ]}
           />
@@ -70,7 +73,7 @@ const WindLeadersClient = () => {
           .filter(([cat]) => filter === '' || cat === filter)
           .map(([cat, leaderList]) => (
             <div key={`wind-leaders-${cat}`} className="flex flex-col gap-xl md:gap-xxl">
-              <SectionHeader title={cat} subtitle="Select Leaders to learn more" />
+              <SectionHeader title={cat} subtitle={t('sectionSubtitle')} />
 
               {/* DESKTOP */}
               <div className="hidden sm:flex flex-wrap gap-xl">
