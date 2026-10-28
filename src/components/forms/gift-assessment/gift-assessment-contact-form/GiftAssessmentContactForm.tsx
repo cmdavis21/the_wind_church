@@ -7,21 +7,22 @@ import * as yup from 'yup';
 import { FullContact } from '@/data/types';
 
 import { isValidEmail, isValidPhone } from '@/data/utils';
+import { useTranslations } from 'next-intl';
 import AlertMessage from '../../../alerts/alert-message/AlertMessage';
 import TextInput from '../../inputs/text-input/TextInput';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required('Enter your first name'),
-  last_name: yup.string().required('Enter your last name'),
-  phone: yup
-    .string()
-    .required('phone.message')
-    .test('phone.test', (val) => isValidPhone(val)),
+  first_name: yup.string().required('first.message'),
+  last_name: yup.string().required('last.message'),
   email: yup
     .string()
     .email()
     .required('email.message')
     .test('email.test', (value) => isValidEmail(value)),
+  phone: yup
+    .string()
+    .required('phone.message')
+    .test('phone.test', (val) => isValidPhone(val)),
 });
 
 interface GiftAssessmentContactFormProps {
@@ -37,6 +38,9 @@ const GiftAssessmentContactForm: React.FC<GiftAssessmentContactFormProps> = ({
   isSuccess,
   isError,
 }) => {
+  const c = useTranslations('FormCommon');
+  const t = useTranslations('ChurchRental');
+
   const {
     register,
     handleSubmit,
