@@ -246,7 +246,6 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         {/* CTAs */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <CenterTextSection
-            highlight={[[4, 5]]}
             title="Take your next steps with us!"
             description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
           />
