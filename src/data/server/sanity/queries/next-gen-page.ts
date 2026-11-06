@@ -1,4 +1,6 @@
-import { NextGenPage } from '@/data/types';
+import { Locale } from '@/data/i18n/utils';
+import { localizedFields, NextGenPage } from '@/data/types';
+import { getLocalizedValue } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
 const getNextGenPageQuery = async () => {
@@ -11,8 +13,8 @@ const getNextGenPageQuery = async () => {
             first_name: true,
             last_name: true,
           },
-          position: true,
-          description: true,
+          position: localizedFields,
+          description: localizedFields,
           image: {
             asset: {
               url: true,
@@ -34,23 +36,23 @@ const getNextGenPageQuery = async () => {
   }).then((y) => y.allNextGenPage);
 };
 
-export const getNextGenPage = async (): Promise<NextGenPage | undefined> => {
+export const getNextGenPage = async (locale: Locale): Promise<NextGenPage | undefined> => {
   const details = await getNextGenPageQuery();
 
-  if (details && details[0]) {
-    return {
-      educators:
-        details[0].educators?.map((educator) => ({
-          first_name: educator.contact?.first_name ?? '',
-          last_name: educator.contact?.last_name ?? '',
-          position: educator.position ?? '',
-          description: educator.description ?? '',
-          image: educator.image?.asset?.url ?? '',
-          video: educator.video?.asset?.url ?? undefined,
-        })) ?? [],
-      cirriculum_file: details[0].cirriculum_file?.asset?.url ?? '',
-    };
-  }
+  const detail = details?.[0];
 
-  return undefined;
+  if (!detail) return undefined;
+
+  return {
+    educators:
+      detail.educators?.map((educator) => ({
+        first_name: educator.contact?.first_name ?? '',
+        last_name: educator.contact?.last_name ?? '',
+        position: getLocalizedValue(educator.position, locale) ?? '',
+        description: getLocalizedValue(educator.description, locale) ?? '',
+        image: educator.image?.asset?.url ?? '',
+        video: educator.video?.asset?.url ?? undefined,
+      })) ?? [],
+    cirriculum_file: detail.cirriculum_file?.asset?.url ?? '',
+  };
 };

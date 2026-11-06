@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import EventDetailsModal from '@/components/modals/event-details-modal/EventDetailsModal';
 
 import { useDominantColor } from '@/data/client/use-dominant-color';
+import { formatTimeHmm } from '@/data/format-date';
 import { Event } from '@/data/types';
 import { darkenRgb } from '@/data/utils';
 
@@ -16,18 +17,18 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
-  const { name, time, location, image } = event;
+  const { name, start_date_time, location, image } = event;
 
   const [open, setOpen] = useState(false);
   const [pastEvent, setPastEvent] = useState(false);
   const [addTag, setAddTag] = useState<{ label: string; color?: string } | null>(null);
 
-  const { color } = useDominantColor(event.image.src, 'bottom');
+  const { color } = useDominantColor(image.src, 'bottom');
   const panelColor = darkenRgb(color, 0.4);
 
   useEffect(() => {
     const now = Date.now();
-    const eventDate = new Date(event.date);
+    const eventDate = new Date(start_date_time);
     const daysUntilEvent = differenceInDays(eventDate, now);
 
     if (daysUntilEvent > 0 && daysUntilEvent <= 30) {
@@ -40,9 +41,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
       setPastEvent(true);
       setAddTag({ label: 'Past Event', color: 'gray' });
     }
-  }, [event.date]);
+  }, [start_date_time]);
 
-  const eventDate = new Date(event.date);
+  const eventDate = new Date(start_date_time);
 
   return (
     <>
@@ -98,10 +99,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
         {/* DETAILS ROW */}
         <div className="relative z-20 flex items-center gap-3 px-lg py-md">
           {/* DATE BADGE */}
-          <div
-            style={{ border: 1, borderColor: color }}
-            className="flex flex-col items-center justify-center shrink-0 w-14 rounded-lg bg-white text-light-gray overflow-hidden"
-          >
+          <div className="flex flex-col items-center justify-center shrink-0 w-14 rounded-lg bg-white text-light-gray overflow-hidden border-2 border-white">
             <span
               style={{ backgroundColor: color }}
               className="w-full text-center text-[10px] font-bold uppercase tracking-wide text-white py-0.5"
@@ -124,7 +122,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
               <p className="text-white/70 text-xs leading-snug">{location.sublocation}</p>
             )}
             <p className="text-white font-semibold text-sm whitespace-nowrap">
-              {time.hour}:{time.minute} {time.time_of_day} {time.time_zone}
+              {formatTimeHmm(start_date_time)}
             </p>
           </div>
         </div>

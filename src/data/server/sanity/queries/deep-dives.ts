@@ -1,5 +1,6 @@
-import { DeepDive } from '@/data/types';
-import { portableTextToString } from '../utils';
+import { Locale } from '@/data/i18n/utils';
+import { DeepDive, localizedFields, localizedFieldsRaw } from '@/data/types';
+import { getLocalizedPortableText, getLocalizedValue, portableTextToString } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
 const getAllDeepDivesQuery = async () => {
@@ -8,18 +9,18 @@ const getAllDeepDivesQuery = async () => {
       {},
       {
         _id: true,
-        name: true,
+        name: localizedFields,
         slug: {
           current: true,
         },
-        descriptionRaw: true,
+        description: localizedFieldsRaw,
         instructors: {
           contact: {
             first_name: true,
             last_name: true,
           },
-          position: true,
-          description: true,
+          position: localizedFields,
+          description: localizedFields,
           image: {
             asset: {
               url: true,
@@ -34,22 +35,17 @@ const getAllDeepDivesQuery = async () => {
         image: {
           asset: {
             url: true,
-            altText: true,
           },
         },
+        image_alt: localizedFields,
         meeting_details: {
           day: true,
-          time: {
-            hour: true,
-            minute: true,
-            time_of_day: true,
-            time_zone: true,
-          },
+          time: true,
           attendance_type: true,
         },
         start_date: true,
         end_date: true,
-        required_materials: true,
+        required_materials: localizedFields,
         accepting_new_students: true,
       },
     ],
@@ -62,18 +58,18 @@ const getDeepDiveBySlugQuery = async (slug: string) => {
       { where: { slug: { current: { eq: slug } } } },
       {
         _id: true,
-        name: true,
+        name: localizedFields,
         slug: {
           current: true,
         },
-        descriptionRaw: true,
+        description: localizedFieldsRaw,
         instructors: {
           contact: {
             first_name: true,
             last_name: true,
           },
-          position: true,
-          description: true,
+          position: localizedFields,
+          description: localizedFields,
           image: {
             asset: {
               url: true,
@@ -88,120 +84,110 @@ const getDeepDiveBySlugQuery = async (slug: string) => {
         image: {
           asset: {
             url: true,
-            altText: true,
           },
         },
+        image_alt: localizedFields,
         meeting_details: {
           day: true,
-          time: {
-            hour: true,
-            minute: true,
-            time_of_day: true,
-            time_zone: true,
-          },
+          time: true,
           attendance_type: true,
         },
         start_date: true,
         end_date: true,
-        required_materials: true,
+        required_materials: localizedFields,
         accepting_new_students: true,
       },
     ],
   }).then((d) => d.allDeepDive);
 };
 
-export const getAllDeepDives = async (): Promise<DeepDive[]> => {
+export const getAllDeepDives = async (locale: Locale): Promise<DeepDive[]> => {
   const deepDives = await getAllDeepDivesQuery();
 
-  if (deepDives) {
-    return deepDives
-      .sort((a, b) => {
-        const nameA = a.name ?? '';
-        const nameB = b.name ?? '';
-        return nameA.localeCompare(nameB);
-      })
-      .map((deepDive) => ({
-        _id: (deepDive._id as string) ?? undefined,
-        name: deepDive.name ?? '',
-        slug: deepDive.slug?.current ?? '',
-        description: deepDive.descriptionRaw
-          ? portableTextToString(deepDive.descriptionRaw as any)
-          : '',
-        instructors:
-          deepDive.instructors?.map((instructor) => ({
-            first_name: instructor.contact?.first_name ?? '',
-            last_name: instructor.contact?.last_name ?? '',
-            position: instructor.position ?? '',
-            description: instructor.description ?? '',
-            image: instructor.image?.asset?.url ?? '',
-            video: instructor.video?.asset?.url ?? undefined,
-          })) ?? [],
-        image: {
-          src: deepDive.image?.asset?.url ?? '',
-          alt: deepDive.image?.asset?.altText ?? '',
-        },
-        meeting_details:
-          deepDive.meeting_details?.map((detail) => ({
-            day: detail.day ?? '',
-            time: {
-              hour: detail.time?.hour ?? '',
-              minute: detail.time?.minute ?? '',
-              time_of_day: detail.time?.time_of_day ?? '',
-              time_zone: detail.time?.time_zone ?? '',
-            },
-            attendance_type: detail.attendance_type ?? '',
-          })) ?? [],
-        start_date: (deepDive.start_date as Date) ?? new Date(),
-        end_date: (deepDive.end_date as Date) ?? new Date(),
-        required_materials: (deepDive.required_materials as string[]) ?? undefined,
-        accepting_new_students: (deepDive.accepting_new_students as boolean) ?? false,
-      }));
-  }
+  if (!deepDives) return [];
 
-  return [];
-};
-
-export const getDeepDiveBySlug = async (slug: string): Promise<DeepDive | undefined> => {
-  const deepDive = await getDeepDiveBySlugQuery(slug);
-
-  if (deepDive && deepDive[0]) {
-    return {
-      _id: (deepDive[0]._id as string) ?? undefined,
-      name: deepDive[0].name ?? '',
-      slug: deepDive[0].slug?.current ?? '',
-      description: deepDive[0].descriptionRaw
-        ? portableTextToString(deepDive[0].descriptionRaw as any)
-        : '',
+  return deepDives
+    .map((deepDive) => ({
+      _id: (deepDive._id as string) ?? undefined,
+      name: getLocalizedValue(deepDive.name, locale) ?? '',
+      slug: deepDive.slug?.current ?? '',
+      description: portableTextToString(
+        getLocalizedPortableText(deepDive.description, locale)
+      ) as any,
       instructors:
-        deepDive[0].instructors?.map((instructor) => ({
+        deepDive.instructors?.map((instructor) => ({
           first_name: instructor.contact?.first_name ?? '',
           last_name: instructor.contact?.last_name ?? '',
-          position: instructor.position ?? '',
-          description: instructor.description ?? '',
+          position: getLocalizedValue(instructor.position, locale) ?? '',
+          description: getLocalizedValue(instructor.description, locale) ?? '',
           image: instructor.image?.asset?.url ?? '',
           video: instructor.video?.asset?.url ?? undefined,
         })) ?? [],
       image: {
-        src: deepDive[0].image?.asset?.url ?? '',
-        alt: deepDive[0].image?.asset?.altText ?? '',
+        src: deepDive.image?.asset?.url ?? '',
+        alt: getLocalizedValue(deepDive.image_alt, locale) ?? '',
       },
       meeting_details:
-        deepDive[0].meeting_details?.map((detail) => ({
+        deepDive.meeting_details?.map((detail) => ({
           day: detail.day ?? '',
-          time: {
-            hour: detail.time?.hour ?? '',
-            minute: detail.time?.minute ?? '',
-            time_of_day: detail.time?.time_of_day ?? '',
-            time_zone: detail.time?.time_zone ?? '',
-          },
+          time: detail.time ?? '',
           attendance_type: detail.attendance_type ?? '',
         })) ?? [],
-      start_date: (deepDive[0].start_date as Date) ?? new Date(),
-      end_date: (deepDive[0].end_date as Date) ?? new Date(),
-      required_materials: (deepDive[0].required_materials as string[]) ?? undefined,
-      accepting_new_students: (deepDive[0].accepting_new_students as boolean) ?? false,
-    };
-  }
+      start_date: (deepDive.start_date as Date) ?? new Date(),
+      end_date: (deepDive.end_date as Date) ?? new Date(),
+      required_materials: deepDive.required_materials?.length
+        ? deepDive.required_materials.map((item) => getLocalizedValue(item, locale) ?? '')
+        : undefined,
+      accepting_new_students: (deepDive.accepting_new_students as boolean) ?? false,
+    }))
+    .sort((a, b) => {
+      const nameA = a.name ?? '';
+      const nameB = b.name ?? '';
+      return nameA.localeCompare(nameB);
+    });
+};
 
-  return undefined;
+export const getDeepDiveBySlug = async (
+  slug: string,
+  locale: Locale
+): Promise<DeepDive | undefined> => {
+  const deepDiveQuery = await getDeepDiveBySlugQuery(slug);
+
+  const deepDive = deepDiveQuery?.[0];
+
+  if (!deepDive) return undefined;
+
+  return {
+    _id: (deepDive._id as string) ?? undefined,
+    name: getLocalizedValue(deepDive.name, locale) ?? '',
+    slug: deepDive.slug?.current ?? '',
+    description: portableTextToString(
+      getLocalizedPortableText(deepDive.description, locale)
+    ) as any,
+    instructors:
+      deepDive.instructors?.map((instructor) => ({
+        first_name: instructor.contact?.first_name ?? '',
+        last_name: instructor.contact?.last_name ?? '',
+        position: getLocalizedValue(instructor.position, locale) ?? '',
+        description: getLocalizedValue(instructor.description, locale) ?? '',
+        image: instructor.image?.asset?.url ?? '',
+        video: instructor.video?.asset?.url ?? undefined,
+      })) ?? [],
+    image: {
+      src: deepDive.image?.asset?.url ?? '',
+      alt: getLocalizedValue(deepDive.image_alt, locale) ?? '',
+    },
+    meeting_details:
+      deepDive.meeting_details?.map((detail) => ({
+        day: detail.day ?? '',
+        time: detail.time ?? '',
+        attendance_type: detail.attendance_type ?? '',
+      })) ?? [],
+    start_date: (deepDive.start_date as Date) ?? new Date(),
+    end_date: (deepDive.end_date as Date) ?? new Date(),
+    required_materials: deepDive.required_materials?.length
+      ? deepDive.required_materials.map((item) => getLocalizedValue(item, locale) ?? '')
+      : undefined,
+    accepting_new_students: (deepDive.accepting_new_students as boolean) ?? false,
+  };
 };

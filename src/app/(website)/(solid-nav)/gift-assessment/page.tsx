@@ -1,16 +1,19 @@
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import GiftAssessment from '@/components/forms/gift-assessment/GiftAssessment';
+import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'GiftAssessment' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.giftAssessment}`;
-  const image = '/images/product-placeholder.webp';
+  const image = '/images/rental/church-building.webp';
+
   return {
     metadataBase: new URL(WEBSITE_URL!),
     title,

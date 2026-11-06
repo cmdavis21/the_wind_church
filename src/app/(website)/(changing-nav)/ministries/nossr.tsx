@@ -92,9 +92,7 @@ const MinistriesClient = () => {
                 title={t('form.header.title')}
                 description={t('form.header.subtitle')}
               />
-              <MinistryConnectionForm
-                ministryNames={ministries.map((i) => i.name).sort((a, b) => a.localeCompare(b))}
-              />
+              <MinistryConnectionForm ministryNames={ministries.map((m) => m.name)} />
             </div>
           </>
         )}

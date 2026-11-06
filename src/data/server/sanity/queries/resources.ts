@@ -1,4 +1,6 @@
-import { ResourceItem } from '@/data/types';
+import { Locale } from '@/data/i18n/utils';
+import { localizedFields, ResourceItem } from '@/data/types';
+import { getLocalizedValue } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
 const getAllResourcesQuery = async () => {
@@ -7,16 +9,16 @@ const getAllResourcesQuery = async () => {
       {},
       {
         _updatedAt: true,
-        title: true,
+        title: localizedFields,
         type: true,
-        description: true,
+        description: localizedFields,
         category: true,
         file: {
           asset: {
             url: true,
           },
         },
-        file_size: true,
+        file_size: localizedFields,
         url: true,
         is_active: true,
       },
@@ -24,7 +26,9 @@ const getAllResourcesQuery = async () => {
   }).then((y) => y.allResource);
 };
 
-export const getAllCategorizedResources = async (): Promise<Record<string, ResourceItem[]>> => {
+export const getAllCategorizedResources = async (
+  locale: Locale
+): Promise<Record<string, ResourceItem[]>> => {
   const resources = await getAllResourcesQuery();
 
   let categorizedResources: Record<string, ResourceItem[]> = {};
@@ -35,11 +39,11 @@ export const getAllCategorizedResources = async (): Promise<Record<string, Resou
       if (category) {
         if (!acc[category] || !resource.is_active) acc[category] = [];
         acc[category].push({
-          title: resource.title ?? '',
+          title: getLocalizedValue(resource.title, locale) ?? '',
           type: resource.type ?? 'File',
-          description: resource.description ?? '',
+          description: getLocalizedValue(resource.description, locale) ?? '',
           file: resource.file?.asset?.url ?? undefined,
-          file_size: resource.file_size ?? undefined,
+          file_size: getLocalizedValue(resource.file_size, locale) ?? undefined,
           url: resource.url ?? undefined,
           updated_at: resource._updatedAt ? new Date(resource._updatedAt as string) : new Date(),
         });

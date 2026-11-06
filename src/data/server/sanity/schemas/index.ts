@@ -13,10 +13,12 @@ import { PromoBannerSchema } from './promo-banner';
 import { ResourceSchema } from './resource';
 import { TestimonialSchema } from './testimonial';
 import { LinkSchema } from './types/link';
+import { LocalizedPortableText } from './types/localized-portable-text';
+import { LocalizedString } from './types/localized-string';
+import { LocalizedText } from './types/localized-text';
 import { LocationSchema } from './types/location';
 import { MeetingDetailsSchema } from './types/meeting-details';
 import { ScriptureSchema } from './types/scripture';
-import { TimeSchema } from './types/time';
 import { VisitorFeedbackSchema } from './visitor-feedback';
 
 export const SanitySchema = [
@@ -39,8 +41,10 @@ export const SanitySchema = [
   ResourceSchema,
   // Misc Schemas
   LinkSchema,
-  TimeSchema,
+  LocalizedText,
   LocationSchema,
   ScriptureSchema,
+  LocalizedString,
   MeetingDetailsSchema,
+  LocalizedPortableText,
 ];

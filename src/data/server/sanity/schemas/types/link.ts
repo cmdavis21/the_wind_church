@@ -8,7 +8,7 @@ export const LinkSchema = defineType({
   fields: [
     defineField({
       name: 'label',
-      type: 'string',
+      type: 'localizedString',
       title: 'Button Label',
       validation: (rule) => rule.required().error('Add a label (e.g., "Learn More")'),
     }),
@@ -28,6 +28,7 @@ export const LinkSchema = defineType({
           { title: 'Gift Assessment', value: PageRoutes.giftAssessment },
           { title: 'Give', value: PageRoutes.give },
           { title: 'Ministries', value: PageRoutes.ministries },
+          { title: 'New Here', value: PageRoutes.newHere },
           { title: 'Next Gen', value: PageRoutes.nextGen },
           { title: 'Prayer Requests', value: PageRoutes.prayerRequests },
           { title: 'PushPay', value: PageRoutes.pushpay },
@@ -35,6 +36,7 @@ export const LinkSchema = defineType({
           { title: 'RightNow Media', value: PageRoutes.rightnowMedia },
           { title: 'Salvation', value: PageRoutes.salvation },
           { title: 'Sermons', value: PageRoutes.sermons },
+          { title: 'We Pathway', value: PageRoutes.wePathway },
           { title: 'Wind Leaders', value: PageRoutes.windLeaders },
         ],
       },

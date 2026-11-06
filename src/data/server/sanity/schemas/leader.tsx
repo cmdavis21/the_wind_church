@@ -15,7 +15,7 @@ export const LeaderSchema = {
     defineField({
       name: 'position',
       title: 'Position',
-      type: 'string',
+      type: 'localizedString',
       description: 'The official position assigned to the Leader.',
       validation: (rule) => rule.required().error("Enter the Leader's position."),
     }),
@@ -25,15 +25,13 @@ export const LeaderSchema = {
       type: 'string',
       description:
         'Select a category this leader belongs to (if they fit more than one; select their primary role).',
-      options: {
-        list: SanityLeaderCategories,
-      },
+      options: { list: SanityLeaderCategories },
       validation: (rule) => rule.required().error('You must select a category.'),
     }),
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'text',
+      type: 'localizedText',
       description: "Describe the Leader's personailty, goals, and aspirations (3-7 sentences).",
     }),
     defineField({
@@ -54,7 +52,7 @@ export const LeaderSchema = {
     select: {
       first_name: 'contact.first_name',
       last_name: 'contact.last_name',
-      position: 'position',
+      position: 'position.en',
       image: 'image',
     },
     prepare({

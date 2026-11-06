@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
@@ -33,17 +33,20 @@ import ThumbsDown from '@/components/icons/thumbs-down';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'About' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.about}`;
   const image = '/images/product-placeholder.webp';
+
   return {
     title,
     description,

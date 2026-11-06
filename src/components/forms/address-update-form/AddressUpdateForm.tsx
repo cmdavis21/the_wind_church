@@ -12,6 +12,7 @@ import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { CountryCode } from '@/data/server/shopify/zeus';
 import { Address } from '@/data/types';
 import { isValidPhone } from '@/data/utils';
+import { useTranslations } from 'next-intl';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import SelectInput from '../inputs/select-input/SelectInput';
 import TextInput from '../inputs/text-input/TextInput';
@@ -93,9 +94,9 @@ const schema: yup.ObjectSchema<Partial<Address>> = yup.object().shape({
   state: yup.string().optional(),
   country: yup
     .mixed<CountryCode>()
-    .oneOf(Object.values(CountryCode) as CountryCode[], 'Invalid country')
-    .required('Country is required')
-    .oneOf([CountryCode.US], 'Shipping is only available in the United States'),
+    .oneOf(Object.values(CountryCode) as CountryCode[], 'addressForm.country.test')
+    .required('addressForm.country.message')
+    .oneOf([CountryCode.US], 'addressForm.country.default'),
   zip: yup.string().optional(),
   phone: yup
     .string()
@@ -111,6 +112,9 @@ interface AddressUpdateFormProps {
 }
 
 const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, current_address }) => {
+  const c = useTranslations('FormCommon');
+  const t = useTranslations('Orders');
+
   const { mutate: updateAddress, isPending, isSuccess, isError } = useUpdateCustomerAddress();
 
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -172,17 +176,17 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
           type="text"
-          label="First Name"
+          label={c('first.label')}
           {...register('first_name')}
-          error={errors.first_name?.message}
           disabled={isPending || isSuccess}
+          error={errors.first_name ? c(errors.first_name.message!) : undefined}
         />
         <TextInput
           type="text"
-          label="Last Name"
+          label={c('last.label')}
           {...register('last_name')}
-          error={errors.last_name?.message}
           disabled={isPending || isSuccess}
+          error={errors.last_name ? c(errors.last_name.message!) : undefined}
         />
       </div>
 

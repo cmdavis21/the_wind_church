@@ -8,12 +8,12 @@ export const ScriptureSchema = defineType({
     defineField({
       name: 'passage',
       title: 'Pasage',
-      type: 'text',
+      type: 'localizedText',
     }),
     defineField({
       name: 'verse',
       title: 'Verse',
-      type: 'string',
+      type: 'localizedString',
     }),
   ],
 });

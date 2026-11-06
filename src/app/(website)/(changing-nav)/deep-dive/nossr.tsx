@@ -9,19 +9,19 @@ import { useGetAllDeepDives } from '@/data/client/sanity/deep-dives';
 import { PageRoutes } from '@/data/page-routes';
 
 import { combineNames } from '@/data/utils';
+import { useTranslations } from 'next-intl';
 
 const DeepDivesClient = () => {
+  const t = useTranslations('DeepDive');
+
   const { deepDives, deepDivesLoading, deepDivesError } = useGetAllDeepDives();
 
   if (deepDivesError) {
     return (
       <MediaBackgroundAndContent
         centerContent
-        background={{
-          src: '/images/wind_church_building.webp',
-          alt: 'Image of The Wind Church building',
-        }}
         content={<ErrorAlert />}
+        background={{ src: '/images/wind_church_building.webp', alt: t('errorAlt') }}
       />
     );
   }
@@ -36,7 +36,7 @@ const DeepDivesClient = () => {
             deepDives.length > 0
               ? deepDives.map((deepDive) => ({
                   media: deepDive.image,
-                  header: 'Deep Dive Studies',
+                  header: t('header'),
                   title: deepDive.name,
                   subtitle: combineNames(deepDive.instructors),
                   description: deepDive.description,
@@ -49,7 +49,7 @@ const DeepDivesClient = () => {
                       poster: '/images/friend-group.webp',
                       alt: '',
                     },
-                    header: 'Deep Dive Studies',
+                    header: t('header'),
                     title: 'Sorry, No Deep Dives happening now',
                     description:
                       "What are Deep Dives? Biblical Fellowship and Studies focused on select topics from God's word which applies to our relevant lives. For now, please check out our ministries if your are looking to get involved!",

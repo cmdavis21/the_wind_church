@@ -1,4 +1,6 @@
-import { Testimonial } from '@/data/types';
+import { Locale } from '@/data/i18n/utils';
+import { localizedFields, Testimonial } from '@/data/types';
+import { getLocalizedValue } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
 const getAllTestimoniesQuery = async () => {
@@ -11,35 +13,33 @@ const getAllTestimoniesQuery = async () => {
           last_name: true,
         },
         position: true,
-        main_point: true,
-        statement: true,
+        main_point: localizedFields,
+        statement: localizedFields,
         image: {
           asset: {
             url: true,
-            altText: true,
           },
         },
+        image_alt: localizedFields,
       },
     ],
   }).then((d) => d.allTestimonial);
 };
 
-export const getAllTestimonies = async (): Promise<Testimonial[]> => {
+export const getAllTestimonies = async (locale: Locale): Promise<Testimonial[]> => {
   const testimonies = await getAllTestimoniesQuery();
 
-  if (testimonies) {
-    return testimonies.slice(0, 11).map((testimony) => ({
-      main_point: testimony.main_point ?? '',
-      statement: testimony.statement ?? '',
-      first_name: testimony.contact?.first_name ?? '',
-      last_name: testimony.contact?.last_name ?? '',
-      position: testimony.position ?? '',
-      image: {
-        src: testimony.image?.asset?.url ?? '',
-        alt: testimony.image?.asset?.altText ?? '',
-      },
-    }));
-  }
+  if (!testimonies) return [];
 
-  return [];
+  return testimonies.slice(0, 11).map((testimony) => ({
+    main_point: getLocalizedValue(testimony.main_point, locale) ?? '',
+    statement: getLocalizedValue(testimony.statement, locale) ?? '',
+    first_name: testimony.contact?.first_name ?? '',
+    last_name: testimony.contact?.last_name ?? '',
+    position: testimony.position ?? '',
+    image: {
+      src: testimony.image?.asset?.url ?? '',
+      alt: getLocalizedValue(testimony.image_alt, locale) ?? '',
+    },
+  }));
 };

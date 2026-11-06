@@ -10,13 +10,16 @@ import Filter from '@/components/icons/filter';
 import { useGetAllEvents } from '@/data/client/sanity/events';
 import { SanityEventCategories } from '@/data/types';
 import { isAfter } from 'date-fns';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 const EventsClient = () => {
+  const t = useTranslations('Events');
+
   const [filter, setFilter] = useState('');
   const { events, eventsLoading, eventsError } = useGetAllEvents();
   const filteredEvents =
-    events?.filter((e) => filter === '' || e.categories?.includes(filter)) ?? [];
+    events?.filter((e) => filter === '' || e.categories?.find((i) => i.includes(filter))) ?? [];
 
   if (eventsError) return <ErrorAlert />;
 
@@ -37,8 +40,11 @@ const EventsClient = () => {
               disabled={eventsLoading || eventsError}
               onChange={(e) => setFilter(e.target.value)}
               options={[
-                { label: 'All Events', value: '' },
-                ...SanityEventCategories.map((e) => ({ label: e, value: e })),
+                { label: t('filterDefault'), value: '' },
+                ...SanityEventCategories.map(({ value }) => ({
+                  label: t(`categories.${value}`),
+                  value,
+                })),
               ]}
             />
           </div>
@@ -62,7 +68,7 @@ const EventsClient = () => {
                       <EventCard
                         key={`event-card-${event.name}`}
                         event={event}
-                        scale={isAfter(event.date, new Date())}
+                        scale={isAfter(event.start_date_time, new Date())}
                       />
                     ))}
                   </div>

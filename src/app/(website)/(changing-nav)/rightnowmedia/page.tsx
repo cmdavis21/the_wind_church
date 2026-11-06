@@ -1,17 +1,20 @@
 import Image from 'next/image';
 
+import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'RightNowMedia' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.rightnowMedia}`;
   const image = '/images/rightnow-media.webp';
+
   return {
     title,
     description,

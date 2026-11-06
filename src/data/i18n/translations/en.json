@@ -10,7 +10,7 @@
     },
     "error": {
       "title": "Error!",
-      "description": "There was an problem submitting your inquiry. Please try again later, or call our office at +1 (951) 359-0203."
+      "description": "There was an problem submitting your inquiry. Try again later, or call our office at +1 (951) 359-0203."
     },
     "first": {
       "label": "First Name",
@@ -37,7 +37,21 @@
     },
     "yes": "Yes",
     "no": "No",
-    "select": "Select an option"
+    "select": "Select an option",
+    "daysOfTheWeek": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    },
+    "attendanceType": {
+      "hybrid": "In-Person and Online",
+      "in-person": "In-Person",
+      "online": "Online"
+    }
   },
   "NotFound": {
     "metadata": {
@@ -1100,24 +1114,131 @@
     "metadata": {
       "title": "Bookstore",
       "description": "Shop faith-based books, apparel, and gifts in The Wind Church bookstore—equipping you for your spiritual journey."
+    },
+    "alt": "Glass door with a hanging shop sign stating, 'Come on in. We're open.'",
+    "title": "Bookstore",
+    "subtitle": "Explore books, apparel, gifts, and ministry resources designed to encourage your walk with Christ.",
+    "defaultFilterLabel": "All Products",
+    "card": {
+      "pickup": "Pickup-only"
     }
   },
   "Orders": {
     "metadata": {
       "title": "Orders",
       "description": "View your orders from The Wind Church bookstore."
+    },
+    "alt": "Small brown boxes stacked on eachother with the top box displaying a thank you card.",
+    "title": "Orders",
+    "subtitle": "Everything you've ordered, all in one place.",
+    "tabs": ["Orders", "Profile"],
+    "card": {
+      "count": "+{quantity}",
+      "name": "Order {name}",
+      "quantity": "{quantity, plural, =0 {0 items} one {# item} other {# items}}",
+      "total": "Total: {value}",
+      "reorder": "Reorder",
+      "viewDetails": "View Details",
+      "hideDetails": "Hide Details",
+      "shipping": "Shipping Address",
+      "billing": "Billing Address",
+      "payment": "Payment Details",
+      "expiration": "Exp. {month}/{year}",
+      "tax": "Tax",
+      "subtotal": "Subtotal",
+      "item": {
+        "price": "<bold>Price</bold> {value}",
+        "quantity": "<bold>Qty</bold> {value}",
+        "selection": "<bold>{name}</bold>: {value}",
+        "total": "<bold>{name}</bold>: {value}"
+      }
+    },
+    "lookupForm": {
+      "title": "Email Required",
+      "subtitle": "To view your orders, enter your email.",
+      "error": {
+        "title": "Oh no!",
+        "subtitle": "Email not found. Try again later, or call our office at +1 (951) 359-0203."
+      },
+      "pending": "Looking for your stuff..."
+    },
+    "emailForm": {
+      "title": "Email update",
+      "subtitle": "Email required to keep track of orders",
+      "success": {
+        "subtitle": "Email updated on your account."
+      },
+      "error": {
+        "subtitle": "There is a problem updating your email. Try again later, or call our office at +1 (951) 359-0203."
+      },
+      "update": "Update"
+    },
+    "addressForm": {
+      "title": "Shipping Address Update",
+      "subtitle": "Shipping only provided in the US",
+      "success": {
+        "subtitle": "Address updated on your account."
+      },
+      "error": {
+        "subtitle": "There is a problem updating your address. Try again later, or call our office at +1 (951) 359-0203."
+      },
+      "country": {
+        "message": "Country is required",
+        "test": "Invalid country",
+        "default": "Shipping is only available in the United States"
+      }
     }
   },
   "Cart": {
     "metadata": {
       "title": "Shopping Cart",
       "description": "View your cart and checkout items from The Wind Church bookstore."
+    },
+    "alt": "",
+    "title": "",
+    "subtitle": "",
+    "modal": {
+      "quantity": "You have <bold>{quantity, plural, =0 {0 items} one {# item} other {# items}}</bold> in the cart",
+      "go": "Go to Cart",
+      "back": "Back to Bookstore",
+      "count": "+{quantity}",
+      "imageAlt": "{name} product image",
+      "selection": "{name}: {value}",
+      "pickup": "Pickup required"
     }
   },
   "Events": {
     "metadata": {
       "title": "Events",
       "description": "Stay up to date with upcoming church events, services, and community gatherings at The Wind Church."
+    },
+    "title": "Events",
+    "subtitle": "From worship services and ministry gatherings to discipleship classes and community outreach, find your next opportunity to connect and grow.",
+    "filterDefault": "All Events",
+    "categories": {
+      "worship-service": "Worship Service",
+      "prayer-meeting": "Prayer Meeting",
+      "fasting-and-prayer": "Fasting & Prayer",
+      "church-fellowhsip": "Church Fellowship",
+      "community-outreach": "Community Outreach",
+      "evangelism": "Evangelism",
+      "fundraiser": "Fundraiser",
+      "food-clothing-drive": "Food / Clothing Drive",
+      "cld-class": "Christian Life Development",
+      "next-gen": "Next Gen",
+      "young-adults-ministry": "Olive Branch (YA) Ministry",
+      "womens-ministry": "Women's (DOK) Ministry",
+      "mens-ministry": "Men's (LXG) Ministry",
+      "marriage-ministry": "Marriage (One Accord) Ministry",
+      "we-experience": "WE Experience",
+      "leaders-training": "Leadership Training",
+      "guest-speaker-or-concert": "Guest Speaker / Concert",
+      "baptism": "Baptism / Baby Dedication",
+      "holiday-celebration": "Holiday Celebration",
+      "revival-crusade": "Revival / Crusade",
+      "friends-family-gathering": "Friends and Family Gathering",
+      "potluck": "Potluck / Shared Meals",
+      "game-movie-night": "Game Night / Movie Night"
     }
   },
   "Gallery": {
@@ -1264,7 +1385,24 @@
     "title": "The Leaders",
     "subtitle": "Get to know the faithful leaders who help guide our church in faith, service, and community.",
     "filterDefault": "All Leaders",
-    "sectionSubtitle": "Select a Leader to learn more"
+    "sectionSubtitle": "Select a Leader to learn more",
+    "categories": {
+      "pastors": "Pastoral Team",
+      "council": "Church Council",
+      "staff": "Church Staff",
+      "elders": "Elders",
+      "deacons": "Deacons and Deaconesses",
+      "ministry-leaders": "Ministry Leaders",
+      "guest-connect": "Guest Connect",
+      "outreach": "Outreach & Evangelism",
+      "media": "Production & Media"
+    },
+    "testimonialCategories": {
+      "leader": "Leader",
+      "staff": "Staff",
+      "member": "Member",
+      "visitor": "Visitor"
+    }
   },
   "ResourceCenter": {
     "metadata": {
@@ -1273,6 +1411,127 @@
     },
     "title": "Resource Center",
     "subtitle": "Access important documents, forms, and resources shared within The Wind Church.",
-    "filterDefault": "All resources"
+    "filterDefault": "All resources",
+    "categories": {
+      "visitor-resource": "Visitor Resources",
+      "member-resource": "Member Resources",
+      "leader-resource": "Leader Resources",
+      "general-resource": "General Resources",
+      "teaching-materials": "Teaching Materials Resources",
+      "announcements": "Announcements"
+    }
+  },
+  "NewHere": {
+    "metadata": {
+      "title": "You Belong Here!",
+      "description": "Everything you need to know before your first visit to The Wind Church."
+    },
+    "alt": "",
+    "title": "You Belong Here!",
+    "subtitle": "We're excited to welcome you to The Wind.",
+    "description": "Whether it's your first time in church or your first time with us, we're glad you're here. At The Wind Church, you'll find a welcoming community, passionate worship, and practical biblical teaching for every stage of life. We want your visit to feel comfortable, meaningful, and easy from the moment you arrive.",
+    "services": {
+      "label": "Service Times",
+      "items": [
+        {
+          "day": "Sunday",
+          "time": "9:00 AM",
+          "attendanceType": "In-person + online"
+        },
+        {
+          "day": "Wednesday",
+          "time": "7:00 PM",
+          "attendanceType": "In-person + online"
+        }
+      ]
+    },
+    "locations": {
+      "label": "Join Us",
+      "items": [
+        {
+          "text": "6476 Streeter Avenue, Riverside, CA 92504",
+          "label": "Map"
+        },
+        {
+          "text": "YouTube Live Stream",
+          "label": "Watch"
+        }
+      ]
+    },
+    "otherInfo": {
+      "label": "What to Know",
+      "items": [
+        "HeBrews Café opens before service with coffee and light refreshments.",
+        "Parking attendants are available to help direct you.",
+        "Come as you are. We'd love to meet you."
+      ]
+    },
+    "faqs": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "More about The Wind",
+      "items": [
+        {
+          "title": "What about parking?",
+          "description": "Parking is available on campus, and our parking attendants are happy to help guide you when you arrive. Accessible parking spaces are located near the main entrance for those who need them."
+        },
+        {
+          "title": "What about my kids/teenagers?",
+          "description": "We love families! Children begin service together before being dismissed to age-appropriate classrooms where they can learn about God in a fun and engaging environment. Nursery care is available for infants and toddlers. Learn more about our Next Gen ministry <link>here</link>."
+        },
+        {
+          "title": "How should I dress?",
+          "description": "Come as you are. Whether you prefer jeans and a T-shirt or something more formal, you'll find a variety of styles at The Wind. Our focus is on worshiping God and building community, not what you wear."
+        },
+        {
+          "title": "Is there coffee?",
+          "description": "Yes! Coffee and light refreshments are available before service at our He-Brews Café located in the fellowship hall."
+        },
+        {
+          "title": "What happens during service?",
+          "description": "A typical service includes worship through music, prayer, and a Bible-centered message designed to encourage and challenge you in your faith. Services are welcoming, family-oriented, and centered on helping people encounter God and grow spiritually."
+        },
+        {
+          "title": "What is the worship music like?",
+          "description": "Our worship is passionate, Christ-centered, and designed to help people connect with God. You'll hear a blend of contemporary worship songs and timeless favorites as we worship together as one church family."
+        }
+      ]
+    },
+    "ctas": {
+      "title": "Next Steps",
+      "subtitle": "Discover ways to get connected and grow at The Wind.",
+      "items": [
+        {
+          "alt": "A woman in a yellow sweater carrying a crate filled with vegetables.",
+          "title": "Explore Ministries",
+          "description": "Find a ministry where you can serve, grow, and build meaningful relationships.",
+          "label": "View Ministries"
+        },
+        {
+          "alt": "",
+          "title": "Christian Life Development",
+          "description": "Strengthen your faith through classes designed to help you grow in God's Word.",
+          "label": "Learn About CLD"
+        },
+        {
+          "alt": "Four mix aged kids smiling and looking in the distance.",
+          "title": "Learn about Next Gen",
+          "description": "Discover ministries and programs created specifically for children and youth",
+          "label": "Explore Next Gen"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Life at The Wind",
+      "subtitle": "Real stories from people who have found community, purpose, and spiritual growth at The Wind.",
+      "imageAlt": "{name} profile image"
+    }
+  },
+  "WePathway": {
+    "metadata": {
+      "title": "You Belong Here!",
+      "description": "Visiting a new church can feel overwhelming, but at The Wind Church, we want you to feel welcomed, seen, and connected from the moment you arrive."
+    },
+    "title": "You Belong Here!",
+    "subtitle": "Visiting a new church can feel overwhelming, but at The Wind Church, we want you to feel welcomed, seen, and connected from the moment you arrive."
   }
 }

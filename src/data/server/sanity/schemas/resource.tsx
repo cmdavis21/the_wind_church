@@ -11,7 +11,7 @@ export const ResourceSchema = {
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
+      type: 'localizedString',
       title: 'Title',
       validation: (Rule) => Rule.required(),
     }),
@@ -29,7 +29,7 @@ export const ResourceSchema = {
     }),
     defineField({
       name: 'description',
-      type: 'text',
+      type: 'localizedText',
       title: 'Description',
       description: 'A one sentence explanation of what this resource is or how it should be used.',
     }),
@@ -38,9 +38,7 @@ export const ResourceSchema = {
       type: 'string',
       title: 'Category',
       description: 'Choose the group this resource belongs to.',
-      options: {
-        list: SanityResourceCategories,
-      },
+      options: { list: SanityResourceCategories },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -53,9 +51,9 @@ export const ResourceSchema = {
     }),
     defineField({
       name: 'file_size',
-      type: 'string',
+      type: 'localizedString',
       title: 'File Size',
-      description: 'Add the file size or format (e.g., “PDF – 497 KB”).',
+      description: 'Add the file size or format (e.g., “PDF - 497 KB”).',
       hidden: ({ document }) => document?.type !== 'File',
     }),
     defineField({
@@ -76,15 +74,15 @@ export const ResourceSchema = {
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
       type: 'type',
       is_active: 'is_active',
     },
-    prepare({ title, type, is_active }: { title: string; type: string; is_active: boolean }) {
+    prepare({ title, type, is_active }: { title?: string; type?: string; is_active?: boolean }) {
       return {
         title,
         subtitle: `${type} - ${is_active ? 'Active' : 'Hidden'}`,
-        media: type === 'File' ? <FileIcon /> : type === 'Link' ? <LinkIcon /> : <Play />,
+        media: type === 'file' ? FileIcon : type === 'link' ? LinkIcon : Play,
       };
     },
   },

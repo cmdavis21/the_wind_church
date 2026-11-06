@@ -12,24 +12,27 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { getNextGenGallery } from '@/data/server/aws/s3/gallery';
-import { WEBSITE_URL } from '@/data/server/env.server';
+import { SANITY_NEXT_GEN_DOC_ID, WEBSITE_URL } from '@/data/server/env.server';
 import { getMinistryEvents } from '@/data/server/sanity/queries/events';
 import { getNextGenPage } from '@/data/server/sanity/queries/next-gen-page';
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
 import { Button } from 'flowbite-react';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'NextGen' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.nextGen}`;
   const image = '/images/next-gen/kids-group.webp';
+
   return {
     title,
     description,
@@ -50,11 +53,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const NextGen = async () => {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations('NextGen');
 
-  const pageInfo = await getNextGenPage();
   const gallery = await getNextGenGallery();
-  const events = await getMinistryEvents('Next Gen');
+  const pageInfo = await getNextGenPage(locale);
+  const events = await getMinistryEvents(locale, SANITY_NEXT_GEN_DOC_ID);
 
   return (
     <div className="flex flex-col gap-3xl sm:gap-4xl">
@@ -148,7 +152,7 @@ const NextGen = async () => {
               <EventCard
                 key={`event-card-${event.name}`}
                 event={event}
-                scale={isAfter(event.date, new Date())}
+                scale={isAfter(event.start_date_time, new Date())}
               />
             ))}
           </div>

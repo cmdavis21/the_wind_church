@@ -32,7 +32,7 @@ const variantStyles: Record<
   }
 > = {
   primary: {
-    base: 'border border-light-neutral dark:border-dark-gray bg-light-bg dark:bg-dark-gray',
+    base: 'border border-light-neutral dark:border-dark-gray bg-light-neutral/30 dark:bg-dark-gray',
     fill: 'bg-brand-primary dark:bg-light-navy',
     text: 'text-light-primaryText dark:text-dark-primaryText',
   },

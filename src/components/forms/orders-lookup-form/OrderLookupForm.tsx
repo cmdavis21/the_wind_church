@@ -10,6 +10,7 @@ import { CustomerData } from '@/data/types';
 
 import { useLookupCustomer, useLookupCustomerOrders } from '@/data/client/shopify/customer';
 import { isValidEmail } from '@/data/utils';
+import { useTranslations } from 'next-intl';
 import AlertMessage from '../../alerts/alert-message/AlertMessage';
 import PencilPaper from '../../icons/pencilPaper';
 import TextInput from '../inputs/text-input/TextInput';
@@ -27,6 +28,9 @@ interface OrderLookupFormProps {
 }
 
 const OrderLookupForm: React.FC<OrderLookupFormProps> = ({ returnValue }) => {
+  const c = useTranslations('FormCommon');
+  const t = useTranslations('Orders');
+
   const [newData, setNewData] = useState<CustomerData>({
     profile: undefined,
     orders: [],
@@ -78,29 +82,42 @@ const OrderLookupForm: React.FC<OrderLookupFormProps> = ({ returnValue }) => {
     <form onSubmit={handleSubmit(onSubmit)} className="form-container-style">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
-        <h4>Email Required</h4>
+        <h4>{t('lookupForm.title')}</h4>
       </div>
 
-      <h5 className="text-light-charcoal dark:text-dark-charcoal">
-        To view your orders, enter your email.
-      </h5>
+      <h5 className="text-light-charcoal dark:text-dark-charcoal">{t('lookupForm.subtitle')}</h5>
 
       {(customerError || ordersError) && (
-        <AlertMessage type="failure" title="Oh no!" description="Email not found." />
+        <AlertMessage
+          type="failure"
+          title={t('lookupForm.error.title')}
+          description={t('lookupForm.error.subtitle')}
+        />
       )}
 
-      <TextInput type="email" label="Email*" {...register('email')} error={errors.email?.message} />
+      <TextInput
+        required
+        type="email"
+        {...register('email')}
+        label={c('email.label')}
+        disabled={customerPending || ordersPending}
+        error={errors.email ? c(errors.email.message!) : undefined}
+      />
 
       <Button
         pill
         size="lg"
+        fullSized
         type="submit"
         color="primary"
-        fullSized
-        disabled={customerPending || ordersPending}
         className="mt-md"
+        disabled={customerPending || ordersPending}
       >
-        {customerPending || ordersPending ? 'Looking for your stuff...' : 'Submit!'}
+        {customerPending || ordersPending
+          ? t('lookupForm.pending')
+          : customerError || ordersError
+            ? c('submit.sent')
+            : c('submit.label')}
       </Button>
     </form>
   );

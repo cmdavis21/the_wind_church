@@ -6,11 +6,12 @@ import Clock from '@/components/icons/clock';
 import Location from '@/components/icons/location';
 import { useDominantColor } from '@/data/client/use-dominant-color';
 
-import { formatDateMMMddyyyy } from '@/data/format-date';
+import { formatDateMMMddyyyy, formatTimeHmm } from '@/data/format-date';
 import { Event } from '@/data/types';
 import { darkenRgb } from '@/data/utils';
 
 import { Badge, Modal, ModalBody } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React from 'react';
 
@@ -25,10 +26,12 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
   openModal,
   setOpenModal,
 }) => {
+  const t = useTranslations('Events');
+
   const {
     name,
-    date,
-    time,
+    start_date_time,
+    end_date_time,
     description,
     location,
     associated_ministry,
@@ -69,7 +72,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                 <div className="flex flex-wrap gap-sm mb-sm">
                   {categories.map((cat) => (
                     <Badge key={`event-modal-${cat}`} color="gray" size="sm">
-                      {cat}
+                      {t(`categories.${cat}`)}
                     </Badge>
                   ))}
                 </div>
@@ -101,7 +104,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                 className="fill-current shrink-0"
                 style={{ color: accent }}
               />
-              <p className="font-medium">{formatDateMMMddyyyy(date)}</p>
+              <p className="font-medium">{formatDateMMMddyyyy(start_date_time)}</p>
             </div>
 
             {/* TIME */}
@@ -114,14 +117,12 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                 className="fill-current shrink-0"
                 style={{ color: accent }}
               />
-              <p className="font-medium">
-                {time.hour}:{time.minute} {time.time_of_day} {time.time_zone}
-              </p>
+              <p className="font-medium">{formatTimeHmm(start_date_time)}</p>
             </div>
 
             {/* LOCATION */}
             <div
-              className="flex items-center gap-sm rounded-xl pb-sm"
+              className="flex items-start gap-sm rounded-xl pb-sm"
               style={{ backgroundColor: `${accent}1A` }}
             >
               <Location

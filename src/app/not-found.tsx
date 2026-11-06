@@ -1,11 +1,13 @@
 import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
+import { Locale } from '@/data/i18n/utils';
 import '@/styles/fonts.css';
 import '@/styles/globals.css';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'NotFound' });
+
   return {
     title: t('metadata.title'),
     description: t('metadata.description'),

@@ -23,7 +23,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical = true }) =
 
   useEffect(() => {
     const now = Date.now();
-    const eventDate = new Date(event.date);
+    const eventDate = new Date(event.start_date_time);
     const daysUntilEvent = differenceInDays(eventDate, now);
 
     if (daysUntilEvent > 0 && daysUntilEvent <= 30) {
@@ -36,7 +36,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical = true }) =
       setPastEvent(true);
       setAddTag({ label: 'Past Event', color: 'gray' });
     }
-  }, [event.date]);
+  }, [event.start_date_time]);
 
   return (
     <>
@@ -87,7 +87,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, vertical = true }) =
             </div>
             <div className="flex flex-col gap-xs items-start text-left">
               <h5 className="text-light-navy dark:text-dark-navy font-bold leading-none">
-                {formatDateMMMddyyyy(event.date)}
+                {formatDateMMMddyyyy(event.start_date_time)}
               </h5>
               <h4 className="font-bold leading-none">{event.name}</h4>
               {event.description && (

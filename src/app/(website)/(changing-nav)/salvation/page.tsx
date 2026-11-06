@@ -6,17 +6,20 @@ import MediaBackgroundAndContent, {
   ColorBackground,
 } from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'Salvation' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.salvation}`;
   const image = '/images/salvation/cross-on-mount.webp';
+
   return {
     title,
     description,

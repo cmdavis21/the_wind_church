@@ -1,10 +1,13 @@
 import { Price } from './format-price';
 
-type Time = {
-  hour: string;
-  minute: string;
-  time_of_day: string;
-  time_zone: string;
+export const localizedFields = {
+  en: true,
+  es: true,
+};
+
+export const localizedFieldsRaw = {
+  enRaw: true,
+  esRaw: true,
 };
 
 export type Image = {
@@ -17,7 +20,7 @@ export type Leader = {
   first_name: string;
   last_name: string;
   position: string;
-  category: (typeof SanityLeaderCategories)[0];
+  category: (typeof SanityLeaderCategories)[0]['value'];
   description: string;
   image: string;
   video?: string;
@@ -39,8 +42,8 @@ export type DeepDive = {
   image: Image;
   meeting_details: {
     day: string;
-    time: Time;
-    attendance_type: string;
+    time: string;
+    attendance_type: (typeof SanityAttendanceTypes)[0]['value'];
   }[];
   start_date: Date;
   end_date: Date;
@@ -51,8 +54,8 @@ export type DeepDive = {
 export type Event = {
   _id?: string;
   name: string;
-  date: Date;
-  time: Time;
+  start_date_time: Date;
+  end_date_time?: Date;
   description: string;
   location: {
     name: string;
@@ -65,7 +68,7 @@ export type Event = {
   associated_ministry?: string;
   external_organizer?: string;
   cost?: string;
-  categories?: typeof SanityEventCategories;
+  categories?: (typeof SanityEventCategories)[0]['value'][];
   how_to_signup?: string;
   additional_notes?: string;
   help_needed?: string[];
@@ -425,61 +428,75 @@ export interface CustomerData {
 }
 
 export const SanityEventCategories = [
-  'Worship Service',
-  'Prayer Meeting',
-  'Bible Study',
-  'Revival/Crusade',
-  'Fasting & Prayer',
-  'Church Fellowship',
-  'Potluck / Shared Meals',
-  'Game Night / Movie Night',
-  'Church Picnic',
-  'Small Group Gathering',
-  'Community Outreach',
-  'Evangelism',
-  'Food / Clothing Drive',
-  'Volunteer Service',
-  'Youth Ministry',
-  'Young Adults Fellowship',
-  "Children's Church",
-  'Leadership Training',
-  'Discipleship Class',
-  'New Members Class',
-  'Ministry Workshops',
-  'Sunday School',
-  'Holiday Celebration',
-  'Church Anniversary',
-  'Fundraiser',
-  'Guest Speaker / Concert',
-  'Baptism / Baby Dedication',
-  "Men's Ministry",
-  "Women's Ministry",
-  'Marriage / Couples Retreat',
-  'Family Day',
+  { title: 'Worship Service', value: 'worship-service' },
+  { title: 'Prayer Meeting', value: 'prayer-meeting' },
+  { title: 'Fasting & Prayer', value: 'fasting-and-prayer' },
+  { title: 'Church Fellowship', value: 'church-fellowhsip' },
+  { title: 'Community Outreach', value: 'community-outreach' },
+  { title: 'Evangelism', value: 'evangelism' },
+  { title: 'Fundraiser', value: 'fundraiser' },
+  { title: 'Food / Clothing Drive', value: 'food-clothing-drive' },
+  { title: 'Christian Life Development', value: 'cld-class' },
+  { title: 'Next Gen', value: 'next-gen' },
+  { title: 'Olive Branch (YA) Ministry', value: 'young-adults-ministry' },
+  { title: "Women's (DOK) Ministry", value: 'womens-ministry' },
+  { title: "Men's (LXG) Ministry", value: 'mens-ministry' },
+  { title: 'Marriage (One Accord) Ministry', value: 'marriage-ministry' },
+  { title: 'WE Experience', value: 'we-experience' },
+  { title: 'Leadership Training', value: 'leaders-training' },
+  { title: 'Guest Speaker / Concert', value: 'guest-speaker-or-concert' },
+  { title: 'Baptism / Baby Dedication', value: 'baptism' },
+  { title: 'Holiday Celebration', value: 'holiday-celebration' },
+  { title: 'Revival / Crusade', value: 'revival-crusade' },
+  { title: 'Friends and Family Gathering', value: 'friends-family-gathering' },
+  { title: 'Potluck / Shared Meals', value: 'potluck' },
+  { title: 'Game Night / Movie Night', value: 'game-movie-night' },
 ];
 
 export const SanityLeaderCategories = [
-  'Pastoral Team',
-  'Church Staff',
-  'Church Council',
-  'Elders',
-  'Deacons and Deaconesses',
-  'Ministry Directors',
-  'Next Gen Educators',
-  'Hospitality & Guest Experience',
-  'Outreach & Evangelism',
-  'Production & Media',
+  { title: 'Pastoral Team', value: 'pastors' },
+  { title: 'Church Council', value: 'council' },
+  { title: 'Church Staff', value: 'staff' },
+  { title: 'Elders', value: 'elders' },
+  { title: 'Deacons and Deaconesses', value: 'deacons' },
+  { title: 'Ministry Leaders', value: 'ministry-leaders' },
+  { title: 'Guest Connect', value: 'guest-connect' },
+  { title: 'Outreach & Evangelism', value: 'outreach' },
+  { title: 'Production & Media', value: 'media' },
 ];
 
 export const SanityResourceTypes = ['File', 'Link', 'Video'];
 
+export const SanityDaysOfTheWeekTypes = [
+  { title: 'Sunday', value: 'sunday' },
+  { title: 'Monday', value: 'monday' },
+  { title: 'Tuesday', value: 'tuesday' },
+  { title: 'Wednesday', value: 'wednesday' },
+  { title: 'Thursday', value: 'thursday' },
+  { title: 'Friday', value: 'friday' },
+  { title: 'Saturday', value: 'saturday' },
+];
+
+export const SanityAttendanceTypes = [
+  { title: 'In-Person and Online', value: 'hybrid' },
+  { title: 'In-Person', value: 'in-person' },
+  { title: 'Online', value: 'online' },
+];
+
 export const SanityResourceCategories = [
-  'Visitor Resources',
-  'Member Resources',
-  'Leader Resources',
-  'General Resources',
-  'Teaching Materials',
-  'Announcements',
+  { title: 'Visitor Resources', value: 'visitor-resource' },
+  { title: 'Member Resources', value: 'member-resource' },
+  { title: 'Leader Resources', value: 'leader-resource' },
+  { title: 'General Resources', value: 'general-resource' },
+  { title: 'Teaching Materials Resources', value: 'teaching-materials' },
+  { title: 'Announcements', value: 'announcements' },
+];
+
+export const SanityTestimonialPersonType = [
+  { title: 'Leader', value: 'leader' },
+  { title: 'Staff', value: 'staff' },
+  { title: 'Member', value: 'member' },
+  { title: 'Visitor', value: 'visitor' },
 ];
 
 // TANSTACK QUERY + MUTATION KEYS

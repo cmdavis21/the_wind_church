@@ -1,3 +1,4 @@
+import { SanityTestimonialPersonType } from '@/data/types';
 import { defineField } from 'sanity';
 
 export const TestimonialSchema = {
@@ -16,20 +17,13 @@ export const TestimonialSchema = {
       title: 'Position',
       type: 'string',
       description: 'Select a position this person belongs to.',
-      options: {
-        list: [
-          { title: 'Leader', value: 'Leader' },
-          { title: 'Member', value: 'Member' },
-          { title: 'Visitor', value: 'Visitor' },
-          { title: 'Staff', value: 'Staff' },
-        ],
-      },
-      validation: (rule) => rule.required().error('You must select a category.'),
+      options: { list: SanityTestimonialPersonType },
+      validation: (rule) => rule.required().error('You must select a position.'),
     }),
     defineField({
       name: 'main_point',
       title: 'Main Point',
-      type: 'text',
+      type: 'localizedText',
       description:
         'This highlights the big idea or main point of their testimony (1 sentence max).',
       validation: (rule) => rule.required().error('Add a highlighting feature.'),
@@ -37,7 +31,7 @@ export const TestimonialSchema = {
     defineField({
       name: 'statement',
       title: 'Statement',
-      type: 'text',
+      type: 'localizedText',
       description: "The person's statement (1-3 sentences).",
       validation: (rule) => rule.required().error('Add a statement.'),
     }),

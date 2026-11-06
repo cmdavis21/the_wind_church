@@ -130,8 +130,8 @@ export const AllTypesProps: Record<string,any> = {
 		}
 	},
 	DateTime: `scalar.DateTime` as const,
-	Date: `scalar.Date` as const,
 	JSON: `scalar.JSON` as const,
+	Date: `scalar.Date` as const,
 	SanityImageAssetFilter:{
 		_:"Sanity_DocumentFilter",
 		_id:"IDFilter",
@@ -525,33 +525,30 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"DatetimeFilter",
 		_rev:"StringFilter",
 		_key:"StringFilter",
-		name:"StringFilter",
-		description:"StringFilter",
-		date:"DateFilter",
-		time:"TimeTypeFilter",
+		name:"LocalizedStringFilter",
+		description:"LocalizedTextFilter",
+		start_date_time:"DatetimeFilter",
+		end_date_time:"DatetimeFilter",
 		image:"ImageFilter",
+		image_alt:"LocalizedStringFilter",
 		location:"LocationFilter",
-		how_to_signup:"StringFilter",
+		how_to_signup:"LocalizedTextFilter",
 		associated_ministry:"MinistryFilter",
 		external_organizer:"StringFilter",
-		cost:"StringFilter",
-		additional_notes:"StringFilter"
+		cost:"LocalizedStringFilter",
+		additional_notes:"LocalizedTextFilter"
 	},
-	DateFilter:{
-		eq:"Date",
-		neq:"Date",
-		gt:"Date",
-		gte:"Date",
-		lt:"Date",
-		lte:"Date"
-	},
-	TimeTypeFilter:{
+	LocalizedStringFilter:{
 		_key:"StringFilter",
 		_type:"StringFilter",
-		hour:"StringFilter",
-		minute:"StringFilter",
-		time_of_day:"StringFilter",
-		time_zone:"StringFilter"
+		en:"StringFilter",
+		es:"StringFilter"
+	},
+	LocalizedTextFilter:{
+		_key:"StringFilter",
+		_type:"StringFilter",
+		en:"StringFilter",
+		es:"StringFilter"
 	},
 	ImageFilter:{
 		_key:"StringFilter",
@@ -601,11 +598,13 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"DatetimeFilter",
 		_rev:"StringFilter",
 		_key:"StringFilter",
-		name:"StringFilter",
+		name:"LocalizedStringFilter",
 		slug:"SlugFilter",
 		scripture:"ScriptureFilter",
+		description:"LocalizedPortableTextFilter",
 		coach:"LeaderFilter",
-		image:"ImageFilter"
+		image:"ImageFilter",
+		image_alt:"LocalizedStringFilter"
 	},
 	SlugFilter:{
 		_key:"StringFilter",
@@ -616,8 +615,12 @@ export const AllTypesProps: Record<string,any> = {
 	ScriptureFilter:{
 		_key:"StringFilter",
 		_type:"StringFilter",
-		passage:"StringFilter",
-		verse:"StringFilter"
+		passage:"LocalizedTextFilter",
+		verse:"LocalizedStringFilter"
+	},
+	LocalizedPortableTextFilter:{
+		_key:"StringFilter",
+		_type:"StringFilter"
 	},
 	LeaderFilter:{
 		_:"Sanity_DocumentFilter",
@@ -628,9 +631,9 @@ export const AllTypesProps: Record<string,any> = {
 		_rev:"StringFilter",
 		_key:"StringFilter",
 		contact:"ContactFilter",
-		position:"StringFilter",
+		position:"LocalizedStringFilter",
 		category:"StringFilter",
-		description:"StringFilter",
+		description:"LocalizedTextFilter",
 		image:"ImageFilter",
 		video:"FileFilter"
 	},
@@ -647,24 +650,29 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"SortOrder",
 		_rev:"SortOrder",
 		_key:"SortOrder",
-		name:"SortOrder",
-		description:"SortOrder",
-		date:"SortOrder",
-		time:"TimeTypeSorting",
+		name:"LocalizedStringSorting",
+		description:"LocalizedTextSorting",
+		start_date_time:"SortOrder",
+		end_date_time:"SortOrder",
 		image:"ImageSorting",
+		image_alt:"LocalizedStringSorting",
 		location:"LocationSorting",
-		how_to_signup:"SortOrder",
+		how_to_signup:"LocalizedTextSorting",
 		external_organizer:"SortOrder",
-		cost:"SortOrder",
-		additional_notes:"SortOrder"
+		cost:"LocalizedStringSorting",
+		additional_notes:"LocalizedTextSorting"
 	},
-	TimeTypeSorting:{
+	LocalizedStringSorting:{
 		_key:"SortOrder",
 		_type:"SortOrder",
-		hour:"SortOrder",
-		minute:"SortOrder",
-		time_of_day:"SortOrder",
-		time_zone:"SortOrder"
+		en:"SortOrder",
+		es:"SortOrder"
+	},
+	LocalizedTextSorting:{
+		_key:"SortOrder",
+		_type:"SortOrder",
+		en:"SortOrder",
+		es:"SortOrder"
 	},
 	ImageSorting:{
 		_key:"SortOrder",
@@ -712,9 +720,9 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"SortOrder",
 		_rev:"SortOrder",
 		_key:"SortOrder",
-		position:"SortOrder",
+		position:"LocalizedStringSorting",
 		category:"SortOrder",
-		description:"SortOrder",
+		description:"LocalizedTextSorting",
 		image:"ImageSorting",
 		video:"FileSorting"
 	},
@@ -731,12 +739,22 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"DatetimeFilter",
 		_rev:"StringFilter",
 		_key:"StringFilter",
-		name:"StringFilter",
+		name:"LocalizedStringFilter",
 		slug:"SlugFilter",
+		description:"LocalizedPortableTextFilter",
 		image:"ImageFilter",
+		image_alt:"LocalizedStringFilter",
 		start_date:"DateFilter",
 		end_date:"DateFilter",
 		accepting_new_students:"BooleanFilter"
+	},
+	DateFilter:{
+		eq:"Date",
+		neq:"Date",
+		gt:"Date",
+		gte:"Date",
+		lt:"Date",
+		lte:"Date"
 	},
 	DeepDiveSorting:{
 		_id:"SortOrder",
@@ -745,9 +763,11 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"SortOrder",
 		_rev:"SortOrder",
 		_key:"SortOrder",
-		name:"SortOrder",
+		name:"LocalizedStringSorting",
 		slug:"SlugSorting",
+		description:"LocalizedPortableTextSorting",
 		image:"ImageSorting",
+		image_alt:"LocalizedStringSorting",
 		start_date:"SortOrder",
 		end_date:"SortOrder",
 		accepting_new_students:"SortOrder"
@@ -758,6 +778,10 @@ export const AllTypesProps: Record<string,any> = {
 		current:"SortOrder",
 		source:"SortOrder"
 	},
+	LocalizedPortableTextSorting:{
+		_key:"SortOrder",
+		_type:"SortOrder"
+	},
 	MinistrySorting:{
 		_id:"SortOrder",
 		_type:"SortOrder",
@@ -765,16 +789,18 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"SortOrder",
 		_rev:"SortOrder",
 		_key:"SortOrder",
-		name:"SortOrder",
+		name:"LocalizedStringSorting",
 		slug:"SlugSorting",
 		scripture:"ScriptureSorting",
-		image:"ImageSorting"
+		description:"LocalizedPortableTextSorting",
+		image:"ImageSorting",
+		image_alt:"LocalizedStringSorting"
 	},
 	ScriptureSorting:{
 		_key:"SortOrder",
 		_type:"SortOrder",
-		passage:"SortOrder",
-		verse:"SortOrder"
+		passage:"LocalizedTextSorting",
+		verse:"LocalizedStringSorting"
 	},
 	NextGenPageFilter:{
 		_:"Sanity_DocumentFilter",
@@ -803,17 +829,18 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"DatetimeFilter",
 		_rev:"StringFilter",
 		_key:"StringFilter",
-		header:"StringFilter",
-		title:"StringFilter",
-		description:"StringFilter",
+		header:"LocalizedStringFilter",
+		title:"LocalizedStringFilter",
+		description:"LocalizedTextFilter",
 		link:"LinkFilter",
 		image:"ImageFilter",
+		image_alt:"LocalizedStringFilter",
 		video:"FileFilter"
 	},
 	LinkFilter:{
 		_key:"StringFilter",
 		_type:"StringFilter",
-		label:"StringFilter",
+		label:"LocalizedStringFilter",
 		internal_href:"StringFilter",
 		external_href:"StringFilter"
 	},
@@ -824,17 +851,18 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"SortOrder",
 		_rev:"SortOrder",
 		_key:"SortOrder",
-		header:"SortOrder",
-		title:"SortOrder",
-		description:"SortOrder",
+		header:"LocalizedStringSorting",
+		title:"LocalizedStringSorting",
+		description:"LocalizedTextSorting",
 		link:"LinkSorting",
 		image:"ImageSorting",
+		image_alt:"LocalizedStringSorting",
 		video:"FileSorting"
 	},
 	LinkSorting:{
 		_key:"SortOrder",
 		_type:"SortOrder",
-		label:"SortOrder",
+		label:"LocalizedStringSorting",
 		internal_href:"SortOrder",
 		external_href:"SortOrder"
 	},
@@ -848,8 +876,8 @@ export const AllTypesProps: Record<string,any> = {
 		_key:"StringFilter",
 		contact:"ContactFilter",
 		position:"StringFilter",
-		main_point:"StringFilter",
-		statement:"StringFilter",
+		main_point:"LocalizedTextFilter",
+		statement:"LocalizedTextFilter",
 		image:"ImageFilter"
 	},
 	TestimonialSorting:{
@@ -860,8 +888,8 @@ export const AllTypesProps: Record<string,any> = {
 		_rev:"SortOrder",
 		_key:"SortOrder",
 		position:"SortOrder",
-		main_point:"SortOrder",
-		statement:"SortOrder",
+		main_point:"LocalizedTextSorting",
+		statement:"LocalizedTextSorting",
 		image:"ImageSorting"
 	},
 	ResourceFilter:{
@@ -872,12 +900,12 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"DatetimeFilter",
 		_rev:"StringFilter",
 		_key:"StringFilter",
-		title:"StringFilter",
+		title:"LocalizedStringFilter",
 		type:"StringFilter",
-		description:"StringFilter",
+		description:"LocalizedTextFilter",
 		category:"StringFilter",
 		file:"FileFilter",
-		file_size:"StringFilter",
+		file_size:"LocalizedStringFilter",
 		url:"StringFilter",
 		is_active:"BooleanFilter"
 	},
@@ -888,12 +916,12 @@ export const AllTypesProps: Record<string,any> = {
 		_updatedAt:"SortOrder",
 		_rev:"SortOrder",
 		_key:"SortOrder",
-		title:"SortOrder",
+		title:"LocalizedStringSorting",
 		type:"SortOrder",
-		description:"SortOrder",
+		description:"LocalizedTextSorting",
 		category:"SortOrder",
 		file:"FileSorting",
-		file_size:"SortOrder",
+		file_size:"LocalizedStringSorting",
 		url:"SortOrder",
 		is_active:"SortOrder"
 	},
@@ -927,7 +955,7 @@ export const AllTypesProps: Record<string,any> = {
 		_key:"StringFilter",
 		_type:"StringFilter",
 		day:"StringFilter",
-		time:"TimeTypeFilter",
+		time:"StringFilter",
 		attendance_type:"StringFilter"
 	},
 	CrossDatasetReferenceSorting:{
@@ -942,7 +970,7 @@ export const AllTypesProps: Record<string,any> = {
 		_key:"SortOrder",
 		_type:"SortOrder",
 		day:"SortOrder",
-		time:"TimeTypeSorting",
+		time:"SortOrder",
 		attendance_type:"SortOrder"
 	},
 	ID: `scalar.ID` as const
@@ -1209,28 +1237,32 @@ export const ReturnTypes: Record<string,any> = {
 		_updatedAt:"DateTime",
 		_rev:"String",
 		_key:"String",
-		name:"String",
-		description:"String",
-		date:"Date",
-		time:"TimeType",
+		name:"LocalizedString",
+		description:"LocalizedText",
+		start_date_time:"DateTime",
+		end_date_time:"DateTime",
 		categories:"String",
 		image:"Image",
+		image_alt:"LocalizedString",
 		location:"Location",
-		how_to_signup:"String",
+		how_to_signup:"LocalizedText",
 		associated_ministry:"Ministry",
 		external_organizer:"String",
-		help_needed:"String",
-		cost:"String",
-		additional_notes:"String"
+		help_needed:"LocalizedString",
+		cost:"LocalizedString",
+		additional_notes:"LocalizedText"
 	},
-	Date: `scalar.Date` as const,
-	TimeType:{
+	LocalizedString:{
 		_key:"String",
 		_type:"String",
-		hour:"String",
-		minute:"String",
-		time_of_day:"String",
-		time_zone:"String"
+		en:"String",
+		es:"String"
+	},
+	LocalizedText:{
+		_key:"String",
+		_type:"String",
+		en:"String",
+		es:"String"
 	},
 	Image:{
 		_key:"String",
@@ -1279,13 +1311,14 @@ export const ReturnTypes: Record<string,any> = {
 		_updatedAt:"DateTime",
 		_rev:"String",
 		_key:"String",
-		name:"String",
+		name:"LocalizedString",
 		slug:"Slug",
 		scripture:"Scripture",
-		descriptionRaw:"JSON",
+		description:"LocalizedPortableText",
 		coordinators:"Leader",
 		coach:"Leader",
-		image:"Image"
+		image:"Image",
+		image_alt:"LocalizedString"
 	},
 	Slug:{
 		_key:"String",
@@ -1296,8 +1329,14 @@ export const ReturnTypes: Record<string,any> = {
 	Scripture:{
 		_key:"String",
 		_type:"String",
-		passage:"String",
-		verse:"String"
+		passage:"LocalizedText",
+		verse:"LocalizedString"
+	},
+	LocalizedPortableText:{
+		_key:"String",
+		_type:"String",
+		enRaw:"JSON",
+		esRaw:"JSON"
 	},
 	JSON: `scalar.JSON` as const,
 	Leader:{
@@ -1308,9 +1347,9 @@ export const ReturnTypes: Record<string,any> = {
 		_rev:"String",
 		_key:"String",
 		contact:"Contact",
-		position:"String",
+		position:"LocalizedString",
 		category:"String",
-		description:"String",
+		description:"LocalizedText",
 		image:"Image",
 		video:"File"
 	},
@@ -1327,22 +1366,24 @@ export const ReturnTypes: Record<string,any> = {
 		_updatedAt:"DateTime",
 		_rev:"String",
 		_key:"String",
-		name:"String",
+		name:"LocalizedString",
 		slug:"Slug",
-		descriptionRaw:"JSON",
+		description:"LocalizedPortableText",
 		instructors:"Leader",
 		image:"Image",
+		image_alt:"LocalizedString",
 		start_date:"Date",
 		end_date:"Date",
-		required_materials:"String",
+		required_materials:"LocalizedString",
 		meeting_details:"MeetingDetails",
 		accepting_new_students:"Boolean"
 	},
+	Date: `scalar.Date` as const,
 	MeetingDetails:{
 		_key:"String",
 		_type:"String",
 		day:"String",
-		time:"TimeType",
+		time:"String",
 		attendance_type:"String"
 	},
 	NextGenPage:{
@@ -1362,17 +1403,18 @@ export const ReturnTypes: Record<string,any> = {
 		_updatedAt:"DateTime",
 		_rev:"String",
 		_key:"String",
-		header:"String",
-		title:"String",
-		description:"String",
+		header:"LocalizedString",
+		title:"LocalizedString",
+		description:"LocalizedText",
 		link:"Link",
 		image:"Image",
+		image_alt:"LocalizedString",
 		video:"File"
 	},
 	Link:{
 		_key:"String",
 		_type:"String",
-		label:"String",
+		label:"LocalizedString",
 		internal_href:"String",
 		external_href:"String"
 	},
@@ -1385,8 +1427,8 @@ export const ReturnTypes: Record<string,any> = {
 		_key:"String",
 		contact:"Contact",
 		position:"String",
-		main_point:"String",
-		statement:"String",
+		main_point:"LocalizedText",
+		statement:"LocalizedText",
 		image:"Image"
 	},
 	Resource:{
@@ -1396,12 +1438,12 @@ export const ReturnTypes: Record<string,any> = {
 		_updatedAt:"DateTime",
 		_rev:"String",
 		_key:"String",
-		title:"String",
+		title:"LocalizedString",
 		type:"String",
-		description:"String",
+		description:"LocalizedText",
 		category:"String",
 		file:"File",
-		file_size:"String",
+		file_size:"LocalizedString",
 		url:"String",
 		is_active:"Boolean"
 	},

@@ -3,6 +3,7 @@ import Trash from '@/components/icons/trash';
 import { useCart } from '@/data/client/shopify/use-cart';
 import { formatPrice, Price } from '@/data/format-price';
 import { Badge } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 interface LineItemProps {
@@ -24,6 +25,8 @@ const LineItem: React.FC<LineItemProps> = ({
   subtotal,
   pickupOnly,
 }) => {
+  const t = useTranslations('Cart');
+
   const { cartLoading, updateCartItems, removeCartItems } = useCart();
 
   return (
@@ -32,14 +35,14 @@ const LineItem: React.FC<LineItemProps> = ({
         <div className="relative">
           {!cartLineId && quantity > 1 && (
             <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-10 flex flex-row items-center justify-center rounded-lg">
-              <h4 className="text-white font-bold">+{quantity}</h4>
+              <h4 className="text-white font-bold">{t('modal.count', { quantity })}</h4>
             </div>
           )}
           <Image
             width={65}
             height={65}
             src={imageSrc}
-            alt={`${title} Product Image`}
+            alt={t('modal.imageAlt', { name: title })}
             className="object-cover size-[80px] aspect-square rounded-lg"
           />
         </div>
@@ -52,12 +55,12 @@ const LineItem: React.FC<LineItemProps> = ({
                 key={opt.name}
                 className="capitalize body-small text-light-secondaryText dark:text-dark-primaryText"
               >
-                {opt.name}: {opt.value}
+                {t('modal.selection', { name: opt.name, value: opt.value })}
               </p>
             ))}
           {pickupOnly && (
             <Badge color="warning" size="sm" className="mt-xs">
-              Pickup required
+              {t('modal.pickup')}
             </Badge>
           )}
         </div>

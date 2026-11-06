@@ -3,20 +3,23 @@ import VideoCard from '@/components/cards/video-card/VideoCard';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { Locale } from '@/data/i18n/utils';
 
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL, YOUTUBE } from '@/data/server/env.server';
 import { getPlaylists } from '@/data/server/youtube/playlists';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'Sermons' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.sermons}`;
   const image = '/images/sermons/pastor-preaching.webp';
+
   return {
     title,
     description,

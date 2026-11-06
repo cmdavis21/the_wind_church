@@ -27,9 +27,9 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ changeColor }) => {
       changeColor={changeColor}
       onLocaleChange={handleLocaleChange}
     >
-      {LOCALES.map((cur) => (
-        <option key={cur} value={cur}>
-          {t('locale', { locale: cur })}
+      {LOCALES.map(({ id }) => (
+        <option key={id} value={id}>
+          {t('locale', { locale: id })}
         </option>
       ))}
     </LanguageSelectorSelect>

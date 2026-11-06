@@ -1073,8 +1073,8 @@ export const $ = <Type extends GraphQLVariableType, Name extends string>(name: N
 type ZEUS_INTERFACES = GraphQLTypes["Document"]
 export type ScalarCoders = {
 	DateTime?: ScalarResolver;
-	Date?: ScalarResolver;
 	JSON?: ScalarResolver;
+	Date?: ScalarResolver;
 	ID?: ScalarResolver;
 }
 type ZEUS_UNIONS = never
@@ -1477,39 +1477,40 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	name?:boolean | `@${string}`,
-	/** Describe the event. */
-	description?:boolean | `@${string}`,
-	date?:boolean | `@${string}`,
-	time?:ValueTypes["TimeType"],
+	name?:ValueTypes["LocalizedString"],
+	description?:ValueTypes["LocalizedText"],
+	start_date_time?:boolean | `@${string}`,
+	end_date_time?:boolean | `@${string}`,
 	categories?:boolean | `@${string}`,
 	image?:ValueTypes["Image"],
+	image_alt?:ValueTypes["LocalizedString"],
 	location?:ValueTypes["Location"],
-	/** Instructions for how to join/participate in this event. */
-	how_to_signup?:boolean | `@${string}`,
+	how_to_signup?:ValueTypes["LocalizedText"],
 	/** Select if a Ministry is associated with this event. */
 	associated_ministry?:ValueTypes["Ministry"],
 	/** Is there an external organization for this event? */
 	external_organizer?:boolean | `@${string}`,
-	help_needed?:boolean | `@${string}`,
-	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
-	cost?:boolean | `@${string}`,
-	/** Are there any additional notes or instructions to add? */
-	additional_notes?:boolean | `@${string}`,
+	help_needed?:ValueTypes["LocalizedString"],
+	cost?:ValueTypes["LocalizedString"],
+	additional_notes?:ValueTypes["LocalizedText"],
 		__typename?: boolean | `@${string}`,
 	['...on Event']?: Omit<ValueTypes["Event"], "...on Event">
 }>;
-	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-["Date"]:unknown;
-	["TimeType"]: AliasType<{
+	["LocalizedString"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
-	hour?:boolean | `@${string}`,
-	minute?:boolean | `@${string}`,
-	time_of_day?:boolean | `@${string}`,
-	time_zone?:boolean | `@${string}`,
+	en?:boolean | `@${string}`,
+	es?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`,
-	['...on TimeType']?: Omit<ValueTypes["TimeType"], "...on TimeType">
+	['...on LocalizedString']?: Omit<ValueTypes["LocalizedString"], "...on LocalizedString">
+}>;
+	["LocalizedText"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	en?:boolean | `@${string}`,
+	es?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`,
+	['...on LocalizedText']?: Omit<ValueTypes["LocalizedText"], "...on LocalizedText">
 }>;
 	["Image"]: AliasType<{
 	_key?:boolean | `@${string}`,
@@ -1574,14 +1575,15 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	name?:boolean | `@${string}`,
+	name?:ValueTypes["LocalizedString"],
 	slug?:ValueTypes["Slug"],
 	scripture?:ValueTypes["Scripture"],
-	descriptionRaw?:boolean | `@${string}`,
+	description?:ValueTypes["LocalizedPortableText"],
 	coordinators?:ValueTypes["Leader"],
 	/** Select the coach for this ministry. */
 	coach?:ValueTypes["Leader"],
 	image?:ValueTypes["Image"],
+	image_alt?:ValueTypes["LocalizedString"],
 		__typename?: boolean | `@${string}`,
 	['...on Ministry']?: Omit<ValueTypes["Ministry"], "...on Ministry">
 }>;
@@ -1596,10 +1598,18 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	["Scripture"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
-	passage?:boolean | `@${string}`,
-	verse?:boolean | `@${string}`,
+	passage?:ValueTypes["LocalizedText"],
+	verse?:ValueTypes["LocalizedString"],
 		__typename?: boolean | `@${string}`,
 	['...on Scripture']?: Omit<ValueTypes["Scripture"], "...on Scripture">
+}>;
+	["LocalizedPortableText"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	enRaw?:boolean | `@${string}`,
+	esRaw?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`,
+	['...on LocalizedPortableText']?: Omit<ValueTypes["LocalizedPortableText"], "...on LocalizedPortableText">
 }>;
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]:unknown;
@@ -1616,12 +1626,10 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
 	contact?:ValueTypes["Contact"],
-	/** The official position assigned to the Leader. */
-	position?:boolean | `@${string}`,
+	position?:ValueTypes["LocalizedString"],
 	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
 	category?:boolean | `@${string}`,
-	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
-	description?:boolean | `@${string}`,
+	description?:ValueTypes["LocalizedText"],
 	image?:ValueTypes["Image"],
 	video?:ValueTypes["File"],
 		__typename?: boolean | `@${string}`,
@@ -1647,25 +1655,29 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	name?:boolean | `@${string}`,
+	name?:ValueTypes["LocalizedString"],
 	slug?:ValueTypes["Slug"],
-	descriptionRaw?:boolean | `@${string}`,
+	description?:ValueTypes["LocalizedPortableText"],
 	instructors?:ValueTypes["Leader"],
 	image?:ValueTypes["Image"],
+	image_alt?:ValueTypes["LocalizedString"],
 	start_date?:boolean | `@${string}`,
 	end_date?:boolean | `@${string}`,
-	required_materials?:boolean | `@${string}`,
+	required_materials?:ValueTypes["LocalizedString"],
 	meeting_details?:ValueTypes["MeetingDetails"],
-	/** Is this deep dive actively accepting new Students? */
+	/** Is this course actively accepting new Students? */
 	accepting_new_students?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`,
 	['...on DeepDive']?: Omit<ValueTypes["DeepDive"], "...on DeepDive">
 }>;
+	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+["Date"]:unknown;
 	["MeetingDetails"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	day?:boolean | `@${string}`,
-	time?:ValueTypes["TimeType"],
+	/** Example: 7:00 PM */
+	time?:boolean | `@${string}`,
 	attendance_type?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`,
 	['...on MeetingDetails']?: Omit<ValueTypes["MeetingDetails"], "...on MeetingDetails">
@@ -1699,14 +1711,12 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	/** What is the subject of this promotion? */
-	header?:boolean | `@${string}`,
-	/** What is the descriptive title of this promotion? */
-	title?:boolean | `@${string}`,
-	/** What is the description of this promotion? */
-	description?:boolean | `@${string}`,
+	header?:ValueTypes["LocalizedString"],
+	title?:ValueTypes["LocalizedString"],
+	description?:ValueTypes["LocalizedText"],
 	link?:ValueTypes["Link"],
 	image?:ValueTypes["Image"],
+	image_alt?:ValueTypes["LocalizedString"],
 	video?:ValueTypes["File"],
 		__typename?: boolean | `@${string}`,
 	['...on PromoBanner']?: Omit<ValueTypes["PromoBanner"], "...on PromoBanner">
@@ -1714,7 +1724,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	["Link"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
-	label?:boolean | `@${string}`,
+	label?:ValueTypes["LocalizedString"],
 	internal_href?:boolean | `@${string}`,
 	/** Optional external link (e.g., https://example.com) */
 	external_href?:boolean | `@${string}`,
@@ -1736,10 +1746,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	contact?:ValueTypes["Contact"],
 	/** Select a position this person belongs to. */
 	position?:boolean | `@${string}`,
-	/** This highlights the big idea or main point of their testimony (1 sentence max). */
-	main_point?:boolean | `@${string}`,
-	/** The person's statement (1-3 sentences). */
-	statement?:boolean | `@${string}`,
+	main_point?:ValueTypes["LocalizedText"],
+	statement?:ValueTypes["LocalizedText"],
 	image?:ValueTypes["Image"],
 		__typename?: boolean | `@${string}`,
 	['...on Testimonial']?: Omit<ValueTypes["Testimonial"], "...on Testimonial">
@@ -1756,16 +1764,14 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	title?:boolean | `@${string}`,
+	title?:ValueTypes["LocalizedString"],
 	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
 	type?:boolean | `@${string}`,
-	/** A one sentence explanation of what this resource is or how it should be used. */
-	description?:boolean | `@${string}`,
+	description?:ValueTypes["LocalizedText"],
 	/** Choose the group this resource belongs to. */
 	category?:boolean | `@${string}`,
 	file?:ValueTypes["File"],
-	/** Add the file size or format (e.g., “PDF – 497 KB”). */
-	file_size?:boolean | `@${string}`,
+	file_size?:ValueTypes["LocalizedString"],
 	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
 	url?:boolean | `@${string}`,
 	/** Toggle to hide the resource from the website without deleting it. */
@@ -2221,41 +2227,30 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	name?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	description?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	date?: ValueTypes["DateFilter"] | undefined | null | Variable<any, string>,
-	time?: ValueTypes["TimeTypeFilter"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedTextFilter"] | undefined | null | Variable<any, string>,
+	start_date_time?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
+	end_date_time?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
+	image_alt?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
 	location?: ValueTypes["LocationFilter"] | undefined | null | Variable<any, string>,
-	how_to_signup?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	how_to_signup?: ValueTypes["LocalizedTextFilter"] | undefined | null | Variable<any, string>,
 	associated_ministry?: ValueTypes["MinistryFilter"] | undefined | null | Variable<any, string>,
 	external_organizer?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	cost?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	additional_notes?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+	cost?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
+	additional_notes?: ValueTypes["LocalizedTextFilter"] | undefined | null | Variable<any, string>
 };
-	["DateFilter"]: {
-	/** Checks if the value is equal to the given input. */
-	eq?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
-	/** Checks if the value is not equal to the given input. */
-	neq?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
-	/** Checks if the value is greater than the given input. */
-	gt?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
-	/** Checks if the value is greater than or equal to the given input. */
-	gte?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
-	/** Checks if the value is lesser than the given input. */
-	lt?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
-	/** Checks if the value is lesser than or equal to the given input. */
-	lte?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
-	/** Checks if the value is defined. */
-	is_defined?: boolean | undefined | null | Variable<any, string>
-};
-	["TimeTypeFilter"]: {
+	["LocalizedStringFilter"]: {
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	hour?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	minute?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	time_of_day?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	time_zone?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+	en?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	es?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+};
+	["LocalizedTextFilter"]: {
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	en?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	es?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
 	["ImageFilter"]: {
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
@@ -2306,11 +2301,13 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	name?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
 	slug?: ValueTypes["SlugFilter"] | undefined | null | Variable<any, string>,
 	scripture?: ValueTypes["ScriptureFilter"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedPortableTextFilter"] | undefined | null | Variable<any, string>,
 	coach?: ValueTypes["LeaderFilter"] | undefined | null | Variable<any, string>,
-	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>
+	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
+	image_alt?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>
 };
 	["SlugFilter"]: {
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
@@ -2321,8 +2318,12 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	["ScriptureFilter"]: {
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	passage?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	verse?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
+	passage?: ValueTypes["LocalizedTextFilter"] | undefined | null | Variable<any, string>,
+	verse?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>
+};
+	["LocalizedPortableTextFilter"]: {
+	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
 	["LeaderFilter"]: {
 	/** Apply filters on document level */
@@ -2334,9 +2335,9 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	contact?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,
-	position?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	position?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
 	category?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	description?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedTextFilter"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
 	video?: ValueTypes["FileFilter"] | undefined | null | Variable<any, string>
 };
@@ -2353,24 +2354,29 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	name?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	description?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	date?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	time?: ValueTypes["TimeTypeSorting"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>,
+	start_date_time?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	end_date_time?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>,
+	image_alt?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
 	location?: ValueTypes["LocationSorting"] | undefined | null | Variable<any, string>,
-	how_to_signup?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	how_to_signup?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>,
 	external_organizer?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	cost?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	additional_notes?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+	cost?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
+	additional_notes?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>
 };
-	["TimeTypeSorting"]: {
+	["LocalizedStringSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	hour?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	minute?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	time_of_day?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	time_zone?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+	en?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	es?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+};
+	["LocalizedTextSorting"]: {
+	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	en?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	es?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["ImageSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2418,9 +2424,9 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	position?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	position?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
 	category?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	description?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>,
 	video?: ValueTypes["FileSorting"] | undefined | null | Variable<any, string>
 };
@@ -2438,12 +2444,30 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	name?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
 	slug?: ValueTypes["SlugFilter"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedPortableTextFilter"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
+	image_alt?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
 	start_date?: ValueTypes["DateFilter"] | undefined | null | Variable<any, string>,
 	end_date?: ValueTypes["DateFilter"] | undefined | null | Variable<any, string>,
 	accepting_new_students?: ValueTypes["BooleanFilter"] | undefined | null | Variable<any, string>
+};
+	["DateFilter"]: {
+	/** Checks if the value is equal to the given input. */
+	eq?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
+	/** Checks if the value is not equal to the given input. */
+	neq?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
+	/** Checks if the value is greater than the given input. */
+	gt?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
+	/** Checks if the value is greater than or equal to the given input. */
+	gte?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
+	/** Checks if the value is lesser than the given input. */
+	lt?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
+	/** Checks if the value is lesser than or equal to the given input. */
+	lte?: ValueTypes["Date"] | undefined | null | Variable<any, string>,
+	/** Checks if the value is defined. */
+	is_defined?: boolean | undefined | null | Variable<any, string>
 };
 	["DeepDiveSorting"]: {
 	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2452,9 +2476,11 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	name?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
 	slug?: ValueTypes["SlugSorting"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedPortableTextSorting"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>,
+	image_alt?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
 	start_date?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	end_date?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	accepting_new_students?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
@@ -2465,6 +2491,10 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	current?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	source?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
+	["LocalizedPortableTextSorting"]: {
+	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+};
 	["MinistrySorting"]: {
 	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
@@ -2472,16 +2502,18 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	name?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
 	slug?: ValueTypes["SlugSorting"] | undefined | null | Variable<any, string>,
 	scripture?: ValueTypes["ScriptureSorting"] | undefined | null | Variable<any, string>,
-	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>
+	description?: ValueTypes["LocalizedPortableTextSorting"] | undefined | null | Variable<any, string>,
+	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>,
+	image_alt?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>
 };
 	["ScriptureSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	passage?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	verse?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
+	passage?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>,
+	verse?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>
 };
 	["NextGenPageFilter"]: {
 	/** Apply filters on document level */
@@ -2512,17 +2544,18 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	header?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	title?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	description?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	header?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
+	title?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedTextFilter"] | undefined | null | Variable<any, string>,
 	link?: ValueTypes["LinkFilter"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>,
+	image_alt?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
 	video?: ValueTypes["FileFilter"] | undefined | null | Variable<any, string>
 };
 	["LinkFilter"]: {
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	label?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	label?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
 	internal_href?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	external_href?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
@@ -2533,17 +2566,18 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	header?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	title?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	description?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	header?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
+	title?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>,
 	link?: ValueTypes["LinkSorting"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>,
+	image_alt?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
 	video?: ValueTypes["FileSorting"] | undefined | null | Variable<any, string>
 };
 	["LinkSorting"]: {
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	label?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	label?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
 	internal_href?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	external_href?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
@@ -2558,8 +2592,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	contact?: ValueTypes["ContactFilter"] | undefined | null | Variable<any, string>,
 	position?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	main_point?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	statement?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	main_point?: ValueTypes["LocalizedTextFilter"] | undefined | null | Variable<any, string>,
+	statement?: ValueTypes["LocalizedTextFilter"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageFilter"] | undefined | null | Variable<any, string>
 };
 	["TestimonialSorting"]: {
@@ -2570,8 +2604,8 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	position?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	main_point?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	statement?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	main_point?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>,
+	statement?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>,
 	image?: ValueTypes["ImageSorting"] | undefined | null | Variable<any, string>
 };
 	["ResourceFilter"]: {
@@ -2583,12 +2617,12 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	title?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	title?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	description?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedTextFilter"] | undefined | null | Variable<any, string>,
 	category?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	file?: ValueTypes["FileFilter"] | undefined | null | Variable<any, string>,
-	file_size?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
+	file_size?: ValueTypes["LocalizedStringFilter"] | undefined | null | Variable<any, string>,
 	url?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	is_active?: ValueTypes["BooleanFilter"] | undefined | null | Variable<any, string>
 };
@@ -2599,12 +2633,12 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	title?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	title?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	description?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	description?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>,
 	category?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	file?: ValueTypes["FileSorting"] | undefined | null | Variable<any, string>,
-	file_size?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
+	file_size?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>,
 	url?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	is_active?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
@@ -2680,7 +2714,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	day?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	time?: ValueTypes["TimeTypeFilter"] | undefined | null | Variable<any, string>,
+	time?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
 	attendance_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>
 };
 	["CrossDatasetReferenceSorting"]: {
@@ -2695,7 +2729,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	day?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	time?: ValueTypes["TimeTypeSorting"] | undefined | null | Variable<any, string>,
+	time?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
 	attendance_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>
 };
 	["ID"]:unknown
@@ -3087,36 +3121,36 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	name?:boolean | `@${string}`,
-	/** Describe the event. */
-	description?:boolean | `@${string}`,
-	date?:boolean | `@${string}`,
-	time?:ResolverInputTypes["TimeType"],
+	name?:ResolverInputTypes["LocalizedString"],
+	description?:ResolverInputTypes["LocalizedText"],
+	start_date_time?:boolean | `@${string}`,
+	end_date_time?:boolean | `@${string}`,
 	categories?:boolean | `@${string}`,
 	image?:ResolverInputTypes["Image"],
+	image_alt?:ResolverInputTypes["LocalizedString"],
 	location?:ResolverInputTypes["Location"],
-	/** Instructions for how to join/participate in this event. */
-	how_to_signup?:boolean | `@${string}`,
+	how_to_signup?:ResolverInputTypes["LocalizedText"],
 	/** Select if a Ministry is associated with this event. */
 	associated_ministry?:ResolverInputTypes["Ministry"],
 	/** Is there an external organization for this event? */
 	external_organizer?:boolean | `@${string}`,
-	help_needed?:boolean | `@${string}`,
-	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
-	cost?:boolean | `@${string}`,
-	/** Are there any additional notes or instructions to add? */
-	additional_notes?:boolean | `@${string}`,
+	help_needed?:ResolverInputTypes["LocalizedString"],
+	cost?:ResolverInputTypes["LocalizedString"],
+	additional_notes?:ResolverInputTypes["LocalizedText"],
 		__typename?: boolean | `@${string}`
 }>;
-	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-["Date"]:unknown;
-	["TimeType"]: AliasType<{
+	["LocalizedString"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
-	hour?:boolean | `@${string}`,
-	minute?:boolean | `@${string}`,
-	time_of_day?:boolean | `@${string}`,
-	time_zone?:boolean | `@${string}`,
+	en?:boolean | `@${string}`,
+	es?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["LocalizedText"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	en?:boolean | `@${string}`,
+	es?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["Image"]: AliasType<{
@@ -3177,14 +3211,15 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	name?:boolean | `@${string}`,
+	name?:ResolverInputTypes["LocalizedString"],
 	slug?:ResolverInputTypes["Slug"],
 	scripture?:ResolverInputTypes["Scripture"],
-	descriptionRaw?:boolean | `@${string}`,
+	description?:ResolverInputTypes["LocalizedPortableText"],
 	coordinators?:ResolverInputTypes["Leader"],
 	/** Select the coach for this ministry. */
 	coach?:ResolverInputTypes["Leader"],
 	image?:ResolverInputTypes["Image"],
+	image_alt?:ResolverInputTypes["LocalizedString"],
 		__typename?: boolean | `@${string}`
 }>;
 	["Slug"]: AliasType<{
@@ -3197,8 +3232,15 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	["Scripture"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
-	passage?:boolean | `@${string}`,
-	verse?:boolean | `@${string}`,
+	passage?:ResolverInputTypes["LocalizedText"],
+	verse?:ResolverInputTypes["LocalizedString"],
+		__typename?: boolean | `@${string}`
+}>;
+	["LocalizedPortableText"]: AliasType<{
+	_key?:boolean | `@${string}`,
+	_type?:boolean | `@${string}`,
+	enRaw?:boolean | `@${string}`,
+	esRaw?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
@@ -3216,12 +3258,10 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
 	contact?:ResolverInputTypes["Contact"],
-	/** The official position assigned to the Leader. */
-	position?:boolean | `@${string}`,
+	position?:ResolverInputTypes["LocalizedString"],
 	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
 	category?:boolean | `@${string}`,
-	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
-	description?:boolean | `@${string}`,
+	description?:ResolverInputTypes["LocalizedText"],
 	image?:ResolverInputTypes["Image"],
 	video?:ResolverInputTypes["File"],
 		__typename?: boolean | `@${string}`
@@ -3245,24 +3285,28 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	name?:boolean | `@${string}`,
+	name?:ResolverInputTypes["LocalizedString"],
 	slug?:ResolverInputTypes["Slug"],
-	descriptionRaw?:boolean | `@${string}`,
+	description?:ResolverInputTypes["LocalizedPortableText"],
 	instructors?:ResolverInputTypes["Leader"],
 	image?:ResolverInputTypes["Image"],
+	image_alt?:ResolverInputTypes["LocalizedString"],
 	start_date?:boolean | `@${string}`,
 	end_date?:boolean | `@${string}`,
-	required_materials?:boolean | `@${string}`,
+	required_materials?:ResolverInputTypes["LocalizedString"],
 	meeting_details?:ResolverInputTypes["MeetingDetails"],
-	/** Is this deep dive actively accepting new Students? */
+	/** Is this course actively accepting new Students? */
 	accepting_new_students?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
+	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+["Date"]:unknown;
 	["MeetingDetails"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
 	day?:boolean | `@${string}`,
-	time?:ResolverInputTypes["TimeType"],
+	/** Example: 7:00 PM */
+	time?:boolean | `@${string}`,
 	attendance_type?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3294,21 +3338,19 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	/** What is the subject of this promotion? */
-	header?:boolean | `@${string}`,
-	/** What is the descriptive title of this promotion? */
-	title?:boolean | `@${string}`,
-	/** What is the description of this promotion? */
-	description?:boolean | `@${string}`,
+	header?:ResolverInputTypes["LocalizedString"],
+	title?:ResolverInputTypes["LocalizedString"],
+	description?:ResolverInputTypes["LocalizedText"],
 	link?:ResolverInputTypes["Link"],
 	image?:ResolverInputTypes["Image"],
+	image_alt?:ResolverInputTypes["LocalizedString"],
 	video?:ResolverInputTypes["File"],
 		__typename?: boolean | `@${string}`
 }>;
 	["Link"]: AliasType<{
 	_key?:boolean | `@${string}`,
 	_type?:boolean | `@${string}`,
-	label?:boolean | `@${string}`,
+	label?:ResolverInputTypes["LocalizedString"],
 	internal_href?:boolean | `@${string}`,
 	/** Optional external link (e.g., https://example.com) */
 	external_href?:boolean | `@${string}`,
@@ -3329,10 +3371,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	contact?:ResolverInputTypes["Contact"],
 	/** Select a position this person belongs to. */
 	position?:boolean | `@${string}`,
-	/** This highlights the big idea or main point of their testimony (1 sentence max). */
-	main_point?:boolean | `@${string}`,
-	/** The person's statement (1-3 sentences). */
-	statement?:boolean | `@${string}`,
+	main_point?:ResolverInputTypes["LocalizedText"],
+	statement?:ResolverInputTypes["LocalizedText"],
 	image?:ResolverInputTypes["Image"],
 		__typename?: boolean | `@${string}`
 }>;
@@ -3348,16 +3388,14 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	/** Current document revision */
 	_rev?:boolean | `@${string}`,
 	_key?:boolean | `@${string}`,
-	title?:boolean | `@${string}`,
+	title?:ResolverInputTypes["LocalizedString"],
 	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
 	type?:boolean | `@${string}`,
-	/** A one sentence explanation of what this resource is or how it should be used. */
-	description?:boolean | `@${string}`,
+	description?:ResolverInputTypes["LocalizedText"],
 	/** Choose the group this resource belongs to. */
 	category?:boolean | `@${string}`,
 	file?:ResolverInputTypes["File"],
-	/** Add the file size or format (e.g., “PDF – 497 KB”). */
-	file_size?:boolean | `@${string}`,
+	file_size?:ResolverInputTypes["LocalizedString"],
 	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
 	url?:boolean | `@${string}`,
 	/** Toggle to hide the resource from the website without deleting it. */
@@ -3812,41 +3850,30 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	name?: ResolverInputTypes["StringFilter"] | undefined | null,
-	description?: ResolverInputTypes["StringFilter"] | undefined | null,
-	date?: ResolverInputTypes["DateFilter"] | undefined | null,
-	time?: ResolverInputTypes["TimeTypeFilter"] | undefined | null,
+	name?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedTextFilter"] | undefined | null,
+	start_date_time?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
+	end_date_time?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
 	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
+	image_alt?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
 	location?: ResolverInputTypes["LocationFilter"] | undefined | null,
-	how_to_signup?: ResolverInputTypes["StringFilter"] | undefined | null,
+	how_to_signup?: ResolverInputTypes["LocalizedTextFilter"] | undefined | null,
 	associated_ministry?: ResolverInputTypes["MinistryFilter"] | undefined | null,
 	external_organizer?: ResolverInputTypes["StringFilter"] | undefined | null,
-	cost?: ResolverInputTypes["StringFilter"] | undefined | null,
-	additional_notes?: ResolverInputTypes["StringFilter"] | undefined | null
+	cost?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
+	additional_notes?: ResolverInputTypes["LocalizedTextFilter"] | undefined | null
 };
-	["DateFilter"]: {
-	/** Checks if the value is equal to the given input. */
-	eq?: ResolverInputTypes["Date"] | undefined | null,
-	/** Checks if the value is not equal to the given input. */
-	neq?: ResolverInputTypes["Date"] | undefined | null,
-	/** Checks if the value is greater than the given input. */
-	gt?: ResolverInputTypes["Date"] | undefined | null,
-	/** Checks if the value is greater than or equal to the given input. */
-	gte?: ResolverInputTypes["Date"] | undefined | null,
-	/** Checks if the value is lesser than the given input. */
-	lt?: ResolverInputTypes["Date"] | undefined | null,
-	/** Checks if the value is lesser than or equal to the given input. */
-	lte?: ResolverInputTypes["Date"] | undefined | null,
-	/** Checks if the value is defined. */
-	is_defined?: boolean | undefined | null
-};
-	["TimeTypeFilter"]: {
+	["LocalizedStringFilter"]: {
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
-	hour?: ResolverInputTypes["StringFilter"] | undefined | null,
-	minute?: ResolverInputTypes["StringFilter"] | undefined | null,
-	time_of_day?: ResolverInputTypes["StringFilter"] | undefined | null,
-	time_zone?: ResolverInputTypes["StringFilter"] | undefined | null
+	en?: ResolverInputTypes["StringFilter"] | undefined | null,
+	es?: ResolverInputTypes["StringFilter"] | undefined | null
+};
+	["LocalizedTextFilter"]: {
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
+	en?: ResolverInputTypes["StringFilter"] | undefined | null,
+	es?: ResolverInputTypes["StringFilter"] | undefined | null
 };
 	["ImageFilter"]: {
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
@@ -3897,11 +3924,13 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	name?: ResolverInputTypes["StringFilter"] | undefined | null,
+	name?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
 	slug?: ResolverInputTypes["SlugFilter"] | undefined | null,
 	scripture?: ResolverInputTypes["ScriptureFilter"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedPortableTextFilter"] | undefined | null,
 	coach?: ResolverInputTypes["LeaderFilter"] | undefined | null,
-	image?: ResolverInputTypes["ImageFilter"] | undefined | null
+	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
+	image_alt?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null
 };
 	["SlugFilter"]: {
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
@@ -3912,8 +3941,12 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	["ScriptureFilter"]: {
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
-	passage?: ResolverInputTypes["StringFilter"] | undefined | null,
-	verse?: ResolverInputTypes["StringFilter"] | undefined | null
+	passage?: ResolverInputTypes["LocalizedTextFilter"] | undefined | null,
+	verse?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null
+};
+	["LocalizedPortableTextFilter"]: {
+	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
+	_type?: ResolverInputTypes["StringFilter"] | undefined | null
 };
 	["LeaderFilter"]: {
 	/** Apply filters on document level */
@@ -3925,9 +3958,9 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	contact?: ResolverInputTypes["ContactFilter"] | undefined | null,
-	position?: ResolverInputTypes["StringFilter"] | undefined | null,
+	position?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
 	category?: ResolverInputTypes["StringFilter"] | undefined | null,
-	description?: ResolverInputTypes["StringFilter"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedTextFilter"] | undefined | null,
 	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
 	video?: ResolverInputTypes["FileFilter"] | undefined | null
 };
@@ -3944,24 +3977,29 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	name?: ResolverInputTypes["SortOrder"] | undefined | null,
-	description?: ResolverInputTypes["SortOrder"] | undefined | null,
-	date?: ResolverInputTypes["SortOrder"] | undefined | null,
-	time?: ResolverInputTypes["TimeTypeSorting"] | undefined | null,
+	name?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null,
+	start_date_time?: ResolverInputTypes["SortOrder"] | undefined | null,
+	end_date_time?: ResolverInputTypes["SortOrder"] | undefined | null,
 	image?: ResolverInputTypes["ImageSorting"] | undefined | null,
+	image_alt?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
 	location?: ResolverInputTypes["LocationSorting"] | undefined | null,
-	how_to_signup?: ResolverInputTypes["SortOrder"] | undefined | null,
+	how_to_signup?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null,
 	external_organizer?: ResolverInputTypes["SortOrder"] | undefined | null,
-	cost?: ResolverInputTypes["SortOrder"] | undefined | null,
-	additional_notes?: ResolverInputTypes["SortOrder"] | undefined | null
+	cost?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
+	additional_notes?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null
 };
-	["TimeTypeSorting"]: {
+	["LocalizedStringSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
-	hour?: ResolverInputTypes["SortOrder"] | undefined | null,
-	minute?: ResolverInputTypes["SortOrder"] | undefined | null,
-	time_of_day?: ResolverInputTypes["SortOrder"] | undefined | null,
-	time_zone?: ResolverInputTypes["SortOrder"] | undefined | null
+	en?: ResolverInputTypes["SortOrder"] | undefined | null,
+	es?: ResolverInputTypes["SortOrder"] | undefined | null
+};
+	["LocalizedTextSorting"]: {
+	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
+	en?: ResolverInputTypes["SortOrder"] | undefined | null,
+	es?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["ImageSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -4009,9 +4047,9 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	position?: ResolverInputTypes["SortOrder"] | undefined | null,
+	position?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
 	category?: ResolverInputTypes["SortOrder"] | undefined | null,
-	description?: ResolverInputTypes["SortOrder"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null,
 	image?: ResolverInputTypes["ImageSorting"] | undefined | null,
 	video?: ResolverInputTypes["FileSorting"] | undefined | null
 };
@@ -4029,12 +4067,30 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	name?: ResolverInputTypes["StringFilter"] | undefined | null,
+	name?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
 	slug?: ResolverInputTypes["SlugFilter"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedPortableTextFilter"] | undefined | null,
 	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
+	image_alt?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
 	start_date?: ResolverInputTypes["DateFilter"] | undefined | null,
 	end_date?: ResolverInputTypes["DateFilter"] | undefined | null,
 	accepting_new_students?: ResolverInputTypes["BooleanFilter"] | undefined | null
+};
+	["DateFilter"]: {
+	/** Checks if the value is equal to the given input. */
+	eq?: ResolverInputTypes["Date"] | undefined | null,
+	/** Checks if the value is not equal to the given input. */
+	neq?: ResolverInputTypes["Date"] | undefined | null,
+	/** Checks if the value is greater than the given input. */
+	gt?: ResolverInputTypes["Date"] | undefined | null,
+	/** Checks if the value is greater than or equal to the given input. */
+	gte?: ResolverInputTypes["Date"] | undefined | null,
+	/** Checks if the value is lesser than the given input. */
+	lt?: ResolverInputTypes["Date"] | undefined | null,
+	/** Checks if the value is lesser than or equal to the given input. */
+	lte?: ResolverInputTypes["Date"] | undefined | null,
+	/** Checks if the value is defined. */
+	is_defined?: boolean | undefined | null
 };
 	["DeepDiveSorting"]: {
 	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -4043,9 +4099,11 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	name?: ResolverInputTypes["SortOrder"] | undefined | null,
+	name?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
 	slug?: ResolverInputTypes["SlugSorting"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedPortableTextSorting"] | undefined | null,
 	image?: ResolverInputTypes["ImageSorting"] | undefined | null,
+	image_alt?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
 	start_date?: ResolverInputTypes["SortOrder"] | undefined | null,
 	end_date?: ResolverInputTypes["SortOrder"] | undefined | null,
 	accepting_new_students?: ResolverInputTypes["SortOrder"] | undefined | null
@@ -4056,6 +4114,10 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	current?: ResolverInputTypes["SortOrder"] | undefined | null,
 	source?: ResolverInputTypes["SortOrder"] | undefined | null
 };
+	["LocalizedPortableTextSorting"]: {
+	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
+	_type?: ResolverInputTypes["SortOrder"] | undefined | null
+};
 	["MinistrySorting"]: {
 	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
@@ -4063,16 +4125,18 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	name?: ResolverInputTypes["SortOrder"] | undefined | null,
+	name?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
 	slug?: ResolverInputTypes["SlugSorting"] | undefined | null,
 	scripture?: ResolverInputTypes["ScriptureSorting"] | undefined | null,
-	image?: ResolverInputTypes["ImageSorting"] | undefined | null
+	description?: ResolverInputTypes["LocalizedPortableTextSorting"] | undefined | null,
+	image?: ResolverInputTypes["ImageSorting"] | undefined | null,
+	image_alt?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null
 };
 	["ScriptureSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
-	passage?: ResolverInputTypes["SortOrder"] | undefined | null,
-	verse?: ResolverInputTypes["SortOrder"] | undefined | null
+	passage?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null,
+	verse?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null
 };
 	["NextGenPageFilter"]: {
 	/** Apply filters on document level */
@@ -4103,17 +4167,18 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	header?: ResolverInputTypes["StringFilter"] | undefined | null,
-	title?: ResolverInputTypes["StringFilter"] | undefined | null,
-	description?: ResolverInputTypes["StringFilter"] | undefined | null,
+	header?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
+	title?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedTextFilter"] | undefined | null,
 	link?: ResolverInputTypes["LinkFilter"] | undefined | null,
 	image?: ResolverInputTypes["ImageFilter"] | undefined | null,
+	image_alt?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
 	video?: ResolverInputTypes["FileFilter"] | undefined | null
 };
 	["LinkFilter"]: {
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
-	label?: ResolverInputTypes["StringFilter"] | undefined | null,
+	label?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
 	internal_href?: ResolverInputTypes["StringFilter"] | undefined | null,
 	external_href?: ResolverInputTypes["StringFilter"] | undefined | null
 };
@@ -4124,17 +4189,18 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	header?: ResolverInputTypes["SortOrder"] | undefined | null,
-	title?: ResolverInputTypes["SortOrder"] | undefined | null,
-	description?: ResolverInputTypes["SortOrder"] | undefined | null,
+	header?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
+	title?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null,
 	link?: ResolverInputTypes["LinkSorting"] | undefined | null,
 	image?: ResolverInputTypes["ImageSorting"] | undefined | null,
+	image_alt?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
 	video?: ResolverInputTypes["FileSorting"] | undefined | null
 };
 	["LinkSorting"]: {
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
-	label?: ResolverInputTypes["SortOrder"] | undefined | null,
+	label?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
 	internal_href?: ResolverInputTypes["SortOrder"] | undefined | null,
 	external_href?: ResolverInputTypes["SortOrder"] | undefined | null
 };
@@ -4149,8 +4215,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	contact?: ResolverInputTypes["ContactFilter"] | undefined | null,
 	position?: ResolverInputTypes["StringFilter"] | undefined | null,
-	main_point?: ResolverInputTypes["StringFilter"] | undefined | null,
-	statement?: ResolverInputTypes["StringFilter"] | undefined | null,
+	main_point?: ResolverInputTypes["LocalizedTextFilter"] | undefined | null,
+	statement?: ResolverInputTypes["LocalizedTextFilter"] | undefined | null,
 	image?: ResolverInputTypes["ImageFilter"] | undefined | null
 };
 	["TestimonialSorting"]: {
@@ -4161,8 +4227,8 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	position?: ResolverInputTypes["SortOrder"] | undefined | null,
-	main_point?: ResolverInputTypes["SortOrder"] | undefined | null,
-	statement?: ResolverInputTypes["SortOrder"] | undefined | null,
+	main_point?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null,
+	statement?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null,
 	image?: ResolverInputTypes["ImageSorting"] | undefined | null
 };
 	["ResourceFilter"]: {
@@ -4174,12 +4240,12 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	title?: ResolverInputTypes["StringFilter"] | undefined | null,
+	title?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
 	type?: ResolverInputTypes["StringFilter"] | undefined | null,
-	description?: ResolverInputTypes["StringFilter"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedTextFilter"] | undefined | null,
 	category?: ResolverInputTypes["StringFilter"] | undefined | null,
 	file?: ResolverInputTypes["FileFilter"] | undefined | null,
-	file_size?: ResolverInputTypes["StringFilter"] | undefined | null,
+	file_size?: ResolverInputTypes["LocalizedStringFilter"] | undefined | null,
 	url?: ResolverInputTypes["StringFilter"] | undefined | null,
 	is_active?: ResolverInputTypes["BooleanFilter"] | undefined | null
 };
@@ -4190,12 +4256,12 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	title?: ResolverInputTypes["SortOrder"] | undefined | null,
+	title?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
 	type?: ResolverInputTypes["SortOrder"] | undefined | null,
-	description?: ResolverInputTypes["SortOrder"] | undefined | null,
+	description?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null,
 	category?: ResolverInputTypes["SortOrder"] | undefined | null,
 	file?: ResolverInputTypes["FileSorting"] | undefined | null,
-	file_size?: ResolverInputTypes["SortOrder"] | undefined | null,
+	file_size?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null,
 	url?: ResolverInputTypes["SortOrder"] | undefined | null,
 	is_active?: ResolverInputTypes["SortOrder"] | undefined | null
 };
@@ -4268,7 +4334,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
 	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
 	day?: ResolverInputTypes["StringFilter"] | undefined | null,
-	time?: ResolverInputTypes["TimeTypeFilter"] | undefined | null,
+	time?: ResolverInputTypes["StringFilter"] | undefined | null,
 	attendance_type?: ResolverInputTypes["StringFilter"] | undefined | null
 };
 	["CrossDatasetReferenceSorting"]: {
@@ -4283,7 +4349,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
 	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
 	day?: ResolverInputTypes["SortOrder"] | undefined | null,
-	time?: ResolverInputTypes["TimeTypeSorting"] | undefined | null,
+	time?: ResolverInputTypes["SortOrder"] | undefined | null,
 	attendance_type?: ResolverInputTypes["SortOrder"] | undefined | null
 };
 	["ID"]:unknown
@@ -4575,35 +4641,34 @@ export type ModelTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	name?: string | undefined | null,
-	/** Describe the event. */
-	description?: string | undefined | null,
-	date?: ModelTypes["Date"] | undefined | null,
-	time?: ModelTypes["TimeType"] | undefined | null,
+	name?: ModelTypes["LocalizedString"] | undefined | null,
+	description?: ModelTypes["LocalizedText"] | undefined | null,
+	start_date_time?: ModelTypes["DateTime"] | undefined | null,
+	end_date_time?: ModelTypes["DateTime"] | undefined | null,
 	categories?: Array<string | undefined | null> | undefined | null,
 	image?: ModelTypes["Image"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedString"] | undefined | null,
 	location?: ModelTypes["Location"] | undefined | null,
-	/** Instructions for how to join/participate in this event. */
-	how_to_signup?: string | undefined | null,
+	how_to_signup?: ModelTypes["LocalizedText"] | undefined | null,
 	/** Select if a Ministry is associated with this event. */
 	associated_ministry?: ModelTypes["Ministry"] | undefined | null,
 	/** Is there an external organization for this event? */
 	external_organizer?: string | undefined | null,
-	help_needed?: Array<string | undefined | null> | undefined | null,
-	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
-	cost?: string | undefined | null,
-	/** Are there any additional notes or instructions to add? */
-	additional_notes?: string | undefined | null
+	help_needed?: Array<ModelTypes["LocalizedString"] | undefined | null> | undefined | null,
+	cost?: ModelTypes["LocalizedString"] | undefined | null,
+	additional_notes?: ModelTypes["LocalizedText"] | undefined | null
 };
-	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-["Date"]:any;
-	["TimeType"]: {
+	["LocalizedString"]: {
 		_key?: string | undefined | null,
 	_type?: string | undefined | null,
-	hour?: string | undefined | null,
-	minute?: string | undefined | null,
-	time_of_day?: string | undefined | null,
-	time_zone?: string | undefined | null
+	en?: string | undefined | null,
+	es?: string | undefined | null
+};
+	["LocalizedText"]: {
+		_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	en?: string | undefined | null,
+	es?: string | undefined | null
 };
 	["Image"]: {
 		_key?: string | undefined | null,
@@ -4658,14 +4723,15 @@ export type ModelTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	name?: string | undefined | null,
+	name?: ModelTypes["LocalizedString"] | undefined | null,
 	slug?: ModelTypes["Slug"] | undefined | null,
 	scripture?: ModelTypes["Scripture"] | undefined | null,
-	descriptionRaw?: ModelTypes["JSON"] | undefined | null,
+	description?: ModelTypes["LocalizedPortableText"] | undefined | null,
 	coordinators?: Array<ModelTypes["Leader"] | undefined | null> | undefined | null,
 	/** Select the coach for this ministry. */
 	coach?: ModelTypes["Leader"] | undefined | null,
-	image?: ModelTypes["Image"] | undefined | null
+	image?: ModelTypes["Image"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedString"] | undefined | null
 };
 	["Slug"]: {
 		_key?: string | undefined | null,
@@ -4676,8 +4742,14 @@ export type ModelTypes = {
 	["Scripture"]: {
 		_key?: string | undefined | null,
 	_type?: string | undefined | null,
-	passage?: string | undefined | null,
-	verse?: string | undefined | null
+	passage?: ModelTypes["LocalizedText"] | undefined | null,
+	verse?: ModelTypes["LocalizedString"] | undefined | null
+};
+	["LocalizedPortableText"]: {
+		_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	enRaw?: ModelTypes["JSON"] | undefined | null,
+	esRaw?: ModelTypes["JSON"] | undefined | null
 };
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]:any;
@@ -4694,12 +4766,10 @@ export type ModelTypes = {
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
 	contact?: ModelTypes["Contact"] | undefined | null,
-	/** The official position assigned to the Leader. */
-	position?: string | undefined | null,
+	position?: ModelTypes["LocalizedString"] | undefined | null,
 	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
 	category?: string | undefined | null,
-	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
-	description?: string | undefined | null,
+	description?: ModelTypes["LocalizedText"] | undefined | null,
 	image?: ModelTypes["Image"] | undefined | null,
 	video?: ModelTypes["File"] | undefined | null
 };
@@ -4721,23 +4791,27 @@ export type ModelTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	name?: string | undefined | null,
+	name?: ModelTypes["LocalizedString"] | undefined | null,
 	slug?: ModelTypes["Slug"] | undefined | null,
-	descriptionRaw?: ModelTypes["JSON"] | undefined | null,
+	description?: ModelTypes["LocalizedPortableText"] | undefined | null,
 	instructors?: Array<ModelTypes["Leader"] | undefined | null> | undefined | null,
 	image?: ModelTypes["Image"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedString"] | undefined | null,
 	start_date?: ModelTypes["Date"] | undefined | null,
 	end_date?: ModelTypes["Date"] | undefined | null,
-	required_materials?: Array<string | undefined | null> | undefined | null,
+	required_materials?: Array<ModelTypes["LocalizedString"] | undefined | null> | undefined | null,
 	meeting_details?: Array<ModelTypes["MeetingDetails"] | undefined | null> | undefined | null,
-	/** Is this deep dive actively accepting new Students? */
+	/** Is this course actively accepting new Students? */
 	accepting_new_students?: boolean | undefined | null
 };
+	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+["Date"]:any;
 	["MeetingDetails"]: {
 		_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	day?: string | undefined | null,
-	time?: ModelTypes["TimeType"] | undefined | null,
+	/** Example: 7:00 PM */
+	time?: string | undefined | null,
 	attendance_type?: string | undefined | null
 };
 	["NextGenPage"]: {
@@ -4767,20 +4841,18 @@ export type ModelTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	/** What is the subject of this promotion? */
-	header?: string | undefined | null,
-	/** What is the descriptive title of this promotion? */
-	title?: string | undefined | null,
-	/** What is the description of this promotion? */
-	description?: string | undefined | null,
+	header?: ModelTypes["LocalizedString"] | undefined | null,
+	title?: ModelTypes["LocalizedString"] | undefined | null,
+	description?: ModelTypes["LocalizedText"] | undefined | null,
 	link?: ModelTypes["Link"] | undefined | null,
 	image?: ModelTypes["Image"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedString"] | undefined | null,
 	video?: ModelTypes["File"] | undefined | null
 };
 	["Link"]: {
 		_key?: string | undefined | null,
 	_type?: string | undefined | null,
-	label?: string | undefined | null,
+	label?: ModelTypes["LocalizedString"] | undefined | null,
 	internal_href?: string | undefined | null,
 	/** Optional external link (e.g., https://example.com) */
 	external_href?: string | undefined | null
@@ -4800,10 +4872,8 @@ export type ModelTypes = {
 	contact?: ModelTypes["Contact"] | undefined | null,
 	/** Select a position this person belongs to. */
 	position?: string | undefined | null,
-	/** This highlights the big idea or main point of their testimony (1 sentence max). */
-	main_point?: string | undefined | null,
-	/** The person's statement (1-3 sentences). */
-	statement?: string | undefined | null,
+	main_point?: ModelTypes["LocalizedText"] | undefined | null,
+	statement?: ModelTypes["LocalizedText"] | undefined | null,
 	image?: ModelTypes["Image"] | undefined | null
 };
 	["Resource"]: {
@@ -4818,16 +4888,14 @@ export type ModelTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	title?: string | undefined | null,
+	title?: ModelTypes["LocalizedString"] | undefined | null,
 	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
 	type?: string | undefined | null,
-	/** A one sentence explanation of what this resource is or how it should be used. */
-	description?: string | undefined | null,
+	description?: ModelTypes["LocalizedText"] | undefined | null,
 	/** Choose the group this resource belongs to. */
 	category?: string | undefined | null,
 	file?: ModelTypes["File"] | undefined | null,
-	/** Add the file size or format (e.g., “PDF – 497 KB”). */
-	file_size?: string | undefined | null,
+	file_size?: ModelTypes["LocalizedString"] | undefined | null,
 	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
 	url?: string | undefined | null,
 	/** Toggle to hide the resource from the website without deleting it. */
@@ -5281,41 +5349,30 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ModelTypes["StringFilter"] | undefined | null,
 	_key?: ModelTypes["StringFilter"] | undefined | null,
-	name?: ModelTypes["StringFilter"] | undefined | null,
-	description?: ModelTypes["StringFilter"] | undefined | null,
-	date?: ModelTypes["DateFilter"] | undefined | null,
-	time?: ModelTypes["TimeTypeFilter"] | undefined | null,
+	name?: ModelTypes["LocalizedStringFilter"] | undefined | null,
+	description?: ModelTypes["LocalizedTextFilter"] | undefined | null,
+	start_date_time?: ModelTypes["DatetimeFilter"] | undefined | null,
+	end_date_time?: ModelTypes["DatetimeFilter"] | undefined | null,
 	image?: ModelTypes["ImageFilter"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedStringFilter"] | undefined | null,
 	location?: ModelTypes["LocationFilter"] | undefined | null,
-	how_to_signup?: ModelTypes["StringFilter"] | undefined | null,
+	how_to_signup?: ModelTypes["LocalizedTextFilter"] | undefined | null,
 	associated_ministry?: ModelTypes["MinistryFilter"] | undefined | null,
 	external_organizer?: ModelTypes["StringFilter"] | undefined | null,
-	cost?: ModelTypes["StringFilter"] | undefined | null,
-	additional_notes?: ModelTypes["StringFilter"] | undefined | null
+	cost?: ModelTypes["LocalizedStringFilter"] | undefined | null,
+	additional_notes?: ModelTypes["LocalizedTextFilter"] | undefined | null
 };
-	["DateFilter"]: {
-	/** Checks if the value is equal to the given input. */
-	eq?: ModelTypes["Date"] | undefined | null,
-	/** Checks if the value is not equal to the given input. */
-	neq?: ModelTypes["Date"] | undefined | null,
-	/** Checks if the value is greater than the given input. */
-	gt?: ModelTypes["Date"] | undefined | null,
-	/** Checks if the value is greater than or equal to the given input. */
-	gte?: ModelTypes["Date"] | undefined | null,
-	/** Checks if the value is lesser than the given input. */
-	lt?: ModelTypes["Date"] | undefined | null,
-	/** Checks if the value is lesser than or equal to the given input. */
-	lte?: ModelTypes["Date"] | undefined | null,
-	/** Checks if the value is defined. */
-	is_defined?: boolean | undefined | null
-};
-	["TimeTypeFilter"]: {
+	["LocalizedStringFilter"]: {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	_type?: ModelTypes["StringFilter"] | undefined | null,
-	hour?: ModelTypes["StringFilter"] | undefined | null,
-	minute?: ModelTypes["StringFilter"] | undefined | null,
-	time_of_day?: ModelTypes["StringFilter"] | undefined | null,
-	time_zone?: ModelTypes["StringFilter"] | undefined | null
+	en?: ModelTypes["StringFilter"] | undefined | null,
+	es?: ModelTypes["StringFilter"] | undefined | null
+};
+	["LocalizedTextFilter"]: {
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null,
+	en?: ModelTypes["StringFilter"] | undefined | null,
+	es?: ModelTypes["StringFilter"] | undefined | null
 };
 	["ImageFilter"]: {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
@@ -5366,11 +5423,13 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ModelTypes["StringFilter"] | undefined | null,
 	_key?: ModelTypes["StringFilter"] | undefined | null,
-	name?: ModelTypes["StringFilter"] | undefined | null,
+	name?: ModelTypes["LocalizedStringFilter"] | undefined | null,
 	slug?: ModelTypes["SlugFilter"] | undefined | null,
 	scripture?: ModelTypes["ScriptureFilter"] | undefined | null,
+	description?: ModelTypes["LocalizedPortableTextFilter"] | undefined | null,
 	coach?: ModelTypes["LeaderFilter"] | undefined | null,
-	image?: ModelTypes["ImageFilter"] | undefined | null
+	image?: ModelTypes["ImageFilter"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedStringFilter"] | undefined | null
 };
 	["SlugFilter"]: {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
@@ -5381,8 +5440,12 @@ export type ModelTypes = {
 	["ScriptureFilter"]: {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	_type?: ModelTypes["StringFilter"] | undefined | null,
-	passage?: ModelTypes["StringFilter"] | undefined | null,
-	verse?: ModelTypes["StringFilter"] | undefined | null
+	passage?: ModelTypes["LocalizedTextFilter"] | undefined | null,
+	verse?: ModelTypes["LocalizedStringFilter"] | undefined | null
+};
+	["LocalizedPortableTextFilter"]: {
+	_key?: ModelTypes["StringFilter"] | undefined | null,
+	_type?: ModelTypes["StringFilter"] | undefined | null
 };
 	["LeaderFilter"]: {
 	/** Apply filters on document level */
@@ -5394,9 +5457,9 @@ export type ModelTypes = {
 	_rev?: ModelTypes["StringFilter"] | undefined | null,
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	contact?: ModelTypes["ContactFilter"] | undefined | null,
-	position?: ModelTypes["StringFilter"] | undefined | null,
+	position?: ModelTypes["LocalizedStringFilter"] | undefined | null,
 	category?: ModelTypes["StringFilter"] | undefined | null,
-	description?: ModelTypes["StringFilter"] | undefined | null,
+	description?: ModelTypes["LocalizedTextFilter"] | undefined | null,
 	image?: ModelTypes["ImageFilter"] | undefined | null,
 	video?: ModelTypes["FileFilter"] | undefined | null
 };
@@ -5413,24 +5476,29 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null,
-	name?: ModelTypes["SortOrder"] | undefined | null,
-	description?: ModelTypes["SortOrder"] | undefined | null,
-	date?: ModelTypes["SortOrder"] | undefined | null,
-	time?: ModelTypes["TimeTypeSorting"] | undefined | null,
+	name?: ModelTypes["LocalizedStringSorting"] | undefined | null,
+	description?: ModelTypes["LocalizedTextSorting"] | undefined | null,
+	start_date_time?: ModelTypes["SortOrder"] | undefined | null,
+	end_date_time?: ModelTypes["SortOrder"] | undefined | null,
 	image?: ModelTypes["ImageSorting"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedStringSorting"] | undefined | null,
 	location?: ModelTypes["LocationSorting"] | undefined | null,
-	how_to_signup?: ModelTypes["SortOrder"] | undefined | null,
+	how_to_signup?: ModelTypes["LocalizedTextSorting"] | undefined | null,
 	external_organizer?: ModelTypes["SortOrder"] | undefined | null,
-	cost?: ModelTypes["SortOrder"] | undefined | null,
-	additional_notes?: ModelTypes["SortOrder"] | undefined | null
+	cost?: ModelTypes["LocalizedStringSorting"] | undefined | null,
+	additional_notes?: ModelTypes["LocalizedTextSorting"] | undefined | null
 };
-	["TimeTypeSorting"]: {
+	["LocalizedStringSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
-	hour?: ModelTypes["SortOrder"] | undefined | null,
-	minute?: ModelTypes["SortOrder"] | undefined | null,
-	time_of_day?: ModelTypes["SortOrder"] | undefined | null,
-	time_zone?: ModelTypes["SortOrder"] | undefined | null
+	en?: ModelTypes["SortOrder"] | undefined | null,
+	es?: ModelTypes["SortOrder"] | undefined | null
+};
+	["LocalizedTextSorting"]: {
+	_key?: ModelTypes["SortOrder"] | undefined | null,
+	_type?: ModelTypes["SortOrder"] | undefined | null,
+	en?: ModelTypes["SortOrder"] | undefined | null,
+	es?: ModelTypes["SortOrder"] | undefined | null
 };
 	["ImageSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
@@ -5478,9 +5546,9 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null,
-	position?: ModelTypes["SortOrder"] | undefined | null,
+	position?: ModelTypes["LocalizedStringSorting"] | undefined | null,
 	category?: ModelTypes["SortOrder"] | undefined | null,
-	description?: ModelTypes["SortOrder"] | undefined | null,
+	description?: ModelTypes["LocalizedTextSorting"] | undefined | null,
 	image?: ModelTypes["ImageSorting"] | undefined | null,
 	video?: ModelTypes["FileSorting"] | undefined | null
 };
@@ -5498,12 +5566,30 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ModelTypes["StringFilter"] | undefined | null,
 	_key?: ModelTypes["StringFilter"] | undefined | null,
-	name?: ModelTypes["StringFilter"] | undefined | null,
+	name?: ModelTypes["LocalizedStringFilter"] | undefined | null,
 	slug?: ModelTypes["SlugFilter"] | undefined | null,
+	description?: ModelTypes["LocalizedPortableTextFilter"] | undefined | null,
 	image?: ModelTypes["ImageFilter"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedStringFilter"] | undefined | null,
 	start_date?: ModelTypes["DateFilter"] | undefined | null,
 	end_date?: ModelTypes["DateFilter"] | undefined | null,
 	accepting_new_students?: ModelTypes["BooleanFilter"] | undefined | null
+};
+	["DateFilter"]: {
+	/** Checks if the value is equal to the given input. */
+	eq?: ModelTypes["Date"] | undefined | null,
+	/** Checks if the value is not equal to the given input. */
+	neq?: ModelTypes["Date"] | undefined | null,
+	/** Checks if the value is greater than the given input. */
+	gt?: ModelTypes["Date"] | undefined | null,
+	/** Checks if the value is greater than or equal to the given input. */
+	gte?: ModelTypes["Date"] | undefined | null,
+	/** Checks if the value is lesser than the given input. */
+	lt?: ModelTypes["Date"] | undefined | null,
+	/** Checks if the value is lesser than or equal to the given input. */
+	lte?: ModelTypes["Date"] | undefined | null,
+	/** Checks if the value is defined. */
+	is_defined?: boolean | undefined | null
 };
 	["DeepDiveSorting"]: {
 	_id?: ModelTypes["SortOrder"] | undefined | null,
@@ -5512,9 +5598,11 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null,
-	name?: ModelTypes["SortOrder"] | undefined | null,
+	name?: ModelTypes["LocalizedStringSorting"] | undefined | null,
 	slug?: ModelTypes["SlugSorting"] | undefined | null,
+	description?: ModelTypes["LocalizedPortableTextSorting"] | undefined | null,
 	image?: ModelTypes["ImageSorting"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedStringSorting"] | undefined | null,
 	start_date?: ModelTypes["SortOrder"] | undefined | null,
 	end_date?: ModelTypes["SortOrder"] | undefined | null,
 	accepting_new_students?: ModelTypes["SortOrder"] | undefined | null
@@ -5525,6 +5613,10 @@ export type ModelTypes = {
 	current?: ModelTypes["SortOrder"] | undefined | null,
 	source?: ModelTypes["SortOrder"] | undefined | null
 };
+	["LocalizedPortableTextSorting"]: {
+	_key?: ModelTypes["SortOrder"] | undefined | null,
+	_type?: ModelTypes["SortOrder"] | undefined | null
+};
 	["MinistrySorting"]: {
 	_id?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
@@ -5532,16 +5624,18 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null,
-	name?: ModelTypes["SortOrder"] | undefined | null,
+	name?: ModelTypes["LocalizedStringSorting"] | undefined | null,
 	slug?: ModelTypes["SlugSorting"] | undefined | null,
 	scripture?: ModelTypes["ScriptureSorting"] | undefined | null,
-	image?: ModelTypes["ImageSorting"] | undefined | null
+	description?: ModelTypes["LocalizedPortableTextSorting"] | undefined | null,
+	image?: ModelTypes["ImageSorting"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedStringSorting"] | undefined | null
 };
 	["ScriptureSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
-	passage?: ModelTypes["SortOrder"] | undefined | null,
-	verse?: ModelTypes["SortOrder"] | undefined | null
+	passage?: ModelTypes["LocalizedTextSorting"] | undefined | null,
+	verse?: ModelTypes["LocalizedStringSorting"] | undefined | null
 };
 	["NextGenPageFilter"]: {
 	/** Apply filters on document level */
@@ -5572,17 +5666,18 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ModelTypes["StringFilter"] | undefined | null,
 	_key?: ModelTypes["StringFilter"] | undefined | null,
-	header?: ModelTypes["StringFilter"] | undefined | null,
-	title?: ModelTypes["StringFilter"] | undefined | null,
-	description?: ModelTypes["StringFilter"] | undefined | null,
+	header?: ModelTypes["LocalizedStringFilter"] | undefined | null,
+	title?: ModelTypes["LocalizedStringFilter"] | undefined | null,
+	description?: ModelTypes["LocalizedTextFilter"] | undefined | null,
 	link?: ModelTypes["LinkFilter"] | undefined | null,
 	image?: ModelTypes["ImageFilter"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedStringFilter"] | undefined | null,
 	video?: ModelTypes["FileFilter"] | undefined | null
 };
 	["LinkFilter"]: {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	_type?: ModelTypes["StringFilter"] | undefined | null,
-	label?: ModelTypes["StringFilter"] | undefined | null,
+	label?: ModelTypes["LocalizedStringFilter"] | undefined | null,
 	internal_href?: ModelTypes["StringFilter"] | undefined | null,
 	external_href?: ModelTypes["StringFilter"] | undefined | null
 };
@@ -5593,17 +5688,18 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null,
-	header?: ModelTypes["SortOrder"] | undefined | null,
-	title?: ModelTypes["SortOrder"] | undefined | null,
-	description?: ModelTypes["SortOrder"] | undefined | null,
+	header?: ModelTypes["LocalizedStringSorting"] | undefined | null,
+	title?: ModelTypes["LocalizedStringSorting"] | undefined | null,
+	description?: ModelTypes["LocalizedTextSorting"] | undefined | null,
 	link?: ModelTypes["LinkSorting"] | undefined | null,
 	image?: ModelTypes["ImageSorting"] | undefined | null,
+	image_alt?: ModelTypes["LocalizedStringSorting"] | undefined | null,
 	video?: ModelTypes["FileSorting"] | undefined | null
 };
 	["LinkSorting"]: {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
-	label?: ModelTypes["SortOrder"] | undefined | null,
+	label?: ModelTypes["LocalizedStringSorting"] | undefined | null,
 	internal_href?: ModelTypes["SortOrder"] | undefined | null,
 	external_href?: ModelTypes["SortOrder"] | undefined | null
 };
@@ -5618,8 +5714,8 @@ export type ModelTypes = {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	contact?: ModelTypes["ContactFilter"] | undefined | null,
 	position?: ModelTypes["StringFilter"] | undefined | null,
-	main_point?: ModelTypes["StringFilter"] | undefined | null,
-	statement?: ModelTypes["StringFilter"] | undefined | null,
+	main_point?: ModelTypes["LocalizedTextFilter"] | undefined | null,
+	statement?: ModelTypes["LocalizedTextFilter"] | undefined | null,
 	image?: ModelTypes["ImageFilter"] | undefined | null
 };
 	["TestimonialSorting"]: {
@@ -5630,8 +5726,8 @@ export type ModelTypes = {
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	position?: ModelTypes["SortOrder"] | undefined | null,
-	main_point?: ModelTypes["SortOrder"] | undefined | null,
-	statement?: ModelTypes["SortOrder"] | undefined | null,
+	main_point?: ModelTypes["LocalizedTextSorting"] | undefined | null,
+	statement?: ModelTypes["LocalizedTextSorting"] | undefined | null,
 	image?: ModelTypes["ImageSorting"] | undefined | null
 };
 	["ResourceFilter"]: {
@@ -5643,12 +5739,12 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
 	_rev?: ModelTypes["StringFilter"] | undefined | null,
 	_key?: ModelTypes["StringFilter"] | undefined | null,
-	title?: ModelTypes["StringFilter"] | undefined | null,
+	title?: ModelTypes["LocalizedStringFilter"] | undefined | null,
 	type?: ModelTypes["StringFilter"] | undefined | null,
-	description?: ModelTypes["StringFilter"] | undefined | null,
+	description?: ModelTypes["LocalizedTextFilter"] | undefined | null,
 	category?: ModelTypes["StringFilter"] | undefined | null,
 	file?: ModelTypes["FileFilter"] | undefined | null,
-	file_size?: ModelTypes["StringFilter"] | undefined | null,
+	file_size?: ModelTypes["LocalizedStringFilter"] | undefined | null,
 	url?: ModelTypes["StringFilter"] | undefined | null,
 	is_active?: ModelTypes["BooleanFilter"] | undefined | null
 };
@@ -5659,12 +5755,12 @@ export type ModelTypes = {
 	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
 	_rev?: ModelTypes["SortOrder"] | undefined | null,
 	_key?: ModelTypes["SortOrder"] | undefined | null,
-	title?: ModelTypes["SortOrder"] | undefined | null,
+	title?: ModelTypes["LocalizedStringSorting"] | undefined | null,
 	type?: ModelTypes["SortOrder"] | undefined | null,
-	description?: ModelTypes["SortOrder"] | undefined | null,
+	description?: ModelTypes["LocalizedTextSorting"] | undefined | null,
 	category?: ModelTypes["SortOrder"] | undefined | null,
 	file?: ModelTypes["FileSorting"] | undefined | null,
-	file_size?: ModelTypes["SortOrder"] | undefined | null,
+	file_size?: ModelTypes["LocalizedStringSorting"] | undefined | null,
 	url?: ModelTypes["SortOrder"] | undefined | null,
 	is_active?: ModelTypes["SortOrder"] | undefined | null
 };
@@ -5734,7 +5830,7 @@ export type ModelTypes = {
 	_key?: ModelTypes["StringFilter"] | undefined | null,
 	_type?: ModelTypes["StringFilter"] | undefined | null,
 	day?: ModelTypes["StringFilter"] | undefined | null,
-	time?: ModelTypes["TimeTypeFilter"] | undefined | null,
+	time?: ModelTypes["StringFilter"] | undefined | null,
 	attendance_type?: ModelTypes["StringFilter"] | undefined | null
 };
 	["CrossDatasetReferenceSorting"]: {
@@ -5749,7 +5845,7 @@ export type ModelTypes = {
 	_key?: ModelTypes["SortOrder"] | undefined | null,
 	_type?: ModelTypes["SortOrder"] | undefined | null,
 	day?: ModelTypes["SortOrder"] | undefined | null,
-	time?: ModelTypes["TimeTypeSorting"] | undefined | null,
+	time?: ModelTypes["SortOrder"] | undefined | null,
 	attendance_type?: ModelTypes["SortOrder"] | undefined | null
 };
 	["ID"]:any
@@ -6100,38 +6196,39 @@ export type GraphQLTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	name?: string | undefined | null,
-	/** Describe the event. */
-	description?: string | undefined | null,
-	date?: GraphQLTypes["Date"] | undefined | null,
-	time?: GraphQLTypes["TimeType"] | undefined | null,
+	name?: GraphQLTypes["LocalizedString"] | undefined | null,
+	description?: GraphQLTypes["LocalizedText"] | undefined | null,
+	start_date_time?: GraphQLTypes["DateTime"] | undefined | null,
+	end_date_time?: GraphQLTypes["DateTime"] | undefined | null,
 	categories?: Array<string | undefined | null> | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedString"] | undefined | null,
 	location?: GraphQLTypes["Location"] | undefined | null,
-	/** Instructions for how to join/participate in this event. */
-	how_to_signup?: string | undefined | null,
+	how_to_signup?: GraphQLTypes["LocalizedText"] | undefined | null,
 	/** Select if a Ministry is associated with this event. */
 	associated_ministry?: GraphQLTypes["Ministry"] | undefined | null,
 	/** Is there an external organization for this event? */
 	external_organizer?: string | undefined | null,
-	help_needed?: Array<string | undefined | null> | undefined | null,
-	/** Are there any costs associated with participation in this event? (e.g., $40.00 per Adult ticket) */
-	cost?: string | undefined | null,
-	/** Are there any additional notes or instructions to add? */
-	additional_notes?: string | undefined | null,
+	help_needed?: Array<GraphQLTypes["LocalizedString"] | undefined | null> | undefined | null,
+	cost?: GraphQLTypes["LocalizedString"] | undefined | null,
+	additional_notes?: GraphQLTypes["LocalizedText"] | undefined | null,
 	['...on Event']: Omit<GraphQLTypes["Event"], "...on Event">
 };
-	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-["Date"]: "scalar" & { name: "Date" };
-	["TimeType"]: {
-	__typename: "TimeType",
+	["LocalizedString"]: {
+	__typename: "LocalizedString",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
-	hour?: string | undefined | null,
-	minute?: string | undefined | null,
-	time_of_day?: string | undefined | null,
-	time_zone?: string | undefined | null,
-	['...on TimeType']: Omit<GraphQLTypes["TimeType"], "...on TimeType">
+	en?: string | undefined | null,
+	es?: string | undefined | null,
+	['...on LocalizedString']: Omit<GraphQLTypes["LocalizedString"], "...on LocalizedString">
+};
+	["LocalizedText"]: {
+	__typename: "LocalizedText",
+	_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	en?: string | undefined | null,
+	es?: string | undefined | null,
+	['...on LocalizedText']: Omit<GraphQLTypes["LocalizedText"], "...on LocalizedText">
 };
 	["Image"]: {
 	__typename: "Image",
@@ -6197,14 +6294,15 @@ export type GraphQLTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	name?: string | undefined | null,
+	name?: GraphQLTypes["LocalizedString"] | undefined | null,
 	slug?: GraphQLTypes["Slug"] | undefined | null,
 	scripture?: GraphQLTypes["Scripture"] | undefined | null,
-	descriptionRaw?: GraphQLTypes["JSON"] | undefined | null,
+	description?: GraphQLTypes["LocalizedPortableText"] | undefined | null,
 	coordinators?: Array<GraphQLTypes["Leader"] | undefined | null> | undefined | null,
 	/** Select the coach for this ministry. */
 	coach?: GraphQLTypes["Leader"] | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedString"] | undefined | null,
 	['...on Ministry']: Omit<GraphQLTypes["Ministry"], "...on Ministry">
 };
 	["Slug"]: {
@@ -6219,9 +6317,17 @@ export type GraphQLTypes = {
 	__typename: "Scripture",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
-	passage?: string | undefined | null,
-	verse?: string | undefined | null,
+	passage?: GraphQLTypes["LocalizedText"] | undefined | null,
+	verse?: GraphQLTypes["LocalizedString"] | undefined | null,
 	['...on Scripture']: Omit<GraphQLTypes["Scripture"], "...on Scripture">
+};
+	["LocalizedPortableText"]: {
+	__typename: "LocalizedPortableText",
+	_key?: string | undefined | null,
+	_type?: string | undefined | null,
+	enRaw?: GraphQLTypes["JSON"] | undefined | null,
+	esRaw?: GraphQLTypes["JSON"] | undefined | null,
+	['...on LocalizedPortableText']: Omit<GraphQLTypes["LocalizedPortableText"], "...on LocalizedPortableText">
 };
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 ["JSON"]: "scalar" & { name: "JSON" };
@@ -6239,12 +6345,10 @@ export type GraphQLTypes = {
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
 	contact?: GraphQLTypes["Contact"] | undefined | null,
-	/** The official position assigned to the Leader. */
-	position?: string | undefined | null,
+	position?: GraphQLTypes["LocalizedString"] | undefined | null,
 	/** Select a category this leader belongs to (if they fit more than one; select their primary role). */
 	category?: string | undefined | null,
-	/** Describe the Leader's personailty, goals, and aspirations (3-7 sentences). */
-	description?: string | undefined | null,
+	description?: GraphQLTypes["LocalizedText"] | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
 	video?: GraphQLTypes["File"] | undefined | null,
 	['...on Leader']: Omit<GraphQLTypes["Leader"], "...on Leader">
@@ -6270,25 +6374,29 @@ export type GraphQLTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	name?: string | undefined | null,
+	name?: GraphQLTypes["LocalizedString"] | undefined | null,
 	slug?: GraphQLTypes["Slug"] | undefined | null,
-	descriptionRaw?: GraphQLTypes["JSON"] | undefined | null,
+	description?: GraphQLTypes["LocalizedPortableText"] | undefined | null,
 	instructors?: Array<GraphQLTypes["Leader"] | undefined | null> | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedString"] | undefined | null,
 	start_date?: GraphQLTypes["Date"] | undefined | null,
 	end_date?: GraphQLTypes["Date"] | undefined | null,
-	required_materials?: Array<string | undefined | null> | undefined | null,
+	required_materials?: Array<GraphQLTypes["LocalizedString"] | undefined | null> | undefined | null,
 	meeting_details?: Array<GraphQLTypes["MeetingDetails"] | undefined | null> | undefined | null,
-	/** Is this deep dive actively accepting new Students? */
+	/** Is this course actively accepting new Students? */
 	accepting_new_students?: boolean | undefined | null,
 	['...on DeepDive']: Omit<GraphQLTypes["DeepDive"], "...on DeepDive">
 };
+	/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+["Date"]: "scalar" & { name: "Date" };
 	["MeetingDetails"]: {
 	__typename: "MeetingDetails",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
 	day?: string | undefined | null,
-	time?: GraphQLTypes["TimeType"] | undefined | null,
+	/** Example: 7:00 PM */
+	time?: string | undefined | null,
 	attendance_type?: string | undefined | null,
 	['...on MeetingDetails']: Omit<GraphQLTypes["MeetingDetails"], "...on MeetingDetails">
 };
@@ -6322,14 +6430,12 @@ export type GraphQLTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	/** What is the subject of this promotion? */
-	header?: string | undefined | null,
-	/** What is the descriptive title of this promotion? */
-	title?: string | undefined | null,
-	/** What is the description of this promotion? */
-	description?: string | undefined | null,
+	header?: GraphQLTypes["LocalizedString"] | undefined | null,
+	title?: GraphQLTypes["LocalizedString"] | undefined | null,
+	description?: GraphQLTypes["LocalizedText"] | undefined | null,
 	link?: GraphQLTypes["Link"] | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedString"] | undefined | null,
 	video?: GraphQLTypes["File"] | undefined | null,
 	['...on PromoBanner']: Omit<GraphQLTypes["PromoBanner"], "...on PromoBanner">
 };
@@ -6337,7 +6443,7 @@ export type GraphQLTypes = {
 	__typename: "Link",
 	_key?: string | undefined | null,
 	_type?: string | undefined | null,
-	label?: string | undefined | null,
+	label?: GraphQLTypes["LocalizedString"] | undefined | null,
 	internal_href?: string | undefined | null,
 	/** Optional external link (e.g., https://example.com) */
 	external_href?: string | undefined | null,
@@ -6359,10 +6465,8 @@ export type GraphQLTypes = {
 	contact?: GraphQLTypes["Contact"] | undefined | null,
 	/** Select a position this person belongs to. */
 	position?: string | undefined | null,
-	/** This highlights the big idea or main point of their testimony (1 sentence max). */
-	main_point?: string | undefined | null,
-	/** The person's statement (1-3 sentences). */
-	statement?: string | undefined | null,
+	main_point?: GraphQLTypes["LocalizedText"] | undefined | null,
+	statement?: GraphQLTypes["LocalizedText"] | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
 	['...on Testimonial']: Omit<GraphQLTypes["Testimonial"], "...on Testimonial">
 };
@@ -6379,16 +6483,14 @@ export type GraphQLTypes = {
 	/** Current document revision */
 	_rev?: string | undefined | null,
 	_key?: string | undefined | null,
-	title?: string | undefined | null,
+	title?: GraphQLTypes["LocalizedString"] | undefined | null,
 	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
 	type?: string | undefined | null,
-	/** A one sentence explanation of what this resource is or how it should be used. */
-	description?: string | undefined | null,
+	description?: GraphQLTypes["LocalizedText"] | undefined | null,
 	/** Choose the group this resource belongs to. */
 	category?: string | undefined | null,
 	file?: GraphQLTypes["File"] | undefined | null,
-	/** Add the file size or format (e.g., “PDF – 497 KB”). */
-	file_size?: string | undefined | null,
+	file_size?: GraphQLTypes["LocalizedString"] | undefined | null,
 	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
 	url?: string | undefined | null,
 	/** Toggle to hide the resource from the website without deleting it. */
@@ -6843,41 +6945,30 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
 	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
 	_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	name?: GraphQLTypes["StringFilter"] | undefined | null,
-	description?: GraphQLTypes["StringFilter"] | undefined | null,
-	date?: GraphQLTypes["DateFilter"] | undefined | null,
-	time?: GraphQLTypes["TimeTypeFilter"] | undefined | null,
+	name?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
+	description?: GraphQLTypes["LocalizedTextFilter"] | undefined | null,
+	start_date_time?: GraphQLTypes["DatetimeFilter"] | undefined | null,
+	end_date_time?: GraphQLTypes["DatetimeFilter"] | undefined | null,
 	image?: GraphQLTypes["ImageFilter"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
 	location?: GraphQLTypes["LocationFilter"] | undefined | null,
-	how_to_signup?: GraphQLTypes["StringFilter"] | undefined | null,
+	how_to_signup?: GraphQLTypes["LocalizedTextFilter"] | undefined | null,
 	associated_ministry?: GraphQLTypes["MinistryFilter"] | undefined | null,
 	external_organizer?: GraphQLTypes["StringFilter"] | undefined | null,
-	cost?: GraphQLTypes["StringFilter"] | undefined | null,
-	additional_notes?: GraphQLTypes["StringFilter"] | undefined | null
+	cost?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
+	additional_notes?: GraphQLTypes["LocalizedTextFilter"] | undefined | null
 };
-	["DateFilter"]: {
-		/** Checks if the value is equal to the given input. */
-	eq?: GraphQLTypes["Date"] | undefined | null,
-	/** Checks if the value is not equal to the given input. */
-	neq?: GraphQLTypes["Date"] | undefined | null,
-	/** Checks if the value is greater than the given input. */
-	gt?: GraphQLTypes["Date"] | undefined | null,
-	/** Checks if the value is greater than or equal to the given input. */
-	gte?: GraphQLTypes["Date"] | undefined | null,
-	/** Checks if the value is lesser than the given input. */
-	lt?: GraphQLTypes["Date"] | undefined | null,
-	/** Checks if the value is lesser than or equal to the given input. */
-	lte?: GraphQLTypes["Date"] | undefined | null,
-	/** Checks if the value is defined. */
-	is_defined?: boolean | undefined | null
-};
-	["TimeTypeFilter"]: {
+	["LocalizedStringFilter"]: {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	_type?: GraphQLTypes["StringFilter"] | undefined | null,
-	hour?: GraphQLTypes["StringFilter"] | undefined | null,
-	minute?: GraphQLTypes["StringFilter"] | undefined | null,
-	time_of_day?: GraphQLTypes["StringFilter"] | undefined | null,
-	time_zone?: GraphQLTypes["StringFilter"] | undefined | null
+	en?: GraphQLTypes["StringFilter"] | undefined | null,
+	es?: GraphQLTypes["StringFilter"] | undefined | null
+};
+	["LocalizedTextFilter"]: {
+		_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null,
+	en?: GraphQLTypes["StringFilter"] | undefined | null,
+	es?: GraphQLTypes["StringFilter"] | undefined | null
 };
 	["ImageFilter"]: {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
@@ -6928,11 +7019,13 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
 	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
 	_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	name?: GraphQLTypes["StringFilter"] | undefined | null,
+	name?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
 	slug?: GraphQLTypes["SlugFilter"] | undefined | null,
 	scripture?: GraphQLTypes["ScriptureFilter"] | undefined | null,
+	description?: GraphQLTypes["LocalizedPortableTextFilter"] | undefined | null,
 	coach?: GraphQLTypes["LeaderFilter"] | undefined | null,
-	image?: GraphQLTypes["ImageFilter"] | undefined | null
+	image?: GraphQLTypes["ImageFilter"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedStringFilter"] | undefined | null
 };
 	["SlugFilter"]: {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
@@ -6943,8 +7036,12 @@ export type GraphQLTypes = {
 	["ScriptureFilter"]: {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	_type?: GraphQLTypes["StringFilter"] | undefined | null,
-	passage?: GraphQLTypes["StringFilter"] | undefined | null,
-	verse?: GraphQLTypes["StringFilter"] | undefined | null
+	passage?: GraphQLTypes["LocalizedTextFilter"] | undefined | null,
+	verse?: GraphQLTypes["LocalizedStringFilter"] | undefined | null
+};
+	["LocalizedPortableTextFilter"]: {
+		_key?: GraphQLTypes["StringFilter"] | undefined | null,
+	_type?: GraphQLTypes["StringFilter"] | undefined | null
 };
 	["LeaderFilter"]: {
 		/** Apply filters on document level */
@@ -6956,9 +7053,9 @@ export type GraphQLTypes = {
 	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
 	_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	contact?: GraphQLTypes["ContactFilter"] | undefined | null,
-	position?: GraphQLTypes["StringFilter"] | undefined | null,
+	position?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
 	category?: GraphQLTypes["StringFilter"] | undefined | null,
-	description?: GraphQLTypes["StringFilter"] | undefined | null,
+	description?: GraphQLTypes["LocalizedTextFilter"] | undefined | null,
 	image?: GraphQLTypes["ImageFilter"] | undefined | null,
 	video?: GraphQLTypes["FileFilter"] | undefined | null
 };
@@ -6975,24 +7072,29 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	name?: GraphQLTypes["SortOrder"] | undefined | null,
-	description?: GraphQLTypes["SortOrder"] | undefined | null,
-	date?: GraphQLTypes["SortOrder"] | undefined | null,
-	time?: GraphQLTypes["TimeTypeSorting"] | undefined | null,
+	name?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
+	description?: GraphQLTypes["LocalizedTextSorting"] | undefined | null,
+	start_date_time?: GraphQLTypes["SortOrder"] | undefined | null,
+	end_date_time?: GraphQLTypes["SortOrder"] | undefined | null,
 	image?: GraphQLTypes["ImageSorting"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
 	location?: GraphQLTypes["LocationSorting"] | undefined | null,
-	how_to_signup?: GraphQLTypes["SortOrder"] | undefined | null,
+	how_to_signup?: GraphQLTypes["LocalizedTextSorting"] | undefined | null,
 	external_organizer?: GraphQLTypes["SortOrder"] | undefined | null,
-	cost?: GraphQLTypes["SortOrder"] | undefined | null,
-	additional_notes?: GraphQLTypes["SortOrder"] | undefined | null
+	cost?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
+	additional_notes?: GraphQLTypes["LocalizedTextSorting"] | undefined | null
 };
-	["TimeTypeSorting"]: {
+	["LocalizedStringSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
-	hour?: GraphQLTypes["SortOrder"] | undefined | null,
-	minute?: GraphQLTypes["SortOrder"] | undefined | null,
-	time_of_day?: GraphQLTypes["SortOrder"] | undefined | null,
-	time_zone?: GraphQLTypes["SortOrder"] | undefined | null
+	en?: GraphQLTypes["SortOrder"] | undefined | null,
+	es?: GraphQLTypes["SortOrder"] | undefined | null
+};
+	["LocalizedTextSorting"]: {
+		_key?: GraphQLTypes["SortOrder"] | undefined | null,
+	_type?: GraphQLTypes["SortOrder"] | undefined | null,
+	en?: GraphQLTypes["SortOrder"] | undefined | null,
+	es?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["ImageSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -7040,9 +7142,9 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	position?: GraphQLTypes["SortOrder"] | undefined | null,
+	position?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
 	category?: GraphQLTypes["SortOrder"] | undefined | null,
-	description?: GraphQLTypes["SortOrder"] | undefined | null,
+	description?: GraphQLTypes["LocalizedTextSorting"] | undefined | null,
 	image?: GraphQLTypes["ImageSorting"] | undefined | null,
 	video?: GraphQLTypes["FileSorting"] | undefined | null
 };
@@ -7060,12 +7162,30 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
 	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
 	_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	name?: GraphQLTypes["StringFilter"] | undefined | null,
+	name?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
 	slug?: GraphQLTypes["SlugFilter"] | undefined | null,
+	description?: GraphQLTypes["LocalizedPortableTextFilter"] | undefined | null,
 	image?: GraphQLTypes["ImageFilter"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
 	start_date?: GraphQLTypes["DateFilter"] | undefined | null,
 	end_date?: GraphQLTypes["DateFilter"] | undefined | null,
 	accepting_new_students?: GraphQLTypes["BooleanFilter"] | undefined | null
+};
+	["DateFilter"]: {
+		/** Checks if the value is equal to the given input. */
+	eq?: GraphQLTypes["Date"] | undefined | null,
+	/** Checks if the value is not equal to the given input. */
+	neq?: GraphQLTypes["Date"] | undefined | null,
+	/** Checks if the value is greater than the given input. */
+	gt?: GraphQLTypes["Date"] | undefined | null,
+	/** Checks if the value is greater than or equal to the given input. */
+	gte?: GraphQLTypes["Date"] | undefined | null,
+	/** Checks if the value is lesser than the given input. */
+	lt?: GraphQLTypes["Date"] | undefined | null,
+	/** Checks if the value is lesser than or equal to the given input. */
+	lte?: GraphQLTypes["Date"] | undefined | null,
+	/** Checks if the value is defined. */
+	is_defined?: boolean | undefined | null
 };
 	["DeepDiveSorting"]: {
 		_id?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -7074,9 +7194,11 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	name?: GraphQLTypes["SortOrder"] | undefined | null,
+	name?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
 	slug?: GraphQLTypes["SlugSorting"] | undefined | null,
+	description?: GraphQLTypes["LocalizedPortableTextSorting"] | undefined | null,
 	image?: GraphQLTypes["ImageSorting"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
 	start_date?: GraphQLTypes["SortOrder"] | undefined | null,
 	end_date?: GraphQLTypes["SortOrder"] | undefined | null,
 	accepting_new_students?: GraphQLTypes["SortOrder"] | undefined | null
@@ -7087,6 +7209,10 @@ export type GraphQLTypes = {
 	current?: GraphQLTypes["SortOrder"] | undefined | null,
 	source?: GraphQLTypes["SortOrder"] | undefined | null
 };
+	["LocalizedPortableTextSorting"]: {
+		_key?: GraphQLTypes["SortOrder"] | undefined | null,
+	_type?: GraphQLTypes["SortOrder"] | undefined | null
+};
 	["MinistrySorting"]: {
 		_id?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
@@ -7094,16 +7220,18 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	name?: GraphQLTypes["SortOrder"] | undefined | null,
+	name?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
 	slug?: GraphQLTypes["SlugSorting"] | undefined | null,
 	scripture?: GraphQLTypes["ScriptureSorting"] | undefined | null,
-	image?: GraphQLTypes["ImageSorting"] | undefined | null
+	description?: GraphQLTypes["LocalizedPortableTextSorting"] | undefined | null,
+	image?: GraphQLTypes["ImageSorting"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedStringSorting"] | undefined | null
 };
 	["ScriptureSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
-	passage?: GraphQLTypes["SortOrder"] | undefined | null,
-	verse?: GraphQLTypes["SortOrder"] | undefined | null
+	passage?: GraphQLTypes["LocalizedTextSorting"] | undefined | null,
+	verse?: GraphQLTypes["LocalizedStringSorting"] | undefined | null
 };
 	["NextGenPageFilter"]: {
 		/** Apply filters on document level */
@@ -7134,17 +7262,18 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
 	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
 	_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	header?: GraphQLTypes["StringFilter"] | undefined | null,
-	title?: GraphQLTypes["StringFilter"] | undefined | null,
-	description?: GraphQLTypes["StringFilter"] | undefined | null,
+	header?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
+	title?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
+	description?: GraphQLTypes["LocalizedTextFilter"] | undefined | null,
 	link?: GraphQLTypes["LinkFilter"] | undefined | null,
 	image?: GraphQLTypes["ImageFilter"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
 	video?: GraphQLTypes["FileFilter"] | undefined | null
 };
 	["LinkFilter"]: {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	_type?: GraphQLTypes["StringFilter"] | undefined | null,
-	label?: GraphQLTypes["StringFilter"] | undefined | null,
+	label?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
 	internal_href?: GraphQLTypes["StringFilter"] | undefined | null,
 	external_href?: GraphQLTypes["StringFilter"] | undefined | null
 };
@@ -7155,17 +7284,18 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	header?: GraphQLTypes["SortOrder"] | undefined | null,
-	title?: GraphQLTypes["SortOrder"] | undefined | null,
-	description?: GraphQLTypes["SortOrder"] | undefined | null,
+	header?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
+	title?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
+	description?: GraphQLTypes["LocalizedTextSorting"] | undefined | null,
 	link?: GraphQLTypes["LinkSorting"] | undefined | null,
 	image?: GraphQLTypes["ImageSorting"] | undefined | null,
+	image_alt?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
 	video?: GraphQLTypes["FileSorting"] | undefined | null
 };
 	["LinkSorting"]: {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
-	label?: GraphQLTypes["SortOrder"] | undefined | null,
+	label?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
 	internal_href?: GraphQLTypes["SortOrder"] | undefined | null,
 	external_href?: GraphQLTypes["SortOrder"] | undefined | null
 };
@@ -7180,8 +7310,8 @@ export type GraphQLTypes = {
 	_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	contact?: GraphQLTypes["ContactFilter"] | undefined | null,
 	position?: GraphQLTypes["StringFilter"] | undefined | null,
-	main_point?: GraphQLTypes["StringFilter"] | undefined | null,
-	statement?: GraphQLTypes["StringFilter"] | undefined | null,
+	main_point?: GraphQLTypes["LocalizedTextFilter"] | undefined | null,
+	statement?: GraphQLTypes["LocalizedTextFilter"] | undefined | null,
 	image?: GraphQLTypes["ImageFilter"] | undefined | null
 };
 	["TestimonialSorting"]: {
@@ -7192,8 +7322,8 @@ export type GraphQLTypes = {
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	position?: GraphQLTypes["SortOrder"] | undefined | null,
-	main_point?: GraphQLTypes["SortOrder"] | undefined | null,
-	statement?: GraphQLTypes["SortOrder"] | undefined | null,
+	main_point?: GraphQLTypes["LocalizedTextSorting"] | undefined | null,
+	statement?: GraphQLTypes["LocalizedTextSorting"] | undefined | null,
 	image?: GraphQLTypes["ImageSorting"] | undefined | null
 };
 	["ResourceFilter"]: {
@@ -7205,12 +7335,12 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
 	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
 	_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	title?: GraphQLTypes["StringFilter"] | undefined | null,
+	title?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
 	type?: GraphQLTypes["StringFilter"] | undefined | null,
-	description?: GraphQLTypes["StringFilter"] | undefined | null,
+	description?: GraphQLTypes["LocalizedTextFilter"] | undefined | null,
 	category?: GraphQLTypes["StringFilter"] | undefined | null,
 	file?: GraphQLTypes["FileFilter"] | undefined | null,
-	file_size?: GraphQLTypes["StringFilter"] | undefined | null,
+	file_size?: GraphQLTypes["LocalizedStringFilter"] | undefined | null,
 	url?: GraphQLTypes["StringFilter"] | undefined | null,
 	is_active?: GraphQLTypes["BooleanFilter"] | undefined | null
 };
@@ -7221,12 +7351,12 @@ export type GraphQLTypes = {
 	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
 	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
 	_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	title?: GraphQLTypes["SortOrder"] | undefined | null,
+	title?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
 	type?: GraphQLTypes["SortOrder"] | undefined | null,
-	description?: GraphQLTypes["SortOrder"] | undefined | null,
+	description?: GraphQLTypes["LocalizedTextSorting"] | undefined | null,
 	category?: GraphQLTypes["SortOrder"] | undefined | null,
 	file?: GraphQLTypes["FileSorting"] | undefined | null,
-	file_size?: GraphQLTypes["SortOrder"] | undefined | null,
+	file_size?: GraphQLTypes["LocalizedStringSorting"] | undefined | null,
 	url?: GraphQLTypes["SortOrder"] | undefined | null,
 	is_active?: GraphQLTypes["SortOrder"] | undefined | null
 };
@@ -7302,7 +7432,7 @@ export type GraphQLTypes = {
 		_key?: GraphQLTypes["StringFilter"] | undefined | null,
 	_type?: GraphQLTypes["StringFilter"] | undefined | null,
 	day?: GraphQLTypes["StringFilter"] | undefined | null,
-	time?: GraphQLTypes["TimeTypeFilter"] | undefined | null,
+	time?: GraphQLTypes["StringFilter"] | undefined | null,
 	attendance_type?: GraphQLTypes["StringFilter"] | undefined | null
 };
 	["CrossDatasetReferenceSorting"]: {
@@ -7317,7 +7447,7 @@ export type GraphQLTypes = {
 		_key?: GraphQLTypes["SortOrder"] | undefined | null,
 	_type?: GraphQLTypes["SortOrder"] | undefined | null,
 	day?: GraphQLTypes["SortOrder"] | undefined | null,
-	time?: GraphQLTypes["TimeTypeSorting"] | undefined | null,
+	time?: GraphQLTypes["SortOrder"] | undefined | null,
 	attendance_type?: GraphQLTypes["SortOrder"] | undefined | null
 };
 	["ID"]: "scalar" & { name: "ID" }
@@ -7329,8 +7459,8 @@ export enum SortOrder {
 
 type ZEUS_VARIABLES = {
 	["DateTime"]: ValueTypes["DateTime"];
-	["Date"]: ValueTypes["Date"];
 	["JSON"]: ValueTypes["JSON"];
+	["Date"]: ValueTypes["Date"];
 	["SanityImageAssetFilter"]: ValueTypes["SanityImageAssetFilter"];
 	["Sanity_DocumentFilter"]: ValueTypes["Sanity_DocumentFilter"];
 	["IDFilter"]: ValueTypes["IDFilter"];
@@ -7369,8 +7499,8 @@ type ZEUS_VARIABLES = {
 	["NextGenGuardianInquirySorting"]: ValueTypes["NextGenGuardianInquirySorting"];
 	["ContactSorting"]: ValueTypes["ContactSorting"];
 	["EventFilter"]: ValueTypes["EventFilter"];
-	["DateFilter"]: ValueTypes["DateFilter"];
-	["TimeTypeFilter"]: ValueTypes["TimeTypeFilter"];
+	["LocalizedStringFilter"]: ValueTypes["LocalizedStringFilter"];
+	["LocalizedTextFilter"]: ValueTypes["LocalizedTextFilter"];
 	["ImageFilter"]: ValueTypes["ImageFilter"];
 	["GlobalDocumentReferenceFilter"]: ValueTypes["GlobalDocumentReferenceFilter"];
 	["SanityImageHotspotFilter"]: ValueTypes["SanityImageHotspotFilter"];
@@ -7379,10 +7509,12 @@ type ZEUS_VARIABLES = {
 	["MinistryFilter"]: ValueTypes["MinistryFilter"];
 	["SlugFilter"]: ValueTypes["SlugFilter"];
 	["ScriptureFilter"]: ValueTypes["ScriptureFilter"];
+	["LocalizedPortableTextFilter"]: ValueTypes["LocalizedPortableTextFilter"];
 	["LeaderFilter"]: ValueTypes["LeaderFilter"];
 	["FileFilter"]: ValueTypes["FileFilter"];
 	["EventSorting"]: ValueTypes["EventSorting"];
-	["TimeTypeSorting"]: ValueTypes["TimeTypeSorting"];
+	["LocalizedStringSorting"]: ValueTypes["LocalizedStringSorting"];
+	["LocalizedTextSorting"]: ValueTypes["LocalizedTextSorting"];
 	["ImageSorting"]: ValueTypes["ImageSorting"];
 	["GlobalDocumentReferenceSorting"]: ValueTypes["GlobalDocumentReferenceSorting"];
 	["SanityImageHotspotSorting"]: ValueTypes["SanityImageHotspotSorting"];
@@ -7391,8 +7523,10 @@ type ZEUS_VARIABLES = {
 	["LeaderSorting"]: ValueTypes["LeaderSorting"];
 	["FileSorting"]: ValueTypes["FileSorting"];
 	["DeepDiveFilter"]: ValueTypes["DeepDiveFilter"];
+	["DateFilter"]: ValueTypes["DateFilter"];
 	["DeepDiveSorting"]: ValueTypes["DeepDiveSorting"];
 	["SlugSorting"]: ValueTypes["SlugSorting"];
+	["LocalizedPortableTextSorting"]: ValueTypes["LocalizedPortableTextSorting"];
 	["MinistrySorting"]: ValueTypes["MinistrySorting"];
 	["ScriptureSorting"]: ValueTypes["ScriptureSorting"];
 	["NextGenPageFilter"]: ValueTypes["NextGenPageFilter"];

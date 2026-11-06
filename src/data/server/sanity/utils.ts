@@ -14,3 +14,20 @@ export function portableTextToString(blocks: SanityTextBlock[] | SanityTextBlock
     )
     .join('\n');
 }
+
+export const getLocalizedValue = <T extends Record<string, any>>(
+  value: T | undefined,
+  locale: string,
+  defaultLocale = 'en'
+) => {
+  if (!value) return '';
+  return value[locale] ?? value[defaultLocale] ?? '';
+};
+
+export const getLocalizedPortableText = (
+  value: Record<string, any> | undefined,
+  locale: string
+) => {
+  if (!value) return [];
+  return value[`${locale}Raw`] ?? value.enRaw ?? [];
+};

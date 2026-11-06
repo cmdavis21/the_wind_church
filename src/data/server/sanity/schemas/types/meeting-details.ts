@@ -1,3 +1,4 @@
+import { SanityAttendanceTypes, SanityDaysOfTheWeekTypes } from '@/data/types';
 import { defineField, defineType } from 'sanity';
 
 export const MeetingDetailsSchema = defineType({
@@ -9,37 +10,23 @@ export const MeetingDetailsSchema = defineType({
       name: 'day',
       title: 'Day',
       type: 'string',
-      options: {
-        list: [
-          { title: 'Sunday', value: 'Sunday' },
-          { title: 'Monday', value: 'Monday' },
-          { title: 'Tuesday', value: 'Tuesday' },
-          { title: 'Wednesday', value: 'Wednesday' },
-          { title: 'Thursday', value: 'Thursday' },
-          { title: 'Friday', value: 'Friday' },
-          { title: 'Saturday', value: 'Saturday' },
-        ],
-      },
+      options: { list: SanityDaysOfTheWeekTypes },
     }),
     defineField({
       name: 'time',
       title: 'Time',
-      type: 'timeType',
+      type: 'string',
+      description: 'Example: 7:00 PM',
+      validation: (Rule) =>
+        Rule.required().regex(/^(0?[1-9]|1[0-2]):[0-5][0-9]\s(AM|PM)$/i, {
+          name: '12-hour time',
+        }),
     }),
     defineField({
       name: 'attendance_type',
       title: 'Attendance Type',
       type: 'string',
-      options: {
-        list: [
-          { title: 'In-Person', value: 'In-Person' },
-          { title: 'Online', value: 'Online' },
-          {
-            title: 'In-person and Online',
-            value: 'In-person and Online',
-          },
-        ],
-      },
+      options: { list: SanityAttendanceTypes },
     }),
   ],
 });

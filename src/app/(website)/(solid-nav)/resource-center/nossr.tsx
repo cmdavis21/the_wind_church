@@ -22,8 +22,12 @@ const ResourceCenterClient = () => {
 
   if (resourcesError) return <ErrorAlert />;
 
+  const resourceCategoryOrder = Object.fromEntries(
+    SanityResourceCategories.map((category, index) => [category.value, index])
+  );
+
   const sortedResources = Object.entries(resources).sort(([a], [b]) => {
-    return SanityResourceCategories.indexOf(a) - SanityResourceCategories.indexOf(b);
+    return resourceCategoryOrder[a] - resourceCategoryOrder[b];
   });
 
   return (

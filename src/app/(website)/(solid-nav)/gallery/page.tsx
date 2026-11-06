@@ -4,18 +4,21 @@ import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { getGallery } from '@/data/server/aws/s3/gallery';
 import { WEBSITE_URL } from '@/data/server/env.server';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'Gallery' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.gallery}`;
   const image = '/images/rental/church-building.webp';
+
   return {
     title,
     description,

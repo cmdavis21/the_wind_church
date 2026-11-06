@@ -1,5 +1,7 @@
-import { Ministry } from '@/data/types';
-import { portableTextToString } from '../utils';
+import { Locale } from '@/data/i18n/utils';
+import { localizedFields, localizedFieldsRaw, Ministry } from '@/data/types';
+import { SANITY_NEXT_GEN_DOC_ID } from '../../env.server';
+import { getLocalizedPortableText, getLocalizedValue, portableTextToString } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
 const getAllMinistriesQuery = async () => {
@@ -7,17 +9,18 @@ const getAllMinistriesQuery = async () => {
     allMinistry: [
       {},
       {
-        name: true,
+        _id: true,
+        name: localizedFields,
         slug: {
           current: true,
         },
-        descriptionRaw: true,
+        description: localizedFieldsRaw,
         image: {
           asset: {
             url: true,
-            altText: true,
           },
         },
+        image_alt: localizedFields,
       },
     ],
   }).then((m) => m.allMinistry);
@@ -29,22 +32,22 @@ const getMinistryBySlugQuery = async (slug: string) => {
       { where: { slug: { current: { eq: slug } } } },
       {
         _id: true,
-        name: true,
+        name: localizedFields,
         slug: {
           current: true,
         },
-        descriptionRaw: true,
+        description: localizedFieldsRaw,
         scripture: {
-          verse: true,
-          passage: true,
+          verse: localizedFields,
+          passage: localizedFields,
         },
         coordinators: {
           contact: {
             first_name: true,
             last_name: true,
           },
-          position: true,
-          description: true,
+          position: localizedFields,
+          description: localizedFields,
           image: {
             asset: {
               url: true,
@@ -61,8 +64,8 @@ const getMinistryBySlugQuery = async (slug: string) => {
             first_name: true,
             last_name: true,
           },
-          position: true,
-          description: true,
+          position: localizedFields,
+          description: localizedFields,
           image: {
             asset: {
               url: true,
@@ -77,15 +80,17 @@ const getMinistryBySlugQuery = async (slug: string) => {
         image: {
           asset: {
             url: true,
-            altText: true,
           },
         },
+        image_alt: localizedFields,
       },
     ],
   }).then((m) => m.allMinistry);
 };
 
-export const getAllMinistries = async (): Promise<
+export const getAllMinistries = async (
+  locale: Locale
+): Promise<
   {
     name: Ministry['name'];
     slug: Ministry['slug'];
@@ -95,63 +100,65 @@ export const getAllMinistries = async (): Promise<
 > => {
   const ministries = await getAllMinistriesQuery();
 
-  if (ministries) {
-    return ministries
-      .filter((ministry) => ministry.slug?.current !== 'next-gen')
-      .map((ministry) => ({
-        name: ministry.name ?? '',
-        slug: ministry.slug?.current ?? '',
-        image: {
-          src: ministry.image?.asset?.url ?? '',
-          alt: ministry.image?.asset?.altText ?? '',
-        },
-        description: ministries[0].descriptionRaw
-          ? portableTextToString(ministries[0].descriptionRaw as any)
-          : '',
-      }));
-  }
+  if (!ministries) return [];
 
-  return [];
+  return ministries
+    .filter((ministry) => ministry._id !== SANITY_NEXT_GEN_DOC_ID)
+    .map((ministry) => ({
+      name: getLocalizedValue(ministry.name, locale) ?? '',
+      slug: ministry.slug?.current ?? '',
+      description: portableTextToString(
+        getLocalizedPortableText(ministry.description, locale)
+      ) as any,
+      image: {
+        src: ministry.image?.asset?.url ?? '',
+        alt: getLocalizedValue(ministry.image_alt, locale) ?? '',
+      },
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 };
 
-export const getMinistryBySlug = async (slug: string): Promise<Ministry | undefined> => {
+export const getMinistryBySlug = async (
+  slug: string,
+  locale: Locale
+): Promise<Ministry | undefined> => {
   const ministries = await getMinistryBySlugQuery(slug);
 
-  if (ministries && ministries[0]) {
-    return {
-      _id: (ministries[0]._id as string) ?? undefined,
-      name: ministries[0].name ?? '',
-      slug: ministries[0].slug?.current ?? '',
-      scripture: {
-        verse: ministries[0].scripture?.verse ?? '',
-        passage: ministries[0].scripture?.passage ?? '',
-      },
-      description: ministries[0].descriptionRaw
-        ? portableTextToString(ministries[0].descriptionRaw as any)
-        : '',
-      coordinators:
-        ministries[0].coordinators?.map((coordinator) => ({
-          first_name: coordinator.contact?.first_name ?? '',
-          last_name: coordinator.contact?.last_name ?? '',
-          position: coordinator.position ?? '',
-          description: coordinator.description ?? '',
-          image: coordinator.image?.asset?.url ?? '',
-          video: coordinator.video?.asset?.url ?? undefined,
-        })) ?? [],
-      coach: {
-        first_name: ministries[0].coach?.contact?.first_name ?? '',
-        last_name: ministries[0].coach?.contact?.last_name ?? '',
-        position: ministries[0].coach?.position ?? '',
-        description: ministries[0].coach?.description ?? '',
-        image: ministries[0].coach?.image?.asset?.url ?? '',
-        video: ministries[0].coach?.video?.asset?.url ?? undefined,
-      },
-      image: {
-        src: ministries[0].image?.asset?.url ?? '',
-        alt: ministries[0].image?.asset?.altText ?? '',
-      },
-    };
-  }
+  const ministry = ministries?.[0];
 
-  return undefined;
+  if (!ministry) return undefined;
+
+  return {
+    _id: (ministry._id as string) ?? undefined,
+    name: getLocalizedValue(ministry.name, locale) ?? '',
+    slug: ministry.slug?.current ?? '',
+    scripture: {
+      verse: getLocalizedValue(ministry.scripture?.verse, locale) ?? '',
+      passage: getLocalizedValue(ministry.scripture?.passage, locale) ?? '',
+    },
+    description: portableTextToString(
+      getLocalizedPortableText(ministry.description, locale)
+    ) as any,
+    coordinators:
+      ministry.coordinators?.map((coordinator) => ({
+        first_name: coordinator.contact?.first_name ?? '',
+        last_name: coordinator.contact?.last_name ?? '',
+        position: getLocalizedValue(coordinator.position, locale) ?? '',
+        description: getLocalizedValue(coordinator.description, locale) ?? '',
+        image: coordinator.image?.asset?.url ?? '',
+        video: coordinator.video?.asset?.url ?? undefined,
+      })) ?? [],
+    coach: {
+      first_name: ministry.coach?.contact?.first_name ?? '',
+      last_name: ministry.coach?.contact?.last_name ?? '',
+      position: getLocalizedValue(ministry.coach?.position, locale) ?? '',
+      description: getLocalizedValue(ministry.coach?.description, locale) ?? '',
+      image: ministry.coach?.image?.asset?.url ?? '',
+      video: ministry.coach?.video?.asset?.url ?? undefined,
+    },
+    image: {
+      src: ministry.image?.asset?.url ?? '',
+      alt: getLocalizedValue(ministry.image_alt, locale) ?? '',
+    },
+  };
 };

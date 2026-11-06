@@ -4,18 +4,25 @@ export const MinistrySchema = {
   name: 'ministry',
   title: 'Ministries',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'image_content',
+      title: 'Image Content',
+      options: { collapsible: false, collapsed: false },
+    },
+  ],
   fields: [
     defineField({
       name: 'name',
       title: 'Name',
-      type: 'string',
+      type: 'localizedString',
       validation: (rule) => rule.required().error('Enter the Ministry name.'),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'name' },
+      options: { source: 'name.en' },
       validation: (rule) => rule.required().error('Generate the Ministry slug.'),
     }),
     defineField({
@@ -27,9 +34,8 @@ export const MinistrySchema = {
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'array',
+      type: 'localizedPortableText',
       description: 'Describe the ministry (1-3 paragraphs).',
-      of: [{ type: 'block' }],
       validation: (rule) => rule.required().error('Write a description for the ministry.'),
     }),
     defineField({
@@ -52,19 +58,32 @@ export const MinistrySchema = {
       name: 'image',
       type: 'image',
       title: 'Image',
-      description: 'Image representing the ministry.',
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alt',
-          validation: (rule) =>
-            rule
-              .required()
-              .error('Please add an alt description; this is helpful for seo and accessibility.'),
-        },
-      ],
-      validation: (rule) => rule.required().error('Add an image depicting the ministry.'),
+      fieldset: 'image_content',
+      validation: (rule) => rule.required().error('Add an image depicting the course.'),
+    }),
+    defineField({
+      name: 'image_alt',
+      type: 'localizedString',
+      title: 'Image Alt',
+      fieldset: 'image_content',
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          if (!context.document?.image) return true;
+          if (typeof value === 'object' && value !== null && 'en' in value && value.en) return true;
+          return 'Alt text is required when an image is provided.';
+        }),
     }),
   ],
+  preview: {
+    select: {
+      name: 'name.en',
+      image: 'image',
+    },
+    prepare({ name, image }: { name: string; image?: { asset: any } }) {
+      return {
+        title: name,
+        media: image,
+      };
+    },
+  },
 };

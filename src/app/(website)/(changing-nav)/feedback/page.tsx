@@ -1,17 +1,20 @@
 import VisitorFeedbackForm from '@/components/forms/visitor-feedback-form/VisitorFeedbackForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
+
   const t = await getTranslations({ locale, namespace: 'Feedback' });
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.feedback}`;
   const image = '/images/feedback.webp';
+
   return {
     title,
     description,
@@ -44,7 +47,6 @@ const VisitorFeedback = async () => {
 
       <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
         <CenterTextSection title={t('form.header.title')} description={t('form.header.subtitle')} />
-
         <VisitorFeedbackForm />
       </div>
     </div>

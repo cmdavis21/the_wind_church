@@ -3,51 +3,34 @@ import AlertMessage from '@/components/alerts/alert-message/AlertMessage';
 import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
+import { MultiInfoCard } from '@/components/cards/multi-info-card/MultiInfoCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import CircleCheck from '@/components/icons/circle-check';
-import Location from '@/components/icons/location';
-import PeopleGroup from '@/components/icons/people-group';
-import Video from '@/components/icons/video';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
-import { formatDateMMMddyyyy } from '@/data/format-date';
+import { DEFAULT_LOCALE, Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
 import { getAllDeepDives, getDeepDiveBySlug } from '@/data/server/sanity/queries/deep-dives';
-import { differenceInCalendarWeeks } from 'date-fns';
 
-import { getTranslations } from 'next-intl/server';
-
-const resolveAttendance = (type: string) => {
-  const t = type.toLowerCase();
-  const online = t.includes('online');
-  const inPerson = t.includes('person');
-  if (online && inPerson) return { label: 'In-person + online options', Icon: PeopleGroup };
-  if (online) return { label: 'Online', Icon: Video };
-  if (inPerson) return { label: 'In-person', Icon: Location };
-  return { label: type, Icon: null };
-};
+import { getLocale, getTranslations } from 'next-intl/server';
 
 export async function generateStaticParams() {
-  const deepDives = await getAllDeepDives();
-  return deepDives.map((deepDive) => ({
-    slug: deepDive.slug,
-  }));
+  const deepDives = await getAllDeepDives(DEFAULT_LOCALE);
+  return deepDives.map((deepDive) => ({ slug: deepDive.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string; slug: string }>;
-}) {
-  const { locale, slug } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'DeepDive' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.deepDive}/${slug}`;
   const image = '/images/wind_church_building.webp';
+
   return {
     title,
     description,
@@ -69,7 +52,10 @@ export async function generateMetadata({
 
 const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
-  const deepDive = await getDeepDiveBySlug(slug);
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations('DeepDive');
+
+  const deepDive = await getDeepDiveBySlug(slug, locale);
 
   if (!deepDive) {
     return (
@@ -84,23 +70,31 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
     );
   }
 
-  const start = new Date(deepDive.start_date);
-  const end = new Date(deepDive.end_date);
-  const weeks = Math.max(1, differenceInCalendarWeeks(end, start));
+  const {
+    name,
+    description,
+    instructors,
+    image,
+    meeting_details,
+    start_date,
+    end_date,
+    required_materials,
+    accepting_new_students,
+  } = deepDive;
 
   return (
     <div>
-      <PageHero size="short" title={deepDive.name} media={{ src: deepDive.image.src }} />
+      <PageHero size="short" title={name} media={{ src: image.src }} />
       <div className="flex flex-col gap-3xl sm:gap-4xl pt-3xl sm:pt-4xl">
         {/* DESCRIPTION */}
-        <h4 className="px-padding max-width-center">{deepDive.description}</h4>
+        <h4 className="px-padding max-width-center">{description}</h4>
 
         {/* INSTRUCTORS */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
           <SectionHeader title="Meet the Instructors" subtitle="Select Leaders to learn more" />
           {/* DESKTOP */}
           <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-items-center">
-            {deepDive.instructors.map((leader) => (
+            {instructors.map((leader) => (
               <LeaderCard
                 key={`ministry-leader-desktop-${leader.first_name}-${leader.last_name}`}
                 {...leader}
@@ -111,7 +105,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
           {/* MOBILE */}
           <SimpleCarousel
             className="sm:hidden"
-            slides={deepDive.instructors.map((leader) => (
+            slides={instructors.map((leader) => (
               <LeaderCard
                 key={`ministry-leader-mobile-${leader.first_name}-${leader.last_name}`}
                 {...leader}
@@ -125,7 +119,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
           <SectionHeader title="The Details" subtitle="It’s the finer things..." />
 
           {/* ACCEPTING NEW STUDENTS */}
-          {deepDive.accepting_new_students ? (
+          {accepting_new_students ? (
             <AlertMessage
               type="success"
               title="Accepting New Students!"
@@ -140,109 +134,41 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
           )}
 
           <div
-            className="grid gap-md"
+            className="grid gap-xl"
             style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))' }}
           >
             {/* SCHEDULE */}
-            <section
-              aria-label="schedule"
-              className="rounded-2xl border bg-light-bg border-light-gray dark:bg-dark-gray dark:border-dark-gray p-lg shadow-sm"
-            >
-              <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-brand-dark dark:text-brand-primary mb-md">
-                Schedule
-              </h3>
-
-              <dl className="flex items-start justify-between gap-md">
-                <div>
-                  <dt className="text-xs text-light-secondaryText dark:text-dark-primaryText/70">
-                    Starts
-                  </dt>
-                  <dd className="font-semibold">
-                    <time dateTime={start.toISOString()}>{formatDateMMMddyyyy(start)}</time>
-                  </dd>
-                </div>
-
-                <div className="text-right">
-                  <dt className="text-xs text-light-secondaryText dark:text-dark-primaryText/70">
-                    Ends
-                  </dt>
-                  <dd className="font-semibold">
-                    <time dateTime={end.toISOString()}>{formatDateMMMddyyyy(end)}</time>
-                  </dd>
-                </div>
-              </dl>
-
-              {/* Decorative Timeline */}
-              <div aria-hidden="true" className="relative mt-lg flex items-center">
-                <span className="h-2.5 w-2.5 rounded-full bg-brand-primary" />
-                <span className="h-px flex-1 bg-brand-primary/40 origin-left" />
-                <span className="h-2.5 w-2.5 rounded-full border-2 border-brand-primary bg-light-bg dark:bg-dark-bg" />
-                <span className="absolute left-1/2 -translate-x-1/2 rounded-full border border-light-gray dark:border-dark-gray bg-light-bg dark:bg-dark-bg px-3 py-0.5 text-xs font-medium">
-                  {weeks} {weeks === 1 ? 'week' : 'weeks'}
-                </span>
-              </div>
-              <p className="sr-only">
-                Runs for {weeks} {weeks === 1 ? 'week' : 'weeks'}.
-              </p>
-            </section>
+            <MultiInfoCard
+              label="Schedule"
+              content={{
+                type: 'timeline',
+                data: {
+                  start_date: new Date(start_date),
+                  end_date: new Date(end_date),
+                },
+              }}
+            />
 
             {/* MEETING TIMES */}
-            {deepDive.meeting_details && deepDive.meeting_details.length > 0 && (
-              <section
-                aria-label="meets"
-                className="rounded-2xl border bg-light-bg border-light-gray dark:bg-dark-gray dark:border-dark-gray p-lg shadow-sm"
-              >
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-brand-dark dark:text-brand-primary mb-md">
-                  Meets
-                </h3>
-
-                <ul className="flex flex-col gap-md">
-                  {deepDive.meeting_details.map(({ day, time, attendance_type }) => {
-                    const { label, Icon } = resolveAttendance(attendance_type);
-                    return (
-                      <li
-                        key={`${day}-${time.hour}:${time.minute}-${attendance_type}`}
-                        className="flex flex-wrap items-center justify-between gap-x-md gap-y-1"
-                      >
-                        <p className="font-semibold">
-                          {day}&nbsp;&nbsp;
-                          {time.hour}:{time.minute}
-                          {time.time_of_day}
-                          <span className="ml-1 text-xs font-normal text-light-secondaryText dark:text-dark-primaryText/70">
-                            {time.time_zone}
-                          </span>
-                        </p>
-
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-medium text-brand-dark dark:text-brand-primary">
-                          {Icon && <Icon className="fill-brand-primary" />}
-                          {label}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
+            {meeting_details && meeting_details.length > 0 && (
+              <MultiInfoCard
+                label="Meets"
+                content={{
+                  type: 'meeting',
+                  data: meeting_details,
+                }}
+              />
             )}
 
             {/* REQUIRED MATERIALS */}
-            {deepDive.required_materials && deepDive.required_materials.length > 0 && (
-              <section
-                aria-label="bring"
-                className="rounded-2xl border bg-light-bg border-light-gray dark:bg-dark-gray dark:border-dark-gray p-lg shadow-sm"
-              >
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-brand-dark dark:text-brand-primary mb-md">
-                  Bring
-                </h3>
-
-                <ul className="flex flex-col gap-sm">
-                  {deepDive.required_materials.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <CircleCheck className="mt-0.5" fill="#fdd738 " />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
+            {required_materials && required_materials.length > 0 && (
+              <MultiInfoCard
+                label="Bring"
+                content={{
+                  type: 'list',
+                  data: required_materials,
+                }}
+              />
             )}
           </div>
         </div>

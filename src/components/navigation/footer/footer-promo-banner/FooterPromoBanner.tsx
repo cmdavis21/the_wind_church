@@ -1,13 +1,17 @@
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
+import { Locale } from '@/data/i18n/utils';
 import { getPromoDetails } from '@/data/server/sanity/queries/promo-details';
 import cn from 'classnames';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const FooterPromoBanner = async () => {
+  const locale = (await getLocale()) as Locale;
+
   const t = await getTranslations('Footer');
-  const promoDetails = await getPromoDetails();
+  const promoDetails = await getPromoDetails(locale);
+
   return (
     <div
       className={cn(

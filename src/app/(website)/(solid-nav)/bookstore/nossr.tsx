@@ -10,9 +10,12 @@ import Filter from '@/components/icons/filter';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import SectionHeaderSkeleton from '@/components/sections/section-header/SectionHeader.skeleton';
 import { useGetStorefrontCollections } from '@/data/client/shopify/collections';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 const BookstoreClient = () => {
+  const t = useTranslations('Bookstore');
+
   const [filter, setFilter] = useState('');
   const { collections, collectionsLoading, collectionsError } = useGetStorefrontCollections();
 
@@ -21,13 +24,9 @@ const BookstoreClient = () => {
   return (
     <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
       <PageHeaderWithBackground
-        media={{
-          src: '/images/open-sign.webp',
-          alt: 'Decorative Background Image',
-          poster: '',
-        }}
-        title="Bookstore"
-        subtitle="Grab the latest Wind Gear and supplies here."
+        title={t('title')}
+        subtitle={t('subtitle')}
+        media={{ src: '/images/open-sign.webp', alt: t('alt') }}
       />
 
       {/* FILTERING */}
@@ -36,10 +35,10 @@ const BookstoreClient = () => {
           <SelectInput
             icon={Filter}
             className="sm:w-fit sm:self-end"
-            disabled={collectionsLoading || collectionsError}
             onChange={(e) => setFilter(e.target.value)}
+            disabled={collectionsLoading || collectionsError}
             options={[
-              { label: 'All Products', value: '' },
+              { label: t('defaultFilterLabel'), value: '' },
               ...collections.map((c) => ({ label: c.title, value: c.title })),
             ]}
           />
@@ -56,7 +55,7 @@ const BookstoreClient = () => {
             <SectionHeaderSkeleton />
             <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
               {Array.from({ length: 6 }).map((_, idx) => (
-                <ProductCardSkeleton key={`bookstore-collections-skeleton-card-${index}`} />
+                <ProductCardSkeleton key={`bookstore-collections-skeleton-card-${idx}`} />
               ))}
             </div>
           </div>

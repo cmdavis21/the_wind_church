@@ -2,73 +2,80 @@ import { defineField } from 'sanity';
 
 export const DeepDiveSchema = {
   name: 'deepDive',
-  title: 'Deep Dives',
+  title: 'Christian Life Development',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'image_content',
+      title: 'Image Content',
+      options: { collapsible: false, collapsed: false },
+    },
+  ],
   fields: [
     defineField({
       name: 'name',
       title: 'Name',
-      type: 'string',
-      validation: (rule) => rule.required().error('Enter the Deep Dive name.'),
+      type: 'localizedString',
+      validation: (rule) => rule.required().error('Enter the course name.'),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'name' },
-      validation: (rule) => rule.required().error('Generate the Deep Dive slug.'),
+      options: { source: 'name.en' },
+      validation: (rule) => rule.required().error('Generate the course slug.'),
     }),
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'array',
-      description: 'Describe the deep dive (1-3 paragraphs).',
-      of: [{ type: 'block' }],
-      validation: (rule) => rule.required().error('Write a description for the deep dive.'),
+      type: 'localizedPortableText',
+      description: 'Describe the course (1-3 paragraphs).',
+      validation: (rule) => rule.required().error('Write a description for the course.'),
     }),
     defineField({
       name: 'instructors',
       title: 'Instructors',
-      description: 'List the instructors for this deep dive.',
+      description: 'List the instructors for this course.',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'leader' }] }],
-      validation: (rule) => rule.required().error('Select the Deep Dive instructors.'),
+      validation: (rule) => rule.required().error('Select the course instructors.'),
     }),
     defineField({
       name: 'image',
       type: 'image',
       title: 'Image',
-      description: 'Image representing the deep dive.',
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alt',
-          validation: (rule) =>
-            rule
-              .required()
-              .error('Please add an alt description; this is helpful for seo and accessibility.'),
-        },
-      ],
-      validation: (rule) => rule.required().error('Add an image depicting the deep dive course.'),
+      fieldset: 'image_content',
+      validation: (rule) => rule.required().error('Add an image depicting the course.'),
+    }),
+    defineField({
+      name: 'image_alt',
+      type: 'localizedString',
+      title: 'Image Alt',
+      fieldset: 'image_content',
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          if (!context.document?.image) return true;
+          if (typeof value === 'object' && value !== null && 'en' in value && value.en) return true;
+          return 'Alt text is required when an image is provided.';
+        }),
     }),
     defineField({
       name: 'start_date',
       title: 'Start Date',
       type: 'date',
-      validation: (rule) => rule.required().error('Add the Deep Dive start date.'),
+      validation: (rule) => rule.required().error('Add the course start date.'),
     }),
     defineField({
       name: 'end_date',
       title: 'End Date',
       type: 'date',
-      validation: (rule) => rule.required().error('Add the Deep Dive start date.'),
+      validation: (rule) => rule.required().error('Add the course start date.'),
     }),
     defineField({
       name: 'required_materials',
       title: 'Required Materials',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [{ type: 'localizedString' }],
     }),
     defineField({
       name: 'meeting_details',
@@ -81,9 +88,21 @@ export const DeepDiveSchema = {
     defineField({
       name: 'accepting_new_students',
       title: 'Accepting New Students',
-      description: 'Is this deep dive actively accepting new Students?',
+      description: 'Is this course actively accepting new Students?',
       type: 'boolean',
       validation: (rule) => rule.required().error('Select a response.'),
     }),
   ],
+  preview: {
+    select: {
+      name: 'name.en',
+      image: 'image',
+    },
+    prepare({ name, image }: { name: string; image?: { asset: any } }) {
+      return {
+        title: name,
+        media: image,
+      };
+    },
+  },
 };

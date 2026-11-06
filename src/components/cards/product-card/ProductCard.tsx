@@ -6,6 +6,7 @@ import { formatPrice, Price } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
 import { Image as ImageType } from '@/data/types';
 import { Badge } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -31,6 +32,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   handle,
   pickupOnly,
 }) => {
+  const t = useTranslations('Bookstore');
+
   const [isHovered, setIsHovered] = React.useState(false);
 
   const responsive = {
@@ -100,7 +103,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             )}
             {pickupOnly && (
               <Badge color="warning" size="xs">
-                Pickup-only
+                {t('card.pickup')}
               </Badge>
             )}
           </div>

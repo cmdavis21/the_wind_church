@@ -1,5 +1,7 @@
-import { PromoBannerDetails } from '@/data/types';
+import { Locale } from '@/data/i18n/utils';
+import { localizedFields, PromoBannerDetails } from '@/data/types';
 import { cache } from 'react';
+import { getLocalizedValue } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
 const getPromoDetailsQuery = async () => {
@@ -7,20 +9,20 @@ const getPromoDetailsQuery = async () => {
     allPromoBanner: [
       {},
       {
-        header: true,
-        title: true,
-        description: true,
+        header: localizedFields,
+        title: localizedFields,
+        description: localizedFields,
         link: {
-          label: true,
+          label: localizedFields,
           external_href: true,
           internal_href: true,
         },
         image: {
           asset: {
             url: true,
-            altText: true,
           },
         },
+        image_alt: localizedFields,
         video: {
           asset: {
             url: true,
@@ -31,27 +33,29 @@ const getPromoDetailsQuery = async () => {
   }).then((y) => y.allPromoBanner);
 };
 
-export const getPromoDetails = cache(async (): Promise<PromoBannerDetails | undefined> => {
-  const details = await getPromoDetailsQuery();
+export const getPromoDetails = cache(
+  async (locale: Locale): Promise<PromoBannerDetails | undefined> => {
+    const details = await getPromoDetailsQuery();
 
-  if (details && details[0]) {
+    const detail = details?.[0];
+
+    if (!detail) return undefined;
+
     return {
-      header: details[0].header ?? '',
-      title: details[0].title ?? '',
-      description: details[0].description ?? '',
-      link: details[0].link
+      header: getLocalizedValue(detail.header, locale) ?? '',
+      title: getLocalizedValue(detail.title, locale) ?? '',
+      description: getLocalizedValue(detail.description, locale) ?? '',
+      link: detail.link
         ? {
-            label: details[0].link.label ?? '',
-            href: details[0].link.external_href ?? details[0].link.internal_href ?? '#',
+            label: getLocalizedValue(detail.link.label, locale) ?? '',
+            href: detail.link.external_href ?? detail.link.internal_href ?? '#',
           }
         : undefined,
       image: {
-        src: details[0].image?.asset?.url ?? '',
-        alt: details[0].image?.asset?.altText ?? '',
+        src: detail.image?.asset?.url ?? '',
+        alt: getLocalizedValue(detail.image_alt, locale) ?? '',
       },
-      video: details[0].video?.asset?.url ?? undefined,
+      video: detail.video?.asset?.url ?? undefined,
     };
   }
-
-  return undefined;
-});
+);

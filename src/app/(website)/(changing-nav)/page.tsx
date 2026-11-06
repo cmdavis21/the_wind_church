@@ -1,26 +1,25 @@
-import Accordion from '@/components/accordion/Accordion';
 import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
-import TestimonialCarousel from '@/components/carousels/testimonial-carousel/TestimonialCarousel';
 import Text from '@/components/forms/inputs/text/Text';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import PreviewSermon from '@/components/preview-sermon/PreviewSermon';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
-import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { AWS_ASSET_URL, WEBSITE_URL, YOUTUBE } from '@/data/server/env.server';
-import { getAllTestimonies } from '@/data/server/sanity/queries/testimonials';
 import { getLatestSermon } from '@/data/server/youtube/playlists';
 
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'Home' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}/`;
   const image = '/images/wind_church_building.webp';
+
   return {
     title,
     description,
@@ -41,7 +40,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const Home = async () => {
   const result = await getLatestSermon();
-  const testimonials = await getAllTestimonies();
 
   const exploreOptions = [
     {
@@ -88,47 +86,6 @@ const Home = async () => {
       title: 'Have an event?',
       description: 'Interested in renting our church? Get details and request your date today.',
       link: PageRoutes.churchRental,
-    },
-  ];
-
-  const faqContent = [
-    {
-      title: 'What about parking?',
-      description:
-        'Parking is self-serve. There are designated parking spots close to the church entry for those with a disabled placard. Most Sundays, you will find an attendant that can assist you as needed.',
-    },
-    {
-      title: 'What about my kids/teenagers?',
-      description: (
-        <>
-          During worship, kids will sit in the designated area. For service, kids will be lead to
-          our classrooms where they can be taught at a level for them. We also provide a nursery for
-          infants and toddlers. You can learn more about your kid&apos;s cirriculum{' '}
-          <Link href={PageRoutes.nextGen} className="text-link underline">
-            here
-          </Link>
-        </>
-      ),
-    },
-    {
-      title: 'How should I dress?',
-      description:
-        "At The Wind Church, we believe that our focus should be on worshiping God and building community, rather than on outward appearances. We encourage attendees to dress modestly and respectfully. While we embrace individual expression, we ask that clothing choices reflect an attitude of reverence for our worship and gathering together. Ultimately, we welcome everyone as they are, trusting that each person's heart for God is what truly matters.",
-    },
-    {
-      title: 'Is there coffee?',
-      description:
-        'Coffee and snacks is available at our HeBrews Café, located in the fellowship hall, prior to the start of service.',
-    },
-    {
-      title: 'What happens during service?',
-      description:
-        "At The Wind Church, you'll find a warm, family-like atmosphere with uplifting worship and practical, Bible-based teaching. Our Sunday service is a time to connect with God through music, relevant messages, and moments of prayer. Whether you're exploring faith or deepening your walk with God, we welcome you to come as you are and grow with us.",
-    },
-    {
-      title: 'What is the worship music like?',
-      description:
-        'Our worship services are designed to create an uplifting and transformative experience for everyone. Each service typically includes a blend of contemporary worship music and timeless hymns, aimed at fostering a spirit of connection with God. You can expect a dynamic atmosphere where heartfelt praise and worship are encouraged, allowing individuals to express their adoration freely. Our worship team leads with a focus on glorifying God, engaging the congregation, and creating an inviting environment for all to encounter His presence. Whether through powerful lyrics, inspiring melodies, or moments of reflection, our goal is to cultivate an atmosphere where worship is both meaningful and impactful.',
     },
   ];
 
@@ -201,21 +158,6 @@ const Home = async () => {
             <ImageWithTitleDescriptionLinkCard key={`home-explore-options-${opt.link}`} {...opt} />
           ))}
         </div>
-      </div>
-
-      {/* ABOUT THE FAQs */}
-      <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
-        <SectionHeader title="More about The Wind" subtitle="Frequently Asked Questions" />
-        <Accordion content={faqContent} />
-      </div>
-
-      {/* TESTIMONIALS */}
-      <div className="flex flex-col gap-xl md:gap-xxl mt-3xl sm:mt-4xl px-padding max-width-center">
-        <CenterTextSection
-          title="Testimonials From The Wind Family"
-          description="A glimpse into the experiences and journeys of those who call The Wind Church home."
-        />
-        <TestimonialCarousel slides={testimonials} />
       </div>
     </div>
   );

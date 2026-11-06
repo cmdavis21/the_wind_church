@@ -2,10 +2,10 @@
 export const WEBSITE_URL = process.env.WEBSITE_URL ?? '';
 
 // SANITY
+export const SANITY_NEXT_GEN_DOC_ID = process.env.SANITY_NEXT_GEN_DOC_ID ?? '';
 export const SANITY_EDITOR_TOKEN = process.env.SANITY_EDITOR_TOKEN ?? '';
 export const SANITY_GRAPHQL_ENDPOINT = process.env.SANITY_GRAPHQL_API_ENDPOINT ?? '';
 export const SANITY_MUTATION_API_ENDPOINT = process.env.SANITY_MUTATION_API_ENDPOINT ?? '';
-
 export const SANITY_WEBHOOK_REVALIDATION_TOKEN =
   process.env.SANITY_WEBHOOK_REVALIDATION_TOKEN ?? '';
 

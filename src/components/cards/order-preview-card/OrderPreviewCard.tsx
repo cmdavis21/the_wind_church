@@ -7,6 +7,7 @@ import { formatPrice } from '@/data/format-price';
 
 import { Order } from '@/data/types';
 import { Button, Spinner } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 
@@ -15,11 +16,26 @@ interface OrderPreviewCardProps {
 }
 
 const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
+  const t = useTranslations('Orders');
+
+  const {
+    order_name,
+    created_date,
+    subtotal_price,
+    total_tax,
+    total_price,
+    payment_details,
+    shipping_address,
+    billing_address,
+    quantity,
+    line_items,
+  } = order;
+
   const [open, setOpen] = useState(false);
   const subMenuDropdown = useRef<HTMLDivElement | null>(null);
   const { cart, cartLoading, addCartItems } = useCart();
   const [showModal, setShowModal] = useState(false);
-  const canReorder = order.line_items.some((ln) => ln.variant.id !== '');
+  const canReorder = line_items.some((ln) => ln.variant.id !== '');
 
   return (
     <>
@@ -48,38 +64,34 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
           <div className="flex flex-row gap-3">
             {/* FEATURED IMAGE */}
             <div className="relative">
-              {order.quantity > 1 && (
+              {quantity > 1 && (
                 <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-10 flex flex-row items-center justify-center rounded-lg">
-                  <h4 className="text-white font-bold">+{order.quantity}</h4>
+                  <h4 className="text-white font-bold">{t('card.count', { quantity })}</h4>
                 </div>
               )}
               <Image
                 width={100}
                 height={100}
-                src={order.line_items[0].image.src}
-                alt={order.line_items[0].image.alt}
+                src={line_items[0].image.src}
+                alt={line_items[0].image.alt}
                 className="size-4xl min-w-4xl max-h-4xl object-cover rounded-lg border shadow border-light-gray dark:border-dark-gray"
               />
             </div>
 
             {/* QUICK FACTS */}
             <div className="flex flex-col items-start">
-              <h4 className="font-bold">Order {order.order_name}</h4>
-              <h5>{formatDateMMMddyyyy(order.created_date)}</h5>
-              <h5>
-                {order.quantity} item{order.quantity > 1 ? 's' : ''}
-              </h5>
+              <h4 className="font-bold">{t('card.name', { name: order_name })}</h4>
+              <h5>{formatDateMMMddyyyy(created_date)}</h5>
+              <h5>{t('card.quantity', { quantity })}</h5>
               <h5 className="md:hidden text-right font-bold">
-                Total: {formatPrice(order.total_price)}
+                {t('card.total', { value: formatPrice(total_price) })}
               </h5>
             </div>
           </div>
 
           {/* TOTAL + ACTION */}
           <div className="flex flex-col gap-2 justify-between">
-            <h3 className="hidden md:block text-right font-bold">
-              {formatPrice(order.total_price)}
-            </h3>
+            <h3 className="hidden md:block text-right font-bold">{formatPrice(total_price)}</h3>
             <div className="flex flex-row gap-2">
               {canReorder && (
                 <Button
@@ -88,18 +100,18 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                   className="w-full md:w-fit"
                   onClick={() => {
                     addCartItems(
-                      order.line_items.map((item) => ({
+                      line_items.map((item) => ({
                         quantity: item.quantity,
                         merchandiseId: item.variant.id as any,
                       }))
                     ).then(() => setShowModal(true));
                   }}
                 >
-                  {cartLoading ? <Spinner size="xs" /> : 'Reorder'}
+                  {cartLoading ? <Spinner size="xs" /> : t('card.reorder')}
                 </Button>
               )}
               <Button color="info" className="w-full md:w-fit" pill onClick={() => setOpen(!open)}>
-                {open ? 'Hide' : 'View'} Details
+                {open ? t('card.hideDetails') : t('card.viewDetails')}
               </Button>
             </div>
           </div>
@@ -122,54 +134,56 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                 <div className="w-full flex flex-wrap gap-md md:gap-xl">
                   {/* SHIPPING ADDRESS */}
                   <div>
-                    <h6>Shipping Address:</h6>
+                    <h6>{t('card.shipping')}</h6>
                     <h5>
-                      {order.shipping_address.first_name} {order.shipping_address.last_name}
+                      {shipping_address.first_name} {shipping_address.last_name}
                     </h5>
-                    <h5>{order.shipping_address.address1}</h5>
-                    {order.shipping_address.address2 && <h5>{order.shipping_address.address2}</h5>}
-                    <h5>{order.shipping_address.city},</h5>
+                    <h5>{shipping_address.address1}</h5>
+                    {shipping_address.address2 && <h5>{shipping_address.address2}</h5>}
+                    <h5>{shipping_address.city},</h5>
                     <h5>
-                      {order.shipping_address.state} {order.shipping_address.country}
+                      {shipping_address.state} {shipping_address.country}
                     </h5>
-                    <h5>{order.shipping_address.zip}</h5>
-                    <h5>{order.shipping_address.phone}</h5>
+                    <h5>{shipping_address.zip}</h5>
+                    <h5>{shipping_address.phone}</h5>
                   </div>
                   {/* BILLING ADDRESS */}
                   <div>
-                    <h6>Billing Address:</h6>
+                    <h6>{t('card.billing')}</h6>
                     <h5>
-                      {order.billing_address.first_name} {order.billing_address.last_name}
+                      {billing_address.first_name} {billing_address.last_name}
                     </h5>
-                    <h5>{order.billing_address.address1}</h5>
-                    {order.billing_address.address2 && <h5>{order.billing_address.address2}</h5>}
-                    <h5>{order.billing_address.city},</h5>
+                    <h5>{billing_address.address1}</h5>
+                    {billing_address.address2 && <h5>{billing_address.address2}</h5>}
+                    <h5>{billing_address.city},</h5>
                     <h5>
-                      {order.billing_address.state} {order.billing_address.country}
+                      {billing_address.state} {billing_address.country}
                     </h5>
-                    <h5>{order.billing_address.zip}</h5>
-                    <h5>{order.billing_address.phone}</h5>
+                    <h5>{billing_address.zip}</h5>
+                    <h5>{billing_address.phone}</h5>
                   </div>
                   {/* PAYMENT DETAILS */}
                   <div>
-                    <h6>Payment Details:</h6>
-                    <h5>{order.payment_details.company}</h5>
-                    <h5>{order.payment_details.number}</h5>
+                    <h6>{t('card.payment')}</h6>
+                    <h5>{payment_details.company}</h5>
+                    <h5>{payment_details.number}</h5>
                     <h5>
-                      Exp. {order.payment_details.expiration_month} /{' '}
-                      {order.payment_details.expiration_year}
+                      {t('card.expiration', {
+                        month: payment_details.expiration_month,
+                        year: payment_details.expiration_year,
+                      })}
                     </h5>
                   </div>
                 </div>
                 {/* TOTALS */}
                 <div className="flex flex-col gap-5">
                   <div>
-                    <h6 className="md:text-right">Tax</h6>
-                    <h4 className="md:text-right">{formatPrice(order.total_tax)}</h4>
+                    <h6 className="md:text-right">{t('card.tax')}</h6>
+                    <h4 className="md:text-right">{formatPrice(total_tax)}</h4>
                   </div>
                   <div>
-                    <h6 className="md:text-right">Subtotal</h6>
-                    <h4 className="md:text-right">{formatPrice(order.subtotal_price)}</h4>
+                    <h6 className="md:text-right">{t('card.subtotal')}</h6>
+                    <h4 className="md:text-right">{formatPrice(subtotal_price)}</h4>
                   </div>
                 </div>
               </div>
@@ -179,7 +193,7 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
             <div className="flex flex-row gap-3">
               <div className="hidden md:block size-4xl" />
               <div className="flex flex-col gap-3 w-full">
-                {order.line_items.map((item) => (
+                {line_items.map((item) => (
                   <div
                     key={`order-preview-card-line-item-${item.title}-${item.variant.id}-${item.quantity}`}
                     className="pb-5 last:pb-0 w-full flex flex-row gap-5 justify-between border border-x-0 border-t-0 last:border-b-0 border-skeletonGray dark:border-skeletonDarkGray"
@@ -199,16 +213,24 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                         {/* QUICK FACTS */}
                         <div className="flex flex-col items-start">
                           <h6 className="font-normal">
-                            <span className="text-light-charcoal dark:text-dark-charcoal">
-                              Price:
-                            </span>{' '}
-                            {formatPrice(item.variant.price)}
+                            {t.rich('card.item.price', {
+                              bold: (chunks) => (
+                                <span className="text-light-charcoal dark:text-dark-charcoal">
+                                  {chunks}
+                                </span>
+                              ),
+                              value: formatPrice(item.variant.price),
+                            })}
                           </h6>
                           <h6 className="font-normal">
-                            <span className="text-light-charcoal dark:text-dark-charcoal">
-                              Qty:
-                            </span>{' '}
-                            {item.quantity}
+                            {t.rich('card.item.quantity', {
+                              bold: (chunks) => (
+                                <span className="text-light-charcoal dark:text-dark-charcoal">
+                                  {chunks}
+                                </span>
+                              ),
+                              value: item.quantity,
+                            })}
                           </h6>
                           {item.variant.selected_options.length > 0 &&
                             item.variant.selected_options.map((opt) => (
@@ -216,18 +238,27 @@ const OrderPreviewCard: React.FC<OrderPreviewCardProps> = ({ order }) => {
                                 key={`order-preview-card-opt-${item.title}-${opt.value}`}
                                 className="font-normal"
                               >
-                                <span className="text-light-charcoal dark:text-dark-charcoal">
-                                  {opt.name}:
-                                </span>{' '}
-                                {opt.value}
+                                {t.rich('card.item.selection', {
+                                  bold: (chunks) => (
+                                    <span className="text-light-charcoal dark:text-dark-charcoal">
+                                      {chunks}
+                                    </span>
+                                  ),
+                                  name: opt.name,
+                                  value: opt.value,
+                                })}
                               </h6>
                             ))}
                           {/* LINE ITEM TOTAL - MOBILE */}
                           <h6 className="md:hidden">
-                            <span className="text-light-charcoal dark:text-dark-charcoal">
-                              Total:
-                            </span>{' '}
-                            {formatPrice(item.total_price)}
+                            {t.rich('card.item.total', {
+                              bold: (chunks) => (
+                                <span className="text-light-charcoal dark:text-dark-charcoal">
+                                  {chunks}
+                                </span>
+                              ),
+                              value: formatPrice(item.total_price),
+                            })}
                           </h6>
                         </div>
                       </div>

@@ -37,7 +37,10 @@ const WindLeadersClient = () => {
             onChange={(e) => setFilter(e.target.value)}
             options={[
               { label: t('filterDefault'), value: '' },
-              ...Object.entries(leaders).map(([k, _]) => ({ label: k, value: k })),
+              ...Object.entries(leaders).map(([k, _]) => ({
+                label: t(`categories.${k}`),
+                value: k,
+              })),
             ]}
           />
         </div>

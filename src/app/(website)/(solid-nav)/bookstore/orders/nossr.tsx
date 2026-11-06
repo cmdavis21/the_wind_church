@@ -9,25 +9,24 @@ import BoxOpen from '@/components/icons/box-open';
 import User from '@/components/icons/user';
 import { CustomerData } from '@/data/types';
 import { TabItem, Tabs } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 const OrdersClient = () => {
+  const t = useTranslations('Orders');
+
   const [customerData, setCustomerData] = useState<CustomerData | undefined>(undefined);
+
   return (
     <div className="px-padding flex flex-col gap-xxl lg:gap-3xl max-width-center">
       <PageHeaderWithBackground
-        short
-        media={{
-          src: '/images/boxes-stack.webp',
-          alt: 'Decorative Background Image',
-          poster: '',
-        }}
-        title="Orders"
-        subtitle="What's in the closet?"
+        title={t('title')}
+        subtitle={t('subtitle')}
+        media={{ src: '/images/boxes-stack.webp', alt: t('alt') }}
       />
 
       <Tabs variant="underline">
-        <TabItem disabled={!customerData} title="Orders" icon={BoxOpen}>
+        <TabItem disabled={!customerData} title={t('tabs.0')} icon={BoxOpen}>
           {!customerData ? (
             <div className="max-w-[600px] w-full mx-auto pt-xxl">
               <OrderLookupForm returnValue={setCustomerData} />
@@ -40,7 +39,7 @@ const OrdersClient = () => {
             </div>
           )}
         </TabItem>
-        <TabItem disabled={!customerData} title="Profile" icon={User}>
+        <TabItem disabled={!customerData} title={t('tabs.1')} icon={User}>
           {customerData && customerData.profile && (
             <div className="w-full mx-auto flex flex-col lg:flex-row gap-xl pt-5">
               <EmailUpdateForm

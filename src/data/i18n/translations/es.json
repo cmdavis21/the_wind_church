@@ -10,7 +10,7 @@
     },
     "error": {
       "title": "¡Error!",
-      "description": "Hubo un problema al enviar tu solicitud. Por favor intenta nuevamente más tarde, o llama a nuestra oficina al +1 (951) 359-0203."
+      "description": "Hubo un problema al enviar tu solicitud. Intenta nuevamente más tarde, o llama a nuestra oficina al +1 (951) 359-0203."
     },
     "first": {
       "label": "Nombre",
@@ -37,7 +37,21 @@
     },
     "yes": "Sí",
     "no": "No",
-    "select": "Selecciona una opción"
+    "select": "Selecciona una opción",
+    "daysOfTheWeek": {
+      "sunday": "Domingo",
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado"
+    },
+    "attendanceType": {
+      "hybrid": "Presencial y En Línea",
+      "in-person": "Presencial",
+      "online": "En Línea"
+    }
   },
   "ErrorAlert": {
     "header": "Error",
@@ -1105,25 +1119,97 @@
   "Bookstore": {
     "metadata": {
       "title": "Librería",
-      "description": "Compra libros, ropa y regalos basados en la fe en la librería de The Wind Church—equipándote para tu caminar espiritual."
+      "description": "Compre libros, ropa y regalos inspirados en la fe en la librería de The Wind Church, equipándole para su caminar espiritual."
+    },
+    "alt": "Puerta de vidrio con un letrero colgante que dice: 'Pase adelante. Estamos abiertos.'",
+    "title": "Librería",
+    "subtitle": "Explore libros, ropa, regalos y recursos ministeriales diseñados para fortalecer su caminar con Cristo.",
+    "defaultFilterLabel": "Todos los Productos",
+    "card": {
+      "pickup": "Recogida en la iglesia"
     }
   },
   "Orders": {
     "metadata": {
       "title": "Pedidos",
       "description": "Consulta tus pedidos de la librería de The Wind Church."
+    },
+    "alt": "Pequeñas cajas marrones apiladas unas sobre otras con la caja superior mostrando una tarjeta de agradecimiento.",
+    "title": "Pedidos",
+    "subtitle": "Todo lo que has pedido, todo en un solo lugar.",
+    "tabs": ["Pedidos", "Perfil"],
+    "card": {
+      "count": "+{quantity}",
+      "name": "Pedido {name}",
+      "quantity": "{quantity, plural, =0 {0 artículos} one {# artículo} other {# artículos}}",
+      "total": "Total: {value}",
+      "reorder": "Volver a pedir",
+      "viewDetails": "Ver detalles",
+      "hideDetails": "Ocultar detalles",
+      "shipping": "Dirección de envío",
+      "billing": "Dirección de facturación",
+      "payment": "Detalles de pago",
+      "expiration": "Vence {month}/{year}",
+      "tax": "Impuestos",
+      "subtotal": "Subtotal",
+      "item": {
+        "price": "<bold>Precio</bold> {value}",
+        "quantity": "<bold>Cant.</bold> {value}",
+        "selection": "<bold>{name}</bold>: {value}",
+        "total": "<bold>{name}</bold>: {value}"
+      }
+    },
+    "lookupForm": {
+      "title": "Se requiere correo electrónico",
+      "subtitle": "Para ver tus pedidos, ingresa tu correo electrónico.",
+      "error": {
+        "title": "¡Oh no!",
+        "subtitle": "Correo electrónico no encontrado. Intenta de nuevo más tarde, o llama a nuestra oficina al +1 (951) 359-0203."
+      },
+      "pending": "Buscando tus cosas..."
     }
   },
   "Cart": {
     "metadata": {
       "title": "Carrito de Compras",
       "description": "Revisa tu carrito y completa tu compra en la librería de The Wind Church."
+    },
+    "modal": {
+      "quantity": "Tiene <bold>{quantity, plural, =0 {0 artículos} one {# artículo} other {# artículos}}</bold> en el carrito"
     }
   },
   "Events": {
     "metadata": {
       "title": "Eventos",
       "description": "Mantente al día con los próximos eventos, servicios y reuniones comunitarias en The Wind Church."
+    },
+    "title": "Eventos",
+    "subtitle": "Desde servicios de adoración y reuniones ministeriales hasta clases de discipulado y actividades comunitarias, encuentra tu próxima oportunidad para conectarte y crecer.",
+    "filterDefault": "Todos los Eventos",
+    "categories": {
+      "worship-service": "Servicio de Adoración",
+      "prayer-meeting": "Reunión de Oración",
+      "fasting-and-prayer": "Ayuno y Oración",
+      "church-fellowhsip": "Compañerismo de la Iglesia",
+      "community-outreach": "Alcance Comunitario",
+      "evangelism": "Evangelismo",
+      "fundraiser": "Recaudación de Fondos",
+      "food-clothing-drive": "Colecta de Alimentos y Ropa",
+      "cld-class": "Desarrollo de la Vida Cristiana",
+      "next-gen": "Próxima Generación",
+      "young-adults-ministry": "Ministerio Olive Branch (JA)",
+      "womens-ministry": "Ministerio de Mujeres (DOK)",
+      "mens-ministry": "Ministerio de Hombres (LXG)",
+      "marriage-ministry": "Ministerio de Matrimonios (One Accord)",
+      "we-experience": "Experiencia WE",
+      "leaders-training": "Capacitación de Líderes",
+      "guest-speaker-or-concert": "Orador Invitado / Concierto",
+      "baptism": "Bautismo / Dedicación de Bebés",
+      "holiday-celebration": "Celebración Festiva",
+      "revival-crusade": "Avivamiento / Cruzada",
+      "friends-family-gathering": "Reunión de Amigos y Familia",
+      "potluck": "Comida Compartida",
+      "game-movie-night": "Noche de Juegos / Película"
     }
   },
   "Gallery": {
@@ -1476,7 +1562,24 @@
     "title": "Los Líderes",
     "subtitle": "Conoce a los líderes fieles que ayudan a guiar nuestra iglesia en la fe, el servicio y la comunidad.",
     "filterDefault": "Todos los Líderes",
-    "sectionSubtitle": "Seleccione un Líder para obtener más información"
+    "sectionSubtitle": "Seleccione un Líder para obtener más información",
+    "categories": {
+      "pastors": "Equipo Pastoral",
+      "council": "Consejo de la Iglesia",
+      "staff": "Personal de la Iglesia",
+      "elders": "Ancianos",
+      "deacons": "Diáconos y Diaconisas",
+      "ministry-leaders": "Líderes de Ministerio",
+      "guest-connect": "Conexión con Visitantes",
+      "outreach": "Alcance Comunitario y Evangelismo",
+      "media": "Producción y Medios"
+    },
+    "testimonialCategories": {
+      "leader": "Líder",
+      "staff": "Personal",
+      "member": "Miembro",
+      "visitor": "Visitante"
+    }
   },
   "ResourceCenter": {
     "metadata": {
@@ -1485,6 +1588,14 @@
     },
     "title": "Centro de Recursos",
     "subtitle": "Acceda a documentos importantes, formularios y recursos compartidos dentro de The Wind Church.",
-    "filterDefault": "Todos los recursos"
+    "filterDefault": "Todos los recursos",
+    "categories": {
+      "visitor-resource": "Recursos para Visitantes",
+      "member-resource": "Recursos para Miembros",
+      "leader-resource": "Recursos para Líderes",
+      "general-resource": "Recursos Generales",
+      "teaching-materials": "Materiales de Enseñanza",
+      "announcements": "Anuncios"
+    }
   }
 }

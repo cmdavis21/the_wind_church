@@ -31,7 +31,7 @@ const websiteDocsWithIcons: docAttributes[] = [
   { id: 'event', title: 'Events', icon: Calendar },
   { id: 'ministry', title: 'Ministries', icon: PeopleGroup },
   { id: 'leader', title: 'Leaders', icon: User },
-  { id: 'deepDive', title: 'Deep Dives', icon: Bible },
+  { id: 'deepDive', title: 'Christian Life Development', icon: Bible },
   { id: 'testimonial', title: 'Testimonials', icon: Bullhorn },
   { id: 'resource', title: 'Resource Center', icon: FileIcon },
 ];

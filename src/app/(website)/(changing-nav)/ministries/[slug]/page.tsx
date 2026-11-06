@@ -10,6 +10,7 @@ import CenterTextSection from '@/components/sections/center-text-section/CenterT
 import MediaBackgroundAndContent from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
+import { DEFAULT_LOCALE, Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { getMinistryGallery } from '@/data/server/aws/s3/gallery';
 import { WEBSITE_URL } from '@/data/server/env.server';
@@ -18,28 +19,24 @@ import { getAllMinistries, getMinistryBySlug } from '@/data/server/sanity/querie
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
 import { Button } from 'flowbite-react';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
-  const ministries = await getAllMinistries();
-
-  return ministries.map((ministry) => ({
-    slug: ministry.slug,
-  }));
+  const ministries = await getAllMinistries(DEFAULT_LOCALE);
+  return ministries.map((ministry) => ({ slug: ministry.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string; slug: string }>;
-}) {
-  const { locale, slug } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations({ locale, namespace: 'Ministries' });
+
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.ministries}/${slug}`;
   const image = '/images/product-placeholder.webp';
+
   return {
     title,
     description,
@@ -61,9 +58,12 @@ export async function generateMetadata({
 
 const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
-  const ministry = await getMinistryBySlug(slug);
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations('Ministries');
+
+  const ministry = await getMinistryBySlug(slug, locale);
   const gallery = await getMinistryGallery(ministry?.name);
-  const events = await getMinistryEvents(ministry?.name);
+  const events = await getMinistryEvents(locale, ministry?._id);
 
   if (!ministry) {
     return (
@@ -81,12 +81,13 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
   return (
     <div>
       <PageHero size="short" title={ministry.name} media={{ src: ministry.image.src }} />
-      <div className="flex flex-col gap-4xl pt-3xl sm:pt-4xl">
-        {/* VERSE */}
-        <PassageQuote passage={ministry.scripture.passage} verse={ministry.scripture.verse} />
 
+      <div className="flex flex-col gap-4xl pt-3xl sm:pt-4xl">
         {/* DESCRIPTION */}
         <h4 className="px-padding max-width-center">{ministry.description}</h4>
+
+        {/* VERSE */}
+        <PassageQuote passage={ministry.scripture.passage} verse={ministry.scripture.verse} />
 
         {/* MINISTRY LEADER */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
@@ -126,7 +127,7 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
                 <EventCard
                   key={`event-card-${event.name}`}
                   event={event}
-                  scale={isAfter(event.date, new Date())}
+                  scale={isAfter(event.start_date_time, new Date())}
                 />
               ))}
             </div>

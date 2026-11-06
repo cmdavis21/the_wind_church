@@ -14,6 +14,7 @@ export const PageRoutes = {
   give: '/give',
   home: '/',
   ministries: '/ministries',
+  newHere: '/new-here',
   nextGen: '/next-gen',
   orders: '/bookstore/orders',
   prayerRequests: '/prayer-requests',
@@ -22,5 +23,6 @@ export const PageRoutes = {
   rightnowMedia: '/rightnowmedia',
   salvation: '/salvation',
   sermons: '/sermons',
+  wePathway: '/we-pathway',
   windLeaders: '/wind-leaders',
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import { Testimonial } from '@/data/types';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import 'react-multi-carousel/lib/styles.css';
@@ -11,6 +12,8 @@ interface TestimonialCarouselProps {
 }
 
 const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => {
+  const t = useTranslations('NewHere');
+
   const [activeSlide, setActiveSlide] = useState(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -42,7 +45,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
               <Image
                 fill
                 src={slide.image.src}
-                alt={slide.image.alt ?? slide.first_name}
+                alt={slide.image.alt || t('testimonials.imageAlt', { name: slide.first_name })}
                 className="object-cover object-center pointer-events-none"
               />
             </div>
@@ -72,7 +75,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
               <Image
                 fill
                 src={s.image.src}
-                alt={`mini-profile-image-${s.first_name}`}
+                alt={s.image.alt || t('testimonials.imageAlt', { name: s.first_name })}
                 className="object-cover object-center pointer-events-none rounded-full"
               />
             </div>
