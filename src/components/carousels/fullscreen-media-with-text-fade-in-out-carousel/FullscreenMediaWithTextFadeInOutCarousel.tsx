@@ -7,8 +7,9 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 import { findMediaType, MediaType } from '@/data/utils';
+import cn from 'classnames';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-
 import CarouselArrows from '../carousel-arrows/CarouselArrows';
 import CarouselDot from '../carousel-dot/CarouselDot';
 
@@ -30,9 +31,13 @@ interface FullscreenMediaWithTextFadeInOutCarouselProps {
 const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
   FullscreenMediaWithTextFadeInOutCarouselProps
 > = ({ slides }) => {
+  const t = useTranslations('Ministries');
+
   const [activeSlide, setActiveSlide] = useState(0);
   const [mobileActiveSlide, setMobileActiveSlide] = useState(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const notUsefulSlide = slides[0].media.poster === '/images/bible-study-video-poster.webp';
 
   // Handle automatic slide transition
   useEffect(() => {
@@ -111,9 +116,10 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
         {slides.map((slide, index) => (
           <div
             key={`carousel-visual-${slide.media.src}-${index}`}
-            className={`absolute top-0 left-0 w-full h-full ${
+            className={cn(
+              'absolute top-0 left-0 w-full h-full',
               index === activeSlide ? 'fade-in' : 'fade-out opacity-0'
-            }`}
+            )}
           >
             {findMediaType(slide.media.src) === MediaType.IMAGE ? (
               <div className="relative w-full h-full">
@@ -131,7 +137,7 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
                 autoPlay
                 playsInline
                 poster={slide.media.poster}
-                className="object-cover object-center pointer-events-none"
+                className="w-full h-full object-cover object-center pointer-events-none"
               >
                 <source src={slide.media.src} type="video/mp4" />
               </video>
@@ -147,9 +153,11 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
         {slides.map((slide, index) => (
           <div
             key={`carousel-content-${slide.title}`}
-            className={`w-full lg:max-w-[55%] lg:pl-6xl min-[1800px]:pl-[250px] h-full absolute top-0 left-0 ${
-              index === activeSlide ? 'fade-in' : 'opacity-0'
-            } transition-opacity duration-300 flex items-center`}
+            className={cn(
+              'w-full lg:max-w-[55%] lg:pl-6xl min-[1800px]:pl-[250px] h-full absolute top-0 left-0',
+              index === activeSlide ? 'fade-in' : 'opacity-0',
+              'transition-opacity duration-300 flex items-center'
+            )}
           >
             <div className="flex flex-col gap-md text-white dark:text-dark-primaryText">
               <h5>{slide.header}</h5>
@@ -159,12 +167,14 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
               <h1 className="leading-none">{slide.title}</h1>
               <div className="min-h-4xl">
                 {slide.description && (
-                  <p className="body-large line-clamp-3">{slide.description}</p>
+                  <p className={cn('body-large', !notUsefulSlide && 'line-clamp-3')}>
+                    {slide.description}
+                  </p>
                 )}
               </div>
               <Link href={slides[activeSlide].link}>
                 <Button pill color="primary" className="w-7xl">
-                  Learn more
+                  {t('card.label')}
                 </Button>
               </Link>
             </div>
@@ -214,9 +224,10 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
         {slides.map((slide, mobileIndex) => (
           <div
             key={`carousel-visual-mobile-${slide.media.src}-${mobileIndex}`}
-            className={`absolute top-0 left-0 w-full h-full ${
+            className={cn(
+              'absolute top-0 left-0 w-full h-full',
               mobileActiveSlide === mobileIndex ? 'fade-in' : 'fade-out opacity-0'
-            }`}
+            )}
           >
             {findMediaType(slide.media.src) === MediaType.IMAGE ? (
               <div className="relative w-full h-full">
@@ -264,10 +275,12 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
                 <h6 className="font-normal">{slide.header}</h6>
                 {slide.subtitle && <h5 className="text-brand-primary">{slide.subtitle}</h5>}
                 <h3 className="leading-none">{slide.title}</h3>
-                {slide.description && <p className="line-clamp-3">{slide.description}</p>}
+                {slide.description && (
+                  <p className={cn(!notUsefulSlide && 'line-clamp-3')}>{slide.description}</p>
+                )}
                 <Link href={slide.link}>
                   <Button pill color="primary" size="sm" fullSized>
-                    Learn more
+                    {t('card.label')}
                   </Button>
                 </Link>
               </div>

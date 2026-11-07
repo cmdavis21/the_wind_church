@@ -53,7 +53,7 @@ const NewHere = async () => {
         size="short"
         title={t('title')}
         description={t('subtitle')}
-        media={{ src: '/images/salvation/cross-on-mount.webp', alt: t('alt') }}
+        media={{ src: '/images/rental/church-building.webp', alt: t('alt') }}
       />
 
       {/* INTRO */}
@@ -155,7 +155,7 @@ const NewHere = async () => {
           <ImageWithTitleDescriptionCard
             alt={t('ctas.items.1.alt')}
             title={t('ctas.items.1.title')}
-            src="/images/product-placeholder.webp"
+            src="/images/deep-dive/study-bible-with-journal.webp"
             description={t('ctas.items.1.description')}
             link={{ label: t('ctas.items.1.label'), href: PageRoutes.deepDive }}
           />

@@ -51,6 +51,13 @@
       "hybrid": "Presencial y En Línea",
       "in-person": "Presencial",
       "online": "En Línea"
+    },
+    "timeframe": {
+      "starts": "Empieza",
+      "ends": "Termina",
+      "week": "semana",
+      "weeks": "semanas",
+      "duration": "Dura {weeks, plural, one {# semana} other {# semanas}}."
     }
   },
   "ErrorAlert": {
@@ -532,8 +539,88 @@
   },
   "DeepDive": {
     "metadata": {
-      "title": "Estudio Profundo",
-      "description": "Únete a nuestras sesiones de Estudio Profundo para recibir enseñanza profunda, estudio bíblico y crecimiento espiritual."
+      "title": "Inmersión Profunda",
+      "description": "Únete a nuestras sesiones de Inmersión Profunda para enseñanza en profundidad, estudio bíblico y crecimiento espiritual."
+    },
+    "alt": "Imagen del edificio de The Wind Church",
+    "header": "Desarrollo de la Vida Cristiana",
+    "none": {
+      "title": "Nuevas Clases Pronto Disponibles",
+      "description": "Las clases de Desarrollo de la Vida Cristiana ofrecen oportunidades para profundizar en tu comprensión de la Palabra de Dios y fortalecer tu caminar con Cristo. Aunque actualmente no hay clases disponibles, hay muchas maneras de conectarte y crecer a través de nuestros ministerios y la comunidad de la iglesia."
+    },
+    "instructors": {
+      "title": "Conoce a los Instructores",
+      "subtitle": "Selecciona una tarjeta para aprender más"
+    },
+    "details": {
+      "title": "Los Detalles",
+      "subtitle": "Son las cosas más finas..."
+    },
+    "accepting": {
+      "title": "¡Aceptando Nuevos Estudiantes!",
+      "description": "Únete a nosotros y profundiza en tu caminar con Jesús. Este Deep Dive es un espacio poderoso para aprender, conectarte y ser guiado por el Espíritu."
+    },
+    "notAccepting": {
+      "title": "No se Aceptan Nuevos Estudiantes",
+      "description": "Este Deep Dive ya está en curso. Para respetar el flujo de enseñanza y apoyar a los estudiantes actualmente inscritos, no podemos aceptar nuevos participantes en este momento."
+    },
+    "schedule": "Horario",
+    "meets": "Se reúne",
+    "bring": "Traer",
+    "describe": {
+      "alt": "Una Biblia abierta y colocada sobre un paño blanco. Un par de gafas de lectura descansan sobre la Biblia y hojas de helecho están colocadas delicadamente alrededor. Un diario cerrado se encuentra en la esquina izquierda con un bolígrafo.",
+      "title": "¿Qué es el Desarrollo de la Vida Cristiana?",
+      "description": "El Desarrollo de la Vida Cristiana es un curso de discipulado diseñado para ayudar a los creyentes a construir una base bíblica sólida y crecer en su caminar con Cristo. A través de enseñanzas prácticas, discusiones significativas y aplicación espiritual, obtendrás las herramientas necesarias para profundizar tu fe, fortalecer tu relación con Dios y vivir el propósito que Él tiene para tu vida."
+    },
+    "faqs": {
+      "title": "Todo lo que necesitas saber",
+      "subtitle": "¿Tienes preguntas sobre el Desarrollo de la Vida Cristiana?",
+      "items": [
+        {
+          "question": "¿Necesito tener un conocimiento bíblico sólido para participar?",
+          "answer": "Para nada. Estas clases están diseñadas para creyentes en cualquier etapa de su camino espiritual. Ya sea que seas nuevo en la fe o lleves años siguiendo a Cristo, encontrarás enseñanzas prácticas, discusiones significativas y oportunidades para crecer."
+        },
+        {
+          "question": "¿Cómo me ayudarán estas clases a crecer espiritualmente?",
+          "answer": "Las clases de Desarrollo de la Vida Cristiana ofrecen instrucción bíblica práctica que te ayuda a fortalecer tu fe, profundizar tu comprensión de las Escrituras, desarrollar disciplinas espirituales y aprender a vivir los principios bíblicos en situaciones cotidianas."
+        },
+        {
+          "question": "¿Qué puedo esperar durante una sesión de clase?",
+          "answer": "Cada sesión incluye enseñanza bíblica, discusión en grupo, oración y oportunidades para reflexionar y aplicar lo que estás aprendiendo. El objetivo no es simplemente adquirir conocimiento, sino experimentar transformación a través de la Palabra de Dios."
+        },
+        {
+          "question": "¿Y si estoy nervioso por unirme?",
+          "answer": "Eso es completamente normal. Nuestras clases son acogedoras, motivadoras y están diseñadas para ayudarte a crecer a tu propio ritmo. Estarás rodeado de personas que están aprendiendo, creciendo y buscando a Cristo juntos."
+        },
+        {
+          "question": "¿Con qué frecuencia se reúnen las clases de Desarrollo de la Vida Cristiana?",
+          "answer": "Los horarios de las reuniones varían según la clase y el tema. La mayoría de las clases se reúnen regularmente durante todo el año y están estructuradas para adaptarse a tu horario mientras ofrecen oportunidades constantes de aprendizaje, convivencia y discipulado."
+        }
+      ]
+    },
+    "ctas": {
+      "title": "Continúa tu camino de crecimiento",
+      "subtitle": "Ya sea que estés explorando la fe, aprendiendo sobre nuestra iglesia o queriendo entender lo que creemos, estamos aquí para ayudarte a dar el siguiente paso.",
+      "items": [
+        {
+          "alt": "Cruz sagrada colocada en la cima de una montaña; nubes y el sol de fondo.",
+          "title": "Comienza Tu Camino con Cristo",
+          "description": "El fundamento del crecimiento espiritual comienza con una relación con Jesús. Aprende sobre la salvación, el amor de Dios por ti y la nueva vida disponible a través de Cristo.",
+          "label": "Aprende Sobre la Salvación"
+        },
+        {
+          "alt": "El pastor Singletary de la Iglesia Wind predicando a la congregación.",
+          "title": "Conoce La Wind",
+          "description": "Descubre nuestra misión, visión, valores y nuestro compromiso con el discipulado mientras buscamos honrar a Dios, amar a las personas y servir a esta generación.",
+          "label": "Sobre La Iglesia Wind"
+        },
+        {
+          "alt": "Aceitunas verdes colgando de una rama con hojas.",
+          "title": "Explora Nuestras Creencias",
+          "description": "Aprende sobre el Evangelio Cuádruple y las verdades bíblicas que moldean nuestra fe, enseñanza y ministerio como iglesia Foursquare.",
+          "label": "En Qué Creemos"
+        }
+      ]
     }
   },
   "Feedback": {
@@ -571,8 +658,7 @@
     "tabContent": [
       {
         "descriptions": [
-          "The Wind Church (dba Wind of the Spirit) forma parte de un movimiento mundial llamado la Iglesia Internacional del Evangelio Cuadrangular, con más de 1,700 iglesias en los Estados Unidos y más de 68,500 iglesias en más de 150 naciones.",
-          "Cada semana, más de 12,000 hombres, mujeres, niños y niñas aceptan a Jesucristo mediante la predicación del evangelio en iglesias Cuadrangulares de todo el mundo."
+          "The Wind Church (dba Wind of the Spirit) forma parte de un movimiento mundial llamado la Iglesia Internacional del Evangelio Cuadrangular, con más de 1,700 iglesias en los Estados Unidos y más de 68,500 iglesias en más de 150 naciones. Cada semana, más de 12,000 hombres, mujeres, niños y niñas aceptan a Jesucristo mediante la predicación del evangelio en iglesias Cuadrangulares de todo el mundo."
         ]
       },
       {
@@ -1597,5 +1683,118 @@
       "teaching-materials": "Materiales de Enseñanza",
       "announcements": "Anuncios"
     }
+  },
+  "NewHere": {
+    "metadata": {
+      "title": "¡Tú perteneces aquí!",
+      "description": "Todo lo que necesitas saber antes de tu primera visita a La Iglesia Wind."
+    },
+    "alt": "",
+    "title": "¡Tú perteneces aquí!",
+    "subtitle": "Estamos emocionados de darte la bienvenida a La Wind.",
+    "description": "Ya sea tu primera vez en la iglesia o tu primera vez con nosotros, nos alegra que estés aquí. En La Iglesia Wind encontrarás una comunidad acogedora, adoración apasionada y enseñanza bíblica práctica para cada etapa de la vida. Queremos que tu visita sea cómoda, significativa y sencilla desde el momento en que llegues.",
+    "services": {
+      "label": "Horarios de Servicio",
+      "items": [
+        {
+          "day": "Domingo",
+          "time": "9:00 AM",
+          "attendanceType": "Presencial + en línea"
+        },
+        {
+          "day": "Miércoles",
+          "time": "7:00 PM",
+          "attendanceType": "Presencial + en línea"
+        }
+      ]
+    },
+    "locations": {
+      "label": "Únete a Nosotros",
+      "items": [
+        {
+          "text": "6476 Streeter Avenue, Riverside, CA 92504",
+          "label": "Mapa"
+        },
+        {
+          "text": "Transmisión en vivo de YouTube",
+          "label": "Ver"
+        }
+      ]
+    },
+    "otherInfo": {
+      "label": "Qué Debes Saber",
+      "items": [
+        "HeBrews Café abre antes del servicio con café y refrigerios ligeros.",
+        "Hay asistentes de estacionamiento disponibles para ayudarte a dirigirte.",
+        "Ven tal como eres. Nos encantaría conocerte."
+      ]
+    },
+    "faqs": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Más sobre The Wind",
+      "items": [
+        {
+          "title": "¿Qué hay del estacionamiento?",
+          "description": "Hay estacionamiento disponible en el campus, y nuestros asistentes de estacionamiento estarán encantados de ayudarte a guiarte cuando llegues. Los espacios de estacionamiento accesibles están ubicados cerca de la entrada principal para quienes los necesiten."
+        },
+        {
+          "title": "¿Qué pasa con mis hijos/adolescentes?",
+          "description": "¡Nos encantan las familias! Los niños comienzan el servicio juntos, luego van a aulas apropiadas para su edad donde pueden aprender sobre Dios en un ambiente divertido y participativo. Ofrecemos guardería para bebés y niños pequeños. Aprende más sobre nuestro ministerio Next Gen <link>aquí</link>."
+        },
+        {
+          "title": "¿Cómo debo vestirme?",
+          "description": "Ven como eres. Ya sea que prefieras jeans y camiseta o algo más formal, encontrarás una variedad de estilos en The Wind. Nuestro enfoque está en adorar a Dios y construir comunidad, no en lo que uses."
+        },
+        {
+          "title": "¿Hay café?",
+          "description": "¡Sí! Café y refrigerios ligeros están disponibles antes del servicio en nuestro He-Brews Café ubicado en el salón de convivencia."
+        },
+        {
+          "title": "¿Qué pasa durante el servicio?",
+          "description": "Un servicio típico incluye adoración a través de la música, oración y un mensaje centrado en la Biblia diseñado para animarte y desafiarte en tu fe. Los servicios son acogedores, orientados a la familia y enfocados en ayudar a las personas a encontrarse con Dios y crecer espiritualmente."
+        },
+        {
+          "title": "¿Cómo es la música de adoración?",
+          "description": "Nuestra adoración es apasionada, centrada en Cristo y diseñada para ayudar a las personas a conectarse con Dios. Escucharás una mezcla de canciones de adoración contemporáneas y favoritos atemporales mientras adoramos juntos como una sola familia de la iglesia."
+        }
+      ]
+    },
+    "ctas": {
+      "title": "Próximos pasos",
+      "subtitle": "Descubre maneras de conectarte y crecer en The Wind.",
+      "items": [
+        {
+          "alt": "Una mujer con un suéter amarillo llevando una caja llena de verduras.",
+          "title": "Explorar Ministerios",
+          "description": "Encuentra un ministerio donde puedas servir, crecer y construir relaciones significativas.",
+          "label": "Ver Ministerios"
+        },
+        {
+          "alt": "",
+          "title": "Desarrollo de la Vida Cristiana",
+          "description": "Fortalece tu fe a través de clases diseñadas para ayudarte a crecer en la Palabra de Dios.",
+          "label": "Conocer CLD"
+        },
+        {
+          "alt": "Cuatro niños de diferentes edades sonriendo y mirando a lo lejos.",
+          "title": "Conoce sobre Next Gen",
+          "description": "Descubre ministerios y programas creados específicamente para niños y jóvenes.",
+          "label": "Explorar Next Gen"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "La vida en The Wind",
+      "subtitle": "Historias reales de personas que han encontrado comunidad, propósito y crecimiento espiritual en The Wind.",
+      "imageAlt": "Imagen de perfil de {name}."
+    }
+  },
+  "WePathway": {
+    "metadata": {
+      "title": "You Belong Here!",
+      "description": "Visiting a new church can feel overwhelming, but at The Wind Church, we want you to feel welcomed, seen, and connected from the moment you arrive."
+    },
+    "title": "You Belong Here!",
+    "subtitle": "Visiting a new church can feel overwhelming, but at The Wind Church, we want you to feel welcomed, seen, and connected from the moment you arrive."
   }
 }

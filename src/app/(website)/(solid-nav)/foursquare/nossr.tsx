@@ -196,15 +196,14 @@ const FoursquareClient = () => {
       <PageHeaderWithBackground
         title={t('title')}
         subtitle={t('subtitle')}
-        media={{ src: '/images/foursquare/group-people.jpg', alt: t('alt') }}
+        media={{ src: '/images/foursquare/bible-with-wooden-crosses.webp', alt: t('alt') }}
       />
 
       <div ref={anchorRef} />
       <Tabs variant="default" ref={tabsRef} onActiveTabChange={(tab) => setActive(tab)}>
         <TabItem title={titles[0]} icon={Location}>
           <div className="flex flex-col gap-xl p-lg">
-            <h5 className="text-justify">{t('tabContent.0.descriptions.0')}</h5>
-            <h5 className="text-justify">{t('tabContent.0.descriptions.1')}</h5>
+            <h4 className="text-justify">{t('tabContent.0.descriptions.0')}</h4>
           </div>
         </TabItem>
         <TabItem title={titles[1]} icon={Buidling}>
@@ -214,39 +213,39 @@ const FoursquareClient = () => {
               subtitle={t('tabContent.1.header.subtitle')}
             />
 
-            <h5 className="text-justify">{t('tabContent.1.descriptions.0')}</h5>
-            <h5 className="text-justify">{t('tabContent.1.descriptions.1')}</h5>
-            <h5 className="text-justify">{t('tabContent.1.descriptions.2')}</h5>
-            <h5 className="text-justify">{t('tabContent.1.descriptions.3')}</h5>
-            <h5 className="text-justify">{t('tabContent.1.descriptions.4')}</h5>
-            <h5 className="text-justify">{t('tabContent.1.descriptions.5')}</h5>
-            <h5 className="text-justify">{t('tabContent.1.descriptions.6')}</h5>
+            <h4 className="text-justify">{t('tabContent.1.descriptions.0')}</h4>
+            <h4 className="text-justify">{t('tabContent.1.descriptions.1')}</h4>
+            <h4 className="text-justify">{t('tabContent.1.descriptions.2')}</h4>
+            <h4 className="text-justify">{t('tabContent.1.descriptions.3')}</h4>
+            <h4 className="text-justify">{t('tabContent.1.descriptions.4')}</h4>
+            <h4 className="text-justify">{t('tabContent.1.descriptions.5')}</h4>
+            <h4 className="text-justify">{t('tabContent.1.descriptions.6')}</h4>
             <ul className="list-disc list-outside ml-5 sm:ml-8 space-y-sm">
               <li>
-                <h5>{t('tabContent.1.descriptions.7')}</h5>
+                <h4>{t('tabContent.1.descriptions.7')}</h4>
               </li>
               <li>
-                <h5>{t('tabContent.1.descriptions.8')}</h5>
+                <h4>{t('tabContent.1.descriptions.8')}</h4>
               </li>
               <li>
-                <h5>{t('tabContent.1.descriptions.9')}</h5>
+                <h4>{t('tabContent.1.descriptions.9')}</h4>
               </li>
               <li>
-                <h5>{t('tabContent.1.descriptions.10')}</h5>
+                <h4>{t('tabContent.1.descriptions.10')}</h4>
               </li>
               <li>
-                <h5>{t('tabContent.1.descriptions.11')}</h5>
+                <h4>{t('tabContent.1.descriptions.11')}</h4>
               </li>
               <li>
-                <h5>{t('tabContent.1.descriptions.12')}</h5>
+                <h4>{t('tabContent.1.descriptions.12')}</h4>
               </li>
               <li>
-                <h5>{t('tabContent.1.descriptions.13')}</h5>
+                <h4>{t('tabContent.1.descriptions.13')}</h4>
               </li>
             </ul>
-            <h5 className="text-justify">{t('tabContent.1.descriptions.14')}</h5>
-            <h5 className="text-justify">{t('tabContent.1.descriptions.15')}</h5>
-            <h5 className="text-justify">
+            <h4 className="text-justify">{t('tabContent.1.descriptions.14')}</h4>
+            <h4 className="text-justify">{t('tabContent.1.descriptions.15')}</h4>
+            <h4 className="text-justify">
               {t.rich('tabContent.1.descriptions.16', {
                 link: (chunks) => (
                   <Link href="www.foursquare.org" target="_blank" className="text-link underline">
@@ -254,7 +253,7 @@ const FoursquareClient = () => {
                   </Link>
                 ),
               })}
-            </h5>
+            </h4>
           </div>
         </TabItem>
         <TabItem title={titles[2]} icon={Cross}>
@@ -282,28 +281,28 @@ const FoursquareClient = () => {
               <div className="sm:col-span-2 space-y-md">
                 <SectionHeader title={t('tabContent.3.section1.header')} />
 
-                <h5>{t('tabContent.3.section1.descriptions.0')}</h5>
+                <h4>{t('tabContent.3.section1.descriptions.0')}</h4>
 
-                <h5>
+                <h4>
                   {t.rich('tabContent.3.section1.descriptions.1', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
-                <h5>
+                </h4>
+                <h4>
                   {t.rich('tabContent.3.section1.descriptions.2', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
-                <h5>
+                </h4>
+                <h4>
                   {t.rich('tabContent.3.section1.descriptions.3', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
-                <h5>
+                </h4>
+                <h4>
                   {t.rich('tabContent.3.section1.descriptions.4', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
+                </h4>
 
                 <ScriptureList
                   scriptures={[
@@ -341,28 +340,28 @@ const FoursquareClient = () => {
               <div className="sm:col-span-2 space-y-md">
                 <SectionHeader title={t('tabContent.3.section2.header')} />
 
-                <h5>{t('tabContent.3.section2.descriptions.0')}</h5>
+                <h4>{t('tabContent.3.section2.descriptions.0')}</h4>
 
-                <h5>
+                <h4>
                   {t.rich('tabContent.3.section2.descriptions.1', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
-                <h5>
+                </h4>
+                <h4>
                   {t.rich('tabContent.3.section2.descriptions.2', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
-                <h5>
+                </h4>
+                <h4>
                   {t.rich('tabContent.3.section2.descriptions.3', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
-                <h5>
+                </h4>
+                <h4>
                   {t.rich('tabContent.3.section2.descriptions.4', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
+                </h4>
 
                 <ScriptureList
                   scriptures={[
@@ -378,28 +377,28 @@ const FoursquareClient = () => {
               <div className="sm:col-span-2 space-y-md">
                 <SectionHeader title={t('tabContent.3.section3.header')} />
 
-                <h5>{t('tabContent.3.section3.descriptions.0')}</h5>
+                <h4>{t('tabContent.3.section3.descriptions.0')}</h4>
 
-                <h5>
+                <h4>
                   {t.rich('tabContent.3.section3.descriptions.1', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
-                <h5>
+                </h4>
+                <h4>
                   {t.rich('tabContent.3.section3.descriptions.2', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
-                <h5>
+                </h4>
+                <h4>
                   {t.rich('tabContent.3.section3.descriptions.3', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
-                <h5>
+                </h4>
+                <h4>
                   {t.rich('tabContent.3.section3.descriptions.4', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
-                </h5>
+                </h4>
 
                 <ScriptureList scriptures={[t('tabContent.3.section3.descriptions.5')]} />
               </div>

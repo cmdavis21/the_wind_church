@@ -130,7 +130,7 @@ export interface Testimonial {
   position: Leader['position'];
   main_point: string;
   statement: string;
-  image: Image;
+  image: string;
 }
 
 export interface ResourceItem {

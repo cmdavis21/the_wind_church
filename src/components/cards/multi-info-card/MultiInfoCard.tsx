@@ -2,7 +2,7 @@ import CircleCheck from '@/components/icons/circle-check';
 import Location from '@/components/icons/location';
 import PeopleGroup from '@/components/icons/people-group';
 import Video from '@/components/icons/video';
-import { formatDateMMMddyyyy, formatTimeHmm } from '@/data/format-date';
+import { formatDateMMMddyyyy } from '@/data/format-date';
 import { DeepDive } from '@/data/types';
 import { differenceInCalendarWeeks } from 'date-fns';
 import { getTranslations } from 'next-intl/server';
@@ -30,16 +30,16 @@ interface MultiInfoCardProps {
 }
 
 export const MultiInfoCard: React.FC<MultiInfoCardProps> = async ({ label, content }) => {
-  const t = await getTranslations('DeepDive');
+  const t = await getTranslations('FormCommon');
 
   const setIcon = (type: string) => {
     switch (type) {
       case 'hybrid':
-        return { label: t('hybrid'), Icon: PeopleGroup };
+        return { label: t('attendanceType.hybrid'), Icon: PeopleGroup };
       case 'online':
-        return { label: t('online'), Icon: Video };
+        return { label: t('attendanceType.online'), Icon: Video };
       default:
-        return { label: t('inPerson'), Icon: Location };
+        return { label: t('attendanceType.in-person'), Icon: Location };
     }
   };
 
@@ -54,7 +54,7 @@ export const MultiInfoCard: React.FC<MultiInfoCardProps> = async ({ label, conte
             <dl className="flex items-start justify-between gap-md">
               <div>
                 <dt className="text-xs text-light-secondaryText dark:text-dark-primaryText/70">
-                  Starts
+                  {t('timeframe.starts')}
                 </dt>
                 <dd className="font-semibold">
                   <time dateTime={start.toISOString()}>{formatDateMMMddyyyy(start)}</time>
@@ -63,7 +63,7 @@ export const MultiInfoCard: React.FC<MultiInfoCardProps> = async ({ label, conte
 
               <div className="text-right">
                 <dt className="text-xs text-light-secondaryText dark:text-dark-primaryText/70">
-                  Ends
+                  {t('timeframe.ends')}
                 </dt>
                 <dd className="font-semibold">
                   <time dateTime={end.toISOString()}>{formatDateMMMddyyyy(end)}</time>
@@ -77,12 +77,10 @@ export const MultiInfoCard: React.FC<MultiInfoCardProps> = async ({ label, conte
               <span className="h-px flex-1 bg-brand-primary/40 origin-left" />
               <span className="h-2.5 w-2.5 rounded-full border-2 border-brand-primary bg-light-bg dark:bg-dark-bg" />
               <span className="absolute left-1/2 -translate-x-1/2 rounded-full border border-light-gray dark:border-dark-gray bg-light-bg dark:bg-dark-bg px-3 py-0.5 text-xs font-medium">
-                {weeks} {weeks === 1 ? 'week' : 'weeks'}
+                {weeks} {weeks === 1 ? t('timeframe.week') : t('timeframe.weeks')}
               </span>
             </div>
-            <p className="sr-only">
-              Runs for {weeks} {weeks === 1 ? 'week' : 'weeks'}.
-            </p>
+            <p className="sr-only">{t('timeframe.duration', { weeks })}</p>
           </>
         );
 
@@ -96,9 +94,11 @@ export const MultiInfoCard: React.FC<MultiInfoCardProps> = async ({ label, conte
                   key={`${day}-${time}-${attendance_type}`}
                   className="flex flex-wrap items-center justify-between gap-x-md gap-y-1"
                 >
-                  <p className="font-semibold">
+                  <p className="font-semibold capitalize">
                     {day}&nbsp;
-                    {formatTimeHmm(time)}
+                    <span className="font-light text-light-secondaryText dark:text-dark-primaryText/70">
+                      • {time}
+                    </span>
                   </p>
 
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-medium text-brand-dark dark:text-brand-primary">

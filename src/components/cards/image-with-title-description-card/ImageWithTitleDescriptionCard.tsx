@@ -22,11 +22,16 @@ const ImageWithTitleDescriptionCard: React.FC<ImageWithTitleDescriptionCardProps
   description,
   link,
 }) => (
-  <div className="w-full min-w-[300px] max-w-[325px] flex flex-col gap-lg">
-    <div className="relative aspect-square border rounded-lg overflow-hidden">
-      <Image fill src={src} alt={alt} className="pointer-events-none object-cover" />
-    </div>
-    <div className="flex flex-col gap-md dark:text-dark-primaryText justify-between">
+  <div className="w-fit min-w-[300px] max-w-[325px] flex flex-col gap-lg">
+    <Image
+      width={100}
+      height={100}
+      src={src}
+      alt={alt}
+      className="pointer-events-none object-cover w-full min-w-[300px] max-w-[325px] aspect-square border rounded-lg"
+    />
+
+    <div className="flex flex-col gap-md dark:text-dark-primaryText justify-between h-full">
       <div className="flex flex-col gap-md">
         <h4 className="font-bold">{title}</h4>
         <p className="body-large text-light-charcoal dark:text-dark-primaryText">{description}</p>

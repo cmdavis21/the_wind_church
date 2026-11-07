@@ -1,3 +1,4 @@
+import { formatDateMMMddyyyy } from '@/data/format-date';
 import { defineField } from 'sanity';
 
 export const DeepDiveSchema = {
@@ -96,11 +97,24 @@ export const DeepDiveSchema = {
   preview: {
     select: {
       name: 'name.en',
+      start_date: 'start_date',
+      end_date: 'end_date',
       image: 'image',
     },
-    prepare({ name, image }: { name: string; image?: { asset: any } }) {
+    prepare({
+      name,
+      start_date,
+      end_date,
+      image,
+    }: {
+      name: string;
+      start_date: Date;
+      end_date: Date;
+      image?: { asset: any };
+    }) {
       return {
         title: name,
+        subtitle: `${formatDateMMMddyyyy(start_date)} - ${formatDateMMMddyyyy(end_date)}`,
         media: image,
       };
     },

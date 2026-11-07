@@ -45,14 +45,12 @@ const DeepDivesClient = () => {
               : [
                   {
                     media: {
-                      src: `${AWS_ASSET_URL}/friend-group.mp4`,
-                      poster: '/images/friend-group.webp',
-                      alt: '',
+                      src: `${AWS_ASSET_URL}/bible-study-video.mp4`,
+                      poster: '/images/bible-study-video-poster.webp',
                     },
                     header: t('header'),
-                    title: 'Sorry, No Deep Dives happening now',
-                    description:
-                      "What are Deep Dives? Biblical Fellowship and Studies focused on select topics from God's word which applies to our relevant lives. For now, please check out our ministries if your are looking to get involved!",
+                    title: t('none.title'),
+                    description: t('none.description'),
                     link: PageRoutes.ministries,
                   },
                 ]

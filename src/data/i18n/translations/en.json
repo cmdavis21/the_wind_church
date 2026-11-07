@@ -51,6 +51,13 @@
       "hybrid": "In-Person and Online",
       "in-person": "In-Person",
       "online": "Online"
+    },
+    "timeframe": {
+      "starts": "Starts",
+      "ends": "Ends",
+      "week": "week",
+      "weeks": "weeks",
+      "duration": "Runs for {weeks, plural, one {# week} other {# weeks}}."
     }
   },
   "NotFound": {
@@ -527,6 +534,86 @@
     "metadata": {
       "title": "Deep Dive",
       "description": "Join our Deep Dive sessions for in-depth teaching, biblical study, and spiritual growth."
+    },
+    "alt": "Image of The Wind Church building.",
+    "header": "Christian Life Development",
+    "none": {
+      "title": "New Classes Are Coming Soon",
+      "description": "Christian Life Development classes provide opportunities to deepen your understanding of God's Word and strengthen your walk with Christ. Although no classes are currently available, there are many ways to connect and grow through our ministries and church community."
+    },
+    "instructors": {
+      "title": "Meet the Instructors",
+      "subtitle": "Select a card to learn more"
+    },
+    "details": {
+      "title": "The Details",
+      "subtitle": "It's the finer things..."
+    },
+    "accepting": {
+      "title": "Accepting New Students!",
+      "description": "Join us and grow deeper in your walk with Jesus. This Deep Dive is a powerful space to learn, connect, and be led by the Spirit."
+    },
+    "notAccepting": {
+      "title": "Not Accepting New Students",
+      "description": "This Deep Dive is already in progress. To honor the flow of teaching and support the students currently enrolled, we cannot accept new participants at this time."
+    },
+    "schedule": "Schedule",
+    "meets": "Meets",
+    "bring": "Bring",
+    "describe": {
+      "alt": "A bible opened up and laying flat on a white cloth. Reading glasses layed on top of the bible and fern leaves are placed gently around the area. A closed journal is positioned in the left corner with a pen.",
+      "title": "What is Christian Life Development?",
+      "description": " Christian Life Development is a discipleship course designed to help believers build a strong biblical foundation and grow in their walk with Christ. Through practical teaching, meaningful discussion, and spiritual application, you'll gain the tools needed to deepen your faith, strengthen your relationship with God, and live out His purpose for your life."
+    },
+    "faqs": {
+      "title": "Everything you need to know",
+      "subtitle": "Have questions about Christian Life Development?",
+      "items": [
+        {
+          "question": "Do I need a strong biblical background to participate?",
+          "answer": "Not at all. These classes are designed for believers at every stage of their spiritual journey. Whether you are new to the faith or have been following Christ for years, you will find practical teaching, meaningful discussion, and opportunities to grow."
+        },
+        {
+          "question": "How will these classes help me grow spiritually?",
+          "answer": "Christian Life Development classes provide practical biblical instruction that helps you strengthen your faith, deepen your understanding of Scripture, develop spiritual disciplines, and learn how to live out biblical principles in everyday situations."
+        },
+        {
+          "question": "What can I expect during a class session?",
+          "answer": "Each session includes biblical teaching, group discussion, prayer, and opportunities to reflect on and apply what you are learning. The goal is not simply to gain knowledge, but to experience transformation through God's Word."
+        },
+        {
+          "question": "What if I am nervous about joining?",
+          "answer": "That is completely normal. Our classes are welcoming, encouraging, and designed to help you grow at your own pace. You will be surrounded by people who are learning, growing, and pursuing Christ together."
+        },
+        {
+          "question": "How often do Christian Life Development classes meet?",
+          "answer": "Meeting schedules vary depending on the class and topic. Most classes meet regularly throughout the year and are structured to fit into your schedule while providing consistent opportunities for learning, fellowship, and discipleship."
+        }
+      ]
+    },
+    "ctas": {
+      "title": "Continue Your Journey of Growth",
+      "subtitle": "Whether you're exploring faith, learning about our church, or wanting to understand what we believe, we're here to help you take the next step.",
+      "items": [
+        {
+          "alt": "Holy cross placed on top of mountain; clouds and the sun in the background.",
+          "title": "Begin Your Walk with Christ",
+          "description": "The foundation of spiritual growth begins with a relationship with Jesus. Learn about salvation, God's love for you, and the new life available through Christ.",
+          "label": "Learn About Salvation"
+        },
+        {
+          "alt": "Pastor Singletary of the Wind Church preaching to congregation.",
+          "title": "Get to Know The Wind",
+          "description": "Discover our mission, vision, values, and heart for discipleship as we seek to honor God, love people, and serve this generation.",
+          "label": "About The Wind Church"
+        },
+        {
+          "alt": "Green olives hanging from a branch with leaves.",
+          "title": "Explore Our Beliefs",
+          "description": "Learn about the Fourfold Gospel and the biblical truths that shape our faith, teaching, and ministry as a Foursquare church.",
+          "label": "What We Believe"
+        }
+      ]
     }
   },
   "Feedback": {
@@ -564,8 +651,7 @@
     "tabContent": [
       {
         "descriptions": [
-          "The Wind Church (dba Wind of the Spirit) is part of a worldwide movement called the International Church of the Foursquare Gospel, with more than 1,700 churches in the United States and over 68,500 churches across more than 150 nations.",
-          "Every week, more than 12,000 men, women, boys, and girls accept Jesus Christ through the preaching of the gospel in Foursquare churches around the world."
+          "The Wind Church (dba Wind of the Spirit) is part of a worldwide movement called the International Church of the Foursquare Gospel, with more than 1,700 churches in the United States and over 68,500 churches across more than 150 nations. Every week, more than 12,000 men, women, boys, and girls accept Jesus Christ through the preaching of the gospel in Foursquare churches around the world."
         ]
       },
       {
@@ -1523,7 +1609,7 @@
     "testimonials": {
       "title": "Life at The Wind",
       "subtitle": "Real stories from people who have found community, purpose, and spiritual growth at The Wind.",
-      "imageAlt": "{name} profile image"
+      "imageAlt": "{name} profile image."
     }
   },
   "WePathway": {

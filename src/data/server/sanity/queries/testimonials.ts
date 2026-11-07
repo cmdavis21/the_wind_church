@@ -20,7 +20,6 @@ const getAllTestimoniesQuery = async () => {
             url: true,
           },
         },
-        image_alt: localizedFields,
       },
     ],
   }).then((d) => d.allTestimonial);
@@ -37,9 +36,6 @@ export const getAllTestimonies = async (locale: Locale): Promise<Testimonial[]> 
     first_name: testimony.contact?.first_name ?? '',
     last_name: testimony.contact?.last_name ?? '',
     position: testimony.position ?? '',
-    image: {
-      src: testimony.image?.asset?.url ?? '',
-      alt: getLocalizedValue(testimony.image_alt, locale) ?? '',
-    },
+    image: testimony.image?.asset?.url ?? '',
   }));
 };

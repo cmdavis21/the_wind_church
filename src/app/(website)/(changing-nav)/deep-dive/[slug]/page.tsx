@@ -53,6 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
   const locale = (await getLocale()) as Locale;
+
   const t = await getTranslations('DeepDive');
 
   const deepDive = await getDeepDiveBySlug(slug, locale);
@@ -61,11 +62,8 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
     return (
       <MediaBackgroundAndContent
         centerContent
-        background={{
-          src: '/images/wind_church_building.webp',
-          alt: 'Image of The Wind Church building',
-        }}
         content={<ErrorAlert />}
+        background={{ src: '/images/wind_church_building.webp', alt: t('alt') }}
       />
     );
   }
@@ -84,14 +82,16 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
 
   return (
     <div>
-      <PageHero size="short" title={name} media={{ src: image.src }} />
+      <PageHero size="short" title={name} media={{ src: image.src, alt: image.alt }} />
+
       <div className="flex flex-col gap-3xl sm:gap-4xl pt-3xl sm:pt-4xl">
         {/* DESCRIPTION */}
         <h4 className="px-padding max-width-center">{description}</h4>
 
         {/* INSTRUCTORS */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <SectionHeader title="Meet the Instructors" subtitle="Select Leaders to learn more" />
+          <SectionHeader title={t('instructors.title')} subtitle={t('instructors.subtitle')} />
+
           {/* DESKTOP */}
           <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-items-center">
             {instructors.map((leader) => (
@@ -116,20 +116,20 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* MISC DETAILS */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <SectionHeader title="The Details" subtitle="It’s the finer things..." />
+          <SectionHeader title={t('details.title')} subtitle={t('details.subtitle')} />
 
           {/* ACCEPTING NEW STUDENTS */}
           {accepting_new_students ? (
             <AlertMessage
               type="success"
-              title="Accepting New Students!"
-              description="Join us and grow deeper in your walk with Jesus. This Deep Dive is a powerful space to learn, connect, and be led by the Spirit."
+              title={t('accepting.title')}
+              description={t('accepting.description')}
             />
           ) : (
             <AlertMessage
               type="failure"
-              title="Not Accepting New Students"
-              description="This Deep Dive is already in progress. To honor the flow of teaching and support the students currently enrolled, we cannot accept new participants at this time."
+              title={t('notAccepting.title')}
+              description={t('notAccepting.description')}
             />
           )}
 
@@ -139,7 +139,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
           >
             {/* SCHEDULE */}
             <MultiInfoCard
-              label="Schedule"
+              label={t('schedule')}
               content={{
                 type: 'timeline',
                 data: {
@@ -152,7 +152,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             {/* MEETING TIMES */}
             {meeting_details && meeting_details.length > 0 && (
               <MultiInfoCard
-                label="Meets"
+                label={t('meets')}
                 content={{
                   type: 'meeting',
                   data: meeting_details,
@@ -163,7 +163,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             {/* REQUIRED MATERIALS */}
             {required_materials && required_materials.length > 0 && (
               <MultiInfoCard
-                label="Bring"
+                label={t('bring')}
                 content={{
                   type: 'list',
                   data: required_materials,
@@ -176,53 +176,42 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
         {/* WHAT IS A DEEP DIVE */}
         <MediaBackgroundAndContent
           background={{
-            src: '/images/product-placeholder.webp',
+            src: '/images/deep-dive/study-bible-with-journal.webp',
+            alt: t('describe.alt'),
           }}
           content={
             <div className="flex flex-col gap-md">
-              <h2 className="font-bold">What is a Deep Dive Study?</h2>
-              <h4 className="lg:max-w-[75%]">
-                A Deep Dive Study is an intentional time of fellowship, discipleship, and biblical
-                study designed to help you grow in faith. It&apos;s more than just reading
-                Scripture—it&apos;s about applying God&apos;s Word to your life in a community of
-                believers.
-              </h4>
+              <h2 className="font-bold">{t('describe.title')}</h2>
+              <h4 className="lg:max-w-[75%]">{t('describe.description')}</h4>
             </div>
           }
         />
 
         {/* FAQs */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <SectionHeader
-            subtitle="Any more questions?"
-            title="Find answers to your questions here"
-          />
+          <SectionHeader title={t('faqs.title')} subtitle={t('faqs.subtitle')} />
+
           <Accordion
             content={[
               {
-                title: 'Is a Deep Dive Study just another Bible study?',
-                description:
-                  "Not quite! While Scripture is at the heart of every session, Deep Dive Studies also focus on practical application, personal growth, and discipleship. You won't just learn—you'll be equipped to live out your faith in everyday life.",
+                title: t('faqs.items.0.question'),
+                description: t('faqs.items.0.answer'),
               },
               {
-                title: 'Do I need to have a strong biblical background to join?',
-                description:
-                  "No! Deep Dive Studies are open to everyone, whether you're new to faith or have been walking with Christ for years. Our discussions are designed to be accessible, engaging, and encouraging for all levels of biblical knowledge.",
+                title: t('faqs.items.1.question'),
+                description: t('faqs.items.1.answer'),
               },
               {
-                title: "What if I'm nervous about joining?",
-                description:
-                  "That's completely normal! Deep Dive Studies are welcoming and judgment-free spaces where you can grow at your own pace. You'll find encouragement, support, and a community that's excited to walk alongside you in your faith journey.",
+                title: t('faqs.items.2.question'),
+                description: t('faqs.items.2.answer'),
               },
               {
-                title: 'How does a Deep Dive Study help me in my everyday life?',
-                description:
-                  "By taking time to study and reflect on God's Word, you'll gain wisdom, clarity, and confidence in your faith. These studies provide real-life applications that help you navigate relationships, challenges, and personal growth with a Christ-centered perspective.",
+                title: t('faqs.items.3.question'),
+                description: t('faqs.items.3.answer'),
               },
               {
-                title: "How often do Deep Dive Studies meet, and what's the time commitment?",
-                description:
-                  'Meetings vary based on the group, but most studies meet weekly or biweekly. Sessions are designed to fit into your schedule while allowing enough time for discussion, prayer, and fellowship.',
+                title: t('faqs.items.4.question'),
+                description: t('faqs.items.4.answer'),
               },
             ]}
           />
@@ -230,39 +219,37 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* CTAs */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <CenterTextSection
-            title="Take your next steps with us!"
-            description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
-          />
+          <CenterTextSection title={t('ctas.title')} description={t('ctas.subtitle')} />
+
           <div className="flex flex-wrap justify-center gap-xxl">
             <ImageWithTitleDescriptionCard
-              alt="People gathering for church service"
-              src="/images/product-placeholder.webp"
-              title="Visit The Wind"
-              description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
+              alt={t('ctas.items.0.alt')}
+              src="/images/salvation/cross-on-mount.webp"
+              title={t('ctas.items.0.title')}
+              description={t('ctas.items.0.description')}
               link={{
-                label: 'Learn about the Wind',
+                label: t('ctas.items.0.label'),
+                href: PageRoutes.salvation,
+              }}
+            />
+            <ImageWithTitleDescriptionCard
+              alt={t('ctas.items.1.alt')}
+              src="/images/deep-dive/pastor-with-first-lady.webp"
+              title={t('ctas.items.1.title')}
+              description={t('ctas.items.1.description')}
+              link={{
+                label: t('ctas.items.1.label'),
                 href: PageRoutes.about,
               }}
             />
             <ImageWithTitleDescriptionCard
-              alt="Group in Bible study session"
-              src="/images/product-placeholder.webp"
-              title="Try our Deep Dives"
-              description="Explore the Word in a deeper way. Our Deep Dive Sessions are small-group Bible studies where you can ask questions and grow in your faith."
+              alt={t('ctas.items.2.alt')}
+              src="/images/salvation/olive-branch.webp"
+              title={t('ctas.items.2.title')}
+              description={t('ctas.items.2.description')}
               link={{
-                label: 'Go to Deep Dive',
-                href: PageRoutes.deepDive,
-              }}
-            />
-            <ImageWithTitleDescriptionCard
-              alt="Children in a classroom during youth service"
-              src="/images/product-placeholder.webp"
-              title="Learn about Next Gen"
-              description="We offer engaging and age-appropriate services for kids and teens every week. It's a safe space for youth to learn, grow, and build friendships."
-              link={{
-                label: 'Go to Youth Service',
-                href: PageRoutes.nextGen,
+                label: t('ctas.items.2.label'),
+                href: PageRoutes.foursquare,
               }}
             />
           </div>

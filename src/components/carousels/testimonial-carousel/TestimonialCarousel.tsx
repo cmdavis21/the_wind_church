@@ -36,7 +36,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
       <div className="relative w-full h-full md:col-span-1 max-md:aspect-square">
         {slides.map((slide, index) => (
           <div
-            key={`carousel-visual-${slide.image.src}-${index}`}
+            key={`carousel-visual-${slide.image}-${index}`}
             className={`absolute top-0 left-0 w-full h-full ${
               index === activeSlide ? 'fade-in' : 'fade-out opacity-0'
             }`}
@@ -44,8 +44,8 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
             <div className="relative w-full h-full">
               <Image
                 fill
-                src={slide.image.src}
-                alt={slide.image.alt || t('testimonials.imageAlt', { name: slide.first_name })}
+                src={slide.image}
+                alt={t('testimonials.imageAlt', { name: slide.first_name })}
                 className="object-cover object-center pointer-events-none"
               />
             </div>
@@ -74,8 +74,8 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
             >
               <Image
                 fill
-                src={s.image.src}
-                alt={s.image.alt || t('testimonials.imageAlt', { name: s.first_name })}
+                src={s.image}
+                alt={t('testimonials.imageAlt', { name: s.first_name })}
                 className="object-cover object-center pointer-events-none rounded-full"
               />
             </div>
