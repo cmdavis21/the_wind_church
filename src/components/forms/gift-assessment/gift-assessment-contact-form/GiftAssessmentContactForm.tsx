@@ -39,7 +39,7 @@ const GiftAssessmentContactForm: React.FC<GiftAssessmentContactFormProps> = ({
   isError,
 }) => {
   const c = useTranslations('FormCommon');
-  const t = useTranslations('ChurchRental');
+  const t = useTranslations('GiftAssessment.submission.form');
 
   const {
     register,
@@ -57,53 +57,56 @@ const GiftAssessmentContactForm: React.FC<GiftAssessmentContactFormProps> = ({
       {isSuccess && (
         <AlertMessage
           type="success"
-          title="Success!"
-          description="Thank you for sharing your results with us. We'll talk soon!"
+          title={c('success.title')}
+          description={t('success.description')}
         />
       )}
 
       {isError && (
         <AlertMessage
           type="failure"
-          title="Oh no!"
-          description="There was an error submitting your results. Please try again again later or download
-            your results."
+          title={c('error.title')}
+          description={t('error.description')}
         />
       )}
 
       {/* Names */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
+          required
           type="text"
-          label="First Name*"
+          label={c('first.label')}
           {...register('first_name')}
           disabled={isPending || isSuccess}
-          error={errors.first_name?.message}
+          error={errors.first_name ? c(errors.first_name.message!) : undefined}
         />
         <TextInput
+          required
           type="text"
-          label="Last Name*"
+          label={c('last.label')}
           {...register('last_name')}
           disabled={isPending || isSuccess}
-          error={errors.last_name?.message}
+          error={errors.last_name ? c(errors.last_name.message!) : undefined}
         />
       </div>
 
       {/* Contact */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
+          required
           type="tel"
-          label="Phone*"
           {...register('phone')}
-          error={errors.phone?.message}
+          label={c('phone.label')}
           disabled={isPending || isSuccess}
+          error={errors.phone ? c(errors.phone.message!) : undefined}
         />
         <TextInput
+          required
           type="email"
-          label="Email*"
           {...register('email')}
-          error={errors.email?.message}
+          label={c('email.label')}
           disabled={isPending || isSuccess}
+          error={errors.email ? c(errors.email.message!) : undefined}
         />
       </div>
 

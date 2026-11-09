@@ -626,7 +626,7 @@ export interface GraphQLResponse {
 }
 export class GraphQLError extends Error {
   constructor(public response: GraphQLResponse) {
-    super('');
+    super(response.errors?.[0]?.message || 'GraphQL Response Error');
     console.error(response);
   }
   toString() {
@@ -1107,8 +1107,6 @@ DeepDive?: [{	/** DeepDive document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["DeepDive"]],
 Ministry?: [{	/** Ministry document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["Ministry"]],
-NextGenPage?: [{	/** NextGenPage document ID */
-	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["NextGenPage"]],
 PromoBanner?: [{	/** PromoBanner document ID */
 	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["PromoBanner"]],
 Testimonial?: [{	/** Testimonial document ID */
@@ -1156,9 +1154,6 @@ allDeepDive?: [{	where?: ValueTypes["DeepDiveFilter"] | undefined | null | Varia
 allMinistry?: [{	where?: ValueTypes["MinistryFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["MinistrySorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["Ministry"]],
-allNextGenPage?: [{	where?: ValueTypes["NextGenPageFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["NextGenPageSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
-	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null | Variable<any, string>},ValueTypes["NextGenPage"]],
 allPromoBanner?: [{	where?: ValueTypes["PromoBannerFilter"] | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["PromoBannerSorting"]> | undefined | null | Variable<any, string>,	/** Max documents to return */
 	limit?: number | undefined | null | Variable<any, string>,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null | Variable<any, string>},ValueTypes["PromoBanner"]],
@@ -1228,11 +1223,10 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 		['...on Event']?: Omit<ValueTypes["Event"],keyof ValueTypes["Document"]>;
 		['...on Ministry']?: Omit<ValueTypes["Ministry"],keyof ValueTypes["Document"]>;
 		['...on Leader']?: Omit<ValueTypes["Leader"],keyof ValueTypes["Document"]>;
+		['...on Resource']?: Omit<ValueTypes["Resource"],keyof ValueTypes["Document"]>;
 		['...on DeepDive']?: Omit<ValueTypes["DeepDive"],keyof ValueTypes["Document"]>;
-		['...on NextGenPage']?: Omit<ValueTypes["NextGenPage"],keyof ValueTypes["Document"]>;
 		['...on PromoBanner']?: Omit<ValueTypes["PromoBanner"],keyof ValueTypes["Document"]>;
 		['...on Testimonial']?: Omit<ValueTypes["Testimonial"],keyof ValueTypes["Document"]>;
-		['...on Resource']?: Omit<ValueTypes["Resource"],keyof ValueTypes["Document"]>;
 		__typename?: boolean | `@${string}`
 }>;
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
@@ -1584,6 +1578,7 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	coach?:ValueTypes["Leader"],
 	image?:ValueTypes["Image"],
 	image_alt?:ValueTypes["LocalizedString"],
+	resources?:ValueTypes["Resource"],
 		__typename?: boolean | `@${string}`,
 	['...on Ministry']?: Omit<ValueTypes["Ministry"], "...on Ministry">
 }>;
@@ -1643,6 +1638,33 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 		__typename?: boolean | `@${string}`,
 	['...on File']?: Omit<ValueTypes["File"], "...on File">
 }>;
+	["Resource"]: AliasType<{
+	/** Document ID */
+	_id?:boolean | `@${string}`,
+	/** Document type */
+	_type?:boolean | `@${string}`,
+	/** Date the document was created */
+	_createdAt?:boolean | `@${string}`,
+	/** Date the document was last modified */
+	_updatedAt?:boolean | `@${string}`,
+	/** Current document revision */
+	_rev?:boolean | `@${string}`,
+	_key?:boolean | `@${string}`,
+	title?:ValueTypes["LocalizedString"],
+	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
+	type?:boolean | `@${string}`,
+	description?:ValueTypes["LocalizedText"],
+	/** Choose the group this resource belongs to. */
+	category?:boolean | `@${string}`,
+	file?:ValueTypes["File"],
+	file_size?:ValueTypes["LocalizedString"],
+	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
+	url?:boolean | `@${string}`,
+	/** Toggle to hide the resource from the website without deleting it. */
+	is_active?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`,
+	['...on Resource']?: Omit<ValueTypes["Resource"], "...on Resource">
+}>;
 	["DeepDive"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
@@ -1681,23 +1703,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	attendance_type?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`,
 	['...on MeetingDetails']?: Omit<ValueTypes["MeetingDetails"], "...on MeetingDetails">
-}>;
-	["NextGenPage"]: AliasType<{
-	/** Document ID */
-	_id?:boolean | `@${string}`,
-	/** Document type */
-	_type?:boolean | `@${string}`,
-	/** Date the document was created */
-	_createdAt?:boolean | `@${string}`,
-	/** Date the document was last modified */
-	_updatedAt?:boolean | `@${string}`,
-	/** Current document revision */
-	_rev?:boolean | `@${string}`,
-	_key?:boolean | `@${string}`,
-	educators?:ValueTypes["Leader"],
-	cirriculum_file?:ValueTypes["File"],
-		__typename?: boolean | `@${string}`,
-	['...on NextGenPage']?: Omit<ValueTypes["NextGenPage"], "...on NextGenPage">
 }>;
 	["PromoBanner"]: AliasType<{
 	/** Document ID */
@@ -1751,33 +1756,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	image?:ValueTypes["Image"],
 		__typename?: boolean | `@${string}`,
 	['...on Testimonial']?: Omit<ValueTypes["Testimonial"], "...on Testimonial">
-}>;
-	["Resource"]: AliasType<{
-	/** Document ID */
-	_id?:boolean | `@${string}`,
-	/** Document type */
-	_type?:boolean | `@${string}`,
-	/** Date the document was created */
-	_createdAt?:boolean | `@${string}`,
-	/** Date the document was last modified */
-	_updatedAt?:boolean | `@${string}`,
-	/** Current document revision */
-	_rev?:boolean | `@${string}`,
-	_key?:boolean | `@${string}`,
-	title?:ValueTypes["LocalizedString"],
-	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
-	type?:boolean | `@${string}`,
-	description?:ValueTypes["LocalizedText"],
-	/** Choose the group this resource belongs to. */
-	category?:boolean | `@${string}`,
-	file?:ValueTypes["File"],
-	file_size?:ValueTypes["LocalizedString"],
-	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
-	url?:boolean | `@${string}`,
-	/** Toggle to hide the resource from the website without deleting it. */
-	is_active?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`,
-	['...on Resource']?: Omit<ValueTypes["Resource"], "...on Resource">
 }>;
 	["SanityImageAssetFilter"]: {
 	/** Apply filters on document level */
@@ -2515,26 +2493,6 @@ allDocument?: [{	where?: ValueTypes["DocumentFilter"] | undefined | null | Varia
 	passage?: ValueTypes["LocalizedTextSorting"] | undefined | null | Variable<any, string>,
 	verse?: ValueTypes["LocalizedStringSorting"] | undefined | null | Variable<any, string>
 };
-	["NextGenPageFilter"]: {
-	/** Apply filters on document level */
-	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
-	_id?: ValueTypes["IDFilter"] | undefined | null | Variable<any, string>,
-	_type?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	_createdAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
-	_updatedAt?: ValueTypes["DatetimeFilter"] | undefined | null | Variable<any, string>,
-	_rev?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	_key?: ValueTypes["StringFilter"] | undefined | null | Variable<any, string>,
-	cirriculum_file?: ValueTypes["FileFilter"] | undefined | null | Variable<any, string>
-};
-	["NextGenPageSorting"]: {
-	_id?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_type?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_createdAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_updatedAt?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_rev?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	_key?: ValueTypes["SortOrder"] | undefined | null | Variable<any, string>,
-	cirriculum_file?: ValueTypes["FileSorting"] | undefined | null | Variable<any, string>
-};
 	["PromoBannerFilter"]: {
 	/** Apply filters on document level */
 	_?: ValueTypes["Sanity_DocumentFilter"] | undefined | null | Variable<any, string>,
@@ -2767,8 +2725,6 @@ DeepDive?: [{	/** DeepDive document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["DeepDive"]],
 Ministry?: [{	/** Ministry document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["Ministry"]],
-NextGenPage?: [{	/** NextGenPage document ID */
-	id: ResolverInputTypes["ID"]},ResolverInputTypes["NextGenPage"]],
 PromoBanner?: [{	/** PromoBanner document ID */
 	id: ResolverInputTypes["ID"]},ResolverInputTypes["PromoBanner"]],
 Testimonial?: [{	/** Testimonial document ID */
@@ -2816,9 +2772,6 @@ allDeepDive?: [{	where?: ResolverInputTypes["DeepDiveFilter"] | undefined | null
 allMinistry?: [{	where?: ResolverInputTypes["MinistryFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["MinistrySorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["Ministry"]],
-allNextGenPage?: [{	where?: ResolverInputTypes["NextGenPageFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["NextGenPageSorting"]> | undefined | null,	/** Max documents to return */
-	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
-	offset?: number | undefined | null},ResolverInputTypes["NextGenPage"]],
 allPromoBanner?: [{	where?: ResolverInputTypes["PromoBannerFilter"] | undefined | null,	sort?: Array<ResolverInputTypes["PromoBannerSorting"]> | undefined | null,	/** Max documents to return */
 	limit?: number | undefined | null,	/** Offset at which to start returning documents from */
 	offset?: number | undefined | null},ResolverInputTypes["PromoBanner"]],
@@ -2886,11 +2839,10 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 		['...on Event']?: Omit<ResolverInputTypes["Event"],keyof ResolverInputTypes["Document"]>;
 		['...on Ministry']?: Omit<ResolverInputTypes["Ministry"],keyof ResolverInputTypes["Document"]>;
 		['...on Leader']?: Omit<ResolverInputTypes["Leader"],keyof ResolverInputTypes["Document"]>;
+		['...on Resource']?: Omit<ResolverInputTypes["Resource"],keyof ResolverInputTypes["Document"]>;
 		['...on DeepDive']?: Omit<ResolverInputTypes["DeepDive"],keyof ResolverInputTypes["Document"]>;
-		['...on NextGenPage']?: Omit<ResolverInputTypes["NextGenPage"],keyof ResolverInputTypes["Document"]>;
 		['...on PromoBanner']?: Omit<ResolverInputTypes["PromoBanner"],keyof ResolverInputTypes["Document"]>;
 		['...on Testimonial']?: Omit<ResolverInputTypes["Testimonial"],keyof ResolverInputTypes["Document"]>;
-		['...on Resource']?: Omit<ResolverInputTypes["Resource"],keyof ResolverInputTypes["Document"]>;
 		__typename?: boolean | `@${string}`
 }>;
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
@@ -3220,6 +3172,7 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	coach?:ResolverInputTypes["Leader"],
 	image?:ResolverInputTypes["Image"],
 	image_alt?:ResolverInputTypes["LocalizedString"],
+	resources?:ResolverInputTypes["Resource"],
 		__typename?: boolean | `@${string}`
 }>;
 	["Slug"]: AliasType<{
@@ -3273,6 +3226,32 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	media?:ResolverInputTypes["GlobalDocumentReference"],
 		__typename?: boolean | `@${string}`
 }>;
+	["Resource"]: AliasType<{
+	/** Document ID */
+	_id?:boolean | `@${string}`,
+	/** Document type */
+	_type?:boolean | `@${string}`,
+	/** Date the document was created */
+	_createdAt?:boolean | `@${string}`,
+	/** Date the document was last modified */
+	_updatedAt?:boolean | `@${string}`,
+	/** Current document revision */
+	_rev?:boolean | `@${string}`,
+	_key?:boolean | `@${string}`,
+	title?:ResolverInputTypes["LocalizedString"],
+	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
+	type?:boolean | `@${string}`,
+	description?:ResolverInputTypes["LocalizedText"],
+	/** Choose the group this resource belongs to. */
+	category?:boolean | `@${string}`,
+	file?:ResolverInputTypes["File"],
+	file_size?:ResolverInputTypes["LocalizedString"],
+	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
+	url?:boolean | `@${string}`,
+	/** Toggle to hide the resource from the website without deleting it. */
+	is_active?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["DeepDive"]: AliasType<{
 	/** Document ID */
 	_id?:boolean | `@${string}`,
@@ -3308,22 +3287,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	/** Example: 7:00 PM */
 	time?:boolean | `@${string}`,
 	attendance_type?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	["NextGenPage"]: AliasType<{
-	/** Document ID */
-	_id?:boolean | `@${string}`,
-	/** Document type */
-	_type?:boolean | `@${string}`,
-	/** Date the document was created */
-	_createdAt?:boolean | `@${string}`,
-	/** Date the document was last modified */
-	_updatedAt?:boolean | `@${string}`,
-	/** Current document revision */
-	_rev?:boolean | `@${string}`,
-	_key?:boolean | `@${string}`,
-	educators?:ResolverInputTypes["Leader"],
-	cirriculum_file?:ResolverInputTypes["File"],
 		__typename?: boolean | `@${string}`
 }>;
 	["PromoBanner"]: AliasType<{
@@ -3374,32 +3337,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	main_point?:ResolverInputTypes["LocalizedText"],
 	statement?:ResolverInputTypes["LocalizedText"],
 	image?:ResolverInputTypes["Image"],
-		__typename?: boolean | `@${string}`
-}>;
-	["Resource"]: AliasType<{
-	/** Document ID */
-	_id?:boolean | `@${string}`,
-	/** Document type */
-	_type?:boolean | `@${string}`,
-	/** Date the document was created */
-	_createdAt?:boolean | `@${string}`,
-	/** Date the document was last modified */
-	_updatedAt?:boolean | `@${string}`,
-	/** Current document revision */
-	_rev?:boolean | `@${string}`,
-	_key?:boolean | `@${string}`,
-	title?:ResolverInputTypes["LocalizedString"],
-	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
-	type?:boolean | `@${string}`,
-	description?:ResolverInputTypes["LocalizedText"],
-	/** Choose the group this resource belongs to. */
-	category?:boolean | `@${string}`,
-	file?:ResolverInputTypes["File"],
-	file_size?:ResolverInputTypes["LocalizedString"],
-	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
-	url?:boolean | `@${string}`,
-	/** Toggle to hide the resource from the website without deleting it. */
-	is_active?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["SanityImageAssetFilter"]: {
@@ -4138,26 +4075,6 @@ allDocument?: [{	where?: ResolverInputTypes["DocumentFilter"] | undefined | null
 	passage?: ResolverInputTypes["LocalizedTextSorting"] | undefined | null,
 	verse?: ResolverInputTypes["LocalizedStringSorting"] | undefined | null
 };
-	["NextGenPageFilter"]: {
-	/** Apply filters on document level */
-	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
-	_id?: ResolverInputTypes["IDFilter"] | undefined | null,
-	_type?: ResolverInputTypes["StringFilter"] | undefined | null,
-	_createdAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
-	_updatedAt?: ResolverInputTypes["DatetimeFilter"] | undefined | null,
-	_rev?: ResolverInputTypes["StringFilter"] | undefined | null,
-	_key?: ResolverInputTypes["StringFilter"] | undefined | null,
-	cirriculum_file?: ResolverInputTypes["FileFilter"] | undefined | null
-};
-	["NextGenPageSorting"]: {
-	_id?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_type?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_createdAt?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_updatedAt?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_rev?: ResolverInputTypes["SortOrder"] | undefined | null,
-	_key?: ResolverInputTypes["SortOrder"] | undefined | null,
-	cirriculum_file?: ResolverInputTypes["FileSorting"] | undefined | null
-};
 	["PromoBannerFilter"]: {
 	/** Apply filters on document level */
 	_?: ResolverInputTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -4373,7 +4290,6 @@ export type ModelTypes = {
 	Leader?: ModelTypes["Leader"] | undefined | null,
 	DeepDive?: ModelTypes["DeepDive"] | undefined | null,
 	Ministry?: ModelTypes["Ministry"] | undefined | null,
-	NextGenPage?: ModelTypes["NextGenPage"] | undefined | null,
 	PromoBanner?: ModelTypes["PromoBanner"] | undefined | null,
 	Testimonial?: ModelTypes["Testimonial"] | undefined | null,
 	Resource?: ModelTypes["Resource"] | undefined | null,
@@ -4391,7 +4307,6 @@ export type ModelTypes = {
 	allLeader: Array<ModelTypes["Leader"]>,
 	allDeepDive: Array<ModelTypes["DeepDive"]>,
 	allMinistry: Array<ModelTypes["Ministry"]>,
-	allNextGenPage: Array<ModelTypes["NextGenPage"]>,
 	allPromoBanner: Array<ModelTypes["PromoBanner"]>,
 	allTestimonial: Array<ModelTypes["Testimonial"]>,
 	allResource: Array<ModelTypes["Resource"]>,
@@ -4426,7 +4341,7 @@ export type ModelTypes = {
 	source?: ModelTypes["SanityAssetSourceData"] | undefined | null
 };
 	/** A Sanity document */
-["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenGuardianInquiry"] | ModelTypes["Event"] | ModelTypes["Ministry"] | ModelTypes["Leader"] | ModelTypes["DeepDive"] | ModelTypes["NextGenPage"] | ModelTypes["PromoBanner"] | ModelTypes["Testimonial"] | ModelTypes["Resource"];
+["Document"]: ModelTypes["SanityImageAsset"] | ModelTypes["SanityFileAsset"] | ModelTypes["EventRental"] | ModelTypes["Contact"] | ModelTypes["PrayerRequest"] | ModelTypes["GiftAssessment"] | ModelTypes["VisitorFeedback"] | ModelTypes["MinistryConnection"] | ModelTypes["NextGenGuardianInquiry"] | ModelTypes["Event"] | ModelTypes["Ministry"] | ModelTypes["Leader"] | ModelTypes["Resource"] | ModelTypes["DeepDive"] | ModelTypes["PromoBanner"] | ModelTypes["Testimonial"];
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["DateTime"]:any;
 	["SanityImageMetadata"]: {
@@ -4731,7 +4646,8 @@ export type ModelTypes = {
 	/** Select the coach for this ministry. */
 	coach?: ModelTypes["Leader"] | undefined | null,
 	image?: ModelTypes["Image"] | undefined | null,
-	image_alt?: ModelTypes["LocalizedString"] | undefined | null
+	image_alt?: ModelTypes["LocalizedString"] | undefined | null,
+	resources?: Array<ModelTypes["Resource"] | undefined | null> | undefined | null
 };
 	["Slug"]: {
 		_key?: string | undefined | null,
@@ -4779,6 +4695,31 @@ export type ModelTypes = {
 	asset?: ModelTypes["SanityFileAsset"] | undefined | null,
 	media?: ModelTypes["GlobalDocumentReference"] | undefined | null
 };
+	["Resource"]: {
+		/** Document ID */
+	_id?: ModelTypes["ID"] | undefined | null,
+	/** Document type */
+	_type?: string | undefined | null,
+	/** Date the document was created */
+	_createdAt?: ModelTypes["DateTime"] | undefined | null,
+	/** Date the document was last modified */
+	_updatedAt?: ModelTypes["DateTime"] | undefined | null,
+	/** Current document revision */
+	_rev?: string | undefined | null,
+	_key?: string | undefined | null,
+	title?: ModelTypes["LocalizedString"] | undefined | null,
+	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
+	type?: string | undefined | null,
+	description?: ModelTypes["LocalizedText"] | undefined | null,
+	/** Choose the group this resource belongs to. */
+	category?: string | undefined | null,
+	file?: ModelTypes["File"] | undefined | null,
+	file_size?: ModelTypes["LocalizedString"] | undefined | null,
+	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
+	url?: string | undefined | null,
+	/** Toggle to hide the resource from the website without deleting it. */
+	is_active?: boolean | undefined | null
+};
 	["DeepDive"]: {
 		/** Document ID */
 	_id?: ModelTypes["ID"] | undefined | null,
@@ -4813,21 +4754,6 @@ export type ModelTypes = {
 	/** Example: 7:00 PM */
 	time?: string | undefined | null,
 	attendance_type?: string | undefined | null
-};
-	["NextGenPage"]: {
-		/** Document ID */
-	_id?: ModelTypes["ID"] | undefined | null,
-	/** Document type */
-	_type?: string | undefined | null,
-	/** Date the document was created */
-	_createdAt?: ModelTypes["DateTime"] | undefined | null,
-	/** Date the document was last modified */
-	_updatedAt?: ModelTypes["DateTime"] | undefined | null,
-	/** Current document revision */
-	_rev?: string | undefined | null,
-	_key?: string | undefined | null,
-	educators?: Array<ModelTypes["Leader"] | undefined | null> | undefined | null,
-	cirriculum_file?: ModelTypes["File"] | undefined | null
 };
 	["PromoBanner"]: {
 		/** Document ID */
@@ -4875,31 +4801,6 @@ export type ModelTypes = {
 	main_point?: ModelTypes["LocalizedText"] | undefined | null,
 	statement?: ModelTypes["LocalizedText"] | undefined | null,
 	image?: ModelTypes["Image"] | undefined | null
-};
-	["Resource"]: {
-		/** Document ID */
-	_id?: ModelTypes["ID"] | undefined | null,
-	/** Document type */
-	_type?: string | undefined | null,
-	/** Date the document was created */
-	_createdAt?: ModelTypes["DateTime"] | undefined | null,
-	/** Date the document was last modified */
-	_updatedAt?: ModelTypes["DateTime"] | undefined | null,
-	/** Current document revision */
-	_rev?: string | undefined | null,
-	_key?: string | undefined | null,
-	title?: ModelTypes["LocalizedString"] | undefined | null,
-	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
-	type?: string | undefined | null,
-	description?: ModelTypes["LocalizedText"] | undefined | null,
-	/** Choose the group this resource belongs to. */
-	category?: string | undefined | null,
-	file?: ModelTypes["File"] | undefined | null,
-	file_size?: ModelTypes["LocalizedString"] | undefined | null,
-	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
-	url?: string | undefined | null,
-	/** Toggle to hide the resource from the website without deleting it. */
-	is_active?: boolean | undefined | null
 };
 	["SanityImageAssetFilter"]: {
 	/** Apply filters on document level */
@@ -5637,26 +5538,6 @@ export type ModelTypes = {
 	passage?: ModelTypes["LocalizedTextSorting"] | undefined | null,
 	verse?: ModelTypes["LocalizedStringSorting"] | undefined | null
 };
-	["NextGenPageFilter"]: {
-	/** Apply filters on document level */
-	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
-	_id?: ModelTypes["IDFilter"] | undefined | null,
-	_type?: ModelTypes["StringFilter"] | undefined | null,
-	_createdAt?: ModelTypes["DatetimeFilter"] | undefined | null,
-	_updatedAt?: ModelTypes["DatetimeFilter"] | undefined | null,
-	_rev?: ModelTypes["StringFilter"] | undefined | null,
-	_key?: ModelTypes["StringFilter"] | undefined | null,
-	cirriculum_file?: ModelTypes["FileFilter"] | undefined | null
-};
-	["NextGenPageSorting"]: {
-	_id?: ModelTypes["SortOrder"] | undefined | null,
-	_type?: ModelTypes["SortOrder"] | undefined | null,
-	_createdAt?: ModelTypes["SortOrder"] | undefined | null,
-	_updatedAt?: ModelTypes["SortOrder"] | undefined | null,
-	_rev?: ModelTypes["SortOrder"] | undefined | null,
-	_key?: ModelTypes["SortOrder"] | undefined | null,
-	cirriculum_file?: ModelTypes["FileSorting"] | undefined | null
-};
 	["PromoBannerFilter"]: {
 	/** Apply filters on document level */
 	_?: ModelTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -5867,7 +5748,6 @@ export type GraphQLTypes = {
 	Leader?: GraphQLTypes["Leader"] | undefined | null,
 	DeepDive?: GraphQLTypes["DeepDive"] | undefined | null,
 	Ministry?: GraphQLTypes["Ministry"] | undefined | null,
-	NextGenPage?: GraphQLTypes["NextGenPage"] | undefined | null,
 	PromoBanner?: GraphQLTypes["PromoBanner"] | undefined | null,
 	Testimonial?: GraphQLTypes["Testimonial"] | undefined | null,
 	Resource?: GraphQLTypes["Resource"] | undefined | null,
@@ -5885,7 +5765,6 @@ export type GraphQLTypes = {
 	allLeader: Array<GraphQLTypes["Leader"]>,
 	allDeepDive: Array<GraphQLTypes["DeepDive"]>,
 	allMinistry: Array<GraphQLTypes["Ministry"]>,
-	allNextGenPage: Array<GraphQLTypes["NextGenPage"]>,
 	allPromoBanner: Array<GraphQLTypes["PromoBanner"]>,
 	allTestimonial: Array<GraphQLTypes["Testimonial"]>,
 	allResource: Array<GraphQLTypes["Resource"]>,
@@ -5924,7 +5803,7 @@ export type GraphQLTypes = {
 };
 	/** A Sanity document */
 ["Document"]: {
-	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenGuardianInquiry" | "Event" | "Ministry" | "Leader" | "DeepDive" | "NextGenPage" | "PromoBanner" | "Testimonial" | "Resource",
+	__typename:"SanityImageAsset" | "SanityFileAsset" | "EventRental" | "Contact" | "PrayerRequest" | "GiftAssessment" | "VisitorFeedback" | "MinistryConnection" | "NextGenGuardianInquiry" | "Event" | "Ministry" | "Leader" | "Resource" | "DeepDive" | "PromoBanner" | "Testimonial",
 	/** Document ID */
 	_id?: GraphQLTypes["ID"] | undefined | null,
 	/** Document type */
@@ -5947,11 +5826,10 @@ export type GraphQLTypes = {
 	['...on Event']: '__union' & GraphQLTypes["Event"];
 	['...on Ministry']: '__union' & GraphQLTypes["Ministry"];
 	['...on Leader']: '__union' & GraphQLTypes["Leader"];
+	['...on Resource']: '__union' & GraphQLTypes["Resource"];
 	['...on DeepDive']: '__union' & GraphQLTypes["DeepDive"];
-	['...on NextGenPage']: '__union' & GraphQLTypes["NextGenPage"];
 	['...on PromoBanner']: '__union' & GraphQLTypes["PromoBanner"];
 	['...on Testimonial']: '__union' & GraphQLTypes["Testimonial"];
-	['...on Resource']: '__union' & GraphQLTypes["Resource"];
 };
 	/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 ["DateTime"]: "scalar" & { name: "DateTime" };
@@ -6303,6 +6181,7 @@ export type GraphQLTypes = {
 	coach?: GraphQLTypes["Leader"] | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
 	image_alt?: GraphQLTypes["LocalizedString"] | undefined | null,
+	resources?: Array<GraphQLTypes["Resource"] | undefined | null> | undefined | null,
 	['...on Ministry']: Omit<GraphQLTypes["Ministry"], "...on Ministry">
 };
 	["Slug"]: {
@@ -6361,6 +6240,33 @@ export type GraphQLTypes = {
 	media?: GraphQLTypes["GlobalDocumentReference"] | undefined | null,
 	['...on File']: Omit<GraphQLTypes["File"], "...on File">
 };
+	["Resource"]: {
+	__typename: "Resource",
+	/** Document ID */
+	_id?: GraphQLTypes["ID"] | undefined | null,
+	/** Document type */
+	_type?: string | undefined | null,
+	/** Date the document was created */
+	_createdAt?: GraphQLTypes["DateTime"] | undefined | null,
+	/** Date the document was last modified */
+	_updatedAt?: GraphQLTypes["DateTime"] | undefined | null,
+	/** Current document revision */
+	_rev?: string | undefined | null,
+	_key?: string | undefined | null,
+	title?: GraphQLTypes["LocalizedString"] | undefined | null,
+	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
+	type?: string | undefined | null,
+	description?: GraphQLTypes["LocalizedText"] | undefined | null,
+	/** Choose the group this resource belongs to. */
+	category?: string | undefined | null,
+	file?: GraphQLTypes["File"] | undefined | null,
+	file_size?: GraphQLTypes["LocalizedString"] | undefined | null,
+	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
+	url?: string | undefined | null,
+	/** Toggle to hide the resource from the website without deleting it. */
+	is_active?: boolean | undefined | null,
+	['...on Resource']: Omit<GraphQLTypes["Resource"], "...on Resource">
+};
 	["DeepDive"]: {
 	__typename: "DeepDive",
 	/** Document ID */
@@ -6399,23 +6305,6 @@ export type GraphQLTypes = {
 	time?: string | undefined | null,
 	attendance_type?: string | undefined | null,
 	['...on MeetingDetails']: Omit<GraphQLTypes["MeetingDetails"], "...on MeetingDetails">
-};
-	["NextGenPage"]: {
-	__typename: "NextGenPage",
-	/** Document ID */
-	_id?: GraphQLTypes["ID"] | undefined | null,
-	/** Document type */
-	_type?: string | undefined | null,
-	/** Date the document was created */
-	_createdAt?: GraphQLTypes["DateTime"] | undefined | null,
-	/** Date the document was last modified */
-	_updatedAt?: GraphQLTypes["DateTime"] | undefined | null,
-	/** Current document revision */
-	_rev?: string | undefined | null,
-	_key?: string | undefined | null,
-	educators?: Array<GraphQLTypes["Leader"] | undefined | null> | undefined | null,
-	cirriculum_file?: GraphQLTypes["File"] | undefined | null,
-	['...on NextGenPage']: Omit<GraphQLTypes["NextGenPage"], "...on NextGenPage">
 };
 	["PromoBanner"]: {
 	__typename: "PromoBanner",
@@ -6469,33 +6358,6 @@ export type GraphQLTypes = {
 	statement?: GraphQLTypes["LocalizedText"] | undefined | null,
 	image?: GraphQLTypes["Image"] | undefined | null,
 	['...on Testimonial']: Omit<GraphQLTypes["Testimonial"], "...on Testimonial">
-};
-	["Resource"]: {
-	__typename: "Resource",
-	/** Document ID */
-	_id?: GraphQLTypes["ID"] | undefined | null,
-	/** Document type */
-	_type?: string | undefined | null,
-	/** Date the document was created */
-	_createdAt?: GraphQLTypes["DateTime"] | undefined | null,
-	/** Date the document was last modified */
-	_updatedAt?: GraphQLTypes["DateTime"] | undefined | null,
-	/** Current document revision */
-	_rev?: string | undefined | null,
-	_key?: string | undefined | null,
-	title?: GraphQLTypes["LocalizedString"] | undefined | null,
-	/** Choose what kind of resource this is. “File” is for downloadable documents. “Link” is for websites or videos. */
-	type?: string | undefined | null,
-	description?: GraphQLTypes["LocalizedText"] | undefined | null,
-	/** Choose the group this resource belongs to. */
-	category?: string | undefined | null,
-	file?: GraphQLTypes["File"] | undefined | null,
-	file_size?: GraphQLTypes["LocalizedString"] | undefined | null,
-	/** Paste a link to an external resource such as a YouTube video, website, or online document. */
-	url?: string | undefined | null,
-	/** Toggle to hide the resource from the website without deleting it. */
-	is_active?: boolean | undefined | null,
-	['...on Resource']: Omit<GraphQLTypes["Resource"], "...on Resource">
 };
 	["SanityImageAssetFilter"]: {
 		/** Apply filters on document level */
@@ -7233,26 +7095,6 @@ export type GraphQLTypes = {
 	passage?: GraphQLTypes["LocalizedTextSorting"] | undefined | null,
 	verse?: GraphQLTypes["LocalizedStringSorting"] | undefined | null
 };
-	["NextGenPageFilter"]: {
-		/** Apply filters on document level */
-	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
-	_id?: GraphQLTypes["IDFilter"] | undefined | null,
-	_type?: GraphQLTypes["StringFilter"] | undefined | null,
-	_createdAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
-	_updatedAt?: GraphQLTypes["DatetimeFilter"] | undefined | null,
-	_rev?: GraphQLTypes["StringFilter"] | undefined | null,
-	_key?: GraphQLTypes["StringFilter"] | undefined | null,
-	cirriculum_file?: GraphQLTypes["FileFilter"] | undefined | null
-};
-	["NextGenPageSorting"]: {
-		_id?: GraphQLTypes["SortOrder"] | undefined | null,
-	_type?: GraphQLTypes["SortOrder"] | undefined | null,
-	_createdAt?: GraphQLTypes["SortOrder"] | undefined | null,
-	_updatedAt?: GraphQLTypes["SortOrder"] | undefined | null,
-	_rev?: GraphQLTypes["SortOrder"] | undefined | null,
-	_key?: GraphQLTypes["SortOrder"] | undefined | null,
-	cirriculum_file?: GraphQLTypes["FileSorting"] | undefined | null
-};
 	["PromoBannerFilter"]: {
 		/** Apply filters on document level */
 	_?: GraphQLTypes["Sanity_DocumentFilter"] | undefined | null,
@@ -7529,8 +7371,6 @@ type ZEUS_VARIABLES = {
 	["LocalizedPortableTextSorting"]: ValueTypes["LocalizedPortableTextSorting"];
 	["MinistrySorting"]: ValueTypes["MinistrySorting"];
 	["ScriptureSorting"]: ValueTypes["ScriptureSorting"];
-	["NextGenPageFilter"]: ValueTypes["NextGenPageFilter"];
-	["NextGenPageSorting"]: ValueTypes["NextGenPageSorting"];
 	["PromoBannerFilter"]: ValueTypes["PromoBannerFilter"];
 	["LinkFilter"]: ValueTypes["LinkFilter"];
 	["PromoBannerSorting"]: ValueTypes["PromoBannerSorting"];

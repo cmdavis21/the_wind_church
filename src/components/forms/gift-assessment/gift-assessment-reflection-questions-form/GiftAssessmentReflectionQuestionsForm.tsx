@@ -6,22 +6,14 @@ import * as yup from 'yup';
 
 import { GiftAssessmentReflectionQuestions } from '@/data/types';
 
+import { useTranslations } from 'next-intl';
 import RadioGroup from '../../inputs/radio-group/RadioGroup';
 import TextareaInput from '../../inputs/textarea-input/TextareaInput';
 
 const schema = yup.object().shape({
-  ministries_involved_in: yup
-    .string()
-    .max(750, 'Only up to 750 characters allowed')
-    .required('Please answer the question to the best of your ability.'),
-  change_in_ministry: yup
-    .string()
-    .max(750, 'Only up to 750 characters allowed')
-    .required('Please answer the question to the best of your ability.'),
-  lay_or_clergy: yup
-    .string()
-    .oneOf(['Lay', 'Clergy'])
-    .required('Please answer the question to the best of your ability.'),
+  ministries_involved_in: yup.string().max(750, 'test').required('message'),
+  change_in_ministry: yup.string().max(750, 'test').required('message'),
+  lay_or_clergy: yup.string().required('message'),
 });
 
 interface GiftAssessmentReflectionQuestionsFormProps {
@@ -32,6 +24,8 @@ interface GiftAssessmentReflectionQuestionsFormProps {
 const GiftAssessmentReflectionQuestionsForm: React.FC<
   GiftAssessmentReflectionQuestionsFormProps
 > = ({ responses, disable }) => {
+  const t = useTranslations('GiftAssessment.reflection.form');
+
   const {
     register,
     setValue,
@@ -47,33 +41,37 @@ const GiftAssessmentReflectionQuestionsForm: React.FC<
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-lg">
       <TextareaInput
-        label="1. What ministries are you now performing (formally or informally) in the Body?"
+        required
         maxLength={750}
         disabled={disable}
-        placeholder="Enter your answer here"
+        label={t('questions.0')}
+        placeholder={t('placeholder')}
         {...register('ministries_involved_in')}
-        error={errors.ministries_involved_in?.message}
+        error={
+          errors.ministries_involved_in ? t(errors.ministries_involved_in.message!) : undefined
+        }
       />
 
       <TextareaInput
-        label="2. Are there any of these ministries that you are not especially gifted for? God may be calling you to consider changes."
+        required
         maxLength={750}
         disabled={disable}
-        placeholder="Enter your answer here"
+        label={t('questions.1')}
+        placeholder={t('placeholder')}
         {...register('change_in_ministry')}
-        error={errors.change_in_ministry?.message}
+        error={errors.change_in_ministry ? t(errors.change_in_ministry.message!) : undefined}
       />
 
       <RadioGroup
-        name="lay_or_clergy"
         disabled={disable}
-        label="3. Is your vocational status lay or clergy?"
+        name="lay_or_clergy"
+        label={t('questions.2')}
         options={[
-          { value: 'Clergy', label: 'Clergy' },
-          { value: 'Lay', label: 'Lay' },
+          { value: t('options.0'), label: t('options.0') },
+          { value: t('options.1'), label: t('options.1') },
         ]}
-        onChange={(val) => setValue('lay_or_clergy', val as 'Lay' | 'Clergy')}
-        error={errors.lay_or_clergy?.message}
+        onChange={(val) => setValue('lay_or_clergy', val)}
+        error={errors.lay_or_clergy ? t(errors.lay_or_clergy.message!) : undefined}
       />
 
       <Button
@@ -84,7 +82,7 @@ const GiftAssessmentReflectionQuestionsForm: React.FC<
         disabled={disable}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        Save your answers
+        {t('save')}
       </Button>
     </form>
   );

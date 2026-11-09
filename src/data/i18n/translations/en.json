@@ -223,7 +223,7 @@
     },
     "hours": {
       "label": "Office Hours",
-      "row": [{ "label": "Monday - Thursday" }, { "label": "9:00 am to 4:00 pm" }]
+      "row": [{ "label": "Monday-Thursday" }, { "label": "9:00 am to 4:00 pm" }]
     },
     "contact": {
       "label": "Contact",
@@ -543,7 +543,7 @@
     },
     "instructors": {
       "title": "Meet the Instructors",
-      "subtitle": "Select a card to learn more"
+      "subtitle": "Our instructors bring biblical knowledge, ministry experience, and a heart for helping others develop a deeper walk with Christ."
     },
     "details": {
       "title": "The Details",
@@ -972,6 +972,7 @@
       "title": "Ministries",
       "description": "Explore ministries at The Wind Church for every age and stage—join us in growing together in Christ."
     },
+    "errorAlt": "Image of The Wind Church building",
     "alt": "Woman holding t-shirt over storage bin as she is organizing alonside a man helping her.",
     "title": "Ministries",
     "subtitle": "Find a place to grow in faith, build meaningful relationships, and use your God-given gifts to serve others.",
@@ -1052,6 +1053,88 @@
         "message": "Select ministries you are instrested in",
         "test": "Select at least one ministry"
       }
+    },
+    "leader": {
+      "title": "Meet the Ministry Team",
+      "subtitle": "Learn more about the leaders who serve, support, and help guide this ministry."
+    },
+    "events": {
+      "title": "Events",
+      "subtitle": "Join us for upcoming gatherings, workshops, outreach opportunities, and fellowship events.",
+      "cta": "Explore Other Church Events"
+    },
+    "gallery": {
+      "title": "Gallery",
+      "subtitle": "Take a look at moments, memories, and ministry highlights.",
+      "imageAlt": "Photo from The Wind Church ministry gallery.",
+      "cta": "View the Full Church Gallery"
+    },
+    "resources": {
+      "title": "Resources",
+      "subtitle": "Access helpful guides, documents, and materials curated to support your growth and involvement in this ministry."
+    },
+    "whyJoin": {
+      "alt": "Group of young adults with their hands together in a pile; representing teamwork and unity.",
+      "title": "Why Join a Ministry?",
+      "description": "Ministries are one of the best ways to grow in your faith, build meaningful relationships, and use your gifts to serve others. As you serve alongside fellow believers, you'll be encouraged, equipped, and strengthened in your walk with Christ."
+    },
+    "faqs": {
+      "title": "Questions About Getting Involved?",
+      "subtitle": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "Do I need prior experience or special skills to join?",
+          "answer": "No. Every ministry welcomes people at different stages of their faith journey. Whether you're serving for the first time or have years of experience, we'll help you learn, grow, and serve with confidence."
+        },
+        {
+          "question": "How do I know which ministry is right for me?",
+          "answer": "Consider your interests, gifts, and where you feel called to serve. Whether your passion is hospitality, worship, outreach, mentorship, or prayer, there's a place for you. If you're unsure, we'd love to help you discover the best fit."
+        },
+        {
+          "question": "What if I have a busy schedule?",
+          "answer": "We understand that life can be busy. Many ministries offer flexible serving opportunities and different levels of involvement, making it possible to serve in a way that works with your schedule."
+        },
+        {
+          "question": "Can my family serve together?",
+          "answer": "Yes. Many ministries welcome families to participate together, creating opportunities to grow in faith, build stronger relationships, and serve alongside one another."
+        },
+        {
+          "question": "Will I receive training and support?",
+          "answer": "Absolutely. Ministry leaders provide guidance, mentorship, and training to help you succeed in your role. You won't be expected to figure everything out on your own."
+        },
+        {
+          "question": "How does serving help me grow spiritually?",
+          "answer": "Serving helps you put your faith into action. As you use your gifts to bless others, you'll grow in discipleship, develop deeper relationships, and gain a greater understanding of God's purpose for your life."
+        },
+        {
+          "question": "How can I get started?",
+          "answer": "Speak with a ministry leader, contact our church office, or submit an interest form online. We'd love to help you take your next step and find a place to belong."
+        }
+      ]
+    },
+    "ctas": {
+      "title": "Take Your Next Step",
+      "subtitle": "Continue growing in your faith through discipleship, community, and purposeful next steps.",
+      "items": [
+        {
+          "alt": "Holy cross placed on top of mountain; clouds and the sun in the background.",
+          "title": "Christian Life Development",
+          "description": "Build a stronger foundation in God's Word through discipleship classes designed to help you grow in faith and apply biblical truth to everyday life.",
+          "label": "Explore CLD"
+        },
+        {
+          "alt": "Pastor Singletary of the Wind Church preaching to congregation.",
+          "title": "Get to Know The Wind",
+          "description": "Learn about our mission, vision, values, and commitment to helping people belong, grow, serve, and lead.",
+          "label": "About The Wind Church"
+        },
+        {
+          "alt": "Green olives hanging from a branch with leaves.",
+          "title": "Discover the WE Pathway",
+          "description": "Explore the discipleship journey designed to help you take meaningful steps from connection and growth to service and leadership.",
+          "label": "See the WE Pathway"
+        }
+      ]
     }
   },
   "PrayerRequests": {
@@ -1106,7 +1189,7 @@
       "title": "How do you receive Salvation?",
       "descriptions": [
         "God has made it really simple. Answer these four questions:",
-        "If you answered <bold>Yes</bold>, you are ready to pray. Remember God loves you. He wants you to be whole and complete or saved - spiritually, emotionally, physically, mentally, financially, and socially (3 John 2). Pray this prayer, mean it, and you will be saved, right where you are sitting."
+        "If you answered <bold>Yes</bold>, you are ready to pray. Remember God loves you. He wants you to be whole and complete or saved-spiritually, emotionally, physically, mentally, financially, and socially (3 John 2). Pray this prayer, mean it, and you will be saved, right where you are sitting."
       ],
       "questions": [
         {
@@ -1341,6 +1424,451 @@
     "metadata": {
       "title": "Gift Assessement",
       "description": "Discover your spiritual gifts with our easy assessment and learn how you can serve in God's Kingdom."
+    },
+    "title": "Spiritual Gift Assessment",
+    "subtitle": "Wagner-Modified Houts Questionnarie",
+    "descriptions": [
+      "Complete the assessment in one setting. <bold>Answers will be lost if abandoned midway.</bold>",
+      "Aproximate time to complete assessment is 30 minutes."
+    ],
+    "summary": "The Modified Houts Questionnaire is a tool designed to help identify your spiritual gifts. Originally created by Richard F. Houts, a Professor of Christian Education at Ontario Bible College (published in Eternity, May 1976, pp. 18-21), it was later revised by C. Peter Wagner of the Charles E. Fuller Institute of Evangelism and Church Growth.",
+    "instructions": {
+      "title": "Instructions:",
+      "items": [
+        "Review the 125 statements in the questionnaire.",
+        "Select how true each statement is for your life: MUCH, SOME, LITTLE, or NOT AT ALL.",
+        "Upon completing the assessment, your top three dominant and subordinate gifts will be determined.",
+        "Answer a few follow-up questions about your ministry and download your results."
+      ]
+    },
+    "note": {
+      "title": "Note:",
+      "description": "This questionnaire is a starting point for discovering the spiritual gifts God has given you. However, do not consider the results to be definitive or final. Some gifts you possess may not show strongly here. Use this tool as a source of insight, but let your discernment and God's guidance shape your understanding of your gifts."
+    },
+    "optional": "Optional: Download Blank PDF Assessment",
+    "form": {
+      "header": {
+        "title": "Questions",
+        "items": [
+          {
+            "count": "3",
+            "label": "Much"
+          },
+          {
+            "count": "2",
+            "label": "Some"
+          },
+          {
+            "count": "1",
+            "label": "Little"
+          },
+          {
+            "count": "0",
+            "label": "Not at all"
+          }
+        ]
+      },
+      "questions": [
+        "I have a desire to speak direct messages from God that edify, exhort, or comfort others.",
+        "I have enjoyed relating to a certain group of people over a long period of time, sharing personally in their successes and failures.",
+        "People have told me that I have helped them learn some biblical truth in a meaningful way.",
+        "I have applied spiritual truth effectively to situations in my own life.",
+        "Others have told me that I have helped them distinguish key and important facts of scripture.",
+        "I have verbally encouraged the wavering, the troubled or the discouraged.",
+        "Others in the church have noted that I was able to see through phoniness before it was evident to other people.",
+        "I find I manage money well in order to give liberally to the Lord's work.",
+        "I have assisted Christian leaders to relieve them for their essential job.",
+        "I have a desire to work with those who have physical or mental problems, to alleviate their suffering.",
+        "I feel comfortable relating to people of other cultural backgrounds, and they seem to accept me.",
+        "I have led others to a decision for salvation through faith in Christ.",
+        "My home is always open to people passing through who need a place to stay.",
+        "When in a group, I am often the one others often look to for vision and direction.",
+        "When I speak people seem to listen and agree.",
+        "When a group I am in is lacking organization, I tend to step in and fill the gap.",
+        "Others can point to specific instances where my prayers have resulted in visible miracles.",
+        "In the name of the Lord, I have been used in curing diseases instantaneously.",
+        "I have spoken in tongues.",
+        "Sometimes when a person speaks in tongues, I get an idea about what God is saying.",
+        "I could live more comfortably, but I choose not in order to live with the poor.",
+        "I am single and enjoy it.",
+        "I spend at least an hour a day in prayer.",
+        "I have spoken to evil spirits and they have obeyed me.",
+        "I enjoy being called upon to do special jobs around the church.",
+        "Through God, I have revealed specific things which will happen in the future.",
+        "I have enjoyed assuming responsibility for the spiritual well-being of a particular group of Christians.",
+        "I feel I can explain the New Testament teaching about the health and ministry of the body of Christ in a relevant way.",
+        "I can intuitively arrive at solutions to fairly complicated problems.",
+        "I have had insights into spiritual truth which others have said helped bring them closer to God.",
+        "I can effectively motivate people to get involved in ministry when it's needed.",
+        "I can “see” the Spirit of God resting on certain people from time to time.",
+        "My giving records show that I give considerably more than 10 percent of my income to the Lord's work.",
+        "Other people have told me that I helped them become more effective in their ministries.",
+        "I have cared for others when they have had material or physical needs.",
+        "I feel I could learn another language well in order to minister to those in a different culture.",
+        "I have shared joyfully how Christ has brought me to Himself in a way that is meaningful to non-believers.",
+        "I enjoy taking charge of church suppers or social gatherings.",
+        "I have believed God for the impossible and have seen it happen in a tangible way.",
+        "Other Christians have followed my leadership because they believed in me.",
+        "I enjoy handling the details of organizing ideas, people, resources, and time for more effective ministry.",
+        "God has used me personally to perform supernatural signs and wonders.",
+        "I enjoy praying for sick people because I know that many of them will be healed as a result.",
+        "I have spoken an immediate message of God to His people in a language that I have never learned.",
+        "I have interpreted tongues with the result that the body of Christ was edified, exhorted, or comforted.",
+        "Living a simple lifestyle is an exciting challenge for me.",
+        "Other people have noted that I feel more indifferent about not being married than most.",
+        "When I hear a prayer request, I pray for that need for several days at least.",
+        "I have actually heard a demon speak in a loud voice.",
+        "I don't have many special skills, but I do what needs to be done around the church.",
+        "People have told me that I have communicated timely and urgent messages which have come directly from the Lord.",
+        "I feel unafraid of giving spiritual guidance and direction to a group of Christians.",
+        "I can devote considerable time to learning new biblical truths in order to communicate them to others.",
+        "When a person has a problem I can frequently guide them to the best Biblical solution.",
+        "Through study or experience, I have discerned major strategies or techniques God seems to use in furthering His kingdom.",
+        "People come to me in their afflictions or suffering and have told me that they have been helped, relieved and healed.",
+        "I can tell with a fairly high degree of assurance when a person is afflicted by an evil spirit.",
+        "When I am moved by an appeal to give to God's work, I usually find the money that I need to do it.",
+        "I have enjoyed doing routine tasks that led to more effective ministry by others.",
+        "I enjoy visiting in hospitals and/or retirement homes, and feel I do well in such a ministry.",
+        "People of a different race or culture have been attracted to me, and we have related well.",
+        "Non-Christians have noted that they feel comfortable when they are around me, and that I have a positive effect on them toward developing a faith in Christ.",
+        "When people come to our home, they indicate that they feel at home with us.",
+        "Other people have told me that I had faith to accomplish what seemed impossible to them.",
+        "When I set goals, others seem to accept them readily.",
+        "I have been able to make effective and efficient plans for accomplishing the goals of a group.",
+        "God regularly seems to do impossible things through my life.",
+        "Others have told me that God healed them of emotional problems when I ministered to them.",
+        "I can speak to God in a language I have never learned.",
+        "I have prayed that I may interpret if someone begins speaking in tongues.",
+        "I am not poor, but I can identify with poor people.",
+        "I am glad I have more time to serve the Lord because I am single.",
+        "Intercessory prayer is one of my favorite ways of spending time.",
+        "Others call on me when they suspect that someone is demonized.",
+        "Others have mentioned that I seem to enjoy routine tasks and do well at them.",
+        "I sometimes have a strong sense of what God wants to say to people in response to a particular situation.",
+        "I have helped fellow believers by guiding them to relevant portions of the Bible and praying with them.",
+        "I feel I can communicate Biblical truths to others and see resulting changes in knowledge, attitudes, values, or conduct.",
+        "Some people indicate that I have perceived and applied Biblical truth to the specified needs of fellow believers.",
+        "I study and read quite a bit in order to learn new Biblical truths.",
+        "I have a desire to effectively counsel the perplexed, the guilty or the addicted.",
+        "I can recognize whether a person's teaching is from God, from Satan, or of human origin.",
+        "I am so confident that God will meet my needs that I give to Him sacrificially and consistently.",
+        "When I do things behind the scenes and others are helped, I am joyful.",
+        "People call on me to help those who are less fortunate.",
+        "I would be willing to leave comfortable surroundings if it would enable me to share Christ with more people.",
+        "I get frustrated when others don't seem to share their faith with unbelievers as much as I do.",
+        "Others have mentioned to me that I am a very hospitable person.",
+        "There have been times when I have felt sure I knew God's specific will for the future growth of His work, even when others were not so sure.",
+        "When I join a group, others seem to back off and expect me to take the leadership.",
+        "I am able to give directions to others without using persuasion to get them to accomplish a task.",
+        "People have told me that I was God's instrument which brought supernatural changes in lives or circumstances.",
+        "I have prayed for others and physical healing has actually occurred.",
+        "When I give a public message in tongues, I expect it to be interpreted.",
+        "I have interpreted tongues in a way that seemed to bless others.",
+        "Others tell me I sacrifice much materially in order to minister.",
+        "I am single and have little difficulty controlling my sexual desires.",
+        "Others have told me that my prayers for them have been answered in tangible ways.",
+        "Other people have been instantly delivered from demonic oppression when I have prayed.",
+        "I prefer being active and doing something rather than just sitting around talking or reading or listening to a speaker.",
+        "I sometimes feel that I know exactly what God wants me to do in ministry at a specific point in time.",
+        "People have told me that I have helped them to be restored to the Christian community.",
+        "Studying the Bible and sharing my insights with others is very satisfying for me.",
+        "I have felt an unusual presence of God and personal confidence when important decisions needed to be made.",
+        "I have the ability to discover new truths for myself through reading or observing situations firsthand.",
+        "I have urged others to seek a Biblical solution to their affliction or suffering.",
+        "I can tell whether a person speaking in tongues is genuine.",
+        "I have been willing to maintain a lower standard of living in order to benefit God's work.",
+        "When I serve the Lord, I really don't care who gets the credit.",
+        "I would enjoy spending time with a lonely, shut-in person or someone in prison.",
+        "More than most, I have had a strong desire to see people of other countries won to the Lord.",
+        "I am attracted to non-believers because of my desire to win them to Christ.",
+        "I have desired to make my home available to those in the Lord's service whenever needed.",
+        "Others have told me that I am a person of unusual vision and I agree.",
+        "When I am in charge, things seem to run smoothly.",
+        "I have enjoyed bearing the responsibility for the success of a particular task within my church.",
+        "In the name of the Lord, I have been able to recover sight to the blind.",
+        "When I pray for the sick, either I or they feel sensations of tingling or warmth.",
+        "When I speak in tongues, I believe it is edifying to the Lord's body.",
+        "I have interpreted tongues in such a way that the message appeared to be directly from God.",
+        "Poor people accept me because I choose to live on their level.",
+        "I readily identify with Paul's desire for others to be single as he was.",
+        "When I pray, God frequently speaks to me, and I recognize His voice.",
+        "I cast out demons in Jesus' name.",
+        "I respond cheerfully when asked to do a job, even if it seems menial."
+      ],
+      "select": "Select an answer for the question",
+      "answerQuestions": "Answer the following question(s):",
+      "unknown": "Unknown",
+      "submit": {
+        "pending": "Analyzing your answers...",
+        "label": "Submit Quiz"
+      }
+    },
+    "results": {
+      "completed": "Assessment Completed!",
+      "description": "Thank you for taking the time to complete the assessment. You are one-step closer to undertsanding the purpose God has outlined in your life.",
+      "definitions": [
+        {
+          "definition": "The gift of prophecy is the special ability that God gives to certain members of the body of Christ to receive and communicate an immediate message of God to His people through a divinely-anointed utterance.",
+          "scriptures": [
+            "Luke 7:26",
+            "Acts 15:32",
+            "Acts 21:9-11",
+            "Romans 12:6",
+            "1 Corinthians 12:10,28",
+            "Ephesians 4:11-14"
+          ]
+        },
+        {
+          "definition": "The gift of the pastor is the special ability that God gives to certain members of the body of Christ to assume long-term personal responsibility for the spiritual welfare of a group of believers.",
+          "scriptures": ["Ephesians 4:11-14", "1 Timothy 3:1-7", "John 10:1-18", "1 Peter 5:1-3"]
+        },
+        {
+          "definition": "The gift of teaching is the special ability that God gives to certain members of the body of Christ to communicate information relevant to the health and ministry of the body and its members in such a way that others will learn.",
+          "scriptures": [
+            "1 Corinthians 12:28",
+            "Ephesians 4:11-14",
+            "Romans 12:7",
+            "Acts 18:24-28",
+            "Acts 12:20-21"
+          ]
+        },
+        {
+          "definition": "The gift of wisdom is the special ability that God gives to certain members of the body of Christ to know the mind of the Holy Spirit in such a way as to receive insight into how given knowledge may best be applied to specific needs arising in the body of Christ. Some groups refer to a “Word of Wisdom”, this idea is about a prophetic insight that can only come through God. This may relate more to gifts of Prophecy, or leadership.",
+          "scriptures": [
+            "1 Corinthians 2:1-13",
+            "1 Corinthians 12:8",
+            "Acts 6:3,10",
+            "James 1:5-6",
+            "2 Peter 3:15,16"
+          ]
+        },
+        {
+          "definition": "The gift of knowledge is the special ability that God gives to certain members of the body of Christ to discover, accumulate, analyze, and clarify information and ideas which are pertinent to the well being of the body. Some groups refer to a “Word of Knowledge”, this idea is about Spiritual Gifts Test 14 a prophetic knowledge, or information given that can only come from God. See Prophecy for more information on this idea.",
+          "scriptures": [
+            "1 Corinthians 2:14",
+            "1 Corinthians 12:8",
+            "Acts 5:1-11",
+            "Colossians 2:2-3",
+            "2 Corinthians 11:6"
+          ]
+        },
+        {
+          "definition": "The gift of exhortation is the special ability that God gives to certain members of the body of Christ to minister words of comfort, consolation, encouragement, and counsel to other members of the body in such a way that they feel helped and healed.",
+          "scriptures": ["Romans 12:8", "1 Timothy 4:13", "Hebrews 10:25", "Acts 14:22"]
+        },
+        {
+          "definition": "The gift of discerning of spirits is the special ability that God gives to certain members of the body of Christ to know with assurance whether certain behaviour purported to be of God is in reality divine, human, or satanic.",
+          "scriptures": [
+            "1 Corinthians 12:10",
+            "Acts 5:1-11",
+            "Acts 16:16-18",
+            "1 John 4:1-6",
+            "Matthew 16:21-23"
+          ]
+        },
+        {
+          "definition": "The gift of giving is the special ability that God gives to certain members of the body of Christ to contribute their material resources to the work of the Lord with liberality and cheerfulness.",
+          "scriptures": [
+            "Romans 12:8",
+            "2 Corinthians 8:1-7",
+            "2 Corinthians 9:2-8",
+            "Mark 12:41-44"
+          ]
+        },
+        {
+          "definition": "The gift of helps is the special ability that God gives to certain members of the body of Christ to invest the talents they have in the life and ministry of other members of the body, with thus enabling those others to increase the effectiveness of their own spiritual gifts.",
+          "scriptures": [
+            "1 Corinthians 12:28",
+            "Romans 16:1-2",
+            "Acts 9:36",
+            "Luke 8:2-3",
+            "Mark 15:40-41"
+          ]
+        },
+        {
+          "definition": "The gift of mercy is the special ability that God gives to certain members of the body of Christ to feel genuine empathy and compassion for individuals (both Christian & non-Christian) who suffer distressing physical, mental, or emotional problems, and to translate that compassion into cheerfully done deeds which reflect Christ's love and alleviate the suffering.",
+          "scriptures": [
+            "Romans 12:8",
+            "Mark 9:41",
+            "Acts 16:33-34",
+            "Luke 10:33-35",
+            "Matthew 20:29-34",
+            "Matthew 25:34-40",
+            "Acts 11:28-30"
+          ]
+        },
+        {
+          "definition": "The gift of missionary is the special ability that God gives to certain members of the body of Christ to minister whatever other spiritual gifts they have in a second culture.",
+          "scriptures": [
+            "1 Corinthians 9:19-23",
+            "Acts 8:4",
+            "Acts 13:2-3",
+            "Acts 22:21",
+            "Romans 10:15"
+          ]
+        },
+        {
+          "definition": "The gift of evangelist is the special ability that God gives to certain members of the body of Christ to share the gospel with unbelievers in such a way that men and women become Jesus' disciples and responsible members of the body of Christ.",
+          "scriptures": [
+            "Ephesians 4:11-14",
+            "2 Timothy 4:5",
+            "Acts 8:5-6",
+            "Acts 8:26-40",
+            "Acts 14:21",
+            "Acts 21:8"
+          ]
+        },
+        {
+          "definition": "The gift of hospitality is the special ability that God gives to certain members of the body of Christ to provide an open house and a warm welcome to those in need of food and lodging.",
+          "scriptures": [
+            "1 Peter 4:9",
+            "Romans 12:9-13",
+            "Romans 16:23",
+            "Acts 16:14-15",
+            "Hebrews 13:1-2"
+          ]
+        },
+        {
+          "definition": "The gift of faith is the special ability that God gives to certain members of the body of Christ to discern with extraordinary confidence the will and purposes of God for His work.",
+          "scriptures": [
+            "1 Corinthians 12:9",
+            "Acts 11:22-24",
+            "Acts 27:21-25",
+            "Hebrews 11",
+            "Romans 4:18-21"
+          ]
+        },
+        {
+          "definition": "The gift of leadership is the special ability that God gives to certain members of the body of Christ to set goals in accordance with God's purpose for the future and to communicate these goals to others in such a way that they voluntarily and harmoniously work together to accomplish these goals for the glory of God.",
+          "scriptures": [
+            "1 Timothy 5:17",
+            "Acts 7:10",
+            "Acts 15:7-11",
+            "Romans 12:8",
+            "Hebrews 13:17",
+            "Luke 9:51"
+          ]
+        },
+        {
+          "definition": "The gift of administration is the special ability that God gives to certain members of the body of Christ to understand clearly the immediate and long range goals of a particular unit of the body of Christ and to devise and execute effective plans for the accomplishment of those goals.",
+          "scriptures": [
+            "1 Corinthians 12:28",
+            "Acts 6:1-7",
+            "Acts 27:11",
+            "Luke 14:28-30",
+            "Titus 1:5"
+          ]
+        },
+        {
+          "definition": "The gift of miracles is the special ability that God gives to certain members of the body of Christ to serve as human intermediaries through whom it pleases God to perform such powerful acts that are perceived by observers to have altered the ordinary course of nature.",
+          "scriptures": [
+            "1 Corinthians 12:10,28",
+            "Acts 9:36-42",
+            "Acts 19:11-20",
+            "Acts 20:7-12",
+            "Romans 15:18-19",
+            "2 Corinthians 12:12"
+          ]
+        },
+        {
+          "definition": "The gift of healing is the special ability that God gives to certain members of the body of Christ to serve as human intermediaries through whom it pleases God to cure illness and restore health apart from the use of natural means.",
+          "scriptures": [
+            "Acts 3:1-10",
+            "Acts 5:12-16",
+            "Acts 9:32-35",
+            "Acts 28:7-10",
+            "1 Corinthians 12:9,28"
+          ]
+        },
+        {
+          "definition": "The gift of tongues is the special ability that God gives to certain members of the body of Christ (a) to speak to God in a language they have never learned and/or (b) to receive and communicate an immediate message of God to His people through a divinely-anointed utterance in a language they have never learned.",
+          "scriptures": [
+            "Mark 16:17",
+            "Acts 2:1-13",
+            "Acts 10:44-46",
+            "Acts 19:1-7",
+            "1 Corinthians 12:10,28",
+            "1 Corinthians 14:13-19"
+          ]
+        },
+        {
+          "definition": "The gift of interpretation is the special ability that God gives to certain members of the body of Christ to make known in a vernacular the message of one who Spiritual Gifts Test 16 speaks in tongues.",
+          "scriptures": ["1 Corinthians 12:10,30", "1 Corinthians 14:13", "1 Corinthians 14:26-28"]
+        },
+        {
+          "definition": "The gift of voluntary poverty is the special ability that God gives to certain members of the body of Christ to renounce material comfort and luxury and adopt a personal lifestyle equivalent to those living at the poverty level in a given society in order to serve God more effectively.",
+          "scriptures": [
+            "1 Corinthians 13:1-3",
+            "Acts 2:44-45",
+            "Acts 4:34-37",
+            "2 Corinthians 6:10",
+            "2 Corinthians 8:9"
+          ]
+        },
+        {
+          "definition": "The gift of celibacy is the special ability that God gives to certain members of the body of Christ to remain single and enjoy it; to be unmarried and not suffer undue sexual temptations.",
+          "scriptures": ["1 Corinthians 7:7-8", "Matthew 19:10-12"]
+        },
+        {
+          "definition": "The gift of Intercession is the special ability that God gives to certain members of the body of Christ to pray for extended periods of time on a regular basis and see frequent and specific answers to their prayers, to a degree much greater than that which is expected of the average Christian.",
+          "scriptures": [
+            "James 5:14-16",
+            "1 Timothy 2:1-2",
+            "Colossians 1:9-12",
+            "Colossians 4:12-13",
+            "Acts 12:12",
+            "Luke 22:41-44"
+          ]
+        },
+        {
+          "definition": "The gift of exorcism is the special ability God gives to members of the body of Christ to cast out demons and evil spirits.",
+          "scriptures": ["Matthew 12:22-32", "Luke 10:12-20", "Acts 8:5-8", "Acts 16:16-18"]
+        },
+        {
+          "definition": "The gift of service is the special ability that God gives to certain members of the body of Christ to identify the unmet needs involved in a task related to God's work, and to make use of available resources to meet those needs and to help accomplish the desired results.",
+          "scriptures": [
+            "2 Tim. 1:16-18",
+            "Romans 12:7",
+            "Acts 6:1-7",
+            "Titus 3:14",
+            "Galatians 6:2,10"
+          ]
+        }
+      ],
+      "domGiftsTitle": "Your Dominant Gifts",
+      "subGiftsTitle": "Your Secondary Gifts",
+      "download": "Download Results as PDF"
+    },
+    "reflection": {
+      "title": "Reflection Questions",
+      "descriptions": [
+        "Take a few moments to thoughtfully reflect on the results of your Gift Assessment.",
+        "After completing these questions, you'll have the opportunity to download your results and, if you'd like, share them with The Wind Church. A ministry leader can help you better understand your spiritual gifts, calling, and the unique ways God may be leading you to serve."
+      ],
+      "form": {
+        "placeholder": "Enter your answer here",
+        "message": "Please answer the question to the best of your ability.",
+        "test": "Only up to 750 characters allowed",
+        "options": ["Lay", "Clergy"],
+        "questions": [
+          "1. What ministries are you now performing (formally or informally) in the Body?",
+          "2. Are there any of these ministries that you are not especially gifted for? God may be calling you to consider changes.",
+          "3. Is your vocational status lay or clergy?"
+        ],
+        "save": "Save your answers"
+      }
+    },
+    "submission": {
+      "title": "Optional: Let's Discover Your Next Steps Together",
+      "description": "Share your results with us and a ministry leader will reach out to encourage you, answer questions, and help you explore how God may be leading you to serve, grow, and make an impact in His Kingdom.",
+      "form": {
+        "success": {
+          "description": "Thank you for sharing your results with us. A ministry leader will review your assessment and connect with you soon to help you better understand your spiritual gifts and next steps."
+        },
+        "error": {
+          "description": "We were unable to submit your results at this time. Please try again later or download a copy of your assessment results for your records."
+        }
+      }
     }
   },
   "NextGen": {
@@ -1382,16 +1910,19 @@
       "subtitle": "Select a Leader to learn more"
     },
     "events": {
-      "title": "Next Gen Events",
+      "title": "Events",
       "subtitle": "Fun, adventurous, and learning-focused events for the Wind youth!",
-      "empty": "No Next Gen events happening at this time.",
       "cta": "View other Wind events"
     },
     "gallery": {
-      "title": "Next Gen Gallery",
+      "title": "Gallery",
       "subtitle": "Select a photo to revisit a special moment",
       "photoAlt": "A Wind Church Gallery Image",
       "cta": "See the full gallery"
+    },
+    "resources": {
+      "title": "Resources",
+      "subtitle": "Stay informed with curriculum guides, ministry updates, event information, and helpful resources designed to support children, students, and families."
     },
     "nursery": {
       "alt": "Baby playing with colored blocks.",
@@ -1471,7 +2002,7 @@
     "title": "The Leaders",
     "subtitle": "Get to know the faithful leaders who help guide our church in faith, service, and community.",
     "filterDefault": "All Leaders",
-    "sectionSubtitle": "Select a Leader to learn more",
+    "sectionSubtitle": "Select a leader and learn more about them",
     "categories": {
       "pastors": "Pastoral Team",
       "council": "Church Council",
@@ -1505,7 +2036,10 @@
       "general-resource": "General Resources",
       "teaching-materials": "Teaching Materials Resources",
       "announcements": "Announcements"
-    }
+    },
+    "date": "Updated {date}",
+    "download": "Download",
+    "visit": "Visit Link"
   },
   "NewHere": {
     "metadata": {

@@ -2,7 +2,6 @@ import { StructureResolver } from 'sanity/structure';
 
 import Bullhorn from '@/components/icons/bullhorn';
 import Calendar from '@/components/icons/calendar';
-import ChildReaching from '@/components/icons/child-reaching';
 
 import PencilPaper from '@/components/icons/pencilPaper';
 
@@ -11,6 +10,7 @@ import FileIcon from '@/components/icons/file';
 import Gift from '@/components/icons/gift';
 import Globe from '@/components/icons/globe';
 import Handshake from '@/components/icons/handshake';
+import ImageIcon from '@/components/icons/image';
 import PeopleGroup from '@/components/icons/people-group';
 import PersonPraying from '@/components/icons/person-praying';
 import Question from '@/components/icons/question';
@@ -23,7 +23,6 @@ type docAttributes = {
 };
 
 const singleUseDocsWithIcons: docAttributes[] = [
-  { id: 'nextGenPage', title: 'Next Gen', icon: ChildReaching },
   { id: 'promoBanner', title: 'Promotional Banner', icon: Bullhorn },
 ];
 
@@ -72,6 +71,24 @@ export const sanityStudioStructure: StructureResolver = (S) =>
                   .icon(icon)
                   .child(S.document().title(title).schemaType(id).documentId(id))
               ),
+              S.divider(),
+              S.listItem()
+                .title('Uploaded Media')
+                .icon(ImageIcon)
+                .child(
+                  S.list()
+                    .title('Uploaded Media')
+                    .items([
+                      S.listItem()
+                        .title('Images')
+                        .icon(ImageIcon)
+                        .child(S.documentTypeList('sanity.imageAsset').title('Images')),
+                      S.listItem()
+                        .title('Files & Videos')
+                        .icon(FileIcon)
+                        .child(S.documentTypeList('sanity.fileAsset').title('Files & Videos')),
+                    ])
+                ),
             ])
         ),
 

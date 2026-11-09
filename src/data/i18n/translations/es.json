@@ -273,10 +273,10 @@
       "subtitle": "Hacer crecer la familia de Dios a través del amor, el servicio y el discipulado.",
       "description": "Nuestra visión es expandir la familia de Dios a través del amor, el servicio compasivo y el discipulado comprometido, creando un entorno acogedor donde las personas crezcan en su fe y estén preparadas para hacer un impacto positivo en el mundo.",
       "verse1": "Efesios 4:12,16",
-      "verse2": "Mateo 22:37-39",
+      "verse2": "Matthew 22:37-39",
       "verse3": "Hebreos 6:10",
       "verse4": "Juan 13:35",
-      "verse5": "Mateo 28:19-20"
+      "verse5": "Matthew 28:19-20"
     },
     "aboutPastor": {
       "id": "pastor-singletary",
@@ -408,7 +408,7 @@
         },
         "supper": {
           "title": "Bautismo y la Cena del Señor",
-          "verse": "Mateo 28:19; 1 Corintios 11:24, 25",
+          "verse": "Matthew 28:19; 1 Corintios 11:24, 25",
           "description": "Creemos que el bautismo por inmersión es una señal externa de una obra interna. Creemos en la conmemoración de la Cena del Señor mediante el uso simbólico del pan y el jugo de la vid"
         },
         "spirit": {
@@ -446,7 +446,7 @@
         },
         "evangelism": {
           "title": "Evangelismo",
-          "verse": "Marcos 16:15; Mateo 28:19-20",
+          "verse": "Marcos 16:15; Matthew 28:19-20",
           "description": "Creemos que la responsabilidad principal de la iglesia es llevar el evangelio a todo el mundo y hacer discípulos"
         },
         "tithes": {
@@ -550,7 +550,7 @@
     },
     "instructors": {
       "title": "Conoce a los Instructores",
-      "subtitle": "Selecciona una tarjeta para aprender más"
+      "subtitle": "Nuestros instructores aportan conocimiento bíblico, experiencia ministerial y un corazón dispuesto a ayudar a otros a desarrollar una relación más profunda con Cristo."
     },
     "details": {
       "title": "Los Detalles",
@@ -765,7 +765,7 @@
           },
           "supper": {
             "title": "Bautismo y la Cena del Señor",
-            "verse": "Mateo 28:19; 1 Corintios 11:24, 25",
+            "verse": "Matthew 28:19; 1 Corintios 11:24, 25",
             "description": "Creemos que el bautismo por inmersión es una señal externa de una obra interna. Creemos en la conmemoración de la Cena del Señor mediante el uso simbólico del pan y el jugo de la vid"
           },
           "spirit": {
@@ -803,7 +803,7 @@
           },
           "evangelism": {
             "title": "Evangelismo",
-            "verse": "Marcos 16:15; Mateo 28:19-20",
+            "verse": "Marcos 16:15; Matthew 28:19-20",
             "description": "Creemos que la responsabilidad principal de la iglesia es llevar el evangelio a todo el mundo y hacer discípulos"
           },
           "tithes": {
@@ -822,13 +822,13 @@
             "<bold>Cruz</bold> — Simbólica de Jesucristo, nuestro Salvador",
             "<bold>Copa</bold> — Simbólica de Jesucristo, el Gran Médico (Sanador)",
             "<bold>Paloma</bold> — Simbólica de Jesucristo, el Bautizador con el Espíritu Santo",
-            "Mateo 8:17",
-            "Mateo 1:21",
+            "Matthew 8:17",
+            "Matthew 1:21",
             "1 Tesalonicenses 4:16-18",
-            "Mateo 3:11",
-            "Mateo 4:23",
+            "Matthew 3:11",
+            "Matthew 4:23",
             "Juan 3:16",
-            "Mateo 24:30-31",
+            "Matthew 24:30-31",
             "Juan 1:33-34"
           ],
           "logoAlt": "Logo de la Iglesia Foursquare"
@@ -1029,11 +1029,11 @@
       },
       {
         "passage": "Así como el Hijo del Hombre no vino para ser servido, sino para servir y para dar su vida como rescate por muchos.",
-        "verse": "Mateo 20:28"
+        "verse": "Matthew 20:28"
       },
       {
         "passage": "El Rey responderá: 'De cierto os digo, que todo lo que hicisteis por uno de estos mis hermanos más pequeños, a mí me lo hicisteis.'",
-        "verse": "Mateo 25:40"
+        "verse": "Matthew 25:40"
       },
       {
         "passage": "Todas estas son obras de un mismo Espíritu, y él las reparte a cada uno en particular, como a él le parece.",
@@ -1059,6 +1059,88 @@
         "message": "Selecciona los ministerios que te interesan",
         "test": "Selecciona al menos un ministerio"
       }
+    },
+    "leader": {
+      "title": "Conoce al Equipo del Ministerio",
+      "subtitle": "Conoce a los líderes que sirven, apoyan y ayudan a guiar este ministerio."
+    },
+    "events": {
+      "title": "Eventos",
+      "subtitle": "Acompáñanos en reuniones, talleres, actividades de alcance y eventos de compañerismo.",
+      "cta": "Explorar Otros Eventos de la Iglesia"
+    },
+    "gallery": {
+      "title": "Galería",
+      "subtitle": "Descubre momentos, recuerdos y experiencias que han marcado este ministerio.",
+      "imageAlt": "Fotografía de la galería ministerial de The Wind Church.",
+      "cta": "Ver la Galería Completa"
+    },
+    "resources": {
+      "title": "Recursos",
+      "subtitle": "Accede a guías, documentos y materiales diseñados para apoyar tu crecimiento y participación en este ministerio."
+    },
+    "whyJoin": {
+      "alt": "Grupo de jóvenes adultos con las manos juntas en un montón; representando trabajo en equipo y unidad.",
+      "title": "¿Por Qué Unirte a un Ministerio?",
+      "description": "Los ministerios son una de las mejores maneras de crecer en tu fe, desarrollar relaciones significativas y utilizar tus dones para servir a otros. Al servir junto a otros creyentes, serás animado, equipado y fortalecido en tu caminar con Cristo."
+    },
+    "faqs": {
+      "title": "¿Tienes Preguntas para Involucrarte?",
+      "subtitle": "Preguntas Frecuentes",
+      "items": [
+        {
+          "question": "¿Necesito experiencia previa o habilidades especiales para participar?",
+          "answer": "No. Cada ministerio da la bienvenida a personas en diferentes etapas de su caminar con Cristo. Ya sea que sirvas por primera vez o tengas años de experiencia, te ayudaremos a aprender, crecer y servir con confianza."
+        },
+        {
+          "question": "¿Cómo sé cuál ministerio es adecuado para mí?",
+          "answer": "Considera tus intereses, dones y el área en la que sientes el llamado a servir. Ya sea hospitalidad, adoración, alcance comunitario, mentoría u oración, hay un lugar para ti. Si no estás seguro, estaremos encantados de ayudarte a encontrar el mejor lugar para comenzar."
+        },
+        {
+          "question": "¿Qué sucede si tengo una agenda ocupada?",
+          "answer": "Entendemos que la vida puede ser ocupada. Muchos ministerios ofrecen oportunidades flexibles de servicio y diferentes niveles de participación para adaptarse a tu disponibilidad."
+        },
+        {
+          "question": "¿Puede mi familia servir junta?",
+          "answer": "Sí. Muchos ministerios reciben con gusto a familias que desean servir juntas, creando oportunidades para crecer en la fe, fortalecer relaciones y servir como equipo."
+        },
+        {
+          "question": "¿Recibiré capacitación y apoyo?",
+          "answer": "Por supuesto. Los líderes ministeriales ofrecen orientación, mentoría y capacitación para ayudarte a tener éxito en tu función. No estarás solo en este proceso."
+        },
+        {
+          "question": "¿Cómo me ayuda el servicio a crecer espiritualmente?",
+          "answer": "Servir te permite poner tu fe en acción. Al usar tus dones para bendecir a otros, crecerás en el discipulado, desarrollarás relaciones más profundas y descubrirás mejor el propósito que Dios tiene para tu vida."
+        },
+        {
+          "question": "¿Cómo puedo comenzar?",
+          "answer": "Habla con un líder ministerial, comunícate con nuestra oficina o completa un formulario de interés en línea. Nos encantaría ayudarte a dar tu próximo paso y encontrar un lugar donde pertenecer."
+        }
+      ]
+    },
+    "ctas": {
+      "title": "Da Tu Próximo Paso",
+      "subtitle": "Continúa creciendo en tu fe a través del discipulado, la comunidad y oportunidades para involucrarte.",
+      "items": [
+        {
+          "alt": "Cruz sobre una montaña con nubes y el sol de fondo.",
+          "title": "Desarrollo de Vida Cristiana",
+          "description": "Construye una base sólida en la Palabra de Dios a través de clases de discipulado diseñadas para ayudarte a crecer en la fe y aplicar verdades bíblicas a la vida diaria.",
+          "label": "Explorar DVC"
+        },
+        {
+          "alt": "El Pastor Singletary predicando a la congregación de The Wind Church.",
+          "title": "Conoce The Wind",
+          "description": "Descubre nuestra misión, visión, valores y compromiso de ayudar a las personas a pertenecer, crecer, servir y liderar.",
+          "label": "Conoce The Wind Church"
+        },
+        {
+          "alt": "Aceitunas verdes colgando de una rama con hojas.",
+          "title": "Descubre la Ruta WE",
+          "description": "Explora el proceso de discipulado diseñado para ayudarte a avanzar desde la conexión y el crecimiento hasta el servicio y el liderazgo.",
+          "label": "Ver la Ruta WE"
+        }
+      ]
     }
   },
   "PrayerRequests": {
@@ -1313,211 +1395,436 @@
       "title": "Evaluación de Dones",
       "description": "Descubre tus dones espirituales con nuestra evaluación sencilla y aprende cómo puedes servir en el Reino de Dios."
     },
-    "title": "Spiritual Gift Assessment",
-    "subtitle": "Wagner-Modified Houts Questionnarie",
+    "title": "Evaluación de Dones Espirituales",
+    "subtitle": "Cuestionario Houts Modificado por Wagner",
     "descriptions": [
-      "Complete the assessment in one setting. <bold>Answers will be lost if abandoned midway.</bold>",
-      "Aproximate time to complete assessment is 30 minutes."
+      "Completa la evaluación de una sola vez. <bold>Las respuestas se perderán si se abandona a mitad.</bold>",
+      "El tiempo aproximado para completar la evaluación es de 30 minutos."
     ],
-    "summary": "The Modified Houts Questionnaire is a tool designed to help identify your spiritual gifts. Originally created by Richard F. Houts, a Professor of Christian Education at Ontario Bible College (published in Eternity, May 1976, pp. 18-21), it was later revised by C. Peter Wagner of the Charles E. Fuller Institute of Evangelism and Church Growth.",
+    "summary": "El Cuestionario Houts Modificado es una herramienta diseñada para ayudar a identificar tus dones espirituales. Originalmente creado por Richard F. Houts, Profesor de Educación Cristiana en el Ontario Bible College (publicado en Eternity, mayo de 1976, pp. 18-21), posteriormente fue revisado por C. Peter Wagner del Charles E. Fuller Institute of Evangelism and Church Growth.",
     "instructions": {
-      "title": "Instructions:",
+      "title": "Instrucciones:",
       "items": [
-        {
-          "count": "1",
-          "label": "Review the 125 statements in the questionnaire."
-        },
-        {
-          "count": "2",
-          "label": "Select how true each statement is for your life: MUCH, SOME, LITTLE, or NOT AT ALL."
-        },
-        {
-          "count": "3",
-          "label": "Upon completing the assessment, your top three dominant and subordinate gifts will be determined."
-        },
-        {
-          "count": "4",
-          "label": "Answer a few follow-up questions about your ministry and download your results."
-        }
+        "Revisa las 125 afirmaciones en el cuestionario.",
+        "Selecciona qué tan verdadera es cada afirmación para tu vida: MUCHO, ALGO, POCO o NADA.",
+        "Al completar la evaluación, se determinarán tus tres dones dominantes y subordinados principales.",
+        "Responde algunas preguntas adicionales sobre tu ministerio y descarga tus resultados."
       ]
     },
     "note": {
-      "title": "Note:",
-      "description": "This questionnaire is a starting point for discovering the spiritual gifts God has given you. However, do not consider the results to be definitive or final. Some gifts you possess may not show strongly here. Use this tool as a source of insight, but let your discernment and God's guidance shape your understanding of your gifts."
+      "title": "Nota:",
+      "description": "Este cuestionario es un punto de partida para descubrir los dones espirituales que Dios te ha dado. Sin embargo, no consideres los resultados como definitivos o finales. Algunos dones que posees pueden no mostrarse con fuerza aquí. Usa esta herramienta como fuente de orientación, pero deja que tu discernimiento y la guía de Dios moldeen tu comprensión de tus dones."
     },
-    "optional": "Optional: Download Blank PDF Assessment",
+    "optional": "Opcional: Descargar evaluación en PDF en blanco",
     "form": {
       "header": {
-        "title": "Questions",
+        "title": "Preguntas",
         "items": [
-          {
-            "count": "3",
-            "label": "Much"
-          },
-          {
-            "count": "2",
-            "label": "Some"
-          },
-          {
-            "count": "1",
-            "label": "Little"
-          },
-          {
-            "count": "0",
-            "label": "Not at all"
-          }
+          { "count": "3", "label": "Mucho" },
+          { "count": "2", "label": "Algo" },
+          { "count": "1", "label": "Poco" },
+          { "count": "0", "label": "Nada" }
         ]
       },
-      "items": [
-        "I have a desire to speak direct messages from God that edify, exhort, or comfort others.",
-        "I have enjoyed relating to a certain group of people over a long period of time, sharing personally in their successes and failures.",
-        "People have told me that I have helped them learn some biblical truth in a meaningful way.",
-        "I have applied spiritual truth effectively to situations in my own life.",
-        "Others have told me that I have helped them distinguish key and important facts of scripture.",
-        "I have verbally encouraged the wavering, the troubled or the discouraged.",
-        "Others in the church have noted that I was able to see through phoniness before it was evident to other people.",
-        "I find I manage money well in order to give liberally to the Lord's work.",
-        "I have assisted Christian leaders to relieve them for their essential job.",
-        "I have a desire to work with those who have physical or mental problems, to alleviate their suffering.",
-        "I feel comfortable relating to people of other cultural backgrounds, and they seem to accept me.",
-        "I have led others to a decision for salvation through faith in Christ.",
-        "My home is always open to people passing through who need a place to stay.",
-        "When in a group, I am often the one others often look to for vision and direction.",
-        "When I speak people seem to listen and agree.",
-        "When a group I am in is lacking organization, I tend to step in and fill the gap.",
-        "Others can point to specific instances where my prayers have resulted in visible miracles.",
-        "In the name of the Lord, I have been used in curing diseases instantaneously.",
-        "I have spoken in tongues.",
-        "Sometimes when a person speaks in tongues, I get an idea about what God is saying.",
-        "I could live more comfortably, but I choose not in order to live with the poor.",
-        "I am single and enjoy it.",
-        "I spend at least an hour a day in prayer.",
-        "I have spoken to evil spirits and they have obeyed me.",
-        "I enjoy being called upon to do special jobs around the church.",
-        "Through God, I have revealed specific things which will happen in the future.",
-        "I have enjoyed assuming responsibility for the spiritual well-being of a particular group of Christians.",
-        "I feel I can explain the New Testament teaching about the health and ministry of the body of Christ in a relevant way.",
-        "I can intuitively arrive at solutions to fairly complicated problems.",
-        "I have had insights into spiritual truth which others have said helped bring them closer to God.",
-        "I can effectively motivate people to get involved in ministry when it's needed.",
-        "I can “see” the Spirit of God resting on certain people from time to time.",
-        "My giving records show that I give considerably more than 10 percent of my income to the Lord's work.",
-        "Other people have told me that I helped them become more effective in their ministries.",
-        "I have cared for others when they have had material or physical needs.",
-        "I feel I could learn another language well in order to minister to those in a different culture.",
-        "I have shared joyfully how Christ has brought me to Himself in a way that is meaningful to non-believers.",
-        "I enjoy taking charge of church suppers or social gatherings.",
-        "I have believed God for the impossible and have seen it happen in a tangible way.",
-        "Other Christians have followed my leadership because they believed in me.",
-        "I enjoy handling the details of organizing ideas, people, resources, and time for more effective ministry.",
-        "God has used me personally to perform supernatural signs and wonders.",
-        "I enjoy praying for sick people because I know that many of them will be healed as a result.",
-        "I have spoken an immediate message of God to His people in a language that I have never learned.",
-        "I have interpreted tongues with the result that the body of Christ was edified, exhorted, or comforted.",
-        "Living a simple lifestyle is an exciting challenge for me.",
-        "Other people have noted that I feel more indifferent about not being married than most.",
-        "When I hear a prayer request, I pray for that need for several days at least.",
-        "I have actually heard a demon speak in a loud voice.",
-        "I don't have many special skills, but I do what needs to be done around the church.",
-        "People have told me that I have communicated timely and urgent messages which have come directly from the Lord.",
-        "I feel unafraid of giving spiritual guidance and direction to a group of Christians.",
-        "I can devote considerable time to learning new biblical truths in order to communicate them to others.",
-        "When a person has a problem I can frequently guide them to the best Biblical solution.",
-        "Through study or experience, I have discerned major strategies or techniques God seems to use in furthering His kingdom.",
-        "People come to me in their afflictions or suffering and have told me that they have been helped, relieved and healed.",
-        "I can tell with a fairly high degree of assurance when a person is afflicted by an evil spirit.",
-        "When I am moved by an appeal to give to God's work, I usually find the money that I need to do it.",
-        "I have enjoyed doing routine tasks that led to more effective ministry by others.",
-        "I enjoy visiting in hospitals and/or retirement homes, and feel I do well in such a ministry.",
-        "People of a different race or culture have been attracted to me, and we have related well.",
-        "Non-Christians have noted that they feel comfortable when they are around me, and that I have a positive effect on them toward developing a faith in Christ.",
-        "When people come to our home, they indicate that they feel at home with us.",
-        "Other people have told me that I had faith to accomplish what seemed impossible to them.",
-        "When I set goals, others seem to accept them readily.",
-        "I have been able to make effective and efficient plans for accomplishing the goals of a group.",
-        "God regularly seems to do impossible things through my life.",
-        "Others have told me that God healed them of emotional problems when I ministered to them.",
-        "I can speak to God in a language I have never learned.",
-        "I have prayed that I may interpret if someone begins speaking in tongues.",
-        "I am not poor, but I can identify with poor people.",
-        "I am glad I have more time to serve the Lord because I am single.",
-        "Intercessory prayer is one of my favorite ways of spending time.",
-        "Others call on me when they suspect that someone is demonized.",
-        "Others have mentioned that I seem to enjoy routine tasks and do well at them.",
-        "I sometimes have a strong sense of what God wants to say to people in response to a particular situation.",
-        "I have helped fellow believers by guiding them to relevant portions of the Bible and praying with them.",
-        "I feel I can communicate Biblical truths to others and see resulting changes in knowledge, attitudes, values, or conduct.",
-        "Some people indicate that I have perceived and applied Biblical truth to the specified needs of fellow believers.",
-        "I study and read quite a bit in order to learn new Biblical truths.",
-        "I have a desire to effectively counsel the perplexed, the guilty or the addicted.",
-        "I can recognize whether a person's teaching is from God, from Satan, or of human origin.",
-        "I am so confident that God will meet my needs that I give to Him sacrificially and consistently.",
-        "When I do things behind the scenes and others are helped, I am joyful.",
-        "People call on me to help those who are less fortunate.",
-        "I would be willing to leave comfortable surroundings if it would enable me to share Christ with more people.",
-        "I get frustrated when others don't seem to share their faith with unbelievers as much as I do.",
-        "Others have mentioned to me that I am a very hospitable person.",
-        "There have been times when I have felt sure I knew God's specific will for the future growth of His work, even when others were not so sure.",
-        "When I join a group, others seem to back off and expect me to take the leadership.",
-        "I am able to give directions to others without using persuasion to get them to accomplish a task.",
-        "People have told me that I was God's instrument which brought supernatural changes in lives or circumstances.",
-        "I have prayed for others and physical healing has actually occurred.",
-        "When I give a public message in tongues, I expect it to be interpreted.",
-        "I have interpreted tongues in a way that seemed to bless others.",
-        "Others tell me I sacrifice much materially in order to minister.",
-        "I am single and have little difficulty controlling my sexual desires.",
-        "Others have told me that my prayers for them have been answered in tangible ways.",
-        "Other people have been instantly delivered from demonic oppression when I have prayed.",
-        "I prefer being active and doing something rather than just sitting around talking or reading or listening to a speaker.",
-        "I sometimes feel that I know exactly what God wants me to do in ministry at a specific point in time.",
-        "People have told me that I have helped them to be restored to the Christian community.",
-        "Studying the Bible and sharing my insights with others is very satisfying for me.",
-        "I have felt an unusual presence of God and personal confidence when important decisions needed to be made.",
-        "I have the ability to discover new truths for myself through reading or observing situations firsthand.",
-        "I have urged others to seek a Biblical solution to their affliction or suffering.",
-        "I can tell whether a person speaking in tongues is genuine.",
-        "I have been willing to maintain a lower standard of living in order to benefit God's work.",
-        "When I serve the Lord, I really don't care who gets the credit.",
-        "I would enjoy spending time with a lonely, shut-in person or someone in prison.",
-        "More than most, I have had a strong desire to see people of other countries won to the Lord.",
-        "I am attracted to non-believers because of my desire to win them to Christ.",
-        "I have desired to make my home available to those in the Lord's service whenever needed.",
-        "Others have told me that I am a person of unusual vision and I agree.",
-        "When I am in charge, things seem to run smoothly.",
-        "I have enjoyed bearing the responsibility for the success of a particular task within my church.",
-        "In the name of the Lord, I have been able to recover sight to the blind.",
-        "When I pray for the sick, either I or they feel sensations of tingling or warmth.",
-        "When I speak in tongues, I believe it is edifying to the Lord's body.",
-        "I have interpreted tongues in such a way that the message appeared to be directly from God.",
-        "Poor people accept me because I choose to live on their level.",
-        "I readily identify with Paul's desire for others to be single as he was.",
-        "When I pray, God frequently speaks to me, and I recognize His voice.",
-        "I cast out demons in Jesus' name.",
-        "I respond cheerfully when asked to do a job, even if it seems menial."
+      "questions": [
+        "Deseo transmitir mensajes directos de Dios que edifiquen, exhorten o consuelen a los demás.",
+        "He disfrutado relacionarme con un grupo determinado de personas durante un largo periodo, compartiendo personalmente sus éxitos y fracasos.",
+        "Hay quienes me han dicho que les he ayudado a comprender alguna verdad bíblica de una manera significativa.",
+        "He aplicado la verdad espiritual de manera efectiva a situaciones de mi propia vida.",
+        "Otras personas me han comentado que les he ayudado a distinguir aspectos clave e importantes de las Escrituras.",
+        "He brindado ánimo verbal a quienes se sienten indecisos, atribulados o desanimados.",
+        "Otros miembros de la iglesia han notado que soy capaz de detectar la falta de sinceridad antes de que sea evidente para los demás.",
+        "Administro bien el dinero, lo que me permite contribuir generosamente a la obra del Señor.",
+        "He brindado apoyo a líderes cristianos, ayudándoles a aligerar su carga para que puedan enfocarse en sus tareas fundamentales.",
+        "Siento el deseo de trabajar con personas que enfrentan problemas físicos o mentales, con el fin de aliviar su sufrimiento.",
+        "Me siento a gusto relacionándome con personas de otros contextos culturales, y ellas parecen aceptarme.",
+        "He guiado a otras personas a tomar la decisión de alcanzar la salvación mediante la fe en Cristo.",
+        "Mi hogar está siempre abierto a personas de paso que necesitan un lugar donde alojarse.",
+        "Cuando estoy en un grupo, a menudo soy la persona a la que los demás recurren en busca de visión y orientación.",
+        "Cuando hablo, la gente suele escuchar y estar de acuerdo.",
+        "Cuando un grupo en el que participo carece de organización, suelo intervenir para cubrir esa carencia.",
+        "Otros pueden señalar situaciones concretas en las que mis oraciones han dado lugar a milagros visibles.",
+        "En el nombre del Señor, he sido utilizado para sanar enfermedades de forma instantánea.",
+        "He hablado en lenguas.",
+        "A veces, cuando alguien habla en lenguas, recibo una revelación sobre lo que Dios está diciendo.",
+        "Podría vivir con más comodidades, pero elijo no hacerlo para poder vivir junto a los pobres.",
+        "Soy soltero/a y disfruto de ello.",
+        "Dedico al menos una hora al día a la oración.",
+        "He hablado con espíritus malignos y me han obedecido.",
+        "Disfruto cuando se me pide realizar tareas especiales en la iglesia.",
+        "Por medio de Dios, he revelado acontecimientos específicos que sucederán en el futuro.",
+        "He disfrutado asumir la responsabilidad del bienestar espiritual de un grupo específico de cristianos.",
+        "Siento que puedo explicar las enseñanzas del Nuevo Testamento sobre la salud y el ministerio del cuerpo de Cristo de una manera relevante.",
+        "Puedo llegar, de forma intuitiva, a soluciones para problemas bastante complejos.",
+        "He tenido revelaciones sobre verdades espirituales que, según otros, les han ayudado a acercarse más a Dios.",
+        "Puedo motivar eficazmente a las personas para que se involucren en el ministerio cuando es necesario.",
+        "Puedo «ver» al Espíritu de Dios reposando sobre ciertas personas en momentos determinados.",
+        "Mis registros de ofrendas muestran que entrego al Señor una cantidad considerablemente superior al 10 por ciento de mis ingresos.",
+        "Otras personas me han comentado que les ayudé a ser más eficaces en sus propios ministerios.",
+        "He brindado cuidado a otros cuando han tenido necesidades materiales o físicas.",
+        "Siento que podría aprender bien otro idioma para ministrar a personas de una cultura diferente.",
+        "He compartido con alegría cómo Cristo me atrajo hacia Él, de una manera que resulta significativa para quienes no son creyentes.",
+        "Disfruto hacerme cargo de las cenas o reuniones sociales de la iglesia.",
+        "He confiado en Dios para lo imposible y he visto cómo sucede de una manera tangible.",
+        "Otros cristianos han seguido mi liderazgo porque creían en mí.",
+        "Disfruto ocuparme de los detalles relacionados con la organización de ideas, personas, recursos y tiempo para lograr un ministerio más eficaz.",
+        "Dios me ha utilizado personalmente para realizar señales y prodigios sobrenaturales.",
+        "Disfruto orar por los enfermos, pues sé que, como resultado, muchos de ellos serán sanados.",
+        "He transmitido un mensaje inmediato de parte de Dios para su pueblo en un idioma que nunca he aprendido.",
+        "He interpretado lenguas, logrando con ello que el cuerpo de Cristo fuera edificado, exhortado o consolado.",
+        "Llevar un estilo de vida sencillo representa para mí un desafío apasionante.",
+        "Otras personas han notado que, a diferencia de la mayoría, me muestro bastante indiferente ante el hecho de no estar casado(a).",
+        "Cuando recibo una petición de oración, sigo orando por esa necesidad durante varios días, como mínimo.",
+        "He llegado a escuchar a un demonio hablar en voz alta.",
+        "No poseo muchas habilidades especiales, pero realizo las tareas que son necesarias dentro de la iglesia.",
+        "Hay quienes me han comentado que he transmitido mensajes oportunos y urgentes que provenían directamente del Señor.",
+        "No siento temor al brindar orientación y dirección espiritual a un grupo de cristianos.",
+        "Puedo dedicar una cantidad considerable de tiempo a aprender nuevas verdades bíblicas con el fin de comunicárselas a otros.",
+        "Cuando alguien tiene un problema, a menudo puedo orientarle hacia la mejor solución bíblica.",
+        "Mediante el estudio o la experiencia, he logrado discernir estrategias o técnicas clave que Dios parece utilizar para promover Su reino.",
+        "Las personas acuden a mí cuando atraviesan aflicciones o sufrimientos, y me han comentado que han recibido ayuda, alivio y sanidad.",
+        "Puedo identificar, con un grado de certeza bastante elevado, cuándo una persona está siendo afectada por un espíritu maligno.",
+        "Cuando me siento movido a contribuir a la obra de Dios, por lo general consigo los recursos necesarios para hacerlo.",
+        "He disfrutado realizando tareas rutinarias que han permitido que otros lleven a cabo su ministerio de manera más eficaz.",
+        "Disfruto visitando hospitales y/o residencias de ancianos, y siento que tengo aptitud para este tipo de ministerio.",
+        "Personas de otras razas o culturas se han sentido atraídas hacia mí, y hemos logrado establecer una buena relación.",
+        "Personas que no son cristianas han expresado sentirse cómodas en mi presencia, y han señalado que ejerzo una influencia positiva en ellas, ayudándoles a desarrollar su fe en Cristo.",
+        "Cuando las personas visitan nuestro hogar, suelen comentar que se sienten como en su propia casa.",
+        "Otras personas me han dicho que tuve la fe necesaria para lograr lo que a ellas les parecía imposible.",
+        "Cuando establezco metas, los demás parecen aceptarlas con facilidad.",
+        "He sido capaz de elaborar planes eficaces y eficientes para alcanzar los objetivos de un grupo.",
+        "Parece que Dios realiza, de manera habitual, cosas imposibles a través de mi vida.",
+        "Otras personas me han comentado que Dios las sanó de problemas emocionales cuando les brindé ministración.",
+        "Puedo hablar con Dios en un idioma que nunca he aprendido.",
+        "He orado para poder interpretar si alguien comienza a hablar en lenguas.",
+        "No soy una persona pobre, pero puedo identificarme con quienes sí lo son.",
+        "Me alegra tener más tiempo para servir al Señor debido a que soy soltero/a.",
+        "La oración intercesora es una de mis formas favoritas de dedicar mi tiempo.",
+        "Otros recurren a mí cuando sospechan que alguien está bajo influencia demoníaca.",
+        "Otras personas han señalado que parezco disfrutar de las tareas rutinarias y que las realizo bien.",
+        "A veces tengo una percepción clara de lo que Dios desea decir a las personas ante una situación determinada.",
+        "He ayudado a otros creyentes orientándolos hacia pasajes bíblicos pertinentes y orando junto con ellos.",
+        "Siento que puedo comunicar verdades bíblicas a los demás y observar cambios en su conocimiento, actitudes, valores o conducta.",
+        "Algunas personas han indicado que he logrado percibir y aplicar la verdad bíblica a las necesidades específicas de otros creyentes.",
+        "Dedico bastante tiempo al estudio y a la lectura para aprender nuevas verdades bíblicas.",
+        "Tengo el deseo de aconsejar eficazmente a quienes se sienten confundidos, abrumados por la culpa o atrapados en adicciones.",
+        "Puedo discernir si la enseñanza de una persona proviene de Dios, de Satanás o de origen humano.",
+        "Tengo tanta confianza en que Dios suplirá mis necesidades que doy para Su obra de manera sacrificial y constante.",
+        "Siento gozo cuando realizo tareas entre bastidores que resultan en ayuda para otros.",
+        "La gente recurre a mí para ayudar a quienes tienen menos recursos o se encuentran en situaciones desfavorecidas.",
+        "Estaría dispuesto a abandonar un entorno cómodo si eso me permitiera compartir a Cristo con más personas.",
+        "Me frustra que otros no parezcan compartir su fe con los no creyentes tanto como yo lo hago.",
+        "Otros me han comentado que soy una persona muy hospitalaria.",
+        "Ha habido ocasiones en las que he tenido la certeza de conocer la voluntad específica de Dios para el crecimiento futuro de Su obra, incluso cuando otros no estaban tan seguros.",
+        "Cuando me uno a un grupo, los demás parecen dar un paso atrás, esperando que yo asuma el liderazgo.",
+        "Soy capaz de dar instrucciones a otros sin necesidad de recurrir a la persuasión para lograr que completen una tarea.",
+        "Hay personas que me han dicho que fui un instrumento de Dios para provocar cambios sobrenaturales en sus vidas o circunstancias.",
+        "He orado por otras personas y, efectivamente, se ha producido una sanidad física.",
+        "Cuando doy un mensaje público en lenguas, espero que sea interpretado.",
+        "He interpretado mensajes en lenguas de una manera que ha resultado ser de bendición para otros.",
+        "Otros me dicen que realizo grandes sacrificios materiales para poder servir en el ministerio.",
+        "Soy soltero/a y no tengo mayores dificultades para controlar mis deseos sexuales.",
+        "Otras personas me han comentado que mis oraciones por ellas han sido respondidas de maneras tangibles.",
+        "Otras personas han sido liberadas al instante de la opresión demoníaca cuando he orado por ellas.",
+        "Prefiero estar activo y hacer algo, en lugar de simplemente quedarme sentado conversando, leyendo o escuchando a un orador.",
+        "A veces siento que sé exactamente lo que Dios quiere que haga en el ministerio en un momento determinado.",
+        "Hay personas que me han dicho que les he ayudado a reintegrarse a la comunidad cristiana.",
+        "Estudiar la Biblia y compartir mis reflexiones con los demás me resulta muy gratificante.",
+        "He experimentado una presencia inusual de Dios y una gran seguridad personal al tener que tomar decisiones importantes.",
+        "Tengo la capacidad de descubrir nuevas verdades por mi cuenta, ya sea mediante la lectura o la observación directa de situaciones.",
+        "He animado a otros a buscar una solución bíblica para sus aflicciones o sufrimientos.",
+        "Puedo discernir si una persona que habla en lenguas lo hace de manera genuina.",
+        "He estado dispuesto a mantener un nivel de vida más sencillo para favorecer la obra de Dios.",
+        "Cuando sirvo al Señor, realmente no me importa quién reciba el reconocimiento.",
+        "Disfrutaría pasando tiempo con una persona solitaria, confinada en su hogar o que se encuentre en prisión.",
+        "Más que la mayoría, he sentido un fuerte deseo de ver a personas de otros países llegar al Señor.",
+        "Me siento atraído hacia las personas que no tienen fe, debido a mi deseo de ganarlas para Cristo.",
+        "He deseado poner mi hogar a disposición de quienes sirven al Señor, siempre que sea necesario.",
+        "Otros me han dicho que poseo una visión poco común, y estoy de acuerdo.",
+        "Cuando estoy a cargo, las cosas parecen marchar sin contratiempos.",
+        "He disfrutado asumir la responsabilidad del éxito de una tarea específica dentro de mi iglesia.",
+        "En el nombre del Señor, he podido devolver la vista a los ciegos.",
+        "Cuando oro por los enfermos, tanto ellos como yo experimentamos sensaciones de hormigueo o calor.",
+        "Cuando hablo en lenguas, creo que esto edifica al cuerpo del Señor.",
+        "He interpretado lenguas de tal manera que el mensaje parecía provenir directamente de Dios.",
+        "Las personas pobres me aceptan porque decido vivir a su mismo nivel.",
+        "Me identifico fácilmente con el deseo de Pablo de que otros permanezcan solteros, tal como él lo estaba.",
+        "Cuando oro, Dios me habla con frecuencia, y reconozco Su voz.",
+        "Expulso demonios en el nombre de Jesús.",
+        "Respondo con alegría cuando se me pide realizar una tarea, incluso si esta parece humilde."
       ],
-      "select": "Select an answer for the question",
+      "select": "Selecciona una respuesta para la pregunta",
       "submit": {
-        "pending": "Analyzing your answers...",
-        "submit": "Submit Quiz"
+        "pending": "Analizando tus respuestas...",
+        "label": "Enviar cuestionario"
       }
     },
     "results": {
-      "completed": "Assessment Completed!",
-      "description": "Thank you for taking the time to complete the assessment. You are one-step closer to undertsanding the purpose God has outlined in your life.",
-      "domGiftsTitle": "Your {{count}} Dominate Gifts",
-      "subGiftsTitle": "Your {{count}} Subordinate Gifts",
-      "download": "Download Results as PDF"
+      "completed": "¡Evaluación completada!",
+      "description": "Gracias por tomarte el tiempo de completar la evaluación. Estás un paso más cerca de comprender el propósito que Dios ha trazado para tu vida.",
+      "definitions": [
+        {
+          "definition": "El don de profecía es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para recibir y comunicar un mensaje inmediato de parte de Dios a Su pueblo, mediante una expresión ungida divinamente.",
+          "scriptures": [
+            "Lucas 7:26",
+            "Hechos 15:32",
+            "Hechos 21:9-11",
+            "Romanos 12:6",
+            "1 Corintios 12:10,28",
+            "Efesios 4:11-14"
+          ]
+        },
+        {
+          "definition": "El don de pastor es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para asumir una responsabilidad personal a largo plazo por el bienestar espiritual de un grupo de creyentes.",
+          "scriptures": ["Efesios 4:11-14", "1 Timoteo 3:1-7", "Juan 10:1-18", "1 Pedro 5:1-3"]
+        },
+        {
+          "definition": "El don de enseñanza es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para comunicar información relevante para la salud y el ministerio del cuerpo y de sus miembros, de tal manera que otros puedan aprender.",
+          "scriptures": [
+            "1 Corintios 12:28",
+            "Efesios 4:11-14",
+            "Romanos 12:7",
+            "Hechos 18:24-28",
+            "Hechos 12:20-21"
+          ]
+        },
+        {
+          "definition": "El don de sabiduría es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para conocer la mente del Espíritu Santo, de tal manera que reciban discernimiento sobre cómo aplicar mejor el conocimiento adquirido a las necesidades específicas que surgen dentro del cuerpo de Cristo. Algunos grupos se refieren a una «palabra de sabiduría»; este concepto alude a una revelación profética que solo puede provenir de Dios. Esto podría estar más relacionado con los dones de profecía o de liderazgo.",
+          "scriptures": [
+            "1 Corintios 2:1-13",
+            "1 Corintios 12:8",
+            "Hechos 6:3, 10",
+            "Santiago 1:5-6",
+            "2 Pedro 3:15-16"
+          ]
+        },
+        {
+          "definition": "El don de conocimiento es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para descubrir, acumular, analizar y aclarar información e ideas que son pertinentes para el bienestar del cuerpo. Algunos grupos se refieren a una «palabra de conocimiento»; este concepto alude a un conocimiento profético, o a información revelada que solo puede provenir de Dios. Véase «Profecía» para obtener más información al respecto.",
+          "scriptures": [
+            "1 Corintios 2:14",
+            "1 Corintios 12:8",
+            "Hechos 5:1-11",
+            "Colosenses 2:2-3",
+            "2 Corintios 11:6"
+          ]
+        },
+        {
+          "definition": "El don de exhortación es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para ministrar palabras de consuelo, aliento y consejo a otros miembros del cuerpo, de tal manera que estos se sientan ayudados y sanados.",
+          "scriptures": ["Romanos 12:8", "1 Timoteo 4:13", "Hebreos 10:25", "Hechos 14:22"]
+        },
+        {
+          "definition": "El don de discernimiento de espíritus es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para saber con certeza si un comportamiento —que se presenta como proveniente de Dios— es, en realidad, de origen divino, humano o satánico.",
+          "scriptures": [
+            "1 Corintios 12:10",
+            "Hechos 5:1-11",
+            "Hechos 16:16-18",
+            "1 Juan 4:1-6",
+            "Matthew 16:21-23"
+          ]
+        },
+        {
+          "definition": "El don de dar es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para contribuir con sus recursos materiales a la obra del Señor, con generosidad y alegría.",
+          "scriptures": [
+            "Romanos 12:8",
+            "2 Corintios 8:1-7",
+            "2 Corintios 9:2-8",
+            "Marcos 12:41-44"
+          ]
+        },
+        {
+          "definition": "El don de ayuda es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para invertir sus talentos en la vida y el ministerio de otros miembros del cuerpo, permitiendo así que estos aumenten la eficacia de sus propios dones espirituales.",
+          "scriptures": [
+            "1 Corintios 12:28",
+            "Romanos 16:1-2",
+            "Hechos 9:36",
+            "Lucas 8:2-3",
+            "Marcos 15:40-41"
+          ]
+        },
+        {
+          "definition": "El don de misericordia es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para sentir una empatía y compasión genuinas hacia personas (tanto cristianas como no cristianas) que padecen problemas físicos, mentales o emocionales angustiantes, y para transformar esa compasión en acciones realizadas con alegría que reflejen el amor de Cristo y alivien el sufrimiento.",
+          "scriptures": [
+            "Romanos 12:8",
+            "Marcos 9:41",
+            "Hechos 16:33-34",
+            "Lucas 10:33-35",
+            "Matthew 20:29-34",
+            "Matthew 25:34-40",
+            "Hechos 11:28-30"
+          ]
+        },
+        {
+          "definition": "El don misionero es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para ejercer cualquier otro don espiritual que posean dentro de una cultura distinta a la propia.",
+          "scriptures": [
+            "1 Corintios 9:19-23",
+            "Hechos 8:4",
+            "Hechos 13:2-3",
+            "Hechos 22:21",
+            "Romanos 10:15"
+          ]
+        },
+        {
+          "definition": "El don de evangelista es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para compartir el evangelio con los no creyentes, de tal manera que hombres y mujeres lleguen a ser discípulos de Jesús y miembros responsables del cuerpo de Cristo.",
+          "scriptures": [
+            "Efesios 4:11-14",
+            "2 Timoteo 4:5",
+            "Hechos 8:5-6",
+            "Hechos 8:26-40",
+            "Hechos 14:21",
+            "Hechos 21:8"
+          ]
+        },
+        {
+          "definition": "El don de hospitalidad es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para ofrecer un hogar abierto y una cálida bienvenida a quienes necesitan alimento y alojamiento.",
+          "scriptures": [
+            "1 Pedro 4:9",
+            "Romanos 12:9-13",
+            "Romanos 16:23",
+            "Hechos 16:14-15",
+            "Hebreos 13:1-2"
+          ]
+        },
+        {
+          "definition": "El don de fe es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para discernir, con una confianza extraordinaria, la voluntad y los propósitos de Dios para Su obra.",
+          "scriptures": [
+            "1 Corintios 12:9",
+            "Hechos 11:22-24",
+            "Hechos 27:21-25",
+            "Hebreos 11",
+            "Romanos 4:18-21"
+          ]
+        },
+        {
+          "definition": "El don de liderazgo es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para establecer metas conforme al propósito de Dios para el futuro, y para comunicar dichas metas a otros de tal manera que trabajen juntos, de forma voluntaria y armoniosa, para alcanzarlas para la gloria de Dios.",
+          "scriptures": [
+            "1 Timoteo 5:17",
+            "Hechos 7:10",
+            "Hechos 15:7-11",
+            "Romanos 12:8",
+            "Hebreos 13:17",
+            "Lucas 9:51"
+          ]
+        },
+        {
+          "definition": "El don de administración es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para comprender con claridad los objetivos, tanto inmediatos como a largo plazo, de una parte específica del cuerpo de Cristo, así como para diseñar y ejecutar planes eficaces destinados a alcanzar dichas metas.",
+          "scriptures": [
+            "1 Corintios 12:28",
+            "Hechos 6:1-7",
+            "Hechos 27:11",
+            "Lucas 14:28-30",
+            "Tito 1:5"
+          ]
+        },
+        {
+          "definition": "El don de milagros es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para servir como intermediarios humanos a través de los cuales a Dios le place realizar actos tan poderosos que, ante los ojos de quienes los observan, parecen haber alterado el curso ordinario de la naturaleza.",
+          "scriptures": [
+            "1 Corintios 12:10,28",
+            "Hechos 9:36-42",
+            "Hechos 19:11-20",
+            "Hechos 20:7-12",
+            "Romanos 15:18-19",
+            "2 Corintios 12:12"
+          ]
+        },
+        {
+          "definition": "El don de sanidad es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para servir como intermediarios humanos a través de los cuales a Dios le place curar enfermedades y restaurar la salud, sin recurrir a medios naturales.",
+          "scriptures": [
+            "Hechos 3:1-10",
+            "Hechos 5:12-16",
+            "Hechos 9:32-35",
+            "Hechos 28:7-10",
+            "1 Corintios 12:9,28"
+          ]
+        },
+        {
+          "definition": "El don de lenguas es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para: (a) hablar con Dios en un idioma que nunca han aprendido, y/o (b) recibir y comunicar un mensaje inmediato de parte de Dios para Su pueblo, mediante una expresión ungida divinamente en un idioma que nunca han aprendido.",
+          "scriptures": [
+            "Marcos 16:17",
+            "Hechos 2:1-13",
+            "Hechos 10:44-46",
+            "Hechos 19:1-7",
+            "1 Corintios 12:10,28",
+            "1 Corintios 14:13-19"
+          ]
+        },
+        {
+          "definition": "El don de interpretación es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para dar a conocer, en un idioma comprensible, el mensaje de alguien que habla en lenguas.",
+          "scriptures": ["1 Corintios 12:10,30", "1 Corintios 14:13", "1 Corintios 14:26-28"]
+        },
+        {
+          "definition": "El don de pobreza voluntaria es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para renunciar a la comodidad material y al lujo, adoptando un estilo de vida personal equivalente al de quienes viven en situación de pobreza dentro de una sociedad determinada, con el fin de servir a Dios de manera más eficaz.",
+          "scriptures": [
+            "1 Corintios 13:1-3",
+            "Hechos 2:44-45",
+            "Hechos 4:34-37",
+            "2 Corintios 6:10",
+            "2 Corintios 8:9"
+          ]
+        },
+        {
+          "definition": "El don del celibato es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para permanecer solteros y disfrutar de ello; es decir, no estar casados y no experimentar tentaciones sexuales indebidas.",
+          "scriptures": ["1 Corintios 7:7-8", "Matthew 19:10-12"]
+        },
+        {
+          "definition": "El don de intercesión es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para orar durante períodos prolongados de manera habitual, y para ver respuestas frecuentes y específicas a sus oraciones, en una medida mucho mayor a la que se esperaría de un cristiano promedio.",
+          "scriptures": [
+            "Santiago 5:14-16",
+            "1 Timoteo 2:1-2",
+            "Colosenses 1:9-12",
+            "Colosenses 4:12-13",
+            "Hechos 12:12",
+            "Lucas 22:41-44"
+          ]
+        },
+        {
+          "definition": "El don de exorcismo es la capacidad especial que Dios otorga a los miembros del cuerpo de Cristo para expulsar demonios y espíritus malignos.",
+          "scriptures": ["Matthew 12:22-32", "Lucas 10:12-20", "Hechos 8:5-8", "Hechos 16:16-18"]
+        },
+        {
+          "definition": "El don de servicio es la capacidad especial que Dios otorga a ciertos miembros del cuerpo de Cristo para identificar las necesidades no cubiertas en una tarea relacionada con la obra de Dios, y para utilizar los recursos disponibles a fin de satisfacer dichas necesidades y contribuir a alcanzar los resultados deseados.",
+          "scriptures": [
+            "2 Timoteo 1:16-18",
+            "Romanos 12:7",
+            "Hechos 6:1-7",
+            "Tito 3:14",
+            "Gálatas 6:2,10"
+          ]
+        }
+      ],
+      "domGiftsTitle": "Tus Dones Dominantes",
+      "subGiftsTitle": "Tus Dones Secundarios",
+      "download": "Descargar resultados en PDF"
     },
     "reflection": {
-      "title": "Reflection Questions",
+      "title": "Preguntas de Reflexión",
       "descriptions": [
-        "Please answer the following relection questions of your assessment.",
-        "Once completed you will have the option to download your assessment results and/or submit your results to the Wind Church where an administrator can work with you on better undertanding your results and Godly purpose."
-      ]
+        "Tómate unos momentos para reflexionar cuidadosamente sobre los resultados de tu Evaluación de Dones Espirituales.",
+        "Después de completar estas preguntas, tendrás la oportunidad de descargar tus resultados y, si lo deseas, compartirlos con The Wind Church. Un líder ministerial podrá ayudarte a comprender mejor tus dones espirituales, tu llamado y las maneras únicas en que Dios puede estar guiándote a servir."
+      ],
+      "form": {
+        "placeholder": "Escribe tu respuesta aquí",
+        "message": "Por favor, responde a la pregunta lo mejor que puedas.",
+        "test": "Se permite un máximo de 750 caracteres",
+        "options": ["Laico", "Clero"],
+        "questions": [
+          "1. ¿Qué ministerios desempeñas actualmente (de manera formal o informal) en el Cuerpo?",
+          "2. ¿Hay alguno de estos ministerios para el cual no tengas un don particular? Puede que Dios te esté llamando a considerar algunos cambios.",
+          "3. ¿Cuál es tu condición vocacional: laico o clero?"
+        ],
+        "save": "Guardar tus respuestas"
+      }
     },
     "submission": {
-      "title": "Optional: Submit your results to The Wind!",
-      "description": "Please complete by adding your information. An administrator will connect with you to discuss your results and help you undertand your Godly purpose!"
+      "title": "Opcional: Descubramos Juntos Tus Próximos Pasos",
+      "description": "Comparte tus resultados con nosotros y un líder ministerial se pondrá en contacto contigo para animarte, responder tus preguntas y ayudarte a explorar cómo Dios puede estar guiándote a servir, crecer y marcar una diferencia en Su Reino.",
+      "form": {
+        "success": {
+          "description": "Gracias por compartir tus resultados con nosotros. Un líder ministerial revisará tu evaluación y se pondrá en contacto contigo pronto para ayudarte a comprender mejor tus dones espirituales y tus próximos pasos."
+        },
+        "error": {
+          "description": "No pudimos enviar tus resultados en este momento. Por favor, inténtalo de nuevo más tarde o descarga una copia de los resultados de tu evaluación para tus registros."
+        }
+      }
     }
   },
   "NextGen": {
@@ -1559,16 +1866,19 @@
       "subtitle": "Seleccione un líder para obtener más información"
     },
     "events": {
-      "title": "Eventos Next Gen",
+      "title": "Eventos",
       "subtitle": "¡Eventos divertidos, emocionantes y enfocados en el aprendizaje para la juventud de Wind!",
-      "empty": "No hay eventos de Next Gen programados en este momento.",
       "cta": "Ver otros eventos de Wind"
     },
     "gallery": {
-      "title": "Galería Next Gen",
+      "title": "Galería",
       "subtitle": "Seleccione una foto para revivir un momento especial",
       "photoAlt": "Una imagen de la galería de The Wind Church",
       "cta": "Ver la galería completa"
+    },
+    "resources": {
+      "title": "Recursos",
+      "subtitle": "Mantente informado con guías de enseñanza, actualizaciones ministeriales, información de eventos y recursos diseñados para apoyar a niños, estudiantes y familias."
     },
     "nursery": {
       "alt": "Bebé jugando con bloques de colores.",
@@ -1648,7 +1958,7 @@
     "title": "Los Líderes",
     "subtitle": "Conoce a los líderes fieles que ayudan a guiar nuestra iglesia en la fe, el servicio y la comunidad.",
     "filterDefault": "Todos los Líderes",
-    "sectionSubtitle": "Seleccione un Líder para obtener más información",
+    "sectionSubtitle": "Selecciona a un líder y obtén más información sobre él o ella",
     "categories": {
       "pastors": "Equipo Pastoral",
       "council": "Consejo de la Iglesia",
@@ -1682,7 +1992,10 @@
       "general-resource": "Recursos Generales",
       "teaching-materials": "Materiales de Enseñanza",
       "announcements": "Anuncios"
-    }
+    },
+    "date": "Actualizado el {date}",
+    "download": "Descargar",
+    "visit": "Visitar enlace"
   },
   "NewHere": {
     "metadata": {

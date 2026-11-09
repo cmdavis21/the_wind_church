@@ -1,9 +1,11 @@
 import Accordion from '@/components/accordion/Accordion';
+import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import EventCard from '@/components/cards/event-card/EventCard';
 import ImageCard from '@/components/cards/image-card/ImageCard';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
+import ResourceCard from '@/components/cards/resource-card/ResourceCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import NextGenGuardianInquiryForm from '@/components/forms/next-gen-guardian-inquiry-form/NextGenGuardianInquiryForm';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
@@ -17,7 +19,7 @@ import { PageRoutes } from '@/data/page-routes';
 import { getNextGenGallery } from '@/data/server/aws/s3/gallery';
 import { SANITY_NEXT_GEN_DOC_ID, WEBSITE_URL } from '@/data/server/env.server';
 import { getMinistryEvents } from '@/data/server/sanity/queries/events';
-import { getNextGenPage } from '@/data/server/sanity/queries/next-gen-page';
+import { getMinistryBySlug } from '@/data/server/sanity/queries/ministries';
 import { Event } from '@/data/types';
 import { isAfter } from 'date-fns';
 import { Button } from 'flowbite-react';
@@ -57,8 +59,18 @@ const NextGen = async () => {
   const t = await getTranslations('NextGen');
 
   const gallery = await getNextGenGallery();
-  const pageInfo = await getNextGenPage(locale);
+  const ministry = await getMinistryBySlug('next-gen', locale);
   const events = await getMinistryEvents(locale, SANITY_NEXT_GEN_DOC_ID);
+
+  if (!ministry) {
+    return (
+      <MediaBackgroundAndContent
+        centerContent
+        content={<ErrorAlert />}
+        background={{ src: '/images/wind_church_building.webp', alt: t('errorAlt') }}
+      />
+    );
+  }
 
   return (
     <div className="flex flex-col gap-3xl sm:gap-4xl">
@@ -94,59 +106,43 @@ const NextGen = async () => {
             description={t('principles.items.2.subtitle')}
           />
         </div>
-
-        {pageInfo && pageInfo.cirriculum_file && (
-          <a
-            className="mx-auto"
-            href={pageInfo.cirriculum_file}
-            download="the_wind_church_youth_service_cirriculum.pdf"
-          >
-            <Button pill color="primary" size="lg">
-              {t('download')}
-            </Button>
-          </a>
-        )}
       </div>
 
       <div className="px-padding max-width-center">
-        <PassageQuote passage={t('scripture.passage')} verse={t('scripture.verse')} />
+        <PassageQuote passage={ministry.scripture.passage} verse={ministry.scripture.verse} />
       </div>
 
       {/* EDUCATORS */}
-      {pageInfo && pageInfo.educators && (
-        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <SectionHeader title={t('educators.title')} subtitle={t('educators.subtitle')} />
+      <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
+        <SectionHeader title={t('educators.title')} subtitle={t('educators.subtitle')} />
 
-          <div>
-            {/* Desktop */}
-            <div className="hidden sm:flex flex-wrap gap-xl">
-              {pageInfo.educators.map((educator) => (
-                <LeaderCard
-                  key={`youth-service-educator-${educator.first_name}-${educator.last_name}`}
-                  {...educator}
-                />
-              ))}
-            </div>
-
-            {/* Mobile */}
-            <SimpleCarousel
-              className="sm:hidden"
-              slides={pageInfo.educators.map((educator) => (
-                <LeaderCard
-                  key={`mobile-youth-service-educator-${educator.first_name}-${educator.last_name}`}
-                  {...educator}
-                />
-              ))}
+        {/* DESKTOP */}
+        <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
+          {[ministry.coach, ...ministry.coordinators].map((leader) => (
+            <LeaderCard
+              key={`ministry-leader-desktop-${leader.first_name}-${leader.last_name}`}
+              {...leader}
             />
-          </div>
+          ))}
         </div>
-      )}
+
+        {/* MOBILE */}
+        <SimpleCarousel
+          className="sm:hidden"
+          slides={[ministry.coach, ...ministry.coordinators].map((leader) => (
+            <LeaderCard
+              key={`ministry-leader-mobile-${leader.first_name}-${leader.last_name}`}
+              {...leader}
+            />
+          ))}
+        />
+      </div>
 
       {/* EVENTS */}
-      <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-        <CenterTextSection title={t('events.title')} description={t('events.subtitle')} />
+      {events.length > 0 && (
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
+          <CenterTextSection title={t('events.title')} description={t('events.subtitle')} />
 
-        {events && events.length > 0 ? (
           <div className="w-full flex flex-wrap justify-center gap-xxl">
             {events.slice(0, 3).map((event: Event) => (
               <EventCard
@@ -156,21 +152,23 @@ const NextGen = async () => {
               />
             ))}
           </div>
-        ) : (
-          <h4 className="text-center">{t('events.empty')}</h4>
-        )}
 
-        <Link href={PageRoutes.events} className="mx-auto">
-          <Button pill color="primary" size="lg">
-            {t('events.cta')}
-          </Button>
-        </Link>
-      </div>
+          <Link href={PageRoutes.events} className="mx-auto">
+            <Button pill color="primary" size="lg">
+              {t('events.cta')}
+            </Button>
+          </Link>
+        </div>
+      )}
 
       {/* GALLERY */}
-      {gallery && gallery.urls.length > 0 && (
+      {gallery.urls.length > 0 && (
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <SectionHeader title={t('gallery.title')} subtitle={t('gallery.subtitle')} />
+          {events.length > 0 ? (
+            <SectionHeader title={t('gallery.title')} subtitle={t('gallery.subtitle')} />
+          ) : (
+            <CenterTextSection title={t('gallery.title')} description={t('gallery.subtitle')} />
+          )}
 
           {/* Desktop */}
           <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
@@ -188,11 +186,28 @@ const NextGen = async () => {
             ))}
           />
 
-          <Link href={PageRoutes.gallery}>
+          <Link href={PageRoutes.gallery} className="max-sm:mx-auto">
             <Button pill color="primary" size="lg">
               {t('gallery.cta')}
             </Button>
           </Link>
+        </div>
+      )}
+
+      {/* RESOURCES */}
+      {ministry.resources && ministry.resources.length > 0 && (
+        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
+          {events.length > 0 && gallery.urls.length > 0 ? (
+            <CenterTextSection title={t('resources.title')} description={t('resources.subtitle')} />
+          ) : (
+            <SectionHeader title={t('resources.title')} subtitle={t('resources.subtitle')} />
+          )}
+
+          <div className="flex flex-wrap gap-xl">
+            {ministry.resources.map((resource) => (
+              <ResourceCard key={`resource-${resource.title}`} {...resource} />
+            ))}
+          </div>
         </div>
       )}
 

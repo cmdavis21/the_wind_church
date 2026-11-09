@@ -73,6 +73,13 @@ export const MinistrySchema = {
           return 'Alt text is required when an image is provided.';
         }),
     }),
+    defineField({
+      name: 'resources',
+      title: 'Resource Content',
+      description: 'Shareable resource content',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'resource' }] }],
+    }),
   ],
   preview: {
     select: {

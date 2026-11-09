@@ -18,6 +18,7 @@ import { useCreateGiftAssessment } from '@/data/client/sanity/gift-assessment';
 import { useScrollToOnStatus } from '@/data/client/use-scroll-to-on-status';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import GiftAssessmentContactForm from './gift-assessment-contact-form/GiftAssessmentContactForm';
 import GiftAssessmentQuiz from './gift-assessment-quiz/GiftAssessmentQuiz';
 import GiftAssessmentReflectionQuestionsForm from './gift-assessment-reflection-questions-form/GiftAssessmentReflectionQuestionsForm';
@@ -26,6 +27,8 @@ import GiftAssessmentResultsPdf from './gift-assessment-results-pdf/GiftAssessme
 const PDF_FILE_NAME = 'The_Wind_Church_Spiritual_Gift_Assessment_Results.pdf';
 
 const GiftAssessment = () => {
+  const t = useTranslations('GiftAssessment');
+
   const [showResults, setShowResults] = useState(false);
   const resultsRef = useRef<HTMLDivElement | null>(null);
   useScrollToOnStatus(resultsRef, showResults);
@@ -81,21 +84,12 @@ const GiftAssessment = () => {
         >
           {/* Gifts */}
           <div className="flex flex-col gap-md">
-            <h3>Assessment Completed!</h3>
-            <h5>
-              Thank you for taking the time to complete the assessment. You are one-step closer to
-              undertsanding the purpose God has outlined in your life.
-            </h5>
+            <h3>{t('results.completed')}</h3>
+            <h5>{t('results.description')}</h5>
             <div className="pt-lg flex flex-col gap-lg">
               {[
-                {
-                  title: `Your ${dominateGifts.length} Dominate Gifts`,
-                  gifts: dominateGifts,
-                },
-                {
-                  title: `Your ${subordinateGifts.length} Subordinate Gifts`,
-                  gifts: subordinateGifts,
-                },
+                { title: t('results.domGiftsTitle'), gifts: dominateGifts },
+                { title: t('results.subGiftsTitle'), gifts: subordinateGifts },
               ].map((item) => (
                 <div
                   key={`gift-assessment-gifts-accordion-list-${item.title}`}
@@ -104,12 +98,12 @@ const GiftAssessment = () => {
                   <h4 className="font-light">{item.title}</h4>
                   <Accordion
                     variant={ACCORDION_TYPE.MINIMAL}
-                    content={item.gifts.map((gift) => ({
-                      title: gift.gift,
+                    content={item.gifts.map((g) => ({
+                      title: g.gift,
                       description: (
                         <div className="flex flex-col gap-md">
-                          <h5>{gift?.definition ?? ''}</h5>
-                          <ScriptureList scriptures={gift.scriptures} />
+                          <h5>{t(g.definition)}</h5>
+                          <ScriptureList scriptures={g.scriptures.map((s) => t(s))} />
                         </div>
                       ),
                     }))}
@@ -121,13 +115,9 @@ const GiftAssessment = () => {
 
           {/* Follow-up Questions */}
           <div className="flex flex-col gap-md">
-            <h3>Reflection Questions</h3>
-            <h5>Please answer the following relection questions of your assessment.</h5>
-            <h5 className="pb-lg">
-              Once completed you will have the option to download your assessment results and/or
-              submit your results to the Wind Church where an administrator can work with you on
-              better undertanding your results and Godly purpose.
-            </h5>
+            <h3>{t('reflection.title')}</h3>
+            <h5>{t('reflection.descriptions.0')}</h5>
+            <h5 className="pb-lg">{t('reflection.descriptions.1')}</h5>
             <GiftAssessmentReflectionQuestionsForm
               responses={setReflectionQuestions}
               disable={reflectionQuestions !== null}
@@ -142,26 +132,42 @@ const GiftAssessment = () => {
                   fileName={PDF_FILE_NAME}
                   document={
                     <GiftAssessmentResultsPdf
-                      dominateGifts={dominateGifts}
-                      subordinateGifts={subordinateGifts}
-                      ministriesInvolvedIn={reflectionQuestions.ministries_involved_in}
-                      changeInMinistry={reflectionQuestions.change_in_ministry}
-                      layOrClergy={reflectionQuestions.lay_or_clergy}
+                      dominateGifts={dominateGifts.map((d) => ({
+                        ...d,
+                        definition: t(d.definition),
+                        scriptures: d.scriptures.map((s) => t(s)),
+                      }))}
+                      subordinateGifts={subordinateGifts.map((s) => ({
+                        ...s,
+                        definition: t(s.definition),
+                        scriptures: s.scriptures.map((c) => t(c)),
+                      }))}
+                      reflectionQuestions={[
+                        {
+                          question: t('reflection.form.questions.0'),
+                          answer: reflectionQuestions.ministries_involved_in,
+                        },
+                        {
+                          question: t('reflection.form.questions.1'),
+                          answer: reflectionQuestions.change_in_ministry,
+                        },
+                        {
+                          question: t('reflection.form.questions.2'),
+                          answer: reflectionQuestions.lay_or_clergy,
+                        },
+                      ]}
                     />
                   }
                 >
                   <Button pill color="secondary" className="mx-auto max-md:!min-w-full md:w-fit">
-                    Download Results as PDF
+                    {t('results.download')}
                   </Button>
                 </PDFDownloadLink>
               )}
 
               <div className="flex flex-col gap-md">
-                <h3>Optional: Submit your results to the Wind!</h3>
-                <h5 className="pb-lg">
-                  Please complete by adding your information. An administrator will connect with you
-                  to discuss your results and help you undertand your Godly purpose!
-                </h5>
+                <h3>{t('submission.title')}</h3>
+                <h5 className="pb-lg">{t('submission.description')}</h5>
                 <GiftAssessmentContactForm
                   contact={submitQuizResultsToTheWind}
                   isError={isError}

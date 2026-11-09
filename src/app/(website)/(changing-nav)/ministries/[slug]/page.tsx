@@ -4,6 +4,7 @@ import EventCard from '@/components/cards/event-card/EventCard';
 import { default as ImageCard } from '@/components/cards/image-card/ImageCard';
 import ImageWithTitleDescriptionCard from '@/components/cards/image-with-title-description-card/ImageWithTitleDescriptionCard';
 import LeaderCard from '@/components/cards/leader-card/LeaderCard';
+import ResourceCard from '@/components/cards/resource-card/ResourceCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.ministries}/${slug}`;
-  const image = '/images/product-placeholder.webp';
+  const image = '/images/people-serving.webp';
 
   return {
     title,
@@ -69,11 +70,8 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
     return (
       <MediaBackgroundAndContent
         centerContent
-        background={{
-          src: '/images/wind_church_building.webp',
-          alt: 'Image of The Wind Church building',
-        }}
         content={<ErrorAlert />}
+        background={{ src: '/images/wind_church_building.webp', alt: t('errorAlt') }}
       />
     );
   }
@@ -91,7 +89,8 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* MINISTRY LEADER */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <SectionHeader title="Meet the Team" subtitle="Select members to learn more" />
+          <SectionHeader title={t('leader.title')} subtitle={t('leader.subtitle')} />
+
           {/* DESKTOP */}
           <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
             {[ministry.coach, ...ministry.coordinators].map((leader) => (
@@ -115,13 +114,10 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* EVENTS */}
-        <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <CenterTextSection
-            title="Ministry Events"
-            description="Look out for fun workshops, fellowships, and more at the Wind!"
-          />
+        {events.length > 0 && (
+          <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
+            <CenterTextSection title={t('events.title')} description={t('events.subtitle')} />
 
-          {events && events.length > 0 ? (
             <div className="w-full flex flex-wrap justify-center gap-xxl">
               {events.slice(0, 3).map((event: Event) => (
                 <EventCard
@@ -131,33 +127,28 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
                 />
               ))}
             </div>
-          ) : (
-            <h4 className="text-center">No events at this time</h4>
-          )}
 
-          <Link href={PageRoutes.events} className="mx-auto">
-            <Button pill color="primary" size="lg">
-              View other Wind Events
-            </Button>
-          </Link>
-        </div>
+            <Link href={PageRoutes.events} className="mx-auto">
+              <Button pill color="primary" size="lg">
+                {t('events.cta')}
+              </Button>
+            </Link>
+          </div>
+        )}
 
         {/* GALLERY */}
-        {gallery && gallery.urls.length > 0 && (
+        {gallery.urls.length > 0 && (
           <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-            <SectionHeader
-              title="Ministry Gallery"
-              subtitle="Select a photo to view the memories"
-            />
+            {events.length > 0 ? (
+              <SectionHeader title={t('gallery.title')} subtitle={t('gallery.subtitle')} />
+            ) : (
+              <CenterTextSection title={t('gallery.title')} description={t('gallery.subtitle')} />
+            )}
 
             {/* Desktop */}
             <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-xl place-content-center">
               {gallery.urls.slice(0, 4).map((src) => (
-                <ImageCard
-                  key={`wind-gallery-${src}`}
-                  src={src}
-                  alt="The Wind Church Gallery Image"
-                />
+                <ImageCard key={`wind-gallery-${src}`} src={src} alt={t('gallery.imageAlt')} />
               ))}
             </div>
 
@@ -169,76 +160,83 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
                 <ImageCard
                   key={`wind-gallery-mobile-${src}`}
                   src={src}
-                  alt="The Wind Church Gallery Image"
+                  alt={t('gallery.imageAlt')}
                 />
               ))}
             />
 
-            <Link href={PageRoutes.gallery}>
+            <Link href={PageRoutes.gallery} className="max-sm:mx-auto">
               <Button pill color="primary" size="lg">
-                See the full gallery
+                {t('gallery.cta')}
               </Button>
             </Link>
           </div>
         )}
 
+        {/* RESOURCES */}
+        {ministry.resources && ministry.resources.length > 0 && (
+          <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
+            {events.length > 0 && gallery.urls.length > 0 ? (
+              <CenterTextSection
+                title={t('resources.title')}
+                description={t('resources.subtitle')}
+              />
+            ) : (
+              <SectionHeader title={t('resources.title')} subtitle={t('resources.subtitle')} />
+            )}
+
+            <div className="flex flex-wrap gap-xl">
+              {ministry.resources.map((resource) => (
+                <ResourceCard key={`resource-${resource.title}`} {...resource} />
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* WHY JOIN A MINISTRY */}
         <MediaBackgroundAndContent
-          background={{
-            src: '/images/product-placeholder.webp',
-            alt: 'Decorative Background Image',
-          }}
+          background={{ src: '/images/give/group-hands.webp', alt: t('whyJoin.alt') }}
           content={
             <div className="flex flex-col gap-md">
-              <h2 className="font-bold">Why join a ministry?</h2>
-              <h4 className="lg:max-w-[75%]">
-                Joining a ministry allows you to grow spiritually, build meaningful relationships,
-                and serve others in a way that aligns with your God-given gifts. It&apos;s a great
-                way to deepen your faith while making a real impact in the church and community.
-              </h4>
+              <h2 className="font-bold">{t('whyJoin.title')}</h2>
+              <h4 className="lg:max-w-[75%]">{t('whyJoin.description')}</h4>
             </div>
           }
         />
 
         {/* FAQS */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <SectionHeader subtitle="Frequently Asked Questions" title="Looking for more guidance?" />
+          <SectionHeader title={t('faqs.title')} subtitle={t('faqs.subtitle')} />
+
           <Accordion
             content={[
               {
-                title: 'Do I need to have prior experience or special skills to join?',
-                description:
-                  "Not at all! Each ministry welcomes people at all stages of their faith journey. Whether you're a seasoned leader or just looking to get involved, we'll provide guidance and support to help you serve with confidence.",
+                title: t('faqs.items.0.question'),
+                description: t('faqs.items.0.answer'),
               },
               {
-                title: 'How do I know which ministry is right for me?',
-                description:
-                  "Think about what excites you and where you feel called to serve. Whether it's worship, outreach, youth mentorship, or hospitality, there's a ministry that aligns with your passions. If you're unsure, we can help you find the perfect fit!",
+                title: t('faqs.items.1.question'),
+                description: t('faqs.items.1.answer'),
               },
               {
-                title: 'What if I have a busy schedule?',
-                description:
-                  "We understand that life gets busy! Many ministries offer flexible ways to get involved, whether it's through occasional service opportunities, remote participation, or leadership roles that fit your availability.",
+                title: t('faqs.items.2.question'),
+                description: t('faqs.items.2.answer'),
               },
               {
-                title: 'Can my family join a ministry together?',
-                description:
-                  'Absolutely! Many ministries welcome families to serve together, providing a great opportunity for parents and children to grow in faith as a team.',
+                title: t('faqs.items.3.question'),
+                description: t('faqs.items.3.answer'),
               },
               {
-                title: 'Will I receive training or support in my ministry role?',
-                description:
-                  "Yes! We provide resources, mentorship, and ongoing training to equip you for success in your ministry role. You'll never be alone on this journey.",
+                title: t('faqs.items.4.question'),
+                description: t('faqs.items.4.answer'),
               },
               {
-                title: 'How does serving in a ministry help me grow spiritually?',
-                description:
-                  'Serving strengthens your relationship with God as you apply biblical teachings in real-life service. It also fosters accountability, discipleship, and deeper connections within the church community.',
+                title: t('faqs.items.5.question'),
+                description: t('faqs.items.5.answer'),
               },
               {
-                title: 'How do I sign up or get more information?',
-                description:
-                  "It's easy! You can speak with a ministry leader after service, visit our website, or fill out a ministry interest form online. We'd love to connect and help you take the next step!",
+                title: t('faqs.items.6.question'),
+                description: t('faqs.items.6.answer'),
               },
             ]}
           />
@@ -246,39 +244,37 @@ const SingleMinistryPage = async ({ params }: { params: Promise<{ slug: string }
 
         {/* CTAs */}
         <div className="flex flex-col gap-xl md:gap-xxl px-padding max-width-center">
-          <CenterTextSection
-            title="Take your next steps with us!"
-            description="Whether you're new to faith or looking to get more involved, we're here to walk with you every step of the way."
-          />
+          <CenterTextSection title={t('ctas.title')} description={t('ctas.subtitle')} />
+
           <div className="flex flex-wrap justify-center gap-xxl">
             <ImageWithTitleDescriptionCard
-              alt="People gathering for church service"
-              src="/images/product-placeholder.webp"
-              title="Visit The Wind"
-              description="Join us for powerful worship, inspiring messages, and a welcoming community. Services happen every Sunday morning and Wednesday evening."
+              alt={t('ctas.items.0.alt')}
+              src="/images/salvation/cross-on-mount.webp"
+              title={t('ctas.items.0.title')}
+              description={t('ctas.items.0.description')}
               link={{
-                label: 'Learn about the Wind',
-                href: PageRoutes.about,
-              }}
-            />
-            <ImageWithTitleDescriptionCard
-              alt="Group in Bible study session"
-              src="/images/product-placeholder.webp"
-              title="Try our Deep Dives"
-              description="Explore the Word in a deeper way. Our Deep Dive Sessions are small-group Bible studies where you can ask questions and grow in your faith."
-              link={{
-                label: 'Go to Deep Dive',
+                label: t('ctas.items.0.label'),
                 href: PageRoutes.deepDive,
               }}
             />
             <ImageWithTitleDescriptionCard
-              alt="Children in a classroom during youth service"
-              src="/images/product-placeholder.webp"
-              title="Learn about Next Gen"
-              description="We offer engaging and age-appropriate services for kids and teens every week. It's a safe space for youth to learn, grow, and build friendships."
+              alt={t('ctas.items.1.alt')}
+              src="/images/deep-dive/pastor-with-first-lady.webp"
+              title={t('ctas.items.1.title')}
+              description={t('ctas.items.1.description')}
               link={{
-                label: 'Go to Youth Service',
-                href: PageRoutes.nextGen,
+                label: t('ctas.items.1.label'),
+                href: PageRoutes.about,
+              }}
+            />
+            <ImageWithTitleDescriptionCard
+              alt={t('ctas.items.2.alt')}
+              src="/images/salvation/olive-branch.webp"
+              title={t('ctas.items.2.title')}
+              description={t('ctas.items.2.description')}
+              link={{
+                label: t('ctas.items.2.label'),
+                href: PageRoutes.wePathway,
               }}
             />
           </div>

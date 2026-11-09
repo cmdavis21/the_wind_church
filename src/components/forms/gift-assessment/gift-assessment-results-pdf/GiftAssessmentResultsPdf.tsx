@@ -53,16 +53,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: 700,
   },
-  scriptureContainer: {
-    flexDirection: 'row',
-  },
   scriptureList: {
     marginBottom: 15,
     flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   scriptureText: {
     fontSize: 12,
-    marginRight: 8,
   },
   questionText: {
     fontSize: 13,
@@ -77,21 +74,17 @@ const styles = StyleSheet.create({
 interface GiftAssessmentResultsPdfProps {
   dominateGifts: GiftAssessmentDefinition[];
   subordinateGifts: GiftAssessmentDefinition[];
-  ministriesInvolvedIn: string;
-  changeInMinistry: string;
-  layOrClergy: string;
+  reflectionQuestions: { question: string; answer: string }[];
 }
 
 const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
   dominateGifts,
   subordinateGifts,
-  ministriesInvolvedIn,
-  changeInMinistry,
-  layOrClergy,
+  reflectionQuestions,
 }) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      {/* LOGO + CONTACT */}
+      {/* HEADER */}
       <Image src="/images/logo/logo-black.webp" style={styles.logo} />
       <View style={styles.contactBlock}>
         <Text style={styles.text}>6476 Streeter Avenue, Riverside, CA 92504</Text>
@@ -101,71 +94,41 @@ const GiftAssessmentResultsPdf: React.FC<GiftAssessmentResultsPdfProps> = ({
       <Text style={styles.titleBlock}>Spiritual Gift Assessment Results</Text>
       <Text style={styles.dateItem}>Date completed {formatDateMMMddyyyy(new Date())}</Text>
 
-      {/* DOMINATE GIFTS */}
-      <View style={styles.section}>
-        <Text style={styles.label}>Your {dominateGifts.length} Dominate Gifts</Text>
-        {dominateGifts.map((gift, index) => (
-          <React.Fragment key={`pdf-dom-${index}`}>
-            <Text style={styles.listItem}>
-              {index + 1}. {gift.gift}
-            </Text>
-            <Text style={styles.text}>{gift.definition}</Text>
-            <Text style={styles.text}>Scripture Reference:</Text>
-            <View style={styles.scriptureList}>
-              {gift.scriptures.map((scripture, sIndex) => (
-                <View key={`pdf-dom-list-${sIndex}`} style={styles.scriptureContainer}>
-                  <Text style={styles.scriptureText}>{scripture}</Text>
+      {/* RESULTS */}
+      {[
+        { title: 'Your Dominant Gifts', gifts: dominateGifts },
+        { title: 'Your Secondary Gifts', gifts: subordinateGifts },
+      ].map((g) => (
+        <View style={styles.section}>
+          <Text style={styles.label}>{g.title}</Text>
+          {g.gifts.map((r, index) => (
+            <React.Fragment key={`pdf-${g.title}-${index}`}>
+              <Text style={styles.listItem}>
+                {index + 1}. {r.gift}
+              </Text>
+              <Text style={styles.text}>{r.definition}</Text>
+              <View style={styles.scriptureList}>
+                {r.scriptures.map((scripture, sIndex) => (
                   <Text style={styles.scriptureText}>
-                    {sIndex < gift.scriptures.length - 1 ? '•' : ''}
+                    {scripture} {sIndex < r.scriptures.length - 1 ? '• ' : ''}
                   </Text>
-                </View>
-              ))}
-            </View>
-          </React.Fragment>
-        ))}
-      </View>
-
-      {/* SUBORDINATE GIFTS */}
-      <View style={styles.section}>
-        <Text style={styles.label}>Your {subordinateGifts.length} Subordinate Gifts</Text>
-        {subordinateGifts.map((gift, index) => (
-          <React.Fragment key={`pdf-sub-${index}`}>
-            <Text style={styles.listItem}>
-              {index + 1}. {gift.gift}
-            </Text>
-            <Text style={styles.text}>{gift.definition}</Text>
-            <Text style={styles.text}>Scripture Reference:</Text>
-            <View style={styles.scriptureList}>
-              {gift.scriptures.map((scripture, sIndex) => (
-                <View key={`pdf-sub-list-${sIndex}`} style={styles.scriptureContainer}>
-                  <Text style={styles.scriptureText}>{scripture}</Text>
-                  <Text style={styles.scriptureText}>
-                    {sIndex < gift.scriptures.length - 1 ? '•' : ''}
-                  </Text>
-                </View>
-              ))}
-            </View>
-          </React.Fragment>
-        ))}
-      </View>
+                ))}
+              </View>
+            </React.Fragment>
+          ))}
+        </View>
+      ))}
 
       {/* REFLECTION QUESTIONS */}
       <View style={styles.section}>
         <Text style={styles.label}>Reflection Questions</Text>
 
-        <Text style={styles.questionText}>
-          1. What ministries are you now performing (formally or informally) in the Body?
-        </Text>
-        <Text style={styles.questionAnswer}>{ministriesInvolvedIn}</Text>
-
-        <Text style={styles.questionText}>
-          2. Are there any of these ministries that you are not especially gifted for? God may be
-          calling you to consider changes.
-        </Text>
-        <Text style={styles.questionAnswer}>{changeInMinistry}</Text>
-
-        <Text style={styles.questionText}>3. Is your vocational status lay or clergy?</Text>
-        <Text style={styles.questionAnswer}>{layOrClergy}</Text>
+        {reflectionQuestions.map((r) => (
+          <React.Fragment key={`reflection-question-${r.question}`}>
+            <Text style={styles.questionText}>{r.question}</Text>
+            <Text style={styles.questionAnswer}>{r.answer}</Text>
+          </React.Fragment>
+        ))}
       </View>
     </Page>
   </Document>

@@ -98,19 +98,8 @@ export type Ministry = {
     video: Leader['video'];
   };
   image: Image;
+  resources?: ResourceItem[];
 };
-
-export interface NextGenPage {
-  educators: {
-    first_name: Leader['first_name'];
-    last_name: Leader['last_name'];
-    position: Leader['position'];
-    description: Leader['description'];
-    image: Leader['image'];
-    video: Leader['video'];
-  }[];
-  cirriculum_file: string;
-}
 
 export interface PromoBannerDetails {
   header: string;
@@ -241,7 +230,7 @@ export interface NextGenRosterSignup {
 export interface GiftAssessmentReflectionQuestions {
   ministries_involved_in: string;
   change_in_ministry: string;
-  lay_or_clergy: 'Lay' | 'Clergy';
+  lay_or_clergy: string;
 }
 
 export interface GiftAssessmentSubmission extends FullContact, GiftAssessmentReflectionQuestions {
@@ -257,7 +246,6 @@ export interface GiftAssessmentQuestion {
 
 export interface GiftAssessmentDefinition {
   gift: string;
-  label: string;
   definition: string;
   scriptures: string[];
 }

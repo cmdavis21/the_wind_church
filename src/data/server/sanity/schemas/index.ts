@@ -7,7 +7,6 @@ import { LeaderSchema } from './leader';
 import { MinistrySchema } from './ministry';
 import { MinistryConnectionSchema } from './ministry-connection';
 import { NextGenGuardianInquirySchema } from './next-gen-guardian-inquiry';
-import { NextGenPageSchema } from './next-gen-page';
 import { PrayerRequestSchema } from './prayer-request';
 import { PromoBannerSchema } from './promo-banner';
 import { ResourceSchema } from './resource';
@@ -35,7 +34,6 @@ export const SanitySchema = [
   LeaderSchema,
   DeepDiveSchema,
   MinistrySchema,
-  NextGenPageSchema,
   PromoBannerSchema,
   TestimonialSchema,
   ResourceSchema,

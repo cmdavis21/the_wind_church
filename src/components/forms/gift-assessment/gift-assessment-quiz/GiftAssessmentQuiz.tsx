@@ -15,17 +15,17 @@ const schema = yup.object().shape({
     .of(
       yup.object().shape({
         questionId: yup.number().required(),
-        score: yup.number().min(0).max(3).required('Select an answer for the question'),
+        score: yup.number().min(0).max(3).required('form.select'),
       })
     )
     .required(),
 });
 
-const scoreWithText: { score: number; text: string }[] = [
-  { score: 3, text: 'Much' },
-  { score: 2, text: 'Some' },
-  { score: 1, text: 'Little' },
-  { score: 0, text: 'Not at all' },
+const scoringChart: { id: number; score: string; label: string }[] = [
+  { id: 3, score: 'form.header.items.0.count', label: 'form.header.items.0.label' },
+  { id: 2, score: 'form.header.items.1.count', label: 'form.header.items.1.label' },
+  { id: 1, score: 'form.header.items.2.count', label: 'form.header.items.2.label' },
+  { id: 0, score: 'form.header.items.3.count', label: 'form.header.items.3.label' },
 ];
 
 const FormErrorMessage = (
@@ -43,7 +43,7 @@ const FormErrorMessage = (
     errors.answers.some((s) => s.score) && (
       <AlertMessage
         type="failure"
-        title={`Answer question${errors.answers.length > 1 ? '(s)' : ''}:`}
+        title={t('form.answerQuestions')}
         description={errors.answers
           .filter((err) => err.score && err.questionId?.message) // Filter errors with both score and questionId.message
           .map((err) => {
@@ -53,7 +53,7 @@ const FormErrorMessage = (
               const questionNumber = parseInt(match[1], 10) + 1; //Add 1 to convert 0-based index
               return questionNumber;
             }
-            return 'Unknown'; // Fallback if no match is found
+            return t('form.unknown'); // Fallback if no match is found
           })
           .join(', ')}
       />
@@ -72,7 +72,7 @@ const FormSubmitButton = (disable: boolean, isLoading: boolean, t: any) => {
         disabled={disable || isLoading}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isLoading ? 'Analyzing your answers...' : 'Submit Quiz'}
+        {isLoading ? t('form.submit.pending') : t('form.submit.label')}
       </Button>
     </div>
   );
@@ -181,14 +181,14 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
           {/* Header */}
           <div className="sticky top-0 z-10 bg-light-bg dark:bg-dark-bg pt-lg flex flex-col gap-lg">
             <div className="min-w-[820px] grid grid-cols-6 items-center">
-              <h3 className="col-span-2 min-w-[300px] font-bold">Questions</h3>
-              {scoreWithText.map((mark) => (
+              <h3 className="col-span-2 min-w-[300px] font-bold">{t('form.header.title')}</h3>
+              {scoringChart.map((s) => (
                 <div
-                  key={`spiritual-gift-assessment-desktop-header-${mark.score}`}
+                  key={`spiritual-gift-assessment-desktop-header-${s.id}`}
                   className="flex flex-col justify-center items-center"
                 >
-                  <h4 className="font-bold">{mark.score}</h4>
-                  <h5>{mark.text}</h5>
+                  <h4 className="font-bold">{t(s.score)}</h4>
+                  <h5>{t(s.label)}</h5>
                 </div>
               ))}
             </div>
@@ -201,21 +201,21 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
               <div className="min-w-[820px] grid grid-cols-6 gap-sm">
                 <div className="col-span-2 min-w-[300px] flex gap-sm">
                   <h5 className="font-bold">{q.id}.</h5>
-                  <h5>{q.question}</h5>
+                  <h5>{t(q.question)}</h5>
                 </div>
 
-                {scoreWithText.map((mark) => (
+                {scoringChart.map((s) => (
                   <Controller
-                    key={`spiritual-gift-assessment-desktop-score-${q.id}-${mark.score}`}
+                    key={`spiritual-gift-assessment-desktop-score-${q.id}-${s.id}`}
                     name={`answers.${index}.score`}
                     control={control}
                     render={({ field }) => (
                       <Radio
                         {...field}
-                        value={mark.score}
-                        checked={field.value === mark.score}
+                        value={s.id}
+                        checked={field.value === s.id}
                         onChange={() => {
-                          field.onChange(mark.score);
+                          field.onChange(s.id);
                           setValue(`answers.${index}.questionId`, q.id);
                         }}
                         className="place-self-center"
@@ -243,7 +243,7 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
 
       {/* Mobile */}
       <form onSubmit={handleSubmit(onSubmit)} className="lg:hidden w-full flex flex-col gap-lg">
-        <h3 className="font-bold">Questions</h3>
+        <h3 className="font-bold">{t('form.header.title')}</h3>
 
         <div className="h-[0.4px] w-full bg-light-neutral" />
 
@@ -254,27 +254,27 @@ const GiftAssessmentQuiz: React.FC<GiftAssessmentQuizProps> = ({
           >
             <div className="col-span-2 min-w-[300px] flex gap-sm">
               <h5 className="font-bold">{q.id}.</h5>
-              <h5>{q.question}</h5>
+              <h5>{t(q.question)}</h5>
             </div>
 
             <div className="flex items-center justify-between gap-xs md:px-lg">
-              {scoreWithText.map((mark) => (
+              {scoringChart.map((s) => (
                 <Controller
-                  key={`spiritual-gift-assessment-desktop-score-${q.id}-${mark.score}`}
+                  key={`spiritual-gift-assessment-desktop-score-${q.id}-${s.id}`}
                   name={`answers.${index}.score`}
                   control={control}
                   render={({ field }) => (
                     <div
-                      key={`spiritual-gift-assessment-mobile-radio-${mark.score}`}
+                      key={`spiritual-gift-assessment-mobile-radio-${s.id}`}
                       className="flex flex-col justify-center items-center gap-sm"
                     >
-                      <h5>{mark.text}</h5>
+                      <h5>{t(s.label)}</h5>
                       <Radio
                         {...field}
-                        value={mark.score}
-                        checked={field.value === mark.score}
+                        value={s.id}
+                        checked={field.value === s.id}
                         onChange={() => {
-                          field.onChange(mark.score);
+                          field.onChange(s.id);
                           setValue(`answers.${index}.questionId`, q.id);
                         }}
                       />

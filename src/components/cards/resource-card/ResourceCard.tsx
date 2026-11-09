@@ -7,6 +7,7 @@ import Play from '@/components/icons/play';
 import { formatDateMMMddyyyy } from '@/data/format-date';
 import { ResourceItem } from '@/data/types';
 import { Button } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 interface ResourceCardProps extends ResourceItem {}
@@ -20,18 +21,26 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
   url,
   updated_at,
 }) => {
+  const t = useTranslations('ResourceCenter');
+
   return (
     <div className="w-[325px] h-auto flex flex-col gap-md rounded-xl border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-sm hover:shadow-md transition-all p-md">
       {/* Header */}
-      <div className="flex items-center gap-md">
+      <div className="flex gap-md">
         <div className="size-[48px] min-w-[48px] rounded-lg bg-light-gray dark:bg-dark-neutral flex items-center justify-center">
-          {type === 'File' ? <FileIcon /> : type === 'Link' ? <LinkIcon /> : <Play />}
+          {type === 'File' ? (
+            <FileIcon width={30} height={30} />
+          ) : type === 'Link' ? (
+            <LinkIcon width={30} height={30} />
+          ) : (
+            <Play width={30} height={30} />
+          )}
         </div>
 
         <div className="flex flex-col">
           <h3 className="font-semibold text-lg leading-tight">{title}</h3>
           <p className="body-small text-light-secondaryText dark:text-dark-secondaryText">
-            Updated {formatDateMMMddyyyy(updated_at)}
+            {t('date', { date: formatDateMMMddyyyy(updated_at) })}
           </p>
         </div>
       </div>
@@ -48,7 +57,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
         {file && (
           <Link target="_blank" download={file} href={file} className="w-full">
             <Button color="info" pill fullSized>
-              Download{' '}
+              {t('download')}{' '}
               {file_size && (
                 <span className="ml-1 mt-1 text-xs text-light-secondaryText dark:text-dark-charcoal">
                   ({file_size})
@@ -61,7 +70,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
         {url && (
           <Link target="_blank" href={url} className="w-full">
             <Button color="info" pill fullSized>
-              Visit Link
+              {t('visit')}
             </Button>
           </Link>
         )}

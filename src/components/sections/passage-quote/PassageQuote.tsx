@@ -11,7 +11,7 @@ const PassageQuote: React.FC<PassageQuoteProps> = ({ passage, verse }) => (
       <span className="absolute -top-6 left-0 text-7xl text-light-navy/20 dark:text-dark-navy/20">
         “
       </span>
-      <p className="text-center text-[1.5rem] leading-loose font-light tracking-wide text-light-navy dark:text-dark-navy px-md">
+      <p className="text-center text-[1.25rem] md:text-[1.5rem] leading-relaxed font-light tracking-wide text-light-navy dark:text-dark-navy px-md">
         {passage}
       </p>
     </div>

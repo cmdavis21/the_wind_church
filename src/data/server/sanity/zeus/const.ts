@@ -41,9 +41,6 @@ export const AllTypesProps: Record<string,any> = {
 		Ministry:{
 
 		},
-		NextGenPage:{
-
-		},
 		PromoBanner:{
 
 		},
@@ -107,10 +104,6 @@ export const AllTypesProps: Record<string,any> = {
 		allMinistry:{
 			where:"MinistryFilter",
 			sort:"MinistrySorting"
-		},
-		allNextGenPage:{
-			where:"NextGenPageFilter",
-			sort:"NextGenPageSorting"
 		},
 		allPromoBanner:{
 			where:"PromoBannerFilter",
@@ -802,25 +795,6 @@ export const AllTypesProps: Record<string,any> = {
 		passage:"LocalizedTextSorting",
 		verse:"LocalizedStringSorting"
 	},
-	NextGenPageFilter:{
-		_:"Sanity_DocumentFilter",
-		_id:"IDFilter",
-		_type:"StringFilter",
-		_createdAt:"DatetimeFilter",
-		_updatedAt:"DatetimeFilter",
-		_rev:"StringFilter",
-		_key:"StringFilter",
-		cirriculum_file:"FileFilter"
-	},
-	NextGenPageSorting:{
-		_id:"SortOrder",
-		_type:"SortOrder",
-		_createdAt:"SortOrder",
-		_updatedAt:"SortOrder",
-		_rev:"SortOrder",
-		_key:"SortOrder",
-		cirriculum_file:"FileSorting"
-	},
 	PromoBannerFilter:{
 		_:"Sanity_DocumentFilter",
 		_id:"IDFilter",
@@ -1001,7 +975,6 @@ export const ReturnTypes: Record<string,any> = {
 		Leader:"Leader",
 		DeepDive:"DeepDive",
 		Ministry:"Ministry",
-		NextGenPage:"NextGenPage",
 		PromoBanner:"PromoBanner",
 		Testimonial:"Testimonial",
 		Resource:"Resource",
@@ -1019,7 +992,6 @@ export const ReturnTypes: Record<string,any> = {
 		allLeader:"Leader",
 		allDeepDive:"DeepDive",
 		allMinistry:"Ministry",
-		allNextGenPage:"NextGenPage",
 		allPromoBanner:"PromoBanner",
 		allTestimonial:"Testimonial",
 		allResource:"Resource",
@@ -1061,11 +1033,10 @@ export const ReturnTypes: Record<string,any> = {
 		"...on Event": "Event",
 		"...on Ministry": "Ministry",
 		"...on Leader": "Leader",
+		"...on Resource": "Resource",
 		"...on DeepDive": "DeepDive",
-		"...on NextGenPage": "NextGenPage",
 		"...on PromoBanner": "PromoBanner",
 		"...on Testimonial": "Testimonial",
-		"...on Resource": "Resource",
 		_id:"ID",
 		_type:"String",
 		_createdAt:"DateTime",
@@ -1318,7 +1289,8 @@ export const ReturnTypes: Record<string,any> = {
 		coordinators:"Leader",
 		coach:"Leader",
 		image:"Image",
-		image_alt:"LocalizedString"
+		image_alt:"LocalizedString",
+		resources:"Resource"
 	},
 	Slug:{
 		_key:"String",
@@ -1359,6 +1331,22 @@ export const ReturnTypes: Record<string,any> = {
 		asset:"SanityFileAsset",
 		media:"GlobalDocumentReference"
 	},
+	Resource:{
+		_id:"ID",
+		_type:"String",
+		_createdAt:"DateTime",
+		_updatedAt:"DateTime",
+		_rev:"String",
+		_key:"String",
+		title:"LocalizedString",
+		type:"String",
+		description:"LocalizedText",
+		category:"String",
+		file:"File",
+		file_size:"LocalizedString",
+		url:"String",
+		is_active:"Boolean"
+	},
 	DeepDive:{
 		_id:"ID",
 		_type:"String",
@@ -1385,16 +1373,6 @@ export const ReturnTypes: Record<string,any> = {
 		day:"String",
 		time:"String",
 		attendance_type:"String"
-	},
-	NextGenPage:{
-		_id:"ID",
-		_type:"String",
-		_createdAt:"DateTime",
-		_updatedAt:"DateTime",
-		_rev:"String",
-		_key:"String",
-		educators:"Leader",
-		cirriculum_file:"File"
 	},
 	PromoBanner:{
 		_id:"ID",
@@ -1430,22 +1408,6 @@ export const ReturnTypes: Record<string,any> = {
 		main_point:"LocalizedText",
 		statement:"LocalizedText",
 		image:"Image"
-	},
-	Resource:{
-		_id:"ID",
-		_type:"String",
-		_createdAt:"DateTime",
-		_updatedAt:"DateTime",
-		_rev:"String",
-		_key:"String",
-		title:"LocalizedString",
-		type:"String",
-		description:"LocalizedText",
-		category:"String",
-		file:"File",
-		file_size:"LocalizedString",
-		url:"String",
-		is_active:"Boolean"
 	},
 	Block:{
 		_key:"String",

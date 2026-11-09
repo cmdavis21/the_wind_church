@@ -83,6 +83,21 @@ const getMinistryBySlugQuery = async (slug: string) => {
           },
         },
         image_alt: localizedFields,
+        resources: {
+          _updatedAt: true,
+          title: localizedFields,
+          type: true,
+          description: localizedFields,
+          category: true,
+          file: {
+            asset: {
+              url: true,
+            },
+          },
+          file_size: localizedFields,
+          url: true,
+          is_active: true,
+        },
       },
     ],
   }).then((m) => m.allMinistry);
@@ -160,5 +175,17 @@ export const getMinistryBySlug = async (
       src: ministry.image?.asset?.url ?? '',
       alt: getLocalizedValue(ministry.image_alt, locale) ?? '',
     },
+    resources:
+      ministry.resources && ministry.resources.length > 0
+        ? ministry.resources.map((resource) => ({
+            title: getLocalizedValue(resource.title, locale) ?? '',
+            type: resource.type ?? 'File',
+            description: getLocalizedValue(resource.description, locale) ?? '',
+            file: resource.file?.asset?.url ?? undefined,
+            file_size: getLocalizedValue(resource.file_size, locale) ?? undefined,
+            url: resource.url ?? undefined,
+            updated_at: resource._updatedAt ? new Date(resource._updatedAt as string) : new Date(),
+          }))
+        : undefined,
   };
 };

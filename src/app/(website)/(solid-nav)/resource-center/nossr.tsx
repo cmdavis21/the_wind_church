@@ -44,7 +44,7 @@ const ResourceCenterClient = () => {
             onChange={(e) => setFilter(e.target.value)}
             options={[
               { label: t('filterDefault'), value: '' },
-              ...sortedResources.map(([k, _]) => ({ label: k, value: k })),
+              ...sortedResources.map(([k, _]) => ({ label: t(`categories.${k}`), value: k })),
             ]}
           />
         </div>
@@ -69,7 +69,7 @@ const ResourceCenterClient = () => {
           .filter(([cat]) => filter === '' || cat === filter)
           .map(([cat, resourceList]) => (
             <div key={`resource-cat-${cat}`} className="flex flex-col gap-xl md:gap-xxl">
-              <SectionHeader title={cat} />
+              <SectionHeader title={t(`categories.${cat}`)} />
 
               <div className="flex flex-wrap gap-xl">
                 {resourceList.map((resource) => (
