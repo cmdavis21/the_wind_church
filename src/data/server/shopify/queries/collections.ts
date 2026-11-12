@@ -1,9 +1,11 @@
+import { Locale, ShopifyFormatLocale } from '@/data/i18n/utils';
 import { Collection } from '@/data/types';
 import { CropRegion, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';
 
-const getStorefrontCollectionsQuery = () => {
+const getStorefrontCollectionsQuery = (locale: Locale) => {
   return ShopifyQuery.query({
+    __directives: `@inContext(language: ${ShopifyFormatLocale(locale)})`,
     collections: [
       { first: 25 },
       {
@@ -75,8 +77,8 @@ const getStorefrontCollectionsQuery = () => {
   });
 };
 
-export const getStorefrontCollections = async (): Promise<Collection[]> => {
-  const { collections } = await getStorefrontCollectionsQuery();
+export const getStorefrontCollections = async (locale: Locale): Promise<Collection[]> => {
+  const { collections } = await getStorefrontCollectionsQuery(locale);
 
   if (!collections) return [];
 

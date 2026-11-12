@@ -30,7 +30,7 @@ const LineItem: React.FC<LineItemProps> = ({
   const { cartLoading, updateCartItems, removeCartItems } = useCart();
 
   return (
-    <div className="rounded-xl border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col sm:flex-row gap-lg justify-between p-md">
+    <div className="rounded-xl border border-light-gray dark:border-dark-gray bg-white dark:bg-dark-bg shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col sm:flex-row gap-md justify-between p-md">
       <div className="relative flex gap-lg">
         <div className="relative">
           {!cartLineId && quantity > 1 && (
@@ -67,7 +67,7 @@ const LineItem: React.FC<LineItemProps> = ({
       </div>
 
       {cartLineId && (
-        <div className="flex flex-col justify-between gap-sm">
+        <div className="flex flex-row sm:flex-col max-md:items-center justify-between gap-sm">
           <h4 className="text-right font-bold">{formatPrice(subtotal)}</h4>
           <div className="flex flex-row items-center gap-sm">
             <QuantityInput

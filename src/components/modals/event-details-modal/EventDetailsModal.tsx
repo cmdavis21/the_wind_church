@@ -9,6 +9,7 @@ import { useDominantColor } from '@/data/client/use-dominant-color';
 import { formatDateMMMddyyyy, formatTimeHmm } from '@/data/format-date';
 import { Event } from '@/data/types';
 import { darkenRgb } from '@/data/utils';
+import { isSameDay } from 'date-fns';
 
 import { Badge, Modal, ModalBody } from 'flowbite-react';
 import { useTranslations } from 'next-intl';
@@ -46,7 +47,9 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
 
   const { color } = useDominantColor(image.src, 'bottom');
   const accent = darkenRgb(color, 0.15);
+
   const titleId = `event-modal-title-${event.name}`;
+  const sameDay = end_date_time ? isSameDay(end_date_time, start_date_time) : false;
 
   return (
     <Modal size="5xl" dismissible show={openModal} onClose={() => setOpenModal(!openModal)}>
@@ -60,6 +63,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
           {/* HERO PANEL — image + title, fixed, doesn't scroll with content */}
           <div className="relative w-full md:w-[42%] h-[220px] md:h-auto shrink-0">
             <Image fill src={image.src} alt={image.alt ?? ''} className="object-cover" />
+
             <div
               aria-hidden="true"
               className="absolute inset-0"
@@ -67,27 +71,32 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                 background: `linear-gradient(to top, ${accent} 5%, transparent 55%)`,
               }}
             />
+
             <div className="absolute inset-x-0 bottom-0 p-lg">
-              {categories && categories.length > 0 && (
-                <div className="flex flex-wrap gap-sm mb-sm">
-                  {categories.map((cat) => (
-                    <Badge key={`event-modal-${cat}`} color="gray" size="sm">
-                      {t(`categories.${cat}`)}
-                    </Badge>
-                  ))}
-                </div>
-              )}
-              <p className="text-white/80 text-sm font-semibold mb-1">
-                Presented by {external_organizer ?? associated_ministry ?? 'The Wind Church'}
+              <p className="text-light-gray dark:text-dark-gray text-sm font-semibold mb-1">
+                {t('presenter', {
+                  name: external_organizer ?? associated_ministry ?? 'The Wind Church',
+                })}
               </p>
-              <h2 id={titleId} className="text-white font-bold leading-tight">
+
+              <h3 id={titleId} className="text-white font-bold leading-tight">
                 {name}
-              </h2>
+              </h3>
             </div>
           </div>
 
           {/* DETAILS PANEL */}
           <div className="flex-1 overflow-y-auto scrollbar-hide p-lg md:p-xl bg-light-bg dark:bg-dark-bg">
+            {categories && categories.length > 0 && (
+              <div className="flex flex-wrap gap-sm mb-sm">
+                {categories.map((cat) => (
+                  <Badge key={`event-modal-${cat}`} color="gray" size="xs">
+                    {t(`categories.${cat}`)}
+                  </Badge>
+                ))}
+              </div>
+            )}
+
             {description && (
               <p className="text-light-secondaryText dark:text-dark-primaryText mb-lg">
                 {description}
@@ -95,36 +104,33 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             )}
 
             {/* DATE */}
-            <div
-              className="flex items-center gap-sm rounded-xl pb-sm"
-              style={{ backgroundColor: `${accent}1A` /* ~10% alpha */ }}
-            >
+            <div className="flex items-center gap-sm pb-sm">
               <Calendar
                 aria-hidden="true"
                 className="fill-current shrink-0"
                 style={{ color: accent }}
               />
-              <p className="font-medium">{formatDateMMMddyyyy(start_date_time)}</p>
+              <p className="font-medium">
+                {formatDateMMMddyyyy(start_date_time)}{' '}
+                {!sameDay && ` - ${formatDateMMMddyyyy(end_date_time)}`}
+              </p>
             </div>
 
             {/* TIME */}
-            <div
-              className="flex items-center gap-sm rounded-xl pb-sm"
-              style={{ backgroundColor: `${accent}1A` }}
-            >
+            <div className="flex items-center gap-sm pb-sm">
               <Clock
                 aria-hidden="true"
                 className="fill-current shrink-0"
                 style={{ color: accent }}
               />
-              <p className="font-medium">{formatTimeHmm(start_date_time)}</p>
+              <p className="font-medium">
+                {formatTimeHmm(start_date_time)}{' '}
+                {end_date_time && ` - ${formatTimeHmm(end_date_time)}`}
+              </p>
             </div>
 
             {/* LOCATION */}
-            <div
-              className="flex items-start gap-sm rounded-xl pb-sm"
-              style={{ backgroundColor: `${accent}1A` }}
-            >
+            <div className="flex items-start gap-sm pb-sm">
               <Location
                 aria-hidden="true"
                 width={23}
@@ -146,19 +152,21 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             <div className="flex flex-col gap-lg">
               {how_to_signup && (
                 <div>
-                  <p className="font-semibold mb-1">How to sign up</p>
+                  <p className="font-semibold mb-1">{t('howTo')}</p>
                   <p>{how_to_signup}</p>
                 </div>
               )}
+
               {cost && (
                 <div>
-                  <p className="font-semibold mb-1">Cost</p>
+                  <p className="font-semibold mb-1">{t('cost')}</p>
                   <p>{cost}</p>
                 </div>
               )}
+
               {help_needed && help_needed.length > 0 && (
                 <div>
-                  <p className="font-semibold mb-1">Help Needed</p>
+                  <p className="font-semibold mb-1">{t('help')}</p>
                   <ul className="ml-5 list-outside list-disc">
                     {help_needed.map((item) => (
                       <li key={`event-details-help-needed-${item}`}>
@@ -168,9 +176,10 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                   </ul>
                 </div>
               )}
+
               {additional_notes && (
                 <div>
-                  <p className="font-semibold mb-1">Additional Notes</p>
+                  <p className="font-semibold mb-1">{t('additional')}</p>
                   <p>{additional_notes}</p>
                 </div>
               )}

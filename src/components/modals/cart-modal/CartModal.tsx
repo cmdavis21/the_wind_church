@@ -43,9 +43,9 @@ const CartModal: React.FC<CartModalProps> = ({
   return (
     <Modal
       size="lg"
-      dismissible={false}
       show={open}
       position="center"
+      dismissible={false}
       onClose={() => setOpen(false)}
     >
       <Modal.Body className="p-0">
@@ -53,7 +53,7 @@ const CartModal: React.FC<CartModalProps> = ({
           <CornerButton onClick={setOpen} className="absolute z-10 right-0 top-0" />
           <div className="relative w-full bg-white dark:bg-dark-bg rounded-lg p-lg flex flex-col gap-md">
             <h5>
-              {t.rich('modal.quantity', {
+              {t.rich('quantity', {
                 bold: (chunks) => <span className="font-bold">{chunks}</span>,
                 quantity: cartQuantity,
               })}

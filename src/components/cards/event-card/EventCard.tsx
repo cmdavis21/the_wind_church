@@ -1,15 +1,17 @@
 'use client';
+
+import EventDetailsModal from '@/components/modals/event-details-modal/EventDetailsModal';
+import cn from 'classnames';
 import { differenceInDays, format, isToday } from 'date-fns';
 import { Badge } from 'flowbite-react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-import EventDetailsModal from '@/components/modals/event-details-modal/EventDetailsModal';
-
 import { useDominantColor } from '@/data/client/use-dominant-color';
 import { formatTimeHmm } from '@/data/format-date';
 import { Event } from '@/data/types';
 import { darkenRgb } from '@/data/utils';
+import { useTranslations } from 'next-intl';
 
 interface EventCardProps {
   event: Event;
@@ -17,7 +19,9 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
-  const { name, start_date_time, location, image } = event;
+  const t = useTranslations('Events');
+
+  const { name, start_date_time, end_date_time, location, image } = event;
 
   const [open, setOpen] = useState(false);
   const [pastEvent, setPastEvent] = useState(false);
@@ -26,24 +30,23 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
   const { color } = useDominantColor(image.src, 'bottom');
   const panelColor = darkenRgb(color, 0.4);
 
+  const eventDate = new Date(start_date_time);
+
   useEffect(() => {
     const now = Date.now();
-    const eventDate = new Date(start_date_time);
     const daysUntilEvent = differenceInDays(eventDate, now);
 
     if (daysUntilEvent > 0 && daysUntilEvent <= 30) {
-      setAddTag({ label: 'Upcoming' });
+      setAddTag({ label: t('upcoming') });
     } else if (isToday(eventDate)) {
-      setAddTag({ label: 'Happening Today!' });
+      setAddTag({ label: t('happening') });
     }
 
     if (new Date(now) > eventDate) {
       setPastEvent(true);
-      setAddTag({ label: 'Past Event', color: 'gray' });
+      setAddTag({ label: t('past'), color: 'gray' });
     }
   }, [start_date_time]);
-
-  const eventDate = new Date(start_date_time);
 
   return (
     <>
@@ -52,20 +55,22 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`group relative w-[300px] sm:w-[350px] flex flex-col overflow-hidden rounded-3xl text-left shadow-lg
-          ${scale ? 'transition-transform duration-300 hover:scale-[1.02]' : ''}
-          focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary`}
         style={{ backgroundColor: panelColor }}
+        className={cn(
+          scale && 'transition-transform duration-300 hover:scale-[1.02]',
+          'group relative w-[300px] sm:w-[350px] flex flex-col overflow-hidden rounded-3xl text-left shadow-lg',
+          'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary'
+        )}
       >
         {/* PHOTO — full bleed, fixed aspect, clipped by the card's own overflow-hidden */}
         <div className="relative w-full aspect-square overflow-hidden">
           <Image
             fill
             src={image.src}
-            alt={image.alt ?? 'Image of event'}
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
             placeholder="blur"
             blurDataURL="data:..."
+            alt={image.alt ?? 'Image of event'}
+            className="object-cover transition-transform duration-500 ease-out"
           />
 
           {pastEvent && <div className="absolute inset-0 z-10 bg-black/40" />}
@@ -81,23 +86,22 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
           {/* OMBRE — softened with alpha stops, fades out fully on hover to reveal the photo */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 z-10 transition-opacity duration-500 ease-out group-hover:opacity-0 motion-reduce:transition-none"
-            // style={{
-            //   background: `linear-gradient(to bottom, transparent 38%, ${rgbToRgba(color, 0.55)} 75%, ${rgbToRgba(panelColor, 0.8)} 100%)`,
-            // }}
             style={{
               background: `linear-gradient(to bottom, transparent 38%, ${color} 72%, ${panelColor} 100%)`,
             }}
+            className="absolute inset-0 z-10 transition-opacity duration-500 ease-out group-hover:opacity-80 motion-reduce:transition-none"
           />
 
           {/* TITLE — fades with the ombre since it needs the gradient's contrast to stay readable */}
-          <div className="absolute inset-x-0 bottom-0 z-20 px-lg pb-md transition-opacity duration-300 ease-out group-hover:opacity-0 motion-reduce:transition-none">
-            <h3 className="text-white font-bold leading-tight">{name}</h3>
+          <div className="absolute inset-x-0 bottom-0 z-20 px-lg pb-sm transition-opacity duration-300 ease-out group-hover:opacity-10 motion-reduce:transition-none">
+            <h3 className="text-white font-bold leading-tight md:text-[24px] max-w-[85%]">
+              {name}
+            </h3>
           </div>
         </div>
 
         {/* DETAILS ROW */}
-        <div className="relative z-20 flex items-center gap-3 px-lg py-md">
+        <div className="relative z-20 flex items-center gap-md px-md py-sm">
           {/* DATE BADGE */}
           <div className="flex flex-col items-center justify-center shrink-0 w-14 rounded-lg bg-white text-light-gray overflow-hidden border-2 border-white">
             <span
@@ -118,11 +122,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
             <p className="text-white/70 text-xs leading-snug line-clamp-1">
               {location.address}, {location.city} {location.city} {location.zip}
             </p>
-            {location.sublocation && (
-              <p className="text-white/70 text-xs leading-snug">{location.sublocation}</p>
-            )}
             <p className="text-white font-semibold text-sm whitespace-nowrap">
-              {formatTimeHmm(start_date_time)}
+              {formatTimeHmm(start_date_time)}{' '}
+              {end_date_time && ` - ${formatTimeHmm(end_date_time)}`}
             </p>
           </div>
         </div>

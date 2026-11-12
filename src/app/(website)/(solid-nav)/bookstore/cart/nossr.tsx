@@ -6,24 +6,27 @@ import { useCart } from '@/data/client/shopify/use-cart';
 import { formatPrice } from '@/data/format-price';
 import { PageRoutes } from '@/data/page-routes';
 import { Button } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { CartSkeleton } from './skeleton';
 
 const CartPage = () => {
+  const t = useTranslations('Cart');
+
   const { cart, cartLoading } = useCart();
 
   return (
     <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
-      <PageHeader title="Your Cart" subtitle="" />
+      <PageHeader title={t('title')} subtitle={t('subtitle')} />
 
       {cartLoading && <CartSkeleton />}
 
       {!cartLoading && (!cart || (cart && cart?.lines.length <= 0)) && (
         <div className="flex flex-col gap-lg items-center justify-center h-[250px]">
-          <h4 className="text-center">There are no products in your cart.</h4>
+          <h4 className="text-center">{t('emptyCart')}</h4>
           <Link href={PageRoutes.bookstore} className="w-full max-w-[300px]">
             <Button pill fullSized color="primary" className="whitespace-nowrap">
-              Contine Shopping
+              {t('continue')}
             </Button>
           </Link>
         </div>
@@ -33,21 +36,23 @@ const CartPage = () => {
         <div className="flex flex-col gap-lg max-w-[800px] mx-auto w-full">
           {/* CART COUNT */}
           <h5>
-            <span className="font-bold">
-              {cart?.total_quantity} item{cart?.total_quantity > 1 ? 's' : ''}
-            </span>{' '}
-            in the cart
+            {t.rich('quantity', {
+              bold: (chunks) => <span className="font-bold">{chunks}</span>,
+              quantity: cart.total_quantity,
+            })}
           </h5>
 
           {/* SUBTOTAL + CHECKOUT */}
           <div className="flex flex-col md:flex-row gap-lg items-center justify-between">
             <div className="flex flex-col gap-sm">
-              <h4 className="font-bold">Subtotal {formatPrice(cart?.subtotal_amount)}</h4>
-              <h5 className="italic">Taxes and delivery determined at checkout</h5>
+              <h4 className="font-bold">
+                {t('subtotal', { amount: formatPrice(cart?.subtotal_amount) })}
+              </h4>
+              <h5 className="italic">{t('taxes')}</h5>
             </div>
             <Link href={cart?.checkout_url} className="w-full md:w-fit">
               <Button pill color="primary" className="w-full md:w-fit min-w-[200px]">
-                Checkout
+                {t('checkout')}
               </Button>
             </Link>
           </div>

@@ -10,29 +10,14 @@ import { PageRoutes } from '@/data/page-routes';
 import { Product } from '@/data/types';
 import cn from 'classnames';
 import { Badge, Button, Spinner } from 'flowbite-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
-const MISCELLANEOUS_DETAIL: { detail: string; description: string }[] = [
-  {
-    detail: 'Delivery',
-    description:
-      'All items are shipped directly to you. Delivery times vary by product and destination, averaging 5-10 business days after fulfillment. Orders are processed within 2-3 business days. Tracking information will be provided once your order ships. Please note that delivery times may be longer during holidays.',
-  },
-  {
-    detail: 'Pickup',
-    description:
-      "Select items are available for pickup only at The Wind Church bookstore during regular service hours (Sundays 11:30AM-12PM and Wednesdays 6:30PM-7PM). You'll receive a confirmation email when you purchase. Please bring your order number or proof of purchase when picking up your item.",
-  },
-  {
-    detail: 'Refunds & Returns',
-    description:
-      'We accept returns for defective or damaged items within 14 days of delivery. To request a refund or replacement, contact bookstore@thewindchurch.org with your order number, description of the issue, and photos. Personalized products are non-refundable unless defective. Refunds are issued to the original payment method once the return is approved and processed.',
-  },
-];
-
 const ProductPage = (product: Product) => {
+  const t = useTranslations('Bookstore');
+
   const { cart, addCartItems, cartLoading } = useCart();
 
   const [quantity, setQuantity] = useState(1);
@@ -84,6 +69,12 @@ const ProductPage = (product: Product) => {
   }, [variations]);
 
   const selectedVariant = product.variants[selectedVariantIndex];
+
+  const POLICIES: { label: string; description: string }[] = [
+    { label: t('policies.0.label'), description: t('policies.0.description') },
+    { label: t('policies.1.label'), description: t('policies.1.description') },
+    { label: t('policies.2.label'), description: t('policies.2.description') },
+  ];
 
   return (
     <>
@@ -155,23 +146,26 @@ const ProductPage = (product: Product) => {
             {/* PRICING */}
             <div className="flex items-center gap-sm">
               <h3>{formatPrice(selectedVariant.price)}</h3>
+
               {selectedVariant.compare_price && (
                 <h4 className="line-through text-light-charcoal dark:text-dark-primaryText">
                   {formatPrice(selectedVariant.compare_price)}
                 </h4>
               )}
+
               {/* INVENTORY BADGE */}
               {selectedVariant.quantity_available <= 20 && (
                 <Badge color="red" size="md">
                   {selectedVariant.quantity_available <= 0
-                    ? 'Out of Stock'
-                    : `Only ${selectedVariant.quantity_available} left!`}
+                    ? t('out')
+                    : t('left', { count: selectedVariant.quantity_available })}
                 </Badge>
               )}
+
               {/* PICKUP ONLY */}
               {product.pickup_only && (
                 <Badge color="warning" size="md">
-                  No Shipping, Pickup-only
+                  {t('pickup')}
                 </Badge>
               )}
             </div>
@@ -189,7 +183,7 @@ const ProductPage = (product: Product) => {
                   onClick={() => setShowDescription(!showDescription)}
                   className="pt-sm border border-light-gray hover:opacity-75 dark:border-dark-gray border-x-0 border-b-0 flex items-center gap-xs text-light-charcoal dark:text-dark-primaryText"
                 >
-                  Read {showDescription ? 'Less' : 'More'}
+                  {showDescription ? t('readLess') : t('readMore')}
                 </button>
               )}
             </div>
@@ -230,17 +224,14 @@ const ProductPage = (product: Product) => {
                   increment={setQuantity}
                 />
                 <div className="text-light-charcoal dark:text-dark-primaryText body-small">
-                  In the Bag (
-                  {cart
-                    ? (cart?.lines.find((item) => item.variant.id === selectedVariant.id)
-                        ?.quantity ?? 0)
-                    : 0}
-                  )
+                  {t('inBag', {
+                    count:
+                      cart?.lines.find((item) => item.variant.id === selectedVariant.id)
+                        ?.quantity ?? 0,
+                  })}
                 </div>
               </div>
-              {quantity === 10 && (
-                <p className="text-error body-small">*Can only add up to 10 items max</p>
-              )}
+              {quantity === 10 && <p className="text-error body-small">{t('maxQuantity')}</p>}
             </div>
 
             {/* ACTION BUTTONS */}
@@ -250,12 +241,9 @@ const ProductPage = (product: Product) => {
                 disabled={selectedVariant.quantity_available <= 0}
                 onClick={() => {
                   if (selectedVariant.id) {
-                    addCartItems([
-                      {
-                        quantity,
-                        merchandiseId: selectedVariant.id as any,
-                      },
-                    ]).then(() => setShowModal(true));
+                    addCartItems([{ quantity, merchandiseId: selectedVariant.id as any }]).then(
+                      () => setShowModal(true)
+                    );
                   }
                 }}
                 fullSized
@@ -265,26 +253,26 @@ const ProductPage = (product: Product) => {
                 {cartLoading ? (
                   <Spinner />
                 ) : selectedVariant.quantity_available <= 0 ? (
-                  'Out of Stock'
+                  t('out')
                 ) : (
-                  'Add to cart'
+                  t('add')
                 )}
               </Button>
               <Link href={PageRoutes.bookstore} className="w-full md:w-[calc(50%-8px)]">
                 <Button pill fullSized color="info" className="whitespace-nowrap">
-                  Contine Shopping
+                  {t('continue')}
                 </Button>
               </Link>
             </div>
 
             {/* MISCELLANEOUS INFO */}
             <div className="pt-xl flex flex-col gap-xl">
-              {MISCELLANEOUS_DETAIL.map(({ detail, description }) => (
+              {POLICIES.map(({ label, description }) => (
                 <div
-                  key={detail}
+                  key={label}
                   className="flex flex-col gap-sm text-light-charcoal dark:text-dark-primaryText"
                 >
-                  <h5>{detail}</h5>
+                  <h5>{label}</h5>
                   <p className="pt-sm border border-light-gray dark:border-dark-gray border-x-0 border-b-0">
                     {description}
                   </p>

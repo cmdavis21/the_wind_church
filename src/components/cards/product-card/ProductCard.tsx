@@ -98,12 +98,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="absolute top-4 left-4 flex flex-col gap-1">
             {totalInventory <= 20 && (
               <Badge color="red" size="xs">
-                {totalInventory <= 0 ? 'Out of Stock' : `Only ${totalInventory} left!`}
+                {totalInventory <= 0 ? t('out') : t('left', { count: totalInventory })}
               </Badge>
             )}
             {pickupOnly && (
               <Badge color="warning" size="xs">
-                {t('card.pickup')}
+                {t('pickup')}
               </Badge>
             )}
           </div>

@@ -25,10 +25,7 @@ const EventsClient = () => {
 
   return (
     <div className="px-padding flex flex-col gap-3xl lg:gap-4xl max-width-center">
-      <PageHeader
-        title="Events"
-        subtitle="Don't miss it! Stay informed on events happening at The Wind."
-      />
+      <PageHeader title={t('title')} subtitle={t('subtitle')} />
 
       {/* FILTERING */}
       {events && (
@@ -57,8 +54,8 @@ const EventsClient = () => {
             <>
               {filteredEvents.length === 0 ? (
                 <div className="flex flex-col gap-xs">
-                  <h4 className="text-center">No events for this category.</h4>
-                  <h4 className="text-center">Try another selection.</h4>
+                  <h4 className="text-center">{t('noResults.title')}</h4>
+                  <h4 className="text-center">{t('noResults.subtitle')}</h4>
                 </div>
               ) : (
                 <>
@@ -84,8 +81,8 @@ const EventsClient = () => {
             </>
           ) : (
             <div className="flex flex-col gap-xs">
-              <h4 className="text-center">There are no upcoming events at this time.</h4>
-              <h4 className="text-center">Check back later</h4>
+              <h4 className="text-center">{t('noEvents.title')}</h4>
+              <h4 className="text-center">{t('noEvents.subtitle')}</h4>
             </div>
           )}
         </>

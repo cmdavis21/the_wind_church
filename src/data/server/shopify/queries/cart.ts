@@ -1,9 +1,11 @@
+import { Locale, ShopifyFormatLocale } from '@/data/i18n/utils';
 import { Cart } from '@/data/types';
 import { CropRegion, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';
 
-export const getCurrentCartQuery = async (cartId: string) => {
+export const getCurrentCartQuery = async (cartId: string, locale: Locale) => {
   return ShopifyQuery.query({
+    __directives: `@inContext(language: ${ShopifyFormatLocale(locale)})`,
     cart: [
       { id: cartId },
       {
@@ -76,10 +78,10 @@ export const getCurrentCartQuery = async (cartId: string) => {
   });
 };
 
-export const getCurrentCart = async (cartId: string): Promise<Cart | null> => {
+export const getCurrentCart = async (cartId: string, locale: Locale): Promise<Cart | null> => {
   if (!cartId) return null;
 
-  const { cart } = await getCurrentCartQuery(cartId);
+  const { cart } = await getCurrentCartQuery(cartId, locale);
   if (!cart) return null;
 
   return {

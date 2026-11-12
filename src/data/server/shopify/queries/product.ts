@@ -1,9 +1,11 @@
+import { Locale, ShopifyFormatLocale } from '@/data/i18n/utils';
 import { Product } from '@/data/types';
 import { CropRegion, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';
 
-const getStorefrontProductByHandleQuery = (handle: string) => {
+const getStorefrontProductByHandleQuery = (handle: string, locale: Locale) => {
   return ShopifyQuery.query({
+    __directives: `@inContext(language: ${ShopifyFormatLocale(locale)})`,
     product: [
       { handle },
       {
@@ -106,8 +108,11 @@ const getStorefrontProductHandlesQuery = () => {
   });
 };
 
-export const getStorefrontProductByHandle = async (handle: string): Promise<Product | null> => {
-  const { product } = await getStorefrontProductByHandleQuery(handle);
+export const getStorefrontProductByHandle = async (
+  handle: string,
+  locale: Locale
+): Promise<Product | null> => {
+  const { product } = await getStorefrontProductByHandleQuery(handle, locale);
 
   if (!product) return null;
 

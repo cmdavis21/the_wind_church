@@ -1288,9 +1288,29 @@
     "title": "Bookstore",
     "subtitle": "Explore books, apparel, gifts, and ministry resources designed to encourage your walk with Christ.",
     "defaultFilterLabel": "All Products",
-    "card": {
-      "pickup": "Pickup-only"
-    }
+    "out": "Out of Stock",
+    "add": "Add to Cart",
+    "continue": "Continue Shopping",
+    "left": "Only {count} left!",
+    "pickup": "Pickup Only",
+    "readMore": "Read More",
+    "readLess": "Read Less",
+    "inBag": "In your bag ({count})",
+    "maxQuantity": "* You can add up to 10 items per order",
+    "policies": [
+      {
+        "label": "Delivery",
+        "description": "Most orders are printed and shipped directly to you. Processing and fulfillment times vary by product, with most orders arriving within 5–10 business days after fulfillment. Tracking information will be provided by email once your order ships. Please note that delivery times may be longer during holidays, special promotions, or periods of high demand."
+      },
+      {
+        "label": "Pickup",
+        "description": "Select items may be available for pickup at The Wind Church Bookstore during designated service hours. If pickup is available for your item, you will receive a confirmation email with pickup instructions after your order is placed. Please bring your order confirmation or proof of purchase when collecting your item."
+      },
+      {
+        "label": "Refunds & Returns",
+        "description": "Many of our products are made to order specifically for you. Because of this, we are unable to accept returns, exchanges, or refunds for incorrect sizes, color selections, buyer errors, or change-of-mind purchases. If your item arrives damaged, defective, or incorrect, please contact <email>thewindchurch@outlook.com</email> within 14 days of delivery and include your order number along with photos of the issue. Once reviewed, we will work with our fulfillment partner to provide a replacement or refund when applicable."
+      }
+    ]
   },
   "Orders": {
     "metadata": {
@@ -1352,10 +1372,20 @@
         "subtitle": "There is a problem updating your address. Try again later, or call our office at +1 (951) 359-0203."
       },
       "country": {
+        "label": "Country",
         "message": "Country is required",
         "test": "Invalid country",
         "default": "Shipping is only available in the United States"
-      }
+      },
+      "address": "Address",
+      "addressTwo": {
+        "label": "Address 2 (Optional)",
+        "placeholder": "Apt, Ste, Bld"
+      },
+      "city": "City",
+      "state": "State",
+      "zip": "Zip",
+      "update": "Update"
     }
   },
   "Cart": {
@@ -1363,11 +1393,15 @@
       "title": "Shopping Cart",
       "description": "View your cart and checkout items from The Wind Church bookstore."
     },
-    "alt": "",
-    "title": "",
+    "title": "Your Cart",
     "subtitle": "",
+    "emptyCart": "Your cart is empty. Visit the bookstore to get started.",
+    "continue": "Continue Shopping",
+    "quantity": "<bold>{quantity, plural, =0 {0 items} one {# item} other {# items}}</bold> in the cart",
+    "taxes": "Taxes and delivery determined at checkout",
+    "subtotal": "Subtotal {amount}",
+    "checkout": "Checkout",
     "modal": {
-      "quantity": "You have <bold>{quantity, plural, =0 {0 items} one {# item} other {# items}}</bold> in the cart",
       "go": "Go to Cart",
       "back": "Back to Bookstore",
       "count": "+{quantity}",
@@ -1382,7 +1416,7 @@
       "description": "Stay up to date with upcoming church events, services, and community gatherings at The Wind Church."
     },
     "title": "Events",
-    "subtitle": "From worship services and ministry gatherings to discipleship classes and community outreach, find your next opportunity to connect and grow.",
+    "subtitle": "Discover upcoming opportunities to worship, connect, grow, and serve at The Wind Church.",
     "filterDefault": "All Events",
     "categories": {
       "worship-service": "Worship Service",
@@ -1408,7 +1442,24 @@
       "friends-family-gathering": "Friends and Family Gathering",
       "potluck": "Potluck / Shared Meals",
       "game-movie-night": "Game Night / Movie Night"
-    }
+    },
+    "noResults": {
+      "title": "No events found for this category.",
+      "subtitle": "Try selecting a different category or view all upcoming events."
+    },
+    "noEvents": {
+      "title": "No upcoming events scheduled at this time.",
+      "subtitle": "Please check back soon for future gatherings, ministries, and special events."
+    },
+    "upcoming": "Upcoming",
+    "happening": "Happening Today!",
+    "past": "Past Event",
+    "view": "View Details",
+    "presenter": "Presented by {name}",
+    "howTo": "How to Sign Up:",
+    "cost": "Cost:",
+    "help": "Help Needed:",
+    "additional": "Additional Notes:"
   },
   "Gallery": {
     "metadata": {
@@ -1900,11 +1951,6 @@
         }
       ]
     },
-    "download": "Download Cirriculum",
-    "scripture": {
-      "verse": "1 Timothy 4:12",
-      "passage": "Let no one despise your youth, but set an example for the believers in speech, in conduct, in love, in faith, and in purity"
-    },
     "educators": {
       "title": "Meet our Educators & Caretakers",
       "subtitle": "Select a Leader to learn more"
@@ -1922,7 +1968,7 @@
     },
     "resources": {
       "title": "Resources",
-      "subtitle": "Stay informed with curriculum guides, ministry updates, event information, and helpful resources designed to support children, students, and families."
+      "subtitle": "Helpful resources, updates, and information for Next Gen families."
     },
     "nursery": {
       "alt": "Baby playing with colored blocks.",

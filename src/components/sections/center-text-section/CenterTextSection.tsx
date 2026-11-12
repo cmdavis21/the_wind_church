@@ -6,7 +6,7 @@ interface CenterTextSectionProps {
 }
 
 const CenterTextSection: React.FC<CenterTextSectionProps> = ({ title, description }) => (
-  <div className="text-center py-2xl max-w-[75%] mx-auto">
+  <div className="text-center py-2xl lg:max-w-[75%] mx-auto">
     <h2 className="md:text-4xl tracking-tight font-light">{title}</h2>
     {description && (
       <h4 className="mt-sm text-light-charcoal dark:text-dark-primaryText leading-relaxed">

@@ -1293,9 +1293,29 @@
     "title": "Librería",
     "subtitle": "Explore libros, ropa, regalos y recursos ministeriales diseñados para fortalecer su caminar con Cristo.",
     "defaultFilterLabel": "Todos los Productos",
-    "card": {
-      "pickup": "Recogida en la iglesia"
-    }
+    "out": "Agotado",
+    "add": "Añadir al carrito",
+    "continue": "Continuar comprando",
+    "left": "¡Solo quedan {count}!",
+    "pickup": "Solo para recoger",
+    "readMore": "Leer más",
+    "readLess": "Leer menos",
+    "inBag": "En tu cesta ({count})",
+    "maxQuantity": "* Puedes añadir hasta 10 artículos por pedido",
+    "policies": [
+      {
+        "label": "Envío",
+        "description": "La mayoría de los pedidos se imprimen y envían directamente a usted. Los tiempos de procesamiento y preparación varían según el producto; por lo general, los pedidos llegan en un plazo de 5 a 10 días hábiles tras su preparación. Recibirá información de seguimiento por correo electrónico una vez que se haya enviado su pedido. Tenga en cuenta que los plazos de entrega pueden ser más largos durante días festivos, promociones especiales o periodos de alta demanda."
+      },
+      {
+        "label": "Recogida",
+        "description": "Algunos artículos pueden estar disponibles para su recogida en la librería de The Wind Church (The Wind Church Bookstore) durante el horario de atención establecido. Si la opción de recogida está disponible para su artículo, recibirá un correo electrónico de confirmación con las instrucciones correspondientes tras realizar el pedido. Por favor, presente su confirmación de pedido o comprobante de compra al recoger el artículo."
+      },
+      {
+        "label": "Reembolsos y devoluciones",
+        "description": "Muchos de nuestros productos se fabrican bajo pedido, específicamente para usted. Por este motivo, no podemos aceptar devoluciones, cambios ni reembolsos en casos de elección de talla o color incorrecta, errores por parte del comprador o cambios de opinión. Si su artículo llega dañado, defectuoso o es incorrecto, póngase en contacto con <email>thewindchurch@outlook.com</email> en un plazo de 14 días tras la entrega, indicando su número de pedido y adjuntando fotografías del problema. Una vez revisado el caso, colaboraremos con nuestro proveedor logístico para gestionar un reemplazo o un reembolso, según corresponda."
+      }
+    ]
   },
   "Orders": {
     "metadata": {
@@ -1317,9 +1337,9 @@
       "shipping": "Dirección de envío",
       "billing": "Dirección de facturación",
       "payment": "Detalles de pago",
-      "expiration": "Vence {month}/{year}",
+      "expiration": "Venc. {month}/{year}",
       "tax": "Impuestos",
-      "subtotal": "Subtotal",
+      "subtotal": "Total parcial",
       "item": {
         "price": "<bold>Precio</bold> {value}",
         "quantity": "<bold>Cant.</bold> {value}",
@@ -1329,12 +1349,48 @@
     },
     "lookupForm": {
       "title": "Se requiere correo electrónico",
-      "subtitle": "Para ver tus pedidos, ingresa tu correo electrónico.",
+      "subtitle": "Para ver tus pedidos, introduce tu correo electrónico.",
       "error": {
-        "title": "¡Oh no!",
-        "subtitle": "Correo electrónico no encontrado. Intenta de nuevo más tarde, o llama a nuestra oficina al +1 (951) 359-0203."
+        "title": "¡Vaya!",
+        "subtitle": "No se ha encontrado el correo electrónico. Inténtalo de nuevo más tarde o llama a nuestra oficina al +1 (951) 359-0203."
       },
-      "pending": "Buscando tus cosas..."
+      "pending": "Buscando tu información..."
+    },
+    "emailForm": {
+      "title": "Actualización de correo electrónico",
+      "subtitle": "Se requiere un correo electrónico para realizar el seguimiento de los pedidos",
+      "success": {
+        "subtitle": "Correo electrónico actualizado en tu cuenta."
+      },
+      "error": {
+        "subtitle": "Ha surgido un problema al actualizar tu correo electrónico. Inténtalo de nuevo más tarde o llama a nuestra oficina al +1 (951) 359-0203."
+      },
+      "update": "Actualizar"
+    },
+    "addressForm": {
+      "title": "Actualización de la dirección de envío",
+      "subtitle": "Los envíos solo se realizan dentro de EE. UU.",
+      "success": {
+        "subtitle": "Dirección actualizada en tu cuenta."
+      },
+      "error": {
+        "subtitle": "Ha surgido un problema al actualizar tu dirección. Inténtalo de nuevo más tarde o llama a nuestra oficina al +1 (951) 359-0203."
+      },
+      "country": {
+        "label": "País",
+        "message": "El país es obligatorio",
+        "test": "País no válido",
+        "default": "Los envíos solo están disponibles en Estados Unidos"
+      },
+      "address": "Dirección",
+      "addressTwo": {
+        "label": "Dirección 2 (opcional)",
+        "placeholder": "Apt, Ste, Bld"
+      },
+      "city": "Ciudad",
+      "state": "Estado",
+      "zip": "Código postal",
+      "update": "Actualizar"
     }
   },
   "Cart": {
@@ -1342,8 +1398,21 @@
       "title": "Carrito de Compras",
       "description": "Revisa tu carrito y completa tu compra en la librería de The Wind Church."
     },
+    "title": "Tu carrito",
+    "subtitle": "",
+    "emptyCart": "Tu carrito está vacío. Visita la librería para empezar.",
+    "continue": "Seguir comprando",
+    "quantity": "<bold>{quantity, plural, =0 {0 artículos} one {# artículo} other {# artículos}}</bold> en el carrito",
+    "taxes": "Los impuestos y los gastos de envío se calcularán al finalizar la compra",
+    "subtotal": "Subtotal {amount}",
+    "checkout": "Finalizar compra",
     "modal": {
-      "quantity": "Tiene <bold>{quantity, plural, =0 {0 artículos} one {# artículo} other {# artículos}}</bold> en el carrito"
+      "go": "Ir al carrito",
+      "back": "Volver a la librería",
+      "count": "+{quantity}",
+      "imageAlt": "Imagen del producto {name}",
+      "selection": "{name}: {value}",
+      "pickup": "Requiere recogida"
     }
   },
   "Events": {
@@ -1352,7 +1421,7 @@
       "description": "Mantente al día con los próximos eventos, servicios y reuniones comunitarias en The Wind Church."
     },
     "title": "Eventos",
-    "subtitle": "Desde servicios de adoración y reuniones ministeriales hasta clases de discipulado y actividades comunitarias, encuentra tu próxima oportunidad para conectarte y crecer.",
+    "subtitle": "Descubre próximas oportunidades para adorar, conectarte, crecer y servir en The Wind Church.",
     "filterDefault": "Todos los Eventos",
     "categories": {
       "worship-service": "Servicio de Adoración",
@@ -1378,7 +1447,24 @@
       "friends-family-gathering": "Reunión de Amigos y Familia",
       "potluck": "Comida Compartida",
       "game-movie-night": "Noche de Juegos / Película"
-    }
+    },
+    "noResults": {
+      "title": "No se encontraron eventos para esta categoría.",
+      "subtitle": "Prueba seleccionando otra categoría o visualiza todos los próximos eventos."
+    },
+    "noEvents": {
+      "title": "No hay eventos programados en este momento.",
+      "subtitle": "Vuelve pronto para conocer futuras reuniones, ministerios y eventos especiales."
+    },
+    "upcoming": "Próximamente",
+    "happening": "¡Hoy!",
+    "past": "Evento pasado",
+    "view": "Ver detalles",
+    "presenter": "Presentado por {name}",
+    "howTo": "Cómo inscribirse:",
+    "cost": "Costo:",
+    "help": "Se necesita ayuda:",
+    "additional": "Notas adicionales:"
   },
   "Gallery": {
     "metadata": {
@@ -1856,11 +1942,6 @@
         }
       ]
     },
-    "download": "Descargar Plan de Estudios",
-    "scripture": {
-      "verse": "1 Timoteo 4:12",
-      "passage": "Ninguno tenga en poco tu juventud, sino sé ejemplo de los creyentes en palabra, conducta, amor, fe y pureza."
-    },
     "educators": {
       "title": "Conozca a Nuestros Educadores y Cuidadores",
       "subtitle": "Seleccione un líder para obtener más información"
@@ -1878,7 +1959,7 @@
     },
     "resources": {
       "title": "Recursos",
-      "subtitle": "Mantente informado con guías de enseñanza, actualizaciones ministeriales, información de eventos y recursos diseñados para apoyar a niños, estudiantes y familias."
+      "subtitle": "Recursos útiles, actualizaciones e información para las familias de la próxima generación."
     },
     "nursery": {
       "alt": "Bebé jugando con bloques de colores.",

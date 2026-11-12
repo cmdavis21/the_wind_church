@@ -39,7 +39,7 @@ const BookstoreClient = () => {
             disabled={collectionsLoading || collectionsError}
             options={[
               { label: t('defaultFilterLabel'), value: '' },
-              ...collections.map((c) => ({ label: c.title, value: c.title })),
+              ...collections.map(({ title }) => ({ label: title, value: title })),
             ]}
           />
         </div>
@@ -53,6 +53,7 @@ const BookstoreClient = () => {
             className="flex flex-col gap-xl md:gap-xxl"
           >
             <SectionHeaderSkeleton />
+
             <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg place-items-center">
               {Array.from({ length: 6 }).map((_, idx) => (
                 <ProductCardSkeleton key={`bookstore-collections-skeleton-card-${idx}`} />
@@ -73,7 +74,8 @@ const BookstoreClient = () => {
               className="flex flex-col gap-xl md:gap-xxl"
             >
               <SectionHeader title={coll.title} />
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg">
+
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-content-center gap-lg">
                 {coll.products
                   .sort((a, b) => a.title.localeCompare(b.title))
                   .map((prod) => (

@@ -153,22 +153,24 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
     <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="form-container-style">
       <div className="flex items-center gap-sm">
         <PencilPaper width={25} height={25} className="dark:fill-dark-primaryText" />
-        <h4>Shipping Address Update</h4>
+        <h4>{t('addressForm.title')}</h4>
       </div>
 
-      <h5 className="text-light-charcoal dark:text-dark-charcoal">
-        Shipping only provided in the US
-      </h5>
+      <h5 className="text-light-charcoal dark:text-dark-charcoal">{t('addressForm.subtitle')}</h5>
 
       {isSuccess && (
-        <AlertMessage type="success" title="Success!" description="Address was updated." />
+        <AlertMessage
+          type="success"
+          title={c('success.title')}
+          description={t('addressForm.success.subtitle')}
+        />
       )}
 
       {isError && (
         <AlertMessage
           type="failure"
-          title="Oh no!"
-          description="There was a problem. Please try again later."
+          title={c('error.title')}
+          description={t('addressForm.error.subtitle')}
         />
       )}
 
@@ -179,14 +181,14 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
           label={c('first.label')}
           {...register('first_name')}
           disabled={isPending || isSuccess}
-          error={errors.first_name ? c(errors.first_name.message!) : undefined}
+          error={errors.first_name?.message}
         />
         <TextInput
           type="text"
           label={c('last.label')}
           {...register('last_name')}
           disabled={isPending || isSuccess}
-          error={errors.last_name ? c(errors.last_name.message!) : undefined}
+          error={errors.last_name?.message}
         />
       </div>
 
@@ -194,39 +196,39 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
           type="string"
-          label="Address"
           {...register('address1')}
+          label={t('addressForm.address')}
           error={errors.address1?.message}
           disabled={isPending || isSuccess}
         />
         <TextInput
           type="string"
           {...register('address2')}
-          label="Address 2 (Optional)"
-          placeholder="Apt, Ste, Bld"
           error={errors.address2?.message}
           disabled={isPending || isSuccess}
+          label={t('addressForm.addressTwo.label')}
+          placeholder={t('addressForm.addressTwo.placeholder')}
         />
       </div>
 
       {/* city + state */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <TextInput
-          label="City"
           type="string"
           {...register('city')}
           error={errors.city?.message}
+          label={t('addressForm.city')}
           disabled={isPending || isSuccess}
         />
 
         {isUS && (
           <SelectInput
-            label="State"
             {...register('state')}
-            disabled={isPending || isSuccess}
             error={errors.state?.message}
+            label={t('addressForm.state')}
+            disabled={isPending || isSuccess}
             options={[
-              { label: 'Select an option', value: '' },
+              { label: c('select'), value: '' },
               ...STATES.map((state) => ({ label: state, value: state })),
             ]}
           />
@@ -236,30 +238,30 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
       {/* country + zip */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
         <SelectInput
-          label="Country"
           {...register('country')}
-          error={errors.country?.message}
           disabled={isPending || isSuccess}
-          options={[{ label: 'Select a country', value: '' }, ...COUNTRY_OPTIONS]}
+          label={t('addressForm.country.label')}
+          error={errors.country ? t(errors.country.message!) : undefined}
+          options={[{ label: c('select'), value: '' }, ...COUNTRY_OPTIONS]}
         />
 
         {isUS && (
           <TextInput
-            label="Zip"
             type="string"
             {...register('zip')}
             error={errors.zip?.message}
+            label={t('addressForm.zip')}
             disabled={isPending || isSuccess}
           />
         )}
       </div>
 
       <TextInput
-        label="Phone"
         type="tel"
         {...register('phone')}
-        error={errors.phone?.message}
+        label={c('phone.label')}
         disabled={isPending || isSuccess}
+        error={errors.phone ? c(errors.phone.message!) : undefined}
       />
 
       <Button
@@ -270,7 +272,7 @@ const AddressUpdateForm: React.FC<AddressUpdateFormProps> = ({ customer_id, curr
         disabled={!newValues || isPending || isSuccess}
         className="w-full md:max-w-[35%] mx-auto mt-md"
       >
-        {isPending ? 'Submitting...' : 'Update'}
+        {isPending ? c('submit.pending') : t('addressForm.update')}
       </Button>
     </form>
   );

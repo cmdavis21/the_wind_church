@@ -6,3 +6,7 @@ export const LOCALES = [
 ] as const;
 
 export type Locale = typeof DEFAULT_LOCALE | 'es';
+
+export const ShopifyFormatLocale = (locale: Locale) => {
+  return locale === 'es' ? 'ES' : 'EN';
+};

@@ -110,7 +110,7 @@ const WePathwayPage = async () => {
       <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
         <PageHeader title={'The WE Pathway'} subtitle={'Lorem Ipsum'} />
 
-        <div className="max-w-[75%] flex flex-col gap-lg">
+        <div className="lg:max-w-[75%] flex flex-col gap-lg">
           <h4>
             The WE Pathway is the intentional process The Wind Church uses to help people move from
             simply attending church to becoming spiritually grounded, connected, actively serving,

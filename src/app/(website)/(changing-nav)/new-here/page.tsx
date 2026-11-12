@@ -58,7 +58,7 @@ const NewHere = async () => {
 
       {/* INTRO */}
       <div className="max-width-center pt-3xl sm:pt-4xl">
-        <div className="flex flex-col gap-lg px-padding max-w-[75%]">
+        <div className="flex flex-col gap-lg px-padding lg:max-w-[75%]">
           <h4>{t('description')}</h4>
         </div>
       </div>
