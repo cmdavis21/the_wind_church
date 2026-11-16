@@ -75,7 +75,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
         key={`mobile-media-with-side-text-carousel-${slide.media.src}`}
         className="flex flex-col gap-lg"
       >
-        <div className="relative aspect-[17/9] w-full min-w-7xl max-w-[900px] pointer-events-none overflow-hidden">
+        <div className="relative aspect-[17/9] w-full min-w-7xl max-w-[900px] pointer-events-none overflow-hidden border border-light-gray dark:border-dark-charcoal rounded-xl">
           {findMediaType(slide.media.src) === MediaType.IMAGE ? (
             <Image
               fill

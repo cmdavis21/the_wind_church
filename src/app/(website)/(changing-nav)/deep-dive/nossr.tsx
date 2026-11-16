@@ -46,7 +46,7 @@ const DeepDivesClient = () => {
                   {
                     media: {
                       src: `${AWS_ASSET_URL}/bible-study-video.mp4`,
-                      poster: '/images/bible-study-video-poster.webp',
+                      poster: '/images/deep-dive/bible-study-video-poster.webp',
                     },
                     header: t('header'),
                     title: t('none.title'),

@@ -1,9 +1,8 @@
 import Accordion from '@/components/accordion/Accordion';
 import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
-import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
+import HiddenTextCard from '@/components/cards/hidden-text-card/HiddenTextCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
-import Text from '@/components/forms/inputs/text/Text';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import MediaBackgroundAndContent, {
@@ -50,17 +49,12 @@ const Give = async () => {
 
   const reasonsToGive = [
     {
-      title: t('reasons.0.title'),
-      highlight: [[1, 2]],
+      title: 'reasons.0.title',
       description: t('reasons.0.description'),
       scriptureList: [t('reasons.0.scripture1'), t('reasons.0.scripture2')],
     },
     {
-      title: t('reasons.1.title'),
-      highlight: [
-        [3, 3],
-        [5, 5],
-      ],
+      title: 'reasons.1.title',
       description: t('reasons.1.description'),
       scriptureList: [
         t('reasons.1.scripture1'),
@@ -70,8 +64,7 @@ const Give = async () => {
       ],
     },
     {
-      title: t('reasons.2.title'),
-      highlight: [[2, 3]],
+      title: 'reasons.2.title',
       description: t('reasons.2.description'),
       scriptureList: [
         t('reasons.2.scripture1'),
@@ -181,9 +174,13 @@ const Give = async () => {
         <div className="flex flex-col gap-xxl px-padding">
           {reasonsToGive.map((r) => (
             <div key={`reasons-to-give-${r.title}`} className="flex flex-col gap-sm">
-              <Text htmlTag="h2" highlight={r.highlight}>
-                {r.title}
-              </Text>
+              <h2>
+                {t.rich(r.title, {
+                  bold: (chunks) => (
+                    <span className="font-display text-brand-primary">{chunks}</span>
+                  ),
+                })}
+              </h2>
               <h4 className="lg:max-w-[55%]">{r.description}</h4>
               <ScriptureList scriptures={r.scriptureList} />
             </div>
@@ -203,7 +200,7 @@ const Give = async () => {
         {/* Tablet/Desktop */}
         <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
           {otherWaysToGiveArr.map((item) => (
-            <ImageWithTitleAndHiddenTextCard key={`desktop-${item.title}`} {...item} />
+            <HiddenTextCard key={`desktop-${item.title}`} {...item} />
           ))}
         </div>
 
@@ -211,7 +208,7 @@ const Give = async () => {
         <SimpleCarousel
           className="sm:hidden"
           slides={otherWaysToGiveArr.map((item) => (
-            <ImageWithTitleAndHiddenTextCard key={`mobile-${item.title}`} {...item} />
+            <HiddenTextCard key={`mobile-${item.title}`} {...item} />
           ))}
         />
       </div>
@@ -228,9 +225,11 @@ const Give = async () => {
         color={ColorBackground.BLUE}
         content={
           <div className="max-w-3xl mx-auto space-y-md">
-            <Text htmlTag="h3" highlight={[[0, 1]]} className="text-center">
-              {t('thanks.thankYou')}
-            </Text>
+            <h3 className="text-center">
+              {t.rich('thanks.thankYou', {
+                bold: (chunks) => <span className="font-display text-brand-primary">{chunks}</span>,
+              })}
+            </h3>
 
             <h4 className="text-center">{t('thanks.blessing')}</h4>
 
@@ -239,22 +238,24 @@ const Give = async () => {
                 email: (chunks) => (
                   <Link
                     href="mailto:thewindchurch@outlook.com"
-                    className="text-link underline break-normal"
+                    className="font-semibold underline break-normal"
                   >
                     {chunks}
                   </Link>
                 ),
                 phone: (chunks) => (
-                  <Link href="tel:9513590203" className="text-link underline">
+                  <Link href="tel:9513590203" className="font-semibold underline">
                     {chunks}
                   </Link>
                 ),
               })}
             </h4>
 
-            <Text htmlTag="h3" highlight={[[5, 6]]} className="text-center">
-              {t('thanks.partners')}
-            </Text>
+            <h3 className="text-center">
+              {t.rich('thanks.partners', {
+                bold: (chunks) => <span className="font-display text-brand-primary">{chunks}</span>,
+              })}
+            </h3>
           </div>
         }
       />

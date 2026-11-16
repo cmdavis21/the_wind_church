@@ -1,15 +1,14 @@
-import ImageWithTitleDescriptionLinkCard from '@/components/cards/image-with-title-description-link-card/ImageWithTitleAndHiddenTextCard';
-import Text from '@/components/forms/inputs/text/Text';
+import { MultiInfoCard } from '@/components/cards/multi-info-card/MultiInfoCard';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import PreviewSermon from '@/components/preview-sermon/PreviewSermon';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import MasonryGrid from '@/components/sections/masonry-grid/MasonryGrid';
 import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
-import { AWS_ASSET_URL, WEBSITE_URL, YOUTUBE } from '@/data/server/env.server';
+import { AWS_ASSET_URL, WEBSITE_URL } from '@/data/server/env.server';
 import { getLatestSermon } from '@/data/server/youtube/playlists';
 
 import { getLocale, getTranslations } from 'next-intl/server';
-import Link from 'next/link';
 
 export async function generateMetadata() {
   const locale = (await getLocale()) as Locale;
@@ -39,53 +38,63 @@ export async function generateMetadata() {
 }
 
 const Home = async () => {
+  const t = await getTranslations('Home');
+
   const result = await getLatestSermon();
 
-  const exploreOptions = [
+  const attributes = [
+    { label: t('header.items.0.label'), descriptions: [t('header.items.0.description')] },
+    { label: t('header.items.1.label'), descriptions: [t('header.items.1.description')] },
+    { label: t('header.items.2.label'), descriptions: [t('header.items.2.description')] },
+    { label: t('header.items.3.label'), descriptions: [t('header.items.3.description')] },
+  ];
+
+  const ctaOptions = [
     {
       image: {
-        alt: 'People gathering for church service',
-        src: '/images/product-placeholder.webp',
+        src: '/images/sermons/pastor-preaching.webp',
+        alt: t('ctas.items.0.alt'),
       },
-      title: 'Who we are',
-      description: 'Learn our values, facts about our pastor, and more!',
-      link: PageRoutes.about,
+      title: t('ctas.items.0.title'),
+      description: t('ctas.items.0.description'),
+      href: PageRoutes.wePathway,
+      span: 2 as any,
     },
     {
       image: {
-        alt: 'Group in Bible study session',
-        src: '/images/home/group-selfie.webp',
+        src: '/images/give/person-with-box.webp',
+        alt: t('ctas.items.1.alt'),
       },
-      title: 'Step Into Ministry',
-      description: 'We have ministries for every age and stage.',
-      link: PageRoutes.ministries,
+      title: t('ctas.items.1.title'),
+      description: t('ctas.items.1.description'),
+      href: PageRoutes.ministries,
     },
     {
       image: {
-        alt: 'Group in Bible study session',
         src: '/images/home/group-study.webp',
+        alt: t('ctas.items.2.alt'),
       },
-      title: 'Try our Deep Dives',
-      description: 'Explore the Word in a deeper way with small-group Bible studies.',
-      link: PageRoutes.deepDive,
+      title: t('ctas.items.2.title'),
+      description: t('ctas.items.2.description'),
+      href: PageRoutes.deepDive,
     },
     {
       image: {
-        alt: 'Children in a classroom during youth service',
         src: '/images/home/girl-with-box.webp',
+        alt: t('ctas.items.3.alt'),
       },
-      title: 'Know your gifts!',
-      description: 'Discover your spiritual gifts with our easy assessment!',
-      link: PageRoutes.giftAssessment,
+      title: t('ctas.items.3.title'),
+      description: t('ctas.items.3.description'),
+      href: PageRoutes.giftAssessment,
     },
     {
       image: {
-        alt: 'Group in Bible study session',
         src: '/images/home/planning.webp',
+        alt: t('ctas.items.4.alt'),
       },
-      title: 'Have an event?',
-      description: 'Interested in renting our church? Get details and request your date today.',
-      link: PageRoutes.churchRental,
+      title: t('ctas.items.4.title'),
+      description: t('ctas.items.4.description'),
+      href: PageRoutes.churchRental,
     },
   ];
 
@@ -93,71 +102,65 @@ const Home = async () => {
     <div>
       <PageHero
         size="full"
-        title="Honor God. Love People."
+        title={t('title')}
         highlightTitle={[
           [0, 0],
           [2, 2],
           [4, 4],
         ]}
-        italicSubtitle="Serve this generation."
-        description="Committed to discipleship, worship, community impact, and helping people grow in faith and purpose."
+        italicSubtitle={t('subtitle')}
+        description={t('description')}
         media={{
           src: `${AWS_ASSET_URL}/friend-group.mp4`,
           poster: '/images/friend-group.webp',
         }}
-        ctas={[{ label: 'Learn more', href: PageRoutes.about }]}
-        scrollTo={{ label: 'Explore', href: 'overview', variant: 'teritiary' }}
+        primaryCta={{ label: t('btns.0'), href: PageRoutes.newHere }}
+        secondaryCta={{ label: t('btns.1'), href: PageRoutes.about }}
+        scrollToCta={{ label: t('btns.2'), href: 'overview' }}
         stats={[
-          { value: 'Christ', label: 'Centered' },
-          { value: '24/7', label: 'Prayer Support' },
-          { value: '1996', label: 'Founded' },
+          { value: t('stats.0.value'), label: t('stats.0.label') },
+          { value: t('stats.1.value'), label: t('stats.1.label') },
+          { value: t('stats.2.value'), label: t('stats.2.label') },
         ]}
       />
 
       {/* OVERVIEW */}
-      <div id="overview" className="max-width-center py-4xl sm:my-3xl">
-        <div className="flex flex-col gap-lg px-padding">
-          {/* WELCOME */}
-          <Text htmlTag="h2" highlight={[[0, 0]]}>
-            Welcome to The Wind Church
-          </Text>
-
-          {/* INTRO */}
-          <h4 className="lg:max-w-[75%]">
-            A Christ-focused community where lives are transformed and hope is restored. We gather
-            to worship, grow, and walk out our faith together. Whether you join us{' '}
-            <Link
-              href="https://www.google.com/search?q=wind+of+the+spirit+worship+center"
-              target="_blank"
-              className="text-link underline"
-            >
-              in person
-            </Link>{' '}
-            or{' '}
-            <Link href={YOUTUBE} target="_blank" className="text-link underline">
-              online,
-            </Link>{' '}
-            we&apos;d love to meet you and help you take your next step with Jesus.
-          </h4>
-
-          {/* SERVICE TIMES */}
-          <h3 className="dark:text-brand-primary">
-            Sundays 9AM <span className="dark:text-dark-primaryText">•</span> Wednesdays 7PM
-          </h3>
-        </div>
+      <div
+        id="overview"
+        className="max-width-center pt-3xl sm:pt-4xl px-padding flex flex-col gap-lg"
+      >
+        <h2>
+          {t.rich('header.title', {
+            bold: (chunks) => <span className="font-display text-brand-primary">{chunks}</span>,
+          })}
+        </h2>
+        <h4 className="lg:max-w-[75%]">{t('header.description')}</h4>
       </div>
 
-      {/* LATEST SERMON */}
+      {/* ATTRIBUTES */}
+      <div
+        className="grid gap-xl px-padding pt-xxl pb-3xl sm:pb-4xl"
+        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))' }}
+      >
+        {attributes.map((item) => (
+          <MultiInfoCard
+            key={`attributes-${item.label}`}
+            label={item.label}
+            content={{
+              type: 'list',
+              data: item.descriptions,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* SERMON */}
       <PreviewSermon data={result.data} />
 
-      {/* EXPLORE CTAs */}
+      {/* CTAs */}
       <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
-        <CenterTextSection title="Explore The Wind" description="There's much to do here!" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl place-items-center">
-          {exploreOptions.map((opt) => (
-            <ImageWithTitleDescriptionLinkCard key={`home-explore-options-${opt.link}`} {...opt} />
-          ))}
-        </div>
+        <CenterTextSection title={t('ctas.title')} description={t('ctas.subtitle')} />
+        <MasonryGrid items={ctaOptions} />
       </div>
     </div>
   );

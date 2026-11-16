@@ -38,6 +38,7 @@
     "yes": "Yes",
     "no": "No",
     "select": "Select an option",
+    "learn": "Learn More",
     "daysOfTheWeek": {
       "sunday": "Sunday",
       "monday": "Monday",
@@ -76,6 +77,7 @@
       "label": "About",
       "submenu": [
         { "label": "Who We Are", "link": "/about" },
+        { "label": "Pastor Singletary", "link": "/about/pastor-alaric-singletary" },
         { "label": "Wind Leaders", "link": "/wind-leaders" },
         { "label": "Foursquare Gospel", "link": "/foursquare" }
       ]
@@ -143,7 +145,7 @@
         },
         {
           "label": "Pastor Singletary",
-          "link": "/about#pastor-singletary"
+          "link": "/about/pastor-alaric-singletary"
         },
         {
           "label": "Wind Leaders",
@@ -252,18 +254,23 @@
       "title": "About Us",
       "description": "Learn more about the mission, vision, beliefs, and leadership behind The Wind Church in Riverside, CA."
     },
-    "alt": "A decorative background image",
+    "alt": "",
     "title": "The WIND",
     "subtitle": "Learn more about our church",
+    "stats": [
+      { "value": "Christ", "label": "Centered" },
+      { "value": "Family", "label": "Focused" },
+      { "value": "1996", "label": "Founded" }
+    ],
+    "description": " The Wind Church is a Spirit-filled, Christ-centered church affiliated with the International Church of the Foursquare Gospel. We exist to help people encounter Jesus, grow in faith, build authentic community, and serve this generation with purpose. Through worship, discipleship, and leadership development, we are committed to helping people discover their God-given purpose and live it out.",
     "mission": {
-      "id": "mission-and-vision",
       "title": "Mission",
-      "subtitle": "Honor the Lord, love God's people, and serve our generation.",
+      "subtitle": "<bold>Honor</bold> the Lord, <bold>love</bold> God's people, and <bold>serve</bold> our generation.",
       "description": "Our church mission is to honor the Lord by demonstrating our love for God and His people through dedicated service to our generation."
     },
     "vision": {
       "title": "Vision",
-      "subtitle": "Growing God's family through love, service, and discipleship.",
+      "subtitle": "<bold>Growing God's family</bold> through love, service, and discipleship.",
       "description": "Our vision is to expand God's family through love, compassionate service, and committed discipleship, creating a nurturing environment where individuals grow in their faith and are equipped to make a positive impact in the world.",
       "verse1": "Ephesians 4:12,16",
       "verse2": "Matthew 22:37-39",
@@ -271,192 +278,170 @@
       "verse4": "John 13:35",
       "verse5": "Matthew 28:19-20"
     },
-    "aboutPastor": {
-      "id": "pastor-singletary",
-      "title": "Alaric Singletary",
-      "subtitle": "Wind Church Senior Pastor",
-      "history": {
-        "title": "My History",
-        "description": "From a young age, Pastor Singletary felt a profound calling to serve the Lord in an extraordinary way. This vision became a reality when he recommitted his life to Jesus Christ on June 26, 1998, and shortly after married his wife, Amber, in 2000. Together, they have faithfully served in various ministry roles, blessed with three wonderful children. Pastor Singletary served under Dr. Michael Edwards for 18 years, holding positions such as Associate Minister, Youth Pastor, Young Adult Facilitator, Children's Church Team member, Church Council Chairperson, Elder, and Assistant Pastor. His extensive experience and dedication prepared him for his current role as Senior Pastor."
-      },
-      "why": {
-        "title": "Why I am a Pastor",
-        "description": "Pastor Singletary's journey to becoming a pastor was rooted in a deep, early conviction to serve God and His people. His calling was solidified through years of faithful service and spiritual growth under the mentorship of Dr. Michael Edwards. He views his role as an awesome privilege and is committed to fulfilling God's purpose for The Wind."
-      },
-      "goals": {
-        "title": "Future Goals",
-        "description": "Pastor Singletary is committed to both spiritual and educational growth. As a bi-vocational pastor, he encourages others to pursue knowledge and understanding. He holds a Bachelor's degree, three Master's degrees, and is currently pursuing a Doctorate of Ministry. His goal is to inspire others to serve God wholeheartedly and advance the Kingdom of God using their gifts and talents."
-      },
-      "fact": {
-        "title": "Fun Fact",
-        "description": "Pastor Singletary often reminds his congregation that “We are a BATTLESHIP, not a CRUISESHIP!” This borrowed mantra reflects his belief that the church's mission is to serve and advance God's Kingdom, rather than seeking to be served. His messages are known for being practical, relevant, and inspiring, resonating with people of all backgrounds."
-      }
+    "pastor": {
+      "title": "Meet Dr. Alaric Singletary",
+      "subtitle": "Senior Pastor of The Wind Church",
+      "description": "For Pastor Alaric, ministry is about people. His passion is helping individuals and families encounter Jesus, grow in their faith, and discover the purpose God has for their lives.",
+      "quote": "“We are not a perfect church, but we will love you as perfectly as we know how.” — Dr. Alaric Singletary",
+      "cta": "Learn More About Pastor Alaric"
     },
     "values": {
-      "id": "wind-center",
       "title": "It is more than just a Sunday service",
       "subtitle": "The Wind is a center for cultivating the gifts God has blessed each indivudal",
-      "jesus": {
-        "title": "We Follow Jesus",
-        "description": "A Christ-driven church is the core of our beliefs."
-      },
-      "worship": {
-        "title": "We Worship Boldly",
-        "description": "Worship isn't a moment — it's our lifestyle. At The Wind, every gathering is an invitation to encounter God deeply."
-      },
-      "family": {
-        "title": "We Build Family",
-        "description": "We cultivate relationships that last beyond Sunday. In this house, belonging is built, strengthened, and lived out."
-      },
-      "serve": {
-        "title": "We Serve with Purpose",
-        "description": "Service is how we show Christ to our community. We step in, step up, and serve with intention."
-      },
-      "love": {
-        "title": "We Love Like Christ",
-        "description": "Every person deserves the love of Jesus. We extend grace, compassion, and care to all who walk through our doors."
-      },
-      "transform": {
-        "title": "We Grow & Transform",
-        "description": "Transformation is a lifelong journey. God shapes us daily, and we embrace growth in every season."
-      }
+      "items": [
+        {
+          "alt": "",
+          "title": "We <bold>Follow</bold> Jesus",
+          "description": "A Christ-driven church is the core of our beliefs."
+        },
+        {
+          "alt": "",
+          "title": "We <bold>Worship</bold> Boldly",
+          "description": "Worship isn't a moment — it's our lifestyle. At The Wind, every gathering is an invitation to encounter God deeply."
+        },
+        {
+          "title": "We <bold>Build</bold> Family",
+          "description": "We cultivate relationships that last beyond Sunday. In this house, belonging is built, strengthened, and lived out."
+        },
+        {
+          "title": "We <bold>Serve</bold> with Purpose",
+          "description": "Service is how we show Christ to our community. We step in, step up, and serve with intention."
+        },
+        {
+          "title": "We <bold>Love</bold> Like Christ",
+          "description": "Every person deserves the love of Jesus. We extend grace, compassion, and care to all who walk through our doors."
+        },
+        {
+          "title": "We <bold>Grow</bold> & Transform",
+          "description": "Transformation is a lifelong journey. God shapes us daily, and we embrace growth in every season."
+        }
+      ]
     },
     "foursquare": {
-      "id": "foursquare",
       "title": "We're a Foursquare Church",
       "subtitle": "Church Movement",
       "description": "We are rooted in the teachings of Jesus Christ and focused on four key aspects of his ministry: Jesus as the Savior, Baptizer with the Holy Spirit, Healer, and Soon-Coming King. In our church, we embrace these principles to guide our worship.",
-      "accordionItem1": {
-        "title": "Jesus Christ the Savior",
-        "plan": {
-          "title": "The Plan of Salvation",
-          "verse": "John 3:16; Romans 5:8",
-          "description": "We believe that while we were yet sinners Christ died for us, signing the pardon of all who believe on Him Salvation Through Grace"
-        },
-        "salvation": {
-          "title": "Salvation Through Grace",
-          "verse": "Ephesians 2:8",
-          "description": "We believe that we have no righteousness and must come to God pleading the righteousness of Christ"
-        },
-        "scriptures": {
-          "title": "The Holy Scriptures",
-          "verse": "2 Timothy 3:16, 17",
-          "description": "We believe the Bible is God-inspired"
-        },
-        "eternal": {
-          "title": "The Eternal Godhead",
-          "verse": "2 Corinthians 13:14",
-          "description": "We believe God is Triun: Father, Son & Holy Spirit"
-        },
-        "fall": {
-          "title": "The Fall of Man",
-          "verse": "Romans 5:12",
-          "description": "We believe that man was created in the image of God, but that by voluntary disobedience he fell from perfection"
-        }
-      },
-      "accordionItem2": {
-        "title": "Jesus Christ the Baptizer with the Holy Spirit",
-        "relationship": {
-          "title": "Church Relationship",
-          "verse": "Acts 16:5; Hebrews 10:25",
-          "description": "We believe it is our sacred duty to identify ourselves with the visible Body of Christ"
-        },
-        "civil": {
-          "title": "Civil Government",
-          "verse": "Romans 13:1-5",
-          "description": "We believe that rulers should be upheld at all times, except in things opposed to the will of God"
-        },
-        "final": {
-          "title": "The Final Judgement",
-          "verse": "2 Corinthians 5:10",
-          "description": "We believe that all shall stand some day before the judgement seat of God, and there receive eternal life or death"
-        },
-        "heaven": {
-          "title": "Heaven",
-          "verse": "John 14:1-3; Revelation 7:15-17",
-          "description": "We believe that Heaven is the glorious eternal home of born-again believers"
-        },
-        "hell": {
-          "title": "Hell",
-          "verse": "Revelation 20:10,15",
-          "description": "We believe that hell is the place of eternal torment for all who reject Christ as the Savior"
-        }
-      },
-      "accordionItem3": {
-        "title": "Jesus Christ the Healer",
-        "repent": {
-          "title": "Repentance & Acceptance",
-          "verse": "1 John 1:9",
-          "description": "We believe that upon sincere repentance and a whole-hearted acceptance of Christ, we are justified before God"
-        },
-        "new": {
-          "title": "The New Birth",
-          "verse": "2 Corinthians 5:17; Galatians 2:20",
-          "description": "We believe that the change which takes place in the heart and life at conversion is a very real one"
-        },
-        "daily": {
-          "title": "Daily Christian Living",
-          "verse": "Hebrews 6:1",
-          "description": "We believe that it is the will of God that we be sanctified daily, growing constantly in the faith"
-        },
-        "supper": {
-          "title": "Baptism & The Lord's Supper",
-          "verse": "Matthew 28:19; 1 Corinthians 11:24, 25",
-          "description": "We believe that baptism by immersion is an outward sign of an inward work. We believe in the commemoration of the Lord's Supper by the symbolic use of the bread and juice of the vine"
-        },
-        "spirit": {
-          "title": "Baptism with the Holy Spirit",
-          "verse": "Acts 2:4",
-          "description": "We believe that the Baptism with the Holy Spirit is to endue the believer with power; and that His incoming is after the same manner as in Bible days"
-        }
-      },
-      "accordionItem4": {
-        "title": "Jesus Christ the Soon-Coming King",
-        "life": {
-          "title": "The Spirit-Filled Life",
-          "verse": "Ephesians 4:30-32",
-          "description": "We believe that it is the will of God that we walk in the Spirit daily"
-        },
-        "gifts": {
-          "title": "The Gifts & Fruits of the Spirit",
-          "verse": "1 Corinthians 12:1-11; Galatians 5:22",
-          "description": "We believe that the Holy Spirit has gifts to bestow upon the Christian; and that we should show spiritual fruit as evidence of a Spirit-filled life"
-        },
-        "moderation": {
-          "title": "Moderation",
-          "verse": "Philippians 4:5",
-          "description": "We believe that the experience and daily walk of the believer should never lead him into extremes of fanaticism"
-        },
-        "divine": {
-          "title": "Divine Healing",
-          "verse": "James 5:14-16",
-          "description": "We believe that divine healing is the power of Christ to heal the physically sick in answer to the prayer of faith"
-        },
-        "coming": {
-          "title": "The Second Coming of Christ",
-          "verse": "1 Thessalonians 4:16, 17",
-          "description": "We believe that the second coming of Christ is personal and imminent"
-        },
-        "evangelism": {
-          "title": "Evangelism",
-          "verse": "Mark 16:15; Matthew 28:19-20",
-          "description": "We believe that the church's primary responsibility is to take the gospel to the entire world and make disciples"
-        },
-        "tithes": {
-          "title": "Tithes and Offerings",
-          "verse": "Malachi 3:10; 2 Corinthians 9:7",
-          "description": "We believe that God has ordained tithes and offerings as the method for supporting and advancing His work"
-        }
-      }
+      "cta": "Learn more about Foursquare"
     },
     "history": {
-      "id": "history",
       "title": "Our History",
       "subtitle": "Wind of the Spirit Worship Center",
       "description": "Learn how Founding Pastor Michael Edwards, ThD, and Lady Sherrie Edwards have shaped a community through decades of devoted ministry.",
-      "carouselItem1": "Since 1976, the Edwards have impacted lives through teaching, counseling, discipleship, and church planting, leading to the founding of A New and Living Way Foursquare Church in 1989.",
-      "carouselItem2": "By God's divine plan, their church merged with another congregation to form Wind of the Spirit Worship Center, becoming a vital community resource and ministry partner.",
-      "carouselItem3": "Known as “The Wind,” the church is celebrated for its outreach, leadership training, and expressive worship, embodying Christ's love and leaving a legacy of faithful stewardship that endures today."
+      "items": [
+        {
+          "alt": "",
+          "description": "Since 1976, the Edwards have impacted lives through teaching, counseling, discipleship, and church planting, leading to the founding of A New and Living Way Foursquare Church in 1989."
+        },
+        {
+          "alt": "",
+          "description": "By God's divine plan, their church merged with another congregation to form Wind of the Spirit Worship Center, becoming a vital community resource and ministry partner."
+        },
+        {
+          "alt": "",
+          "description": "Known as “The Wind,” the church is celebrated for its outreach, leadership training, and expressive worship, embodying Christ's love and leaving a legacy of faithful stewardship that endures today."
+        }
+      ]
+    }
+  },
+  "Pastor": {
+    "metadata": {
+      "title": "Meet Dr. Alaric Singletary",
+      "description": "Serving as Senior Pastor of The Wind Church since 2019 with a passion for discipleship, leadership development, and community transformation."
+    },
+    "alt": "A decorative background image",
+    "title": "Meet Dr. Alaric Singletary",
+    "subtitle": "Serving as Senior Pastor of The Wind Church since 2019 with a passion for discipleship, leadership development, and community transformation.",
+    "heart": {
+      "title": "His Heart for Ministry",
+      "description": "For Pastor Alaric, ministry is about people. His passion is helping individuals and families encounter Jesus, grow in their faith, and discover the unique purpose God has for their lives. Through discipleship, leadership development, and authentic relationships, he believes the local church can be a place where people are equipped, encouraged, and empowered to make a lasting impact for God's Kingdom.",
+      "quote": {
+        "saying": "My passion is helping people encounter Jesus, grow in purpose, and become everything God has called them to be. We are not a perfect church, but we will love you as perfectly as we know how.",
+        "author": "Dr. Singletary, Senior Pastor"
+      }
+    },
+    "attributes": [
+      {
+        "title": "Pastor",
+        "descriptions": [
+          "Leading and caring for God's people with a commitment to discipleship, spiritual growth, and Christ-centered living.",
+          "Serving The Wind Church since 2019"
+        ]
+      },
+      {
+        "title": "Teacher",
+        "descriptions": [
+          "Making biblical truth clear, practical, and relevant for everyday life through engaging teaching and preaching.",
+          "Doctor of Ministry - Talbot School of Theology, Biola University"
+        ]
+      },
+      {
+        "title": "Mentor",
+        "description": "Investing in leaders and individuals through encouragement, guidance, and intentional spiritual development."
+      },
+      {
+        "title": "Leader",
+        "description": "Casting vision, developing leaders, and building ministries that serve both the church and the surrounding community."
+      }
+    ],
+    "beyond": {
+      "title": "Beyond Ministry",
+      "subtitle": "Pastor Alaric believes some of the best conversations happen outside church walls—especially around a good meal.",
+      "items": [
+        {
+          "alt": "A small silver fish hanging from a fishing line.",
+          "title": "🎣 Fisherman",
+          "description": "Whether on the lake or by the shore, there's nothing quite like the peace of casting a line and enjoying God's creation."
+        },
+        {
+          "alt": "A plate of cooked meat with quinoa and vegetables.",
+          "title": "🍳 Home Chef",
+          "description": "Some of the best conversations happen around a good meal. Pastor Alaric enjoys cooking for family, friends, and guests whenever he can."
+        },
+        {
+          "alt": "A white XBox game controller.",
+          "title": "🎮 Gamer",
+          "description": "From time to time, Pastor Alaric enjoys unwinding with a good game and a little friendly competition."
+        },
+        {
+          "alt": "An empty movie reel surrounded by black reel tape.",
+          "title": "🎬 Movie Critic",
+          "description": "Always ready to share an opinion on the latest film, especially if there's a great story, strong message, or memorable ending."
+        },
+        {
+          "alt": "A two-story brick home with white shutters, green grass, and a nearby tree.",
+          "title": "👨‍👩‍👧‍👦 Husband & Father",
+          "description": "Family is one of Pastor Alaric's greatest blessings and a constant source of joy, perspective, and purpose."
+        },
+        {
+          "alt": "A scribbled notepad with a pen and cup of coffee placed nearby.",
+          "title": "🍽 Food Enthusiast",
+          "description": "Whether discovering a new restaurant or sharing a favorite dish, Pastor Alaric believes great food brings people together."
+        }
+      ]
+    },
+    "ctas": {
+      "title": "We'd Love to Meet You",
+      "subtitle": "Whether you're exploring faith, looking for community, or searching for a church home, we'd love to welcome you to The Wind.",
+      "items": [
+        {
+          "alt": "Green olives hanging from a branch with leaves.",
+          "title": "Explore Our Beliefs",
+          "description": "Learn about the biblical convictions, Fourfold Gospel, and foundational truths that guide our ministry, mission, and community.",
+          "label": "What We Believe"
+        },
+        {
+          "alt": "Image of The Wind Church building.",
+          "title": "Plan Your Visit",
+          "description": "Join us for a Sunday service and experience authentic worship, biblical teaching, and a church family that is passionate about helping people grow in Christ.",
+          "label": "Learn More"
+        },
+        {
+          "alt": "The arms of a man typing on an opened macbook laptop.xw",
+          "title": "Watch Online",
+          "description": "Watch recent sermons and worship services from anywhere. Explore biblical teaching that encourages spiritual growth and everyday faith.",
+          "label": "Visit Our Channel"
+        }
+      ]
     }
   },
   "ChurchRental": {
@@ -647,18 +632,14 @@
     "alt": "",
     "title": "Foursquare Gospel Church",
     "subtitle": "An international Pentecostal Christian denomination founded in 1923.",
-    "tabTitles": ["Intro", "History", "Beliefs", "Symbols"],
-    "tabContent": [
+    "titles": ["Intro", "History", "Declarations", "Symbols"],
+    "items": [
       {
         "descriptions": [
           "The Wind Church (dba Wind of the Spirit) is part of a worldwide movement called the International Church of the Foursquare Gospel, with more than 1,700 churches in the United States and over 68,500 churches across more than 150 nations. Every week, more than 12,000 men, women, boys, and girls accept Jesus Christ through the preaching of the gospel in Foursquare churches around the world."
         ]
       },
       {
-        "header": {
-          "title": "Foursquare History",
-          "subtitle": "How it all began..."
-        },
         "descriptions": [
           "The name “Foursquare” is unique compared to most church names. It was born out of an extraordinary move of God during the early 20th century—a period marked by revolutionary changes throughout the world.",
           "A great revival swept across the Western world as the 1900s began. Its impact grew as believers in various places were filled with the Holy Spirit, experiencing something similar to the events of Acts 2 on the Day of Pentecost. This movement became known as the “Pentecostal Movement.”",
@@ -681,9 +662,12 @@
       },
       {
         "header": {
-          "title": "Foursquare Believes"
+          "title": "The 22 Tenets (Declarations) of Faith"
         },
-        "accordionItem1": {
+        "descriptions": [
+          "Our faith is built upon the truth of God's Word. The 22 Tenets of Faith serve as a biblical framework for discipleship, spiritual growth, and ministry, helping us remain grounded in the Gospel and the unchanging message of Jesus Christ."
+        ],
+        "savior": {
           "title": "Jesus Christ the Savior",
           "plan": {
             "title": "The Plan of Salvation",
@@ -711,7 +695,7 @@
             "description": "We believe that man was created in the image of God, but that by voluntary disobedience he fell from perfection"
           }
         },
-        "accordionItem2": {
+        "baptizer": {
           "title": "Jesus Christ the Baptizer with the Holy Spirit",
           "relationship": {
             "title": "Church Relationship",
@@ -739,7 +723,7 @@
             "description": "We believe that hell is the place of eternal torment for all who reject Christ as the Savior"
           }
         },
-        "accordionItem3": {
+        "healer": {
           "title": "Jesus Christ the Healer",
           "repent": {
             "title": "Repentance & Acceptance",
@@ -767,7 +751,7 @@
             "description": "We believe that the Baptism with the Holy Spirit is to endue the believer with power; and that His incoming is after the same manner as in Bible days"
           }
         },
-        "accordionItem4": {
+        "king": {
           "title": "Jesus Christ the Soon-Coming King",
           "life": {
             "title": "The Spirit-Filled Life",
@@ -864,13 +848,13 @@
     "subtitle": "Your contribution makes a difference.",
     "reasons": [
       {
-        "title": "Giving honors God as an act of worship",
+        "title": "Giving <bold>honors God</bold> as an act of worship",
         "description": "Acknowledging that all we have belongs to Him.",
         "scripture1": "Proverbs 3:9",
         "scripture2": "Psalm 24:1"
       },
       {
-        "title": "When we give freely and joyfully",
+        "title": "When we give <bold>freely</bold> and <bold>joyfully</bold>",
         "description": "We imitate God's nature as a giver of eternal and temporal blessings.",
         "scripture1": "John 3:16",
         "scripture2": "1 Corinthians 2:12",
@@ -878,7 +862,7 @@
         "scripture4": "James 1:17"
       },
       {
-        "title": "Giving reflects our heart",
+        "title": "Giving <bold>reflects</bold> our heart",
         "description": "And relationship with God, communicates our faith to the world, and brings personal blessings through wise investments.",
         "scripture1": "2 Corinthians 9:12-15",
         "scripture2": "Acts 20:35",
@@ -961,10 +945,10 @@
     },
     "donate": "Donate online with PushPay",
     "thanks": {
-      "thankYou": "Thank you for your support",
+      "thankYou": "<bold>Thank you</bold> for your support",
       "blessing": "We are blessed to have supporters like you and we are honored that you have chosen this Ministry as a place to sow your seed.",
       "contact": "If you have any questions or concerns, email <email>thewindchurch@outlook.com</email> or call <phone>(951) 359-0203</phone>.",
-      "partners": "Your partners in Christ at The Wind."
+      "partners": "Your partners in Christ at <bold>The Wind.</bold>"
     }
   },
   "Ministries": {
@@ -975,7 +959,11 @@
     "errorAlt": "Image of The Wind Church building",
     "alt": "Woman holding t-shirt over storage bin as she is organizing alonside a man helping her.",
     "title": "Ministries",
-    "subtitle": "Find a place to grow in faith, build meaningful relationships, and use your God-given gifts to serve others.",
+    "subtitle": "Discover your gifts. Serve with purpose.",
+    "header": {
+      "title": "<bold>Every believer</bold> has a purpose and a place to serve.",
+      "description": "Use your God-given gifts to serve others, build meaningful relationships, and make a lasting impact through ministry."
+    },
     "scriptures": [
       {
         "passage": "So Christ himself gave the apostles, the prophets, the evangelists, the pastors and teachers, to equip his people for works of service, so that the body of Christ may be built up.",
@@ -1277,6 +1265,68 @@
     "metadata": {
       "title": "The Wind Church",
       "description": "Welcome to The Wind Church—where Jesus is the center and lives are transformed through His presence."
+    },
+    "title": "Honor God. Love People.",
+    "subtitle": "Serve this generation.",
+    "description": "A Spirit-led church committed to discipleship, worship, community impact, and helping people grow in faith and purpose.",
+    "btns": ["I'm New 👋", "Learn More", "Explore"],
+    "stats": [
+      { "value": "Christ", "label": "Centered" },
+      { "value": "Family", "label": "Focused" },
+      { "value": "1996", "label": "Founded" }
+    ],
+    "header": {
+      "title": "<bold>More</bold> Than a Service",
+      "description": "We're committed to helping people grow in faith, build meaningful relationships, discover their purpose, and make a difference.",
+      "items": [
+        {
+          "label": "BELONG",
+          "description": "Find community, build relationships, and become part of the family."
+        },
+        {
+          "label": "GROW",
+          "description": "Develop a deeper understanding of God's Word and your faith."
+        },
+        {
+          "label": "SERVE",
+          "description": "Use your gifts to strengthen the church and serve others."
+        },
+        {
+          "label": "LEAD",
+          "description": "Develop influence, mentor others, and make a lasting impact."
+        }
+      ]
+    },
+    "ctas": {
+      "title": "Explore The Wind",
+      "subtitle": "Discover opportunities to belong, grow, serve, and lead.",
+      "items": [
+        {
+          "alt": "",
+          "title": "Learn the WE Pathway",
+          "description": "Connect, grow, serve, and lead."
+        },
+        {
+          "alt": "",
+          "title": "Step Into Ministry",
+          "description": "Use your gifts to serve others."
+        },
+        {
+          "alt": "",
+          "title": "Christian Life Development",
+          "description": "Strengthen your faith through discipleship."
+        },
+        {
+          "alt": "",
+          "title": "Discover Your Gifts",
+          "description": "Uncover your God-given purpose."
+        },
+        {
+          "alt": "",
+          "title": "Have an Event?",
+          "description": "Reserve a space for your next gathering."
+        }
+      ]
     }
   },
   "Bookstore": {
@@ -2092,7 +2142,7 @@
       "title": "You Belong Here!",
       "description": "Everything you need to know before your first visit to The Wind Church."
     },
-    "alt": "",
+    "alt": "Image of the The Wind Church building.",
     "title": "You Belong Here!",
     "subtitle": "We're excited to welcome you to The Wind.",
     "description": "Whether it's your first time in church or your first time with us, we're glad you're here. At The Wind Church, you'll find a welcoming community, passionate worship, and practical biblical teaching for every stage of life. We want your visit to feel comfortable, meaningful, and easy from the moment you arrive.",
@@ -2101,18 +2151,13 @@
       "items": [
         {
           "day": "Sunday",
-          "time": "9:00 AM",
-          "attendanceType": "In-person + online"
-        },
-        {
-          "day": "Wednesday",
-          "time": "7:00 PM",
-          "attendanceType": "In-person + online"
+          "time": "9:30 AM",
+          "attendanceType": "hybrid"
         }
       ]
     },
     "locations": {
-      "label": "Join Us",
+      "label": "Ways to Join Us",
       "items": [
         {
           "text": "6476 Streeter Avenue, Riverside, CA 92504",
@@ -2122,14 +2167,6 @@
           "text": "YouTube Live Stream",
           "label": "Watch"
         }
-      ]
-    },
-    "otherInfo": {
-      "label": "What to Know",
-      "items": [
-        "HeBrews Café opens before service with coffee and light refreshments.",
-        "Parking attendants are available to help direct you.",
-        "Come as you are. We'd love to meet you."
       ]
     },
     "faqs": {
@@ -2173,7 +2210,7 @@
           "label": "View Ministries"
         },
         {
-          "alt": "",
+          "alt": "A bible opened with a pair of reading glasses placed on top of it. Next to it lie a notepad and pen. Decorative floral arrangements lie nearby.",
           "title": "Christian Life Development",
           "description": "Strengthen your faith through classes designed to help you grow in God's Word.",
           "label": "Learn About CLD"

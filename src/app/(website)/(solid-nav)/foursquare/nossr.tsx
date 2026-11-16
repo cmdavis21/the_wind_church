@@ -1,5 +1,6 @@
 'use client';
 
+import Accordion from '@/components/accordion/Accordion';
 import ScriptureWithIcon from '@/components/cards/scripture-with-icon/ScriptureWithIcon';
 import CarouselArrows from '@/components/carousels/carousel-arrows/CarouselArrows';
 import PageHeaderWithBackground from '@/components/heroes/page-header-with-background/PageHeaderWithBackground';
@@ -14,7 +15,6 @@ import Fire from '@/components/icons/fire';
 import Flag from '@/components/icons/flag';
 import FlagCheckered from '@/components/icons/flag-checkered';
 import Gift from '@/components/icons/gift';
-import HandHoldingHeart from '@/components/icons/hand-holding-heart';
 import Handshake from '@/components/icons/handshake';
 import LifeRing from '@/components/icons/life-ring';
 import Location from '@/components/icons/location';
@@ -23,7 +23,6 @@ import PeopleGroup from '@/components/icons/people-group';
 import PersonFalling from '@/components/icons/person-falling';
 import PersonPraying from '@/components/icons/person-praying';
 import PersonWalking from '@/components/icons/person-walking';
-import Seedling from '@/components/icons/seedling';
 import SunWithClouds from '@/components/icons/sun-with-clouds';
 import Temperature from '@/components/icons/temperature';
 import ThumbsDown from '@/components/icons/thumbs-down';
@@ -52,142 +51,154 @@ const FoursquareClient = () => {
     });
   };
 
-  const titles = [t('tabTitles.0'), t('tabTitles.1'), t('tabTitles.2'), t('tabTitles.3')];
+  const titles = [t('titles.0'), t('titles.1'), t('titles.2'), t('titles.3')];
 
   const lastIndex = titles.length - 1;
 
-  const foursquareBeliefsArr = [
+  const beliefs = [
     {
-      icon: ClipboardList,
-      title: t('tabContent.2.accordionItem1.plan.title'),
-      verse: t('tabContent.2.accordionItem1.plan.verse'),
-      passage: t('tabContent.2.accordionItem1.plan.description'),
+      image: '/images/foursquare/cross.webp',
+      title: t('items.2.savior.title'),
+      items: [
+        {
+          icon: ClipboardList,
+          title: t('items.2.savior.plan.title'),
+          verse: t('items.2.savior.plan.verse'),
+          passage: t('items.2.savior.plan.description'),
+        },
+        {
+          icon: LifeRing,
+          title: t('items.2.savior.salvation.title'),
+          verse: t('items.2.savior.salvation.verse'),
+          passage: t('items.2.savior.salvation.description'),
+        },
+        {
+          icon: Bible,
+          title: t('items.2.savior.scriptures.title'),
+          verse: t('items.2.savior.scriptures.verse'),
+          passage: t('items.2.savior.scriptures.description'),
+        },
+        {
+          icon: PeopleGroup,
+          title: t('items.2.savior.eternal.title'),
+          verse: t('items.2.savior.eternal.verse'),
+          passage: t('items.2.savior.eternal.description'),
+        },
+        {
+          icon: PersonFalling,
+          title: t('items.2.savior.fall.title'),
+          verse: t('items.2.savior.fall.verse'),
+          passage: t('items.2.savior.fall.description'),
+        },
+      ],
     },
     {
-      icon: LifeRing,
-      title: t('tabContent.2.accordionItem1.salvation.title'),
-      verse: t('tabContent.2.accordionItem1.salvation.verse'),
-      passage: t('tabContent.2.accordionItem1.salvation.description'),
+      image: '/images/foursquare/dove.webp',
+      title: t('items.2.baptizer.title'),
+      items: [
+        {
+          icon: Handshake,
+          title: t('items.2.baptizer.relationship.title'),
+          verse: t('items.2.baptizer.relationship.verse'),
+          passage: t('items.2.baptizer.relationship.description'),
+        },
+        {
+          icon: Buidling,
+          title: t('items.2.baptizer.civil.title'),
+          verse: t('items.2.baptizer.civil.verse'),
+          passage: t('items.2.baptizer.civil.description'),
+        },
+        {
+          icon: FlagCheckered,
+          title: t('items.2.baptizer.final.title'),
+          verse: t('items.2.baptizer.final.verse'),
+          passage: t('items.2.baptizer.final.description'),
+        },
+        {
+          icon: SunWithClouds,
+          title: t('items.2.baptizer.heaven.title'),
+          verse: t('items.2.baptizer.heaven.verse'),
+          passage: t('items.2.baptizer.heaven.description'),
+        },
+        {
+          icon: ThumbsDown,
+          title: t('items.2.baptizer.hell.title'),
+          verse: t('items.2.baptizer.hell.verse'),
+          passage: t('items.2.baptizer.hell.description'),
+        },
+      ],
     },
     {
-      icon: Bible,
-      title: t('tabContent.2.accordionItem1.scriptures.title'),
-      verse: t('tabContent.2.accordionItem1.scriptures.verse'),
-      passage: t('tabContent.2.accordionItem1.scriptures.description'),
+      image: '/images/foursquare/cup.webp',
+      title: t('items.2.healer.title'),
+      items: [
+        {
+          icon: PersonPraying,
+          title: t('items.2.healer.repent.title'),
+          verse: t('items.2.healer.repent.verse'),
+          passage: t('items.2.healer.repent.description'),
+        },
+        {
+          icon: Fire,
+          title: t('items.2.healer.new.title'),
+          verse: t('items.2.healer.new.verse'),
+          passage: t('items.2.healer.new.description'),
+        },
+        {
+          icon: PersonWalking,
+          title: t('items.2.healer.daily.title'),
+          verse: t('items.2.healer.daily.verse'),
+          passage: t('items.2.healer.daily.description'),
+        },
+        {
+          icon: ConciergeBell,
+          title: t('items.2.healer.supper.title'),
+          verse: t('items.2.healer.supper.verse'),
+          passage: t('items.2.healer.supper.description'),
+        },
+        {
+          icon: Dove,
+          title: t('items.2.healer.spirit.title'),
+          verse: t('items.2.healer.spirit.verse'),
+          passage: t('items.2.healer.spirit.description'),
+        },
+      ],
     },
     {
-      icon: PeopleGroup,
-      title: t('tabContent.2.accordionItem1.eternal.title'),
-      verse: t('tabContent.2.accordionItem1.eternal.verse'),
-      passage: t('tabContent.2.accordionItem1.eternal.description'),
-    },
-    {
-      icon: PersonFalling,
-      title: t('tabContent.2.accordionItem1.fall.title'),
-      verse: t('tabContent.2.accordionItem1.fall.verse'),
-      passage: t('tabContent.2.accordionItem1.fall.description'),
-    },
-    {
-      icon: Handshake,
-      title: t('tabContent.2.accordionItem2.relationship.title'),
-      verse: t('tabContent.2.accordionItem2.relationship.verse'),
-      passage: t('tabContent.2.accordionItem2.relationship.description'),
-    },
-    {
-      icon: Buidling,
-      title: t('tabContent.2.accordionItem2.civil.title'),
-      verse: t('tabContent.2.accordionItem2.civil.verse'),
-      passage: t('tabContent.2.accordionItem2.civil.description'),
-    },
-    {
-      icon: FlagCheckered,
-      title: t('tabContent.2.accordionItem2.final.title'),
-      verse: t('tabContent.2.accordionItem2.final.verse'),
-      passage: t('tabContent.2.accordionItem2.final.description'),
-    },
-    {
-      icon: SunWithClouds,
-      title: t('tabContent.2.accordionItem2.heaven.title'),
-      verse: t('tabContent.2.accordionItem2.heaven.verse'),
-      passage: t('tabContent.2.accordionItem2.heaven.description'),
-    },
-    {
-      icon: ThumbsDown,
-      title: t('tabContent.2.accordionItem2.hell.title'),
-      verse: t('tabContent.2.accordionItem2.hell.verse'),
-      passage: t('tabContent.2.accordionItem2.hell.description'),
-    },
-    {
-      icon: PersonPraying,
-      title: t('tabContent.2.accordionItem3.repent.title'),
-      verse: t('tabContent.2.accordionItem3.repent.verse'),
-      passage: t('tabContent.2.accordionItem3.repent.description'),
-    },
-    {
-      icon: Fire,
-      title: t('tabContent.2.accordionItem3.new.title'),
-      verse: t('tabContent.2.accordionItem3.new.verse'),
-      passage: t('tabContent.2.accordionItem3.new.description'),
-    },
-    {
-      icon: PersonWalking,
-      title: t('tabContent.2.accordionItem3.daily.title'),
-      verse: t('tabContent.2.accordionItem3.daily.verse'),
-      passage: t('tabContent.2.accordionItem3.daily.description'),
-    },
-    {
-      icon: ConciergeBell,
-      title: t('tabContent.2.accordionItem3.supper.title'),
-      verse: t('tabContent.2.accordionItem3.supper.verse'),
-      passage: t('tabContent.2.accordionItem3.supper.description'),
-    },
-    {
-      icon: Dove,
-      title: t('tabContent.2.accordionItem3.spirit.title'),
-      verse: t('tabContent.2.accordionItem3.spirit.verse'),
-      passage: t('tabContent.2.accordionItem3.spirit.description'),
-    },
-    {
-      icon: Paintbrush,
-      title: t('tabContent.2.accordionItem4.life.title'),
-      verse: t('tabContent.2.accordionItem4.life.verse'),
-      passage: t('tabContent.2.accordionItem4.life.description'),
-    },
-    {
-      icon: Gift,
-      title: t('tabContent.2.accordionItem4.gifts.title'),
-      verse: t('tabContent.2.accordionItem4.gifts.verse'),
-      passage: t('tabContent.2.accordionItem4.gifts.description'),
-    },
-    {
-      icon: Temperature,
-      title: t('tabContent.2.accordionItem4.moderation.title'),
-      verse: t('tabContent.2.accordionItem4.moderation.verse'),
-      passage: t('tabContent.2.accordionItem4.moderation.description'),
-    },
-    {
-      icon: Cross,
-      title: t('tabContent.2.accordionItem4.divine.title'),
-      verse: t('tabContent.2.accordionItem4.divine.verse'),
-      passage: t('tabContent.2.accordionItem4.divine.description'),
-    },
-    {
-      icon: Crown,
-      title: t('tabContent.2.accordionItem4.coming.title'),
-      verse: t('tabContent.2.accordionItem4.coming.verse'),
-      passage: t('tabContent.2.accordionItem4.coming.description'),
-    },
-    {
-      icon: Seedling,
-      title: t('tabContent.2.accordionItem4.evangelism.title'),
-      verse: t('tabContent.2.accordionItem4.evangelism.verse'),
-      passage: t('tabContent.2.accordionItem4.evangelism.description'),
-    },
-    {
-      icon: HandHoldingHeart,
-      title: t('tabContent.2.accordionItem4.tithes.title'),
-      verse: t('tabContent.2.accordionItem4.tithes.verse'),
-      passage: t('tabContent.2.accordionItem4.tithes.description'),
+      image: '/images/foursquare/crown.webp',
+      title: t('items.2.king.title'),
+      items: [
+        {
+          icon: Paintbrush,
+          title: t('items.2.king.life.title'),
+          verse: t('items.2.king.life.verse'),
+          passage: t('items.2.king.life.description'),
+        },
+        {
+          icon: Gift,
+          title: t('items.2.king.gifts.title'),
+          verse: t('items.2.king.gifts.verse'),
+          passage: t('items.2.king.gifts.description'),
+        },
+        {
+          icon: Temperature,
+          title: t('items.2.king.moderation.title'),
+          verse: t('items.2.king.moderation.verse'),
+          passage: t('items.2.king.moderation.description'),
+        },
+        {
+          icon: Cross,
+          title: t('items.2.king.divine.title'),
+          verse: t('items.2.king.divine.verse'),
+          passage: t('items.2.king.divine.description'),
+        },
+        {
+          icon: Crown,
+          title: t('items.2.king.coming.title'),
+          verse: t('items.2.king.coming.verse'),
+          passage: t('items.2.king.coming.description'),
+        },
+      ],
     },
   ];
 
@@ -203,50 +214,45 @@ const FoursquareClient = () => {
       <Tabs variant="default" ref={tabsRef} onActiveTabChange={(tab) => setActive(tab)}>
         <TabItem title={titles[0]} icon={Location}>
           <div className="flex flex-col gap-xl p-lg">
-            <h4 className="text-justify">{t('tabContent.0.descriptions.0')}</h4>
+            <h4 className="text-justify">{t('items.0.descriptions.0')}</h4>
           </div>
         </TabItem>
         <TabItem title={titles[1]} icon={Buidling}>
           <div className="flex flex-col gap-xl p-lg">
-            <SectionHeader
-              title={t('tabContent.1.header.title')}
-              subtitle={t('tabContent.1.header.subtitle')}
-            />
-
-            <h4 className="text-justify">{t('tabContent.1.descriptions.0')}</h4>
-            <h4 className="text-justify">{t('tabContent.1.descriptions.1')}</h4>
-            <h4 className="text-justify">{t('tabContent.1.descriptions.2')}</h4>
-            <h4 className="text-justify">{t('tabContent.1.descriptions.3')}</h4>
-            <h4 className="text-justify">{t('tabContent.1.descriptions.4')}</h4>
-            <h4 className="text-justify">{t('tabContent.1.descriptions.5')}</h4>
-            <h4 className="text-justify">{t('tabContent.1.descriptions.6')}</h4>
+            <h4 className="text-justify">{t('items.1.descriptions.0')}</h4>
+            <h4 className="text-justify">{t('items.1.descriptions.1')}</h4>
+            <h4 className="text-justify">{t('items.1.descriptions.2')}</h4>
+            <h4 className="text-justify">{t('items.1.descriptions.3')}</h4>
+            <h4 className="text-justify">{t('items.1.descriptions.4')}</h4>
+            <h4 className="text-justify">{t('items.1.descriptions.5')}</h4>
+            <h4 className="text-justify">{t('items.1.descriptions.6')}</h4>
             <ul className="list-disc list-outside ml-5 sm:ml-8 space-y-sm">
               <li>
-                <h4>{t('tabContent.1.descriptions.7')}</h4>
+                <h4>{t('items.1.descriptions.7')}</h4>
               </li>
               <li>
-                <h4>{t('tabContent.1.descriptions.8')}</h4>
+                <h4>{t('items.1.descriptions.8')}</h4>
               </li>
               <li>
-                <h4>{t('tabContent.1.descriptions.9')}</h4>
+                <h4>{t('items.1.descriptions.9')}</h4>
               </li>
               <li>
-                <h4>{t('tabContent.1.descriptions.10')}</h4>
+                <h4>{t('items.1.descriptions.10')}</h4>
               </li>
               <li>
-                <h4>{t('tabContent.1.descriptions.11')}</h4>
+                <h4>{t('items.1.descriptions.11')}</h4>
               </li>
               <li>
-                <h4>{t('tabContent.1.descriptions.12')}</h4>
+                <h4>{t('items.1.descriptions.12')}</h4>
               </li>
               <li>
-                <h4>{t('tabContent.1.descriptions.13')}</h4>
+                <h4>{t('items.1.descriptions.13')}</h4>
               </li>
             </ul>
-            <h4 className="text-justify">{t('tabContent.1.descriptions.14')}</h4>
-            <h4 className="text-justify">{t('tabContent.1.descriptions.15')}</h4>
+            <h4 className="text-justify">{t('items.1.descriptions.14')}</h4>
+            <h4 className="text-justify">{t('items.1.descriptions.15')}</h4>
             <h4 className="text-justify">
-              {t.rich('tabContent.1.descriptions.16', {
+              {t.rich('items.1.descriptions.16', {
                 link: (chunks) => (
                   <Link href="www.foursquare.org" target="_blank" className="text-link underline">
                     {chunks}
@@ -258,20 +264,31 @@ const FoursquareClient = () => {
         </TabItem>
         <TabItem title={titles[2]} icon={Cross}>
           <div className="flex flex-col gap-xl p-lg">
-            <SectionHeader title={t('tabContent.2.header.title')} />
+            <SectionHeader title={t('items.2.header.title')} />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
-              {foursquareBeliefsArr.map((item, idx) => (
-                <div key={`learn-page-foursquare-${item.title}-${idx}`} className="mx-auto">
-                  <ScriptureWithIcon
-                    icon={item.icon}
-                    title={item.title}
-                    verse={item.verse}
-                    passage={item.passage}
-                  />
-                </div>
-              ))}
-            </div>
+            <h4 className="text-justify pb-md">{t('items.2.descriptions.0')}</h4>
+
+            <Accordion
+              content={beliefs.map((section) => ({
+                image: section.image,
+                title: section.title,
+                defaultOpen: true,
+                description: (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-5">
+                    {section.items.map((item, idx) => (
+                      <div key={`about-page-foursquare-${item.title}-${idx}`} className="mx-auto">
+                        <ScriptureWithIcon
+                          icon={item.icon}
+                          title={item.title}
+                          verse={item.verse}
+                          passage={item.passage}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ),
+              }))}
+            />
           </div>
         </TabItem>
         <TabItem title={titles[3]} icon={Flag}>
@@ -279,41 +296,41 @@ const FoursquareClient = () => {
             {/* LOGO SECTION */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
               <div className="sm:col-span-2 space-y-md">
-                <SectionHeader title={t('tabContent.3.section1.header')} />
+                <SectionHeader title={t('items.3.section1.header')} />
 
-                <h4>{t('tabContent.3.section1.descriptions.0')}</h4>
+                <h4 className="pt-md">{t('items.3.section1.descriptions.0')}</h4>
 
                 <h4>
-                  {t.rich('tabContent.3.section1.descriptions.1', {
+                  {t.rich('items.3.section1.descriptions.1', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
                 <h4>
-                  {t.rich('tabContent.3.section1.descriptions.2', {
+                  {t.rich('items.3.section1.descriptions.2', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
                 <h4>
-                  {t.rich('tabContent.3.section1.descriptions.3', {
+                  {t.rich('items.3.section1.descriptions.3', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
                 <h4>
-                  {t.rich('tabContent.3.section1.descriptions.4', {
+                  {t.rich('items.3.section1.descriptions.4', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
 
                 <ScriptureList
                   scriptures={[
-                    t('tabContent.3.section1.descriptions.5'),
-                    t('tabContent.3.section1.descriptions.6'),
-                    t('tabContent.3.section1.descriptions.7'),
-                    t('tabContent.3.section1.descriptions.8'),
-                    t('tabContent.3.section1.descriptions.9'),
-                    t('tabContent.3.section1.descriptions.10'),
-                    t('tabContent.3.section1.descriptions.11'),
-                    t('tabContent.3.section1.descriptions.12'),
+                    t('items.3.section1.descriptions.5'),
+                    t('items.3.section1.descriptions.6'),
+                    t('items.3.section1.descriptions.7'),
+                    t('items.3.section1.descriptions.8'),
+                    t('items.3.section1.descriptions.9'),
+                    t('items.3.section1.descriptions.10'),
+                    t('items.3.section1.descriptions.11'),
+                    t('items.3.section1.descriptions.12'),
                   ]}
                 />
               </div>
@@ -322,7 +339,7 @@ const FoursquareClient = () => {
                 <Image
                   fill
                   src="/images/foursquare/logo.webp"
-                  alt={t('tabContent.3.section1.logoAlt')}
+                  alt={t('items.3.section1.logoAlt')}
                 />
               </div>
             </div>
@@ -333,40 +350,40 @@ const FoursquareClient = () => {
                 <Image
                   fill
                   src={'/images/foursquare/emblem.webp'}
-                  alt={t('tabContent.3.section2.logoAlt')}
+                  alt={t('items.3.section2.logoAlt')}
                 />
               </div>
 
               <div className="sm:col-span-2 space-y-md">
-                <SectionHeader title={t('tabContent.3.section2.header')} />
+                <SectionHeader title={t('items.3.section2.header')} />
 
-                <h4>{t('tabContent.3.section2.descriptions.0')}</h4>
+                <h4 className="pt-md">{t('items.3.section2.descriptions.0')}</h4>
 
                 <h4>
-                  {t.rich('tabContent.3.section2.descriptions.1', {
+                  {t.rich('items.3.section2.descriptions.1', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
                 <h4>
-                  {t.rich('tabContent.3.section2.descriptions.2', {
+                  {t.rich('items.3.section2.descriptions.2', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
                 <h4>
-                  {t.rich('tabContent.3.section2.descriptions.3', {
+                  {t.rich('items.3.section2.descriptions.3', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
                 <h4>
-                  {t.rich('tabContent.3.section2.descriptions.4', {
+                  {t.rich('items.3.section2.descriptions.4', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
 
                 <ScriptureList
                   scriptures={[
-                    t('tabContent.3.section2.descriptions.5'),
-                    t('tabContent.3.section2.descriptions.6'),
+                    t('items.3.section2.descriptions.5'),
+                    t('items.3.section2.descriptions.6'),
                   ]}
                 />
               </div>
@@ -375,39 +392,39 @@ const FoursquareClient = () => {
             {/* FLAG SECTION */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-xl place-items-center">
               <div className="sm:col-span-2 space-y-md">
-                <SectionHeader title={t('tabContent.3.section3.header')} />
+                <SectionHeader title={t('items.3.section3.header')} />
 
-                <h4>{t('tabContent.3.section3.descriptions.0')}</h4>
+                <h4 className="pt-md">{t('items.3.section3.descriptions.0')}</h4>
 
                 <h4>
-                  {t.rich('tabContent.3.section3.descriptions.1', {
+                  {t.rich('items.3.section3.descriptions.1', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
                 <h4>
-                  {t.rich('tabContent.3.section3.descriptions.2', {
+                  {t.rich('items.3.section3.descriptions.2', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
                 <h4>
-                  {t.rich('tabContent.3.section3.descriptions.3', {
+                  {t.rich('items.3.section3.descriptions.3', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
                 <h4>
-                  {t.rich('tabContent.3.section3.descriptions.4', {
+                  {t.rich('items.3.section3.descriptions.4', {
                     bold: (chunks) => <strong>{chunks}</strong>,
                   })}
                 </h4>
 
-                <ScriptureList scriptures={[t('tabContent.3.section3.descriptions.5')]} />
+                <ScriptureList scriptures={[t('items.3.section3.descriptions.5')]} />
               </div>
 
               <div className="relative w-full h-full aspect-square">
                 <Image
                   fill
                   src="/images/foursquare/flag.webp"
-                  alt={t('tabContent.3.section3.logoAlt')}
+                  alt={t('items.3.section3.logoAlt')}
                   className="object-contain aspect-video mx-auto"
                 />
               </div>

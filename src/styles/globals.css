@@ -87,7 +87,7 @@ body {
     @apply bg-gradient-to-br from-[#FDD738] via-[#F4E2B5] to-[#FDD738];
   }
   .form-container-style {
-    @apply relative w-full max-w-[1200px] mx-auto border border-light-gray dark:bg-dark-gray dark:border-dark-gray shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg
+    @apply relative w-full max-w-[1200px] mx-auto border border-light-gray dark:bg-dark-gray dark:border-dark-charcoal shadow-lg p-lg lg:p-xl flex flex-col gap-lg rounded-lg
   }
 }
 
@@ -126,59 +126,6 @@ input[type='number']::-webkit-inner-spin-button {
 /* remove arrows from input type number - Firefox */
 input[type='number'] {
   -moz-appearance: textfield;
-}
-
-/* animations */
-.fade-in {
-  animation: fadeIn ease 1s;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.fade-out {
-  animation: fadeOut ease-out 1s;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.grow-width {
-  animation: growWidth;
-}
-
-@keyframes growWidth {
-  from {
-    width: 0px;
-  }
-  to {
-    width: 60%;
-  }
-}
-
-.shrink-width {
-  animation: shrinkWidth;
-}
-
-@keyframes shrinkWidth {
-  from {
-    width: 60%;
-  }
-  to {
-    width: 0px;
-  }
 }
 
 /* scroll box shadowing */

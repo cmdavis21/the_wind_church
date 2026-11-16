@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import Link from 'next/link';
 import React, { forwardRef } from 'react';
 
@@ -17,25 +18,26 @@ const MobileNavItem = forwardRef<HTMLButtonElement, NavItemProps>(
         ref={ref}
         type="button"
         {...rest}
-        className={`rounded-lg transition-colors duration-300 ${link ? `p-sm w-full ${changeColor ? 'hover:bg-light-gray/50 hover:dark:bg-dark-gray/80' : 'hover:bg-light-charcoal/80 hover:dark:bg-dark-gray/80'}` : ''}`}
+        className={cn('rounded-lg transition-colors duration-300', link && 'p-sm w-full')}
       >
         <div className="w-full flex items-center justify-between gap-md">
           <h5
-            className={`${
-              changeColor
-                ? `${active ? 'text-brand-primary' : 'text-black dark:text-dark-primaryText'}`
-                : `${active ? 'text-brand-primary' : 'text-white dark:text-dark-primaryText'}`
-            } whitespace-nowrap tracking-wider capitalize`}
+            className={cn(
+              'whitespace-nowrap tracking-wider capitalize',
+              active ? 'text-brand-primary' : !changeColor && 'text-dark-primaryText'
+            )}
           >
             {label}
           </h5>
           {!link && (
             <Plus
-              className={`${active ? 'rotate-45' : 'rotate-0'} transition-[rotate] duration-300 ${
-                changeColor
-                  ? `${active ? 'fill-brand-primary' : 'fill-black dark:fill-dark-primaryText'}`
-                  : `${active ? 'fill-brand-primary dark:fill-brand-primary' : 'fill-dark-primaryText'}`
-              }`}
+              className={cn(
+                active ? 'rotate-45' : 'rotate-0',
+                'transition-[rotate] duration-300',
+                active
+                  ? 'fill-brand-primary'
+                  : `${changeColor ? 'fill-black dark:fill-dark-primaryText' : 'fill-dark-primaryText'}`
+              )}
             />
           )}
         </div>

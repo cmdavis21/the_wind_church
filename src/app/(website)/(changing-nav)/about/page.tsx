@@ -1,36 +1,14 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 
-import Accordion from '@/components/accordion/Accordion';
-import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
-import ScriptureWithIcon from '@/components/cards/scripture-with-icon/ScriptureWithIcon';
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
+import HiddenTextCard from '@/components/cards/hidden-text-card/HiddenTextCard';
 import CenterModeMediaWithTextCarousel from '@/components/carousels/center-mode-media-with-text-carousel/CenterModeMediaWithTextCarousel';
-import FullscreenMediaWithSideTextCarousel from '@/components/carousels/fullscreen-media-with-side-text-carousel/FullscreenMediaWithSideTextCarousel';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
 import PageHero from '@/components/heroes/page-hero/PageHero';
-import Bible from '@/components/icons/bible';
-
-import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
-import Text from '@/components/forms/inputs/text/Text';
-import Buidling from '@/components/icons/building';
-import ClipboardList from '@/components/icons/clipboard-list';
-import ConciergeBell from '@/components/icons/concierge-bell';
-import Cross from '@/components/icons/cross';
-import Crown from '@/components/icons/crown';
-import Dove from '@/components/icons/dove';
-import Fire from '@/components/icons/fire';
-import FlagCheckered from '@/components/icons/flag-checkered';
-import Gift from '@/components/icons/gift';
-import Handshake from '@/components/icons/handshake';
-import LifeRing from '@/components/icons/life-ring';
-import Paintbrush from '@/components/icons/paintbursh';
-import PeopleGroup from '@/components/icons/people-group';
-import PersonFalling from '@/components/icons/person-falling';
-import PersonPraying from '@/components/icons/person-praying';
-import PersonWalking from '@/components/icons/person-walking';
-import SunWithClouds from '@/components/icons/sun-with-clouds';
-import Temperature from '@/components/icons/temperature';
-import ThumbsDown from '@/components/icons/thumbs-down';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
+import MediaBackgroundAndContent, {
+  ColorBackground,
+} from '@/components/sections/media-background-and-content/MediaBackgroundAndContent';
 import ScriptureList from '@/components/sections/scripture-list/ScriptureList';
 import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { Locale } from '@/data/i18n/utils';
@@ -72,14 +50,12 @@ const About = async () => {
   const missionVision = [
     {
       title: t('mission.title'),
-      subtitle: t('mission.subtitle'),
-      highlight: [[0, 9]],
+      subtitle: 'mission.subtitle',
       description: t('mission.description'),
     },
     {
       title: t('vision.title'),
-      subtitle: t('vision.subtitle'),
-      highlight: [[0, 7]],
+      subtitle: 'vision.subtitle',
       description: t('vision.description'),
       scriptureList: [
         t('vision.verse1'),
@@ -91,244 +67,78 @@ const About = async () => {
     },
   ];
 
-  const aboutPastor = [
-    {
-      media: {
-        src: '/images/product-placeholder.webp',
-        alt: t('alt'),
-      },
-      title: t('aboutPastor.title'),
-      description: t('aboutPastor.subtitle'),
-    },
-    {
-      media: {
-        src: '/images/product-placeholder.webp',
-        alt: t('alt'),
-      },
-      title: t('aboutPastor.history.title'),
-      description: t('aboutPastor.history.description'),
-    },
-    {
-      media: {
-        src: '/images/product-placeholder.webp',
-        alt: t('alt'),
-      },
-      title: t('aboutPastor.why.title'),
-      description: t('aboutPastor.why.description'),
-    },
-    {
-      media: {
-        src: '/images/wind_church_building.webp',
-        alt: t('alt'),
-      },
-      title: t('aboutPastor.goals.title'),
-      description: t('aboutPastor.goals.description'),
-    },
-    {
-      media: {
-        src: '/images/product-placeholder.webp',
-        alt: t('alt'),
-      },
-      title: t('aboutPastor.fact.title'),
-      description: t('aboutPastor.fact.description'),
-    },
-  ];
-
   const windValues = [
     {
       image: {
         src: '/images/salvation/cross-on-mount.webp',
         alt: t('alt'),
       },
-      title: t('values.jesus.title'),
-      description: t('values.jesus.description'),
+      title: 'values.items.0.title',
+      description: t('values.items.0.description'),
     },
     {
       image: {
         src: '/images/about/man-worshipping.webp',
-        alt: t('alt'),
+        alt: t('values.items.1.alt'),
       },
-      title: t('values.worship.title'),
-      description: t('values.worship.description'),
-    },
-    {
-      image: {
-        src: '/images/about/women-hugging.webp',
-        alt: t('alt'),
-      },
-      title: t('values.love.title'),
-      description: t('values.love.description'),
-    },
-    {
-      image: {
-        src: '/images/give/person-with-box.webp',
-        alt: t('alt'),
-      },
-      title: t('values.serve.title'),
-      description: t('values.serve.description'),
+      title: 'values.items.1.title',
+      description: t('values.items.1.description'),
     },
     {
       image: {
         src: '/images/about/all-hands-in.webp',
-        alt: t('alt'),
+        alt: t('values.items.2.alt'),
       },
-      title: t('values.family.title'),
-      description: t('values.family.description'),
+      title: 'values.items.2.title',
+      description: t('values.items.2.description'),
+    },
+    {
+      image: {
+        src: '/images/give/person-with-box.webp',
+        alt: t('values.items.3.alt'),
+      },
+      title: 'values.items.3.title',
+      description: t('values.items.3.description'),
+    },
+    {
+      image: {
+        src: '/images/about/women-hugging.webp',
+        alt: t('values.items.4.alt'),
+      },
+      title: 'values.items.4.title',
+      description: t('values.items.4.description'),
     },
     {
       image: {
         src: '/images/about/young-adults-praying.webp',
-        alt: t('alt'),
+        alt: t('values.items.5.alt'),
       },
-      title: t('values.transform.title'),
-      description: t('values.transform.description'),
+      title: 'values.items.5.title',
+      description: t('values.items.5.description'),
     },
   ];
 
-  const foursquareBeliefs = [
+  const historySlides = [
     {
-      image: '/images/foursquare/cross.webp',
-      title: t('foursquare.accordionItem1.title'),
-      items: [
-        {
-          icon: ClipboardList,
-          title: t('foursquare.accordionItem1.plan.title'),
-          verse: t('foursquare.accordionItem1.plan.verse'),
-          passage: t('foursquare.accordionItem1.plan.description'),
-        },
-        {
-          icon: LifeRing,
-          title: t('foursquare.accordionItem1.salvation.title'),
-          verse: t('foursquare.accordionItem1.salvation.verse'),
-          passage: t('foursquare.accordionItem1.salvation.description'),
-        },
-        {
-          icon: Bible,
-          title: t('foursquare.accordionItem1.scriptures.title'),
-          verse: t('foursquare.accordionItem1.scriptures.verse'),
-          passage: t('foursquare.accordionItem1.scriptures.description'),
-        },
-        {
-          icon: PeopleGroup,
-          title: t('foursquare.accordionItem1.eternal.title'),
-          verse: t('foursquare.accordionItem1.eternal.verse'),
-          passage: t('foursquare.accordionItem1.eternal.description'),
-        },
-        {
-          icon: PersonFalling,
-          title: t('foursquare.accordionItem1.fall.title'),
-          verse: t('foursquare.accordionItem1.fall.verse'),
-          passage: t('foursquare.accordionItem1.fall.description'),
-        },
-      ],
+      media: {
+        src: '/images/product-placeholder.webp',
+        alt: t('history.items.0.alt'),
+      },
+      description: t('history.items.0.description'),
     },
     {
-      image: '/images/foursquare/dove.webp',
-      title: t('foursquare.accordionItem2.title'),
-      items: [
-        {
-          icon: Handshake,
-          title: t('foursquare.accordionItem2.relationship.title'),
-          verse: t('foursquare.accordionItem2.relationship.verse'),
-          passage: t('foursquare.accordionItem2.relationship.description'),
-        },
-        {
-          icon: Buidling,
-          title: t('foursquare.accordionItem2.civil.title'),
-          verse: t('foursquare.accordionItem2.civil.verse'),
-          passage: t('foursquare.accordionItem2.civil.description'),
-        },
-        {
-          icon: FlagCheckered,
-          title: t('foursquare.accordionItem2.final.title'),
-          verse: t('foursquare.accordionItem2.final.verse'),
-          passage: t('foursquare.accordionItem2.final.description'),
-        },
-        {
-          icon: SunWithClouds,
-          title: t('foursquare.accordionItem2.heaven.title'),
-          verse: t('foursquare.accordionItem2.heaven.verse'),
-          passage: t('foursquare.accordionItem2.heaven.description'),
-        },
-        {
-          icon: ThumbsDown,
-          title: t('foursquare.accordionItem2.hell.title'),
-          verse: t('foursquare.accordionItem2.hell.verse'),
-          passage: t('foursquare.accordionItem2.hell.description'),
-        },
-      ],
+      media: {
+        src: '/images/product-placeholder.webp',
+        alt: t('history.items.1.alt'),
+      },
+      description: t('history.items.1.description'),
     },
     {
-      image: '/images/foursquare/cup.webp',
-      title: t('foursquare.accordionItem3.title'),
-      items: [
-        {
-          icon: PersonPraying,
-          title: t('foursquare.accordionItem3.repent.title'),
-          verse: t('foursquare.accordionItem3.repent.verse'),
-          passage: t('foursquare.accordionItem3.repent.description'),
-        },
-        {
-          icon: Fire,
-          title: t('foursquare.accordionItem3.new.title'),
-          verse: t('foursquare.accordionItem3.new.verse'),
-          passage: t('foursquare.accordionItem3.new.description'),
-        },
-        {
-          icon: PersonWalking,
-          title: t('foursquare.accordionItem3.daily.title'),
-          verse: t('foursquare.accordionItem3.daily.verse'),
-          passage: t('foursquare.accordionItem3.daily.description'),
-        },
-        {
-          icon: ConciergeBell,
-          title: t('foursquare.accordionItem3.supper.title'),
-          verse: t('foursquare.accordionItem3.supper.verse'),
-          passage: t('foursquare.accordionItem3.supper.description'),
-        },
-        {
-          icon: Dove,
-          title: t('foursquare.accordionItem3.spirit.title'),
-          verse: t('foursquare.accordionItem3.spirit.verse'),
-          passage: t('foursquare.accordionItem3.spirit.description'),
-        },
-      ],
-    },
-    {
-      image: '/images/foursquare/crown.webp',
-      title: t('foursquare.accordionItem4.title'),
-      items: [
-        {
-          icon: Paintbrush,
-          title: t('foursquare.accordionItem4.life.title'),
-          verse: t('foursquare.accordionItem4.life.verse'),
-          passage: t('foursquare.accordionItem4.life.description'),
-        },
-        {
-          icon: Gift,
-          title: t('foursquare.accordionItem4.gifts.title'),
-          verse: t('foursquare.accordionItem4.gifts.verse'),
-          passage: t('foursquare.accordionItem4.gifts.description'),
-        },
-        {
-          icon: Temperature,
-          title: t('foursquare.accordionItem4.moderation.title'),
-          verse: t('foursquare.accordionItem4.moderation.verse'),
-          passage: t('foursquare.accordionItem4.moderation.description'),
-        },
-        {
-          icon: Cross,
-          title: t('foursquare.accordionItem4.divine.title'),
-          verse: t('foursquare.accordionItem4.divine.verse'),
-          passage: t('foursquare.accordionItem4.divine.description'),
-        },
-        {
-          icon: Crown,
-          title: t('foursquare.accordionItem4.coming.title'),
-          verse: t('foursquare.accordionItem4.coming.verse'),
-          passage: t('foursquare.accordionItem4.coming.description'),
-        },
-      ],
+      media: {
+        src: '/images/product-placeholder.webp',
+        alt: t('history.items.2.alt'),
+      },
+      description: t('history.items.2.description'),
     },
   ];
 
@@ -337,54 +147,70 @@ const About = async () => {
       <PageHero
         title={t('title')}
         description={t('subtitle')}
-        media={{ src: '/images/product-placeholder.webp' }}
+        media={{ src: '/images/product-placeholder.webp', alt: '' }}
         stats={[
-          { value: '1996', label: 'Founded' },
-          { value: '250+', label: 'Sermons' },
-          { value: '24/7', label: 'Prayer Support' },
+          { value: t('stats.0.value'), label: t('stats.0.label') },
+          { value: t('stats.1.value'), label: t('stats.1.label') },
+          { value: t('stats.2.value'), label: t('stats.2.label') },
         ]}
       />
 
-      {/* Mission and Vision */}
-      <div id={t('mission.id')} className="max-width-center pt-3xl sm:pt-4xl">
-        <div className="flex flex-col gap-xxl px-padding">
-          {missionVision.map((mv) => (
-            <div key={`mission-and-vision-${mv.title}`} className="flex flex-col gap-sm">
-              <h1>{mv.title}</h1>
-              <Text htmlTag="h2" highlight={mv.highlight as any}>
-                {mv.subtitle}
-              </Text>
-              <h4 className="lg:max-w-[75%]">{mv.description}</h4>
-              {mv.scriptureList && <ScriptureList scriptures={mv.scriptureList} />}
-            </div>
-          ))}
+      <div className="flex flex-col gap-3xl max-width-center py-3xl sm:py-4xl px-padding">
+        {/* OVERVIEW */}
+        <h4 className="lg:max-w-[75%]">{t('description')}</h4>
+
+        {/* MEET PASTOR */}
+        <div className="flex flex-col gap-lg">
+          <SectionHeader title={t('pastor.title')} subtitle={t('pastor.subtitle')} />
+          <div className="lg:max-w-[75%] flex flex-col gap-sm">
+            <h4>{t('pastor.description')}</h4>
+            <h5 className="italic text-light-charcoal dark:text-dark-charcoal">
+              {t('pastor.quote')}
+            </h5>
+          </div>
+          <Link href={PageRoutes.aboutPastor}>
+            <AnimativeFillButton variant="primary">{t('pastor.cta')}</AnimativeFillButton>
+          </Link>
         </div>
       </div>
 
-      {/* About Pastor */}
-      <div id={t('aboutPastor.id')} className="pt-3xl sm:pt-4xl">
-        <FullscreenMediaWithSideTextCarousel slides={aboutPastor} />
-      </div>
+      {/* MISSION + VISION */}
+      <MediaBackgroundAndContent
+        color={ColorBackground.BLUE}
+        content={
+          <div id="mission-and-vision" className="flex flex-col gap-3xl">
+            {missionVision.map((mv) => (
+              <div key={`mission-and-vision-${mv.title}`} className="flex flex-col gap-sm">
+                <h2>{mv.title}</h2>
+                <h2>
+                  {t.rich(mv.subtitle, {
+                    bold: (chunks) => (
+                      <span className="font-display text-brand-primary">{chunks}</span>
+                    ),
+                  })}
+                </h2>
+                <h5 className="lg:max-w-[75%]">{mv.description}</h5>
+                {mv.scriptureList && <ScriptureList lightText scriptures={mv.scriptureList} />}
+              </div>
+            ))}
+          </div>
+        }
+      />
 
-      {/* The Wind Center */}
-      <div
-        id={t('values.id')}
-        className="flex flex-col gap-xxl md:gap-3xl max-width-center pt-3xl sm:pt-4xl px-padding"
-      >
+      {/* WIND VALUES */}
+      <div className="flex flex-col gap-xxl md:gap-3xl max-width-center pt-3xl sm:pt-4xl px-padding">
         <CenterTextSection title={t('values.title')} description={t('values.subtitle')} />
 
         {/* Tablet/Desktop */}
         <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
           {windValues.map(({ title, image, description }) => (
-            <ImageWithTitleAndHiddenTextCard
+            <HiddenTextCard
               key={`desktop-${title}`}
               image={image}
               description={description}
-              title={
-                <Text htmlTag="h2" highlight={[[1, 1]]}>
-                  {title}
-                </Text>
-              }
+              title={t.rich(title, {
+                bold: (chunks) => <span className="font-display text-brand-primary">{chunks}</span>,
+              })}
             />
           ))}
         </div>
@@ -393,89 +219,37 @@ const About = async () => {
         <SimpleCarousel
           className="sm:hidden"
           slides={windValues.map(({ title, image, description }) => (
-            <ImageWithTitleAndHiddenTextCard
+            <HiddenTextCard
               key={`mobile-${title}`}
               image={image}
               description={description}
-              title={
-                <Text htmlTag="h2" highlight={[[1, 1]]}>
-                  {title}
-                </Text>
-              }
+              title={t.rich(title, {
+                bold: (chunks) => <span className="font-display text-brand-primary">{chunks}</span>,
+              })}
             />
           ))}
         />
       </div>
 
-      {/* Foursquare */}
-      <div
-        id={t('foursquare.id')}
-        className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding"
-      >
+      {/* FOURSQUARE */}
+      <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
         <div className="flex flex-col gap-lg">
           <SectionHeader title={t('foursquare.title')} subtitle={t('foursquare.subtitle')} />
-          <h5 className="lg:max-w-[75%]">{t('foursquare.description')}</h5>
+          <h4 className="lg:max-w-[75%]">{t('foursquare.description')}</h4>
           <Link href={PageRoutes.foursquare}>
-            <AnimativeFillButton variant="secondary">
-              Learn more about Foursquare
-            </AnimativeFillButton>
+            <AnimativeFillButton variant="secondary">{t('foursquare.cta')}</AnimativeFillButton>
           </Link>
         </div>
-
-        <Accordion
-          content={foursquareBeliefs.map((section) => ({
-            image: section.image,
-            title: section.title,
-            description: (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-5">
-                {section.items.map((item, idx) => (
-                  <div key={`about-page-foursquare-${item.title}-${idx}`} className="mx-auto">
-                    <ScriptureWithIcon
-                      icon={item.icon}
-                      title={item.title}
-                      verse={item.verse}
-                      passage={item.passage}
-                    />
-                  </div>
-                ))}
-              </div>
-            ),
-          }))}
-        />
       </div>
 
-      {/* History */}
-      <div id={t('history.id')} className="flex flex-col gap-xl md:gap-xxl pt-3xl sm:pt-4xl">
+      {/* HISTORY */}
+      <div id="history" className="flex flex-col gap-xl md:gap-xxl pt-3xl sm:pt-4xl">
         <div className="px-padding flex flex-col gap-lg max-width-center">
           <SectionHeader title={t('history.title')} subtitle={t('history.subtitle')} />
-          <h5 className="lg:max-w-[75%]">{t('history.description')}</h5>
+          <h4 className="lg:max-w-[75%]">{t('history.description')}</h4>
         </div>
 
-        <CenterModeMediaWithTextCarousel
-          slides={[
-            {
-              media: {
-                src: '/images/product-placeholder.webp',
-                alt: t('alt'),
-              },
-              description: t('history.carouselItem1'),
-            },
-            {
-              media: {
-                src: '/images/product-placeholder.webp',
-                alt: t('alt'),
-              },
-              description: t('history.carouselItem2'),
-            },
-            {
-              media: {
-                src: '/images/product-placeholder.webp',
-                alt: t('alt'),
-              },
-              description: t('history.carouselItem3'),
-            },
-          ]}
-        />
+        <CenterModeMediaWithTextCarousel slides={historySlides} />
       </div>
     </div>
   );

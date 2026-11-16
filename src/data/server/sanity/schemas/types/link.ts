@@ -19,6 +19,7 @@ export const LinkSchema = defineType({
       options: {
         list: [
           { title: 'About', value: PageRoutes.about },
+          { title: 'Pastor Singletary', value: PageRoutes.aboutPastor },
           { title: 'Bookstore', value: PageRoutes.bookstore },
           { title: 'Church Rental', value: PageRoutes.churchRental },
           { title: 'Deep Dive', value: PageRoutes.deepDive },

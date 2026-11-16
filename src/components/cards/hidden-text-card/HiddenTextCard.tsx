@@ -2,33 +2,29 @@
 
 import SquarePlus from '@/components/icons/square-plus';
 import { useWindowDimensions } from '@/data/client/use-window-dimensions';
+import { Image as ImageType } from '@/data/types';
 import cn from 'classnames';
 import Image from 'next/image';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, ReactNode, useState } from 'react';
 
-interface ImageWithTitleAndHiddenTextCardProps {
-  image: {
-    src: string;
-    alt: string;
-  };
-  title: string | ReactElement;
+interface HiddenTextCardProps {
+  image: ImageType;
+  title: string | ReactElement | ReactNode;
   description: string | ReactElement;
 }
 
-const ImageWithTitleAndHiddenTextCard: React.FC<ImageWithTitleAndHiddenTextCardProps> = ({
-  image,
-  title,
-  description,
-}) => {
+const HiddenTextCard: React.FC<HiddenTextCardProps> = ({ image, title, description }) => {
   const { width } = useWindowDimensions();
+
   const [showText, setShowText] = useState(false);
   const handleCardClick = () => setShowText((prevState) => !prevState);
+
   return (
     <div
       onMouseOver={() => width >= 1024 && setShowText(true)}
       onMouseLeave={() => width >= 1024 && setShowText(false)}
       onClick={width < 1024 ? handleCardClick : undefined}
-      className="relative aspect-square rounded-lg min-w-7xl max-w-[500px] w-full cursor-pointer"
+      className="relative aspect-square rounded-lg min-w-7xl max-w-[400px] w-full cursor-pointer"
     >
       <Image
         fill
@@ -68,4 +64,4 @@ const ImageWithTitleAndHiddenTextCard: React.FC<ImageWithTitleAndHiddenTextCardP
   );
 };
 
-export default ImageWithTitleAndHiddenTextCard;
+export default HiddenTextCard;

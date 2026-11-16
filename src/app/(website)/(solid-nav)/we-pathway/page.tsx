@@ -1,6 +1,5 @@
-import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
+import HiddenTextCard from '@/components/cards/hidden-text-card/HiddenTextCard';
 import SimpleCarousel from '@/components/carousels/simple-carousel/SimpleCarousel';
-import Text from '@/components/forms/inputs/text/Text';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
 import { Locale } from '@/data/i18n/utils';
@@ -108,19 +107,18 @@ const WePathwayPage = async () => {
 
       {/* Content */}
       <div className="px-padding flex flex-col gap-3xl sm:gap-4xl max-width-center">
-        <PageHeader title={'The WE Pathway'} subtitle={'Lorem Ipsum'} />
+        <PageHeader
+          title={'The WE Pathway'}
+          subtitle={
+            'Church is not something you merely attend—it is something you belong to, grow through, and help build.'
+          }
+        />
 
-        <div className="lg:max-w-[75%] flex flex-col gap-lg">
-          <h4>
-            The WE Pathway is the intentional process The Wind Church uses to help people move from
-            simply attending church to becoming spiritually grounded, connected, actively serving,
-            and developed as disciples of Jesus Christ.
-          </h4>
-          <h4>
-            At The Wind Church, we believe church is not something you merely attend—it is something
-            you belong to, grow through, and help build.
-          </h4>
-        </div>
+        <h4>
+          The WE Pathway is the intentional process The Wind Church uses to help people move from
+          simply attending church to becoming spiritually grounded, connected, actively serving, and
+          developed as disciples of Jesus Christ.
+        </h4>
 
         {/* The Wind Center */}
         <div className="flex flex-col gap-xxl md:gap-3xl max-width-center pt-3xl sm:pt-4xl">
@@ -129,15 +127,11 @@ const WePathwayPage = async () => {
           {/* Tablet/Desktop */}
           <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-lg lg:gap-xl">
             {steps.map(({ title, image, description }) => (
-              <ImageWithTitleAndHiddenTextCard
+              <HiddenTextCard
                 key={`desktop-${title}`}
                 image={image}
                 description={description}
-                title={
-                  <Text htmlTag="h2" highlight={[[0, 0]]}>
-                    {title}
-                  </Text>
-                }
+                title={title}
               />
             ))}
           </div>
@@ -146,15 +140,11 @@ const WePathwayPage = async () => {
           <SimpleCarousel
             className="sm:hidden"
             slides={steps.map(({ title, image, description }) => (
-              <ImageWithTitleAndHiddenTextCard
+              <HiddenTextCard
                 key={`mobile-${title}`}
                 image={image}
                 description={description}
-                title={
-                  <Text htmlTag="h2" highlight={[[0, 0]]}>
-                    {title}
-                  </Text>
-                }
+                title={title}
               />
             ))}
           />

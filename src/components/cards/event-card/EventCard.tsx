@@ -57,7 +57,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
         onClick={() => setOpen(true)}
         style={{ backgroundColor: panelColor }}
         className={cn(
-          scale && 'transition-transform duration-300 hover:scale-[1.02]',
           'group relative w-[300px] sm:w-[350px] flex flex-col overflow-hidden rounded-3xl text-left shadow-lg',
           'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary'
         )}
@@ -70,7 +69,11 @@ const EventCard: React.FC<EventCardProps> = ({ event, scale = true }) => {
             placeholder="blur"
             blurDataURL="data:..."
             alt={image.alt ?? 'Image of event'}
-            className="object-cover transition-transform duration-500 ease-out"
+            className={cn(
+              'object-cover transition-transform duration-500 ease-out',
+              scale &&
+                'transition-transform duration-300 will-change-transform lg:group-hover:scale-110'
+            )}
           />
 
           {pastEvent && <div className="absolute inset-0 z-10 bg-black/40" />}

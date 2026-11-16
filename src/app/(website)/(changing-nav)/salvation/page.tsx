@@ -1,4 +1,4 @@
-import ImageWithTitleAndHiddenTextCard from '@/components/cards/image-with-title-and-hidden-text-card/ImageWithTitleAndHiddenTextCard';
+import HiddenTextCard from '@/components/cards/hidden-text-card/HiddenTextCard';
 import PrayerRequestForm from '@/components/forms/prayer-request-form/PrayerRequestForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
@@ -125,7 +125,7 @@ const Salvation = async () => {
         <h4>{t('how.descriptions.0')}</h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center gap-lg">
           {questions.map((item, index) => (
-            <ImageWithTitleAndHiddenTextCard
+            <HiddenTextCard
               key={`salvation-question-${item.question}`}
               image={item.image}
               title={

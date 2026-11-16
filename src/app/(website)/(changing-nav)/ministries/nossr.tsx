@@ -11,7 +11,6 @@ import MediaBackgroundAndContent from '@/components/sections/media-background-an
 import PassageQuote from '@/components/sections/passage-quote/PassageQuote';
 import { useGetAllMinistries } from '@/data/client/sanity/ministries';
 import { useTranslations } from 'next-intl';
-
 import React from 'react';
 
 const MinistriesClient = () => {
@@ -56,6 +55,16 @@ const MinistriesClient = () => {
         media={{ src: '/images/people-serving.webp', alt: t('alt') }}
       />
 
+      {/* OVERVIEW */}
+      <div className="max-width-center pt-3xl sm:pt-4xl px-padding flex flex-col gap-lg">
+        <h2>
+          {t.rich('header.title', {
+            bold: (chunks) => <span className="font-display text-brand-primary">{chunks}</span>,
+          })}
+        </h2>
+        <h4 className="lg:max-w-[75%]">{t('header.description')}</h4>
+      </div>
+
       <div className="p-padding flex flex-col gap-3xl sm:gap-4xl lg:gap-5xl max-width-center">
         {/* LOADING */}
         {ministriesLoading &&
@@ -72,6 +81,7 @@ const MinistriesClient = () => {
             </React.Fragment>
           ))}
 
+        {/* CARDS */}
         {!ministriesLoading && (
           <>
             {ministries.map((ministry, index) => (

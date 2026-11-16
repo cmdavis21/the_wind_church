@@ -13,20 +13,65 @@ import Link from 'next/link';
 import CarouselArrows from '../carousel-arrows/CarouselArrows';
 import CarouselDot from '../carousel-dot/CarouselDot';
 
-interface FullscreenMediaWithTextFadeInOutCarouselProps {
-  slides: {
-    media: {
-      src: string;
-      alt?: string;
-      poster?: string;
-    };
-    header: string;
-    title: string;
-    subtitle?: string;
-    description?: string;
-    link: string;
-  }[];
+interface Slide {
+  media: {
+    src: string;
+    alt?: string;
+    poster?: string;
+  };
+  header: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  link: string;
 }
+
+interface FullscreenMediaWithTextFadeInOutCarouselProps {
+  slides: Slide[];
+}
+
+/**
+ * Background media layer.
+ * - Crossfade: the incoming slide fades in on top (z-10) while the outgoing slide stays
+ *   fully opaque underneath, then drops out after the fade finishes. This avoids the dip to
+ *   black you get when both layers fade at the same time.
+ * - Slow zoom: the active slide eases from 1.06 -> 1 over the autoplay interval.
+ */
+const SlideVisual = ({ slide, active }: { slide: Slide; active: boolean }) => (
+  <div
+    className={cn(
+      'absolute inset-0 transition-opacity motion-reduce:transition-none',
+      active ? 'z-10 opacity-100 duration-1200 ease-smooth' : 'z-0 opacity-0 duration-0 delay-1200'
+    )}
+  >
+    <div
+      className={cn(
+        'relative w-full h-full transition-transform motion-reduce:transition-none motion-reduce:scale-100',
+        active ? 'scale-100 duration-8000 ease-out' : 'scale-[1.06] duration-0 delay-1200'
+      )}
+    >
+      {findMediaType(slide.media.src) === MediaType.IMAGE ? (
+        <Image
+          fill
+          src={slide.media.src}
+          alt={slide.media.alt ?? slide.title}
+          className="object-cover object-center pointer-events-none"
+        />
+      ) : (
+        <video
+          loop
+          muted
+          autoPlay
+          playsInline
+          poster={slide.media.poster}
+          className="w-full h-full object-cover object-center pointer-events-none"
+        >
+          <source src={slide.media.src} type="video/mp4" />
+        </video>
+      )}
+    </div>
+  </div>
+);
 
 const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
   FullscreenMediaWithTextFadeInOutCarouselProps
@@ -37,7 +82,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
   const [mobileActiveSlide, setMobileActiveSlide] = useState(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const notUsefulSlide = slides[0].media.poster === '/images/bible-study-video-poster.webp';
+  const notUsefulSlide =
+    slides[0].media.poster === '/images/deep-dive/bible-study-video-poster.webp';
 
   // Handle automatic slide transition
   useEffect(() => {
@@ -112,74 +158,70 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
     <>
       {/* Desktop */}
       <div className="relative w-full h-screen overflow-hidden hidden lg:block">
-        {/* visual */}
-        {slides.map((slide, index) => (
-          <div
-            key={`carousel-visual-${slide.media.src}-${index}`}
-            className={cn(
-              'absolute top-0 left-0 w-full h-full',
-              index === activeSlide ? 'fade-in' : 'fade-out opacity-0'
-            )}
-          >
-            {findMediaType(slide.media.src) === MediaType.IMAGE ? (
-              <div className="relative w-full h-full">
-                <Image
-                  fill
-                  src={slide.media.src}
-                  alt={slide.media.alt ?? slide.title}
-                  className="object-cover object-center pointer-events-none"
-                />
-              </div>
-            ) : (
-              <video
-                loop
-                muted
-                autoPlay
-                playsInline
-                poster={slide.media.poster}
-                className="w-full h-full object-cover object-center pointer-events-none"
-              >
-                <source src={slide.media.src} type="video/mp4" />
-              </video>
-            )}
-          </div>
-        ))}
+        {/* visual (isolate keeps the layers' z-index from leaking above the overlays) */}
+        <div className="absolute inset-0 isolate">
+          {slides.map((slide, index) => (
+            <SlideVisual
+              key={`carousel-visual-${slide.media.src}-${index}`}
+              slide={slide}
+              active={index === activeSlide}
+            />
+          ))}
+        </div>
 
         {/* Color Gradient Overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/70" />
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70" />
 
         {/* Content */}
-        {slides.map((slide, index) => (
-          <div
-            key={`carousel-content-${slide.title}`}
-            className={cn(
-              'w-full lg:max-w-[55%] lg:pl-6xl min-[1800px]:pl-[250px] h-full absolute top-0 left-0',
-              index === activeSlide ? 'fade-in' : 'opacity-0',
-              'transition-opacity duration-300 flex items-center'
-            )}
-          >
-            <div className="flex flex-col gap-md text-white dark:text-dark-primaryText">
-              <h5>{slide.header}</h5>
-              {slide.subtitle && (
-                <h3 className="text-brand-primary line-clamp-1">{slide.subtitle}</h3>
+        {slides.map((slide, index) => {
+          const active = index === activeSlide;
+
+          // Staggered reveal: each line fades/rises in after the previous slide's text has left.
+          // Exit is quick (300ms, no delay) so old and new text never overlap.
+          const reveal = (order: number, extraClass?: string) => ({
+            className: cn(
+              extraClass,
+              'transition-[opacity,transform] motion-reduce:transition-none motion-reduce:translate-y-0',
+              active
+                ? 'opacity-100 translate-y-0 duration-700 ease-out-expo'
+                : 'opacity-0 translate-y-4 duration-300 ease-in'
+            ),
+            style: { transitionDelay: active ? `${350 + order * 100}ms` : '0ms' },
+          });
+
+          return (
+            <div
+              key={`carousel-content-${slide.title}`}
+              className={cn(
+                'w-full lg:max-w-[55%] lg:pl-6xl min-[1800px]:pl-[250px] h-full absolute top-0 left-0',
+                'flex items-center transition-[visibility]',
+                // `invisible` (after the exit) also removes hidden slides from tab order / pointer events
+                active ? 'visible' : 'invisible duration-300'
               )}
-              <h1 className="leading-none">{slide.title}</h1>
-              <div className="min-h-4xl">
-                {slide.description && (
-                  <p className={cn('body-large', !notUsefulSlide && 'line-clamp-3')}>
-                    {slide.description}
-                  </p>
+            >
+              <div className="flex flex-col gap-md text-white dark:text-dark-primaryText">
+                <h5 {...reveal(0)}>{slide.header}</h5>
+                {slide.subtitle && (
+                  <h3 {...reveal(1, 'text-brand-primary line-clamp-1')}>{slide.subtitle}</h3>
                 )}
+                <h1 {...reveal(2, 'leading-none')}>{slide.title}</h1>
+                <div className="min-h-4xl">
+                  {slide.description && (
+                    <p {...reveal(3, cn('body-large', !notUsefulSlide && 'line-clamp-3'))}>
+                      {slide.description}
+                    </p>
+                  )}
+                </div>
+                <Link href={slide.link} {...reveal(4)}>
+                  <Button pill color="primary" className="w-7xl">
+                    {t('card.label')}
+                  </Button>
+                </Link>
               </div>
-              <Link href={slides[activeSlide].link}>
-                <Button pill color="primary" className="w-7xl">
-                  {t('card.label')}
-                </Button>
-              </Link>
             </div>
-          </div>
-        ))}
+          );
+        })}
 
         {/* Dots */}
         <div className="absolute bottom-5 w-full">
@@ -221,37 +263,15 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
       {/* Mobile */}
       <div className="lg:hidden relative w-full h-screen overflow-hidden">
         {/* visual */}
-        {slides.map((slide, mobileIndex) => (
-          <div
-            key={`carousel-visual-mobile-${slide.media.src}-${mobileIndex}`}
-            className={cn(
-              'absolute top-0 left-0 w-full h-full',
-              mobileActiveSlide === mobileIndex ? 'fade-in' : 'fade-out opacity-0'
-            )}
-          >
-            {findMediaType(slide.media.src) === MediaType.IMAGE ? (
-              <div className="relative w-full h-full">
-                <Image
-                  fill
-                  src={slide.media.src}
-                  alt={slide.media.alt ?? slide.title}
-                  className="object-cover object-center pointer-events-none"
-                />
-              </div>
-            ) : (
-              <video
-                loop
-                muted
-                autoPlay
-                playsInline
-                poster={slide.media.poster}
-                className="object-cover object-center pointer-events-none"
-              >
-                <source src={slide.media.src} type="video/mp4" />
-              </video>
-            )}
-          </div>
-        ))}
+        <div className="absolute inset-0 isolate">
+          {slides.map((slide, mobileIndex) => (
+            <SlideVisual
+              key={`carousel-visual-mobile-${slide.media.src}-${mobileIndex}`}
+              slide={slide}
+              active={mobileActiveSlide === mobileIndex}
+            />
+          ))}
+        </div>
 
         {/* Color Gradient Overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/10 via-black/80 to-black/10" />
@@ -262,6 +282,8 @@ const FullscreenMediaWithTextFadeInOutCarousel: React.FC<
           swipeable
           arrows={false}
           responsive={responsive}
+          transitionDuration={700}
+          customTransition="transform 700ms cubic-bezier(0.22, 1, 0.36, 1)"
           customDot={<CustomDot />}
           customButtonGroup={<MobileButtonGroup />}
           dotListClass="h-xxl flex gap-xs justify-center items-center"

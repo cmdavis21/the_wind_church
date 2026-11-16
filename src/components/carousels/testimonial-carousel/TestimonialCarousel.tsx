@@ -38,7 +38,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ slides }) => 
           <div
             key={`carousel-visual-${slide.image}-${index}`}
             className={`absolute top-0 left-0 w-full h-full ${
-              index === activeSlide ? 'fade-in' : 'fade-out opacity-0'
+              index === activeSlide ? 'animate-fade-in' : 'animate-fade-out opacity-0'
             }`}
           >
             <div className="relative w-full h-full">

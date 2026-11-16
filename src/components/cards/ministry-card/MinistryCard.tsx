@@ -1,4 +1,5 @@
 import { PageRoutes } from '@/data/page-routes';
+import { Image as ImageType } from '@/data/types';
 import cn from 'classnames';
 import { Button } from 'flowbite-react';
 import { useTranslations } from 'next-intl';
@@ -9,10 +10,7 @@ interface MinistryCardProps {
   name: string;
   description: string;
   slug: string;
-  image: {
-    src: string;
-    alt: string;
-  };
+  image: ImageType;
   flip?: boolean;
 }
 
@@ -40,7 +38,7 @@ const MinistryCard: React.FC<MinistryCardProps> = ({ name, description, slug, im
         )}
       >
         <h2>{name}</h2>
-        <p className="body-large line-clamp-2 text-justify md:max-w-[50%]">{description}</p>
+        <p className="body-large line-clamp-2 md:max-w-[50%]">{description}</p>
         <Button
           pill
           color="primary"

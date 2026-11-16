@@ -1,8 +1,9 @@
 'use client';
 
-import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
+import { useWindowDimensions } from '@/data/client/use-window-dimensions';
 import { findMediaType, MediaType, scrollToElem } from '@/data/utils';
 import cn from 'classnames';
+import { Button } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -12,12 +13,6 @@ interface HeroStat {
   label: string;
 }
 
-interface HeroCta {
-  label: string;
-  href: string;
-  variant?: 'secondary' | 'teritiary';
-}
-
 interface PageHeroProps {
   title: string;
   italicSubtitle?: string;
@@ -25,10 +20,15 @@ interface PageHeroProps {
   description?: string;
   size?: 'short' | 'reg' | 'full';
   media: { src: string; alt?: string; poster?: string };
-  ctas?: HeroCta[];
   stats?: HeroStat[];
-  scrollTo?: HeroCta;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  scrollToCta?: { label: string; href: string };
 }
+
+// Stagger timing (seconds)
+const WORD_START = 0.1;
+const WORD_STEP = 0.06;
 
 const PageHero: React.FC<PageHeroProps> = ({
   title,
@@ -37,19 +37,27 @@ const PageHero: React.FC<PageHeroProps> = ({
   description,
   size = 'reg',
   media,
-  ctas,
   stats,
-  scrollTo,
+  primaryCta,
+  secondaryCta,
+  scrollToCta,
 }) => {
+  const { width } = useWindowDimensions();
+
+  const btnSize = width <= 640 ? 'sm' : 'lg';
+
   const titleWords = title.split(' ');
   const italicWords = italicSubtitle?.split(' ') ?? [];
+
+  // When the last headline word starts; everything else fades in after it
+  const wordsEnd = WORD_START + (titleWords.length + italicWords.length) * WORD_STEP;
 
   return (
     <div
       className={cn(
         size === 'short' && 'h-[60vh] xl:h-[70vh]',
         size === 'reg' && 'h-[85vh]',
-        size === 'full' && 'h-[90vh] lg:h-[100vh]',
+        size === 'full' && 'h-screen md:h-[90vh] lg:h-[100vh]',
         'relative w-full overflow-hidden bg-black'
       )}
     >
@@ -61,7 +69,7 @@ const PageHero: React.FC<PageHeroProps> = ({
           src={media.src}
           alt={media.alt ?? ''}
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center z-0 motion-safe:animate-[heroZoom_20s_ease-out_forwards]"
+          className="absolute inset-0 w-full h-full object-cover object-center z-0 motion-safe:animate-hero-zoom"
         />
       )}
       {findMediaType(media.src) === MediaType.VIDEO && (
@@ -91,13 +99,13 @@ const PageHero: React.FC<PageHeroProps> = ({
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-xl">
           {/* LEFT: HEADLINE + COPY + CTAS */}
           <div className="max-w-full lg:max-w-[60%]">
-            <h1 className="leading-[1.05] text-white text-[36px] sm:text-[52px] lg:text-[58px] font-normal max-sm:max-w-[80%]">
+            <h1 className="leading-[1.05] text-white text-[34px] sm:text-[52px] lg:text-[58px] font-normal max-sm:max-w-[80%]">
               <span className="flex flex-wrap gap-x-3">
                 {titleWords.map((word, i) => (
                   <span
                     key={`title-${word}-${i}`}
-                    className="inline-block opacity-0 translate-y-3 motion-safe:animate-[wordUp_0.7s_cubic-bezier(0.22,1,0.36,1)_forwards]"
-                    style={{ animationDelay: `${0.1 + i * 0.06}s` }}
+                    className="inline-block motion-safe:animate-hero-word-up"
+                    style={{ animationDelay: `${WORD_START + i * WORD_STEP}s` }}
                   >
                     {highlightTitle?.some(([start, end]) => i >= start && i <= end) ? (
                       <span className="text-brand-primary font-display">{word}</span>
@@ -113,9 +121,9 @@ const PageHero: React.FC<PageHeroProps> = ({
                   {italicWords.map((word, i) => (
                     <span
                       key={`italic-${word}-${i}`}
-                      className="inline-block opacity-0 translate-y-3 motion-safe:animate-[wordUp_0.7s_cubic-bezier(0.22,1,0.36,1)_forwards]"
+                      className="inline-block motion-safe:animate-hero-word-up"
                       style={{
-                        animationDelay: `${0.1 + (titleWords.length + i) * 0.06}s`,
+                        animationDelay: `${WORD_START + (titleWords.length + i) * WORD_STEP}s`,
                       }}
                     >
                       {word}
@@ -127,38 +135,43 @@ const PageHero: React.FC<PageHeroProps> = ({
 
             {description && (
               <p
-                className="mt-lg text-white/80 body-large max-w-[85%] sm:max-w-[70%] opacity-0 motion-safe:animate-[fadeIn_0.6s_ease-out_forwards]"
-                style={{
-                  animationDelay: `${0.1 + (titleWords.length + italicWords.length) * 0.06 + 0.15}s`,
-                }}
+                className="mt-lg text-white/80 body-large max-w-[85%] sm:max-w-[70%] motion-safe:animate-hero-fade-in"
+                style={{ animationDelay: `${wordsEnd + 0.15}s` }}
               >
                 {description}
               </p>
             )}
 
-            {ctas && ctas.length > 0 && (
+            {(primaryCta || secondaryCta || scrollToCta) && (
               <div
-                className="mt-xl flex flex-wrap items-center gap-4 opacity-0 motion-safe:animate-[fadeIn_0.6s_ease-out_forwards]"
-                style={{
-                  animationDelay: `${0.1 + (titleWords.length + italicWords.length) * 0.06 + 0.3}s`,
-                }}
+                className="mt-xl flex flex-wrap items-center gap-4 motion-safe:animate-hero-fade-in"
+                style={{ animationDelay: `${wordsEnd + 0.3}s` }}
               >
-                {ctas.map((cta) => (
-                  <Link key={cta.label} href={cta.href}>
-                    <AnimativeFillButton size="lg" variant={cta.variant ?? 'primary'}>
-                      {cta.label}
-                    </AnimativeFillButton>
+                {primaryCta && (
+                  <Link key={primaryCta.label} href={primaryCta.href}>
+                    <Button pill size={btnSize} color="secondary">
+                      {primaryCta.label}
+                    </Button>
                   </Link>
-                ))}
+                )}
 
-                {scrollTo && (
-                  <AnimativeFillButton
-                    size="lg"
-                    variant={scrollTo.variant}
-                    onClick={() => scrollToElem(scrollTo.href)}
+                {secondaryCta && (
+                  <Link key={secondaryCta.label} href={secondaryCta.href}>
+                    <Button pill size={btnSize} color="primary">
+                      {secondaryCta.label}
+                    </Button>
+                  </Link>
+                )}
+
+                {scrollToCta && (
+                  <Button
+                    pill
+                    size={btnSize}
+                    color="teritiary"
+                    onClick={() => scrollToElem(scrollToCta.href)}
                   >
-                    {scrollTo.label}
-                  </AnimativeFillButton>
+                    {scrollToCta.label}
+                  </Button>
                 )}
               </div>
             )}
@@ -167,15 +180,13 @@ const PageHero: React.FC<PageHeroProps> = ({
           {/* RIGHT: STATS */}
           {stats && stats.length > 0 && (
             <dl
-              className="flex gap-8 sm:gap-12 opacity-0 motion-safe:animate-[fadeIn_0.6s_ease-out_forwards]"
-              style={{
-                animationDelay: `${0.1 + (titleWords.length + italicWords.length) * 0.06 + 0.45}s`,
-              }}
+              className="flex gap-8 sm:gap-12 motion-safe:animate-hero-fade-in"
+              style={{ animationDelay: `${wordsEnd + 0.45}s` }}
             >
               {stats.map((stat) => (
-                <div key={stat.label} className="text-right">
+                <div key={stat.label} className="text-center sm:text-right">
                   <dt className="sr-only">{stat.label}</dt>
-                  <dd className="font-serif text-2xl sm:text-4xl text-white">{stat.value}</dd>
+                  <dd className="font-serif text-xl sm:text-4xl text-white">{stat.value}</dd>
                   <dd className="mt-1 text-xs uppercase tracking-wide text-white/60">
                     {stat.label}
                   </dd>
@@ -185,36 +196,6 @@ const PageHero: React.FC<PageHeroProps> = ({
           )}
         </div>
       </div>
-
-      <style jsx global>{`
-        @keyframes wordUp {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes fadeIn {
-          to {
-            opacity: 1;
-          }
-        }
-        @keyframes heroZoom {
-          from {
-            transform: scale(1.08);
-          }
-          to {
-            transform: scale(1);
-          }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .motion-safe\\:animate-\\[wordUp_0\\.7s_cubic-bezier\\(0\\.22\\,1\\,0\\.36\\,1\\)_forwards\\],
-          .motion-safe\\:animate-\\[fadeIn_0\\.6s_ease-out_forwards\\] {
-            opacity: 1 !important;
-            transform: none !important;
-            animation: none !important;
-          }
-        }
-      `}</style>
     </div>
   );
 };

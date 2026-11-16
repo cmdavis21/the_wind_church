@@ -2,6 +2,7 @@ import { PUSHPAY_URL } from './server/env.server';
 
 export const PageRoutes = {
   about: '/about',
+  aboutPastor: '/about/pastor-alaric-singletary',
   bookstore: '/bookstore',
   cart: '/bookstore/cart',
   churchRental: '/church-rental',

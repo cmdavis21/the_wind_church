@@ -59,7 +59,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
               playsInline
               preload="auto"
               poster={image}
-              className="h-full w-full object-cover transition-transform duration-300 will-change-transform group-hover:scale-110"
+              className="h-full w-full object-cover transition-transform duration-300 will-change-transform lg:group-hover:scale-110"
             >
               <source src={video} type="video/mp4" />
             </video>
@@ -69,14 +69,14 @@ const LeaderCard: React.FC<LeaderCardProps> = ({
               width={300}
               height={400}
               alt={`Profile picture of ${first_name} ${last_name}`}
-              className="h-full w-full object-cover transition-transform duration-300 will-change-transform group-hover:scale-110"
+              className="h-full w-full object-cover transition-transform duration-300 will-change-transform lg:group-hover:scale-110"
             />
           )}
 
           {/* BLUR */}
           <div
             className={cn(
-              'backdrop-blur-sm',
+              'backdrop-blur-[2px]',
               'pointer-events-none absolute inset-x-0 bottom-0 h-[60%]',
               '[mask-image:linear-gradient(to_top,black_0%,black_15%,rgba(0,0,0,0.8)_40%,transparent_100%)]',
               '[-webkit-mask-image:linear-gradient(to_top,black_0%,black_15%,rgba(0,0,0,0.8)_40%,transparent_100%)]'

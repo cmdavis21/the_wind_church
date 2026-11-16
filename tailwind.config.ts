@@ -18,6 +18,32 @@ const config: Config = {
         display: ['var(--font-permanent-marker)'],
       },
 
+      keyframes: {
+        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+        fadeOut: { '0%': { opacity: '1' }, '100%': { opacity: '0' } },
+        heroWordUp: {
+          from: { opacity: '0', transform: 'translateY(12px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        heroFadeIn: { from: { opacity: '0' }, to: { opacity: '1' } },
+        heroZoom: { from: { transform: 'scale(1.08)' }, to: { transform: 'scale(1)' } },
+      },
+
+      animation: {
+        'fade-in': 'fadeIn 1s ease',
+        'fade-out': 'fadeOut 1s ease-out',
+        'hero-word-up': 'heroWordUp 0.7s cubic-bezier(0.22,1,0.36,1) both',
+        'hero-fade-in': 'heroFadeIn 0.6s ease-out 0.3s both',
+        'hero-zoom': 'heroZoom 20s ease-out forwards',
+      },
+
+      transitionTimingFunction: {
+        'out-expo': 'cubic-bezier(0.22, 1, 0.36, 1)',
+        smooth: 'cubic-bezier(0.65, 0, 0.35, 1)',
+      },
+      transitionDuration: { 1200: '1200ms', 8000: '8000ms' },
+      transitionDelay: { 1200: '1200ms' },
+
       width: {
         lg: '25px',
         xl: '36px',
@@ -87,7 +113,7 @@ const config: Config = {
         },
 
         dark: {
-          bg: '#2E2E2E',
+          bg: '#252525',
           navy: '#334C91',
           gray: '#404040',
           neutral: '#D9D9D9',
