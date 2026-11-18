@@ -146,10 +146,7 @@ const Home = async () => {
           <MultiInfoCard
             key={`attributes-${item.label}`}
             label={item.label}
-            content={{
-              type: 'list',
-              data: item.descriptions,
-            }}
+            content={{ type: 'list', data: item.descriptions }}
           />
         ))}
       </div>

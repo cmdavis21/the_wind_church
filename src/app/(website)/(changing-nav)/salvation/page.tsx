@@ -1,4 +1,7 @@
+import AnimativeFillButton from '@/components/buttons/animative-fill-button/AnimativeFillButton';
 import HiddenTextCard from '@/components/cards/hidden-text-card/HiddenTextCard';
+import { MultiInfoCard } from '@/components/cards/multi-info-card/MultiInfoCard';
+import ResourceCard from '@/components/cards/resource-card/ResourceCard';
 import PrayerRequestForm from '@/components/forms/prayer-request-form/PrayerRequestForm';
 import PageHero from '@/components/heroes/page-hero/PageHero';
 import CenterTextSection from '@/components/sections/center-text-section/CenterTextSection';
@@ -9,7 +12,9 @@ import SectionHeader from '@/components/sections/section-header/SectionHeader';
 import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
+import { getResourcesByCategory } from '@/data/server/sanity/queries/resources';
 import { getLocale, getTranslations } from 'next-intl/server';
+import Link from 'next/link';
 
 export async function generateMetadata() {
   const locale = (await getLocale()) as Locale;
@@ -40,7 +45,10 @@ export async function generateMetadata() {
 }
 
 const Salvation = async () => {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations('Salvation');
+
+  const bibleResources = await getResourcesByCategory('bible-resource', locale);
 
   const questions = [
     {
@@ -83,24 +91,20 @@ const Salvation = async () => {
 
   const results = [
     {
-      count: t('congrats.items.0.count'),
-      text: t('congrats.items.0.title'),
-      verse: t('congrats.items.0.verses'),
+      label: t('congrats.items.0.title'),
+      descriptions: [t('congrats.items.0.verses.0'), t('congrats.items.0.verses.1')],
     },
     {
-      count: t('congrats.items.1.count'),
-      text: t('congrats.items.1.title'),
-      verse: t('congrats.items.1.verses'),
+      label: t('congrats.items.1.title'),
+      descriptions: [t('congrats.items.1.verses.0'), t('congrats.items.1.verses.1')],
     },
     {
-      count: t('congrats.items.2.count'),
-      text: t('congrats.items.2.title'),
-      verse: t('congrats.items.2.verses'),
+      label: t('congrats.items.2.title'),
+      descriptions: [t('congrats.items.2.verses.0'), t('congrats.items.2.verses.1')],
     },
     {
-      count: t('congrats.items.3.count'),
-      text: t('congrats.items.3.title'),
-      verse: t('congrats.items.3.verses'),
+      label: t('congrats.items.3.title'),
+      descriptions: [t('congrats.items.3.verses.0'), t('congrats.items.3.verses.1')],
     },
   ];
 
@@ -172,15 +176,16 @@ const Salvation = async () => {
       {/* RESULT */}
       <div className="flex flex-col gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
         <SectionHeader title={t('congrats.title')} />
-        <div className="py-md grid grid-cols-1 sm:grid-cols-2 gap-xl">
-          {results.map((item, index) => (
-            <div key={`salvation-${item.text}`} className="flex gap-xs">
-              <h4>{index + 1}.</h4>
-              <div className="flex flex-col">
-                <h4>{item.text}</h4>
-                <h6>{item.verse}</h6>
-              </div>
-            </div>
+        <div
+          className="grid gap-xl"
+          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))' }}
+        >
+          {results.map((item) => (
+            <MultiInfoCard
+              key={`results-${item.label}`}
+              label={item.label}
+              content={{ type: 'list', data: item.descriptions }}
+            />
           ))}
         </div>
         <h4>
@@ -198,6 +203,35 @@ const Salvation = async () => {
       <div className="flex flex-col gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
         <CenterTextSection title={t('form.header.title')} description={t('form.header.subtitle')} />
         <PrayerRequestForm />
+      </div>
+
+      {/* BIBLE RESOURCES */}
+      {bibleResources && bibleResources.length > 0 && (
+        <div className="flex flex-col gap-xl md:gap-xxl py-3xl sm:py-4xl px-padding max-width-center">
+          <SectionHeader title={t('resources.title')} subtitle={t('resources.subtitle')} />
+          <div className="flex flex-wrap gap-xl">
+            {bibleResources.reverse().map((resource) => (
+              <ResourceCard key={`resource-${resource.title}`} {...resource} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* FOURSQUARE */}
+      <div className="px-padding max-width-center">
+        <MediaBackgroundAndContent
+          centerContent
+          background={{ src: '/images/people-serving.webp', alt: t('section.alt') }}
+          content={
+            <div className="flex flex-col gap-xs">
+              <h2>{t('foursquare.title')}</h2>
+              <h2 className="pb-lg lg:max-w-[75%]">{t('foursquare.description')}</h2>
+              <Link href={PageRoutes.foursquare}>
+                <AnimativeFillButton variant="secondary">{t('foursquare.cta')}</AnimativeFillButton>
+              </Link>
+            </div>
+          }
+        />
       </div>
     </div>
   );

@@ -46,7 +46,7 @@ const formsDocsWithIcons: docAttributes[] = [
 
 export const sanityStudioStructure: StructureResolver = (S) =>
   S.list()
-    .title('Website Content Management')
+    .title('Content Management Hub')
     .items([
       // CONTACTS
       S.listItem()

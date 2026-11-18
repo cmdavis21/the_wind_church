@@ -142,10 +142,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
               label={t('schedule')}
               content={{
                 type: 'timeline',
-                data: {
-                  start_date: new Date(start_date),
-                  end_date: new Date(end_date),
-                },
+                data: { start_date: new Date(start_date), end_date: new Date(end_date) },
               }}
             />
 
@@ -153,10 +150,7 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             {meeting_details && meeting_details.length > 0 && (
               <MultiInfoCard
                 label={t('meets')}
-                content={{
-                  type: 'meeting',
-                  data: meeting_details,
-                }}
+                content={{ type: 'meeting', data: meeting_details }}
               />
             )}
 
@@ -164,16 +158,13 @@ const SingleDeepDivePage = async ({ params }: { params: Promise<{ slug: string }
             {required_materials && required_materials.length > 0 && (
               <MultiInfoCard
                 label={t('bring')}
-                content={{
-                  type: 'list',
-                  data: required_materials,
-                }}
+                content={{ type: 'list', data: required_materials }}
               />
             )}
           </div>
         </div>
 
-        {/* WHAT IS A DEEP DIVE */}
+        {/* WHAT IS A CLD */}
         <MediaBackgroundAndContent
           background={{
             src: '/images/deep-dive/study-bible-with-journal.webp',

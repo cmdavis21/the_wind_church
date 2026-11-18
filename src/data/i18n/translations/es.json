@@ -113,8 +113,8 @@
       ]
     },
     "deepDive": {
-      "label": "Profundizar",
-      "link": "/deep-dive"
+      "label": "CLD",
+      "link": "/christian-life-development"
     },
     "events": {
       "label": "Eventos",
@@ -168,8 +168,8 @@
       "label": "Familia Wind",
       "row": [
         {
-          "label": "Profundización",
-          "link": "/deep-dive"
+          "label": "Clases CLD",
+          "link": "/christian-life-development"
         },
         {
           "label": "Evaluación de Dones",
@@ -1235,24 +1235,20 @@
       "title": "¡Felicidades!",
       "items": [
         {
-          "count": "1",
           "title": "Tus pecados han sido perdonados",
-          "verses": "(1 Juan 1:9; Juan 3:16)"
+          "verses": ["1 Juan 1:9", "Juan 3:16"]
         },
         {
-          "count": "2",
           "title": "Eres miembro de la familia de Dios",
-          "verses": "(Juan 1:12; Juan 3:2)"
+          "verses": ["Juan 1:12", "Juan 3:2"]
         },
         {
-          "count": "3",
           "title": "Tienes paz con Dios y acceso a Él",
-          "verses": "(Romanos 5:1-2; Efesios 2:6-7)"
+          "verses": ["Romanos 5:1-2", "Efesios 2:6-7"]
         },
         {
-          "count": "4",
           "title": "El Espíritu Santo mora dentro de ti",
-          "verses": "(Romanos 8:9-11; 1 Juan 4:4)"
+          "verses": ["Romanos 8:9-11", "1 Juan 4:4"]
         }
       ],
       "description": "<bold>Recuerda</bold>, los sentimientos no tienen nada que ver con la salvación. Puedes sentir que estás flotando en una nube o tan simple como un pomo de puerta. No importa. Confiar en la Palabra de Dios es lo que cuenta."
@@ -1275,6 +1271,15 @@
         "placeholder": "Ingresa tu oración aquí...",
         "message": "Comparte tu oración"
       }
+    },
+    "resources": {
+      "title": "Recursos Bíblicos Gratis",
+      "subtitle": "Descarga una Biblia gratis y comienza a explorar la Palabra de Dios hoy."
+    },
+    "foursquare": {
+      "title": "Explora lo que creemos",
+      "description": "Da el siguiente paso en tu camino de fe aprendiendo sobre el Evangelio Cuádruple y las verdades bíblicas que forman nuestras creencias, misión y ministerio.",
+      "cta": "¡Vamos!"
     }
   },
   "Home": {

@@ -1,5 +1,6 @@
 import { Locale } from '@/data/i18n/utils';
 import { Leader, localizedFields } from '@/data/types';
+import { cache } from 'react';
 import { getLocalizedValue } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
@@ -31,32 +32,32 @@ const getAllLeadersQuery = async () => {
   }).then((l) => l.allLeader);
 };
 
-export const getAllCategorizedLeaders = async (
-  locale: Locale
-): Promise<Record<string, Leader[]>> => {
-  const leaders = await getAllLeadersQuery();
+export const getAllCategorizedLeaders = cache(
+  async (locale: Locale): Promise<Record<string, Leader[]>> => {
+    const leaders = await getAllLeadersQuery();
 
-  let categorizedLeaders: Record<string, Leader[]> = {};
+    let categorizedLeaders: Record<string, Leader[]> = {};
 
-  if (leaders) {
-    categorizedLeaders = leaders.reduce<Record<string, Leader[]>>((acc, leader) => {
-      const category = leader.category;
-      if (category) {
-        if (!acc[category]) acc[category] = [];
-        acc[category].push({
-          _id: (leader._id as string) ?? undefined,
-          first_name: leader.contact?.first_name ?? '',
-          last_name: leader.contact?.last_name ?? '',
-          description: getLocalizedValue(leader.description, locale) ?? '',
-          position: getLocalizedValue(leader.position, locale) ?? '',
-          category: leader.category ?? '',
-          image: leader.image?.asset?.url ?? '',
-          video: leader.video?.asset?.url ?? undefined,
-        });
-      }
-      return acc;
-    }, {});
+    if (leaders) {
+      categorizedLeaders = leaders.reduce<Record<string, Leader[]>>((acc, leader) => {
+        const category = leader.category;
+        if (category) {
+          if (!acc[category]) acc[category] = [];
+          acc[category].push({
+            _id: (leader._id as string) ?? undefined,
+            first_name: leader.contact?.first_name ?? '',
+            last_name: leader.contact?.last_name ?? '',
+            description: getLocalizedValue(leader.description, locale) ?? '',
+            position: getLocalizedValue(leader.position, locale) ?? '',
+            category: leader.category ?? '',
+            image: leader.image?.asset?.url ?? '',
+            video: leader.video?.asset?.url ?? undefined,
+          });
+        }
+        return acc;
+      }, {});
+    }
+
+    return categorizedLeaders;
   }
-
-  return categorizedLeaders;
-};
+);

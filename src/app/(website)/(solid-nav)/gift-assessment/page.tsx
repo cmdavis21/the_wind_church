@@ -3,6 +3,7 @@ import GiftAssessment from '@/components/forms/gift-assessment/GiftAssessment';
 import { Locale } from '@/data/i18n/utils';
 import { PageRoutes } from '@/data/page-routes';
 import { WEBSITE_URL } from '@/data/server/env.server';
+import { getResourcesByCategory } from '@/data/server/sanity/queries/resources';
 import { getLocale, getTranslations } from 'next-intl/server';
 
 export async function generateMetadata() {
@@ -35,7 +36,12 @@ export async function generateMetadata() {
 }
 
 const GiftAssessmentPage = async () => {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations('GiftAssessment');
+
+  const blankAssessment = (await getResourcesByCategory('forms-assessments', locale)).find((item) =>
+    item.title.toLowerCase().includes('gift assessment')
+  );
 
   return (
     <div>
@@ -75,13 +81,15 @@ const GiftAssessmentPage = async () => {
           </div>
 
           {/* Download PDF Assessment */}
-          <a
-            target="_blank"
-            download="Spiritual_Gift_Assessment.pdf"
-            href="/spiritual-gifts-test.pdf"
-          >
-            <AnimativeFillButton variant="secondary">{t('optional')}</AnimativeFillButton>
-          </a>
+          {blankAssessment && (
+            <a
+              target="_blank"
+              href={blankAssessment.file}
+              download="blank_spiritual_gift_assessment.pdf"
+            >
+              <AnimativeFillButton variant="secondary">{t('optional')}</AnimativeFillButton>
+            </a>
+          )}
         </div>
 
         {/* Assessment */}

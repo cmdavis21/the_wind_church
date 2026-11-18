@@ -1,5 +1,6 @@
 import { Locale, ShopifyFormatLocale } from '@/data/i18n/utils';
 import { Collection } from '@/data/types';
+import { cache } from 'react';
 import { CropRegion, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';
 
@@ -77,7 +78,7 @@ const getStorefrontCollectionsQuery = (locale: Locale) => {
   });
 };
 
-export const getStorefrontCollections = async (locale: Locale): Promise<Collection[]> => {
+export const getStorefrontCollections = cache(async (locale: Locale): Promise<Collection[]> => {
   const { collections } = await getStorefrontCollectionsQuery(locale);
 
   if (!collections) return [];
@@ -114,4 +115,4 @@ export const getStorefrontCollections = async (locale: Locale): Promise<Collecti
           : undefined,
     })),
   }));
-};
+});

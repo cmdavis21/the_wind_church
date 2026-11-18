@@ -10,9 +10,9 @@ const extractSubfolder = (key: string): string => {
   return parts[parts.length - 2].replace(/_/g, ' ');
 };
 
-export async function getGalleryImages(
+export const getGalleryImages = async (
   subfolder?: string
-): Promise<GalleryCollection | GalleryCollection[]> {
+): Promise<GalleryCollection | GalleryCollection[]> => {
   try {
     const prefix = subfolder ? `gallery/${subfolder}/` : 'gallery/';
 
@@ -67,35 +67,45 @@ export async function getGalleryImages(
     console.error('Error fetching gallery contents', err);
     throw new Error('AWS FETCH GALLERY CONTENTS ERROR');
   }
-}
+};
 
 export const getGallery = async (): Promise<GalleryCollection[]> => {
   const res = await fetch(`${WEBSITE_URL}/api/aws/gallery`, {
     method: 'GET',
-    cache: 'no-store',
+    next: { revalidate: 86400 },
   });
+
   const { gallery } = await res.json();
+
   return gallery;
 };
 
 export const getMinistryGallery = async (subfolder?: string): Promise<GalleryCollection> => {
   const params = new URLSearchParams();
+
   if (subfolder) params.append('subfolder', subfolder);
+
   const res = await fetch(`${WEBSITE_URL}/api/aws/gallery?${params.toString()}`, {
     method: 'GET',
-    cache: 'no-store',
+    next: { revalidate: 86400 },
   });
+
   const { gallery } = await res.json();
+
   return gallery;
 };
 
 export const getNextGenGallery = async (): Promise<GalleryCollection> => {
   const params = new URLSearchParams();
-  params.append('subfolder', 'children_ministry');
+
+  params.append('subfolder', 'next_gen');
+
   const res = await fetch(`${WEBSITE_URL}/api/aws/gallery?${params.toString()}`, {
     method: 'GET',
-    cache: 'no-store',
+    next: { revalidate: 86400 },
   });
+
   const { gallery } = await res.json();
+
   return gallery;
 };

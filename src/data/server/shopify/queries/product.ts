@@ -1,5 +1,6 @@
 import { Locale, ShopifyFormatLocale } from '@/data/i18n/utils';
 import { Product } from '@/data/types';
+import { cache } from 'react';
 import { CropRegion, ImageContentType } from '../zeus';
 import { ShopifyQuery } from '../zeus-chain';
 
@@ -108,65 +109,64 @@ const getStorefrontProductHandlesQuery = () => {
   });
 };
 
-export const getStorefrontProductByHandle = async (
-  handle: string,
-  locale: Locale
-): Promise<Product | null> => {
-  const { product } = await getStorefrontProductByHandleQuery(handle, locale);
+export const getStorefrontProductByHandle = cache(
+  async (handle: string, locale: Locale): Promise<Product | null> => {
+    const { product } = await getStorefrontProductByHandleQuery(handle, locale);
 
-  if (!product) return null;
+    if (!product) return null;
 
-  return {
-    title: product.title,
-    description_html: (product.descriptionHtml as string) ?? '',
-    pickup_only: product.tags.includes('Pickup-only') ?? false,
-    images: product.images.nodes.map((img) => ({
-      src: (img.url as string) ?? '/images/product-placeholder.webp',
-      alt: img.altText ?? `Image of ${product.title}`,
-    })),
-    first_variant:
-      product.selectedOrFirstAvailableVariant?.selectedOptions[0].name !== 'Title'
-        ? product.selectedOrFirstAvailableVariant?.selectedOptions
-        : undefined,
-    options:
-      product.options && product.options[0]?.name !== 'Title'
-        ? product.options.map((opt) => ({
-            name: opt.name,
-            values: opt.optionValues.map((v) => ({
-              name: v.name,
-              color: (v.swatch?.color as string) ?? undefined,
-            })),
-          }))
-        : undefined,
-    variants: product.variants.nodes.map((variant) => ({
-      id: variant.id as string,
-      image: {
-        src: String(variant.image?.url) ?? '/images/product-placeholder.webp',
-        alt: variant.image?.altText ?? `Image of ${product.title}`,
-      },
-      price: {
-        amount: (variant.price.amount as string) ?? 0,
-        currencyCode: variant.price.currencyCode,
-      },
-      compare_price: variant.compareAtPrice
-        ? {
-            amount: (variant.compareAtPrice.amount as string) ?? 0,
-            currencyCode: variant.compareAtPrice.currencyCode,
-          }
-        : undefined,
-      quantity_available: variant.quantityAvailable ?? 0,
-      selected_options:
-        variant.selectedOptions && variant.selectedOptions[0]?.name !== 'Title'
-          ? variant.selectedOptions.map((opt) => ({
+    return {
+      title: product.title,
+      description_html: (product.descriptionHtml as string) ?? '',
+      pickup_only: product.tags.includes('Pickup-only') ?? false,
+      images: product.images.nodes.map((img) => ({
+        src: (img.url as string) ?? '/images/product-placeholder.webp',
+        alt: img.altText ?? `Image of ${product.title}`,
+      })),
+      first_variant:
+        product.selectedOrFirstAvailableVariant?.selectedOptions[0].name !== 'Title'
+          ? product.selectedOrFirstAvailableVariant?.selectedOptions
+          : undefined,
+      options:
+        product.options && product.options[0]?.name !== 'Title'
+          ? product.options.map((opt) => ({
               name: opt.name,
-              value: opt.value,
+              values: opt.optionValues.map((v) => ({
+                name: v.name,
+                color: (v.swatch?.color as string) ?? undefined,
+              })),
             }))
           : undefined,
-    })),
-  };
-};
+      variants: product.variants.nodes.map((variant) => ({
+        id: variant.id as string,
+        image: {
+          src: String(variant.image?.url) ?? '/images/product-placeholder.webp',
+          alt: variant.image?.altText ?? `Image of ${product.title}`,
+        },
+        price: {
+          amount: (variant.price.amount as string) ?? 0,
+          currencyCode: variant.price.currencyCode,
+        },
+        compare_price: variant.compareAtPrice
+          ? {
+              amount: (variant.compareAtPrice.amount as string) ?? 0,
+              currencyCode: variant.compareAtPrice.currencyCode,
+            }
+          : undefined,
+        quantity_available: variant.quantityAvailable ?? 0,
+        selected_options:
+          variant.selectedOptions && variant.selectedOptions[0]?.name !== 'Title'
+            ? variant.selectedOptions.map((opt) => ({
+                name: opt.name,
+                value: opt.value,
+              }))
+            : undefined,
+      })),
+    };
+  }
+);
 
-export const getStorefrontProductHandles = async () => {
+export const getStorefrontProductHandles = cache(async () => {
   const { products } = await getStorefrontProductHandlesQuery();
 
   if (!products) return [];
@@ -175,4 +175,4 @@ export const getStorefrontProductHandles = async () => {
     handle: item.handle,
     updatedAt: item.updatedAt,
   }));
-};
+});

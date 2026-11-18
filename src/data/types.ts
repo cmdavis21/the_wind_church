@@ -472,12 +472,13 @@ export const SanityAttendanceTypes = [
 ];
 
 export const SanityResourceCategories = [
-  { title: 'Visitor Resources', value: 'visitor-resource' },
-  { title: 'Member Resources', value: 'member-resource' },
-  { title: 'Leader Resources', value: 'leader-resource' },
-  { title: 'General Resources', value: 'general-resource' },
-  { title: 'Teaching Materials Resources', value: 'teaching-materials' },
-  { title: 'Announcements', value: 'announcements' },
+  { title: 'Getting Started', value: 'getting-started' },
+  { title: 'Bible Resources', value: 'bible-resource' },
+  { title: 'Study Materials', value: 'study-materials' },
+  { title: 'Forms & Assessments', value: 'forms-assessments' },
+  { title: 'Ministry Resources', value: 'ministry-resources' },
+  { title: 'Next Gen Resources', value: 'next-gen-resources' },
+  { title: 'Church Updates', value: 'church-updates' },
 ];
 
 export const SanityTestimonialPersonType = [

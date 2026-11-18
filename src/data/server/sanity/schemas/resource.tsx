@@ -82,7 +82,7 @@ export const ResourceSchema = {
       return {
         title,
         subtitle: `${type} - ${is_active ? 'Active' : 'Hidden'}`,
-        media: type === 'file' ? FileIcon : type === 'link' ? LinkIcon : Play,
+        media: type === 'File' ? FileIcon : type === 'Link' ? LinkIcon : Play,
       };
     },
   },

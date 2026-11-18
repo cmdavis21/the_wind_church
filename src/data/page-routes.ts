@@ -6,7 +6,7 @@ export const PageRoutes = {
   bookstore: '/bookstore',
   cart: '/bookstore/cart',
   churchRental: '/church-rental',
-  deepDive: '/deep-dive',
+  deepDive: '/christian-life-development',
   events: '/events',
   feedback: '/feedback',
   foursquare: '/foursquare',

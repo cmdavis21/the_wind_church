@@ -1,4 +1,5 @@
 import { Locale } from '@/data/i18n/utils';
+import { cache } from 'react';
 import { Event, localizedFields } from '../../../types';
 import { getLocalizedValue } from '../utils';
 import { SanityQuery } from '../zeus-chain';
@@ -79,7 +80,7 @@ const getMinistryEventsQuery = async (_id: string) => {
   }).then((e) => e.allEvent);
 };
 
-export const getAllEvents = async (locale: Locale): Promise<Event[]> => {
+export const getAllEvents = cache(async (locale: Locale): Promise<Event[]> => {
   const events = await getAllEventsQuery();
 
   if (!events) return [];
@@ -116,9 +117,9 @@ export const getAllEvents = async (locale: Locale): Promise<Event[]> => {
       },
     }))
     .sort((a, b) => new Date(a.start_date_time).getTime() - new Date(b.start_date_time!).getTime());
-};
+});
 
-export const getMinistryEvents = async (locale: Locale, _id?: string): Promise<Event[]> => {
+export const getMinistryEvents = cache(async (locale: Locale, _id?: string): Promise<Event[]> => {
   if (!_id) return [];
 
   const events = await getMinistryEventsQuery(_id);
@@ -158,4 +159,4 @@ export const getMinistryEvents = async (locale: Locale, _id?: string): Promise<E
     .sort(
       (a, b) => new Date(a.start_date_time!).getTime() - new Date(b.start_date_time!).getTime()
     );
-};
+});

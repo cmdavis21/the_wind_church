@@ -3,7 +3,9 @@
 import ErrorAlert from '@/components/alerts/error-alert/ErrorAlert';
 import PageScrollUpButton from '@/components/buttons/page-scroll-up-button/PageScrollUpButton';
 import EventCard from '@/components/cards/event-card/EventCard';
+import EventCardSkeleton from '@/components/cards/event-card/EventCard.skeleton';
 import TimelineItem from '@/components/cards/timeline-item/TimelineItem';
+import TimelineItemSkeleton from '@/components/cards/timeline-item/TimelineItem.skeleton';
 import SelectInput from '@/components/forms/inputs/select-input/SelectInput';
 import PageHeader from '@/components/heroes/page-header/PageHeader';
 import Filter from '@/components/icons/filter';
@@ -48,6 +50,24 @@ const EventsClient = () => {
         </div>
       )}
 
+      {eventsLoading && (
+        <>
+          {/* DESKTOP */}
+          <div className="hidden md:grid grid-cols-3 gap-xxl place-items-center">
+            {Array.from({ length: 5 }).map((_, idx) => (
+              <EventCardSkeleton key={`event-card-skeleton-${idx}`} />
+            ))}
+          </div>
+
+          {/* MOBILE */}
+          <div className="md:hidden">
+            {Array.from({ length: 5 }).map((_, idx) => (
+              <TimelineItemSkeleton key={`event-card-skeleton-mobile-${idx}`} />
+            ))}
+          </div>
+        </>
+      )}
+
       {!eventsLoading && (
         <>
           {events && events.length > 0 ? (
@@ -59,7 +79,7 @@ const EventsClient = () => {
                 </div>
               ) : (
                 <>
-                  {/* Desktop */}
+                  {/* DESKTOP */}
                   <div className="hidden md:grid grid-cols-3 gap-xxl place-items-center">
                     {filteredEvents.map((event) => (
                       <EventCard
@@ -70,7 +90,7 @@ const EventsClient = () => {
                     ))}
                   </div>
 
-                  {/* Mobile */}
+                  {/* MOBILE */}
                   <div className="md:hidden">
                     {filteredEvents.map((event) => (
                       <TimelineItem key={event.name} event={event} />

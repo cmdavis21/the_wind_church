@@ -106,8 +106,8 @@
       ]
     },
     "deepDive": {
-      "label": "Deep Dive",
-      "link": "/deep-dive"
+      "label": "CLD",
+      "link": "/christian-life-development"
     },
     "events": {
       "label": "Events",
@@ -161,8 +161,8 @@
       "label": "Wind Family",
       "row": [
         {
-          "label": "Deep Dive",
-          "link": "/deep-dive"
+          "label": "CLD Classes",
+          "link": "/christian-life-development"
         },
         {
           "label": "Gift Assessment",
@@ -1219,24 +1219,20 @@
       "title": "Congratulations!",
       "items": [
         {
-          "count": "1",
           "title": "Your sins are forgiven",
-          "verses": "(1 John 1:9; John 3:16)"
+          "verses": ["1 John 1:9", "John 3:16"]
         },
         {
-          "count": "2",
           "title": "You are a member of God's family",
-          "verses": "(John 1:12; John 3:2)"
+          "verses": ["John 1:12", "John 3:2"]
         },
         {
-          "count": "3",
           "title": "You have peace with God and access to Him",
-          "verses": "(Romans 5:1-2, Ephesians 2:6-7)"
+          "verses": ["Romans 5:1-2", "Ephesians 2:6-7"]
         },
         {
-          "count": "4",
           "title": "The Holy Spirit dwells within you",
-          "verses": "(Romans 8:9-11; 1 John 4:4)"
+          "verses": ["Romans 8:9-11", "1 John 4:4"]
         }
       ],
       "description": "<bold>Remember</bold>, feelings have nothing to do with salvation. You may feel like you are floating on a cloud, or as dull as a doorknob. It makes no difference. Trusting God's Word is what counts."
@@ -1259,6 +1255,15 @@
         "placeholder": "Enter your prayer here...",
         "message": "Share your prayer"
       }
+    },
+    "resources": {
+      "title": "Free Bible Resources",
+      "subtitle": "Download a free Bible and begin exploring God's Word today."
+    },
+    "foursquare": {
+      "title": "Explore What We Believe",
+      "description": "Take the next step in your faith journey by learning about the Fourfold Gospel and the biblical truths that shape our beliefs, mission, and ministry.",
+      "cta": "Let's Go!"
     }
   },
   "Home": {

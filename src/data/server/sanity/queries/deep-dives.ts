@@ -1,5 +1,6 @@
 import { Locale } from '@/data/i18n/utils';
 import { DeepDive, localizedFields, localizedFieldsRaw } from '@/data/types';
+import { cache } from 'react';
 import { getLocalizedPortableText, getLocalizedValue, portableTextToString } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
@@ -101,7 +102,7 @@ const getDeepDiveBySlugQuery = async (slug: string) => {
   }).then((d) => d.allDeepDive);
 };
 
-export const getAllDeepDives = async (locale: Locale): Promise<DeepDive[]> => {
+export const getAllDeepDives = cache(async (locale: Locale): Promise<DeepDive[]> => {
   const deepDives = await getAllDeepDivesQuery();
 
   if (!deepDives) return [];
@@ -145,49 +146,48 @@ export const getAllDeepDives = async (locale: Locale): Promise<DeepDive[]> => {
       const nameB = b.name ?? '';
       return nameA.localeCompare(nameB);
     });
-};
+});
 
-export const getDeepDiveBySlug = async (
-  slug: string,
-  locale: Locale
-): Promise<DeepDive | undefined> => {
-  const deepDiveQuery = await getDeepDiveBySlugQuery(slug);
+export const getDeepDiveBySlug = cache(
+  async (slug: string, locale: Locale): Promise<DeepDive | undefined> => {
+    const deepDiveQuery = await getDeepDiveBySlugQuery(slug);
 
-  const deepDive = deepDiveQuery?.[0];
+    const deepDive = deepDiveQuery?.[0];
 
-  if (!deepDive) return undefined;
+    if (!deepDive) return undefined;
 
-  return {
-    _id: (deepDive._id as string) ?? undefined,
-    name: getLocalizedValue(deepDive.name, locale) ?? '',
-    slug: deepDive.slug?.current ?? '',
-    description: portableTextToString(
-      getLocalizedPortableText(deepDive.description, locale)
-    ) as any,
-    instructors:
-      deepDive.instructors?.map((instructor) => ({
-        first_name: instructor.contact?.first_name ?? '',
-        last_name: instructor.contact?.last_name ?? '',
-        position: getLocalizedValue(instructor.position, locale) ?? '',
-        description: getLocalizedValue(instructor.description, locale) ?? '',
-        image: instructor.image?.asset?.url ?? '',
-        video: instructor.video?.asset?.url ?? undefined,
-      })) ?? [],
-    image: {
-      src: deepDive.image?.asset?.url ?? '',
-      alt: getLocalizedValue(deepDive.image_alt, locale) ?? '',
-    },
-    meeting_details:
-      deepDive.meeting_details?.map((detail) => ({
-        day: detail.day ?? '',
-        time: detail.time ?? '',
-        attendance_type: detail.attendance_type ?? '',
-      })) ?? [],
-    start_date: (deepDive.start_date as Date) ?? new Date(),
-    end_date: (deepDive.end_date as Date) ?? new Date(),
-    required_materials: deepDive.required_materials?.length
-      ? deepDive.required_materials.map((item) => getLocalizedValue(item, locale) ?? '')
-      : undefined,
-    accepting_new_students: (deepDive.accepting_new_students as boolean) ?? false,
-  };
-};
+    return {
+      _id: (deepDive._id as string) ?? undefined,
+      name: getLocalizedValue(deepDive.name, locale) ?? '',
+      slug: deepDive.slug?.current ?? '',
+      description: portableTextToString(
+        getLocalizedPortableText(deepDive.description, locale)
+      ) as any,
+      instructors:
+        deepDive.instructors?.map((instructor) => ({
+          first_name: instructor.contact?.first_name ?? '',
+          last_name: instructor.contact?.last_name ?? '',
+          position: getLocalizedValue(instructor.position, locale) ?? '',
+          description: getLocalizedValue(instructor.description, locale) ?? '',
+          image: instructor.image?.asset?.url ?? '',
+          video: instructor.video?.asset?.url ?? undefined,
+        })) ?? [],
+      image: {
+        src: deepDive.image?.asset?.url ?? '',
+        alt: getLocalizedValue(deepDive.image_alt, locale) ?? '',
+      },
+      meeting_details:
+        deepDive.meeting_details?.map((detail) => ({
+          day: detail.day ?? '',
+          time: detail.time ?? '',
+          attendance_type: detail.attendance_type ?? '',
+        })) ?? [],
+      start_date: (deepDive.start_date as Date) ?? new Date(),
+      end_date: (deepDive.end_date as Date) ?? new Date(),
+      required_materials: deepDive.required_materials?.length
+        ? deepDive.required_materials.map((item) => getLocalizedValue(item, locale) ?? '')
+        : undefined,
+      accepting_new_students: (deepDive.accepting_new_students as boolean) ?? false,
+    };
+  }
+);

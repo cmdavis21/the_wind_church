@@ -1,5 +1,6 @@
 import { Locale } from '@/data/i18n/utils';
 import { localizedFields, Testimonial } from '@/data/types';
+import { cache } from 'react';
 import { getLocalizedValue } from '../utils';
 import { SanityQuery } from '../zeus-chain';
 
@@ -25,7 +26,7 @@ const getAllTestimoniesQuery = async () => {
   }).then((d) => d.allTestimonial);
 };
 
-export const getAllTestimonies = async (locale: Locale): Promise<Testimonial[]> => {
+export const getAllTestimonies = cache(async (locale: Locale): Promise<Testimonial[]> => {
   const testimonies = await getAllTestimoniesQuery();
 
   if (!testimonies) return [];
@@ -38,4 +39,4 @@ export const getAllTestimonies = async (locale: Locale): Promise<Testimonial[]> 
     position: testimony.position ?? '',
     image: testimony.image?.asset?.url ?? '',
   }));
-};
+});

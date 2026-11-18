@@ -45,7 +45,6 @@ const BookstoreClient = () => {
         </div>
       )}
 
-      {/* LOADING */}
       {collectionsLoading &&
         Array.from({ length: 4 }).map((_, index) => (
           <div
@@ -62,7 +61,6 @@ const BookstoreClient = () => {
           </div>
         ))}
 
-      {/* COLLECTIONS */}
       {!collectionsLoading &&
         collections &&
         collections
