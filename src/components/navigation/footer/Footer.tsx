@@ -4,6 +4,7 @@ import { FooterColumnItem } from '@/data/types';
 
 import FooterColumn from './footer-column/FooterColumn';
 import FooterContact from './footer-contact/FooterContact';
+import FooterPromoBanner from './footer-promo-banner/FooterPromoBanner';
 
 const Footer = async () => {
   const t = await getTranslations('Footer');
@@ -22,7 +23,7 @@ const Footer = async () => {
           <FooterColumn label={windFamily.label} row={windFamily.row} />
           <FooterColumn label={moreWind.label} row={moreWind.row} />
         </div>
-        {/* <FooterPromoBanner /> */}
+        <FooterPromoBanner />
       </div>
       <FooterContact address={address} contact={contact} hours={hours} />
     </div>

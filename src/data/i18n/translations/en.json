@@ -254,7 +254,7 @@
       "title": "About Us",
       "description": "Learn more about the mission, vision, beliefs, and leadership behind The Wind Church in Riverside, CA."
     },
-    "alt": "",
+    "alt": "Pastor Singletary of the Wind Church preaching to congregation.",
     "title": "The WIND",
     "subtitle": "Learn more about our church",
     "stats": [
@@ -1261,9 +1261,10 @@
       "subtitle": "Download a free Bible and begin exploring God's Word today."
     },
     "foursquare": {
+      "alt": "Pastor Singletary of the Wind Church preaching to congregation.",
       "title": "Explore What We Believe",
       "description": "Take the next step in your faith journey by learning about the Fourfold Gospel and the biblical truths that shape our beliefs, mission, and ministry.",
-      "cta": "Let's Go!"
+      "cta": "Learn More"
     }
   },
   "Home": {

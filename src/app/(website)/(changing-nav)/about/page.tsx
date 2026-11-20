@@ -23,7 +23,7 @@ export async function generateMetadata() {
   const title = t('metadata.title');
   const description = t('metadata.description');
   const url = `${WEBSITE_URL}${PageRoutes.about}`;
-  const image = '/images/product-placeholder.webp';
+  const image = '/images/about/pastor-and-congregation.webp';
 
   return {
     title,
@@ -147,7 +147,7 @@ const About = async () => {
       <PageHero
         title={t('title')}
         description={t('subtitle')}
-        media={{ src: '/images/product-placeholder.webp', alt: '' }}
+        media={{ src: '/images/about/pastor-and-congregation.webp', alt: t('alt') }}
         stats={[
           { value: t('stats.0.value'), label: t('stats.0.label') },
           { value: t('stats.1.value'), label: t('stats.1.label') },
@@ -155,21 +155,16 @@ const About = async () => {
         ]}
       />
 
-      <div className="flex flex-col gap-3xl max-width-center py-3xl sm:py-4xl px-padding">
-        {/* OVERVIEW */}
-        <h4 className="lg:max-w-[75%]">{t('description')}</h4>
+      {/* OVERVIEW */}
+      <h4 className="lg:max-w-[75%] pt-3xl sm:pt-4xl px-padding">{t('description')}</h4>
 
-        {/* MEET PASTOR */}
+      {/* ABOUT PASTOR */}
+      <div className="flex flex-col gap-xl md:gap-xxl max-width-center py-3xl sm:py-4xl px-padding">
         <div className="flex flex-col gap-lg">
           <SectionHeader title={t('pastor.title')} subtitle={t('pastor.subtitle')} />
-          <div className="lg:max-w-[75%] flex flex-col gap-sm">
-            <h4>{t('pastor.description')}</h4>
-            <h5 className="italic text-light-charcoal dark:text-dark-charcoal">
-              {t('pastor.quote')}
-            </h5>
-          </div>
+          <h4 className="lg:max-w-[75%]">{t('pastor.description')}</h4>
           <Link href={PageRoutes.aboutPastor}>
-            <AnimativeFillButton variant="primary">{t('pastor.cta')}</AnimativeFillButton>
+            <AnimativeFillButton variant="secondary">{t('pastor.cta')}</AnimativeFillButton>
           </Link>
         </div>
       </div>
@@ -232,7 +227,7 @@ const About = async () => {
       </div>
 
       {/* FOURSQUARE */}
-      <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-3xl sm:pt-4xl px-padding">
+      <div className="flex flex-col gap-xl md:gap-xxl max-width-center pt-4xl sm:pt-6xl px-padding">
         <div className="flex flex-col gap-lg">
           <SectionHeader title={t('foursquare.title')} subtitle={t('foursquare.subtitle')} />
           <h4 className="lg:max-w-[75%]">{t('foursquare.description')}</h4>
@@ -244,9 +239,8 @@ const About = async () => {
 
       {/* HISTORY */}
       <div id="history" className="flex flex-col gap-xl md:gap-xxl pt-3xl sm:pt-4xl">
-        <div className="px-padding flex flex-col gap-lg max-width-center">
-          <SectionHeader title={t('history.title')} subtitle={t('history.subtitle')} />
-          <h4 className="lg:max-w-[75%]">{t('history.description')}</h4>
+        <div className="px-padding">
+          <CenterTextSection title={t('history.title')} description={t('history.description')} />
         </div>
 
         <CenterModeMediaWithTextCarousel slides={historySlides} />

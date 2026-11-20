@@ -37,7 +37,7 @@ const MasonryGrid = async ({ items }: MasonryGridProps) => {
           className={cn('min-w-0', SPAN_CLASSES[item.span ?? 1])}
         >
           <Link href={item.href}>
-            <article className="relative rounded-lg h-[350px] lg:h-[450px] cursor-pointer group overflow-hidden">
+            <article className="relative rounded-lg h-[450px] lg:h-[500px] cursor-pointer group overflow-hidden">
               <Image
                 fill
                 src={item.image.src}

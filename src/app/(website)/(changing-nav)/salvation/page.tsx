@@ -207,7 +207,7 @@ const Salvation = async () => {
 
       {/* BIBLE RESOURCES */}
       {bibleResources && bibleResources.length > 0 && (
-        <div className="flex flex-col gap-xl md:gap-xxl py-3xl sm:py-4xl px-padding max-width-center">
+        <div className="flex flex-col gap-xl md:gap-xxl py-4xl sm:py-6xl px-padding max-width-center">
           <SectionHeader title={t('resources.title')} subtitle={t('resources.subtitle')} />
           <div className="flex flex-wrap gap-xl">
             {bibleResources.reverse().map((resource) => (
@@ -218,21 +218,21 @@ const Salvation = async () => {
       )}
 
       {/* FOURSQUARE */}
-      <div className="px-padding max-width-center">
-        <MediaBackgroundAndContent
-          centerContent
-          background={{ src: '/images/people-serving.webp', alt: t('section.alt') }}
-          content={
-            <div className="flex flex-col gap-xs">
-              <h2>{t('foursquare.title')}</h2>
-              <h2 className="pb-lg lg:max-w-[75%]">{t('foursquare.description')}</h2>
-              <Link href={PageRoutes.foursquare}>
-                <AnimativeFillButton variant="secondary">{t('foursquare.cta')}</AnimativeFillButton>
-              </Link>
-            </div>
-          }
-        />
-      </div>
+      <MediaBackgroundAndContent
+        background={{
+          src: '/images/about/pastor-and-congregation.webp',
+          alt: t('foursquare.alt'),
+        }}
+        content={
+          <div className="flex flex-col items-center gap-sm">
+            <h2>{t('foursquare.title')}</h2>
+            <h5 className="lg:max-w-[50%] text-center">{t('foursquare.description')}</h5>
+            <Link href={PageRoutes.foursquare}>
+              <AnimativeFillButton variant="secondary">{t('foursquare.cta')}</AnimativeFillButton>
+            </Link>
+          </div>
+        }
+      />
     </div>
   );
 };

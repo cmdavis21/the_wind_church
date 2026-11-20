@@ -261,7 +261,7 @@
       "title": "Sobre Nosotros",
       "description": "Obtenga más información sobre la misión, la visión, las creencias y el liderazgo de The Wind Church en Riverside, CA."
     },
-    "alt": "Una imagen de fondo decorativa",
+    "alt": "Pastor Singletary de la Iglesia del Viento predicando a la congregación.",
     "title": "The WIND",
     "subtitle": "Conoce más sobre nuestra iglesia",
     "stats": [
@@ -1277,9 +1277,10 @@
       "subtitle": "Descarga una Biblia gratis y comienza a explorar la Palabra de Dios hoy."
     },
     "foursquare": {
+      "alt": "Pastor Singletary de la Iglesia del Viento predicando a la congregación.",
       "title": "Explora lo que creemos",
       "description": "Da el siguiente paso en tu camino de fe aprendiendo sobre el Evangelio Cuádruple y las verdades bíblicas que forman nuestras creencias, misión y ministerio.",
-      "cta": "¡Vamos!"
+      "cta": "Aprende más"
     }
   },
   "Home": {

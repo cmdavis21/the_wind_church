@@ -34,7 +34,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
     desktop: {
       breakpoint: { max: 1800, min: 1024 },
       items: 1,
-      partialVisibilityGutter: 300,
+      partialVisibilityGutter: 500,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -56,7 +56,7 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
   const ButtonGroup = ({ next, previous }: any) => (
     <CarouselArrows
       className="absolute left-0 px-xxl lg:px-4xl min-[1800px]:px-7xl top-[50%] -translate-y-[50%] w-full"
-      leftArrowProps={{ onClick: () => previous() }}
+      leftArrowProps={{ onClick: () => previous(), disable: true }}
       rightArrowProps={{ onClick: () => next() }}
     />
   );
@@ -109,18 +109,17 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
       <div className="hidden md:block relative">
         <Carousel
           arrows={false}
-          infinite
           showDots
           draggable
           swipeable
-          centerMode
+          partialVisible
           customButtonGroup={<ButtonGroup />}
           renderButtonGroupOutside
           containerClass="pb-xxl"
           responsive={responsive}
           customDot={<CustomDot />}
           dotListClass="flex gap-xs"
-          itemClass="px-xl"
+          itemClass="pl-xl"
         >
           {slides.map((slide) => (
             <Card key={`media-with-side-text-carousel-${slide.media.src}`} slide={slide} />
@@ -131,9 +130,8 @@ const CenterModeMediaWithTextCarousel: React.FC<CenterModeMediaWithTextCarouselP
       {/* Mobile */}
       <div className="md:hidden relative px-[21px] sm:px-[46px]">
         <Carousel
-          infinite
           showDots
-          swipeable
+          partialVisible
           arrows={false}
           itemClass="px-1"
           containerClass="pb-xl"
